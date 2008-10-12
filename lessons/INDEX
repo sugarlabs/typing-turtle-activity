@@ -1,7 +1,8 @@
 [
   {
     "name": "Basic Lesson",
-    "description": "Teaches basic skills like the home row, proper posture, etc."
+    "description": "Teaches basic skills like the home row, proper posture, etc.",
+    "content": "<span foreground='#ff0000'>(This lesson text is placeholder)</span><br>Welcome to the basic lesson!<delay 5><p>This lesson teaches the fundamental keyboarding skills that every typist must know.<p>Please type the following letters without moving your fingers from the keys:\n\na s d f j k l ;<p>Good job!!  Now type the following letters, leaving your fingers on the home row:<p>qweruiop<p>Great!  You're really getting the hang of it."
   },
   {
     "name": "Intermediate Lesson",

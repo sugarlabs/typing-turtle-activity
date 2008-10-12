@@ -41,6 +41,7 @@ class LessonScreen(gtk.VBox):
         self.lesson = lesson
         self.activity = activity
 
+        # Build the user interface.
         title = gtk.Label()
         title.set_markup("<span size='20000'><b>" + lesson['name'] + "</b></span>")
         title.set_alignment(1.0, 0.0)
@@ -55,11 +56,14 @@ class LessonScreen(gtk.VBox):
         hbox.pack_end(title, True, True, 10)
 
         self.lessontext = gtk.Label()
-        self.lessontext.set_text("Text goes here!")
         self.lessontext.set_alignment(0, 0)
+
+        self.lessonscroll = gtk.ScrolledWindow()
+        self.lessonscroll.set_policy(gtk.POLICY_NEVER, gtk.POLICY_ALWAYS)
+        self.lessonscroll.add_with_viewport(self.lessontext)
  
         frame = gtk.Frame()
-        frame.add(self.lessontext)
+        frame.add(self.lessonscroll)
 
         self.keyboard = keyboard.Keyboard()
         self.keyboard.set_layout(keyboard.default_layout)
@@ -70,7 +74,88 @@ class LessonScreen(gtk.VBox):
 
         self.show_all()
 
-        print "Launching lesson: %r" % lesson
+        # Initialize the lesson playback.
+        self.content = lesson['content']
+        self.content_pos = 0
+        self.markup = ''
+        self.delay = 0
+        self.span_count = 0
+
+        gobject.timeout_add(50, self.timer_cb)
+
+    def timer_cb(self):
+        if self.delay > 0:
+            self.delay -= 1
+            return True
+
+        # This loop keeps processing until at least one character has been emitted.
+        # We don't want to slow down the typing when there are control codes.
+        while True:
+            # Read the next piece of content.
+            if self.content_pos >= len(self.content):
+                return False
+
+            c = self.content[self.content_pos]
+            self.content_pos += 1
+
+            # Handle any control codes.
+            if c == '<':
+                # Extract and skip the contents of the < > brackets.
+                code_begin = self.content_pos
+                while self.content_pos < len(self.content) and \
+                    self.content[self.content_pos] != '>':
+                    self.content_pos += 1
+
+                code = self.content[code_begin:self.content_pos]
+                self.content_pos += 1
+
+                # Process the control code.
+                args = code.split(' ')
+                if args[0] == 'delay':
+                    self.delay = int(args[1])
+                    return True
+
+                elif args[0] == 'br':
+                    # Line break.
+                    self.markup += '\n'
+
+                elif args[0] == 'p':
+                    # Start a new paragraph.  End the current line if needed.
+                    if len(self.markup) and self.markup[-1] != '\n':
+                        self.markup += '\n\n'
+                    else:
+                        self.markup += '\n'
+
+                elif args[0] == 'span':
+                    # Pango span.
+                    self.markup += '<' + code + '>'
+                    self.span_count += 1
+
+                elif args[0] == '/span':
+                    # End of pango span.
+                    if self.span_count > 0:
+                        self.markup += '<' + code + '>'
+                        self.span_count -= 1
+
+                elif args[0] == 'type':
+                    # Typing section.
+                    self.markup += '<' + code + '>'
+                    self.span_count += 1
+
+                elif args[0] == '/type':
+                    # End of typing section.
+                    if self.span_count > 0:
+                        self.markup += '<' + code + '>'
+                        self.span_count -= 1
+
+
+            else:
+                # A plain character, insert it and return.
+                # Extra </span>'s are added for Pango spans we are still in the middle of.
+                self.markup += c
+                self.lessontext.set_markup(self.markup + ('</span>' * self.span_count))
+
+                return True
 
     def stop_cb(self, widget):
         self.activity.pop_screen()
