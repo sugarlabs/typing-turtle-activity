@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Basic Lesson",
+    "description": "Teaches basic skills like the home row, proper posture, etc."
+  },
+  {
+    "name": "Intermediate Lesson",
+    "description": "Mixes letters with numbers and punctuation."
+  },
+  {
+    "name": "Advanced Lesson",
+    "description": "Tests all keyboard skills."
+  }
+]
