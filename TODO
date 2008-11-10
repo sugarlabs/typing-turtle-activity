@@ -1,0 +1,27 @@
+Typing Turtle
+
+First Release
++ Working medals assignment: "You got a medal!" popup, display next to lesson.
++ Graphical WPM and accuracy meters.
++ Nice looking keyboard.
++ Highlighted keyboard keys when pressed.
++ Support for displaying modifier keys in Keyboard.
++ Artwork and animations.
+  + Background picture in main screen.
+  + Animated turtle in main screen.
+  + Medal pictures: Bronze, Silver, Gold.
+  + Overlay of correct hand position on keyboard.
++ Sound effects.
+  + Welcome to the activity sound.
+  + Speed up / slow down sounds when WPM crosses threshold: Slow, Medium, Fast.
+  + Medal award sounds for each medal type: Bronze, Silver, Gold.
+  + Incorrect key pressed sound. 
++ Develop lessons.
+  + Automatically generate lessons for keyboard regions: Home row, Top row, Bottom row, Numbers, etc.
+  + Mark some lessons as "locational" versus "textual" and translate from the English keyboard to native.  Ex: Home row, Left hand, Numbers, etc.
+  + Give each lesson criteria for each medal type based on Accuracy, WPM.
+
+Future Release
++ History screen: List of lessons completed with statistics.
++ Progress screen: Line graphs of Accuracy, WPM over time.
++ Goal support with progress reporting.  WPM, Accuracy, Entire keyboard learned, etc.
