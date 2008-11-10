@@ -75,7 +75,7 @@ class LessonScreen(gtk.VBox):
         frame.add(self.lessonscroll)
 
         self.keyboard = keyboard.Keyboard()
-        self.keyboard.set_layout(keyboard.default_layout)
+        self.keyboard.set_layout(keyboard.DEFAULT_LAYOUT)
 
         activity.add_events(gtk.gdk.KEY_PRESS_MASK)
         activity.connect('key-press-event', self.key_press_cb)
@@ -152,7 +152,7 @@ class LessonScreen(gtk.VBox):
         # Add to the game history.
         self.activity.add_history({ 
             'lesson': self.lesson['name'], 
-            'time': self.time,
+            'time': self.total_time,
             'wpm': self.wpm, 
             'accuracy': self.accuracy
         })
@@ -312,7 +312,7 @@ class TypingTurtle(sugar.activity.activity.Activity):
             self.screenbox.pack_start(self.screens[-1])
 
     def add_history(self, entry):
-        self.data['history'].push(entry)
+        self.data['history'].append(entry)
 
     def read_file(self, file_path):
         if self.metadata['mime_type'] != 'text/plain':
