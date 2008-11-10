@@ -17,8 +17,11 @@
 """Typing Turtle - Interactive typing tutor for the OLPC XO."""
 
 # Import standard Python modules.
-import logging, os, math, time, copy, json
+import logging, os, math, time, copy, json, locale
 from gettext import gettext as _
+
+# Set up localization.
+locale.setlocale(locale.LC_ALL, '')
 
 # Import PyGTK.
 import gobject, pygtk, gtk, pango
@@ -78,13 +81,14 @@ class LessonScreen(gtk.VBox):
         activity.connect('key-press-event', self.key_press_cb)
 
         self.pack_start(hbox, False, False, 10)
-        self.pack_start(frame, True)
+        self.pack_start(frame, True, True)
         self.pack_start(self.keyboard, True)
 
         self.show_all()
 
-        # Initialize the lesson.
-        self.lesson = lesson
+        self.begin_lesson()
+
+    def begin_lesson(self):
         self.step = None
         self.markup = ''
 
@@ -97,7 +101,7 @@ class LessonScreen(gtk.VBox):
         self.next_step_idx = 0
         self.advance_step()
 
-        self.start_time = time.time()
+        self.start_time = None
 
     def count_words(self):
         self.total_words = 0
@@ -142,16 +146,26 @@ class LessonScreen(gtk.VBox):
 
         self.update_stats()
 
-        self.add_text(_('Congratulations!  You finished the lesson in %(total_time)d seconds.\n\n') % 
-            { 'total_time': int(self.total_time) } )
+        self.add_text(_('Congratulations!  You finished the lesson in %(time)d seconds.\n\n') % 
+            { 'time': int(self.total_time) } )
 
-        self.add_text(_('Your accuracy was %(accuracy)d%% and your speed was %(wpm)d words per minute.') %
-            { 'accuracy': int(self.accuracy), 'wpm': int(self.wpm) } )
+        # Add to the game history.
+        self.activity.add_history({ 
+            'lesson': self.lesson['name'], 
+            'time': self.time,
+            'wpm': self.wpm, 
+            'accuracy': self.accuracy
+        })
         
     def key_press_cb(self, widget, event):
         if not self.step:
             return False
 
+        # Timer starts with first keypress.
+        if not self.start_time:
+            self.start_time = time.time()
+
+        # Check to see if they pressed the correct key.
         if event.keyval == ord(self.step['text'][self.char_idx]):
             self.correct_keys += 1
             self.total_keys += 1
@@ -203,8 +217,10 @@ class MainScreen(gtk.VBox):
         self.lessonbox = gtk.VBox()
         self.lessonbox.set_spacing(10)
 
+        code = locale.getlocale(locale.LC_ALL)[0]
+ 
         lessons = []
-        fd = open(sugar.activity.activity.get_bundle_path() + '/lessons/INDEX', 'r')
+        fd = open(sugar.activity.activity.get_bundle_path() + '/lessons/LESSONS.'+code, 'r')
         try:
             lessons = json.read(fd.read())
         finally:
@@ -259,6 +275,11 @@ class TypingTurtle(sugar.activity.activity.Activity):
         self.screens = []
         self.screenbox = gtk.VBox()
 
+        # All data which is saved in the Journal entry is placed in this dictionary.
+        self.data = {
+            'history': []
+        }
+
         # This has to happen last, because it calls the read_file method when restoring from the Journal.
         self.set_canvas(self.screenbox)
 
@@ -266,6 +287,10 @@ class TypingTurtle(sugar.activity.activity.Activity):
         self.push_screen(MainScreen(self))
   
         self.show_all()
+
+        # Hide the sharing button from the activity toolbar since we don't support sharing.
+        activity_toolbar = self.tbox.get_activity_toolbar()
+        activity_toolbar.share.props.visible = False
 
     def build_toolbox(self):
         self.tbox = sugar.activity.activity.ActivityToolbox(self)
@@ -285,4 +310,31 @@ class TypingTurtle(sugar.activity.activity.Activity):
         self.screens.pop()
         if len(self.screens):
             self.screenbox.pack_start(self.screens[-1])
+
+    def add_history(self, entry):
+        self.data['history'].push(entry)
+
+    def read_file(self, file_path):
+        if self.metadata['mime_type'] != 'text/plain':
+            return
+
+        fd = open(file_path, 'r')
+        try:
+            text = fd.read()
+            print "read %s" % text
+            self.data = json.read(text)
+        finally:
+            fd.close()
+
+    def write_file(self, file_path):
+        if not self.metadata['mime_type']:
+            self.metadata['mime_type'] = 'text/plain'
+
+        fd = open(file_path, 'w')
+        try:
+            text = json.write(self.data)
+            fd.write(text)
+            print "wrote %s" % text
+        finally:
+            fd.close()
 
