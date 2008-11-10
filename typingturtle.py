@@ -51,15 +51,21 @@ class LessonScreen(gtk.VBox):
         stopbtn.add(stoplabel)
         stopbtn.connect('clicked', self.stop_cb)
 
+        self.wpmlabel = gtk.Label()
+        self.accuracylabel = gtk.Label()
+
         hbox = gtk.HBox()
         hbox.pack_start(stopbtn, False, False, 10)
-        hbox.pack_end(title, True, True, 10)
+        hbox.pack_start(self.wpmlabel, True, False, 10)
+        hbox.pack_start(self.accuracylabel, True, False, 10)
+        hbox.pack_end(title, False, False, 10)
 
         self.lessontext = gtk.Label()
         self.lessontext.set_alignment(0, 0)
+        self.lessontext.set_line_wrap(True)
 
         self.lessonscroll = gtk.ScrolledWindow()
-        self.lessonscroll.set_policy(gtk.POLICY_NEVER, gtk.POLICY_ALWAYS)
+        self.lessonscroll.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_ALWAYS)
         self.lessonscroll.add_with_viewport(self.lessontext)
  
         frame = gtk.Frame()
@@ -68,94 +74,104 @@ class LessonScreen(gtk.VBox):
         self.keyboard = keyboard.Keyboard()
         self.keyboard.set_layout(keyboard.default_layout)
 
+        activity.add_events(gtk.gdk.KEY_PRESS_MASK)
+        activity.connect('key-press-event', self.key_press_cb)
+
         self.pack_start(hbox, False, False, 10)
         self.pack_start(frame, True)
         self.pack_start(self.keyboard, True)
 
         self.show_all()
 
-        # Initialize the lesson playback.
-        self.content = lesson['content']
-        self.content_pos = 0
+        # Initialize the lesson.
+        self.lesson = lesson
+        self.step = None
         self.markup = ''
-        self.delay = 0
-        self.span_count = 0
 
-        gobject.timeout_add(50, self.timer_cb)
+        self.total_keys = 0
+        self.correct_keys = 0
+        self.incorrect_keys = 0
 
-    def timer_cb(self):
-        if self.delay > 0:
-            self.delay -= 1
-            return True
+        self.count_words()
 
-        # This loop keeps processing until at least one character has been emitted.
-        # We don't want to slow down the typing when there are control codes.
-        while True:
-            # Read the next piece of content.
-            if self.content_pos >= len(self.content):
-                return False
+        self.next_step_idx = 0
+        self.advance_step()
 
-            c = self.content[self.content_pos]
-            self.content_pos += 1
+        self.start_time = time.time()
 
-            # Handle any control codes.
-            if c == '<':
-                # Extract and skip the contents of the < > brackets.
-                code_begin = self.content_pos
-                while self.content_pos < len(self.content) and \
-                    self.content[self.content_pos] != '>':
-                    self.content_pos += 1
+    def count_words(self):
+        self.total_words = 0
+        for s in self.lesson['steps']:
+            in_word = False
+            for c in s['text']:
+                if not in_word and not c.isspace():
+                    self.total_words += 1
+                    in_word = True
+                elif c.isspace():
+                    in_word = False
 
-                code = self.content[code_begin:self.content_pos]
-                self.content_pos += 1
+    def update_stats(self):
+        self.total_time = time.time() - self.start_time
+        self.wpm = 60.0 * self.total_words / self.total_time
+        self.accuracy = 100.0 * self.correct_keys / self.total_keys
 
-                # Process the control code.
-                args = code.split(' ')
-                if args[0] == 'delay':
-                    self.delay = int(args[1])
-                    return True
+        self.accuracylabel.set_markup(_('<b>Accuracy:</b> %(accuracy)d%%') % { 'accuracy' : int(self.accuracy) } )
+        self.wpmlabel.set_markup(_('<b>WPM:</b> %(wpm)d') % { 'wpm': int(self.wpm) } )
 
-                elif args[0] == 'br':
-                    # Line break.
-                    self.markup += '\n'
+    def add_text(self, text):
+        self.markup += text
+        self.lessontext.set_markup(self.markup + '_')
 
-                elif args[0] == 'p':
-                    # Start a new paragraph.  End the current line if needed.
-                    if len(self.markup) and self.markup[-1] != '\n':
-                        self.markup += '\n\n'
-                    else:
-                        self.markup += '\n'
+    def advance_step(self):
+        if self.next_step_idx < len(self.lesson['steps']):
+            # TODO - Play 'step finished' sound here.
 
-                elif args[0] == 'span':
-                    # Pango span.
-                    self.markup += '<' + code + '>'
-                    self.span_count += 1
+            self.step = self.lesson['steps'][self.next_step_idx]
+            self.next_step_idx = self.next_step_idx + 1
 
-                elif args[0] == '/span':
-                    # End of pango span.
-                    if self.span_count > 0:
-                        self.markup += '<' + code + '>'
-                        self.span_count -= 1
+            self.add_text(self.step['instructions'] + '\n\n')
+            self.add_text('<span font_family="monospace">' + self.step['text'] + '</span>\n')
 
-                elif args[0] == 'type':
-                    # Typing section.
-                    self.markup += '<' + code + '>'
-                    self.span_count += 1
+            self.char_idx = 0
+        
+        else:
+            self.finish_lesson()
 
-                elif args[0] == '/type':
-                    # End of typing section.
-                    if self.span_count > 0:
-                        self.markup += '<' + code + '>'
-                        self.span_count -= 1
+    def finish_lesson(self):
+        self.step = None
 
+        self.update_stats()
 
-            else:
-                # A plain character, insert it and return.
-                # Extra </span>'s are added for Pango spans we are still in the middle of.
-                self.markup += c
-                self.lessontext.set_markup(self.markup + ('</span>' * self.span_count))
+        self.add_text(_('Congratulations!  You finished the lesson in %(total_time)d seconds.\n\n') % 
+            { 'total_time': int(self.total_time) } )
 
-                return True
+        self.add_text(_('Your accuracy was %(accuracy)d%% and your speed was %(wpm)d words per minute.') %
+            { 'accuracy': int(self.accuracy), 'wpm': int(self.wpm) } )
+        
+    def key_press_cb(self, widget, event):
+        if not self.step:
+            return False
+
+        if event.keyval == ord(self.step['text'][self.char_idx]):
+            self.correct_keys += 1
+            self.total_keys += 1
+
+            self.add_text('<span font_family="monospace">' + chr(event.keyval) + '</span>')
+
+            self.char_idx += 1
+            if self.char_idx >= len(self.step['text']):
+                self.add_text('\n\n')
+                self.advance_step()
+
+        else:
+            # TODO - Play 'incorrect key' sound here.
+
+            self.incorrect_keys += 1
+            self.total_keys += 1
+
+        self.update_stats()
+
+        return False
 
     def stop_cb(self, widget):
         self.activity.pop_screen()

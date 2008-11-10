@@ -2,14 +2,15 @@
   {
     "name": "Basic Lesson",
     "description": "Teaches basic skills like the home row, proper posture, etc.",
-    "content": "<span foreground='#ff0000'>(This lesson text is placeholder)</span><br>Welcome to the basic lesson!<delay 5><p>This lesson teaches the fundamental keyboarding skills that every typist must know.<p>Please type the following letters without moving your fingers from the keys:\n\na s d f j k l ;<p>Good job!!  Now type the following letters, leaving your fingers on the home row:<p>qweruiop<p>Great!  You're really getting the hang of it."
-  },
-  {
-    "name": "Intermediate Lesson",
-    "description": "Mixes letters with numbers and punctuation."
-  },
-  {
-    "name": "Advanced Lesson",
-    "description": "Tests all keyboard skills."
+    "steps": [
+      {
+        "instructions": "Welcome to the basic lesson.  This lesson teaches the fundamental keyboarding skills that every typist must know.  Please type the following letters.",
+        "text": "asdfjkl;"
+      },
+      {
+        "instructions": "Good job!! Now typing the following letters, moving only one finger at a time.",
+        "text": "qwertyuiop"
+      }
+    ]
   }
 ]
