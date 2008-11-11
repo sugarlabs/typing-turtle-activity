@@ -17,7 +17,7 @@
 """Typing Turtle - Interactive typing tutor for the OLPC XO."""
 
 # Import standard Python modules.
-import logging, os, math, time, copy, json, locale
+import logging, os, math, time, copy, json, locale, datetime
 from gettext import gettext as _
 
 # Set up localization.
@@ -30,12 +30,67 @@ import gobject, pygtk, gtk, pango
 import sugar.activity.activity
 from sugar.graphics import *
 
+from sugar.presence import presenceservice
+
 # Initialize logging.
 log = logging.getLogger('Typing Turtle')
 log.setLevel(logging.DEBUG)
 logging.basicConfig()
 
 import keyboard
+
+class MedalScreen(gtk.EventBox):
+    def __init__(self, medal, activity):
+        gtk.EventBox.__init__(self)
+
+        self.modify_bg(gtk.STATE_NORMAL, self.get_colormap().alloc_color('#ffffff'))
+
+        self.medal = medal
+        self.activity = activity
+
+        cert0 = gtk.Label()
+        cert0.set_markup("<span size='35000'><b><i>" + _('Certificate of\nAchievement') + "</i></b></span>")
+
+        cert1 = gtk.Label()
+        cert1.set_markup("<span size='18000'>" + 
+            (_('This certifies that on <i><b><u>%(date)s</u></b></i>,\n<i><b><u>%(nick)s</u></b></i> earned a %(type)s medal\nin Typing Turtle lesson <i><b><u>%(lesson)s</u></b></i>.') % medal) +
+            "</span>")
+
+        wpmlabel = gtk.Label()
+        wpmlabel.set_markup("<span size='18000'>" + (_('<b>Words Per Minute:</b> %(wpm)d') % medal) + "</span>" )
+
+        accuracylabel = gtk.Label()
+        accuracylabel.set_markup("<span size='15000'>" + (_('<b>Accuracy:</b> %(accuracy)d%%') % medal) + "</span>" )
+
+        statbox = gtk.HBox()
+        statbox.pack_start(wpmlabel, True)
+        statbox.pack_start(accuracylabel, True)
+
+        oklabel = gtk.Label()
+        oklabel.set_markup("<span size='10000'>" + _('Go Back') + '</span>')
+        okbtn =  gtk.Button()
+        okbtn.add(oklabel)
+        okbtn.connect('clicked', self.ok_cb)
+
+        btnbox = gtk.HBox()
+        btnbox.pack_start(okbtn, True, False)
+
+        vbox = gtk.VBox()
+
+        vbox.pack_start(cert0, True, False, 0)
+        vbox.pack_start(gtk.HSeparator(), False, False, 20)
+        vbox.pack_start(cert1, False, False, 0)
+        vbox.pack_start(gtk.HSeparator(), False, False, 20)
+        vbox.pack_start(statbox, False, False, 0)
+        vbox.pack_start(gtk.HSeparator(), False, False, 20)
+        vbox.pack_start(btnbox, False, False, 40)
+
+        self.add(vbox)
+
+        self.show_all()
+
+    def ok_cb(self, widget):
+        self.activity.pop_screen()
 
 class LessonScreen(gtk.VBox):
     def __init__(self, lesson, activity):
@@ -54,6 +109,7 @@ class LessonScreen(gtk.VBox):
         stopbtn.add(stoplabel)
         stopbtn.connect('clicked', self.stop_cb)
 
+        # TODO- These will be replaced by graphical displays using gtk.DrawingArea.
         self.wpmlabel = gtk.Label()
         self.accuracylabel = gtk.Label()
 
@@ -64,7 +120,7 @@ class LessonScreen(gtk.VBox):
         hbox.pack_end(title, False, False, 10)
 
         self.lessontext = gtk.Label()
-        self.lessontext.set_alignment(0, 0)
+        #self.lessontext.set_alignment(0, 0)
         self.lessontext.set_line_wrap(True)
 
         self.lessonscroll = gtk.ScrolledWindow()
@@ -116,7 +172,10 @@ class LessonScreen(gtk.VBox):
 
     def update_stats(self):
         self.total_time = time.time() - self.start_time
-        self.wpm = 60.0 * self.total_words / self.total_time
+        if self.total_time >= 1.0:
+            self.wpm = 60.0 * self.total_words / self.total_time
+        else:
+            self.wpm = 1.0
         self.accuracy = 100.0 * self.correct_keys / self.total_keys
 
         self.accuracylabel.set_markup(_('<b>Accuracy:</b> %(accuracy)d%%') % { 'accuracy' : int(self.accuracy) } )
@@ -133,6 +192,8 @@ class LessonScreen(gtk.VBox):
             self.step = self.lesson['steps'][self.next_step_idx]
             self.next_step_idx = self.next_step_idx + 1
 
+            self.markup = ''
+
             self.add_text(self.step['instructions'] + '\n\n')
             self.add_text('<span font_family="monospace">' + self.step['text'] + '</span>\n')
 
@@ -144,19 +205,66 @@ class LessonScreen(gtk.VBox):
     def finish_lesson(self):
         self.step = None
 
+        self.activity.pop_screen()
+        
         self.update_stats()
+        #self.add_text(_('Congratulations!  You finished the lesson in %(time)d seconds.\n\n') % 
+        #    { 'time': int(self.total_time) } )
 
-        self.add_text(_('Congratulations!  You finished the lesson in %(time)d seconds.\n\n') % 
-            { 'time': int(self.total_time) } )
+        lesson_name = self.lesson['name']
 
-        # Add to the game history.
-        self.activity.add_history({ 
-            'lesson': self.lesson['name'], 
+        # Add to the lesson history.
+        report = { 
+            'lesson': lesson_name,
             'time': self.total_time,
             'wpm': self.wpm, 
             'accuracy': self.accuracy
-        })
-        
+        }
+        self.activity.add_history(report)
+
+        # Show the medal screen, if one should be given.
+        got_medal = None
+        for medal_name in ['bronze', 'silver', 'gold']:
+            medal = self.lesson['medals'][medal_name]
+            if self.wpm >= medal['wpm'] and self.accuracy >= medal['accuracy']:
+                got_medal = medal_name
+
+        if got_medal:
+            # Award the medal.
+            medal = {
+                'lesson': lesson_name,
+                'type': medal_name,
+                'date': datetime.date.today().strftime('%B %d, %Y'),
+                'nick': self.activity.owner.props.nick,
+                'time': self.total_time,
+                'wpm': report['wpm'],
+                'accuracy': report['accuracy']
+            }
+
+            add_medal = True
+            if self.activity.data['medals'].has_key(lesson_name):
+                old_medal = self.activity.data['medals'][lesson_name]
+
+                order = 'bronze silver gold'
+                add_idx = order.index(medal['type'])
+                old_idx = order.index(old_medal['type']) 
+
+                if add_idx < old_idx:
+                    add_medal = False
+                elif add_idx == old_idx:
+                    if medal['accuracy'] < old_medal['accuracy']:
+                        add_medal = False
+                    elif medal['accuracy'] == old_medal['accuracy']:
+                        if medal['wpm'] < old_medal['wpm']:
+                            add_medal = False
+
+            if add_medal:
+                self.activity.data['medals'][lesson_name] = medal
+                self.activity.mainscreen.update_medals()
+
+            # Show the new medal (regardless of whether it was recorded).
+            self.activity.push_screen(MedalScreen(medal, self.activity))
+
     def key_press_cb(self, widget, event):
         if not self.step:
             return False
@@ -226,27 +334,31 @@ class MainScreen(gtk.VBox):
         finally:
             fd.close()
 
-        log.debug("Lessons: %r", lessons)
         for l in lessons:
             label = gtk.Label()
             label.set_alignment(0.0, 0.5)
             label.set_markup("<span size='large'>" + l['name'] + "</span>\n" + l['description'])
 
-            medal = gtk.Image()
-            medal.set_from_file(sugar.activity.activity.get_bundle_path() + '/images/gold-medal.jpg')
+            btn = gtk.Button()
+            btn.lesson = l
+            btn.add(label)
+            btn.connect('clicked', self.lesson_clicked_cb)
+
+            medalimage = gtk.Image()
+
+            medalbtn = gtk.Button()
+            medalbtn.lesson = l
+            medalbtn.add(medalimage)
+            medalbtn.connect('clicked', self.medal_clicked_cb)
 
             hbox = gtk.HBox()
-            hbox.pack_start(label, True, True, 10)
-            hbox.pack_end(medal, False, False)            
+            hbox.pack_start(btn, True, True, 10)
+            hbox.pack_end(medalbtn, False, False)            
+
+            hbox.lesson = l
+            hbox.medalimage = medalimage
       
-            btn = gtk.Button()
-            btn.add(hbox)
-
-            btn.lesson = l
-
-            btn.connect('clicked', self.button_cb)
-
-            self.lessonbox.pack_start(btn, False)
+            self.lessonbox.pack_start(hbox, False)
 
         self.lessonscroll = gtk.ScrolledWindow()
         self.lessonscroll.set_policy(gtk.POLICY_NEVER, gtk.POLICY_AUTOMATIC)
@@ -258,8 +370,30 @@ class MainScreen(gtk.VBox):
         self.pack_start(headerbox, False)
         self.pack_start(self.lessonscroll, True)
 
-    def button_cb(self, widget):
+        self.update_medals()
+
+    def update_medals(self):
+        for l in self.lessonbox:
+            medal_type = 'none'
+            if self.activity.data['medals'].has_key(l.lesson['name']):
+                medal_type = self.activity.data['medals'][l.lesson['name']]['type']
+
+            bundle = sugar.activity.activity.get_bundle_path()
+            images = {
+                'none':   bundle+'/images/no-medal.jpg',
+                'bronze': bundle+'/images/bronze-medal.jpg',
+                'silver': bundle+'/images/silver-medal.jpg',
+                'gold':   bundle+'/images/gold-medal.jpg'
+            }
+            l.medalimage.set_from_file(images[medal_type])
+
+    def lesson_clicked_cb(self, widget):
         self.activity.push_screen(LessonScreen(widget.lesson, self.activity))
+
+    def medal_clicked_cb(self, widget):
+        if self.activity.data['medals'].has_key(widget.lesson['name']):
+            medal = self.activity.data['medals'][widget.lesson['name']]
+            self.activity.push_screen(MedalScreen(medal, self.activity))
 
 # This is the main Typing Turtle activity class.
 # 
@@ -275,16 +409,20 @@ class TypingTurtle(sugar.activity.activity.Activity):
         self.screens = []
         self.screenbox = gtk.VBox()
 
+        self.owner = presenceservice.get_instance().get_owner()
+
         # All data which is saved in the Journal entry is placed in this dictionary.
         self.data = {
-            'history': []
+            'history': [],
+            'medals': {}
         }
 
         # This has to happen last, because it calls the read_file method when restoring from the Journal.
         self.set_canvas(self.screenbox)
 
         # Start with the main screen.
-        self.push_screen(MainScreen(self))
+        self.mainscreen = MainScreen(self)
+        self.push_screen(self.mainscreen)
   
         self.show_all()
 
