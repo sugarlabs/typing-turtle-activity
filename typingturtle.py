@@ -134,7 +134,7 @@ class LessonScreen(gtk.VBox):
         frame = gtk.Frame()
         frame.add(self.lessonscroll)
 
-        self.keyboard = keyboard.Keyboard()
+        self.keyboard = keyboard.Keyboard(self.activity)
         self.keyboard.set_layout(keyboard.DEFAULT_LAYOUT)
 
         activity.add_events(gtk.gdk.KEY_PRESS_MASK)
@@ -202,6 +202,7 @@ class LessonScreen(gtk.VBox):
             self.add_text('<span font_family="monospace">' + self.step['text'] + '</span>\n')
 
             self.char_idx = 0
+            self.hilite_next_key()
         
         else:
             self.finish_lesson()
@@ -284,10 +285,16 @@ class LessonScreen(gtk.VBox):
 
             self.add_text('<span font_family="monospace">' + chr(event.keyval) + '</span>')
 
+            self.keyboard.clear_hilite()
+            self.keyboard.queue_draw()
+
             self.char_idx += 1
             if self.char_idx >= len(self.step['text']):
                 self.add_text('\n\n')
                 self.advance_step()
+
+            else:
+                self.hilite_next_key()
 
         else:
             # TODO - Play 'incorrect key' sound here.
@@ -298,6 +305,10 @@ class LessonScreen(gtk.VBox):
         self.update_stats()
 
         return False
+
+    def hilite_next_key(self):
+        key = self.keyboard.find_key_by_letter(self.step['text'][self.char_idx])
+        key.set_hilite(True)
 
     def stop_cb(self, widget):
         self.activity.pop_screen()

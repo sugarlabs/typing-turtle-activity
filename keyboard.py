@@ -4,11 +4,11 @@ import pygtk
 pygtk.require('2.0')
 import gtk
 
-# List of all possible properties in the keyboard layout description.
+# List of all key properties in the keyboard layout description.
 #
 # Keyboard Layouts use a property inheritance scheme similar to CSS (cascading style sheets):
 # - Keys inherit properties from their groups, if not explicitly set.
-# - Groups similarly inherit properties from the layout.
+# - Groups inherit properties from the layout.
 # - The layout inherits properties from defaults values defined below.
 #
 # Therefore it is possible to set any property once in the Layout, and have
@@ -45,6 +45,9 @@ KEY_PROPS = [
 
     # Gap between keys. Used by 'horizontal' and 'verical' layout algorithms.
     { 'name': 'key-gap', 'default': 0 },
+
+    # Keyboard scan code for this key.
+    { 'name': 'key-scan', 'default': 0 },
 
     # Text label to be displayed on keys which do not generate ASCII keys.
     { 'name': 'key-label', 'default': '' },
@@ -102,20 +105,20 @@ DEFAULT_LAYOUT = {
             'group-y': 50,
 
 	    'keys': [
-	     {'key-normal':"`",'key-shift':"~",'key-width':35}, 
-	     {'key-normal':"1",'key-shift':"!"}, 
-	     {'key-normal':"2",'key-shift':"@"}, 
-	     {'key-normal':"3",'key-shift':"#"}, 
-	     {'key-normal':"4",'key-shift':"$"}, 
-	     {'key-normal':"5",'key-shift':"%"}, 
-	     {'key-normal':"6",'key-shift':"^"}, 
-	     {'key-normal':"7",'key-shift':"&"}, 
-	     {'key-normal':"8",'key-shift':"*"}, 
-	     {'key-normal':"9",'key-shift':"("}, 
-	     {'key-normal':"0",'key-shift':")"}, 
-	     {'key-normal':"-",'key-shift':"_"}, 
-	     {'key-normal':"=",'key-shift':"+",'key-width':65},
-	     {'key-label':"erase",'key-width':95}
+	     {'key-scan':0x31,'key-normal':"`",'key-shift':"~",'key-width':35}, 
+	     {'key-scan':0x0a,'key-normal':"1",'key-shift':"!"}, 
+	     {'key-scan':0x0b,'key-normal':"2",'key-shift':"@"}, 
+	     {'key-scan':0x0c,'key-normal':"3",'key-shift':"#"}, 
+	     {'key-scan':0x0d,'key-normal':"4",'key-shift':"$"}, 
+	     {'key-scan':0x0e,'key-normal':"5",'key-shift':"%"}, 
+	     {'key-scan':0x0f,'key-normal':"6",'key-shift':"^"}, 
+	     {'key-scan':0x10,'key-normal':"7",'key-shift':"&"}, 
+	     {'key-scan':0x11,'key-normal':"8",'key-shift':"*"}, 
+	     {'key-scan':0x12,'key-normal':"9",'key-shift':"("}, 
+	     {'key-scan':0x13,'key-normal':"0",'key-shift':")"}, 
+	     {'key-scan':0x14,'key-normal':"-",'key-shift':"_"}, 
+	     {'key-scan':0x15,'key-normal':"=",'key-shift':"+",'key-width':65},
+	     {'key-scan':0x16,'key-label':"erase",'key-width':95}
 	    ]
 	},
 	{
@@ -124,20 +127,20 @@ DEFAULT_LAYOUT = {
             'group-y': 100,
 
 	    'keys': [
-	     {'key-label':"tab"},
-	     {'key-normal':"q",'key-shift':"Q"}, 
-	     {'key-normal':"w",'key-shift':"W"}, 
-	     {'key-normal':"e",'key-shift':"E"}, 
-	     {'key-normal':"r",'key-shift':"R"}, 
-	     {'key-normal':"t",'key-shift':"T"}, 
-	     {'key-normal':"y",'key-shift':"Y"}, 
-	     {'key-normal':"u",'key-shift':"U"}, 
-	     {'key-normal':"i",'key-shift':"I"}, 
-	     {'key-normal':"o",'key-shift':"O"}, 
-	     {'key-normal':"p",'key-shift':"P"}, 
-	     {'key-normal':"[",'key-shift':"{"}, 
-	     {'key-normal':"]",'key-shift':"}",'key-width':55},
-	     {'key-label':"enter",'key-width':95,'key-height':95}
+	     {'key-scan':0x17,'key-label':"tab"},
+	     {'key-scan':0x18,'key-normal':"q",'key-shift':"Q"}, 
+	     {'key-scan':0x19,'key-normal':"w",'key-shift':"W"}, 
+	     {'key-scan':0x1a,'key-normal':"e",'key-shift':"E"}, 
+	     {'key-scan':0x1b,'key-normal':"r",'key-shift':"R"}, 
+	     {'key-scan':0x1c,'key-normal':"t",'key-shift':"T"}, 
+	     {'key-scan':0x1d,'key-normal':"y",'key-shift':"Y"}, 
+	     {'key-scan':0x1e,'key-normal':"u",'key-shift':"U"}, 
+	     {'key-scan':0x1f,'key-normal':"i",'key-shift':"I"}, 
+	     {'key-scan':0x20,'key-normal':"o",'key-shift':"O"}, 
+	     {'key-scan':0x21,'key-normal':"p",'key-shift':"P"}, 
+	     {'key-scan':0x22,'key-normal':"[",'key-shift':"{"}, 
+	     {'key-scan':0x23,'key-normal':"]",'key-shift':"}",'key-width':55},
+	     {'key-scan':0x24,'key-label':"enter",'key-width':95,'key-height':95}
 	    ]
 	},
 	{
@@ -146,19 +149,19 @@ DEFAULT_LAYOUT = {
             'group-y': 150,
 
 	    'keys': [
-	     {'key-label':"ctrl",'key-width':55},
-	     {'key-normal':"a",'key-shift':"A"}, 
-	     {'key-normal':"s",'key-shift':"S"}, 
-	     {'key-normal':"d",'key-shift':"D"}, 
-	     {'key-normal':"f",'key-shift':"F"}, 
-	     {'key-normal':"g",'key-shift':"G"}, 
-	     {'key-normal':"h",'key-shift':"H"},
-	     {'key-normal':"j",'key-shift':"J"}, 
-	     {'key-normal':"k",'key-shift':"K"}, 
-	     {'key-normal':"l",'key-shift':"L"}, 
-	     {'key-normal':";",'key-shift':":"}, 
-	     {'key-normal':"'",'key-shift':")"}, 
-	     {'key-normal':"\"",'key-shift':"|"}
+	     {'key-scan':0x25,'key-label':"ctrl",'key-width':55},
+	     {'key-scan':0x26,'key-normal':"a",'key-shift':"A"}, 
+	     {'key-scan':0x27,'key-normal':"s",'key-shift':"S"}, 
+	     {'key-scan':0x28,'key-normal':"d",'key-shift':"D"}, 
+	     {'key-scan':0x29,'key-normal':"f",'key-shift':"F"}, 
+	     {'key-scan':0x2a,'key-normal':"g",'key-shift':"G"}, 
+	     {'key-scan':0x2b,'key-normal':"h",'key-shift':"H"},
+	     {'key-scan':0x2c,'key-normal':"j",'key-shift':"J"}, 
+	     {'key-scan':0x2d,'key-normal':"k",'key-shift':"K"}, 
+	     {'key-scan':0x2e,'key-normal':"l",'key-shift':"L"}, 
+	     {'key-scan':0x2f,'key-normal':";",'key-shift':":"}, 
+	     {'key-scan':0x30,'key-normal':"'",'key-shift':")"}, 
+	     {'key-scan':0x33,'key-normal':"\\",'key-shift':"|"}
 	    ]
 	},
 	{
@@ -167,19 +170,19 @@ DEFAULT_LAYOUT = {
             'group-y': 200,
 
 	    'keys': [
-	     {'key-label':"shift",'key-width':75},
-	     {'key-normal':"z",'key-shift':"Z"}, 
-	     {'key-normal':"x",'key-shift':"X"}, 
-	     {'key-normal':"c",'key-shift':"C"}, 
-	     {'key-normal':"v",'key-shift':"V"}, 
-	     {'key-normal':"b",'key-shift':"B"}, 
-	     {'key-normal':"n",'key-shift':"N"},
-	     {'key-normal':"m",'key-shift':"M"}, 
-	     {'key-normal':",",'key-shift':"<"}, 
-	     {'key-normal':".",'key-shift':">"}, 
-	     {'key-normal':"/",'key-shift':"?"},
-	     {'key-label':"shift",'key-width':75},
-	     {'key-label':"",'key-shift':""}, # Up
+	     {'key-scan':0x32,'key-label':"shift",'key-width':75},
+	     {'key-scan':0x34,'key-normal':"z",'key-shift':"Z"}, 
+	     {'key-scan':0x35,'key-normal':"x",'key-shift':"X"}, 
+	     {'key-scan':0x36,'key-normal':"c",'key-shift':"C"}, 
+	     {'key-scan':0x37,'key-normal':"v",'key-shift':"V"}, 
+	     {'key-scan':0x38,'key-normal':"b",'key-shift':"B"}, 
+	     {'key-scan':0x39,'key-normal':"n",'key-shift':"N"},
+	     {'key-scan':0x3a,'key-normal':"m",'key-shift':"M"}, 
+	     {'key-scan':0x3b,'key-normal':",",'key-shift':"<"}, 
+	     {'key-scan':0x3c,'key-normal':".",'key-shift':">"}, 
+	     {'key-scan':0x3d,'key-normal':"/",'key-shift':"?"},
+	     {'key-scan':0x3e,'key-label':"shift",'key-width':75},
+	     {'key-scan':0x6f,'key-label':"",'key-shift':""}, # Up
 	     {'key-label':"",'key-shift':""}, # Multiply
 	    ]
 	},
@@ -191,13 +194,13 @@ DEFAULT_LAYOUT = {
 	    'keys': [
 	     {'key-label':"fn",'key-width':35},
 	     {'key-label':"",'key-width':55}, # LHand
-	     {'key-label':"alt",'key-width':55}, # LAlt
-	     {'key-normal':" ",'key-shift':" ", 'key-width':325}, 
-	     {'key-label':"alt",'key-width':55}, # RAlt
+	     {'key-scan':0x40,'key-label':"alt",'key-width':55}, # LAlt
+	     {'key-scan':0x41,'key-normal':" ",'key-shift':" ", 'key-width':325}, 
+	     {'key-scan':0x6c,'key-label':"alt",'key-width':55}, # RAlt
 	     {'key-label':"",'key-width':55}, # RHand
-	     {'key-label':""}, # Left 
-	     {'key-label':""}, # Down
-	     {'key-label':""}, # Right
+	     {'key-scan':0x71,'key-label':""}, # Left 
+	     {'key-scan':0x74,'key-label':""}, # Down
+	     {'key-scan':0x72,'key-label':""}, # Right
 	    ]
 	}
     ]
@@ -217,28 +220,42 @@ class Key:
         self.screen_width = 0
         self.screen_height = 0
 
-class Keyboard(gtk.DrawingArea):
-    """A GTK widget which provides an interactive visual keyboard, with support
+        self.pressed = False
+        self.hilite = False
+
+    def set_hilite(self, enabled):
+        self.hilite = enabled
+
+class Keyboard(gtk.EventBox):
+    """A GTK widget which implements an interactive visual keyboard, with support
        for custom data driven layouts."""
 
-    def __init__(self):
-        gtk.DrawingArea.__init__(self)
+    def __init__(self, root_window):
+        gtk.EventBox.__init__(self)
+
+        self.root_window = root_window
+
+        self.area = gtk.DrawingArea()
+        self.area.connect("expose-event", self._expose_cb)
+        self.add(self.area)
 
         # This array contains the current keyboard layout.
-        self.keys = []
+        self.keys = None
+        self.key_map = None
 
-        self.pangolayout = self.create_pango_layout("")
+        self.shift_down = False
 
-        self.set_events(gtk.gdk.POINTER_MOTION_MASK |
-                        gtk.gdk.POINTER_MOTION_HINT_MASK )
-
-        self.connect("expose-event", self.expose_cb)
+        # Setup keyboard event snooping in the root window.
+        root_window.add_events(gtk.gdk.KEY_PRESS_MASK | gtk.gdk.KEY_RELEASE_MASK)
+        root_window.connect('key-press-event', self._key_press_cb)
+        root_window.connect('key-release-event', self._key_release_cb)
 
     def _build_key_list(self, layout):
         """Builds a list of Keys objects from a layout description.  
            Also fills in derived and inherited key properties.  
            The layout description can be discarded afterwards."""
         self.keys = []
+        self.key_map = {}
 
         group_count = 0
         for g in layout['groups']:
@@ -266,8 +283,13 @@ class Keyboard(gtk.DrawingArea):
                             props[pname] = p['default']
 
                 # Add to internal list.
-                self.keys.append(Key(props))
+                key = Key(props)
+                self.keys.append(key)
                 key_count += 1
+           
+                # Add to scan code mapping table.
+                if props['key-scan']:
+                    self.key_map[props['key-scan']] = key
 
             group_count += 1
   
@@ -340,16 +362,14 @@ class Keyboard(gtk.DrawingArea):
             k.screen_width = int(k.width * ratio_x / 100)
             k.screen_height = int(k.height * ratio_y / 100)
 
-    def expose_cb(self, area, event):
+    def _expose_cb(self, area, event):
         # Update layout given screen size.
         self._update_screen_layout()
 
         # Draw the keys.
-        cr = self.window.cairo_create()
+        cr = self.area.window.cairo_create()
         cr.rectangle(event.area.x, event.area.y, event.area.width, event.area.height)
         cr.clip()
-
-        bounds = self.get_allocation()
 
         for k in self.keys:
             cr.save()
@@ -371,7 +391,12 @@ class Keyboard(gtk.DrawingArea):
             cr.line_to(x1, y1 + corner)
             cr.close_path()
 
-            cr.set_source_rgb(1.0, 1.0, 1.0)
+            if k.pressed:
+                cr.set_source_rgb(1.0, 0.6, 0.6)
+            elif k.hilite:
+                cr.set_source_rgb(0.6, 1.0, 0.6)
+            else:
+                cr.set_source_rgb(1.0, 1.0, 1.0)
 	    cr.fill_preserve()
 
             cr.set_source_rgb(0.1, 0.1, 0.1)
@@ -382,6 +407,8 @@ class Keyboard(gtk.DrawingArea):
             # Inner text.
             if k.props['key-label']:
                 text = k.props['key-label']
+            elif self.shift_down:
+                text = k.props['key-shift']
             else:
                 text = k.props['key-normal']
 
@@ -394,6 +421,39 @@ class Keyboard(gtk.DrawingArea):
             cr.restore()
 
         return True
+
+    def _key_press_cb(self, widget, event):
+        # Useful line for determining what scan code matches what key.
+        #print "HW: %x" % event.hardware_keycode
+
+        if self.key_map.has_key(event.hardware_keycode):
+            key = self.key_map[event.hardware_keycode]
+            key.pressed = True
+            if key.props['key-label'] == 'shift':
+                self.shift_down = True
+ 
+        self.queue_draw()
+        return False
+
+    def _key_release_cb(self, widget, event):
+        if self.key_map.has_key(event.hardware_keycode):
+            key = self.key_map[event.hardware_keycode]
+            key.pressed = False 
+            if key.props['key-label'] == 'shift':
+                self.shift_down = False
+
+        self.queue_draw()
+        return False
+
+    def clear_hilite(self):
+        for k in self.keys:
+            k.hilite = False
+
+    def find_key_by_letter(self, letter):
+        for k in self.keys:
+            if k.props['key-normal'] == letter or k.props['key-shift'] == letter:
+                return k
+        return None
 
 if __name__ == "__main__":
     window = gtk.Window(gtk.WINDOW_TOPLEVEL)
