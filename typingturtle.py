@@ -78,7 +78,6 @@ class MedalScreen(gtk.EventBox):
         vbox = gtk.VBox()
 
         vbox.pack_start(cert0, True, False, 0)
-        vbox.pack_start(gtk.HSeparator(), False, False, 20)
         vbox.pack_start(cert1, False, False, 0)
         vbox.pack_start(gtk.HSeparator(), False, False, 20)
         vbox.pack_start(statbox, False, False, 0)
@@ -112,6 +111,11 @@ class LessonScreen(gtk.VBox):
         # TODO- These will be replaced by graphical displays using gtk.DrawingArea.
         self.wpmlabel = gtk.Label()
         self.accuracylabel = gtk.Label()
+
+        #self.wpmarea = gtk.DrawingArea()
+        #self.wpmarea.connect('expose-event', self.wpm_expose_cb)
+        #self.accuracyarea = gtk.DrawingArea()
+        #self.accuracyarea.connect('expose-event', self.accuracy_expose_cb)
 
         hbox = gtk.HBox()
         hbox.pack_start(stopbtn, False, False, 10)

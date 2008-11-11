@@ -1,11 +1,12 @@
 Typing Turtle
 
 First Release
-+ Working medals assignment: "You got a medal!" popup, display next to lesson.
+- Working medals assignment: "You got a medal!" popup, display next to lesson.
 + Graphical WPM and accuracy meters.
 + Nice looking keyboard.
 + Highlighted keyboard keys when pressed.
 + Support for displaying modifier keys in Keyboard.
++ Allow lessons to choose between forcing correct keypresses and allowing incorrect ones (with support for Backspace).
 + Artwork and animations.
   + Background picture in main screen.
   + Animated turtle in main screen.
@@ -17,7 +18,6 @@ First Release
   + Medal award sounds for each medal type: Bronze, Silver, Gold.
   + Incorrect key pressed sound. 
 + Develop lessons.
-  + Automatically generate lessons for keyboard regions: Home row, Top row, Bottom row, Numbers, etc.
   + Mark some lessons as "locational" versus "textual" and translate from the English keyboard to native.  Ex: Home row, Left hand, Numbers, etc.
   + Give each lesson criteria for each medal type based on Accuracy, WPM.
 
