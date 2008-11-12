@@ -187,7 +187,7 @@ class LessonScreen(gtk.VBox):
 
     def add_text(self, text):
         self.markup += text
-        self.lessontext.set_markup(self.markup + '_')
+        self.lessontext.set_markup('<span size="10000">' + self.markup + '_' + '</span>')
 
     def advance_step(self):
         if self.next_step_idx < len(self.lesson['steps']):
@@ -340,14 +340,19 @@ class MainScreen(gtk.VBox):
         self.lessonbox = gtk.VBox()
         self.lessonbox.set_spacing(10)
 
+        bundle_path = sugar.activity.activity.get_bundle_path() 
         code = locale.getlocale(locale.LC_ALL)[0]
+        path = bundle_path + '/lessons/' + code + '/'
  
+        # Find all .lesson files in ./lessons/en_US/ for example.
         lessons = []
-        fd = open(sugar.activity.activity.get_bundle_path() + '/lessons/LESSONS.'+code, 'r')
-        try:
-            lessons = json.read(fd.read())
-        finally:
-            fd.close()
+        for f in os.listdir(path):
+            fd = open(path + f, 'r')
+            try:
+                lesson = json.read(fd.read())
+                lessons.append(lesson)
+            finally:
+                fd.close()
 
         for l in lessons:
             label = gtk.Label()

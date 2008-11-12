@@ -1,0 +1,15 @@
+  {
+    "name": "Dummy",
+    "description": "Empty lesson for testing.",
+    "medals": {
+      "bronze": { "wpm": 0, "accuracy": 60 },
+      "silver": { "wpm": 0, "accuracy": 60 },
+      "gold":   { "wpm": 0, "accuracy": 90 }
+    },
+    "steps": [
+      {
+        "instructions": "Type an <b>x</b>.",
+        "text": "x"
+      }
+    ]
+  }
