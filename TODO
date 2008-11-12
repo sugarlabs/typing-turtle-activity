@@ -1,8 +1,15 @@
 Typing Turtle
 
 First Release
-- Working medals assignment: "You got a medal!" popup, display next to lesson.
++ Write to Loser, Wes about developing artwork.
++ Write to authors of prior typing activity to inquire about layered artwork.  Need to make a .xo file to demo.
++ Better flow at the end of a level.  Report the result on the Lesson screen: Need more work, Medal received, etc.
++ Status message on the main screen.  "You unlocked a new lesson!" for example.  Eventually have the turtle 'say' it.
++ Scroll lessons list to the first non-medaled lesson?
++ Implement a long text copying lesson and fix bugs in the scrolling and typing.
++ Ability of lessons to list bronze medals in other lessons as prerequisites.
 + Graphical WPM and accuracy meters.
+- Working medals assignment: "You got a medal!" popup, display next to lesson.
 - Nice looking keyboard.
 - Highlighted keyboard keys when pressed.
 - Support for displaying modifier keys in Keyboard.
@@ -10,6 +17,8 @@ First Release
 - Indicate next key to press on keyboard.
 + Highlight regions of keyboard, color by finger.
 + Allow lessons to choose between forcing correct keypresses and allowing incorrect ones (with support for Backspace).
++ History screen: List of lessons completed with statistics.
++ Progress screen: Line graphs of Accuracy, WPM over time.
 + Artwork and animations.
   + Background picture in main screen.
   + Speed meter picture?
@@ -30,6 +39,4 @@ First Release
   + Give each lesson criteria for each medal type based on Accuracy, WPM.
 
 Future Release
-+ History screen: List of lessons completed with statistics.
-+ Progress screen: Line graphs of Accuracy, WPM over time.
 + Goal support with progress reporting.  WPM, Accuracy, Entire keyboard learned, etc.
