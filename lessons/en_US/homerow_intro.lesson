@@ -8,20 +8,20 @@
     },
     "steps": [
       {
-        "instructions": "Welcome to the first Typing Turtle lesson!  Please place your fingers on the keyboard as shown below.\n\nWhen you are ready to begin, press the <b>a</b> key with your left index finger.",
-        "text": "a"
+        "instructions": "Welcome to the first Typing Turtle lesson!  Please place your fingers on the keyboard.\n\nWhen you are ready to begin, press the <b>f</b> key with your left index finger.",
+        "text": "f"
       },
       {
-        "instructions": "Good job!  Now press the <b>s</b> key with your left middle finger.",
-        "text": "s"
-      },
-      {
-        "instructions": "Now the <b>d</b> key with your left ring finger.",
+        "instructions": "Good job!  Now press the <b>d</b> key with your left middle finger.",
         "text": "d"
       },
       {
-        "instructions": "And the <b>f</b> key with your left pinky finger.",
-        "text": "f"
+        "instructions": "Now the <b>s</b> key with your left ring finger.",
+        "text": "s"
+      },
+      {
+        "instructions": "And the <b>a</b> key with your left pinky finger.",
+        "text": "a"
       },
       {
         "instructions": "Great work!  We will now move on to the right hand.  As shown in the picture below, press the <b>j</b> key with your right index finger.",
