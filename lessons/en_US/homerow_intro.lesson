@@ -1,67 +1,81 @@
-  {
-    "name": "Home Row",
-    "description": "Teaches the middle row of keys on the keyboard.",
-    "medals": {
-      "bronze": { "wpm": 0, "accuracy": 60 },
-      "silver": { "wpm": 0, "accuracy": 60 },
-      "gold":   { "wpm": 0, "accuracy": 90 }
+{
+  "name": "Home Row",
+  "description": "Teaches the middle row of keys on the keyboard.",
+  "medals": {
+    "bronze": { "wpm": 0, "accuracy": 60 },
+    "silver": { "wpm": 0, "accuracy": 60 },
+    "gold":   { "wpm": 0, "accuracy": 90 }
+  },
+  "steps": [
+    {
+      "type": "key",
+      "instructions": "Welcome to the first Typing Turtle lesson!  Please place your fingers on the keyboard.\n\nWhen you are ready to begin, press the f key with your left index finger.",
+      "text": "f"
     },
-    "steps": [
-      {
-        "instructions": "Welcome to the first Typing Turtle lesson!  Please place your fingers on the keyboard.\n\nWhen you are ready to begin, press the <b>f</b> key with your left index finger.",
-        "text": "f"
-      },
-      {
-        "instructions": "Good job!  Now press the <b>d</b> key with your left middle finger.",
-        "text": "d"
-      },
-      {
-        "instructions": "Now the <b>s</b> key with your left ring finger.",
-        "text": "s"
-      },
-      {
-        "instructions": "And the <b>a</b> key with your left pinky finger.",
-        "text": "a"
-      },
-      {
-        "instructions": "Great work!  We will now move on to the right hand.  As shown in the picture below, press the <b>j</b> key with your right index finger.",
-        "text": "j"
-      },
-      {
-        "instructions": "The <b>k</b> key with your right middle finger.",
-        "text": "k"
-      },
-      {
-        "instructions": "The <b>l</b> key with your right ring finger.",
-        "text": "l"
-      },
-      {
-        "instructions": "The <b>;</b> (semicolon) key with your right pinky finger.",
-        "text": ";"
-      },
-      {
-        "instructions": "Excellent!  These keys are known as the <i>home row</i>.  Your fingers should always return to them after typing each letter.\n\nType all of the letters below.  Press down with your fingertips, but do not move your hands.",
-        "text": "fdsajkl;"
-      },
-      {
-        "instructions": "Again, from left to right!",
-        "text": "asdfjkl;"
-      },
-      {
-        "instructions": "Keep it up, you are doing great!  Now, from right to left!",
-        "text": ";lkjfdsa"
-      },
-      {
-        "instructions": "Okay, you are done with that.  Now to begin moving your fingers.  Without moving any <i>other</i> fingers, move your left index finger over and press the <b>g</b> key.",
-        "text": "g"
-      },
-      {
-        "instructions": "Now do the same with your right hand.  Move your right index finger <i>only</i> and press the <b>h</b> key.",
-        "text": "h"
-      },
-      {
-        "instructions": "Now for the final two keys of the home row.  Move your right pinky finger over and press the <b>'</b> key.",
-        "text": "'"
-      }
-    ]
-  }
+    {
+      "type": "key",
+      "instructions": "Good job!  Now press the d key with your left middle finger.",
+      "text": "d"
+    },
+    {
+      "type": "key",
+      "instructions": "Now the s key with your left ring finger.",
+      "text": "s"
+    },
+    {
+      "type": "key",
+      "instructions": "And the a key with your left pinky finger.",
+      "text": "a"
+    },
+    {
+      "type": "key",
+      "instructions": "Great work!  We will now move on to the right hand.  As shown in the picture below, press the j key with your right index finger.",
+      "text": "j"
+    },
+    {
+      "type": "key",
+      "instructions": "The k key with your right middle finger.",
+      "text": "k"
+    },
+    {
+      "type": "key",
+      "instructions": "The l key with your right ring finger.",
+      "text": "l"
+    },
+    {
+      "type": "key",
+      "instructions": "The ; (semicolon) key with your right pinky finger.",
+      "text": ";"
+    },
+    {
+      "type": "key",
+      "instructions": "Excellent!  These keys are known as the <i>home row</i>.  Your fingers should always return to them after typing each letter.\n\nType all of the letters below.  Press down with your fingertips, but do not move your hands.",
+      "text": "fdsajkl;"
+    },
+    {
+      "type": "key",
+      "instructions": "Again, from left to right!",
+      "text": "asdfjkl;"
+    },
+    {
+      "type": "key",
+      "instructions": "Keep it up, you are doing great!  Now, from right to left!",
+      "text": ";lkjfdsa"
+    },
+    {
+      "type": "key",
+      "instructions": "Okay, you are done with that.  Now to begin moving your fingers.  Without moving any <i>other</i> fingers, move your left index finger over and press the g key.",
+      "text": "g"
+    },
+    {
+      "type": "key",
+      "instructions": "Now do the same with your right hand.  Move your right index finger <i>only</i> and press the h key.",
+      "text": "h"
+    },
+    {
+      "type": "key",
+      "instructions": "Now for the final two keys of the home row.  Move your right pinky finger over and press the ' key.",
+      "text": "'"
+    }
+  ]
+}

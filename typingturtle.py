@@ -202,8 +202,32 @@ class LessonScreen(gtk.VBox):
         self.wpmlabel.set_markup(_('<b>WPM:</b> %(wpm)d') % { 'wpm': int(self.wpm) } )
 
     def wrap_line(self, line):
-        #return [line[:10], line[10:]]
-        return [line]
+        LINE_LENGTH = 80
+
+        words = line.split(' ')
+        new_lines = []
+        cur_line = ''
+        for w in words:
+            # TODO: Handle single word longer than a line.
+            #if len(w) > LINE_LENGTH:
+            #    new_lines.append(cur_line)
+            #    while len(w):
+            #        new_lines.append(w[:LINE_LENGTH])
+            #        w = w[LINE_LENGTH:]
+            #    cur_line = ''
+            if len(cur_line) + len(w) + 1 > LINE_LENGTH:
+                if len(cur_line):
+                    new_lines.append(cur_line)
+                cur_line = ''
+            cur_line += w + ' '
+        
+        if len(cur_line):
+            # Remove trailing spaces from last line before adding.
+            while cur_line[-1] == ' ':
+                cur_line = cur_line[:-1]
+            new_lines.append(cur_line)
+        
+        return new_lines
 
     def advance_step(self):
         if self.next_step_idx < len(self.lesson['steps']):
@@ -323,11 +347,11 @@ class LessonScreen(gtk.VBox):
             # Advance to the next character (or else).
             self.char_idx += 1
             if self.char_idx >= len(self.line):
-                if self.line_idx < len(self.lines):
-                    self.line_idx += 1
-                    self.begin_line()
-                else:
+                self.line_idx += 1
+                if self.line_idx >= len(self.lines):
                     self.advance_step()
+                else:
+                    self.begin_line()
 
             self.update_stats()
 
