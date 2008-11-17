@@ -37,7 +37,11 @@ log = logging.getLogger('Typing Turtle')
 log.setLevel(logging.DEBUG)
 logging.basicConfig()
 
+# Import onscreen keyboard.
 import keyboard
+
+# Paragraph symbol unicode character.
+PARAGRAPH_CODE = u'\xb6'
 
 class MedalScreen(gtk.EventBox):
     def __init__(self, medal, activity):
@@ -123,9 +127,33 @@ class LessonScreen(gtk.VBox):
         hbox.pack_start(self.accuracylabel, True, False, 10)
         hbox.pack_end(title, False, False, 10)
 
-        self.lessontext = gtk.Label()
-        #self.lessontext.set_alignment(0, 0)
-        self.lessontext.set_line_wrap(True)
+        # Set up font styles.
+        self.tagtable = gtk.TextTagTable()
+        instructions_tag = gtk.TextTag('instructions')
+        instructions_tag.props.size = 10000
+
+        self.tagtable.add(instructions_tag)
+        text_tag = gtk.TextTag('text')
+        text_tag.props.family = 'Monospace'
+        self.tagtable.add(text_tag)
+
+        correct_copy_tag = gtk.TextTag('correct-copy')
+        correct_copy_tag.props.family = 'Monospace'
+        correct_copy_tag.props.foreground = '#0000ff'
+        self.tagtable.add(correct_copy_tag)
+
+        incorrect_copy_tag = gtk.TextTag('incorrect-copy')
+        incorrect_copy_tag.props.family = 'Monospace'
+        incorrect_copy_tag.props.foreground = '#ff0000'
+        self.tagtable.add(incorrect_copy_tag)
+
+        # Set up the scrolling lesson text.
+        self.lessonbuffer = gtk.TextBuffer(self.tagtable)
+        self.lessontext = gtk.TextView(self.lessonbuffer)
+        self.lessontext.set_editable(False)
+        #self.lessontext.set_cursor_visible(False)
+        self.lessontext.set_left_margin(20)
+        self.lessontext.set_right_margin(20)
 
         self.lessonscroll = gtk.ScrolledWindow()
         self.lessonscroll.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_ALWAYS)
@@ -150,34 +178,22 @@ class LessonScreen(gtk.VBox):
 
     def begin_lesson(self):
         self.step = None
-        self.markup = ''
+        self.line = None
+        self.line_marks = None
 
         self.total_keys = 0
         self.correct_keys = 0
         self.incorrect_keys = 0
-
-        self.count_words()
 
         self.next_step_idx = 0
         self.advance_step()
 
         self.start_time = None
 
-    def count_words(self):
-        self.total_words = 0
-        for s in self.lesson['steps']:
-            in_word = False
-            for c in s['text']:
-                if not in_word and not c.isspace():
-                    self.total_words += 1
-                    in_word = True
-                elif c.isspace():
-                    in_word = False
-
     def update_stats(self):
         self.total_time = time.time() - self.start_time
         if self.total_time >= 1.0:
-            self.wpm = 60.0 * self.total_words / self.total_time
+            self.wpm = 60 * (len(self.step['text']) / 5) / self.total_time
         else:
             self.wpm = 1.0
         self.accuracy = 100.0 * self.correct_keys / self.total_keys
@@ -185,9 +201,9 @@ class LessonScreen(gtk.VBox):
         self.accuracylabel.set_markup(_('<b>Accuracy:</b> %(accuracy)d%%') % { 'accuracy' : int(self.accuracy) } )
         self.wpmlabel.set_markup(_('<b>WPM:</b> %(wpm)d') % { 'wpm': int(self.wpm) } )
 
-    def add_text(self, text):
-        self.markup += text
-        self.lessontext.set_markup('<span size="10000">' + self.markup + '_' + '</span>')
+    def wrap_line(self, line):
+        #return [line[:10], line[10:]]
+        return [line]
 
     def advance_step(self):
         if self.next_step_idx < len(self.lesson['steps']):
@@ -196,20 +212,149 @@ class LessonScreen(gtk.VBox):
             self.step = self.lesson['steps'][self.next_step_idx]
             self.next_step_idx = self.next_step_idx + 1
 
-            self.markup = ''
+            # Clear the text buffer and output the instructions.
+            self.lessonbuffer.set_text('')
+            self.lessonbuffer.insert_with_tags_by_name(
+                self.lessonbuffer.get_end_iter(), self.step['instructions'] + '\n\n', 'instructions')
 
-            self.add_text(self.step['instructions'] + '\n\n')
-            self.add_text('<span font_family="monospace">' + self.step['text'] + '</span>\n')
+            # Replace newlines with paragraph marks.
+            text = unicode(self.step['text'])
 
-            self.char_idx = 0
-            self.hilite_next_key()
+            # Split text into lines.
+            self.lines = text.split('\n')
+
+            # Append paragraph codes.
+            self.lines = [l + PARAGRAPH_CODE for l in self.lines]
+
+            # TODO: Split by line length in addition to by paragraphs.
+            for i in range(0, len(self.lines)):
+                line = self.lines[i]
+                if len(line) > 30:
+                    self.lines[i:i+1] = self.wrap_line(line)
+
+            # Fill text buffer with text lines, each followed by room for the user to type.
+            self.line_marks = {} 
+            line_idx = 0
+            for l in self.lines:
+                self.lessonbuffer.insert_with_tags_by_name(
+                    self.lessonbuffer.get_end_iter(), l.encode('utf-8') + '\n', 'text')
+
+                self.line_marks[line_idx] = self.lessonbuffer.create_mark(None, self.lessonbuffer.get_end_iter(), True)
+                self.lessonbuffer.insert_at_cursor('\n')
+
+                line_idx += 1
+
+            self.line_idx = 0
+            self.begin_line()
         
         else:
             self.finish_lesson()
 
-    def finish_lesson(self):
-        self.step = None
+    def begin_line(self):
+        self.line = self.lines[self.line_idx]
+        self.line_mark = self.line_marks[self.line_idx]
 
+        self.char_idx = 0
+        self.hilite_next_key()
+
+    def key_press_cb(self, widget, event):
+        # Ignore hotkeys.
+        if event.state & (gtk.gdk.CONTROL_MASK | gtk.gdk.MOD1_MASK):
+            return
+
+        # Extract information about the key pressed.
+        key = gtk.gdk.keyval_to_unicode(event.keyval)
+        if key != 0: key = chr(key)
+        key_name = gtk.gdk.keyval_name(event.keyval)
+
+        # Convert Return keys to paragraph symbols.
+        if key_name == 'Return':
+            key = PARAGRAPH_CODE
+
+        print "key_press_cb: key=%s key_name=%s event.keyval=%d" % (key, key_name, event.keyval)
+
+        # Handle backspace by deleting text and optionally moving up lines.
+        if key_name == 'BackSpace':
+            # Move to previous line if at the end of the current one.
+            if self.char_idx == 0 and self.line_idx > 0:
+                self.line_idx -= 1 
+                self.begin_line()
+
+                self.char_idx = len(self.line)
+
+            # Then delete the current character.
+            if self.char_idx > 0:
+                self.char_idx -= 1
+
+                iter = self.lessonbuffer.get_iter_at_mark(self.line_mark)
+                iter.forward_chars(self.char_idx)
+
+                iter_end = iter.copy()
+                iter_end.forward_char()
+
+                self.lessonbuffer.delete(iter, iter_end)
+
+        # Process normal key presses.
+        elif key != 0:
+
+            # Timer starts with first keypress.
+            if not self.start_time:
+                self.start_time = time.time()
+
+            # Check to see if they pressed the correct key.
+            if key == self.line[self.char_idx]:
+                tag_name = 'correct-copy'
+                self.correct_keys += 1
+                self.total_keys += 1
+
+            else:
+                # TODO - Play 'incorrect key' sound here.
+
+                tag_name = 'incorrect-copy'
+                self.incorrect_keys += 1
+                self.total_keys += 1
+
+            # Insert the key itno the bufffer.
+            iter = self.lessonbuffer.get_iter_at_mark(self.line_mark)
+            iter.forward_chars(self.char_idx)
+
+            self.lessonbuffer.insert_with_tags_by_name(iter, key, tag_name)
+
+            # Advance to the next character (or else).
+            self.char_idx += 1
+            if self.char_idx >= len(self.line):
+                if self.line_idx < len(self.lines):
+                    self.line_idx += 1
+                    self.begin_line()
+                else:
+                    self.advance_step()
+
+            self.update_stats()
+
+        self.hilite_next_key()
+
+        return False
+
+    def hilite_next_key(self):
+        # Hilite the next key on the virtual keyboard.
+        self.keyboard.clear_hilite()
+        if len(self.line) > 0:
+            key = self.keyboard.find_key_by_letter(self.line[self.char_idx])
+            if key:
+                key.set_hilite(True)
+
+        # Move the cursor to the insert location.
+        iter = self.lessonbuffer.get_iter_at_mark(self.line_mark)
+        iter.forward_chars(self.char_idx)
+        self.lessonbuffer.place_cursor(iter)
+
+        # Gain focus (this causes the cursor line to draw).
+        self.lessontext.grab_focus()
+
+        # Scroll the TextView so the cursor is on screen.
+        self.lessontext.scroll_to_mark(self.lessonbuffer.get_insert(), 0)
+
+    def finish_lesson(self):
         self.activity.pop_screen()
         
         self.update_stats()
@@ -269,46 +414,6 @@ class LessonScreen(gtk.VBox):
 
             # Show the new medal (regardless of whether it was recorded).
             self.activity.push_screen(MedalScreen(medal, self.activity))
-
-    def key_press_cb(self, widget, event):
-        if not self.step:
-            return False
-
-        # Timer starts with first keypress.
-        if not self.start_time:
-            self.start_time = time.time()
-
-        # Check to see if they pressed the correct key.
-        if event.keyval == ord(self.step['text'][self.char_idx]):
-            self.correct_keys += 1
-            self.total_keys += 1
-
-            self.add_text('<span font_family="monospace">' + chr(event.keyval) + '</span>')
-
-            self.keyboard.clear_hilite()
-            self.keyboard.queue_draw()
-
-            self.char_idx += 1
-            if self.char_idx >= len(self.step['text']):
-                self.add_text('\n\n')
-                self.advance_step()
-
-            else:
-                self.hilite_next_key()
-
-        else:
-            # TODO - Play 'incorrect key' sound here.
-
-            self.incorrect_keys += 1
-            self.total_keys += 1
-
-        self.update_stats()
-
-        return False
-
-    def hilite_next_key(self):
-        key = self.keyboard.find_key_by_letter(self.step['text'][self.char_idx])
-        key.set_hilite(True)
 
     def stop_cb(self, widget):
         self.activity.pop_screen()

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-15 04:36+0000\n"
+"POT-Creation-Date: 2008-11-17 04:51+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,17 +16,17 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: activity/activity.info:2
-msgid "TypingTurtleApp"
+#: activity/activity.info:2 typingturtle.py:429 typingturtle.py:530
+msgid "Typing Turtle"
 msgstr ""
 
-#: typingturtle.py:52
+#: typingturtle.py:56
 msgid ""
 "Certificate of\n"
 "Achievement"
 msgstr ""
 
-#: typingturtle.py:56
+#: typingturtle.py:60
 #, python-format
 msgid ""
 "This certifies that on <i><b><u>%(date)s</u></b></i>,\n"
@@ -34,34 +34,30 @@ msgid ""
 "in Typing Turtle lesson <i><b><u>%(lesson)s</u></b></i>."
 msgstr ""
 
-#: typingturtle.py:60
+#: typingturtle.py:64
 #, python-format
 msgid "<b>Words Per Minute:</b> %(wpm)d"
 msgstr ""
 
-#: typingturtle.py:63 typingturtle.py:185
+#: typingturtle.py:67 typingturtle.py:201
 #, python-format
 msgid "<b>Accuracy:</b> %(accuracy)d%%"
 msgstr ""
 
-#: typingturtle.py:70 typingturtle.py:106
+#: typingturtle.py:74 typingturtle.py:110
 msgid "Go Back"
 msgstr ""
 
-#: typingturtle.py:186
+#: typingturtle.py:202
 #, python-format
 msgid "<b>WPM:</b> %(wpm)d"
 msgstr ""
 
-#: typingturtle.py:324 typingturtle.py:425
-msgid "Typing Turtle"
-msgstr ""
-
-#: typingturtle.py:327
+#: typingturtle.py:432
 msgid ""
 "Welcome to Typing Turtle! To begin, select a lesson from the list below."
 msgstr ""
 
-#: typingturtle.py:335
+#: typingturtle.py:440
 msgid "Available Lessons"
 msgstr ""

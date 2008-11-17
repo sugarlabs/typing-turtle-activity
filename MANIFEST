@@ -12,4 +12,5 @@ images/bronze-medal.jpg
 images/silver-medal.jpg
 lessons/en_US/homerow_intro.lesson
 lessons/en_US/dummy.lesson
-po/TypingTurtleApp.pot
+lessons/en_US/long.lesson
+po/TypingTurtle.pot

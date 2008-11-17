@@ -1,13 +1,21 @@
 Typing Turtle
 
 First Release
-+ Write to Loser, Wes about developing artwork.
+- Write to Loser, Wes about developing artwork.
++ WPM meter updated in 1sec timer.
+- Draw incorrect characters in red.
+- Support backspace, backspace to previous lines.
++ Handle ends of line in a sane manner.
++ Implement two step types: key learning and text copying.
+- Split text into lines for long lessons.
+- Try out an insensitive gtk.Entry instead of the gtk.Label.
 + Write to authors of prior typing activity to inquire about layered artwork.  Need to make a .xo file to demo.
 + Better flow at the end of a level.  Report the result on the Lesson screen: Need more work, Medal received, etc.
 + Status message on the main screen.  "You unlocked a new lesson!" for example.  Eventually have the turtle 'say' it.
 + Scroll lessons list to the first non-medaled lesson?
 + Implement a long text copying lesson and fix bugs in the scrolling and typing.
-+ Ability of lessons to list bronze medals in other lessons as prerequisites.
++ Some sort of lesson sorting criteria.
++ Ability of lessons to list medals in other lessons as prerequisites.
 + Graphical WPM and accuracy meters.
 - Working medals assignment: "You got a medal!" popup, display next to lesson.
 - Nice looking keyboard.

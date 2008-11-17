@@ -423,9 +423,6 @@ class Keyboard(gtk.EventBox):
         return True
 
     def _key_press_cb(self, widget, event):
-        # Useful line for determining what scan code matches what key.
-        #print "HW: %x" % event.hardware_keycode
-
         if self.key_map.has_key(event.hardware_keycode):
             key = self.key_map[event.hardware_keycode]
             key.pressed = True
