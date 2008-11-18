@@ -49,7 +49,7 @@
     },
     {
       "type": "key",
-      "instructions": "Excellent!  These keys are known as the <i>home row</i>.  Your fingers should always return to them after typing each letter.\n\nType all of the letters below.  Press down with your fingertips, but do not move your hands.",
+      "instructions": "Excellent!  These keys are known as the home row.  Your fingers should always return to them after typing each letter.\n\nType all of the letters below.  Press down with your fingertips, but do not move your hands.",
       "text": "fdsajkl;"
     },
     {
@@ -64,12 +64,12 @@
     },
     {
       "type": "key",
-      "instructions": "Okay, you are done with that.  Now to begin moving your fingers.  Without moving any <i>other</i> fingers, move your left index finger over and press the g key.",
+      "instructions": "Okay, you are done with that.  Now to begin moving your fingers.  Without moving any other fingers, move your left index finger over and press the g key.",
       "text": "g"
     },
     {
       "type": "key",
-      "instructions": "Now do the same with your right hand.  Move your right index finger <i>only</i> and press the h key.",
+      "instructions": "Now do the same with your right hand.  Move your right index finger only and press the h key.",
       "text": "h"
     },
     {

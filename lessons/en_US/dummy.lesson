@@ -8,7 +8,8 @@
     },
     "steps": [
       {
-        "instructions": "Type an <b>x</b>.",
+        "type": "key",
+        "instructions": "Type an x.",
         "text": "x"
       }
     ]
