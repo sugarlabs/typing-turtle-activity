@@ -1,81 +1,90 @@
 {
   "name": "Home Row",
   "description": "Teaches the middle row of keys on the keyboard.",
-  "medals": {
-    "bronze": { "wpm": 0, "accuracy": 60 },
-    "silver": { "wpm": 0, "accuracy": 60 },
-    "gold":   { "wpm": 0, "accuracy": 90 }
-  },
   "steps": [
     {
-      "type": "key",
-      "instructions": "Welcome to the first Typing Turtle lesson!  Please place your fingers on the keyboard.\n\nWhen you are ready to begin, press the f key with your left index finger.",
+      "instructions": "Welcome to the first Typing Turtle lesson!  Place your fingers on the keyboard as shown below.\n\nWhen you are ready to begin, press the f key with your left index finger.",
       "text": "f"
     },
     {
-      "type": "key",
       "instructions": "Good job!  Now press the d key with your left middle finger.",
       "text": "d"
     },
     {
-      "type": "key",
       "instructions": "Now the s key with your left ring finger.",
       "text": "s"
     },
     {
-      "type": "key",
       "instructions": "And the a key with your left pinky finger.",
       "text": "a"
     },
     {
-      "type": "key",
       "instructions": "Great work!  We will now move on to the right hand.  As shown in the picture below, press the j key with your right index finger.",
       "text": "j"
     },
     {
-      "type": "key",
       "instructions": "The k key with your right middle finger.",
       "text": "k"
     },
     {
-      "type": "key",
       "instructions": "The l key with your right ring finger.",
       "text": "l"
     },
     {
-      "type": "key",
       "instructions": "The ; (semicolon) key with your right pinky finger.",
       "text": ";"
     },
     {
-      "type": "key",
-      "instructions": "Excellent!  These keys are known as the home row.  Your fingers should always return to them after typing each letter.\n\nType all of the letters below.  Press down with your fingertips, but do not move your hands.",
+      "instructions": "Excellent!  These keys are known as the home row.  Your fingers should always return to rest lightly on them.\n\nType all of the letters below.  Press down quickly and lightly with your fingertips, but do not move your hands.",
       "text": "fdsajkl;"
     },
     {
-      "type": "key",
       "instructions": "Again, from left to right!",
       "text": "asdfjkl;"
     },
     {
-      "type": "key",
       "instructions": "Keep it up, you are doing great!  Now, from right to left!",
       "text": ";lkjfdsa"
     },
     {
-      "type": "key",
-      "instructions": "Okay, you are done with that.  Now to begin moving your fingers.  Without moving any other fingers, move your left index finger over and press the g key.",
-      "text": "g"
+      "instructions": "Okay, now to learn the Enter reach.  Without moving your hands, move your right pinky over and press the Enter key.",
+      "text": "\n"
     },
     {
-      "type": "key",
-      "instructions": "Now do the same with your right hand.  Move your right index finger only and press the h key.",
-      "text": "h"
+      "instructions": "Good.  Now type the next two lines, using the Enter key to move from one line to the next.",
+      "text": "asdf\njkl;"
     },
     {
-      "type": "key",
-      "instructions": "Now for the final two keys of the home row.  Move your right pinky finger over and press the ' key.",
-      "text": "'"
+      "instructions": "Time to practice Enter and ;!",
+      "text": ";\n;\n;\n"
+    },
+    {
+      "instructions": "Time to practice letters.  Now type in the following lines.",
+      "text": "asdf\njkl;\nasdfjkl;\njkl;asdf"
+    },
+    {
+      "instructions": "Now we will learn the Space bar.  The space bar is used to leave a space between words.  Use your right thumb to press it.",
+      "text": " "
+    },
+    {
+      "instructions": "Press it again!",
+      "text": " "
+    },
+    {
+      "instructions": "One more time!",
+      "text": " "
+    },
+    {
+      "instructions": "Good job.  Let's put it all together now with some practice lines.",
+      "text": "ff f jj j dd d kk k ss s ll l aa a ;; ;\nfdsa jkl;\nff f jj j dd d kk k ss s ll l aa a ;; ;\nfdsa jkl;\n; ;; a aa l ll s ss k kk d dd j jj f ff\nasdf jkl;\n; ;; a aa l ll s ss k kk d dd j jj f ff\nasdf jkl;\n"
+    },
+    {
+      "instructions": "It's very important to master the home row before learning to reach for the other keys.  Stick with it and you will be touch typing in no time at all!",
+      "text": "a; a; sl sl dk dk fj fj jf jf kd kd ls ls ;a ;a\na; a; sl sl dk dk fj fj jf jf kd kd ls ls ;a ;a\n;ajf ;ajf ;alskdjf ;alskdjf ;alskdjf ;alskdjf ;alskdjf\n\n;ajf ;ajf ;alskdjf ;alskdjf ;alskdjf ;alskdjf ;alskdjf\nfja; fjsd j;kl lk;j sldk kdls ajf;dkls ajf;dkls jdfksl;a\n"
+    },
+    {
+      "instructions": "Try and speed up your typing a little.\n\nWhen your fingers are on the home row, they should be curved so that your thumbs rest on the space bar.",
+      "text": "a;sldkfj a;sldkfj a;sldkfj a;sldkfj\njj ff kk dd ll ss ;; aa\na; sl dk fj a; sl dk fj asdf ;lkj\njf kd ls ;a fj dk sl a; fdsa jkl; jfkdls;a\n;; ll kk kj lk ;l aa ss dd df sd as jd fl jd fl jj dd ff ll\na a as as sad sad lad lad fad fad ask ask\nadd add ask ask lass lass as as falls falls jaff\nask lass fall as daff lass ads ask add ask\na lass; all lads; a fall; fall a lad; a dall a lad; fall dad fad; a jad falls a fad;\nsalad lad; lass sad; a fad a dall; salad dad; salad fad;"
     }
   ]
 }

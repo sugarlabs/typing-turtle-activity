@@ -1,16 +1,11 @@
 {
-    "name": "Long Lesson",
-    "description": "Testing for lessons involving multiple pages of text.",
-    "medals": {
-        "bronze": { "wpm": 0, "accuracy": 60 },
-        "silver": { "wpm": 0, "accuracy": 60 },
-        "gold":   { "wpm": 0, "accuracy": 90 }
-    },
+    "name": "Punctuation Practice!",
+    "description": "Practice punctuation with a section of Pride and Prejudice.",
     "steps": [
         {
           "type": "text",
-          "instructions": "Please copy out the following text.",
-          "text": "It is a truth universally acknowledged, that a single man in posession of a good fortune, must be in want of a wife.\n\nHowever little known the feelings or views of such a man may be on his first entering a neighbourhood, this truth is so well fixed in the minds of the surrounding families, that he is considered the rightful property of some one or other of their daughters.\n\n\"My dear Mr. Bennet,\" said his lady to him one day, \"have you heard that\nNetherfield Park is let at last?\"\n\nMr. Bennet replied that he had not.\n\n\"But it is,\" returned she; \"for Mrs. Long has just been here, and she told me all about it.\"\n\nMr. Bennet made no answer.\n\n\"Do you not want to know who has taken it?\" cried his wife impatiently.\n\n\"You want to tell me, and I have no objection to hearing it.\"\n\nThis was invitation enough."
+          "instructions": "Pride and Prejudice\nby Jane Austen",
+          "text": "It is a truth universally acknowledged, that a single man in posession of a good fortune, must be in want of a wife.\n\nHowever little known the feelings or views of such a man may be on his first entering a neighbourhood, this truth is so well fixed in the minds of the surrounding families, that he is considered the rightful property of some one or other of their daughters.\n\n\"My dear Mr. Bennet,\" said his lady to him one day, \"have you heard that Netherfield Park is let at last?\"\n\nMr. Bennet replied that he had not.\n\n\"But it is,\" returned she; \"for Mrs. Long has just been here, and she told me all about it.\"\n\nMr. Bennet made no answer.\n\n\"Do you not want to know who has taken it?\" cried his wife impatiently.\n\n\"You want to tell me, and I have no objection to hearing it.\"\n\nThis was invitation enough."
       }
     ]
   }

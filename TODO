@@ -1,7 +1,8 @@
 Typing Turtle
 
 First Release
-- Write to Loser, Wes about developing artwork.
+- Write tLoser, Wes about developing artwork.
++ Blinking key hilite in 'key' mode.
 + WPM meter updated in 1sec timer.
 - Draw incorrect characters in red.
 - Support backspace, backspace to previous lines.
