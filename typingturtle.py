@@ -147,18 +147,17 @@ class LessonScreen(gtk.VBox):
         incorrect_copy_tag.props.foreground = '#ff0000'
         self.tagtable.add(incorrect_copy_tag)
 
-        # Set up the scrolling lesson text.
+        # Set up the scrolling lesson text view.
         self.lessonbuffer = gtk.TextBuffer(self.tagtable)
         self.lessontext = gtk.TextView(self.lessonbuffer)
         self.lessontext.set_editable(False)
-        #self.lessontext.set_cursor_visible(False)
         self.lessontext.set_left_margin(20)
         self.lessontext.set_right_margin(20)
         self.lessontext.set_wrap_mode(gtk.WRAP_WORD)
         
         self.lessonscroll = gtk.ScrolledWindow()
         self.lessonscroll.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_ALWAYS)
-        self.lessonscroll.add_with_viewport(self.lessontext)
+        self.lessonscroll.add(self.lessontext)
 
         frame = gtk.Frame()
         frame.add(self.lessonscroll)
@@ -178,10 +177,6 @@ class LessonScreen(gtk.VBox):
         self.begin_lesson()
 
     def begin_lesson(self):
-        self.step = None
-        self.line = None
-        self.line_marks = None
-
         self.total_keys = 0
         self.correct_keys = 0
         self.incorrect_keys = 0
@@ -194,7 +189,7 @@ class LessonScreen(gtk.VBox):
     def update_stats(self):
         self.total_time = time.time() - self.start_time
         if self.total_time >= 1.0:
-            self.wpm = 60 * (len(self.step['text']) / 5) / self.total_time
+            self.wpm = 60 * (self.correct_keys / 10) / self.total_time
         else:
             self.wpm = 1.0
         self.accuracy = 100.0 * self.correct_keys / self.total_keys
@@ -231,6 +226,17 @@ class LessonScreen(gtk.VBox):
         return new_lines
 
     def advance_step(self):
+        # Clear step related variables.
+        self.step = None
+        self.step_type = None
+
+        self.text = None
+        self.line = None
+        self.line_marks = None
+
+        self.key_expected = None
+
+        # End lesson if this is the last step.
         if self.next_step_idx >= len(self.lesson['steps']):
             self.finish_lesson()
             return
@@ -239,18 +245,20 @@ class LessonScreen(gtk.VBox):
         
         self.step = self.lesson['steps'][self.next_step_idx]
         self.next_step_idx = self.next_step_idx + 1
+
+        self.step_type = self.step['type']
         
-        if self.step['type'] == 'text':
+        if self.step_type == 'text':
             # Clear the text buffer and output the instructions.
             self.lessonbuffer.set_text('')
             self.lessonbuffer.insert_with_tags_by_name(
                 self.lessonbuffer.get_end_iter(), self.step['instructions'] + '\n\n', 'instructions')
             
             # Replace newlines with paragraph marks.
-            text = unicode(self.step['text'])
+            self.text = unicode(self.step['text'])
             
             # Split text into lines.
-            self.lines = text.split('\n')
+            self.lines = self.text.split('\n')
             
             # Append paragraph codes.
             self.lines = [l + PARAGRAPH_CODE for l in self.lines]
@@ -276,7 +284,7 @@ class LessonScreen(gtk.VBox):
             self.line_idx = 0
             self.begin_line()
             
-        elif self.step['type'] == 'key':
+        elif self.step_type == 'key':
             # Clear the text buffer and output the instructions.
             self.lessonbuffer.set_text('')
             self.lessonbuffer.insert_with_tags_by_name(
@@ -320,7 +328,7 @@ class LessonScreen(gtk.VBox):
             self.start_time = time.time()
 
         # Handle backspace by deleting text and optionally moving up lines.
-        if self.step['type'] == 'text':
+        if self.step_type == 'text':
             if key_name == 'BackSpace':
                 # Move to previous line if at the end of the current one.
                 if self.char_idx == 0 and self.line_idx > 0:
@@ -376,7 +384,7 @@ class LessonScreen(gtk.VBox):
 
             self.hilite_next_key()
 
-        elif self.step['type'] == 'key':
+        elif self.step_type == 'key':
             
             # Check to see if they pressed the correct key.
             if key == self.key_expected:
@@ -415,8 +423,7 @@ class LessonScreen(gtk.VBox):
 
         # Scroll the TextView so the cursor is on screen.
         mark = self.lessonbuffer.get_insert()
-        #self.lessonbuffer.get_iter_at_mark(mark)
-        self.lessontext.scroll_mark_onscreen(mark)
+        self.lessontext.scroll_to_mark(mark, 0.1)
 
     def finish_lesson(self):
         self.activity.pop_screen()

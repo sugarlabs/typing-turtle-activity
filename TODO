@@ -5,8 +5,10 @@ First Release
 + WPM meter updated in 1sec timer.
 - Draw incorrect characters in red.
 - Support backspace, backspace to previous lines.
-+ Handle ends of line in a sane manner.
-+ Implement two step types: key learning and text copying.
++ Scrolling TextView in lesson.
++ Missing spaces at the end of some lines thanks to dodgy word wrap.
+- Handle ends of line in a sane manner.
+- Implement two step types: key learning and text copying.
 - Split text into lines for long lessons.
 - Try out an insensitive gtk.Entry instead of the gtk.Label.
 + Write to authors of prior typing activity to inquire about layered artwork.  Need to make a .xo file to demo.
