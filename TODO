@@ -25,6 +25,8 @@ First Release
 - Support for displaying modifier keys in Keyboard.
 - Change key shown when modified is held.
 - Indicate next key to press on keyboard.
+- Translate keyboard to native key layout.
++ Use keyboard geometry file from system instead of hardcoding.
 + Make medal WPM adjustable somehow?  Perhaps a settable Goal WPM?
 + Highlight regions of keyboard, color by finger.
 + Allow lessons to choose between forcing correct keypresses and allowing incorrect ones (with support for Backspace).

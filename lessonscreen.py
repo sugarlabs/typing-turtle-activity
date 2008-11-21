@@ -201,7 +201,6 @@ class LessonScreen(gtk.VBox):
         
         # End lesson if this is the last step.
         if self.next_step_idx >= len(self.lesson['steps']):
-            print "Lesson finished."
             self.lesson_finished = True
             self.show_lesson_report()
             return
@@ -262,11 +261,11 @@ class LessonScreen(gtk.VBox):
     def key_press_cb(self, widget, event):
         # Ignore hotkeys.
         if event.state & (gtk.gdk.CONTROL_MASK | gtk.gdk.MOD1_MASK):
-            return
+            return False
         
         # Extract information about the key pressed.
         key = gtk.gdk.keyval_to_unicode(event.keyval)
-        if key != 0: key = chr(key)
+        if key != 0: key = unichr(key)
         key_name = gtk.gdk.keyval_name(event.keyval)
         
         # Simply wait for a return keypress on the lesson finished screen.
@@ -274,7 +273,7 @@ class LessonScreen(gtk.VBox):
             # TODO: Wait a second first.
             if key_name == 'Return':
                 self.end_lesson()
-            return
+            return False
         
         # Convert Return keys to paragraph symbols.
         if key_name == 'Return':
