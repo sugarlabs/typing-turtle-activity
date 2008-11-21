@@ -132,6 +132,8 @@ class LessonScreen(gtk.VBox):
         #self.accuracyarea = gtk.DrawingArea()
         #self.accuracyarea.connect('expose-event', self.accuracy_expose_cb)
         
+        gobject.timeout_add(250, self.timer_cb)
+        
         hbox = gtk.HBox()
         hbox.pack_start(stopbtn, False, False, 10)
         hbox.pack_start(self.wpmlabel, True, False, 10)
@@ -189,6 +191,9 @@ class LessonScreen(gtk.VBox):
         self.begin_lesson()
 
     def update_stats(self):
+        if not self.start_time or self.lesson_finished:
+            return
+        
         self.total_time = time.time() - self.start_time
         if self.total_time >= 1.0:
             self.wpm = 60 * (self.correct_keys / 5) / self.total_time
@@ -198,7 +203,11 @@ class LessonScreen(gtk.VBox):
         
         self.accuracylabel.set_markup(_('<b>Accuracy:</b> %(accuracy)d%%') % { 'accuracy' : int(self.accuracy) } )
         self.wpmlabel.set_markup(_('<b>WPM:</b> %(wpm)d') % { 'wpm': int(self.wpm) } )
-
+    
+    def timer_cb(self):
+        self.update_stats()
+        return True
+    
     def begin_lesson(self):
         self.lesson_finished = False
         
@@ -241,6 +250,7 @@ class LessonScreen(gtk.VBox):
         
         # End lesson if this is the last step.
         if self.next_step_idx >= len(self.lesson['steps']):
+            print "Lesson finished."
             self.lesson_finished = True
             self.show_lesson_report()
             return
@@ -461,7 +471,7 @@ class LessonScreen(gtk.VBox):
                 # Upgrade the player's level if needed.
                 if self.lesson['level'] > self.activity.data['level']:
                     self.activity.data['level'] = self.lesson['level']
-                    self.activity.data['motd'] = _('You unlocked a new lesson!')
+                    self.activity.data['motd'] = 'newlevel'
                 
                 self.activity.data['medals'][lesson_name] = medal
                 self.activity.mainscreen.update_medals()
@@ -652,7 +662,7 @@ class TypingTurtle(sugar.activity.activity.Activity):
         
         # All data which is saved in the Journal entry is placed in this dictionary.
         self.data = {
-            'motd': _('Welcome to Typing Turtle!'),
+            'motd': 'welcome',
             'level': 0,
             'history': [],
             'medals': {}

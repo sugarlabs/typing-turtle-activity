@@ -13,11 +13,12 @@ First Release
 - Better flow at the end of a level.  Report the result on the Lesson screen: Need more work, Medal received, etc.
 - Ability of lessons to list medals in other lessons as prerequisites.  Disable unavailable lessons.
 - Some sort of lesson sorting criteria.
-+ Scroll lessons list to the first non-medaled lesson.
++ Split into file-per-screen.
++ Scroll lessons list to the first non-medaled lesson at startup.  Or just remember scroll position.
 + Status message on the main screen.  "You unlocked a new lesson!" for example.  Eventually have the turtle 'say' it.
 - Implement a long text copying lesson and fix bugs in the scrolling and typing.
 + Graphical WPM and accuracy meters.
-+ WPM meter updated in 1sec timer in addition to on keypress.
+- WPM meter updated in 1sec timer in addition to on keypress.
 - Working medals assignment: "You got a medal!" popup, display next to lesson.
 - Nice looking keyboard.
 - Highlighted keyboard keys when pressed.
