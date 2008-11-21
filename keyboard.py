@@ -82,127 +82,127 @@ DEFAULT_LAYOUT = {
     'key-gap': 5,
 
     'groups': [
-	{
-	    'group-name': "row0",
+        {
+            'group-name': "row0",
             'group-x': 10,
             'group-y': 10,
-
+        
             'key-height': 35,
-
-	    'keys': [
-	     {'key-normal':"",'key-shift':""}, # Escape 
-	     {'key-normal':"",'key-shift':""}, # Show Source
-	     {'key-normal':"",'key-shift':"",'key-width':182}, # Zoom
-	     {'key-normal':"",'key-shift':"",'key-width':182}, # Size 
-	     {'key-normal':"",'key-shift':"",'key-width':181}, # Volume
-	     {'key-normal':"",'key-shift':""}, # Window
-	     {'key-normal':"",'key-shift':""}, # Frame
-	    ]
-	},
-	{
-	    'group-name': "row1",
+        
+            'keys': [
+                {'key-normal':"",'key-shift':""}, # Escape 
+                {'key-normal':"",'key-shift':""}, # Show Source
+                {'key-normal':"",'key-shift':"",'key-width':182}, # Zoom
+                {'key-normal':"",'key-shift':"",'key-width':182}, # Size 
+                {'key-normal':"",'key-shift':"",'key-width':181}, # Volume
+                {'key-normal':"",'key-shift':""}, # Window
+                {'key-normal':"",'key-shift':""}, # Frame
+            ]
+        },
+        {
+            'group-name': "row1",
             'group-x': 10,
             'group-y': 50,
-
-	    'keys': [
-	     {'key-scan':0x31,'key-normal':"`",'key-shift':"~",'key-width':35}, 
-	     {'key-scan':0x0a,'key-normal':"1",'key-shift':"!"}, 
-	     {'key-scan':0x0b,'key-normal':"2",'key-shift':"@"}, 
-	     {'key-scan':0x0c,'key-normal':"3",'key-shift':"#"}, 
-	     {'key-scan':0x0d,'key-normal':"4",'key-shift':"$"}, 
-	     {'key-scan':0x0e,'key-normal':"5",'key-shift':"%"}, 
-	     {'key-scan':0x0f,'key-normal':"6",'key-shift':"^"}, 
-	     {'key-scan':0x10,'key-normal':"7",'key-shift':"&"}, 
-	     {'key-scan':0x11,'key-normal':"8",'key-shift':"*"}, 
-	     {'key-scan':0x12,'key-normal':"9",'key-shift':"("}, 
-	     {'key-scan':0x13,'key-normal':"0",'key-shift':")"}, 
-	     {'key-scan':0x14,'key-normal':"-",'key-shift':"_"}, 
-	     {'key-scan':0x15,'key-normal':"=",'key-shift':"+",'key-width':65},
-	     {'key-scan':0x16,'key-label':"erase",'key-width':95}
-	    ]
-	},
-	{
-	    'group-name': "row2",
-            'group-x': 10,
-            'group-y': 100,
-
-	    'keys': [
-	     {'key-scan':0x17,'key-label':"tab"},
-	     {'key-scan':0x18,'key-normal':"q",'key-shift':"Q"}, 
-	     {'key-scan':0x19,'key-normal':"w",'key-shift':"W"}, 
-	     {'key-scan':0x1a,'key-normal':"e",'key-shift':"E"}, 
-	     {'key-scan':0x1b,'key-normal':"r",'key-shift':"R"}, 
-	     {'key-scan':0x1c,'key-normal':"t",'key-shift':"T"}, 
-	     {'key-scan':0x1d,'key-normal':"y",'key-shift':"Y"}, 
-	     {'key-scan':0x1e,'key-normal':"u",'key-shift':"U"}, 
-	     {'key-scan':0x1f,'key-normal':"i",'key-shift':"I"}, 
-	     {'key-scan':0x20,'key-normal':"o",'key-shift':"O"}, 
-	     {'key-scan':0x21,'key-normal':"p",'key-shift':"P"}, 
-	     {'key-scan':0x22,'key-normal':"[",'key-shift':"{"}, 
-	     {'key-scan':0x23,'key-normal':"]",'key-shift':"}",'key-width':55},
-	     {'key-scan':0x24,'key-label':"enter",'key-width':95,'key-height':95}
-	    ]
-	},
-	{
-	    'group-name': "row3",
+        
+            'keys': [
+                {'key-scan':0x31,'key-normal':"`",'key-shift':"~",'key-width':35}, 
+                {'key-scan':0x0a,'key-normal':"1",'key-shift':"!"}, 
+                {'key-scan':0x0b,'key-normal':"2",'key-shift':"@"}, 
+                {'key-scan':0x0c,'key-normal':"3",'key-shift':"#"}, 
+                {'key-scan':0x0d,'key-normal':"4",'key-shift':"$"}, 
+                {'key-scan':0x0e,'key-normal':"5",'key-shift':"%"}, 
+                {'key-scan':0x0f,'key-normal':"6",'key-shift':"^"}, 
+                {'key-scan':0x10,'key-normal':"7",'key-shift':"&"}, 
+                {'key-scan':0x11,'key-normal':"8",'key-shift':"*"}, 
+                {'key-scan':0x12,'key-normal':"9",'key-shift':"("}, 
+                {'key-scan':0x13,'key-normal':"0",'key-shift':")"}, 
+                {'key-scan':0x14,'key-normal':"-",'key-shift':"_"}, 
+                {'key-scan':0x15,'key-normal':"=",'key-shift':"+",'key-width':65},
+                {'key-scan':0x16,'key-label':"erase",'key-width':95}
+            ]
+        },
+        {
+            'group-name': "row2",
+                'group-x': 10,
+                'group-y': 100,
+        
+            'keys': [
+                {'key-scan':0x17,'key-label':"tab"},
+                {'key-scan':0x18,'key-normal':"q",'key-shift':"Q"}, 
+                {'key-scan':0x19,'key-normal':"w",'key-shift':"W"}, 
+                {'key-scan':0x1a,'key-normal':"e",'key-shift':"E"}, 
+                {'key-scan':0x1b,'key-normal':"r",'key-shift':"R"}, 
+                {'key-scan':0x1c,'key-normal':"t",'key-shift':"T"}, 
+                {'key-scan':0x1d,'key-normal':"y",'key-shift':"Y"}, 
+                {'key-scan':0x1e,'key-normal':"u",'key-shift':"U"}, 
+                {'key-scan':0x1f,'key-normal':"i",'key-shift':"I"}, 
+                {'key-scan':0x20,'key-normal':"o",'key-shift':"O"}, 
+                {'key-scan':0x21,'key-normal':"p",'key-shift':"P"}, 
+                {'key-scan':0x22,'key-normal':"[",'key-shift':"{"}, 
+                {'key-scan':0x23,'key-normal':"]",'key-shift':"}",'key-width':55},
+                {'key-scan':0x24,'key-label':"enter",'key-width':95,'key-height':95}
+            ]
+        },
+        {
+            'group-name': "row3",
             'group-x': 10,
             'group-y': 150,
-
-	    'keys': [
-	     {'key-scan':0x25,'key-label':"ctrl",'key-width':55},
-	     {'key-scan':0x26,'key-normal':"a",'key-shift':"A"}, 
-	     {'key-scan':0x27,'key-normal':"s",'key-shift':"S"}, 
-	     {'key-scan':0x28,'key-normal':"d",'key-shift':"D"}, 
-	     {'key-scan':0x29,'key-normal':"f",'key-shift':"F"}, 
-	     {'key-scan':0x2a,'key-normal':"g",'key-shift':"G"}, 
-	     {'key-scan':0x2b,'key-normal':"h",'key-shift':"H"},
-	     {'key-scan':0x2c,'key-normal':"j",'key-shift':"J"}, 
-	     {'key-scan':0x2d,'key-normal':"k",'key-shift':"K"}, 
-	     {'key-scan':0x2e,'key-normal':"l",'key-shift':"L"}, 
-	     {'key-scan':0x2f,'key-normal':";",'key-shift':":"}, 
-	     {'key-scan':0x30,'key-normal':"'",'key-shift':")"}, 
-	     {'key-scan':0x33,'key-normal':"\\",'key-shift':"|"}
-	    ]
-	},
-	{
-	    'group-name': "row4",
+        
+            'keys': [
+                {'key-scan':0x25,'key-label':"ctrl",'key-width':55},
+                {'key-scan':0x26,'key-normal':"a",'key-shift':"A"}, 
+                {'key-scan':0x27,'key-normal':"s",'key-shift':"S"}, 
+                {'key-scan':0x28,'key-normal':"d",'key-shift':"D"}, 
+                {'key-scan':0x29,'key-normal':"f",'key-shift':"F"}, 
+                {'key-scan':0x2a,'key-normal':"g",'key-shift':"G"}, 
+                {'key-scan':0x2b,'key-normal':"h",'key-shift':"H"},
+                {'key-scan':0x2c,'key-normal':"j",'key-shift':"J"}, 
+                {'key-scan':0x2d,'key-normal':"k",'key-shift':"K"}, 
+                {'key-scan':0x2e,'key-normal':"l",'key-shift':"L"}, 
+                {'key-scan':0x2f,'key-normal':";",'key-shift':":"}, 
+                {'key-scan':0x30,'key-normal':"'",'key-shift':")"}, 
+                {'key-scan':0x33,'key-normal':"\\",'key-shift':"|"}
+            ]
+        },
+        {
+            'group-name': "row4",
             'group-x': 10,
             'group-y': 200,
-
-	    'keys': [
-	     {'key-scan':0x32,'key-label':"shift",'key-width':75},
-	     {'key-scan':0x34,'key-normal':"z",'key-shift':"Z"}, 
-	     {'key-scan':0x35,'key-normal':"x",'key-shift':"X"}, 
-	     {'key-scan':0x36,'key-normal':"c",'key-shift':"C"}, 
-	     {'key-scan':0x37,'key-normal':"v",'key-shift':"V"}, 
-	     {'key-scan':0x38,'key-normal':"b",'key-shift':"B"}, 
-	     {'key-scan':0x39,'key-normal':"n",'key-shift':"N"},
-	     {'key-scan':0x3a,'key-normal':"m",'key-shift':"M"}, 
-	     {'key-scan':0x3b,'key-normal':",",'key-shift':"<"}, 
-	     {'key-scan':0x3c,'key-normal':".",'key-shift':">"}, 
-	     {'key-scan':0x3d,'key-normal':"/",'key-shift':"?"},
-	     {'key-scan':0x3e,'key-label':"shift",'key-width':75},
-	     {'key-scan':0x6f,'key-label':"",'key-shift':""}, # Up
-	     {'key-label':"",'key-shift':""}, # Multiply
-	    ]
-	},
-	{
-	    'group-name': "row5",
+        
+            'keys': [
+                {'key-scan':0x32,'key-label':"shift",'key-width':75},
+                {'key-scan':0x34,'key-normal':"z",'key-shift':"Z"}, 
+                {'key-scan':0x35,'key-normal':"x",'key-shift':"X"}, 
+                {'key-scan':0x36,'key-normal':"c",'key-shift':"C"}, 
+                {'key-scan':0x37,'key-normal':"v",'key-shift':"V"}, 
+                {'key-scan':0x38,'key-normal':"b",'key-shift':"B"}, 
+                {'key-scan':0x39,'key-normal':"n",'key-shift':"N"},
+                {'key-scan':0x3a,'key-normal':"m",'key-shift':"M"}, 
+                {'key-scan':0x3b,'key-normal':",",'key-shift':"<"}, 
+                {'key-scan':0x3c,'key-normal':".",'key-shift':">"}, 
+                {'key-scan':0x3d,'key-normal':"/",'key-shift':"?"},
+                {'key-scan':0x3e,'key-label':"shift",'key-width':75},
+                {'key-scan':0x6f,'key-label':"",'key-shift':""}, # Up
+                {'key-label':"",'key-shift':""}, # Multiply
+            ]
+        },
+        {
+            'group-name': "row5",
             'group-x': 10,
             'group-y': 250,
-
-	    'keys': [
-	     {'key-label':"fn",'key-width':35},
-	     {'key-label':"",'key-width':55}, # LHand
-	     {'key-scan':0x40,'key-label':"alt",'key-width':55}, # LAlt
-	     {'key-scan':0x41,'key-normal':" ",'key-shift':" ", 'key-width':325}, 
-	     {'key-scan':0x6c,'key-label':"alt",'key-width':55}, # RAlt
-	     {'key-label':"",'key-width':55}, # RHand
-	     {'key-scan':0x71,'key-label':""}, # Left 
-	     {'key-scan':0x74,'key-label':""}, # Down
-	     {'key-scan':0x72,'key-label':""}, # Right
-	    ]
-	}
+        
+            'keys': [
+                {'key-label':"fn",'key-width':35},
+                {'key-label':"",'key-width':55}, # LHand
+                {'key-scan':0x40,'key-label':"alt",'key-width':55}, # LAlt
+                {'key-scan':0x41,'key-normal':" ",'key-shift':" ", 'key-width':325}, 
+                {'key-scan':0x6c,'key-label':"alt",'key-width':55}, # RAlt
+                {'key-label':"",'key-width':55}, # RHand
+                {'key-scan':0x71,'key-label':""}, # Left 
+                {'key-scan':0x74,'key-label':""}, # Down
+                {'key-scan':0x72,'key-label':""}, # Right
+            ]
+        }
     ]
 }
 
@@ -406,7 +406,7 @@ class Keyboard(gtk.EventBox):
                 cr.set_source_rgb(0.6, 1.0, 0.6)
             else:
                 cr.set_source_rgb(1.0, 1.0, 1.0)
-	    cr.fill_preserve()
+            cr.fill_preserve()
 
             cr.set_source_rgb(0.1, 0.1, 0.1)
             cr.stroke_preserve()
