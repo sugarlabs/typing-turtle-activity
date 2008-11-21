@@ -1,16 +1,13 @@
   {
-    "name": "Dummy",
-    "description": "Empty lesson for testing.",
-    "medals": {
-      "bronze": { "wpm": 0, "accuracy": 60 },
-      "silver": { "wpm": 0, "accuracy": 60 },
-      "gold":   { "wpm": 0, "accuracy": 90 }
-    },
+    "name": "Cheat Lesson",
+    "description": "Empty lesson for testing, automatically gives level 100.",
+    "level": 100,
+    "requiredlevel": 0,
     "steps": [
       {
         "type": "key",
         "instructions": "Type an x.",
-        "text": "x"
+        "text": "xxxxxxxxxxxxxxxxxxxxxxxxxxxx"
       }
     ]
   }

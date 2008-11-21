@@ -1,6 +1,8 @@
 {
   "name": "Home Row",
   "description": "Teaches the middle row of keys on the keyboard.",
+  "level": 1,
+  "requiredlevel": 0,
   "steps": [
     {
       "instructions": "Welcome to the first Typing Turtle lesson!  Place your fingers on the keyboard as shown below.\n\nWhen you are ready to begin, press the f key with your left index finger.",

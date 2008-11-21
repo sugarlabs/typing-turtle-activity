@@ -17,7 +17,7 @@
 """Typing Turtle - Interactive typing tutor for the OLPC XO."""
 
 # Import standard Python modules.
-import logging, os, math, time, copy, json, locale, datetime, random
+import logging, os, math, time, copy, json, locale, datetime, random, re
 from gettext import gettext as _
 
 # Set up localization.
@@ -44,7 +44,7 @@ import keyboard
 PARAGRAPH_CODE = u'\xb6'
 
 # Maximium width of a text line in text lesson mode.
-LINE_LENGTH = 80
+LINE_WIDTH = 80
 
 # Requirements for earning medals.
 # Words per minute goals came from http://en.wikipedia.org/wiki/Words_per_minute.
@@ -214,27 +214,19 @@ class LessonScreen(gtk.VBox):
         self.advance_step()
 
     def wrap_line(self, line):
-        words = line.split(' ')
+        words = re.split('(\W+)', line)
+        
         new_lines = []
         cur_line = ''
         for w in words:
             # TODO: Handle single word longer than a line.
-            #if len(w) > LINE_LENGTH:
-            #    new_lines.append(cur_line)
-            #    while len(w):
-            #        new_lines.append(w[:LINE_LENGTH])
-            #        w = w[LINE_LENGTH:]
-            #    cur_line = ''
-            if len(cur_line) + len(w) + 1 > LINE_LENGTH:
+            if not w.isspace() and len(cur_line) + len(w) > LINE_WIDTH:
                 if len(cur_line):
                     new_lines.append(cur_line)
-                cur_line = ''
-            cur_line += w + ' '
+                    cur_line = ''
+            cur_line += w
         
         if len(cur_line):
-            # Remove trailing spaces from last line before adding.
-            while cur_line[-1] == ' ':
-                cur_line = cur_line[:-1]
             new_lines.append(cur_line)
         
         return new_lines
@@ -242,13 +234,10 @@ class LessonScreen(gtk.VBox):
     def advance_step(self):
         # Clear step related variables.
         self.step = None
-        self.step_type = None
         
         self.text = None
         self.line = None
         self.line_marks = None
-        
-        self.key_expected = None
         
         # End lesson if this is the last step.
         if self.next_step_idx >= len(self.lesson['steps']):
@@ -261,61 +250,46 @@ class LessonScreen(gtk.VBox):
         self.step = self.lesson['steps'][self.next_step_idx]
         self.next_step_idx = self.next_step_idx + 1
         
-        if len(self.step['text']) == 1:
-            self.step_type = 'key'
-        else:
-            self.step_type = 'text'
+        # Clear the text buffer and output the instructions.
+        self.lessonbuffer.insert_with_tags_by_name(
+            self.lessonbuffer.get_end_iter(), '\n\n' + self.step['instructions'] + '\n', 'instructions')
         
-        if self.step_type == 'text':
-            # Clear the text buffer and output the instructions.
-            self.lessonbuffer.set_text('')
-            self.lessonbuffer.insert_with_tags_by_name(
-                self.lessonbuffer.get_end_iter(), '\n' + self.step['instructions'] + '\n\n', 'instructions')
+        self.text = unicode(self.step['text'])
+        
+        # Split text into lines.
+        self.lines = self.text.splitlines(True)
+        
+        # Substitute paragraph codes.
+        self.lines = [l.replace('\n', PARAGRAPH_CODE) for l in self.lines]
+        
+        # Split by line length in addition to by paragraphs.
+        for i in range(0, len(self.lines)):
+            line = self.lines[i]
+            if len(line) > LINE_WIDTH:
+                self.lines[i:i+1] = self.wrap_line(line)
+        
+        # Center single line steps.
+        indent = ''
+        #if len(self.lines) == 1:
+        #    indent = ' ' * ((LINE_LENGTH - len(self.lines[0]))/2)
             
-            self.text = unicode(self.step['text'])
-            
-            # Split text into lines.
-            self.lines = self.text.splitlines(True)
-            
-            # Substitute paragraph codes.
-            self.lines = [l.replace('\n', PARAGRAPH_CODE) for l in self.lines]
-            
-            # Split by line length in addition to by paragraphs.
-            for i in range(0, len(self.lines)):
-                line = self.lines[i]
-                if len(line) > 30:
-                    self.lines[i:i+1] = self.wrap_line(line)
-            
-            # Fill text buffer with text lines, each followed by room for the user to type.
-            self.line_marks = {} 
-            line_idx = 0
-            for l in self.lines:
-                self.lessonbuffer.insert_with_tags_by_name(
-                    self.lessonbuffer.get_end_iter(), l.encode('utf-8') + '\n', 'text')
+        # Fill text buffer with text lines, each followed by room for the user to type.
+        self.line_marks = {} 
+        line_idx = 0
+        for l in self.lines:
                 
-                self.line_marks[line_idx] = self.lessonbuffer.create_mark(None, self.lessonbuffer.get_end_iter(), True)
-                self.lessonbuffer.insert_at_cursor('\n')
-                
-                line_idx += 1
-            
-            self.line_idx = 0
-            self.begin_line()
-            
-        elif self.step_type == 'key':
-            # Clear the text buffer and output the instructions.
-            self.lessonbuffer.set_text('')
+            # Add the text to copy.
             self.lessonbuffer.insert_with_tags_by_name(
-                self.lessonbuffer.get_end_iter(), '\n' + self.step['instructions'] + '\n\n', 'instructions')
+                self.lessonbuffer.get_end_iter(), '\n' + indent + l.encode('utf-8') + '\n' + indent, 'text')
             
-            # Prepare the key.            
-            self.key_expected = unicode(self.step['text'][0]).replace('\n', PARAGRAPH_CODE)
+            # Leave a marker where we will later insert text.
+            self.line_marks[line_idx] = self.lessonbuffer.create_mark(None, self.lessonbuffer.get_end_iter(), True)
             
-            # Hilite the key on the virtual keyboard.
-            self.keyboard.clear_hilite()
-            key = self.keyboard.find_key_by_letter(self.key_expected)
-            if key:
-                key.set_hilite(True)
-
+            line_idx += 1
+        
+        self.line_idx = 0
+        self.begin_line()
+            
     def begin_line(self):
         self.line = self.lines[self.line_idx]
         self.line_mark = self.line_marks[self.line_idx]
@@ -336,6 +310,7 @@ class LessonScreen(gtk.VBox):
         
         # Simply wait for a return keypress on the lesson finished screen.
         if self.lesson_finished:
+            # TODO: Wait a second first.
             if key_name == 'Return':
                 self.end_lesson()
             return
@@ -351,81 +326,64 @@ class LessonScreen(gtk.VBox):
             self.start_time = time.time()
         
         # Handle backspace by deleting text and optionally moving up lines.
-        if self.step_type == 'text':
-            if key_name == 'BackSpace':
-                # Move to previous line if at the end of the current one.
-                if self.char_idx == 0 and self.line_idx > 0:
-                    self.line_idx -= 1 
-                    self.begin_line()
-                    
-                    self.char_idx = len(self.line)
+        if key_name == 'BackSpace':
+            # Move to previous line if at the end of the current one.
+            if self.char_idx == 0 and self.line_idx > 0:
+                self.line_idx -= 1 
+                self.begin_line()
                 
-                # Then delete the current character.
-                if self.char_idx > 0:
-                    self.char_idx -= 1
-                    
-                    iter = self.lessonbuffer.get_iter_at_mark(self.line_mark)
-                    iter.forward_chars(self.char_idx)
-                    
-                    iter_end = iter.copy()
-                    iter_end.forward_char()
-                    
-                    self.lessonbuffer.delete(iter, iter_end)
-    
-            # Process normal key presses.
-            elif key != 0:
+                self.char_idx = len(self.line)
+            
+            # Then delete the current character.
+            if self.char_idx > 0:
+                self.char_idx -= 1
                 
-                # Check to see if they pressed the correct key.
-                if key == self.line[self.char_idx]:
-                    tag_name = 'correct-copy'
-                    self.correct_keys += 1
-                    self.total_keys += 1
-                    
-                else:
-                    # TODO - Play 'incorrect key' sound here.
-                    
-                    tag_name = 'incorrect-copy'
-                    self.incorrect_keys += 1
-                    self.total_keys += 1
-                
-                # Insert the key into the bufffer.
                 iter = self.lessonbuffer.get_iter_at_mark(self.line_mark)
                 iter.forward_chars(self.char_idx)
                 
-                self.lessonbuffer.insert_with_tags_by_name(iter, key, tag_name)
+                iter_end = iter.copy()
+                iter_end.forward_char()
                 
-                # Advance to the next character (or else).
-                self.char_idx += 1
-                if self.char_idx >= len(self.line):
-                    self.line_idx += 1
-                    if self.line_idx >= len(self.lines):
-                        self.advance_step()
-                    else:
-                        self.begin_line()
-                
-                self.update_stats()
-            
+                self.lessonbuffer.delete(iter, iter_end)
+
             self.hilite_next_key()
-        
-        elif self.step_type == 'key':
+
+        # Process normal key presses.
+        elif key != 0:
             
             # Check to see if they pressed the correct key.
-            if key == self.key_expected:
+            if key == self.line[self.char_idx]:
                 tag_name = 'correct-copy'
                 self.correct_keys += 1
                 self.total_keys += 1
                 
-                self.advance_step()
-
             else:
                 # TODO - Play 'incorrect key' sound here.
-
+                
                 tag_name = 'incorrect-copy'
                 self.incorrect_keys += 1
                 self.total_keys += 1
             
-            self.update_stats()
+            # Insert the key into the bufffer.
+            iter = self.lessonbuffer.get_iter_at_mark(self.line_mark)
+            iter.forward_chars(self.char_idx)
             
+            self.lessonbuffer.insert_with_tags_by_name(iter, key, tag_name)
+            
+            # Advance to the next character (or else).
+            self.char_idx += 1
+            if self.char_idx >= len(self.line):
+                self.line_idx += 1
+                if self.line_idx >= len(self.lines):
+                    self.advance_step()
+                else:
+                    self.begin_line()
+                return
+            
+            self.update_stats()
+        
+            self.hilite_next_key()
+        
         return False
 
     def hilite_next_key(self):
@@ -445,7 +403,7 @@ class LessonScreen(gtk.VBox):
         self.lessontext.grab_focus()
 
         # Scroll the TextView so the cursor is on screen.
-        self.lessontext.scroll_to_mark(self.lessonbuffer.get_insert(), 0.1)
+        self.lessontext.scroll_to_mark(self.lessonbuffer.get_insert(), 0)
 
     def show_lesson_report(self):
         self.update_stats()
@@ -499,7 +457,12 @@ class LessonScreen(gtk.VBox):
                         if medal['wpm'] < old_medal['wpm']:
                             add_medal = False
             
-            if add_medal:
+            if add_medal:       
+                # Upgrade the player's level if needed.
+                if self.lesson['level'] > self.activity.data['level']:
+                    self.activity.data['level'] = self.lesson['level']
+                    self.activity.data['motd'] = _('You unlocked a new lesson!')
+                
                 self.activity.data['medals'][lesson_name] = medal
                 self.activity.mainscreen.update_medals()
         
@@ -527,8 +490,8 @@ class LessonScreen(gtk.VBox):
             
         else:
             # Comment on what the user needs to do better.
-            need_wpm = report['wpm'] < self.lesson['medals']['bronze']['wpm']
-            need_accuracy = report['accuracy'] < self.lesson['medals']['bronze']['accuracy']
+            need_wpm = report['wpm'] < MEDALS[0]['wpm']
+            need_accuracy = report['accuracy'] < MEDALS[0]['accuracy']
             
             if need_accuracy and need_wpm:
                 text += _('You need to practice this lesson more before moving on.  If you are having a hard time, '
@@ -562,18 +525,18 @@ class LessonScreen(gtk.VBox):
 class MainScreen(gtk.VBox):
     def __init__(self, activity):
         gtk.VBox.__init__(self)
-
+        
         self.activity = activity
-
+        
         # Build background.
         title = gtk.Label()
         title.set_markup("<span size='40000'><b>" + _('Typing Turtle') + "</b></span>")
-
+        
         subtitle = gtk.Label()
         subtitle.set_markup(_('Welcome to Typing Turtle! To begin, select a lesson from the list below.'))
-
+        
         spacer = gtk.HBox()
-
+        
         # Lessons header.
         headerbox = gtk.VBox()
         label = gtk.Label()
@@ -581,15 +544,15 @@ class MainScreen(gtk.VBox):
         label.set_markup("<span size='large'><b>"+_('Available Lessons')+"</b></span>")
         headerbox.pack_start(label, False)
         headerbox.pack_start(gtk.HSeparator(), False)
-
+        
         # Build lessons list.
         self.lessonbox = gtk.VBox()
         self.lessonbox.set_spacing(10)
-
+        
         bundle_path = sugar.activity.activity.get_bundle_path() 
         code = locale.getlocale(locale.LC_ALL)[0]
         path = bundle_path + '/lessons/' + code + '/'
- 
+        
         # Find all .lesson files in ./lessons/en_US/ for example.
         lessons = []
         for f in os.listdir(path):
@@ -599,47 +562,57 @@ class MainScreen(gtk.VBox):
                 lessons.append(lesson)
             finally:
                 fd.close()
-
+        
+        lessons.sort(lambda x, y: x['level'] - y['level'])
+        
         for l in lessons:
             label = gtk.Label()
             label.set_alignment(0.0, 0.5)
             label.set_markup("<span size='large'>" + l['name'] + "</span>\n" + l['description'])
-
+            
             btn = gtk.Button()
             btn.lesson = l
             btn.add(label)
             btn.connect('clicked', self.lesson_clicked_cb)
-
+            
             medalimage = gtk.Image()
-
+            
             medalbtn = gtk.Button()
             medalbtn.lesson = l
             medalbtn.add(medalimage)
             medalbtn.connect('clicked', self.medal_clicked_cb)
-
+            
             hbox = gtk.HBox()
             hbox.pack_start(btn, True, True, 10)
             hbox.pack_end(medalbtn, False, False)            
-
+            
+            hbox.button = btn
+            hbox.medalbutton = medalbtn
             hbox.lesson = l
             hbox.medalimage = medalimage
-      
+            
             self.lessonbox.pack_start(hbox, False)
-
+        
         self.lessonscroll = gtk.ScrolledWindow()
         self.lessonscroll.set_policy(gtk.POLICY_NEVER, gtk.POLICY_AUTOMATIC)
         self.lessonscroll.add_with_viewport(self.lessonbox)
-
+        
         self.pack_start(title, False, True, 10)
         self.pack_start(subtitle, False)
         self.pack_start(spacer, False, False, 50)
         self.pack_start(headerbox, False)
         self.pack_start(self.lessonscroll, True)
-
+        
         self.update_medals()
 
     def update_medals(self):
         for l in self.lessonbox:
+            # Disable the lesson button unless available.
+            lesson_available = self.activity.data['level'] >= l.lesson['requiredlevel']
+            l.button.set_sensitive(lesson_available)
+            l.medalbutton.set_sensitive(lesson_available)
+            
+            # Update the medal image.
             medal_type = 'none'
             if self.activity.data['medals'].has_key(l.lesson['name']):
                 medal_type = self.activity.data['medals'][l.lesson['name']]['type']
@@ -652,10 +625,10 @@ class MainScreen(gtk.VBox):
                 'gold':   bundle+'/images/gold-medal.jpg'
             }
             l.medalimage.set_from_file(images[medal_type])
-
+    
     def lesson_clicked_cb(self, widget):
         self.activity.push_screen(LessonScreen(widget.lesson, self.activity))
-
+    
     def medal_clicked_cb(self, widget):
         if self.activity.data['medals'].has_key(widget.lesson['name']):
             medal = self.activity.data['medals'][widget.lesson['name']]
@@ -669,29 +642,31 @@ class TypingTurtle(sugar.activity.activity.Activity):
     def __init__ (self, handle):
         sugar.activity.activity.Activity.__init__(self, handle)
         self.set_title(_("Typing Turtle"))
-
+        
         self.build_toolbox()
-  
+        
         self.screens = []
         self.screenbox = gtk.VBox()
-
+        
         self.owner = presenceservice.get_instance().get_owner()
-
+        
         # All data which is saved in the Journal entry is placed in this dictionary.
         self.data = {
+            'motd': _('Welcome to Typing Turtle!'),
+            'level': 0,
             'history': [],
             'medals': {}
         }
-
+        
         # This has to happen last, because it calls the read_file method when restoring from the Journal.
         self.set_canvas(self.screenbox)
-
+        
         # Start with the main screen.
         self.mainscreen = MainScreen(self)
         self.push_screen(self.mainscreen)
-  
+        
         self.show_all()
-
+        
         # Hide the sharing button from the activity toolbar since we don't support sharing.
         activity_toolbar = self.tbox.get_activity_toolbar()
         activity_toolbar.share.props.visible = False
@@ -699,13 +674,13 @@ class TypingTurtle(sugar.activity.activity.Activity):
     def build_toolbox(self):
         self.tbox = sugar.activity.activity.ActivityToolbox(self)
         self.tbox.show_all()
-
+        
         self.set_toolbox(self.tbox)
 
     def push_screen(self, screen):
         if len(self.screens):
             self.screenbox.remove(self.screens[-1])
- 
+        
         self.screenbox.pack_start(screen, True, True)
         self.screens.append(screen)
 
@@ -721,7 +696,7 @@ class TypingTurtle(sugar.activity.activity.Activity):
     def read_file(self, file_path):
         if self.metadata['mime_type'] != 'text/plain':
             return
-
+        
         fd = open(file_path, 'r')
         try:
             text = fd.read()
@@ -733,7 +708,7 @@ class TypingTurtle(sugar.activity.activity.Activity):
     def write_file(self, file_path):
         if not self.metadata['mime_type']:
             self.metadata['mime_type'] = 'text/plain'
-
+        
         fd = open(file_path, 'w')
         try:
             text = json.write(self.data)

@@ -1,35 +1,32 @@
 Typing Turtle
 
 First Release
-- Write tLoser, Wes about developing artwork.
-+ Blinking key hilite in 'key' mode.
-+ WPM meter updated in 1sec timer.
+- Write to Loser, Wes about developing artwork.
 - Draw incorrect characters in red.
 - Support backspace, backspace to previous lines.
-+ Scrolling TextView in lesson.
-+ Missing spaces at the end of some lines thanks to dodgy word wrap.
+- Scrolling TextView in lesson.
+- Missing spaces at the end of some lines thanks to dodgy word wrap.
 - Handle ends of line in a sane manner.
 - Implement two step types: key learning and text copying.
 - Split text into lines for long lessons.
 - Try out an insensitive gtk.Entry instead of the gtk.Label.
-+ Write to authors of prior typing activity to inquire about layered artwork.  Need to make a .xo file to demo.
-+ Better flow at the end of a level.  Report the result on the Lesson screen: Need more work, Medal received, etc.
+- Better flow at the end of a level.  Report the result on the Lesson screen: Need more work, Medal received, etc.
+- Ability of lessons to list medals in other lessons as prerequisites.  Disable unavailable lessons.
+- Some sort of lesson sorting criteria.
++ Scroll lessons list to the first non-medaled lesson.
 + Status message on the main screen.  "You unlocked a new lesson!" for example.  Eventually have the turtle 'say' it.
-+ Scroll lessons list to the first non-medaled lesson?
-+ Implement a long text copying lesson and fix bugs in the scrolling and typing.
-+ Some sort of lesson sorting criteria.
-+ Ability of lessons to list medals in other lessons as prerequisites.
+- Implement a long text copying lesson and fix bugs in the scrolling and typing.
 + Graphical WPM and accuracy meters.
++ WPM meter updated in 1sec timer in addition to on keypress.
 - Working medals assignment: "You got a medal!" popup, display next to lesson.
 - Nice looking keyboard.
 - Highlighted keyboard keys when pressed.
 - Support for displaying modifier keys in Keyboard.
 - Change key shown when modified is held.
 - Indicate next key to press on keyboard.
++ Make medal WPM adjustable somehow?  Perhaps a settable Goal WPM?
 + Highlight regions of keyboard, color by finger.
 + Allow lessons to choose between forcing correct keypresses and allowing incorrect ones (with support for Backspace).
-+ History screen: List of lessons completed with statistics.
-+ Progress screen: Line graphs of Accuracy, WPM over time.
 + Artwork and animations.
   + Background picture in main screen.
   + Speed meter picture?
@@ -41,13 +38,45 @@ First Release
 + Sound effects.
   + Welcome to the activity sound.
   + Speed up / slow down sounds when WPM crosses threshold: Slow, Medium, Fast.
-  + Medal award sounds for each medal type: Bronze, Silver, Gold.
-  + Incorrect key pressed sound. 
+  + Medal award sounds for each medal type: None, Bronze, Silver, Gold.  Applause sound.
+  + Incorrect key pressed tick sound. 
 + Develop lessons.
   + Continue to develop lessons for all keys on the keyboard.
-  + Develop 'focus' lessons e.g. fj.
-  + Mark some lessons as "locational" versus "textual" and translate from the English keyboard to native.  Ex: Home row, Left hand, Numbers, etc.
-  + Give each lesson criteria for each medal type based on Accuracy, WPM.
+  - Develop 'focus' lessons e.g. fj.
+  - Mark some lessons as "locational" versus "textual" and translate from the English keyboard to native.  Ex: Home row, Left hand, Numbers, etc.
+  - Give each lesson criteria for each medal type based on Accuracy, WPM.
 
 Future Release
 + Goal support with progress reporting.  WPM, Accuracy, Entire keyboard learned, etc.
++ Keymap showing skill per key.  Star icons on keys that are mastered.
++ History screen: List of lessons completed with statistics.
++ Progress screen: Line graphs of Accuracy, WPM over time.
++ Lesson editor activity or mode.
++ Automatically generate lessons similar to 'home row' based on a list of keys.
+
+Balloon Game
+
++ Create BalloonGameScreen class (use gtk.Layout?).
++ Generate a list of random words, or read from lesson dictionary.
++ Score display.
++ Floating balloons with words on them.  Random velocities, "floaty" look.
++ Balloon letters disappear when typed.
++ Balloon pops when word typed, score increased.
++ Rate of balloons increases over time.
++ Game finished popup, displays score and medal text.
+
+Paper Airplane Game
+
++ Create AirplaneGameScreen class (use gtk.Layout?).
++ Implement bottom-scrolling text display.
++ Airplane toss animation (or maybe takeoff from runway?).  Starts with first letter.
++ Floating airplane momentum based on words per minute.
++ Scrolling background graphics.
++ Finish line graphics.
++ Game finished popup, displays score and medal text.
+
+Race Game
+
++ Create RaceGameScreen class (use gtk.Layout?).
++ Copy whatever Prakhar's got, finish it up.
++ Game finished popup, displays score and medal text.
