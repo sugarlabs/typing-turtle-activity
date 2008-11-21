@@ -13,7 +13,7 @@ First Release
 - Better flow at the end of a level.  Report the result on the Lesson screen: Need more work, Medal received, etc.
 - Ability of lessons to list medals in other lessons as prerequisites.  Disable unavailable lessons.
 - Some sort of lesson sorting criteria.
-+ Split into file-per-screen.
+- Split into file-per-screen.
 + Scroll lessons list to the first non-medaled lesson at startup.  Or just remember scroll position.
 + Status message on the main screen.  "You unlocked a new lesson!" for example.  Eventually have the turtle 'say' it.
 - Implement a long text copying lesson and fix bugs in the scrolling and typing.

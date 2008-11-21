@@ -113,21 +113,26 @@ class LessonScreen(gtk.VBox):
         self.keyboard = keyboard.Keyboard(self.activity)
         self.keyboard.set_layout(keyboard.DEFAULT_LAYOUT)
         
-        self.activity.add_events(gtk.gdk.KEY_PRESS_MASK)
-        self.key_press_cb_id = self.activity.connect('key-press-event', self.key_press_cb)
-        
         self.pack_start(hbox, False, False, 10)
         self.pack_start(frame, True, True)
         self.pack_start(self.keyboard, True)
         
+        # Connect keyboard grabbing and releasing callbacks.        
+        self.connect('realize', self.realize_cb)
+        self.connect('unrealize', self.unrealize_cb)
+        
         self.show_all()
         
         self.begin_lesson()
-        
-        gobject.timeout_add(250, self.timer_cb)
 
-    def __del__(self):
-        print "Disconnecting keypress callback."
+        # Initialize stats update timer.        
+        gobject.timeout_add(1000, self.timer_cb)
+
+    def realize_cb(self, widget):
+        self.activity.add_events(gtk.gdk.KEY_PRESS_MASK)
+        self.key_press_cb_id = self.activity.connect('key-press-event', self.key_press_cb)
+        
+    def unrealize_cb(self, widget):
         self.activity.disconnect(self.key_press_cb_id)
         
     def update_stats(self):
@@ -168,7 +173,8 @@ class LessonScreen(gtk.VBox):
         self.advance_step()
 
     def wrap_line(self, line):
-        words = re.split('(\W+)', line)
+        r = re.compile('(\W+)', re.UNICODE)
+        words = r.split(line)
         
         new_lines = []
         cur_line = ''

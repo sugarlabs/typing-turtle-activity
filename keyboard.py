@@ -245,10 +245,19 @@ class Keyboard(gtk.EventBox):
 
         self.shift_down = False
 
+        # Connect keyboard grabbing and releasing callbacks.        
+        self.connect('realize', self._realize_cb)
+        self.connect('unrealize', self._unrealize_cb)
+
+    def _realize_cb(self, widget):
         # Setup keyboard event snooping in the root window.
-        root_window.add_events(gtk.gdk.KEY_PRESS_MASK | gtk.gdk.KEY_RELEASE_MASK)
-        root_window.connect('key-press-event', self._key_press_cb)
-        root_window.connect('key-release-event', self._key_release_cb)
+        self.root_window.add_events(gtk.gdk.KEY_PRESS_MASK | gtk.gdk.KEY_RELEASE_MASK)
+        self.key_press_cb_id = self.root_window.connect('key-press-event', self._key_press_cb)
+        self.key_release_cb_id = self.root_window.connect('key-release-event', self._key_release_cb)
+        
+    def _unrealize_cb(self, widget):
+        self.root_window.disconnect(self.key_press_cb_id)
+        self.root_window.disconnect(self.key_release_cb_id)
 
     def _build_key_list(self, layout):
         """Builds a list of Keys objects from a layout description.  
