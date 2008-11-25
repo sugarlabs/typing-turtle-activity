@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-17 04:51+0000\n"
+"POT-Creation-Date: 2008-11-21 23:11+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,17 +16,94 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: activity/activity.info:2 typingturtle.py:429 typingturtle.py:530
+#: activity/activity.info:2 typingturtle.py:49 mainscreen.py:39
 msgid "Typing Turtle"
 msgstr ""
 
-#: typingturtle.py:56
+#: lessonscreen.py:57 medalscreen.py:56
+msgid "Go Back"
+msgstr ""
+
+#: lessonscreen.py:150
+#, python-format
+msgid "<b>WPM:</b> %(wpm)d"
+msgstr ""
+
+#: lessonscreen.py:155 medalscreen.py:49
+#, python-format
+msgid "<b>Accuracy:</b> %(accuracy)d%%"
+msgstr ""
+
+#: lessonscreen.py:433
+msgid "Good job!"
+msgstr ""
+
+#: lessonscreen.py:434
+msgid "Well done!"
+msgstr ""
+
+#: lessonscreen.py:435
+msgid "Nice work!"
+msgstr ""
+
+#: lessonscreen.py:436
+msgid "Way to go!"
+msgstr ""
+
+#: lessonscreen.py:440
+#, python-format
+msgid ""
+"You finished the lesson in %(time)d seconds, with %(errors)d errors.\n"
+"\n"
+msgstr ""
+
+#: lessonscreen.py:442
+#, python-format
+msgid ""
+"Your words per minute (WPM) was %(wpm)d, and your accuracy was %(accuracy)d%"
+"%.\n"
+"\n"
+msgstr ""
+
+#: lessonscreen.py:448
+#, python-format
+msgid ""
+"Congratulations!  You earned a %(type)s medal!\n"
+"\n"
+"Press Enter to see your certificate."
+msgstr ""
+
+#: lessonscreen.py:457
+msgid ""
+"You need to practice this lesson more before moving on.  If you are having a "
+"hard time, repeat the earlier lessons until you have mastered them "
+"completely before trying this one again.\n"
+"\n"
+msgstr ""
+
+#: lessonscreen.py:462
+msgid ""
+"You almost got a medal!  Next time, try not to make as many errors!\n"
+"\n"
+msgstr ""
+
+#: lessonscreen.py:465
+msgid ""
+"You almost got a medal!  Next time, try to type a little faster!\n"
+"\n"
+msgstr ""
+
+#: lessonscreen.py:467
+msgid "Press Enter to return to the main screen."
+msgstr ""
+
+#: medalscreen.py:38
 msgid ""
 "Certificate of\n"
 "Achievement"
 msgstr ""
 
-#: typingturtle.py:60
+#: medalscreen.py:42
 #, python-format
 msgid ""
 "This certifies that on <i><b><u>%(date)s</u></b></i>,\n"
@@ -34,30 +111,16 @@ msgid ""
 "in Typing Turtle lesson <i><b><u>%(lesson)s</u></b></i>."
 msgstr ""
 
-#: typingturtle.py:64
+#: medalscreen.py:46
 #, python-format
 msgid "<b>Words Per Minute:</b> %(wpm)d"
 msgstr ""
 
-#: typingturtle.py:67 typingturtle.py:201
-#, python-format
-msgid "<b>Accuracy:</b> %(accuracy)d%%"
-msgstr ""
-
-#: typingturtle.py:74 typingturtle.py:110
-msgid "Go Back"
-msgstr ""
-
-#: typingturtle.py:202
-#, python-format
-msgid "<b>WPM:</b> %(wpm)d"
-msgstr ""
-
-#: typingturtle.py:432
+#: mainscreen.py:42
 msgid ""
 "Welcome to Typing Turtle! To begin, select a lesson from the list below."
 msgstr ""
 
-#: typingturtle.py:440
+#: mainscreen.py:50
 msgid "Available Lessons"
 msgstr ""
