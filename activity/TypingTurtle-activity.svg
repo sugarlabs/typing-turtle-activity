@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 14.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 43363)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"[
+     <!ENTITY stroke_color "#000000">
+     <!ENTITY fill_color "#FFFFFF">
+ ]>
+<svg version="1.1" id="TurtType" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="45px" height="45px" viewBox="0 0 45 45" enable-background="new 0 0 45 45" xml:space="preserve">
+<path id="Key" fill="&fill_color;" stroke="&stroke_color;" stroke-width="3.5" d="M33.445,2.99c9.117,0,9.08,9.326,9.08,9.326
+	s-0.037,11.042,0,20.368c0.037,9.325-9.08,9.325-9.08,9.325s-13.005,0-21.594,0c-9.326,0-9.326-9.325-9.326-9.325s0-12.021,0-20.854
+	s9.08-8.834,9.08-8.834L33.445,2.99L33.445,2.99z"/>
+<path id="Shell" fill="&stroke_color;" stroke="none" d="M33.704,28.941c0.772,1.146-12.694,1.138-11.937,0c1.286-1.936,3.486-3.166,5.983-3.166
+	C30.229,25.775,32.414,27.032,33.704,28.941z"/>
+<path id="Turtle" fill="none" stroke="&stroke_color;" d="M27.959,31.167c-4.542,0-6-0.417-6-0.417s-0.116,2.219,0.698,2.344
+	c0.813,0.125,2.03-1.386,2.03-1.386h5.595c0,0,1.01,1.511,1.813,1.511c0.803,0,0.844-1.594,0.844-1.594s4.969,1.594,4.969-0.719
+	c0-2.313-3.563-1.604-3.688-0.313C34.219,30.594,32.501,31.167,27.959,31.167z"/>
+<line id="T2" fill="none" stroke="&stroke_color;" stroke-width="2.5" x1="11.292" y1="20.758" x2="22.615" y2="20.758"/>
+<line id="T1" fill="none" stroke="&stroke_color;" stroke-width="2.5" x1="17.05" y1="20.758" x2="17.05" y2="33.714"/>
+</svg>

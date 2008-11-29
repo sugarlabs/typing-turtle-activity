@@ -3,5 +3,5 @@ name = Typing Turtle
 activity_version = 1
 host_version = 1
 service_name = org.laptop.community.TypingTurtle
-icon = Colors-activity
+icon = TypingTurtle-activity
 exec = sugar-activity typingturtle.TypingTurtle
