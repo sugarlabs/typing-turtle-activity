@@ -13,6 +13,7 @@
 # 
 # You should have received a copy of the GNU General Public License
 # along with Typing Turtle.  If not, see <http://www.gnu.org/licenses/>.
+# vi:sw=4 et 
 
 # Import standard Python modules.
 import logging, os, math, time, copy, json, locale, datetime, random, re
@@ -279,7 +280,7 @@ class LessonScreen(gtk.VBox):
         if key_name == 'Return':
             key = PARAGRAPH_CODE
         
-        print "key_press_cb: key=%s key_name=%s event.keyval=%d" % (key, key_name, event.keyval)
+        #print "key_press_cb: key=%s key_name=%s event.keyval=%d" % (key, key_name, event.keyval)
         
         # Timer starts with first keypress.
         if not self.start_time:
@@ -352,7 +353,7 @@ class LessonScreen(gtk.VBox):
         if len(self.line) > 0:
             key = self.keyboard.find_key_by_letter(self.line[self.char_idx])
             if key:
-                key.set_hilite(True)
+                self.keyboard.hilite_key(key)
 
         # Move the cursor to the insert location.
         iter = self.lessonbuffer.get_iter_at_mark(self.line_mark)

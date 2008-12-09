@@ -14,6 +14,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Typing Turtle.  If not, see <http://www.gnu.org/licenses/>.
 #!/usr/bin/env python
+# vi:sw=4 et 
 
 import pygtk
 pygtk.require('2.0')
@@ -232,9 +233,6 @@ class Key:
         self.pressed = False
         self.hilite = False
 
-    def set_hilite(self, enabled):
-        self.hilite = enabled
-
 class Keyboard(gtk.EventBox):
     """A GTK widget which implements an interactive visual keyboard, with support
        for custom data driven layouts."""
@@ -248,6 +246,9 @@ class Keyboard(gtk.EventBox):
         self.area = gtk.DrawingArea()
         self.area.connect("expose-event", self._expose_cb)
         self.add(self.area)
+
+        # Initialize the default cairo context to None. 
+        cr = None
         
         # Access the current GTK keymap.
         self.keymap = gtk.gdk.keymap_get_default()
@@ -265,15 +266,15 @@ class Keyboard(gtk.EventBox):
         self.shift_down = False
         
         # Connect keyboard grabbing and releasing callbacks.        
-        self.connect('realize', self._realize_cb)
-        self.connect('unrealize', self._unrealize_cb)
+        self.area.connect('realize', self._realize_cb)
+        self.area.connect('unrealize', self._unrealize_cb)
 
     def _realize_cb(self, widget):
         # Setup keyboard event snooping in the root window.
         self.root_window.add_events(gtk.gdk.KEY_PRESS_MASK | gtk.gdk.KEY_RELEASE_MASK)
         self.key_press_cb_id = self.root_window.connect('key-press-event', self._key_press_cb)
         self.key_release_cb_id = self.root_window.connect('key-release-event', self._key_release_cb)
-        
+
     def _unrealize_cb(self, widget):
         self.root_window.disconnect(self.key_press_cb_id)
         self.root_window.disconnect(self.key_release_cb_id)
@@ -390,69 +391,79 @@ class Keyboard(gtk.EventBox):
             k.screen_width = int(k.width * ratio_x / 100)
             k.screen_height = int(k.height * ratio_y / 100)
 
+    def _expose_key(self, k, cr=None):
+        # Create cairo context if need be.
+        if not cr:
+            if not self.area.window:
+                return
+            cr = self.area.window.cairo_create()
+
+        cr.save()
+
+        x1 = k.screen_x
+        y1 = k.screen_y
+        x2 = k.screen_x + k.screen_width
+        y2 = k.screen_y + k.screen_height
+
+        # Outline rounded box.
+        corner = 5
+        cr.move_to(x1 + corner, y1)
+        cr.line_to(x2 - corner, y1)
+        cr.line_to(x2, y1 + corner)
+        cr.line_to(x2, y2 - corner)
+        cr.line_to(x2 - corner, y2)
+        cr.line_to(x1 + corner, y2)
+        cr.line_to(x1, y2 - corner)
+        cr.line_to(x1, y1 + corner)
+        cr.close_path()
+
+        if k.pressed:
+            cr.set_source_rgb(1.0, 0.6, 0.6)
+        elif k.hilite:
+            cr.set_source_rgb(0.6, 1.0, 0.6)
+        else:
+            cr.set_source_rgb(1.0, 1.0, 1.0)
+        cr.fill_preserve()
+
+        cr.set_source_rgb(0.1, 0.1, 0.1)
+        cr.stroke_preserve()
+
+        cr.clip()
+
+        # Inner text.
+        text = ''
+        if k.props['key-label']:
+            text = k.props['key-label']
+        else:
+            info = self.keymap.translate_keyboard_state(
+                k.props['key-scan'], self.active_state, self.active_group)
+            if info:
+                key = gtk.gdk.keyval_to_unicode(info[0])
+                try:
+                    text = unichr(key).encode('utf-8')
+                except:
+                    pass
+
+        cr.set_font_size(16)
+        x_bearing, y_bearing, width, height = cr.text_extents(text)[:4]
+
+        cr.move_to(x1+8 - x_bearing, y2-8 - height - y_bearing)
+        cr.show_text(text)
+
+        cr.restore()
+
     def _expose_cb(self, area, event):
         # Update layout given screen size.
         self._update_screen_layout()
 
         # Draw the keys.
         cr = self.area.window.cairo_create()
+
         cr.rectangle(event.area.x, event.area.y, event.area.width, event.area.height)
         cr.clip()
 
         for k in self.keys:
-            cr.save()
-
-            x1 = k.screen_x
-            y1 = k.screen_y
-            x2 = k.screen_x + k.screen_width
-            y2 = k.screen_y + k.screen_height
-
-            # Outline rounded box.
-            corner = 5
-            cr.move_to(x1 + corner, y1)
-            cr.line_to(x2 - corner, y1)
-            cr.line_to(x2, y1 + corner)
-            cr.line_to(x2, y2 - corner)
-            cr.line_to(x2 - corner, y2)
-            cr.line_to(x1 + corner, y2)
-            cr.line_to(x1, y2 - corner)
-            cr.line_to(x1, y1 + corner)
-            cr.close_path()
-
-            if k.pressed:
-                cr.set_source_rgb(1.0, 0.6, 0.6)
-            elif k.hilite:
-                cr.set_source_rgb(0.6, 1.0, 0.6)
-            else:
-                cr.set_source_rgb(1.0, 1.0, 1.0)
-            cr.fill_preserve()
-
-            cr.set_source_rgb(0.1, 0.1, 0.1)
-            cr.stroke_preserve()
-
-            cr.clip()
-
-            # Inner text.
-            text = ''
-            if k.props['key-label']:
-                text = k.props['key-label']
-            else:
-                info = self.keymap.translate_keyboard_state(
-                    k.props['key-scan'], self.active_state, self.active_group)
-                if info:
-                    key = gtk.gdk.keyval_to_unicode(info[0])
-                    try:
-                        text = unichr(key).encode('utf-8')
-                    except:
-                        pass
-
-            cr.set_font_size(16)
-            x_bearing, y_bearing, width, height = cr.text_extents(text)[:4]
-    
-            cr.move_to(x1+8 - x_bearing, y2-8 - height - y_bearing)
-            cr.show_text(text)
-
-            cr.restore()
+            self._expose_key(k, cr)
 
         return True
 
@@ -460,35 +471,48 @@ class Keyboard(gtk.EventBox):
         key = self.key_scan_map.get(event.hardware_keycode)
         if key:
             key.pressed = True
-        
-        self.active_group = event.group
-        self.active_state = event.state
-        
+            self._expose_key(key)
+
         # Hack to get the current modifier state - which will not be represented by the event.
-        self.active_state = gtk.gdk.device_get_core_pointer().get_state(self.window)[1]
+        state = gtk.gdk.device_get_core_pointer().get_state(self.window)[1]
+
+        if self.active_group != event.group or self.active_state != state:
+            self.active_group = event.group
+            self.active_state = event.state
+            self.queue_draw()
+        
         #print "press %d state=%x group=%d" % (event.hardware_keycode, self.active_state, event.group)
         
-        self.queue_draw()
         return False
 
     def _key_release_cb(self, widget, event):
         key = self.key_scan_map.get(event.hardware_keycode)
         if key:
             key.pressed = False 
-        
-        self.active_group = event.group
-        self.active_state = event.state
+            self._expose_key(key)
         
         # Hack to get the current modifier state - which will not be represented by the event.
-        self.active_state = gtk.gdk.device_get_core_pointer().get_state(self.window)[1]
+        state = gtk.gdk.device_get_core_pointer().get_state(self.window)[1]
+
+        if self.active_group != event.group or self.active_state != state:
+            self.active_group = event.group
+            self.active_state = event.state
+            self.queue_draw()
+
         #print "release %d state=%x group=%d" % (event.hardware_keycode, self.active_state, event.group)
         
-        self.queue_draw()
         return False
 
     def clear_hilite(self):
         for k in self.keys:
-            k.hilite = False
+            if k.hilite:
+                k.hilite = False
+                self._expose_key(k)
+
+    def hilite_key(self, key):
+        if not key.hilite:
+            key.hilite = True
+            self._expose_key(key)
 
     def find_key_by_letter(self, letter):
         # Convert unicode to GDK keyval.
@@ -516,3 +540,4 @@ if __name__ == "__main__":
     window.show()
 
     gtk.main()
+
