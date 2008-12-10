@@ -272,8 +272,8 @@ class Keyboard(gtk.EventBox):
     def _realize_cb(self, widget):
         # Setup keyboard event snooping in the root window.
         self.root_window.add_events(gtk.gdk.KEY_PRESS_MASK | gtk.gdk.KEY_RELEASE_MASK)
-        self.key_press_cb_id = self.root_window.connect('key-press-event', self._key_press_cb)
-        self.key_release_cb_id = self.root_window.connect('key-release-event', self._key_release_cb)
+        self.key_press_cb_id = self.root_window.connect('key-press-event', self._key_press_release_cb)
+        self.key_release_cb_id = self.root_window.connect('key-release-event', self._key_press_release_cb)
 
     def _unrealize_cb(self, widget):
         self.root_window.disconnect(self.key_press_cb_id)
@@ -372,9 +372,8 @@ class Keyboard(gtk.EventBox):
         self._layout_keys()
 
     def _update_screen_layout(self):
-        """Applies the screen scaling factor for the layout given the current 
-           allocation.
-           TODO - Preserve the layout's aspect ratio in this calculation."""
+        """Applies the scaling factor to the layout given the current
+           allocation."""
         bounds = self.get_allocation()
  
         for k in self.keys:
@@ -384,12 +383,15 @@ class Keyboard(gtk.EventBox):
             # relative to layout-width and layout-height.
             ratio_x = 100 * bounds.width / k.props['layout-width']
             ratio_y = 100 * bounds.height / k.props['layout-height']
-
+            
+            # Pick the smaller ratio to fit while preserving aspect ratio.
+            ratio = min(ratio_x, ratio_y)
+            
             # Make sure the final coordinates are integers, for the drawing routines.
-            k.screen_x = int(k.x * ratio_x / 100)
-            k.screen_y = int(k.y * ratio_y / 100)
-            k.screen_width = int(k.width * ratio_x / 100)
-            k.screen_height = int(k.height * ratio_y / 100)
+            k.screen_x = int(k.x * ratio / 100)
+            k.screen_y = int(k.y * ratio / 100)
+            k.screen_width = int(k.width * ratio / 100)
+            k.screen_height = int(k.height * ratio / 100)
 
     def _expose_key(self, k, cr=None):
         # Create cairo context if need be.
@@ -453,7 +455,7 @@ class Keyboard(gtk.EventBox):
         cr.restore()
 
     def _expose_cb(self, area, event):
-        # Update layout given screen size.
+        # Update layout given widget size.
         self._update_screen_layout()
 
         # Draw the keys.
@@ -467,10 +469,10 @@ class Keyboard(gtk.EventBox):
 
         return True
 
-    def _key_press_cb(self, widget, event):
+    def _key_press_release_cb(self, widget, event):
         key = self.key_scan_map.get(event.hardware_keycode)
         if key:
-            key.pressed = True
+            key.pressed = event.type == gtk.gdk.KEY_PRESS
             self._expose_key(key)
 
         # Hack to get the current modifier state - which will not be represented by the event.
@@ -482,24 +484,6 @@ class Keyboard(gtk.EventBox):
             self.queue_draw()
         
         #print "press %d state=%x group=%d" % (event.hardware_keycode, self.active_state, event.group)
-        
-        return False
-
-    def _key_release_cb(self, widget, event):
-        key = self.key_scan_map.get(event.hardware_keycode)
-        if key:
-            key.pressed = False 
-            self._expose_key(key)
-        
-        # Hack to get the current modifier state - which will not be represented by the event.
-        state = gtk.gdk.device_get_core_pointer().get_state(self.window)[1]
-
-        if self.active_group != event.group or self.active_state != state:
-            self.active_group = event.group
-            self.active_state = event.state
-            self.queue_draw()
-
-        #print "release %d state=%x group=%d" % (event.hardware_keycode, self.active_state, event.group)
         
         return False
 
@@ -532,12 +516,11 @@ if __name__ == "__main__":
     window.set_title("keyboard widget")
     window.connect("destroy", lambda w: gtk.main_quit())
 
-    k = Keyboard()
+    k = Keyboard(window)
     k.set_layout(DEFAULT_LAYOUT)
-    k.show()
 
     window.add(k)
-    window.show()
+    window.show_all()
 
     gtk.main()
 
