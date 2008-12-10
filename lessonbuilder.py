@@ -19,26 +19,26 @@
 import os, sys, random, json
 from gettext import gettext as _
 
-def make_triple(keys):
+def make_all_triples(keys):
     text = ''
     for k in new_keys:
         text += k + k + ' ' + k + ' '
     return text
 
-def make_double(keys):
+def make_all_doubles(keys):
     text = ''
     for k in new_keys:
         text += k + k + ' '
     return text
 
-def make_random_triple(keys, count):
+def make_random_triples(keys, count):
     text = ''
     for y in xrange(0, count * len(keys)):
         k = random.choice(keys)
         text += k + k + ' ' + k + ' '
     return text
 
-def make_random(keys, count, gap):
+def make_jumble(keys, count, gap):
     text = ''
     for y in range(0, count * len(keys)):
         text += random.choice(keys)
@@ -55,7 +55,7 @@ def make_all_pairs(keys):
             text += k2 + k1 + ' '
     return text
 
-def make_random_pair(keys, count):
+def make_random_pairs(keys, count):
     text = ''
     for y in xrange(0, count * len(keys)):
         k1 = random.choice(keys)
@@ -72,25 +72,25 @@ def make_all_joined_pairs(keys1, keys2):
             text += k2 + k1 + ' '
     return text
 
-def make_words(wordlist, count):
+def make_random_words(words, count):
     text = ''
     for x in range(0, count):
-        text += random.choice(wordlist) + ' '
+        text += random.choice(words) + ' '
     return text
 
-def filter_wordlist(path, all_keys, req_keys, minlen, maxlen, badwordlist):
-    wordlist = open(path, 'r').readlines()
-    wordlist = [s.strip() for s in wordlist]
+def load_wordlist(path):
+    try:
+        words = open(path, 'r').readlines()
+        words = [s.strip() for s in words]
+        return words
+    except:
+        return []
 
-    if badwordlist:
-        bad_words = open(badwordlist, 'r').readlines()
-        bad_words = [s.strip() for s in badwordlist]
-    else:
-        bad_words = []
+def filter_wordlist(words, all_keys, req_keys, minlen, maxlen, bad_words):
 
     good_words = []
 
-    for word in wordlist:
+    for word in words:
         if len(word) < minlen or len(word) > maxlen:
             continue
 
@@ -131,6 +131,9 @@ def build_lesson(
     new_keys, base_keys, 
     wordlist=None, badwordlist=None):
 
+    words = load_wordlist(wordlist)
+    bad_words = load_wordlist(badwordlist)
+
     all_keys = new_keys + base_keys
 
     lesson = {}
@@ -148,11 +151,11 @@ def build_lesson(
     
     add_step(lesson,
         _('Practice typing the keys you just learned.'),
-        make_triple(new_keys) * 4)
+        make_all_triples(new_keys) * 4)
     
     add_step(lesson,
         _('Practice typing the keys you just learned.'),
-        make_random_triple(new_keys, count=5))
+        make_random_triples(new_keys, count=5))
     
     add_step(lesson,
         _('Practice typing the keys you just learned.'),
@@ -160,11 +163,11 @@ def build_lesson(
     
     add_step(lesson,
         _('Practice typing the keys you just learned.'),
-        make_random_pair(new_keys, count=10))
+        make_random_pairs(new_keys, count=10))
     
     add_step(lesson,
         _('Practice typing the keys you just learned.'),
-        make_random(new_keys, count=40, gap=5))
+        make_jumble(new_keys, count=40, gap=5))
     
     if base_keys != '':
         add_step(lesson,
@@ -173,21 +176,21 @@ def build_lesson(
     
         add_step(lesson,
             _('Practice typing the keys you just learned.'),
-            make_random_pair(all_keys, count=20))
+            make_random_pairs(all_keys, count=20))
     
         add_step(lesson,
             _('Practice typing the keys you just learned.'),
-            make_random(all_keys, count=50, gap=5))
+            make_jumble(all_keys, count=50, gap=5))
 
     if wordlist:
-        good_words = filter_wordlist(path=wordlist, 
+        good_words = filter_wordlist(words=words, 
             all_keys=all_keys, req_keys=new_keys, 
             minlen=2, maxlen=10, 
-            badwordlist=badwordlist)
+            bad_words=bad_words)
 
         add_step(lesson,
             _('Practice typing these words.'),
-            make_words(good_words, count=500))
+            make_random_words(good_words, count=500))
     
     return lesson
 
@@ -257,8 +260,8 @@ if __name__ == "__main__":
         sys.exit()
 
     lesson = build_lesson(
-        name='Created Lesson', description='Lesson Description', 
-        level=0, required_level=0,
+        name=name, description=desc, 
+        level=level, required_level=required_level,
         new_keys=new_keys, base_keys=base_keys, 
         wordlist=wordlist, badwordlist=badwordlist)
 
