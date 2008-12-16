@@ -28,6 +28,62 @@ from sugar.graphics import *
 # Import activity modules.
 import lessonscreen, medalscreen
 
+class TitleScene(gtk.DrawingArea):
+    def __init__(self):
+        gtk.DrawingArea.__init__(self)
+
+        bundle = sugar.activity.activity.get_bundle_path()
+        self.backgroundpixbuf = gtk.gdk.pixbuf_new_from_file(bundle + '/images/main-background.png')
+        
+        self.set_size_request(self.backgroundpixbuf.get_width(), self.backgroundpixbuf.get_height())
+        
+        self.connect("expose-event", self.expose_cb)
+        
+        self.title_original = _('Typing Turtle')
+        self.title_src = self.title_original
+        self.title_text = ''
+        self.title_counter = 50
+        
+        gobject.timeout_add(10, self.timer_cb)
+
+    def expose_cb(self, area, event):
+        bounds = self.get_allocation()
+        
+        gc = self.get_style().fg_gc[gtk.STATE_NORMAL]
+        
+        self.window.draw_pixbuf(
+            gc, self.backgroundpixbuf, 
+            event.area.x, event.area.y, 
+            event.area.x, event.area.y, event.area.width, event.area.height)
+        
+        # Animated Typing Turtle title.
+        pc = self.create_pango_context()
+        
+        layout = self.create_pango_layout('')
+        layout.set_font_description(pango.FontDescription('Times 60'))
+        
+        layout.set_text(self.title_original)
+        original_size = layout.get_size()
+        
+        x = (bounds.width-original_size[0]/pango.SCALE)/2
+        y = 10
+
+        layout.set_text(self.title_text)        
+        self.window.draw_layout(gc, x, y, layout)
+
+    def timer_cb(self):
+        self.title_counter -= 1
+        if self.title_counter == 0:
+            if len(self.title_src) > 0:
+                self.title_text += self.title_src[0]
+                self.title_src = self.title_src[1:]
+                self.queue_draw()
+                print "queue draw "+self.title_text
+            
+            self.title_counter = random.randint(1, 5)
+            
+        return True
+    
 class MainScreen(gtk.VBox):
     def __init__(self, activity):
         gtk.VBox.__init__(self)
@@ -35,107 +91,113 @@ class MainScreen(gtk.VBox):
         self.activity = activity
         
         # Build background.
-        title = gtk.Label()
-        title.set_markup("<span size='40000'><b>" + _('Typing Turtle') + "</b></span>")
+        self.titlescene = TitleScene()
         
-        subtitle = gtk.Label()
-        subtitle.set_markup(_('Welcome to Typing Turtle! To begin, select a lesson from the list below.'))
+        #title = gtk.Label()
+        #title.set_markup("<span size='40000'><b>" + _('Typing Turtle') + "</b></span>")
         
-        spacer = gtk.HBox()
-        
-        # Lessons header.
-        headerbox = gtk.VBox()
-        label = gtk.Label()
-        label.set_alignment(0.0, 0.5)
-        label.set_markup("<span size='large'><b>"+_('Available Lessons')+"</b></span>")
-        headerbox.pack_start(label, False)
-        headerbox.pack_start(gtk.HSeparator(), False)
+        #subtitle = gtk.Label()
+        #subtitle.set_markup(_('Welcome to Typing Turtle! To begin, select a lesson from the list below.'))
         
         # Build lessons list.
-        self.lessonbox = gtk.VBox()
-        self.lessonbox.set_spacing(10)
+        self.lessonbox = gtk.HBox()
+        
+        self.nextlessonbtn = gtk.Button()
+        self.nextlessonbtn.add(gtk.Label('Next'))
+        #self.nextlessonbtn.add(nextimage)
+        self.nextlessonbtn.connect('clicked', self.next_lesson_clicked_cb)
+        
+        self.prevlessonbtn = gtk.Button()
+        self.prevlessonbtn.add(gtk.Label('Prev'))
+        #self.prevlessonbtn.add(previmage)
+        self.prevlessonbtn.connect('clicked', self.prev_lesson_clicked_cb)
         
         bundle_path = sugar.activity.activity.get_bundle_path() 
         code = locale.getlocale(locale.LC_ALL)[0]
         path = bundle_path + '/lessons/' + code + '/'
         
         # Find all .lesson files in ./lessons/en_US/ for example.
-        lessons = []
+        self.lessons = []
         for f in os.listdir(path):
             fd = open(path + f, 'r')
             try:
                 lesson = json.read(fd.read())
-                lessons.append(lesson)
+                self.lessons.append(lesson)
             finally:
                 fd.close()
         
-        lessons.sort(lambda x, y: x['level'] - y['level'])
+        self.lessons.sort(lambda x, y: x['level'] - y['level'])
         
-        for l in lessons:
-            label = gtk.Label()
-            label.set_alignment(0.0, 0.5)
-            label.set_markup("<span size='large'>" + l['name'] + "</span>\n" + l['description'])
-            
-            btn = gtk.Button()
-            btn.lesson = l
-            btn.add(label)
-            btn.connect('clicked', self.lesson_clicked_cb)
-            
-            medalimage = gtk.Image()
-            
-            medalbtn = gtk.Button()
-            medalbtn.lesson = l
-            medalbtn.add(medalimage)
-            medalbtn.connect('clicked', self.medal_clicked_cb)
-            
-            hbox = gtk.HBox()
-            hbox.pack_start(btn, True, True, 10)
-            hbox.pack_end(medalbtn, False, False)            
-            
-            hbox.button = btn
-            hbox.medalbutton = medalbtn
-            hbox.lesson = l
-            hbox.medalimage = medalimage
-            
-            self.lessonbox.pack_start(hbox, False)
+        lessonscrollbox = gtk.HBox()
+        lessonscrollbox.set_spacing(10)
+        lessonscrollbox.pack_start(self.prevlessonbtn, False)
+        lessonscrollbox.pack_start(self.lessonbox)
+        lessonscrollbox.pack_start(self.nextlessonbtn, False)
         
-        self.lessonscroll = gtk.ScrolledWindow()
-        self.lessonscroll.set_policy(gtk.POLICY_NEVER, gtk.POLICY_AUTOMATIC)
-        self.lessonscroll.add_with_viewport(self.lessonbox)
+        self.pack_start(self.titlescene, False, True, 10)
+        self.pack_start(lessonscrollbox, True)
         
-        self.pack_start(title, False, True, 10)
-        self.pack_start(subtitle, False)
-        self.pack_start(spacer, False, False, 50)
-        self.pack_start(headerbox, False)
-        self.pack_start(self.lessonscroll, True)
+        self.show_lesson(0)
         
-        self.update_medals()
-
-    def update_medals(self):
-        for l in self.lessonbox:
-            # Disable the lesson button unless available.
-            lesson_available = self.activity.data['level'] >= l.lesson['requiredlevel']
-            l.button.set_sensitive(lesson_available)
-            l.medalbutton.set_sensitive(lesson_available)
-            
-            # Update the medal image.
-            medal_type = 'none'
-            if self.activity.data['medals'].has_key(l.lesson['name']):
-                medal_type = self.activity.data['medals'][l.lesson['name']]['type']
-
-            bundle = sugar.activity.activity.get_bundle_path()
-            images = {
-                'none':   bundle+'/images/no-medal.jpg',
-                'bronze': bundle+'/images/bronze-medal.jpg',
-                'silver': bundle+'/images/silver-medal.jpg',
-                'gold':   bundle+'/images/gold-medal.jpg'
-            }
-            l.medalimage.set_from_file(images[medal_type])
+    def show_lesson(self, index):
+        # Clear all widgets in the lesson box.
+        for w in self.lessonbox:
+            self.lessonbox.remove(w)
+        
+        self.prevlessonbtn.set_sensitive(index > 0)
+        self.nextlessonbtn.set_sensitive(index < len(self.lessons)-1)
+        
+        lesson = self.lessons[index]
+        
+        self.visible_lesson = lesson
+        
+        # Create the lesson button.
+        label = gtk.Label()
+        label.set_alignment(0.0, 0.5)
+        label.set_markup("<span size='large'>" + lesson['name'] + "</span>\n" + lesson['description'])
+        
+        lessonbtn = gtk.Button()
+        lessonbtn.add(label)
+        lessonbtn.connect('clicked', self.lesson_clicked_cb)
+        
+        # Create the medal image.
+        medalimage = gtk.Image()
+        
+        medal_type = 'none'
+        if self.activity.data['medals'].has_key(lesson['name']):
+            medal_type = self.activity.data['medals'][lesson['name']]['type']
+        
+        bundle = sugar.activity.activity.get_bundle_path()
+        images = {
+            'none':   bundle+'/images/no-medal.jpg',
+            'bronze': bundle+'/images/bronze-medal.jpg',
+            'silver': bundle+'/images/silver-medal.jpg',
+            'gold':   bundle+'/images/gold-medal.jpg'
+        }
+        medalimage.set_from_file(images[medal_type])
+        
+        medalbtn = gtk.Button()
+        medalbtn.add(medalimage)
+        medalbtn.connect('clicked', self.medal_clicked_cb)
+        
+        # Disable the buttons unless available.
+        lesson_available = self.activity.data['level'] >= lesson['requiredlevel']
+        lessonbtn.set_sensitive(lesson_available)
+        medalbtn.set_sensitive(lesson_available)
+        
+        self.lessonbox.pack_start(lessonbtn, True)
+        self.lessonbox.pack_start(medalbtn, False)
+    
+    def next_lesson_clicked_cb(self, widget):
+        pass
+    
+    def prev_lesson_clicked_cb(self, widget):
+        pass
     
     def lesson_clicked_cb(self, widget):
-        self.activity.push_screen(lessonscreen.LessonScreen(widget.lesson, self.activity))
+        self.activity.push_screen(lessonscreen.LessonScreen(self.visible_lesson, self.activity))
     
     def medal_clicked_cb(self, widget):
-        if self.activity.data['medals'].has_key(widget.lesson['name']):
-            medal = self.activity.data['medals'][widget.lesson['name']]
+        if self.activity.data['medals'].has_key(self.visible_lesson['name']):
+            medal = self.activity.data['medals'][self.visible_lesson['name']]
             self.activity.push_screen(medalscreen.MedalScreen(medal, self.activity))

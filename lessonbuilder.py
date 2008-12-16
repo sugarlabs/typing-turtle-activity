@@ -19,6 +19,31 @@
 import os, sys, random, json
 from gettext import gettext as _
 
+import keyboard
+
+CONGRATS = [
+    _('Well done!'),
+    _('Good job.'),
+    _('Awesome!'),
+    _('Way to go!'),
+    _('Wonderful!'),
+    _('Nice work.'),
+    _('You did it!'),
+]
+
+FINGERS = {
+    'LP': _('left pinky'),
+    'LR': _('left ring'),
+    'LM': _('left middle'),
+    'LI': _('left index'),
+    'LT': _('left thumb'),
+    'RP': _('right pinky'),
+    'RR': _('right ring'),
+    'RM': _('right middle'),
+    'RI': _('right index'),
+    'RT': _('right thumb'),
+}
+
 def make_all_triples(keys):
     text = ''
     for k in new_keys:
@@ -33,14 +58,14 @@ def make_all_doubles(keys):
 
 def make_random_triples(keys, count):
     text = ''
-    for y in xrange(0, count * len(keys)):
+    for y in xrange(0, count):
         k = random.choice(keys)
         text += k + k + ' ' + k + ' '
     return text
 
-def make_jumble(keys, count, gap):
+def make_jumbles(keys, count, gap):
     text = ''
-    for y in range(0, count * len(keys)):
+    for y in range(0, count):
         text += random.choice(keys)
         if y % gap == gap-1:
             text += ' '
@@ -55,12 +80,12 @@ def make_all_pairs(keys):
             text += k2 + k1 + ' '
     return text
 
-def make_random_pairs(keys, count):
+def make_random_pairs(required_keys, keys, count):
     text = ''
-    for y in xrange(0, count * len(keys)):
-        k1 = random.choice(keys)
+    for y in xrange(0, count):
+        k1 = random.choice(required_keys)
         k2 = random.choice(keys)
-        text += k1 + k2 + ' '
+        text += random.choice([k1 + k2, k2 + k1]) + ' '
     return text
 
 def make_all_joined_pairs(keys1, keys2):
@@ -122,7 +147,7 @@ def filter_wordlist(words, all_keys, req_keys, minlen, maxlen, bad_words):
 def add_step(lesson, instructions, text):
     step = {}
     step['instructions'] = instructions
-    step['text'] = text
+    step['text'] = text.strip() + '\n'
     lesson['steps'].append(step)
 
 def build_lesson(
@@ -134,6 +159,9 @@ def build_lesson(
     words = load_wordlist(wordlist)
     bad_words = load_wordlist(badwordlist)
 
+    kb = keyboard.Keyboard(None)
+    kb.set_layout(keyboard.DEFAULT_LAYOUT)
+
     all_keys = new_keys + base_keys
 
     lesson = {}
@@ -143,44 +171,58 @@ def build_lesson(
     lesson['requiredlevel'] = required_level
     lesson['steps'] = []
 
+    keynames = ''
+    for k in new_keys[:-2]:
+        keynames += k + ', '
+    keynames += new_keys[-2] + ' and ' + new_keys[-1]
+
+    add_step(lesson,
+        _('Welcome to the %(name)s lesson!\n\nIn this lesson, you will learn the %(keynames)s keys.  Press the Enter key when you are ready to begin!') \
+            % { 'name': name, 'keynames': keynames },
+        '\n')
+
     for key in new_keys:
+        k = kb.find_key_by_letter(key)
         add_step(lesson,
-            _('Press the %(name)s key with your %(finger)s.') \
-                % { 'name': key, 'finger': 'finger' },
+            _('Press the %(name)s key using your %(finger)s finger.') \
+                % { 'name': key, 'finger': FINGERS[k.props['key-finger']]},
             key)
+
+    # Key patterns - useful or not?
+    #add_step(lesson,
+    #    _('Time to practice some simple key patterns.'),
+    #    make_all_triples(new_keys) * 4)
     
     add_step(lesson,
-        _('Practice typing the keys you just learned.'),
-        make_all_triples(new_keys) * 4)
+        _('Good job!  Now, practice typing the keys you just learned.'),
+        make_random_triples(new_keys, count=20))
+    
+    # Key patterns - useful or not?
+    #add_step(lesson,
+    #    _('Practice typing the keys you just learned.'),
+    #    make_all_pairs(new_keys))
     
     add_step(lesson,
-        _('Practice typing the keys you just learned.'),
-        make_random_triples(new_keys, count=5))
+        _('Well done! Now let\'s put the keys together in pairs.\n\nBe careful to use the correct finger to press each key.  Look at the keyboard below if you need help remembering.'),
+        make_random_pairs(new_keys, new_keys, count=50))
     
     add_step(lesson,
-        _('Practice typing the keys you just learned.'),
-        make_all_pairs(new_keys))
-    
-    add_step(lesson,
-        _('Practice typing the keys you just learned.'),
-        make_random_pairs(new_keys, count=10))
-    
-    add_step(lesson,
-        _('Practice typing the keys you just learned.'),
-        make_jumble(new_keys, count=40, gap=5))
+        _('You made it!  Now we are going to practice word jumbles.  You can speed up a little, but be careful to get all the keys right!'),
+        make_jumbles(new_keys, count=100, gap=5))
     
     if base_keys != '':
-        add_step(lesson,
-            _('Practice typing the keys you just learned.'),
-            make_all_joined_pairs(new_keys, all_keys))
+        # Key patterns - useful or not?
+        #add_step(lesson,
+        #    _('Wonderful!  Now we are going to bring in the keys you already know. We\'ll start with pairs.\n\nPay attention to your posture, and always be sure to use the correct finger!'),
+        #    make_all_joined_pairs(new_keys, all_keys))
     
         add_step(lesson,
-            _('Practice typing the keys you just learned.'),
-            make_random_pairs(all_keys, count=20))
+            _('Wonderful!  Now we will add the keys you already know.  Let\'s start with pairs.\n\nPay attention to your posture, and always be sure to use the correct finger.'),
+            make_random_pairs(new_keys, all_keys, count=200))
     
         add_step(lesson,
-            _('Practice typing the keys you just learned.'),
-            make_jumble(all_keys, count=50, gap=5))
+            _('Great job.  Now practice these jumbles, using all the keys you know.'),
+            make_jumbles(all_keys, count=300, gap=5))
 
     if wordlist:
         good_words = filter_wordlist(words=words, 
@@ -189,9 +231,34 @@ def build_lesson(
             bad_words=bad_words)
 
         add_step(lesson,
-            _('Practice typing these words.'),
-            make_random_words(good_words, count=500))
+            _('You\'re almost finished!  It\'s time to learn to type real words, using the keys you have just learned.'),
+            make_random_words(good_words, count=300))
     
+    return lesson
+
+def build_intro_lesson():
+    lesson = {}
+    lesson['name'] = _('Welcome to Typing Turtle!') 
+    lesson['description'] = _('Click here to begin.') 
+    lesson['level'] = 0
+    lesson['requiredlevel'] = 0
+    lesson['steps'] = []
+
+    text = ''
+    text += _('Hi there, welcome to Typing Turtle!  My name is Max the Turtle, ')
+    text += _('and I\'m going to teach you how to type.\n\n')
+    text += _('First, I will tell you the secret of fast typing.  Are you ready?\n\n')
+    text += _('The secret is: Always use the correct finger to press each key!\n\n')
+    text += _('Simple, right?  Now all you need to do is practice.')
+    #show you how to use the activity.  The box you are ')
+    text += _('reading right now is where the instructions will appear.  The ')
+    text += _('picture of the keyboard below shows what your hands should be ')
+    text += _('doing.  And the dials to the right, they show how quickly and ')
+    text += _('accurately you are typing!\n\n')
+    text += _('When you see a big picture of a key like the one below, that ')
+    text += _('means you are supposed to press that key on the keyboard! ')
+    text += _('Make sure you use the correct finger to type each key!')
+
     return lesson
 
 def usage():
@@ -222,7 +289,7 @@ if __name__ == "__main__":
         usage()
         sys.exit()
 
-    name = 'Generated lesson'
+    name = 'Generated'
     desc = 'Default description'
     level = 0
     required_level = 0
