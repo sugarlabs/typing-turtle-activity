@@ -70,6 +70,10 @@ KEY_PROPS = [
 
     # Text label to be displayed on keys which do not generate keys.
     { 'name': 'key-label', 'default': '' },
+
+    # Which finger should be used to press the key.  
+    # Options are [LR][TIMRP], so LM would mean the left middle finger.
+    { 'name': 'key-finger', 'default': '' },
 ]
 
 # This is an example keyboard layout.
@@ -140,20 +144,20 @@ DEFAULT_LAYOUT = {
                 'group-y': 100,
         
             'keys': [
-                {'key-scan':0x17,'key-label':"tab"},
-                {'key-scan':0x18}, 
-                {'key-scan':0x19}, 
-                {'key-scan':0x1a}, 
-                {'key-scan':0x1b}, 
-                {'key-scan':0x1c}, 
-                {'key-scan':0x1d}, 
-                {'key-scan':0x1e}, 
-                {'key-scan':0x1f}, 
-                {'key-scan':0x20}, 
-                {'key-scan':0x21}, 
-                {'key-scan':0x22}, 
-                {'key-scan':0x23,'key-width':55},
-                {'key-scan':0x24,'key-label':"enter",'key-width':95,'key-height':95}
+                {'key-scan':0x17,'key-finger':'LP','key-label':"tab"},
+                {'key-scan':0x18,'key-finger':'LP'}, 
+                {'key-scan':0x19,'key-finger':'LR'}, 
+                {'key-scan':0x1a,'key-finger':'LM'}, 
+                {'key-scan':0x1b,'key-finger':'LI'}, 
+                {'key-scan':0x1c,'key-finger':'LI'}, 
+                {'key-scan':0x1d,'key-finger':'RI'}, 
+                {'key-scan':0x1e,'key-finger':'RI'}, 
+                {'key-scan':0x1f,'key-finger':'RM'}, 
+                {'key-scan':0x20,'key-finger':'RR'}, 
+                {'key-scan':0x21,'key-finger':'RP'}, 
+                {'key-scan':0x22,'key-finger':'RP'}, 
+                {'key-scan':0x23,'key-finger':'RP','key-width':55},
+                {'key-scan':0x24,'key-finger':'RP','key-label':"enter",'key-width':95,'key-height':95}
             ]
         },
         {
@@ -162,19 +166,19 @@ DEFAULT_LAYOUT = {
             'group-y': 150,
         
             'keys': [
-                {'key-scan':0x25,'key-label':"ctrl",'key-width':55},
-                {'key-scan':0x26}, 
-                {'key-scan':0x27}, 
-                {'key-scan':0x28}, 
-                {'key-scan':0x29}, 
-                {'key-scan':0x2a}, 
-                {'key-scan':0x2b},
-                {'key-scan':0x2c}, 
-                {'key-scan':0x2d}, 
-                {'key-scan':0x2e}, 
-                {'key-scan':0x2f}, 
-                {'key-scan':0x30}, 
-                {'key-scan':0x33}
+                {'key-scan':0x25,'key-finger':'LP','key-label':"ctrl",'key-width':55},
+                {'key-scan':0x26,'key-finger':'LP'}, 
+                {'key-scan':0x27,'key-finger':'LR'}, 
+                {'key-scan':0x28,'key-finger':'LM'}, 
+                {'key-scan':0x29,'key-finger':'LI'}, 
+                {'key-scan':0x2a,'key-finger':'LI'}, 
+                {'key-scan':0x2b,'key-finger':'RI'},
+                {'key-scan':0x2c,'key-finger':'RI'}, 
+                {'key-scan':0x2d,'key-finger':'RM'}, 
+                {'key-scan':0x2e,'key-finger':'RR'}, 
+                {'key-scan':0x2f,'key-finger':'RP'}, 
+                {'key-scan':0x30,'key-finger':'RP'}, 
+                {'key-scan':0x33,'key-finger':'RP'}
             ]
         },
         {
@@ -183,19 +187,19 @@ DEFAULT_LAYOUT = {
             'group-y': 200,
         
             'keys': [
-                {'key-scan':0x32,'key-label':"shift",'key-width':75},
-                {'key-scan':0x34}, 
-                {'key-scan':0x35}, 
-                {'key-scan':0x36}, 
-                {'key-scan':0x37}, 
-                {'key-scan':0x38}, 
-                {'key-scan':0x39},
-                {'key-scan':0x3a}, 
-                {'key-scan':0x3b}, 
-                {'key-scan':0x3c}, 
-                {'key-scan':0x3d},
-                {'key-scan':0x3e,'key-label':"shift",'key-width':75},
-                {'key-scan':0x6f,'key-label':""}, # Up
+                {'key-scan':0x32,'key-finger':'LP','key-label':"shift",'key-width':75},
+                {'key-scan':0x34,'key-finger':'LP'}, 
+                {'key-scan':0x35,'key-finger':'LR'}, 
+                {'key-scan':0x36,'key-finger':'LM'}, 
+                {'key-scan':0x37,'key-finger':'LI'}, 
+                {'key-scan':0x38,'key-finger':'LI'}, 
+                {'key-scan':0x39,'key-finger':'RI'},
+                {'key-scan':0x3a,'key-finger':'RI'}, 
+                {'key-scan':0x3b,'key-finger':'RM'}, 
+                {'key-scan':0x3c,'key-finger':'RR'}, 
+                {'key-scan':0x3d,'key-finger':'RP'},
+                {'key-scan':0x3e,'key-finger':'RP','key-label':"shift",'key-width':75},
+                {'key-scan':0x6f,'key-finger':'RP','key-label':""}, # Up
                 {'key-label':""}, # Language key
             ]
         },
@@ -208,7 +212,7 @@ DEFAULT_LAYOUT = {
                 {'key-label':"fn",'key-width':35},
                 {'key-label':"",'key-width':55}, # LHand
                 {'key-scan':0x40,'key-label':"alt",'key-width':55}, # LAlt
-                {'key-scan':0x41,'key-width':325}, # Spacebar
+                {'key-scan':0x41,'key-finger':'RT','key-width':325}, # Spacebar
                 {'key-scan':0x6c,'key-label':"alt",'key-width':55}, # RAlt
                 {'key-label':"",'key-width':55}, # RHand
                 {'key-scan':0x71,'key-label':""}, # Left 
