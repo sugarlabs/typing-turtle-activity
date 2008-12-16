@@ -19,6 +19,9 @@
 import pygtk
 pygtk.require('2.0')
 import gtk
+import cairo
+import os, sugar.activity.activity
+import rsvg
 
 # List of all key properties in the keyboard layout description.
 #
@@ -246,7 +249,7 @@ class Keyboard(gtk.EventBox):
         self.area = gtk.DrawingArea()
         self.area.connect("expose-event", self._expose_cb)
         self.add(self.area)
-
+        
         # Initialize the default cairo context to None. 
         cr = None
         
@@ -264,6 +267,11 @@ class Keyboard(gtk.EventBox):
         self.key_scan_map = None
         
         self.shift_down = False
+        
+        # Load SVG files.
+        bundle_path = sugar.activity.activity.get_bundle_path() 
+        #self.rhand_svg = gtk.gdk.pixbuf_new_from_file_at_size(os.path.join(bundle_path, 'images', 'r_homerow.svg'), 775, 300)
+        self.rhand_svg = rsvg.Handle(os.path.join(bundle_path, 'images', 'r_homerow.svg'))
         
         # Connect keyboard grabbing and releasing callbacks.        
         self.area.connect('realize', self._realize_cb)
@@ -375,23 +383,23 @@ class Keyboard(gtk.EventBox):
         """Applies the scaling factor to the layout given the current
            allocation."""
         bounds = self.get_allocation()
- 
+        
+        # This calculates a ratio from layout coordinates to the DrawingArea's
+        # dimensions.  This ratio allows the layout coordinates to be *anything* -
+        # inches, millimeters, percentage, whatever.  They just have to be
+        # relative to layout-width and layout-height.
+        ratio_x = 100 * bounds.width / self.keys[0].props['layout-width']
+        ratio_y = 100 * bounds.height / self.keys[0].props['layout-height']
+        
+        # Pick the smaller ratio to fit while preserving aspect ratio.
+        self.screen_ratio = min(ratio_x, ratio_y)
+        
         for k in self.keys:
-            # This calculates a ratio from layout coordinates to the DrawingArea's
-            # dimensions.  This ratio allows the layout coordinates to be *anything* -
-            # inches, millimeters, percentage, whatever.  They just have to be
-            # relative to layout-width and layout-height.
-            ratio_x = 100 * bounds.width / k.props['layout-width']
-            ratio_y = 100 * bounds.height / k.props['layout-height']
-            
-            # Pick the smaller ratio to fit while preserving aspect ratio.
-            ratio = min(ratio_x, ratio_y)
-            
             # Make sure the final coordinates are integers, for the drawing routines.
-            k.screen_x = int(k.x * ratio / 100)
-            k.screen_y = int(k.y * ratio / 100)
-            k.screen_width = int(k.width * ratio / 100)
-            k.screen_height = int(k.height * ratio / 100)
+            k.screen_x = int(k.x * self.screen_ratio / 100)
+            k.screen_y = int(k.y * self.screen_ratio / 100)
+            k.screen_width = int(k.width * self.screen_ratio / 100)
+            k.screen_height = int(k.height * self.screen_ratio / 100)
 
     def _expose_key(self, k, cr=None):
         # Create cairo context if need be.
@@ -399,14 +407,14 @@ class Keyboard(gtk.EventBox):
             if not self.area.window:
                 return
             cr = self.area.window.cairo_create()
-
+        
         cr.save()
-
+        
         x1 = k.screen_x
         y1 = k.screen_y
         x2 = k.screen_x + k.screen_width
         y2 = k.screen_y + k.screen_height
-
+        
         # Outline rounded box.
         corner = 5
         cr.move_to(x1 + corner, y1)
@@ -418,7 +426,7 @@ class Keyboard(gtk.EventBox):
         cr.line_to(x1, y2 - corner)
         cr.line_to(x1, y1 + corner)
         cr.close_path()
-
+        
         if k.pressed:
             cr.set_source_rgb(1.0, 0.6, 0.6)
         elif k.hilite:
@@ -426,12 +434,12 @@ class Keyboard(gtk.EventBox):
         else:
             cr.set_source_rgb(1.0, 1.0, 1.0)
         cr.fill_preserve()
-
+        
         cr.set_source_rgb(0.1, 0.1, 0.1)
         cr.stroke_preserve()
-
+        
         cr.clip()
-
+        
         # Inner text.
         text = ''
         if k.props['key-label']:
@@ -445,28 +453,44 @@ class Keyboard(gtk.EventBox):
                     text = unichr(key).encode('utf-8')
                 except:
                     pass
-
+        
         cr.set_font_size(16)
         x_bearing, y_bearing, width, height = cr.text_extents(text)[:4]
-
+        
         cr.move_to(x1+8 - x_bearing, y2-8 - height - y_bearing)
         cr.show_text(text)
-
+        
         cr.restore()
 
     def _expose_cb(self, area, event):
         # Update layout given widget size.
         self._update_screen_layout()
-
+        
         # Draw the keys.
         cr = self.area.window.cairo_create()
-
+        
         cr.rectangle(event.area.x, event.area.y, event.area.width, event.area.height)
         cr.clip()
-
+        
         for k in self.keys:
             self._expose_key(k, cr)
+        
+        # Render overlay images.
+        ratio = self.keys[0].props['layout-width'] / 3146.0
+        ratio = self.screen_ratio / 100.0 * ratio
 
+        cr.save()
+        cr.scale(ratio, ratio)
+        cr.translate(1350, 625)
+        self.rhand_svg.render_cairo(cr)
+        cr.restore()
+
+        cr.save()
+        cr.scale(-ratio, ratio)
+        cr.translate(-100, 625)
+        self.rhand_svg.render_cairo(cr)
+        cr.restore()
+        
         return True
 
     def _key_press_release_cb(self, widget, event):
