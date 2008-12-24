@@ -23,6 +23,8 @@ import cairo
 import os, sugar.activity.activity
 import rsvg
 
+PARAGRAPH_CODE = u'\xb6'
+
 # List of all key properties in the keyboard layout description.
 #
 # Keyboard Layouts use a property inheritance scheme similar to CSS (cascading style sheets):
@@ -71,9 +73,15 @@ KEY_PROPS = [
     # Text label to be displayed on keys which do not generate keys.
     { 'name': 'key-label', 'default': '' },
 
+    # Image filename showing a finger pressing this key.
+    { 'name': 'key-hand-image', 'default': '' },
+
     # Which finger should be used to press the key.  
     # Options are [LR][TIMRP], so LM would mean the left middle finger.
     { 'name': 'key-finger', 'default': '' },
+
+    # True if the key is currently pressed.
+    { 'name': 'key-pressed', 'default': False },
 ]
 
 # This is an example keyboard layout.
@@ -90,7 +98,7 @@ DEFAULT_LAYOUT = {
     'layout-name': "default",
 
     'layout-width': 775,
-    'layout-height': 300,
+    'layout-height': 265,
 
     'group-layout': 'horizontal',
 
@@ -99,28 +107,29 @@ DEFAULT_LAYOUT = {
     'key-gap': 5,
 
     'groups': [
-        {
-            'group-name': "row0",
-            'group-x': 10,
-            'group-y': 10,
-        
-            'key-height': 35,
-        
-            'keys': [
-                {}, # Escape 
-                {}, # Show Source
-                {'key-width':182}, # Zoom
-                {'key-width':182}, # Size 
-                {'key-width':181}, # Volume
-                {}, # Window
-                {}, # Frame
-            ]
-        },
+        # Note- Top row disabled for now to make more room for the other rows.
+        #{
+        #    'group-name': "row0",
+        #    'group-x': 10,
+        #   'group-y': 10,
+        # 
+        #    'key-height': 35,
+        # 
+        #    'keys': [
+        #        {}, # Escape 
+        #        {}, # Show Source
+        #        {'key-width':182}, # Zoom
+        #        {'key-width':182}, # Size 
+        #        {'key-width':181}, # Volume
+        #        {}, # Window
+        #        {}, # Frame
+        #    ]
+        #},
         {
             'group-name': "row1",
             'group-x': 10,
-            'group-y': 50,
-        
+            'group-y': 10,
+            
             'keys': [
                 {'key-scan':0x31,'key-width':35}, 
                 {'key-scan':0x0a}, 
@@ -140,65 +149,65 @@ DEFAULT_LAYOUT = {
         },
         {
             'group-name': "row2",
-                'group-x': 10,
-                'group-y': 100,
-        
+            'group-x': 10,
+            'group-y': 60,
+            
             'keys': [
                 {'key-scan':0x17,'key-finger':'LP','key-label':"tab"},
-                {'key-scan':0x18,'key-finger':'LP'}, 
-                {'key-scan':0x19,'key-finger':'LR'}, 
-                {'key-scan':0x1a,'key-finger':'LM'}, 
-                {'key-scan':0x1b,'key-finger':'LI'}, 
-                {'key-scan':0x1c,'key-finger':'LI'}, 
-                {'key-scan':0x1d,'key-finger':'RI'}, 
-                {'key-scan':0x1e,'key-finger':'RI'}, 
-                {'key-scan':0x1f,'key-finger':'RM'}, 
-                {'key-scan':0x20,'key-finger':'RR'}, 
-                {'key-scan':0x21,'key-finger':'RP'}, 
+                {'key-scan':0x18,'key-finger':'LP','key-hand-image':'OLPC_Lhand_Q.svg'}, 
+                {'key-scan':0x19,'key-finger':'LR','key-hand-image':'OLPC_Lhand_W.svg'}, 
+                {'key-scan':0x1a,'key-finger':'LM','key-hand-image':'OLPC_Lhand_E.svg'}, 
+                {'key-scan':0x1b,'key-finger':'LI','key-hand-image':'OLPC_Lhand_R.svg'}, 
+                {'key-scan':0x1c,'key-finger':'LI','key-hand-image':'OLPC_Lhand_T.svg'}, 
+                {'key-scan':0x1d,'key-finger':'RI','key-hand-image':'OLPC_Rhand_Y.svg'}, 
+                {'key-scan':0x1e,'key-finger':'RI','key-hand-image':'OLPC_Rhand_U.svg'}, 
+                {'key-scan':0x1f,'key-finger':'RM','key-hand-image':'OLPC_Rhand_I.svg'}, 
+                {'key-scan':0x20,'key-finger':'RR','key-hand-image':'OLPC_Rhand_O.svg'}, 
+                {'key-scan':0x21,'key-finger':'RP','key-hand-image':'OLPC_Rhand_P.svg'}, 
                 {'key-scan':0x22,'key-finger':'RP'}, 
                 {'key-scan':0x23,'key-finger':'RP','key-width':55},
-                {'key-scan':0x24,'key-finger':'RP','key-label':"enter",'key-width':95,'key-height':95}
+                {'key-scan':0x24,'key-finger':'RP','key-hand-image':'OLPC_Rhand_ENTER.svg','key-label':"enter",'key-width':95,'key-height':95}
             ]
         },
         {
             'group-name': "row3",
             'group-x': 10,
-            'group-y': 150,
-        
+            'group-y': 110,
+            
             'keys': [
                 {'key-scan':0x25,'key-finger':'LP','key-label':"ctrl",'key-width':55},
-                {'key-scan':0x26,'key-finger':'LP'}, 
-                {'key-scan':0x27,'key-finger':'LR'}, 
-                {'key-scan':0x28,'key-finger':'LM'}, 
-                {'key-scan':0x29,'key-finger':'LI'}, 
-                {'key-scan':0x2a,'key-finger':'LI'}, 
-                {'key-scan':0x2b,'key-finger':'RI'},
-                {'key-scan':0x2c,'key-finger':'RI'}, 
-                {'key-scan':0x2d,'key-finger':'RM'}, 
-                {'key-scan':0x2e,'key-finger':'RR'}, 
-                {'key-scan':0x2f,'key-finger':'RP'}, 
-                {'key-scan':0x30,'key-finger':'RP'}, 
+                {'key-scan':0x26,'key-finger':'LP','key-hand-image':'OLPC_Lhand_A.svg'}, 
+                {'key-scan':0x27,'key-finger':'LR','key-hand-image':'OLPC_Lhand_S.svg'}, 
+                {'key-scan':0x28,'key-finger':'LM','key-hand-image':'OLPC_Lhand_D.svg'}, 
+                {'key-scan':0x29,'key-finger':'LI','key-hand-image':'OLPC_Lhand_F.svg'}, 
+                {'key-scan':0x2a,'key-finger':'LI','key-hand-image':'OLPC_Lhand_G.svg'}, 
+                {'key-scan':0x2b,'key-finger':'RI','key-hand-image':'OLPC_Rhand_H.svg'},
+                {'key-scan':0x2c,'key-finger':'RI','key-hand-image':'OLPC_Rhand_J.svg'}, 
+                {'key-scan':0x2d,'key-finger':'RM','key-hand-image':'OLPC_Rhand_K.svg'}, 
+                {'key-scan':0x2e,'key-finger':'RR','key-hand-image':'OLPC_Rhand_L.svg'}, 
+                {'key-scan':0x2f,'key-finger':'RP','key-hand-image':'OLPC_Rhand_SEMICOLON.svg'}, 
+                {'key-scan':0x30,'key-finger':'RP','key-hand-image':'OLPC_Rhand_APOSTROPHE.svg'}, 
                 {'key-scan':0x33,'key-finger':'RP'}
             ]
         },
         {
             'group-name': "row4",
             'group-x': 10,
-            'group-y': 200,
-        
+            'group-y': 160,
+            
             'keys': [
-                {'key-scan':0x32,'key-finger':'LP','key-label':"shift",'key-width':75},
-                {'key-scan':0x34,'key-finger':'LP'}, 
-                {'key-scan':0x35,'key-finger':'LR'}, 
-                {'key-scan':0x36,'key-finger':'LM'}, 
-                {'key-scan':0x37,'key-finger':'LI'}, 
-                {'key-scan':0x38,'key-finger':'LI'}, 
-                {'key-scan':0x39,'key-finger':'RI'},
-                {'key-scan':0x3a,'key-finger':'RI'}, 
-                {'key-scan':0x3b,'key-finger':'RM'}, 
-                {'key-scan':0x3c,'key-finger':'RR'}, 
-                {'key-scan':0x3d,'key-finger':'RP'},
-                {'key-scan':0x3e,'key-finger':'RP','key-label':"shift",'key-width':75},
+                {'key-scan':0x32,'key-finger':'LP','key-hand-image':'OLPC_Lhand_SHIFT.svg','key-label':"shift",'key-width':75},
+                {'key-scan':0x34,'key-finger':'LP','key-hand-image':'OLPC_Lhand_Z.svg'}, 
+                {'key-scan':0x35,'key-finger':'LR','key-hand-image':'OLPC_Lhand_X.svg'}, 
+                {'key-scan':0x36,'key-finger':'LM','key-hand-image':'OLPC_Lhand_C.svg'}, 
+                {'key-scan':0x37,'key-finger':'LI','key-hand-image':'OLPC_Lhand_V.svg'}, 
+                {'key-scan':0x38,'key-finger':'LI','key-hand-image':'OLPC_Lhand_B.svg'}, 
+                {'key-scan':0x39,'key-finger':'RI','key-hand-image':'OLPC_Rhand_N.svg'},
+                {'key-scan':0x3a,'key-finger':'RI','key-hand-image':'OLPC_Rhand_M.svg'}, 
+                {'key-scan':0x3b,'key-finger':'RM','key-hand-image':'OLPC_Rhand_COMMA.svg'}, 
+                {'key-scan':0x3c,'key-finger':'RR','key-hand-image':'OLPC_Rhand_PERIOD.svg'}, 
+                {'key-scan':0x3d,'key-finger':'RP','key-hand-image':'OLPC_Rhand_QUESTIONMARK.svg'},
+                {'key-scan':0x3e,'key-finger':'RP','key-hand-image':'OLPC_Rhand_SHIFT.svg','key-label':"shift",'key-width':75},
                 {'key-scan':0x6f,'key-finger':'RP','key-label':""}, # Up
                 {'key-label':""}, # Language key
             ]
@@ -206,13 +215,13 @@ DEFAULT_LAYOUT = {
         {
             'group-name': "row5",
             'group-x': 10,
-            'group-y': 250,
-        
+            'group-y': 210,
+            
             'keys': [
                 {'key-label':"fn",'key-width':35},
                 {'key-label':"",'key-width':55}, # LHand
                 {'key-scan':0x40,'key-label':"alt",'key-width':55}, # LAlt
-                {'key-scan':0x41,'key-finger':'RT','key-width':325}, # Spacebar
+                {'key-scan':0x41,'key-finger':'RT','key-hand-image':'OLPC_Rhand_SPACE.svg','key-width':325}, # Spacebar
                 {'key-scan':0x6c,'key-label':"alt",'key-width':55}, # RAlt
                 {'key-label':"",'key-width':55}, # RHand
                 {'key-scan':0x71,'key-label':""}, # Left 
@@ -223,23 +232,122 @@ DEFAULT_LAYOUT = {
     ]
 }
 
-class Key:
-    def __init__(self, props):
-        self.props = props
+class KeyWidget(gtk.DrawingArea):
+    """A GTK widget which implements a single key of a keyboard."""
+    
+    def __init__(self, key, keyboard, scale):
+        gtk.DrawingArea.__init__(self)
+        
+        self.key = key
+        self.keyboard = keyboard
+        self.scale = scale
+        
+        self.root_window = keyboard.root_window
+        
+        self.set_size_request(
+            (self.key['key-width']+10) * scale,
+            (self.key['key-height']+10) * scale)
+        
+        self.connect("expose-event", self._expose_cb)
+        
+        # Connect keyboard grabbing and releasing callbacks.        
+        self.connect('realize', self._realize_cb)
+        self.connect('unrealize', self._unrealize_cb)
 
-        self.x = 0
-        self.y = 0
-        self.width = 0
-        self.height = 0
+    def _realize_cb(self, widget):
+        # Setup keyboard event snooping in the root window.
+        self.root_window.add_events(gtk.gdk.KEY_PRESS_MASK | gtk.gdk.KEY_RELEASE_MASK)
+        self.key_press_cb_id = self.root_window.connect('key-press-event', self._key_press_release_cb)
+        self.key_release_cb_id = self.root_window.connect('key-release-event', self._key_press_release_cb)
 
-        self.screen_x = 0
-        self.screen_y = 0
-        self.screen_width = 0
-        self.screen_height = 0
+    def _unrealize_cb(self, widget):
+        self.root_window.disconnect(self.key_press_cb_id)
+        self.root_window.disconnect(self.key_release_cb_id)
 
-        self.pressed = False
-        self.hilite = False
+    def _setup_transform(self, cr):
+        cr.scale(self.scale, self.scale)
+        
+    def _expose_key(self, k, cr=None):
+        # Setup cairo context if needed.
+        if not cr:
+            if not self.window:
+                return
+            cr = self.window.cairo_create()
+            self._setup_transform(cr)
+        
+        cr.save()
+        
+        x1 = 5
+        y1 = 5
+        x2 = x1 + k['key-width']
+        y2 = y1 + k['key-height']
+        
+        # Outline rounded box.
+        corner = 5
+        cr.move_to(x1 + corner, y1)
+        cr.line_to(x2 - corner, y1)
+        cr.line_to(x2, y1 + corner)
+        cr.line_to(x2, y2 - corner)
+        cr.line_to(x2 - corner, y2)
+        cr.line_to(x1 + corner, y2)
+        cr.line_to(x1, y2 - corner)
+        cr.line_to(x1, y1 + corner)
+        cr.close_path()
+        
+        if k['key-pressed']:
+            cr.set_source_rgb(0.6, 0.6, 1.0)
+        #elif k['key-hilite']:
+        #    cr.set_source_rgb(0.6, 1.0, 0.6)
+        else:
+            cr.set_source_rgb(1.0, 1.0, 1.0)
+        cr.fill_preserve()
+        
+        cr.set_source_rgb(0.1, 0.1, 0.1)
+        cr.stroke_preserve()
+        
+        cr.clip()
+        
+        # Inner text.
+        text = ''
+        if k['key-label']:
+            text = k['key-label']
+        else:
+            info = self.keyboard.keymap.translate_keyboard_state(
+                k['key-scan'], self.keyboard.active_state, self.keyboard.active_group)
+            if info:
+                key = gtk.gdk.keyval_to_unicode(info[0])
+                try:
+                    text = unichr(key).encode('utf-8')
+                except:
+                    pass
+        
+        cr.set_font_size(16)
+        x_bearing, y_bearing, width, height = cr.text_extents(text)[:4]
+        
+        cr.move_to(x1+8 - x_bearing, y2-8 - height - y_bearing)
+        cr.show_text(text)
+        
+        cr.restore()
 
+    def _expose_cb(self, area, event):
+        cr = self.window.cairo_create()
+        
+        cr.rectangle(event.area.x, event.area.y, event.area.width, event.area.height)
+        cr.clip()
+        
+        self._setup_transform(cr)
+        
+        self._expose_key(self.key, cr)
+        
+        return True
+
+    def _key_press_release_cb(self, widget, event):
+        if self.key['key-scan'] == event.hardware_keycode:
+            self.key['key-pressed'] = event.type == gtk.gdk.KEY_PRESS
+            self.queue_draw()
+
+        return False
+        
 class Keyboard(gtk.EventBox):
     """A GTK widget which implements an interactive visual keyboard, with support
        for custom data driven layouts."""
@@ -253,9 +361,6 @@ class Keyboard(gtk.EventBox):
         self.area = gtk.DrawingArea()
         self.area.connect("expose-event", self._expose_cb)
         self.add(self.area)
-        
-        # Initialize the default cairo context to None. 
-        cr = None
         
         # Access the current GTK keymap.
         self.keymap = gtk.gdk.keymap_get_default()
@@ -274,8 +379,8 @@ class Keyboard(gtk.EventBox):
         
         # Load SVG files.
         bundle_path = sugar.activity.activity.get_bundle_path() 
-        #self.rhand_svg = gtk.gdk.pixbuf_new_from_file_at_size(os.path.join(bundle_path, 'images', 'r_homerow.svg'), 775, 300)
-        self.rhand_svg = rsvg.Handle(os.path.join(bundle_path, 'images', 'r_homerow.svg'))
+        self.lhand_home = self._load_image('OLPC_Lhand_HOMEROW.svg')
+        self.rhand_home = self._load_image('OLPC_Rhand_HOMEROW.svg')
         
         # Connect keyboard grabbing and releasing callbacks.        
         self.area.connect('realize', self._realize_cb)
@@ -291,47 +396,55 @@ class Keyboard(gtk.EventBox):
         self.root_window.disconnect(self.key_press_cb_id)
         self.root_window.disconnect(self.key_release_cb_id)
 
+    def _load_image(self, name):
+        bundle_path = sugar.activity.activity.get_bundle_path() 
+        filename = os.path.join(bundle_path, 'images', name)
+        return rsvg.Handle(filename)
+
     def _build_key_list(self, layout):
         """Builds a list of Keys objects from a layout description.  
            Also fills in derived and inherited key properties.  
            The layout description can be discarded afterwards."""
         self.keys = []
         self.key_scan_map = {}
-
+        
         group_count = 0
         for g in layout['groups']:
             
             key_count = 0
             for k in g['keys']:
-
+                
                 # Create and fill out a unique property list for this key.
-                props = k.copy()
-
+                key = k.copy()
+                
                 # Assign key and group index.
-                props['key-index'] = key_count
-                props['group-index'] = group_count
-
+                key['key-index'] = key_count
+                key['group-index'] = group_count
+                
                 # Inherit undefined properties from group, layout and
                 # defaults, in that order.
                 for p in KEY_PROPS:
                     pname = p['name']
-                    if not props.has_key(pname):
+                    if not key.has_key(pname):
                         if g.has_key(pname):
-                            props[pname] = g[pname]
+                            key[pname] = g[pname]
                         elif layout.has_key(pname):
-                            props[pname] = layout[pname]
+                            key[pname] = layout[pname]
                         else:
-                            props[pname] = p['default']
+                            key[pname] = p['default']
                 
                 # Add to internal list.
-                key = Key(props)
                 self.keys.append(key)
                 key_count += 1
            
                 # Add to scan code mapping table.
-                if props['key-scan']:
-                    self.key_scan_map[props['key-scan']] = key
+                if key['key-scan']:
+                    self.key_scan_map[key['key-scan']] = key
 
+                # Load SVG hand overlay.
+                if key['key-hand-image']:
+                    key['key-hand-image-handle'] = self._load_image(key['key-hand-image']) 
+            
             group_count += 1
   
     def _layout_keys(self):
@@ -342,82 +455,72 @@ class Keyboard(gtk.EventBox):
         cur_group = None
         for k in self.keys:
             # Reset the working coordinates with each new group.
-            if k.props['group-index'] != cur_group:
-                cur_group = k.props['group-index']
-                x = k.props['group-x']
-                y = k.props['group-y']
+            if k['group-index'] != cur_group:
+                cur_group = k['group-index']
+                x = k['group-x']
+                y = k['group-y']
            
             # Apply the current layout.               
-            if k.props['group-layout'] == 'horizontal':
-                k.x = x
-                k.y = y
-                k.width = k.props['key-width']
-                k.height = k.props['key-height']
+            if k['group-layout'] == 'horizontal':
+                k['key-x'] = x
+                k['key-y'] = y
                 
-                x += k.props['key-width']
-                x += k.props['key-gap']
-
-            elif k.props['group-layout'] == 'vertical':
-                k.x = x
-                k.y = y
-                k.width = k.props['key-width']
-                k.height = k.props['key-height']
+                x += k['key-width']
+                x += k['key-gap']
+            
+            elif k['group-layout'] == 'vertical':
+                k['key-x'] = x
+                k['key-y'] = y
                 
-                y += k.props['key-height']
-                y += k.props['key-gap']
-
-            elif k.props['group-layout'] == 'custom':
-                k.x = x + k.props['key-x']
-                k.y = y + k.props['key-y']
-                k.width = k.props['key-width']
-                k.height = k.props['key-height']
-
-            else:
-                k.x = 0
-                k.y = 0
-                k.width = 0
-                k.height = 0
+                y += k['key-height']
+                y += k['key-gap']
+            
+            else: # k['group-layout'] == 'custom' or unsupported
+                pass
 
     def set_layout(self, layout):
         """Sets the keyboard's layout from  a layout description."""
         self._build_key_list(layout)
         self._layout_keys()
 
-    def _update_screen_layout(self):
-        """Applies the scaling factor to the layout given the current
-           allocation."""
+    def _get_screen_ratio(self):
         bounds = self.get_allocation()
         
         # This calculates a ratio from layout coordinates to the DrawingArea's
         # dimensions.  This ratio allows the layout coordinates to be *anything* -
         # inches, millimeters, percentage, whatever.  They just have to be
         # relative to layout-width and layout-height.
-        ratio_x = 100 * bounds.width / self.keys[0].props['layout-width']
-        ratio_y = 100 * bounds.height / self.keys[0].props['layout-height']
+        ratio_x = float(bounds.width) / self.keys[0]['layout-width']
+        ratio_y = float(bounds.height) / self.keys[0]['layout-height']
         
         # Pick the smaller ratio to fit while preserving aspect ratio.
-        self.screen_ratio = min(ratio_x, ratio_y)
+        return min(ratio_x, ratio_y)
+    
+    def _setup_transform(self, cr):
+        # Set up the screen transform.
+        screen_ratio = self._get_screen_ratio()
         
-        for k in self.keys:
-            # Make sure the final coordinates are integers, for the drawing routines.
-            k.screen_x = int(k.x * self.screen_ratio / 100)
-            k.screen_y = int(k.y * self.screen_ratio / 100)
-            k.screen_width = int(k.width * self.screen_ratio / 100)
-            k.screen_height = int(k.height * self.screen_ratio / 100)
-
+        bounds = self.get_allocation()
+        cr.translate(
+            (bounds.width - self.keys[0]['layout-width']*screen_ratio)/2,
+            (bounds.height - self.keys[0]['layout-height']*screen_ratio)/2)
+        
+        cr.scale(screen_ratio, screen_ratio)
+        
     def _expose_key(self, k, cr=None):
-        # Create cairo context if need be.
+        # Setup cairo context if needed.
         if not cr:
             if not self.area.window:
                 return
             cr = self.area.window.cairo_create()
+            self._setup_transform(cr)
         
         cr.save()
         
-        x1 = k.screen_x
-        y1 = k.screen_y
-        x2 = k.screen_x + k.screen_width
-        y2 = k.screen_y + k.screen_height
+        x1 = k['key-x']
+        y1 = k['key-y']
+        x2 = x1 + k['key-width']
+        y2 = y1 + k['key-height']
         
         # Outline rounded box.
         corner = 5
@@ -431,10 +534,10 @@ class Keyboard(gtk.EventBox):
         cr.line_to(x1, y1 + corner)
         cr.close_path()
         
-        if k.pressed:
-            cr.set_source_rgb(1.0, 0.6, 0.6)
-        elif k.hilite:
-            cr.set_source_rgb(0.6, 1.0, 0.6)
+        if k['key-pressed']:
+            cr.set_source_rgb(0.6, 0.6, 1.0)
+        #elif k['key-hilite']:
+        #    cr.set_source_rgb(0.6, 1.0, 0.6)
         else:
             cr.set_source_rgb(1.0, 1.0, 1.0)
         cr.fill_preserve()
@@ -446,11 +549,11 @@ class Keyboard(gtk.EventBox):
         
         # Inner text.
         text = ''
-        if k.props['key-label']:
-            text = k.props['key-label']
+        if k['key-label']:
+            text = k['key-label']
         else:
             info = self.keymap.translate_keyboard_state(
-                k.props['key-scan'], self.active_state, self.active_group)
+                k['key-scan'], self.active_state, self.active_group)
             if info:
                 key = gtk.gdk.keyval_to_unicode(info[0])
                 try:
@@ -466,42 +569,65 @@ class Keyboard(gtk.EventBox):
         
         cr.restore()
 
+    def _expose_hands(self, cr):
+        cr.save()
+
+        # Transform based on the original SVG resolution.
+        ratio = self.keys[0]['layout-width'] / 3158.0
+        cr.scale(ratio, ratio)
+        cr.translate(0, -150)
+
+        lhand_image = self.lhand_home
+        rhand_image = self.rhand_home
+
+        if self.hilite_letter:
+            # Find the key that would generate this letter.
+            key = None
+            if self.hilite_letter == PARAGRAPH_CODE:
+                key = self.find_key_by_label('enter')
+            else:
+                keyval = gtk.gdk.unicode_to_keyval(ord(self.hilite_letter))
+                entries = self.keymap.get_entries_for_keyval(keyval)
+                if entries:
+                    code = entries[0][0]
+                    key = self.key_scan_map.get(code)
+
+            if key:
+                handle = key['key-hand-image-handle']
+                finger = key['key-finger']
+                if finger and handle:
+                    if finger[0] == 'L':
+                        lhand_image = handle
+                    else:
+                        rhand_image = handle
+
+        lhand_image.render_cairo(cr)
+        rhand_image.render_cairo(cr)
+
+        cr.restore()
+
     def _expose_cb(self, area, event):
-        # Update layout given widget size.
-        self._update_screen_layout()
-        
-        # Draw the keys.
         cr = self.area.window.cairo_create()
         
         cr.rectangle(event.area.x, event.area.y, event.area.width, event.area.height)
         cr.clip()
         
+        self._setup_transform(cr)
+        
+        # Draw the keys.
         for k in self.keys:
             self._expose_key(k, cr)
         
-        # Render overlay images.
-        ratio = self.keys[0].props['layout-width'] / 3146.0
-        ratio = self.screen_ratio / 100.0 * ratio
-
-        cr.save()
-        cr.scale(ratio, ratio)
-        cr.translate(1350, 625)
-        self.rhand_svg.render_cairo(cr)
-        cr.restore()
-
-        cr.save()
-        cr.scale(-ratio, ratio)
-        cr.translate(-100, 625)
-        self.rhand_svg.render_cairo(cr)
-        cr.restore()
+        # Draw overlay images.
+        self._expose_hands(cr)
         
         return True
 
     def _key_press_release_cb(self, widget, event):
         key = self.key_scan_map.get(event.hardware_keycode)
         if key:
-            key.pressed = event.type == gtk.gdk.KEY_PRESS
-            self._expose_key(key)
+            key['key-pressed'] = event.type == gtk.gdk.KEY_PRESS
+            self.queue_draw()
 
         # Hack to get the current modifier state - which will not be represented by the event.
         state = gtk.gdk.device_get_core_pointer().get_state(self.window)[1]
@@ -516,16 +642,33 @@ class Keyboard(gtk.EventBox):
         return False
 
     def clear_hilite(self):
-        for k in self.keys:
-            if k.hilite:
-                k.hilite = False
-                self._expose_key(k)
+        self.hilite_letter = None
+        self.queue_draw()
 
-    def hilite_key(self, key):
-        if not key.hilite:
-            key.hilite = True
-            self._expose_key(key)
+    def set_hilite_letter(self, letter):
+        self.hilite_letter = letter
+        self.queue_draw()
 
+    def get_key_pixbuf(self, key, scale):
+        w = key['key-width'] * scale
+        h = key['key-height'] * scale
+        
+        pixmap = gtk.gdk.Pixmap(self.area.window, w, h)
+        
+        cr = pixmap.cairo_create()
+        cr.translate(-key['key-x'], -key['key-y'])
+        cr.scale(scale, scale)
+        
+        self._expose_key(key, cr)
+        
+        pb = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, False, 8, w, h)
+        pb.get_from_drawable(pixmap, self.area.window.get_colormap(), 0, 0, 0, 0,w, h)
+        
+        return pb
+    
+    def get_key_widget(self, key, scale):
+        return KeyWidget(key, self, scale)
+    
     def find_key_by_letter(self, letter):
         # Convert unicode to GDK keyval.
         keyval = gtk.gdk.unicode_to_keyval(ord(letter))
@@ -538,6 +681,17 @@ class Keyboard(gtk.EventBox):
             return self.key_scan_map.get(code)
         else:
             return None
+
+    def set_overlays(self, lhand, rhand):
+        self.lhand_overlay = lhand
+        self.rhand_overlay = rhand
+        self.queue_draw()
+        
+    def find_key_by_label(self, label):
+        for k in self.keys:
+            if k['key-label'] == label:
+                return k
+        return None
 
 if __name__ == "__main__":
     window = gtk.Window(gtk.WINDOW_TOPLEVEL)

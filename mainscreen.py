@@ -78,7 +78,6 @@ class TitleScene(gtk.DrawingArea):
                 self.title_text += self.title_src[0]
                 self.title_src = self.title_src[1:]
                 self.queue_draw()
-                print "queue draw "+self.title_text
             
             self.title_counter = random.randint(1, 5)
             
@@ -137,8 +136,16 @@ class MainScreen(gtk.VBox):
         self.pack_start(self.titlescene, False, True, 10)
         self.pack_start(lessonscrollbox, True)
         
-        self.show_lesson(0)
-        
+        self.show_highest_available_lesson()
+    
+    def show_highest_available_lesson(self):
+        highest_index = 0
+        for index in xrange(0, len(self.lessons)):
+            if self.lessons[index]['requiredlevel'] <= self.activity.data['level']:
+                highest_index = max(highest_index, index)
+        print "showing lesson %d" % highest_index
+        self.show_lesson(highest_index)
+    
     def show_lesson(self, index):
         # Clear all widgets in the lesson box.
         for w in self.lessonbox:
@@ -148,7 +155,8 @@ class MainScreen(gtk.VBox):
         self.nextlessonbtn.set_sensitive(index < len(self.lessons)-1)
         
         lesson = self.lessons[index]
-        
+
+        self.lesson_index = index
         self.visible_lesson = lesson
         
         # Create the lesson button.
@@ -187,12 +195,14 @@ class MainScreen(gtk.VBox):
         
         self.lessonbox.pack_start(lessonbtn, True)
         self.lessonbox.pack_start(medalbtn, False)
+
+        self.lessonbox.show_all()
     
     def next_lesson_clicked_cb(self, widget):
-        pass
+        self.show_lesson(self.lesson_index+1)
     
     def prev_lesson_clicked_cb(self, widget):
-        pass
+        self.show_lesson(self.lesson_index-1)
     
     def lesson_clicked_cb(self, widget):
         self.activity.push_screen(lessonscreen.LessonScreen(self.visible_lesson, self.activity))

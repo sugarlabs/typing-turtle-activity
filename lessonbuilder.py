@@ -16,10 +16,11 @@
 #!/usr/bin/env python
 # vi:sw=4 et
 
-import os, sys, random, json
+import os, sys, random, json, locale
 from gettext import gettext as _
 
-import keyboard
+# Set up localization.
+locale.setlocale(locale.LC_ALL, '')
 
 CONGRATS = [
     _('Well done!'),
@@ -144,10 +145,11 @@ def filter_wordlist(words, all_keys, req_keys, minlen, maxlen, bad_words):
 
     return good_words
 
-def add_step(lesson, instructions, text):
+def add_step(lesson, instructions, mode, text):
     step = {}
     step['instructions'] = instructions
-    step['text'] = text.strip() + '\n'
+    step['text'] = text
+    step['mode'] = mode
     lesson['steps'].append(step)
 
 def build_lesson(
@@ -159,8 +161,8 @@ def build_lesson(
     words = load_wordlist(wordlist)
     bad_words = load_wordlist(badwordlist)
 
-    kb = keyboard.Keyboard(None)
-    kb.set_layout(keyboard.DEFAULT_LAYOUT)
+    #kb = keyboard.Keyboard(None)
+    #kb.set_layout(keyboard.DEFAULT_LAYOUT)
 
     all_keys = new_keys + base_keys
 
@@ -169,6 +171,11 @@ def build_lesson(
     lesson['description'] = description
     lesson['level'] = level
     lesson['requiredlevel'] = required_level
+    lesson['medals'] = [
+        { 'name': 'bronze', 'wpm': 5,  'accuracy': 60 },
+        { 'name': 'silver', 'wpm': 10, 'accuracy': 75 },
+        { 'name': 'gold',   'wpm': 20, 'accuracy': 90 }
+    ]
     lesson['steps'] = []
 
     keynames = ''
@@ -179,14 +186,14 @@ def build_lesson(
     add_step(lesson,
         _('Welcome to the %(name)s lesson!\n\nIn this lesson, you will learn the %(keynames)s keys.  Press the Enter key when you are ready to begin!') \
             % { 'name': name, 'keynames': keynames },
-        '\n')
+        'key', '\n')
 
     for key in new_keys:
-        k = kb.find_key_by_letter(key)
+        #k = kb.find_key_by_letter(key)
         add_step(lesson,
             _('Press the %(name)s key using your %(finger)s finger.') \
-                % { 'name': key, 'finger': FINGERS[k.props['key-finger']]},
-            key)
+                % { 'name': key, 'finger': FINGERS['RP'] }, # k.props['key-finger']
+            'key', key)
 
     # Key patterns - useful or not?
     #add_step(lesson,
@@ -195,34 +202,34 @@ def build_lesson(
     
     add_step(lesson,
         _('Good job!  Now, practice typing the keys you just learned.'),
-        make_random_triples(new_keys, count=20))
+        'text', make_random_triples(new_keys, count=20))
     
     # Key patterns - useful or not?
     #add_step(lesson,
     #    _('Practice typing the keys you just learned.'),
-    #    make_all_pairs(new_keys))
+    #    'text', make_all_pairs(new_keys))
     
     add_step(lesson,
         _('Well done! Now let\'s put the keys together in pairs.\n\nBe careful to use the correct finger to press each key.  Look at the keyboard below if you need help remembering.'),
-        make_random_pairs(new_keys, new_keys, count=50))
+        'text', make_random_pairs(new_keys, new_keys, count=50))
     
     add_step(lesson,
         _('You made it!  Now we are going to practice word jumbles.  You can speed up a little, but be careful to get all the keys right!'),
-        make_jumbles(new_keys, count=100, gap=5))
+        'text', make_jumbles(new_keys, count=100, gap=5))
     
     if base_keys != '':
         # Key patterns - useful or not?
         #add_step(lesson,
         #    _('Wonderful!  Now we are going to bring in the keys you already know. We\'ll start with pairs.\n\nPay attention to your posture, and always be sure to use the correct finger!'),
-        #    make_all_joined_pairs(new_keys, all_keys))
+        #    'text', make_all_joined_pairs(new_keys, all_keys))
     
         add_step(lesson,
             _('Wonderful!  Now we will add the keys you already know.  Let\'s start with pairs.\n\nPay attention to your posture, and always be sure to use the correct finger.'),
-            make_random_pairs(new_keys, all_keys, count=200))
+            'text', make_random_pairs(new_keys, all_keys, count=200))
     
         add_step(lesson,
             _('Great job.  Now practice these jumbles, using all the keys you know.'),
-            make_jumbles(all_keys, count=300, gap=5))
+            'text', make_jumbles(all_keys, count=300, gap=5))
 
     if wordlist:
         good_words = filter_wordlist(words=words, 
@@ -232,34 +239,123 @@ def build_lesson(
 
         add_step(lesson,
             _('You\'re almost finished!  It\'s time to learn to type real words, using the keys you have just learned.'),
-            make_random_words(good_words, count=300))
+            'text', make_random_words(good_words, count=300))
     
     return lesson
 
+def write_lesson(filename, lesson):
+    code = locale.getlocale(locale.LC_ALL)[0]
+    text = json.write(lesson)
+    open(os.path.join('lessons', code, filename), 'w').write(text)   
+
 def build_intro_lesson():
     lesson = {}
-    lesson['name'] = _('Welcome to Typing Turtle!') 
-    lesson['description'] = _('Click here to begin.') 
-    lesson['level'] = 0
+    lesson['name'] = _('Welcome!') 
+    lesson['description'] = _('Click here to begin your typing adventure...') 
+    lesson['level'] = 1
     lesson['requiredlevel'] = 0
+    lesson['report'] = 'simple'
+    lesson['medals'] = [
+        { 'name': 'bronze', 'wpm': 0, 'accuracy': 10 },
+        { 'name': 'silver', 'wpm': 0, 'accuracy': 70 },
+        { 'name': 'gold', 'wpm': 0, 'accuracy': 100 }
+    ]
     lesson['steps'] = []
+    
+    text = ''
+    text += _('Hi, welcome to Typing Turtle!  My name is Max the turtle, ')
+    text += _('and I\'ll to teach you how to type.\n\n')
+    text += _('First, I will tell you the secret of fast typing... ')
+    text += _('Always use the correct finger to press each key!\n\n')
+    text += _('Now, place your hands on the keyboard just like the picture below.\n')
+    text += _('When you\'re ready, press the space bar with your thumb!')
+    add_step(lesson, text, 'key', ' ')
 
     text = ''
-    text += _('Hi there, welcome to Typing Turtle!  My name is Max the Turtle, ')
-    text += _('and I\'m going to teach you how to type.\n\n')
-    text += _('First, I will tell you the secret of fast typing.  Are you ready?\n\n')
-    text += _('The secret is: Always use the correct finger to press each key!\n\n')
-    text += _('Simple, right?  Now all you need to do is practice.')
-    #show you how to use the activity.  The box you are ')
-    text += _('reading right now is where the instructions will appear.  The ')
-    text += _('picture of the keyboard below shows what your hands should be ')
-    text += _('doing.  And the dials to the right, they show how quickly and ')
-    text += _('accurately you are typing!\n\n')
-    text += _('When you see a big picture of a key like the one below, that ')
-    text += _('means you are supposed to press that key on the keyboard! ')
-    text += _('Make sure you use the correct finger to type each key!')
+    text += _('Good job!  You correctly typed your first key.  When typing, the space bar is ')
+    text += _('used to insert spaces between words.\n\n')
+    text += _('Press the space bar again with your thumb.')
+    add_step(lesson, text, 'key', ' ')
+    
+    text = ''
+    text += _('Now I\'ll teach you the second key, enter.  ')
+    text += _('That\'s the big square key near your right pinky finger.\n\n')
+    text += _('Without moving any other fingers, reach your pinky over and press ')
+    text += _('Enter.\nCheck the picture below if you need a hint!')
+    add_step(lesson, text, 'key', '\n')
+    
+    text = ''
+    text += _('Great!  When typing, the enter key is used to begin a new line.\n\n')
+    text += _('Press the enter key again with your right pinky.')
+    add_step(lesson, text, 'key', '\n')
+    
+    text = ''
+    text += _('Wonderful!  Now I\'m going to tell you a little more about Typing Turtle.\n\n')
+    text += _('The box you are reading is where instructions will appear.  The keyboard ')
+    text += _('picture below shows what your hands should be doing.  The numbers ')
+    text += _('up top show how quickly and accurately you are typing.\n\n')
+    text += _('When you see a big picture of a key like this one, you are supposed to ')
+    text += _('press that key on the keyboard.\nRemember, always use the correct finger to ')
+    text += _('type each key!')
+    add_step(lesson, text, 'key', ' ')
+
+    text = '$report'
+    add_step(lesson, text, 'key', '\n')
 
     return lesson
+
+def make_default_lesson_set(wordlist, badwordlist):
+    write_lesson(
+        'intro.lesson',
+        build_intro_lesson())
+
+    lesson = build_lesson(
+        name=_('The Home Row'),
+        description=_('This lesson teaches you the first 8 keys of the keyboard, also known as the Home Row.'), 
+        level=2, required_level=1,
+        new_keys=_('asdfjkl;'), base_keys='', 
+        wordlist=wordlist, badwordlist=badwordlist)
+    write_lesson('homerow.lesson', lesson)
+    
+    lesson = build_lesson(
+        name=_('Home Row Reaches'),
+        description=_('This lesson teaches you the g and k keys, which are on the home row but require a little reach.'), 
+        level=3, required_level=2,
+        new_keys='gk', base_keys='asdfjkl;', 
+        wordlist=wordlist, badwordlist=badwordlist)
+    write_lesson('homerow-reach.lesson', lesson)
+    
+    lesson = build_lesson(
+        name=_('Introducing the Top Row'),
+        description=_('This lesson teaches you the q, w, e, r, u, i, o and p keys on the top row.'), 
+        level=4, required_level=3,
+        new_keys='qweruiop', base_keys='asdfjkl;gk', 
+        wordlist=wordlist, badwordlist=badwordlist)
+    write_lesson('toprow.lesson', lesson)
+    
+    lesson = build_lesson(
+        name=_('Top Row Reaches'),
+        description=_('This lesson teaches you the t and y keys on the top row, which require long reaches.'), 
+        level=5, required_level=4,
+        new_keys='ty', base_keys='asdfjkl;gkqweruiop', 
+        wordlist=wordlist, badwordlist=badwordlist)
+    write_lesson('toprow-reach.lesson', lesson)
+    
+    lesson = build_lesson(
+        name=_('Bottoms Up!'),
+        description=_('This lesson teaches you the z, x, c, v, m, comma, and period keys of the bottom row.'), 
+        level=6, required_level=5,
+        new_keys='zxcvm,.', base_keys='asdfjkl;gkqweruiopty', 
+        wordlist=wordlist, badwordlist=badwordlist)
+    write_lesson('bottomrow.lesson', lesson)
+    
+    lesson = build_lesson(
+        name=_('Reaching the Bottom'),
+        description=_('This lesson teaches you the b and n keys of the bottom row.'), 
+        level=7, required_level=6,
+        new_keys='ty', base_keys='asdfjkl;gkqweruiop', 
+        wordlist=wordlist, badwordlist=badwordlist)
+    write_lesson('bottomrow-reach.lesson', lesson)
 
 def usage():
     print """
@@ -267,7 +363,8 @@ lessonbuilder.py v1.0 by Wade Brainerd <wadetb@gmail.com>
 Generates automatic lesson content for Typing Turtle.
 
 --help              Display this message.
---keys='...'        Keys to teach.  Required.
+--make-all-lessons  Make the entire lesson set, automatically filling in keys.
+--keys='...'        Keys to teach.
 --base-keys='...'   Keys already taught prior to this lesson.
 --name='...'        Lesson name.
 --desc='...'        Lesson description.
@@ -282,7 +379,7 @@ if __name__ == "__main__":
     import getopt
     try:
         opts, args = getopt.getopt(sys.argv[1:], 'x', 
-            ['help', 'name=', 'desc=', 'level=', 'required-level=', 
+            ['help', 'make-all-lessons', 'name=', 'desc=', 'level=', 'required-level=', 
              'keys=', 'base-keys=', 'wordlist=', 'badwordlist=',
              'output='])
     except:
@@ -291,6 +388,7 @@ if __name__ == "__main__":
 
     name = 'Generated'
     desc = 'Default description'
+    make_default_set = False
     level = 0
     required_level = 0
     new_keys = None
@@ -303,6 +401,8 @@ if __name__ == "__main__":
         if opt == '--help':
             usage()
             sys.exit()
+        elif opt == '--make-all-lessons':
+            make_default_set = True
         elif opt == '--name':
             name = arg
         elif opt == '--desc':
@@ -322,8 +422,12 @@ if __name__ == "__main__":
         elif opt == '--output':
             output = arg
 
-    if not new_keys:
+    if not new_keys and not make_default_set:
         usage()
+        sys.exit()
+
+    if make_default_set:
+        make_default_lesson_set(wordlist=wordlist, badwordlist=badwordlist)
         sys.exit()
 
     lesson = build_lesson(
@@ -333,7 +437,6 @@ if __name__ == "__main__":
         wordlist=wordlist, badwordlist=badwordlist)
 
     if output:
-        import json
         text = json.write(lesson)
         open(output, 'w').write(text)
     else:

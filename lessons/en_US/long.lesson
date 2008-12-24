@@ -1,8 +1,8 @@
 {
     "name": "Punctuation Practice!",
     "description": "Practice punctuation with a section of Pride and Prejudice.",
-    "level": 2,
-    "requiredlevel": 1,
+    "level": 10,
+    "requiredlevel": 10,
     "steps": [
         {
           "type": "text",
