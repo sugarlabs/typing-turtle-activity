@@ -16,8 +16,11 @@
 #!/usr/bin/env python
 # vi:sw=4 et
 
-import os, sys, random, json, locale
+import os, sys, random, json, locale, re
 from gettext import gettext as _
+
+import dbgp.client
+dbgp.client.brkOnExcept(host='192.168.1.104', port=12900)
 
 # Set up localization.
 locale.setlocale(locale.LC_ALL, '')
@@ -30,6 +33,11 @@ CONGRATS = [
     _('Wonderful!'),
     _('Nice work.'),
     _('You did it!'),
+]
+
+HINTS = [
+    _('Be careful to use the correct finger to press each key.  Look at the keyboard below if you need help remembering.'),
+    _('Try to type at the same speed, all the time.  As you get more comfortable you can increase the speed a little.')
 ]
 
 FINGERS = {
@@ -49,20 +57,27 @@ def make_all_triples(keys):
     text = ''
     for k in new_keys:
         text += k + k + ' ' + k + ' '
-    return text
+    return text.strip()
 
 def make_all_doubles(keys):
     text = ''
     for k in new_keys:
         text += k + k + ' '
-    return text
+    return text.strip()
 
 def make_random_triples(keys, count):
     text = ''
     for y in xrange(0, count):
         k = random.choice(keys)
         text += k + k + ' ' + k + ' '
-    return text
+    return text.strip()
+
+def make_random_doubles(keys, count):
+    text = ''
+    for y in xrange(0, count):
+        k = random.choice(keys)
+        text += k + k + ' '
+    return text.strip()
 
 def make_jumbles(keys, count, gap):
     text = ''
@@ -70,7 +85,7 @@ def make_jumbles(keys, count, gap):
         text += random.choice(keys)
         if y % gap == gap-1:
             text += ' '
-    return text
+    return text.strip()
 
 def make_all_pairs(keys):
     text = ''
@@ -79,7 +94,7 @@ def make_all_pairs(keys):
             text += k1 + k2 + ' '
         for k2 in keys:
             text += k2 + k1 + ' '
-    return text
+    return text.strip()
 
 def make_random_pairs(required_keys, keys, count):
     text = ''
@@ -87,7 +102,7 @@ def make_random_pairs(required_keys, keys, count):
         k1 = random.choice(required_keys)
         k2 = random.choice(keys)
         text += random.choice([k1 + k2, k2 + k1]) + ' '
-    return text
+    return text.strip()
 
 def make_all_joined_pairs(keys1, keys2):
     text = ''
@@ -96,37 +111,121 @@ def make_all_joined_pairs(keys1, keys2):
             text += k1 + k2 + ' '
         for k2 in keys2:
             text += k2 + k1 + ' '
-    return text
+    return text.strip()
 
-def make_random_words(words, count):
-    text = ''
-    for x in range(0, count):
-        text += random.choice(words) + ' '
-    return text
+RE_NONALPHA = re.compile('\W+', re.UNICODE)
 
 def load_wordlist(path):
     try:
-        words = open(path, 'r').readlines()
-        words = [s.strip() for s in words]
+        text = open(path, 'r').read()
+        
+        # Split words by non-alpha characters.  This extracts all actual words,
+        # minus punctuation.  Note- Could get messed up by hyphenation, leading
+        # to fragments in the word list.
+        words = RE_NONALPHA.split(text)
+        
         return words
+    
     except:
         return []
 
-def filter_wordlist(words, all_keys, req_keys, minlen, maxlen, bad_words):
+def get_pairs_from_wordlist(words):
+    print 'Calculating common pairs...'
 
+    # Construct char_map, a map for each character c0 in words, giving the frequency of each other
+    # character c1 in words following c0.
+    char_map = {}
+    for word in words:
+        for i in xrange(0, len(word)-1):
+            c0 = word[i]
+            c1 = word[i+1]
+            
+            c0_map = char_map.setdefault(c0, {})
+            c1_value = c0_map.setdefault(c1, 0)
+            c0_map[c1] = c1_value + 1
+
+    #print char_map['j']
+    
+    # Convert to list of pairs with probability.    
+    pairs = []
+    for c0, c0_map in char_map.items():
+        for c1, c1_value in c0_map.items():
+            pairs.append((c0+c1, c1_value))
+
+    # Sort by frequency.
+    pairs.sort(cmp=lambda x,y: x[1] - y[1])
+    
+    # Normalize the weights.
+    total = 0.0
+    for p in pairs:
+        total += p[1]
+    pairs = [(p[0], p[1]/total) for p in pairs]
+
+    return pairs
+
+def filter_pairs(pairs, required_keys, keys):
+    # Require at least one key from required_keys, and require that only
+    # keys be present.
+    good_pairs = []
+    for p in pairs:
+        str = p[0]
+        if required_keys.find(str[0]) == -1 and required_keys.find(str[1]) == -1:
+            continue
+        if keys.find(str[0]) == -1 or keys.find(str[1]) == -1:
+            continue
+        good_pairs.append(p)
+    
+    # Re-normalize weights.
+    total = 0.0
+    for p in good_pairs:
+        total += p[1]
+    good_pairs = [(p[0], p[1]/total) for p in good_pairs]
+
+    return good_pairs
+    
+def get_weighted_random_pair(pairs):
+    # TODO: I'm currently ignoring the weighting because it's preventing keys from
+    # ever appearing, for example j never appears in the home row lesson.
+    return random.choice(pairs)
+    #n = random.uniform(0, 1)
+    #for p in pairs:
+    #    if n < p[1]:
+    #        break
+    #    n -= p[1]
+    #return p
+
+def make_weighted_wordlist_pairs(pairs, required_keys, keys, count):
+    good_pairs = filter_pairs(pairs, required_keys, keys)
+    
+    text = ''
+    for y in xrange(0, count):
+        p = get_weighted_random_pair(good_pairs)
+        text += p[0] + ' '
+    return text.strip()
+    
+def filter_wordlist(words, all_keys, req_keys, minlen, maxlen, bad_words):
+    print 'Filtering word list...'
+
+    # Uniquify words.
+    # TODO: Build a frequency table as with the pairs.
+    words = list(set(words))
+
+    # Filter word list based on variety of contraints.
     good_words = []
 
     for word in words:
         if len(word) < minlen or len(word) > maxlen:
             continue
-
+        
         good = True
-
+        
+        # Check for letters that are not supported.
         for c in word:
             if all_keys.find(c) == -1:
                 good = False
                 break
-
+        
+        # Make sure required letters are present.
         any_req = False
         for c in req_keys:
             if word.find(c) >= 0:
@@ -134,18 +233,27 @@ def filter_wordlist(words, all_keys, req_keys, minlen, maxlen, bad_words):
                 break
         if not any_req:
             good = False
-
+        
+        # Remove bad words.
         for bad in bad_words:
             if word == bad:
                 good = False
                 break
-
+        
         if good:
             good_words.append(word)
 
     return good_words
 
+def make_random_words(words, count):
+    text = ''
+    for x in range(0, count):
+        text += random.choice(words) + ' '
+    return text.strip()
+
 def add_step(lesson, instructions, mode, text):
+    print instructions
+    print text
     step = {}
     step['instructions'] = instructions
     step['text'] = text
@@ -156,15 +264,21 @@ def build_lesson(
     name, description, 
     level, required_level, 
     new_keys, base_keys, 
-    wordlist=None, badwordlist=None):
+    words, bad_words):
 
-    words = load_wordlist(wordlist)
-    bad_words = load_wordlist(badwordlist)
-
-    #kb = keyboard.Keyboard(None)
-    #kb.set_layout(keyboard.DEFAULT_LAYOUT)
+    print "Building lesson '%s'..." % name
 
     all_keys = new_keys + base_keys
+
+    good_words = filter_wordlist(words=words, 
+        all_keys=all_keys, req_keys=new_keys, 
+        minlen=2, maxlen=100, 
+        bad_words=bad_words)
+    
+    pairs = get_pairs_from_wordlist(words)
+        
+    #kb = keyboard.Keyboard(None)
+    #kb.set_layout(keyboard.DEFAULT_LAYOUT)
 
     lesson = {}
     lesson['name'] = name
@@ -195,51 +309,47 @@ def build_lesson(
                 % { 'name': key, 'finger': FINGERS['RP'] }, # k.props['key-finger']
             'key', key)
 
-    # Key patterns - useful or not?
-    #add_step(lesson,
-    #    _('Time to practice some simple key patterns.'),
-    #    make_all_triples(new_keys) * 4)
+    add_step(lesson,
+        _('Practice typing the keys you just learned.'),
+        'text', make_random_doubles(new_keys, count=40))
     
     add_step(lesson,
-        _('Good job!  Now, practice typing the keys you just learned.'),
-        'text', make_random_triples(new_keys, count=20))
-    
-    # Key patterns - useful or not?
-    #add_step(lesson,
-    #    _('Practice typing the keys you just learned.'),
-    #    'text', make_all_pairs(new_keys))
+        _('Keep practicing the new keys.'),
+        'text', make_random_doubles(new_keys, count=40))
     
     add_step(lesson,
-        _('Well done! Now let\'s put the keys together in pairs.\n\nBe careful to use the correct finger to press each key.  Look at the keyboard below if you need help remembering.'),
-        'text', make_random_pairs(new_keys, new_keys, count=50))
+        _('Now put the keys together into pairs.'),
+        'text', make_weighted_wordlist_pairs(pairs, new_keys, new_keys, count=50))
     
     add_step(lesson,
-        _('You made it!  Now we are going to practice word jumbles.  You can speed up a little, but be careful to get all the keys right!'),
-        'text', make_jumbles(new_keys, count=100, gap=5))
+        _('Keep practicing key pairs.'),
+        'text', make_weighted_wordlist_pairs(pairs, new_keys, new_keys, count=50))
     
     if base_keys != '':
-        # Key patterns - useful or not?
-        #add_step(lesson,
-        #    _('Wonderful!  Now we are going to bring in the keys you already know. We\'ll start with pairs.\n\nPay attention to your posture, and always be sure to use the correct finger!'),
-        #    'text', make_all_joined_pairs(new_keys, all_keys))
+        add_step(lesson,
+            _('Now practice all the keys you know.'),
+            'text', make_weighted_wordlist_pairs(pairs, new_keys, all_keys, count=50))
     
         add_step(lesson,
-            _('Wonderful!  Now we will add the keys you already know.  Let\'s start with pairs.\n\nPay attention to your posture, and always be sure to use the correct finger.'),
-            'text', make_random_pairs(new_keys, all_keys, count=200))
+            _('Almost done.  Keep practicing all the keys you know.'),
+            'text', make_weighted_wordlist_pairs(pairs, new_keys, all_keys, count=50))
+
+    else:
+        add_step(lesson,
+            _('Almost done.  Keep practicing key pairs.'),
+            'text', make_weighted_wordlist_pairs(pairs, new_keys, new_keys, count=100))
+
+    add_step(lesson,
+        _('Time to type real words.'),
+        'text', make_random_words(good_words, count=100))
     
-        add_step(lesson,
-            _('Great job.  Now practice these jumbles, using all the keys you know.'),
-            'text', make_jumbles(all_keys, count=300, gap=5))
-
-    if wordlist:
-        good_words = filter_wordlist(words=words, 
-            all_keys=all_keys, req_keys=new_keys, 
-            minlen=2, maxlen=10, 
-            bad_words=bad_words)
-
-        add_step(lesson,
-            _('You\'re almost finished!  It\'s time to learn to type real words, using the keys you have just learned.'),
-            'text', make_random_words(good_words, count=300))
+    add_step(lesson,
+        _('Keep practicing these words.'),
+        'text', make_random_words(good_words, count=100))
+    
+    add_step(lesson,
+        _('Almost finished. Try to type as quickly and accurately as you can!'),
+        'text', make_random_words(good_words, count=200))
     
     return lesson
 
@@ -267,6 +377,7 @@ def build_intro_lesson():
     text += _('and I\'ll to teach you how to type.\n\n')
     text += _('First, I will tell you the secret of fast typing... ')
     text += _('Always use the correct finger to press each key!\n\n')
+    text += _('If you learn which finger presses each key, and keep practicing, you will be typing like a pro before you know it!\n\n')
     text += _('Now, place your hands on the keyboard just like the picture below.\n')
     text += _('When you\'re ready, press the space bar with your thumb!')
     add_step(lesson, text, 'key', ' ')
@@ -299,147 +410,93 @@ def build_intro_lesson():
     text += _('type each key!')
     add_step(lesson, text, 'key', ' ')
 
-    text = '$report'
-    add_step(lesson, text, 'key', '\n')
+    #text = '$report'
+    #add_step(lesson, text, 'key', '\n')
 
     return lesson
 
-def make_default_lesson_set(wordlist, badwordlist):
+def make_default_lesson_set(words, bad_words):
     write_lesson(
         'intro.lesson',
         build_intro_lesson())
 
     lesson = build_lesson(
         name=_('The Home Row'),
-        description=_('This lesson teaches you the first 8 keys of the keyboard, also known as the Home Row.'), 
+        description=_('This lesson teaches you the first a, s, d, f, g, h, j, k and l keys.\nThese keys are called the Home Row.'), 
         level=2, required_level=1,
-        new_keys=_('asdfjkl;'), base_keys='', 
-        wordlist=wordlist, badwordlist=badwordlist)
+        new_keys=_('asdfghjkl'), base_keys='', 
+        words=words, bad_words=bad_words)
     write_lesson('homerow.lesson', lesson)
     
     lesson = build_lesson(
-        name=_('Home Row Reaches'),
-        description=_('This lesson teaches you the g and k keys, which are on the home row but require a little reach.'), 
+        name=_('The Top Row'),
+        description=_('This lesson teaches you the q, w, e, r, t, y, u, i, o and p keys on the top row\nof the keyboard.'), 
         level=3, required_level=2,
-        new_keys='gk', base_keys='asdfjkl;', 
-        wordlist=wordlist, badwordlist=badwordlist)
-    write_lesson('homerow-reach.lesson', lesson)
-    
-    lesson = build_lesson(
-        name=_('Introducing the Top Row'),
-        description=_('This lesson teaches you the q, w, e, r, u, i, o and p keys on the top row.'), 
-        level=4, required_level=3,
-        new_keys='qweruiop', base_keys='asdfjkl;gk', 
-        wordlist=wordlist, badwordlist=badwordlist)
+        new_keys='qwertyuiop', base_keys='asdfghjkl', 
+        words=words, bad_words=bad_words)
     write_lesson('toprow.lesson', lesson)
-    
+
     lesson = build_lesson(
-        name=_('Top Row Reaches'),
-        description=_('This lesson teaches you the t and y keys on the top row, which require long reaches.'), 
-        level=5, required_level=4,
-        new_keys='ty', base_keys='asdfjkl;gkqweruiop', 
-        wordlist=wordlist, badwordlist=badwordlist)
-    write_lesson('toprow-reach.lesson', lesson)
-    
-    lesson = build_lesson(
-        name=_('Bottoms Up!'),
-        description=_('This lesson teaches you the z, x, c, v, m, comma, and period keys of the bottom row.'), 
-        level=6, required_level=5,
-        new_keys='zxcvm,.', base_keys='asdfjkl;gkqweruiopty', 
-        wordlist=wordlist, badwordlist=badwordlist)
+        name=_('The Bottom Row'),
+        description=_('This lesson teaches you the z, x, c, v, b, n and m keys on the bottom row\nof the keyboard.'), 
+        level=4, required_level=3,
+        new_keys='zxcvbnm', base_keys='asdfghjklqwertyuiop', 
+        words=words, bad_words=bad_words)
     write_lesson('bottomrow.lesson', lesson)
     
-    lesson = build_lesson(
-        name=_('Reaching the Bottom'),
-        description=_('This lesson teaches you the b and n keys of the bottom row.'), 
-        level=7, required_level=6,
-        new_keys='ty', base_keys='asdfjkl;gkqweruiop', 
-        wordlist=wordlist, badwordlist=badwordlist)
-    write_lesson('bottomrow-reach.lesson', lesson)
-
-def usage():
-    print """
-lessonbuilder.py v1.0 by Wade Brainerd <wadetb@gmail.com>
-Generates automatic lesson content for Typing Turtle.
-
---help              Display this message.
---make-all-lessons  Make the entire lesson set, automatically filling in keys.
---keys='...'        Keys to teach.
---base-keys='...'   Keys already taught prior to this lesson.
---name='...'        Lesson name.
---desc='...'        Lesson description.
---level=N           Level granted by the lesson.
---required-level=N  Level requirement for the lesson.
---wordlist=file     List of words to use, one per line.
---badwordlist=file  List of words *not* to use, one per line.
---output=file       Output file.
-"""
-
 if __name__ == "__main__":
-    import getopt
-    try:
-        opts, args = getopt.getopt(sys.argv[1:], 'x', 
-            ['help', 'make-all-lessons', 'name=', 'desc=', 'level=', 'required-level=', 
-             'keys=', 'base-keys=', 'wordlist=', 'badwordlist=',
-             'output='])
-    except:
-        usage()
+    import optparse
+    parser = optparse.OptionParser("usage: %prog [options]")
+    parser.add_option("--make-all-lessons", dest="make_all_lessons", action="store_true",
+                      help="Automatically generate a complete lesson set.")
+    parser.add_option("--output", dest="output", metavar="FILE",
+                      help="Output file.")
+    parser.add_option("--keys", dest="keys", metavar="KEYS", default='',
+                      help="Keys to teach.")
+    parser.add_option("--base-keys", dest="base_keys", metavar="KEYS",
+                      help="Keys already taught prior to this lesson.")
+    parser.add_option("--name", dest="name", default="Generated",
+                      help="Lesson name.")
+    parser.add_option("--desc", dest="desc", default="Default description.",
+                      help="Lesson description.")
+    parser.add_option("--level", dest="level", type="int", metavar="LEVEL", default=0,
+                      help="Level granted by this lesson.")
+    parser.add_option("--req-level", dest="required_level", type="int", metavar="LEVEL", default=0,
+                      help="Level requirement for this lesson.")
+    parser.add_option("--wordlist", dest="wordlist", metavar="FILE",
+                      help="Text file containing words to use.")
+    parser.add_option("--badwordlist", dest="badwordlist", metavar="FILE",
+                      help="Text file containing words *not* to use.")
+    
+    (options, args) = parser.parse_args()
+    
+    if not options.make_all_lessons and not options.keys:
+        parser.error('no keys given')
+
+    if not options.wordlist:
+        parser.error('no wordlist file given')
+        
+    words = load_wordlist(options.wordlist)
+
+    bad_words = []
+    if options.badwordlist:
+        bad_words = load_wordlist(options.badwordlist)
+
+    if options.make_all_lessons:
+        make_default_lesson_set(words=words, bad_words=bad_words)
         sys.exit()
 
-    name = 'Generated'
-    desc = 'Default description'
-    make_default_set = False
-    level = 0
-    required_level = 0
-    new_keys = None
-    base_keys = ''
-    wordlist = None
-    badwordlist = None
-    output = None
-
-    for opt, arg in opts:
-        if opt == '--help':
-            usage()
-            sys.exit()
-        elif opt == '--make-all-lessons':
-            make_default_set = True
-        elif opt == '--name':
-            name = arg
-        elif opt == '--desc':
-            desc = arg
-        elif opt == '--level':
-            level = int(arg)
-        elif opt == '--required-level':
-            required_level = int(arg)
-        elif opt == '--keys':
-            new_keys = arg
-        elif opt == '--base-keys':
-            base_keys = arg
-        elif opt == '--wordlist':
-            wordlist = arg
-        elif opt == '--badwordlist':
-            badwordlist = arg
-        elif opt == '--output':
-            output = arg
-
-    if not new_keys and not make_default_set:
-        usage()
-        sys.exit()
-
-    if make_default_set:
-        make_default_lesson_set(wordlist=wordlist, badwordlist=badwordlist)
-        sys.exit()
-
-    lesson = build_lesson(
-        name=name, description=desc, 
-        level=level, required_level=required_level,
-        new_keys=new_keys, base_keys=base_keys, 
-        wordlist=wordlist, badwordlist=badwordlist)
-
-    if output:
-        text = json.write(lesson)
-        open(output, 'w').write(text)
     else:
-        import pprint
-        pprint.pprint(lesson)
+        lesson = build_lesson(
+            name=options.name, description=options.desc, 
+            level=options.level, required_level=options.required_level,
+            new_keys=options.keys, base_keys=options.base_keys, 
+            words=words, bad_words=bad_words)
+    
+        if output:
+            text = json.write(lesson)
+            open(output, 'w').write(text)
+        else:
+            import pprint
+            pprint.pprint(lesson)
 

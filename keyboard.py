@@ -249,20 +249,6 @@ class KeyWidget(gtk.DrawingArea):
             (self.key['key-height']+10) * scale)
         
         self.connect("expose-event", self._expose_cb)
-        
-        # Connect keyboard grabbing and releasing callbacks.        
-        self.connect('realize', self._realize_cb)
-        self.connect('unrealize', self._unrealize_cb)
-
-    def _realize_cb(self, widget):
-        # Setup keyboard event snooping in the root window.
-        self.root_window.add_events(gtk.gdk.KEY_PRESS_MASK | gtk.gdk.KEY_RELEASE_MASK)
-        self.key_press_cb_id = self.root_window.connect('key-press-event', self._key_press_release_cb)
-        self.key_release_cb_id = self.root_window.connect('key-release-event', self._key_press_release_cb)
-
-    def _unrealize_cb(self, widget):
-        self.root_window.disconnect(self.key_press_cb_id)
-        self.root_window.disconnect(self.key_release_cb_id)
 
     def _setup_transform(self, cr):
         cr.scale(self.scale, self.scale)
@@ -294,12 +280,7 @@ class KeyWidget(gtk.DrawingArea):
         cr.line_to(x1, y1 + corner)
         cr.close_path()
         
-        if k['key-pressed']:
-            cr.set_source_rgb(0.6, 0.6, 1.0)
-        #elif k['key-hilite']:
-        #    cr.set_source_rgb(0.6, 1.0, 0.6)
-        else:
-            cr.set_source_rgb(1.0, 1.0, 1.0)
+        cr.set_source_rgb(1.0, 1.0, 1.0)
         cr.fill_preserve()
         
         cr.set_source_rgb(0.1, 0.1, 0.1)
@@ -340,13 +321,6 @@ class KeyWidget(gtk.DrawingArea):
         self._expose_key(self.key, cr)
         
         return True
-
-    def _key_press_release_cb(self, widget, event):
-        if self.key['key-scan'] == event.hardware_keycode:
-            self.key['key-pressed'] = event.type == gtk.gdk.KEY_PRESS
-            self.queue_draw()
-
-        return False
         
 class Keyboard(gtk.EventBox):
     """A GTK widget which implements an interactive visual keyboard, with support
@@ -375,8 +349,8 @@ class Keyboard(gtk.EventBox):
         self.keys = None
         self.key_scan_map = None
         
-        self.shift_down = False
-        
+        self.draw_hands = False
+
         # Load SVG files.
         bundle_path = sugar.activity.activity.get_bundle_path() 
         self.lhand_home = self._load_image('OLPC_Lhand_HOMEROW.svg')
@@ -619,7 +593,8 @@ class Keyboard(gtk.EventBox):
             self._expose_key(k, cr)
         
         # Draw overlay images.
-        self._expose_hands(cr)
+        if self.draw_hands:
+            self._expose_hands(cr)
         
         return True
 
@@ -627,7 +602,10 @@ class Keyboard(gtk.EventBox):
         key = self.key_scan_map.get(event.hardware_keycode)
         if key:
             key['key-pressed'] = event.type == gtk.gdk.KEY_PRESS
-            self.queue_draw()
+            if self.draw_hands:
+                self.queue_draw()
+            else:
+                self._expose_key(key)
 
         # Hack to get the current modifier state - which will not be represented by the event.
         state = gtk.gdk.device_get_core_pointer().get_state(self.window)[1]
@@ -643,10 +621,28 @@ class Keyboard(gtk.EventBox):
 
     def clear_hilite(self):
         self.hilite_letter = None
-        self.queue_draw()
+        if self.draw_hands:
+            self.queue_draw()
+        else:
+            key = self.find_key_by_letter(self.hilite_letter)
+            if key:
+                self._expose_key(key)
 
     def set_hilite_letter(self, letter):
+        old_letter = self.hilite_letter
         self.hilite_letter = letter
+        if self.draw_hands:
+            self.queue_draw()
+        else:
+            key = self.find_key_by_letter(old_letter)
+            if key:
+                self._expose_key(key)
+            key = self.find_key_by_letter(letter)
+            if key:
+                self._expose_key(key)
+
+    def set_draw_hands(self, enable):
+        self.draw_hands = enable
         self.queue_draw()
 
     def get_key_pixbuf(self, key, scale):
@@ -670,6 +666,10 @@ class Keyboard(gtk.EventBox):
         return KeyWidget(key, self, scale)
     
     def find_key_by_letter(self, letter):
+        # Special processing for the enter key.
+        if letter == PARAGRAPH_CODE:
+            return self.find_key_by_label('enter')
+
         # Convert unicode to GDK keyval.
         keyval = gtk.gdk.unicode_to_keyval(ord(letter))
         

@@ -19,6 +19,10 @@
 import logging, os, math, time, copy, json, locale, datetime, random, re
 from gettext import gettext as _
 
+# Set up remote debugging.
+#import dbgp.client
+#dbgp.client.brkOnExcept(host='192.168.1.104', port=12900)
+
 # Set up localization.
 locale.setlocale(locale.LC_ALL, '')
 
@@ -38,6 +42,9 @@ logging.basicConfig()
 
 # Import activity modules.
 import mainscreen, lessonscreen, medalscreen
+
+# Set to True to allow access to all lessons.
+DEBUG_LESSONS = True
 
 # This is the main Typing Turtle activity class.
 # 
@@ -62,6 +69,9 @@ class TypingTurtle(sugar.activity.activity.Activity):
             'history': [],
             'medals': {}
         }
+
+        if DEBUG_LESSONS:
+            self.data['level'] = 1000
         
         # This has to happen last, because it calls the read_file method when restoring from the Journal.
         self.set_canvas(self.screenbox)

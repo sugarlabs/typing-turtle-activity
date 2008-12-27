@@ -278,6 +278,8 @@ class LessonScreen(gtk.VBox):
                 self.lessonbuffer.get_end_iter())
             
             self.lessontext.set_cursor_visible(False)
+
+            self.keyboard.set_draw_hands(True)
             
         else:
             # Split text into lines.
@@ -312,6 +314,8 @@ class LessonScreen(gtk.VBox):
             
             self.lessontext.set_cursor_visible(True)
         
+            self.keyboard.set_draw_hands(False)
+
         self.line_idx = 0
         self.begin_line()
             

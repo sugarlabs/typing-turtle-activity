@@ -15,7 +15,7 @@
 # along with Typing Turtle.  If not, see <http://www.gnu.org/licenses/>.
 
 # Import standard Python modules.
-import logging, os, math, time, copy, json, locale, datetime, random, re
+import logging, os, math, time, copy, json, locale, datetime, random, re, glob
 from gettext import gettext as _
 
 # Import PyGTK.
@@ -92,33 +92,27 @@ class MainScreen(gtk.VBox):
         # Build background.
         self.titlescene = TitleScene()
         
-        #title = gtk.Label()
-        #title.set_markup("<span size='40000'><b>" + _('Typing Turtle') + "</b></span>")
-        
-        #subtitle = gtk.Label()
-        #subtitle.set_markup(_('Welcome to Typing Turtle! To begin, select a lesson from the list below.'))
-        
         # Build lessons list.
         self.lessonbox = gtk.HBox()
         
+        nexticon = sugar.graphics.icon.Icon(icon_name='go-next')
         self.nextlessonbtn = gtk.Button()
-        self.nextlessonbtn.add(gtk.Label('Next'))
-        #self.nextlessonbtn.add(nextimage)
+        self.nextlessonbtn.add(nexticon)
         self.nextlessonbtn.connect('clicked', self.next_lesson_clicked_cb)
         
+        previcon = sugar.graphics.icon.Icon(icon_name='go-previous')
         self.prevlessonbtn = gtk.Button()
-        self.prevlessonbtn.add(gtk.Label('Prev'))
-        #self.prevlessonbtn.add(previmage)
+        self.prevlessonbtn.add(previcon)
         self.prevlessonbtn.connect('clicked', self.prev_lesson_clicked_cb)
         
         bundle_path = sugar.activity.activity.get_bundle_path() 
         code = locale.getlocale(locale.LC_ALL)[0]
-        path = bundle_path + '/lessons/' + code + '/'
+        path = bundle_path + '/lessons/' + code
         
         # Find all .lesson files in ./lessons/en_US/ for example.
         self.lessons = []
-        for f in os.listdir(path):
-            fd = open(path + f, 'r')
+        for f in glob.iglob(path + '/*.lesson'):
+            fd = open(f, 'r')
             try:
                 lesson = json.read(fd.read())
                 self.lessons.append(lesson)
@@ -161,8 +155,9 @@ class MainScreen(gtk.VBox):
         
         # Create the lesson button.
         label = gtk.Label()
-        label.set_alignment(0.0, 0.5)
-        label.set_markup("<span size='large'>" + lesson['name'] + "</span>\n" + lesson['description'])
+        label.set_alignment(0.0, 0.25)
+        label.set_markup("<span size='15000'><b>" + lesson['name'] + "</b></span>\n" + 
+                         "<span size='10000'>" + lesson['description'] + "</span>")
         
         lessonbtn = gtk.Button()
         lessonbtn.add(label)
