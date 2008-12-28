@@ -272,7 +272,7 @@ def build_lesson(
 
     good_words = filter_wordlist(words=words, 
         all_keys=all_keys, req_keys=new_keys, 
-        minlen=2, maxlen=100, 
+        minlen=2, maxlen=8, 
         bad_words=bad_words)
     
     pairs = get_pairs_from_wordlist(words)
@@ -351,6 +351,9 @@ def build_lesson(
         _('Almost finished. Try to type as quickly and accurately as you can!'),
         'text', make_random_words(good_words, count=200))
     
+    text = '$report'
+    add_step(lesson, text, 'key', '\n')
+
     return lesson
 
 def write_lesson(filename, lesson):
@@ -360,8 +363,8 @@ def write_lesson(filename, lesson):
 
 def build_intro_lesson():
     lesson = {}
-    lesson['name'] = _('Welcome!') 
-    lesson['description'] = _('Click here to begin your typing adventure...') 
+    lesson['name'] = _('Welcome') 
+    lesson['description'] = _('Click here to begin your typing adventure.') 
     lesson['level'] = 1
     lesson['requiredlevel'] = 0
     lesson['report'] = 'simple'
@@ -410,8 +413,8 @@ def build_intro_lesson():
     text += _('type each key!')
     add_step(lesson, text, 'key', ' ')
 
-    #text = '$report'
-    #add_step(lesson, text, 'key', '\n')
+    text = '$report'
+    add_step(lesson, text, 'key', '\n')
 
     return lesson
 
@@ -422,7 +425,7 @@ def make_default_lesson_set(words, bad_words):
 
     lesson = build_lesson(
         name=_('The Home Row'),
-        description=_('This lesson teaches you the first a, s, d, f, g, h, j, k and l keys.\nThese keys are called the Home Row.'), 
+        description=_('This lesson teaches you the first a, s, d, f, g, h, j, k and l keys \nin the middle of the keyboard.\nThese keys are called the Home Row.'), 
         level=2, required_level=1,
         new_keys=_('asdfghjkl'), base_keys='', 
         words=words, bad_words=bad_words)
@@ -430,7 +433,7 @@ def make_default_lesson_set(words, bad_words):
     
     lesson = build_lesson(
         name=_('The Top Row'),
-        description=_('This lesson teaches you the q, w, e, r, t, y, u, i, o and p keys on the top row\nof the keyboard.'), 
+        description=_('This lesson teaches you the q, w, e, r, t, y, u, i, o and p keys \non the top row of the keyboard.'), 
         level=3, required_level=2,
         new_keys='qwertyuiop', base_keys='asdfghjkl', 
         words=words, bad_words=bad_words)
@@ -438,7 +441,7 @@ def make_default_lesson_set(words, bad_words):
 
     lesson = build_lesson(
         name=_('The Bottom Row'),
-        description=_('This lesson teaches you the z, x, c, v, b, n and m keys on the bottom row\nof the keyboard.'), 
+        description=_('This lesson teaches you the z, x, c, v, b, n and m keys \non the bottom row of the keyboard.'), 
         level=4, required_level=3,
         new_keys='zxcvbnm', base_keys='asdfghjklqwertyuiop', 
         words=words, bad_words=bad_words)

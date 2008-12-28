@@ -246,11 +246,11 @@ class LessonScreen(gtk.VBox):
         
         # Output the instructions.
         self.instructions = self.step['instructions']
-        if self.instructions == '$report':
+        if self.instructions.find('$report') != -1:
             self.instructions = self.get_lesson_report()
         
         self.lessonbuffer.insert_with_tags_by_name(
-            self.lessonbuffer.get_end_iter(), '\n\n' + self.step['instructions'] + '\n', 'instructions')
+            self.lessonbuffer.get_end_iter(), '\n\n' + self.instructions + '\n', 'instructions')
         
         self.text = unicode(self.step['text'])
         
@@ -268,10 +268,12 @@ class LessonScreen(gtk.VBox):
             else:
                 key = self.keyboard.find_key_by_letter(self.text[0])
             if key:
-                widget = self.keyboard.get_key_widget(key, 1)
-                widget.show()
-                anchor = self.lessonbuffer.create_child_anchor(self.lessonbuffer.get_end_iter())
-                self.lessontext.add_child_at_anchor(widget, anchor)
+                #widget = self.keyboard.get_key_widget(key, 1)
+                #widget.show()
+                #anchor = self.lessonbuffer.create_child_anchor(self.lessonbuffer.get_end_iter())
+                #self.lessontext.add_child_at_anchor(widget, anchor)
+                pixbuf = self.keyboard.get_key_pixbuf(key, 1)
+                self.lessonbuffer.insert_pixbuf(self.lessonbuffer.get_end_iter(), pixbuf)
             
             self.lessonbuffer.apply_tag_by_name('image',
                 self.lessonbuffer.get_iter_at_mark(self.line_marks[0]),
@@ -473,7 +475,7 @@ class LessonScreen(gtk.VBox):
         for medal in medals:
             if self.wpm >= medal['wpm'] and self.accuracy >= medal['accuracy']:
                 got_medal = medal['name']
-
+        
         if got_medal:
             # Award the medal.
             medal = {
@@ -493,7 +495,7 @@ class LessonScreen(gtk.VBox):
             if self.activity.data['medals'].has_key(lesson_name):
                 old_medal = self.activity.data['medals'][lesson_name]
 
-                order = ' '.join([m['name'] for m in MEDALS])
+                order = ' '.join([m['name'] for m in medals])
                 add_idx = order.index(medal['type'])
                 old_idx = order.index(old_medal['type']) 
 
@@ -513,10 +515,10 @@ class LessonScreen(gtk.VBox):
                     self.activity.data['motd'] = 'newlevel'
                 
                 self.activity.data['medals'][lesson_name] = medal
-                self.activity.mainscreen.show_highest_available_lesson()
+                self.activity.mainscreen.show_next_lesson()
         
         # Display results to the user.
-        text = '\n'
+        text = ''
         
         congrats = [
             _('Good job!'),
@@ -526,21 +528,26 @@ class LessonScreen(gtk.VBox):
         ]
         text += random.choice(congrats) + '\n\n'
         
-        text += _('You finished the lesson in %(time)d seconds, with %(errors)d errors.\n\n') % \
-            { 'time': int(self.total_time), 'errors': self.incorrect_keys }
-        text += _('Your words per minute (WPM) was %(wpm)d, and your accuracy was %(accuracy)d%%.\n\n') % \
-            report
+        if self.total_time > 0:
+            text += _('You finished the lesson in %(time)d seconds, with %(errors)d errors.\n') % \
+                { 'time': int(self.total_time), 'errors': self.incorrect_keys }
+            text += _('Your words per minute (WPM) was %(wpm)d, and your accuracy was %(accuracy)d%%.\n\n') % \
+                report
+        else:
+            text += _('You finished the lesson with %(errors)d errors.\n') % \
+                { 'errors': self.incorrect_keys }
+            text += _('Your accuracy was %(accuracy)d%%.\n\n') % \
+                report
         
         if self.medal:
             # TODO: Play medal sound here.
             
-            text += _('Congratulations!  You earned a %(type)s medal!\n\nPress Enter to see your certificate.') % \
-            medal
+            text += _('Congratulations!  You earned a %(type)s medal!') % medal
             
         else:
             # Comment on what the user needs to do better.
-            need_wpm = report['wpm'] < MEDALS[0]['wpm']
-            need_accuracy = report['accuracy'] < MEDALS[0]['accuracy']
+            need_wpm = report['wpm'] < medals[0]['wpm']
+            need_accuracy = report['accuracy'] < medals[0]['accuracy']
             
             if need_accuracy and need_wpm:
                 text += _('You need to practice this lesson more before moving on.  If you are having a hard time, '
@@ -548,12 +555,10 @@ class LessonScreen(gtk.VBox):
                           'again.\n\n')
                 
             elif need_accuracy:
-                text += _('You almost got a medal!  Next time, try not to make as many errors!\n\n')
+                text += _('You almost got a medal!  Next time, try not to make as many errors.\n\n')
                 
             elif need_wpm:
-                text += _('You almost got a medal!  Next time, try to type a little faster!\n\n')
-                
-            text += _('Press Enter to return to the main screen.')
+                text += _('You almost got a medal!  Next time, try to type a little faster.\n\n')
             
         return text
         

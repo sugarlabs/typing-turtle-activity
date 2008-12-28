@@ -28,12 +28,18 @@ from sugar.graphics import *
 # Import activity modules.
 import lessonscreen, medalscreen
 
+# Temporary SVGs of medals from Wikimedia Commons.
+# See the links below for licensing information.
+# http://commons.wikimedia.org/wiki/File:Gold_medal_world_centered.svg
+# http://commons.wikimedia.org/wiki/File:Silver_medal_world_centered.svg
+# http://commons.wikimedia.org/wiki/File:Bronze_medal_world_centered.svg
+
 class TitleScene(gtk.DrawingArea):
     def __init__(self):
         gtk.DrawingArea.__init__(self)
 
         bundle = sugar.activity.activity.get_bundle_path()
-        self.backgroundpixbuf = gtk.gdk.pixbuf_new_from_file(bundle + '/images/main-background.png')
+        self.backgroundpixbuf = gtk.gdk.pixbuf_new_from_file(bundle + '/images/tt-all-cropped.jpg')
         
         self.set_size_request(self.backgroundpixbuf.get_width(), self.backgroundpixbuf.get_height())
         
@@ -130,15 +136,16 @@ class MainScreen(gtk.VBox):
         self.pack_start(self.titlescene, False, True, 10)
         self.pack_start(lessonscrollbox, True)
         
-        self.show_highest_available_lesson()
+        self.show_next_lesson()
     
-    def show_highest_available_lesson(self):
-        highest_index = 0
+    def show_next_lesson(self):
+        """Displays the first lesson which the user can activate that does not yet have a medal."""
+        start_index = len(self.lessons)-1
         for index in xrange(0, len(self.lessons)):
-            if self.lessons[index]['requiredlevel'] <= self.activity.data['level']:
-                highest_index = max(highest_index, index)
-        print "showing lesson %d" % highest_index
-        self.show_lesson(highest_index)
+            if not self.activity.data['medals'].has_key(self.lessons[index]['name']):
+                if self.lessons[index]['requiredlevel'] <= self.activity.data['level']:
+                    start_index = min(start_index, index)
+        self.show_lesson(start_index)
     
     def show_lesson(self, index):
         # Clear all widgets in the lesson box.
@@ -156,31 +163,45 @@ class MainScreen(gtk.VBox):
         # Create the lesson button.
         label = gtk.Label()
         label.set_alignment(0.0, 0.25)
-        label.set_markup("<span size='15000'><b>" + lesson['name'] + "</b></span>\n" + 
-                         "<span size='10000'>" + lesson['description'] + "</span>")
+        label.set_markup("<span size='16000'><b>" + lesson['name'] + "</b></span>\n" + 
+                         "<span size='8000' color='#c0c0c0'>" + lesson['description'] + "</span>")
         
         lessonbtn = gtk.Button()
         lessonbtn.add(label)
         lessonbtn.connect('clicked', self.lesson_clicked_cb)
         
         # Create the medal image.
-        medalimage = gtk.Image()
-        
         medal_type = 'none'
         if self.activity.data['medals'].has_key(lesson['name']):
             medal_type = self.activity.data['medals'][lesson['name']]['type']
         
         bundle = sugar.activity.activity.get_bundle_path()
         images = {
-            'none':   bundle+'/images/no-medal.jpg',
-            'bronze': bundle+'/images/bronze-medal.jpg',
-            'silver': bundle+'/images/silver-medal.jpg',
-            'gold':   bundle+'/images/gold-medal.jpg'
+            'none':   bundle+'/images/no-medal.svg',
+            'bronze': bundle+'/images/bronze-medal.svg',
+            'silver': bundle+'/images/silver-medal.svg',
+            'gold':   bundle+'/images/gold-medal.svg'
         }
-        medalimage.set_from_file(images[medal_type])
+        medalpixbuf = gtk.gdk.pixbuf_new_from_file(images[medal_type])
+        medalpixbuf = medalpixbuf.scale_simple(250, 250, gtk.gdk.INTERP_BILINEAR)
+        
+        medalimage = gtk.Image()
+        medalimage.set_from_pixbuf(medalpixbuf)
+        
+        names = {
+            'none':   _('No Medal Yet'),
+            'bronze': _('Bronze Medal'),
+            'silver': _('Silver Medal'),
+            'gold':   _('Gold Medal'),
+        }
+        medallabel = gtk.Label(names[medal_type])
+        
+        medalbox = gtk.VBox()
+        medalbox.pack_start(medalimage)
+        medalbox.pack_start(medallabel)
         
         medalbtn = gtk.Button()
-        medalbtn.add(medalimage)
+        medalbtn.add(medalbox)
         medalbtn.connect('clicked', self.medal_clicked_cb)
         
         # Disable the buttons unless available.

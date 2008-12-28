@@ -349,8 +349,10 @@ class Keyboard(gtk.EventBox):
         self.keys = None
         self.key_scan_map = None
         
+        self.hilite_letter = None
+        
         self.draw_hands = False
-
+        
         # Load SVG files.
         bundle_path = sugar.activity.activity.get_bundle_path() 
         self.lhand_home = self._load_image('OLPC_Lhand_HOMEROW.svg')
@@ -649,16 +651,21 @@ class Keyboard(gtk.EventBox):
         w = key['key-width'] * scale
         h = key['key-height'] * scale
         
-        pixmap = gtk.gdk.Pixmap(self.area.window, w, h)
+        pixmap = gtk.gdk.Pixmap(self.root_window.window, w, h)
         
         cr = pixmap.cairo_create()
         cr.translate(-key['key-x'], -key['key-y'])
         cr.scale(scale, scale)
         
+        old_pressed = key['key-pressed']
+        key['key-pressed'] = False
+        
         self._expose_key(key, cr)
         
+        key['key-pressed'] = old_pressed
+        
         pb = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, False, 8, w, h)
-        pb.get_from_drawable(pixmap, self.area.window.get_colormap(), 0, 0, 0, 0,w, h)
+        pb.get_from_drawable(pixmap, self.root_window.window.get_colormap(), 0, 0, 0, 0,w, h)
         
         return pb
     
@@ -705,4 +712,3 @@ if __name__ == "__main__":
     window.show_all()
 
     gtk.main()
-
