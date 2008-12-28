@@ -118,8 +118,9 @@ class LessonScreen(gtk.VBox):
         frame = gtk.Frame()
         frame.add(self.lessonscroll)
         
-        self.keyboard = keyboard.Keyboard(self.activity)
+        self.keyboard = keyboard.KeyboardWidget(self.activity)
         self.keyboard.set_layout(keyboard.DEFAULT_LAYOUT)
+        self.keyboard.load_hand_images()
         
         self.pack_start(hbox, False, False, 10)
         self.pack_start(frame, True, True)
@@ -515,9 +516,8 @@ class LessonScreen(gtk.VBox):
                     self.activity.data['motd'] = 'newlevel'
                 
                 self.activity.data['medals'][lesson_name] = medal
-                self.activity.mainscreen.show_next_lesson()
         
-        # Display results to the user.
+        # Generate results text for the user.
         text = ''
         
         congrats = [

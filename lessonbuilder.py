@@ -19,8 +19,12 @@
 import os, sys, random, json, locale, re
 from gettext import gettext as _
 
-import dbgp.client
-dbgp.client.brkOnExcept(host='192.168.1.104', port=12900)
+# Set up remote debugging.
+#import dbgp.client
+#dbgp.client.brkOnExcept(host='192.168.1.104', port=12900)
+
+# Import keyboard data.
+import keyboard
 
 # Set up localization.
 locale.setlocale(locale.LC_ALL, '')
@@ -277,9 +281,6 @@ def build_lesson(
     
     pairs = get_pairs_from_wordlist(words)
         
-    #kb = keyboard.Keyboard(None)
-    #kb.set_layout(keyboard.DEFAULT_LAYOUT)
-
     lesson = {}
     lesson['name'] = name
     lesson['description'] = description
@@ -292,6 +293,9 @@ def build_lesson(
     ]
     lesson['steps'] = []
 
+    kb = keyboard.KeyboardData()
+    kb.set_layout(keyboard.DEFAULT_LAYOUT)
+
     keynames = ''
     for k in new_keys[:-2]:
         keynames += k + ', '
@@ -303,10 +307,10 @@ def build_lesson(
         'key', '\n')
 
     for key in new_keys:
-        #k = kb.find_key_by_letter(key)
+        k = kb.find_key_by_letter(key)
         add_step(lesson,
             _('Press the %(name)s key using your %(finger)s finger.') \
-                % { 'name': key, 'finger': FINGERS['RP'] }, # k.props['key-finger']
+                % { 'name': key, 'finger': FINGERS[k['key-finger']] },
             'key', key)
 
     add_step(lesson,

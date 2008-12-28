@@ -19,9 +19,10 @@
 import pygtk
 pygtk.require('2.0')
 import gtk
-import cairo
-import os, sugar.activity.activity
 import rsvg
+import os
+
+import sugar.activity.activity
 
 PARAGRAPH_CODE = u'\xb6'
 
@@ -232,151 +233,16 @@ DEFAULT_LAYOUT = {
     ]
 }
 
-class KeyWidget(gtk.DrawingArea):
-    """A GTK widget which implements a single key of a keyboard."""
-    
-    def __init__(self, key, keyboard, scale):
-        gtk.DrawingArea.__init__(self)
-        
-        self.key = key
-        self.keyboard = keyboard
-        self.scale = scale
-        
-        self.root_window = keyboard.root_window
-        
-        self.set_size_request(
-            (self.key['key-width']+10) * scale,
-            (self.key['key-height']+10) * scale)
-        
-        self.connect("expose-event", self._expose_cb)
-
-    def _setup_transform(self, cr):
-        cr.scale(self.scale, self.scale)
-        
-    def _expose_key(self, k, cr=None):
-        # Setup cairo context if needed.
-        if not cr:
-            if not self.window:
-                return
-            cr = self.window.cairo_create()
-            self._setup_transform(cr)
-        
-        cr.save()
-        
-        x1 = 5
-        y1 = 5
-        x2 = x1 + k['key-width']
-        y2 = y1 + k['key-height']
-        
-        # Outline rounded box.
-        corner = 5
-        cr.move_to(x1 + corner, y1)
-        cr.line_to(x2 - corner, y1)
-        cr.line_to(x2, y1 + corner)
-        cr.line_to(x2, y2 - corner)
-        cr.line_to(x2 - corner, y2)
-        cr.line_to(x1 + corner, y2)
-        cr.line_to(x1, y2 - corner)
-        cr.line_to(x1, y1 + corner)
-        cr.close_path()
-        
-        cr.set_source_rgb(1.0, 1.0, 1.0)
-        cr.fill_preserve()
-        
-        cr.set_source_rgb(0.1, 0.1, 0.1)
-        cr.stroke_preserve()
-        
-        cr.clip()
-        
-        # Inner text.
-        text = ''
-        if k['key-label']:
-            text = k['key-label']
-        else:
-            info = self.keyboard.keymap.translate_keyboard_state(
-                k['key-scan'], self.keyboard.active_state, self.keyboard.active_group)
-            if info:
-                key = gtk.gdk.keyval_to_unicode(info[0])
-                try:
-                    text = unichr(key).encode('utf-8')
-                except:
-                    pass
-        
-        cr.set_font_size(16)
-        x_bearing, y_bearing, width, height = cr.text_extents(text)[:4]
-        
-        cr.move_to(x1+8 - x_bearing, y2-8 - height - y_bearing)
-        cr.show_text(text)
-        
-        cr.restore()
-
-    def _expose_cb(self, area, event):
-        cr = self.window.cairo_create()
-        
-        cr.rectangle(event.area.x, event.area.y, event.area.width, event.area.height)
-        cr.clip()
-        
-        self._setup_transform(cr)
-        
-        self._expose_key(self.key, cr)
-        
-        return True
-        
-class Keyboard(gtk.EventBox):
-    """A GTK widget which implements an interactive visual keyboard, with support
-       for custom data driven layouts."""
-
-    def __init__(self, root_window):
-        gtk.EventBox.__init__(self)
-        
-        self.root_window = root_window
-        
-        # Create the drawing area.
-        self.area = gtk.DrawingArea()
-        self.area.connect("expose-event", self._expose_cb)
-        self.add(self.area)
-        
-        # Access the current GTK keymap.
-        self.keymap = gtk.gdk.keymap_get_default()
-        
-        # Active language group and modifier state.
-        # See http://www.pygtk.org/docs/pygtk/class-gdkkeymap.html for more
-        # information about key group and state.
-        self.active_group = 0
-        self.active_state = 0
-        
+class KeyboardData:
+    def __init__(self): 
         # This array contains the current keyboard layout.
         self.keys = None
         self.key_scan_map = None
         
-        self.hilite_letter = None
-        
-        self.draw_hands = False
-        
-        # Load SVG files.
-        bundle_path = sugar.activity.activity.get_bundle_path() 
-        self.lhand_home = self._load_image('OLPC_Lhand_HOMEROW.svg')
-        self.rhand_home = self._load_image('OLPC_Rhand_HOMEROW.svg')
-        
-        # Connect keyboard grabbing and releasing callbacks.        
-        self.area.connect('realize', self._realize_cb)
-        self.area.connect('unrealize', self._unrealize_cb)
+        # Access the current GTK keymap.
+        self.keymap = gtk.gdk.keymap_get_default()
 
-    def _realize_cb(self, widget):
-        # Setup keyboard event snooping in the root window.
-        self.root_window.add_events(gtk.gdk.KEY_PRESS_MASK | gtk.gdk.KEY_RELEASE_MASK)
-        self.key_press_cb_id = self.root_window.connect('key-press-event', self._key_press_release_cb)
-        self.key_release_cb_id = self.root_window.connect('key-release-event', self._key_press_release_cb)
-
-    def _unrealize_cb(self, widget):
-        self.root_window.disconnect(self.key_press_cb_id)
-        self.root_window.disconnect(self.key_release_cb_id)
-
-    def _load_image(self, name):
-        bundle_path = sugar.activity.activity.get_bundle_path() 
-        filename = os.path.join(bundle_path, 'images', name)
-        return rsvg.Handle(filename)
-
+    def set_layout(self, layout): pass
     def _build_key_list(self, layout):
         """Builds a list of Keys objects from a layout description.  
            Also fills in derived and inherited key properties.  
@@ -417,12 +283,8 @@ class Keyboard(gtk.EventBox):
                 if key['key-scan']:
                     self.key_scan_map[key['key-scan']] = key
 
-                # Load SVG hand overlay.
-                if key['key-hand-image']:
-                    key['key-hand-image-handle'] = self._load_image(key['key-hand-image']) 
-            
             group_count += 1
-  
+
     def _layout_keys(self):
         """Assigns positions and sizes to the individual keys."""
         # Note- We know self.keys is sorted by group, and by index within the group.
@@ -459,6 +321,81 @@ class Keyboard(gtk.EventBox):
         self._build_key_list(layout)
         self._layout_keys()
 
+    def find_key_by_label(self, label):
+        for k in self.keys:
+            if k['key-label'] == label:
+                return k
+        return None
+
+    def find_key_by_letter(self, letter):
+        # Special processing for the enter key.
+        if letter == PARAGRAPH_CODE:
+            return self.find_key_by_label('enter')
+
+        # Convert unicode to GDK keyval.
+        keyval = gtk.gdk.unicode_to_keyval(ord(letter))
+        
+        # Find list of key combinations that can generate this keyval.
+        # If found, return the key whose scan code matches the first combo.
+        entries = self.keymap.get_entries_for_keyval(keyval)
+        if entries:
+            code = entries[0][0]
+            return self.key_scan_map.get(code)
+        else:
+            return None
+
+
+class KeyboardWidget(KeyboardData, gtk.DrawingArea):
+    """A GTK widget which implements an interactive visual keyboard, with support
+       for custom data driven layouts."""
+
+    def __init__(self, root_window):
+        KeyboardData.__init__(self)
+        gtk.DrawingArea.__init__(self)
+        
+        self.root_window = root_window
+        
+        self.connect("expose-event", self._expose_cb)
+        
+        # Active language group and modifier state.
+        # See http://www.pygtk.org/docs/pygtk/class-gdkkeymap.html for more
+        # information about key group and state.
+        self.active_group = 0
+        self.active_state = 0
+        
+        self.hilite_letter = None
+        
+        self.draw_hands = False
+        
+        # Load SVG files.
+        bundle_path = sugar.activity.activity.get_bundle_path() 
+        self.lhand_home = self._load_image('OLPC_Lhand_HOMEROW.svg')
+        self.rhand_home = self._load_image('OLPC_Rhand_HOMEROW.svg')
+        
+        # Connect keyboard grabbing and releasing callbacks.        
+        self.connect('realize', self._realize_cb)
+        self.connect('unrealize', self._unrealize_cb)
+
+    def _realize_cb(self, widget):
+        # Setup keyboard event snooping in the root window.
+        self.root_window.add_events(gtk.gdk.KEY_PRESS_MASK | gtk.gdk.KEY_RELEASE_MASK)
+        self.key_press_cb_id = self.root_window.connect('key-press-event', self._key_press_release_cb)
+        self.key_release_cb_id = self.root_window.connect('key-release-event', self._key_press_release_cb)
+
+    def _unrealize_cb(self, widget):
+        self.root_window.disconnect(self.key_press_cb_id)
+        self.root_window.disconnect(self.key_release_cb_id)
+
+    def _load_image(self, name):
+        bundle_path = sugar.activity.activity.get_bundle_path() 
+        filename = os.path.join(bundle_path, 'images', name)
+        return rsvg.Handle(filename)
+
+    def load_hand_images(self):
+        for key in self.keys:
+            if key['key-hand-image']:
+                key['key-hand-image-handle'] = self._load_image(key['key-hand-image']) 
+    
     def _get_screen_ratio(self):
         bounds = self.get_allocation()
         
@@ -486,9 +423,9 @@ class Keyboard(gtk.EventBox):
     def _expose_key(self, k, cr=None):
         # Setup cairo context if needed.
         if not cr:
-            if not self.area.window:
+            if not self.window:
                 return
-            cr = self.area.window.cairo_create()
+            cr = self.window.cairo_create()
             self._setup_transform(cr)
         
         cr.save()
@@ -583,7 +520,7 @@ class Keyboard(gtk.EventBox):
         cr.restore()
 
     def _expose_cb(self, area, event):
-        cr = self.area.window.cairo_create()
+        cr = self.window.cairo_create()
         
         cr.rectangle(event.area.x, event.area.y, event.area.width, event.area.height)
         cr.clip()
@@ -669,43 +606,17 @@ class Keyboard(gtk.EventBox):
         
         return pb
     
-    def get_key_widget(self, key, scale):
-        return KeyWidget(key, self, scale)
-    
-    def find_key_by_letter(self, letter):
-        # Special processing for the enter key.
-        if letter == PARAGRAPH_CODE:
-            return self.find_key_by_label('enter')
-
-        # Convert unicode to GDK keyval.
-        keyval = gtk.gdk.unicode_to_keyval(ord(letter))
-        
-        # Find list of key combinations that can generate this keyval.
-        # If found, return the key whose scan code matches the first combo.
-        entries = self.keymap.get_entries_for_keyval(keyval)
-        if entries:
-            code = entries[0][0]
-            return self.key_scan_map.get(code)
-        else:
-            return None
-
     def set_overlays(self, lhand, rhand):
         self.lhand_overlay = lhand
         self.rhand_overlay = rhand
         self.queue_draw()
-        
-    def find_key_by_label(self, label):
-        for k in self.keys:
-            if k['key-label'] == label:
-                return k
-        return None
 
 if __name__ == "__main__":
     window = gtk.Window(gtk.WINDOW_TOPLEVEL)
     window.set_title("keyboard widget")
     window.connect("destroy", lambda w: gtk.main_quit())
 
-    k = Keyboard(window)
+    k = KeyboardWidget(window)
     k.set_layout(DEFAULT_LAYOUT)
 
     window.add(k)
