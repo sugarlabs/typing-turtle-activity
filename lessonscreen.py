@@ -318,6 +318,7 @@ class LessonScreen(gtk.VBox):
 
         self.line_idx = 0
         self.begin_line()
+
             
     def begin_line(self):
         self.line = self.lines[self.line_idx]
