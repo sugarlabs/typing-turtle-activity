@@ -125,7 +125,8 @@ class MainScreen(gtk.VBox):
             finally:
                 fd.close()
         
-        self.lessons.sort(lambda x, y: x['level'] - y['level'])
+        # Sort by the 'order' field.
+        self.lessons.sort(lambda x, y: x.get('order', 0) - y.get('order', 0))
         
         lessonscrollbox = gtk.HBox()
         lessonscrollbox.set_spacing(10)
@@ -137,15 +138,18 @@ class MainScreen(gtk.VBox):
         self.pack_start(lessonscrollbox, True)
         
         self.show_next_lesson()
+
+    def get_next_lesson(self):
+        """Returns the index of the first lesson without a medal."""
+        index = len(self.lessons)-1
+        for i in xrange(0, len(self.lessons)):
+            if not self.activity.data['medals'].has_key(self.lessons[i]['name']):
+                index = min(index, i)
+        return index
     
     def show_next_lesson(self):
         """Displays the first lesson which the user can activate that does not yet have a medal."""
-        start_index = len(self.lessons)-1
-        for index in xrange(0, len(self.lessons)):
-            if not self.activity.data['medals'].has_key(self.lessons[index]['name']):
-                if self.lessons[index]['requiredlevel'] <= self.activity.data['level']:
-                    start_index = min(start_index, index)
-        self.show_lesson(start_index)
+        self.show_lesson(self.get_next_lesson())
     
     def show_lesson(self, index):
         # Clear all widgets in the lesson box.
@@ -156,25 +160,38 @@ class MainScreen(gtk.VBox):
         self.nextlessonbtn.set_sensitive(index < len(self.lessons)-1)
         
         lesson = self.lessons[index]
-
+        
         self.lesson_index = index
         self.visible_lesson = lesson
         
-        # Create the lesson button.
-        label = gtk.Label()
-        label.set_alignment(0.0, 0.25)
-        label.set_markup("<span size='16000'><b>" + lesson['name'] + "</b></span>\n" + 
-                         "<span size='8000' color='#c0c0c0'>" + lesson['description'] + "</span>")
-        
-        lessonbtn = gtk.Button()
-        lessonbtn.add(label)
-        lessonbtn.connect('clicked', self.lesson_clicked_cb)
-        
-        # Create the medal image.
         medal_type = 'none'
         if self.activity.data['medals'].has_key(lesson['name']):
             medal_type = self.activity.data['medals'][lesson['name']]['type']
         
+        # Create the lesson button.
+        label = gtk.Label()
+        label.set_alignment(0.0, 0.5)
+        label.set_markup("<span size='16000'><b>" + lesson['name'] + "</b></span>\n" + 
+                         "<span size='8000' color='#c0c0c0'>" + lesson['description'] + "</span>")
+        
+        if medal_type != 'none':
+            hint = _('You earned a medal in this lesson!  Advance  to the next one\nby clicking the red arrow button to the right.')
+        else:
+            hint = ''
+                
+        hintlabel = gtk.Label()
+        hintlabel.set_alignment(0.0, 0.8)
+        hintlabel.set_markup("<span size='8000' color='#c0c040'>" + hint + "</span>")
+        
+        labelbox = gtk.VBox()
+        labelbox.pack_start(label)
+        labelbox.pack_start(hintlabel)
+        
+        lessonbtn = gtk.Button()
+        lessonbtn.add(labelbox)
+        lessonbtn.connect('clicked', self.lesson_clicked_cb)
+        
+        # Create the medal image.
         bundle = sugar.activity.activity.get_bundle_path()
         images = {
             'none':   bundle+'/images/no-medal.svg',
@@ -204,10 +221,16 @@ class MainScreen(gtk.VBox):
         medalbtn.add(medalbox)
         medalbtn.connect('clicked', self.medal_clicked_cb)
         
-        # Disable the buttons unless available.
-        lesson_available = self.activity.data['level'] >= lesson['requiredlevel']
-        lessonbtn.set_sensitive(lesson_available)
-        medalbtn.set_sensitive(lesson_available)
+        # Hilite the button in the direction of the first unmedaled lesson.
+        next_index = self.get_next_lesson()
+        if next_index > self.lesson_index:
+            self.nextlessonbtn.modify_bg(gtk.STATE_NORMAL, self.get_colormap().alloc_color('#ff8080'))
+        else:
+            self.nextlessonbtn.modify_bg(gtk.STATE_NORMAL, self.get_colormap().alloc_color('#808080'))
+        if next_index < self.lesson_index:
+            self.prevlessonbtn.modify_bg(gtk.STATE_NORMAL, self.get_colormap().alloc_color('#ff8080'))
+        else:
+            self.prevlessonbtn.modify_bg(gtk.STATE_NORMAL, self.get_colormap().alloc_color('#808080'))
         
         self.lessonbox.pack_start(lessonbtn, True)
         self.lessonbox.pack_start(medalbtn, False)

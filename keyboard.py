@@ -127,7 +127,7 @@ DEFAULT_LAYOUT = {
         #    ]
         #},
         {
-            'group-name': "row1",
+            'group-name': "numbers",
             'group-x': 10,
             'group-y': 10,
             
@@ -149,7 +149,7 @@ DEFAULT_LAYOUT = {
             ]
         },
         {
-            'group-name': "row2",
+            'group-name': "top",
             'group-x': 10,
             'group-y': 60,
             
@@ -171,7 +171,7 @@ DEFAULT_LAYOUT = {
             ]
         },
         {
-            'group-name': "row3",
+            'group-name': "home",
             'group-x': 10,
             'group-y': 110,
             
@@ -192,7 +192,7 @@ DEFAULT_LAYOUT = {
             ]
         },
         {
-            'group-name': "row4",
+            'group-name': "bottom",
             'group-x': 10,
             'group-y': 160,
             
@@ -214,7 +214,7 @@ DEFAULT_LAYOUT = {
             ]
         },
         {
-            'group-name': "row5",
+            'group-name': "space",
             'group-x': 10,
             'group-y': 210,
             
@@ -328,9 +328,10 @@ class KeyboardData:
         return None
 
     def find_key_by_letter(self, letter):
+        """Returns tuple of (key, level, group)."""
         # Special processing for the enter key.
-        if letter == PARAGRAPH_CODE:
-            return self.find_key_by_label('enter')
+        if letter == '\n' or letter == PARAGRAPH_CODE:
+            return self.find_key_by_label('enter'), 0, 0
 
         # Convert unicode to GDK keyval.
         keyval = gtk.gdk.unicode_to_keyval(ord(letter))
@@ -340,9 +341,9 @@ class KeyboardData:
         entries = self.keymap.get_entries_for_keyval(keyval)
         if entries:
             code = entries[0][0]
-            return self.key_scan_map.get(code)
+            return self.key_scan_map.get(code), entries[0][2], entries[0][1]
         else:
-            return None
+            return None, None, None
 
 
 class KeyboardWidget(KeyboardData, gtk.DrawingArea):
@@ -551,10 +552,10 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
 
         if self.active_group != event.group or self.active_state != state:
             self.active_group = event.group
-            self.active_state = event.state
+            self.active_state = state
             self.queue_draw()
-        
-        #print "press %d state=%x group=%d" % (event.hardware_keycode, self.active_state, event.group)
+            
+            #print "press %d state=%x group=%d" % (event.hardware_keycode, self.active_state, self.active_group)
         
         return False
 
@@ -563,7 +564,7 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
         if self.draw_hands:
             self.queue_draw()
         else:
-            key = self.find_key_by_letter(self.hilite_letter)
+            key, dummy, dummy = self.find_key_by_letter(self.hilite_letter)
             if key:
                 self._expose_key(key)
 
@@ -573,10 +574,10 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
         if self.draw_hands:
             self.queue_draw()
         else:
-            key = self.find_key_by_letter(old_letter)
+            key, dummy, dummy = self.find_key_by_letter(old_letter)
             if key:
                 self._expose_key(key)
-            key = self.find_key_by_letter(letter)
+            key, dummy, dummy = self.find_key_by_letter(letter)
             if key:
                 self._expose_key(key)
 
@@ -584,15 +585,17 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
         self.draw_hands = enable
         self.queue_draw()
 
-    def get_key_pixbuf(self, key, scale):
-        w = key['key-width'] * scale
-        h = key['key-height'] * scale
+    def get_key_pixbuf(self, key, state=0, group=0):
+        w = key['key-width']
+        h = key['key-height']
         
         pixmap = gtk.gdk.Pixmap(self.root_window.window, w, h)
         
         cr = pixmap.cairo_create()
         cr.translate(-key['key-x'], -key['key-y'])
-        cr.scale(scale, scale)
+        
+        old_state, old_group = self.active_state, self.active_group
+        self.active_state, self.active_group = state, group
         
         old_pressed = key['key-pressed']
         key['key-pressed'] = False
@@ -600,17 +603,13 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
         self._expose_key(key, cr)
         
         key['key-pressed'] = old_pressed
+        self.active_state, self.active_group = old_state, old_group
         
         pb = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, False, 8, w, h)
         pb.get_from_drawable(pixmap, self.root_window.window.get_colormap(), 0, 0, 0, 0,w, h)
         
         return pb
     
-    def set_overlays(self, lhand, rhand):
-        self.lhand_overlay = lhand
-        self.rhand_overlay = rhand
-        self.queue_draw()
-
 if __name__ == "__main__":
     window = gtk.Window(gtk.WINDOW_TOPLEVEL)
     window.set_title("keyboard widget")

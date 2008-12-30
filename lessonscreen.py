@@ -89,6 +89,7 @@ class LessonScreen(gtk.VBox):
         
         image_tag = gtk.TextTag('image')
         image_tag.props.justification = gtk.JUSTIFY_CENTER
+        image_tag.props.size = 20000
         self.tagtable.add(image_tag)
         
         correct_copy_tag = gtk.TextTag('correct-copy')
@@ -264,16 +265,23 @@ class LessonScreen(gtk.VBox):
             
             self.line_marks[0] = self.lessonbuffer.create_mark(None, self.lessonbuffer.get_end_iter(), True)
             
-            if self.text[0] == '\n' or self.text[0] == PARAGRAPH_CODE:
-                key = self.keyboard.find_key_by_label('enter')
-            else:
-                key = self.keyboard.find_key_by_letter(self.text[0])
+            # Determine what modifier keys are needed.
+            key, level, group = self.keyboard.find_key_by_letter(self.text[0])
+
             if key:
-                #widget = self.keyboard.get_key_widget(key, 1)
-                #widget.show()
-                #anchor = self.lessonbuffer.create_child_anchor(self.lessonbuffer.get_end_iter())
-                #self.lessontext.add_child_at_anchor(widget, anchor)
-                pixbuf = self.keyboard.get_key_pixbuf(key, 1)
+                state = 0
+                
+                # Insert shift key if positive level.
+                if level > 0:                    
+                    shift_key = self.keyboard.find_key_by_label('shift')
+                    pixbuf = self.keyboard.get_key_pixbuf(shift_key)
+                    self.lessonbuffer.insert_pixbuf(self.lessonbuffer.get_end_iter(), pixbuf)
+                    self.lessonbuffer.insert(self.lessonbuffer.get_end_iter(), ' ')
+                    
+                    # This is highly questionable but I don't have better solution yet!
+                    state |= gtk.gdk.SHIFT_MASK
+                
+                pixbuf = self.keyboard.get_key_pixbuf(key, state, group)
                 self.lessonbuffer.insert_pixbuf(self.lessonbuffer.get_end_iter(), pixbuf)
             
             self.lessonbuffer.apply_tag_by_name('image',
@@ -281,7 +289,8 @@ class LessonScreen(gtk.VBox):
                 self.lessonbuffer.get_end_iter())
             
             self.lessontext.set_cursor_visible(False)
-
+            
+            # Enable hands for key mode.            
             self.keyboard.set_draw_hands(True)
             
         else:
@@ -297,18 +306,13 @@ class LessonScreen(gtk.VBox):
                 if len(line) > LINE_WIDTH:
                     self.lines[i:i+1] = self.wrap_line(line)
             
-            # Center single line steps.
-            indent = ''
-            #if len(self.lines) == 1:
-            #    indent = ' ' * ((LINE_LENGTH - len(self.lines[0]))/2)
-            
             # Fill text buffer with text lines, each followed by room for the user to type.
             self.line_marks = {} 
             line_idx = 0
             for l in self.lines:
                 # Add the text to copy.
                 self.lessonbuffer.insert_with_tags_by_name(
-                    self.lessonbuffer.get_end_iter(), '\n' + indent + l.encode('utf-8') + '\n' + indent, 'text')
+                    self.lessonbuffer.get_end_iter(), '\n' + l.encode('utf-8') + '\n', 'text')
                 
                 # Leave a marker where we will later insert text.
                 self.line_marks[line_idx] = self.lessonbuffer.create_mark(None, self.lessonbuffer.get_end_iter(), True)
@@ -316,7 +320,8 @@ class LessonScreen(gtk.VBox):
                 line_idx += 1
             
             self.lessontext.set_cursor_visible(True)
-        
+            
+            # Hide hands for typing mode - performance is too slow to type.  Sigh for now.
             self.keyboard.set_draw_hands(False)
 
         self.line_idx = 0
@@ -510,14 +515,13 @@ class LessonScreen(gtk.VBox):
                             add_medal = False
             
             if add_medal:       
-                # Upgrade the player's level if needed.
-                if self.lesson['level'] > self.activity.data['level']:
-                    self.activity.data['level'] = self.lesson['level']
-                    self.activity.data['motd'] = 'newlevel'
-                
+                self.activity.data['motd'] = 'newmedal'
                 self.activity.data['medals'][lesson_name] = medal
+                
+                # Refresh the main screen given the new medal.
+                self.activity.mainscreen.show_lesson(self.activity.mainscreen.lesson_index)
         
-        # Generate results text for the user.
+        # Generate results for the user.
         text = ''
         
         congrats = [

@@ -83,12 +83,14 @@ def make_random_doubles(keys, count):
         text += k + k + ' '
     return text.strip()
 
-def make_jumbles(keys, count, gap):
+def make_jumbles(required_keys, keys, count, width):
     text = ''
     for y in range(0, count):
-        text += random.choice(keys)
-        if y % gap == gap-1:
-            text += ' '
+        # Alternating between required and non-required.  Is this too challenging to type?
+        for x in range(0, width/2):
+            text += random.choice(required_keys)
+            text += random.choice(keys)
+        text += ' '
     return text.strip()
 
 def make_all_pairs(keys):
@@ -201,6 +203,9 @@ def get_weighted_random_pair(pairs):
 def make_weighted_wordlist_pairs(pairs, required_keys, keys, count):
     good_pairs = filter_pairs(pairs, required_keys, keys)
     
+    if len(good_pairs) == 0:
+        return make_random_pairs(required_keys, keys, count)
+        
     text = ''
     for y in xrange(0, count):
         p = get_weighted_random_pair(good_pairs)
@@ -249,7 +254,10 @@ def filter_wordlist(words, all_keys, req_keys, minlen, maxlen, bad_words):
 
     return good_words
 
-def make_random_words(words, count):
+def make_random_words(words, required_keys, keys, count):
+    if len(words) == 0:
+        return make_jumbles(required_keys, keys, count, 5)
+    
     text = ''
     for x in range(0, count):
         text += random.choice(words) + ' '
@@ -266,7 +274,7 @@ def add_step(lesson, instructions, mode, text):
 
 def build_lesson(
     name, description, 
-    level, required_level, 
+    order,
     new_keys, base_keys, 
     words, bad_words):
 
@@ -284,8 +292,7 @@ def build_lesson(
     lesson = {}
     lesson['name'] = name
     lesson['description'] = description
-    lesson['level'] = level
-    lesson['requiredlevel'] = required_level
+    lesson['order'] = order
     lesson['medals'] = [
         { 'name': 'bronze', 'wpm': 5,  'accuracy': 60 },
         { 'name': 'silver', 'wpm': 10, 'accuracy': 75 },
@@ -296,10 +303,11 @@ def build_lesson(
     kb = keyboard.KeyboardData()
     kb.set_layout(keyboard.DEFAULT_LAYOUT)
 
-    keynames = ''
-    for k in new_keys[:-2]:
-        keynames += k + ', '
-    keynames += new_keys[-2] + ' and ' + new_keys[-1]
+    keynames = new_keys[0]
+    if len(new_keys) >= 2:
+        for k in new_keys[1:-2]:
+            keynames += k + ', '
+        keynames += new_keys[-2] + ' and ' + new_keys[-1]
 
     add_step(lesson,
         _('Welcome to the %(name)s lesson!\n\nIn this lesson, you will learn the %(keynames)s keys.  Press the Enter key when you are ready to begin!') \
@@ -345,15 +353,15 @@ def build_lesson(
 
     add_step(lesson,
         _('Time to type real words.'),
-        'text', make_random_words(good_words, count=100))
+        'text', make_random_words(good_words, new_keys, all_keys, count=100))
     
     add_step(lesson,
         _('Keep practicing these words.'),
-        'text', make_random_words(good_words, count=100))
+        'text', make_random_words(good_words, new_keys, all_keys, count=100))
     
     add_step(lesson,
         _('Almost finished. Try to type as quickly and accurately as you can!'),
-        'text', make_random_words(good_words, count=200))
+        'text', make_random_words(good_words, new_keys, all_keys, count=200))
     
     text = '$report'
     add_step(lesson, text, 'key', '\n')
@@ -369,8 +377,7 @@ def build_intro_lesson():
     lesson = {}
     lesson['name'] = _('Welcome') 
     lesson['description'] = _('Click here to begin your typing adventure.') 
-    lesson['level'] = 1
-    lesson['requiredlevel'] = 0
+    lesson['order'] = 0
     lesson['report'] = 'simple'
     lesson['medals'] = [
         { 'name': 'bronze', 'wpm': 0, 'accuracy': 10 },
@@ -422,6 +429,23 @@ def build_intro_lesson():
 
     return lesson
 
+# Note to myself.
+#
+# From looking at the real keyboard layouts, this path (--make-all-lessons) is foolish.
+# Differrent languages invoke different sets of keys with different sets of shifts, so one
+# algorithm will not be able to determine an effective learning order.
+#
+# The correct approach is to create a shell script for each language which repeatedly calls
+# lessonbuilder.py with different options to create the various lessons.
+#
+# Further, the lesson system needs to be expanded to properly handle all various shift
+# and language change keys.
+#
+
+#TOPROW_SCANCODES = [ 0x17, 0x18, 0x19, 0x1a, 0x1b, 0x1c, 0x1d, 0x1e, 0x1f, 0x20, 0x21 ]
+#HOMEROW_SCANCODES = [ 0x25, 0x26, 0x27, 0x28, 0x29, 0x2a, 0x2b, 0x2c, 0x2d, 0x2e, 0x2f, 0x30, 0x33 ]
+#BOTTOMROW_SCANCODES = [ 0x32, 0x34, 0x35, 0x36, 0x37, 0x38, 0x39, 0x3a ]
+
 def make_default_lesson_set(words, bad_words):
     write_lesson(
         'intro.lesson',
@@ -430,7 +454,7 @@ def make_default_lesson_set(words, bad_words):
     lesson = build_lesson(
         name=_('The Home Row'),
         description=_('This lesson teaches you the first a, s, d, f, g, h, j, k and l keys \nin the middle of the keyboard.\nThese keys are called the Home Row.'), 
-        level=2, required_level=1,
+        order=2, 
         new_keys=_('asdfghjkl'), base_keys='', 
         words=words, bad_words=bad_words)
     write_lesson('homerow.lesson', lesson)
@@ -438,7 +462,7 @@ def make_default_lesson_set(words, bad_words):
     lesson = build_lesson(
         name=_('The Top Row'),
         description=_('This lesson teaches you the q, w, e, r, t, y, u, i, o and p keys \non the top row of the keyboard.'), 
-        level=3, required_level=2,
+        order=3, 
         new_keys='qwertyuiop', base_keys='asdfghjkl', 
         words=words, bad_words=bad_words)
     write_lesson('toprow.lesson', lesson)
@@ -446,7 +470,7 @@ def make_default_lesson_set(words, bad_words):
     lesson = build_lesson(
         name=_('The Bottom Row'),
         description=_('This lesson teaches you the z, x, c, v, b, n and m keys \non the bottom row of the keyboard.'), 
-        level=4, required_level=3,
+        order=4, 
         new_keys='zxcvbnm', base_keys='asdfghjklqwertyuiop', 
         words=words, bad_words=bad_words)
     write_lesson('bottomrow.lesson', lesson)
@@ -456,20 +480,22 @@ if __name__ == "__main__":
     parser = optparse.OptionParser("usage: %prog [options]")
     parser.add_option("--make-all-lessons", dest="make_all_lessons", action="store_true",
                       help="Automatically generate a complete lesson set.")
+    parser.add_option("--make-intro-lesson", dest="make_intro_lesson", action="store_true",
+                      help="Generate the introductory lesson.")
+    parser.add_option("--make-key-lesson", dest="make_key_lesson", action="store_true",
+                      help="Generate a lesson to teach a specific set of keys.")
     parser.add_option("--output", dest="output", metavar="FILE",
                       help="Output file.")
     parser.add_option("--keys", dest="keys", metavar="KEYS", default='',
                       help="Keys to teach.")
-    parser.add_option("--base-keys", dest="base_keys", metavar="KEYS",
+    parser.add_option("--base-keys", dest="base_keys", metavar="KEYS", default='',
                       help="Keys already taught prior to this lesson.")
-    parser.add_option("--name", dest="name", default="Generated",
+    parser.add_option("--title", dest="name", default="Generated",
                       help="Lesson name.")
     parser.add_option("--desc", dest="desc", default="Default description.",
                       help="Lesson description.")
-    parser.add_option("--level", dest="level", type="int", metavar="LEVEL", default=0,
-                      help="Level granted by this lesson.")
-    parser.add_option("--req-level", dest="required_level", type="int", metavar="LEVEL", default=0,
-                      help="Level requirement for this lesson.")
+    parser.add_option("--order", dest="order", type="int", metavar="N", default=0,
+                      help="Order of this lesson in the index.")
     parser.add_option("--wordlist", dest="wordlist", metavar="FILE",
                       help="Text file containing words to use.")
     parser.add_option("--badwordlist", dest="badwordlist", metavar="FILE",
@@ -477,33 +503,41 @@ if __name__ == "__main__":
     
     (options, args) = parser.parse_args()
     
-    if not options.make_all_lessons and not options.keys:
-        parser.error('no keys given')
+    if not options.make_all_lessons and not options.make_key_lesson and not options.make_intro_lesson:
+        parser.error('no lesson type given')
 
-    if not options.wordlist:
-        parser.error('no wordlist file given')
-        
+    if not options.output:
+        parser.error('no output file given')
+    
     words = load_wordlist(options.wordlist)
-
+    
     bad_words = []
     if options.badwordlist:
         bad_words = load_wordlist(options.badwordlist)
-
-    if options.make_all_lessons:
-        make_default_lesson_set(words=words, bad_words=bad_words)
+    
+    options.desc = options.desc.replace('\\n', '\n')
+    
+    if options.make_intro_lesson:
+        lesson = build_intro_lesson()
+        open(options.output, 'w').write(json.write(lesson))
         sys.exit()
-
-    else:
+    
+    if options.make_key_lesson:        
+        if not options.wordlist:
+            parser.error('no wordlist file given')
+        
         lesson = build_lesson(
             name=options.name, description=options.desc, 
-            level=options.level, required_level=options.required_level,
+            order=options.order,
             new_keys=options.keys, base_keys=options.base_keys, 
             words=words, bad_words=bad_words)
-    
-        if output:
-            text = json.write(lesson)
-            open(output, 'w').write(text)
-        else:
-            import pprint
-            pprint.pprint(lesson)
+        open(options.output, 'w').write(json.write(lesson))
+        sys.exit()
+
+    if options.make_all_lessons:
+        if not options.wordlist:
+            parser.error('no wordlist file given')
+        
+        make_default_lesson_set(words=words, bad_words=bad_words)
+        sys.exit()
 
