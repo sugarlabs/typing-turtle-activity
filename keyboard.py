@@ -223,7 +223,7 @@ DEFAULT_LAYOUT = {
                 {'key-label':"",'key-width':55}, # LHand
                 {'key-scan':0x40,'key-label':"alt",'key-width':55}, # LAlt
                 {'key-scan':0x41,'key-finger':'RT','key-hand-image':'OLPC_Rhand_SPACE.svg','key-width':325}, # Spacebar
-                {'key-scan':0x6c,'key-label':"alt",'key-width':55}, # RAlt
+                {'key-scan':0x6c,'key-label':"altgr",'key-width':55}, # AltGr
                 {'key-label':"",'key-width':55}, # RHand
                 {'key-scan':0x71,'key-label':""}, # Left 
                 {'key-scan':0x74,'key-label':""}, # Down
@@ -345,6 +345,31 @@ class KeyboardData:
         else:
             return None, None, None
 
+    def get_key_state_group_for_letter(self, letter):
+        """Returns a (key, modifier_state) which when pressed will generate letter."""
+        # Special processing for the enter key.
+        if letter == '\n' or letter == PARAGRAPH_CODE:
+            return self.find_key_by_label('enter'), 0, 0
+
+        # Convert unicode to GDK keyval.
+        keyval = gtk.gdk.unicode_to_keyval(ord(letter))
+        
+        # Find list of key combinations that can generate this keyval.
+        entries = self.keymap.get_entries_for_keyval(keyval)
+        if not entries:
+	    return None, 0, 0
+
+        keycode, group, level = entries[0]
+
+        # TODO: Level -> state calculations are hardcoded to what the XO keyboard does.
+        # They were discovered through experimentation.
+        state = 0
+        if level & 1: # Level bit 0 corresponds to the SHIFT key.
+            state |= gtk.gdk.SHIFT_MASK
+        if level & 2: # Level bit 1 corresponds to the ALTGR key.
+            state |= gtk.gdk.MOD5_MASK
+
+        return self.key_scan_map.get(keycode), state, group
 
 class KeyboardWidget(KeyboardData, gtk.DrawingArea):
     """A GTK widget which implements an interactive visual keyboard, with support
@@ -368,10 +393,11 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
         
         self.draw_hands = False
         
-        # Load SVG files.
-        bundle_path = sugar.activity.activity.get_bundle_path() 
+        # Load stock SVG files.
         self.lhand_home = self._load_image('OLPC_Lhand_HOMEROW.svg')
         self.rhand_home = self._load_image('OLPC_Rhand_HOMEROW.svg')
+        self.lhand_shift = self._load_image('OLPC_Lhand_SHIFT.svg')
+        self.rhand_shift = self._load_image('OLPC_Rhand_SHIFT.svg')
         
         # Connect keyboard grabbing and releasing callbacks.        
         self.connect('realize', self._realize_cb)
@@ -495,25 +521,26 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
         rhand_image = self.rhand_home
 
         if self.hilite_letter:
-            # Find the key that would generate this letter.
-            key = None
-            if self.hilite_letter == PARAGRAPH_CODE:
-                key = self.find_key_by_label('enter')
-            else:
-                keyval = gtk.gdk.unicode_to_keyval(ord(self.hilite_letter))
-                entries = self.keymap.get_entries_for_keyval(keyval)
-                if entries:
-                    code = entries[0][0]
-                    key = self.key_scan_map.get(code)
-
+            key, state, group = self.get_key_state_group_for_letter(self.hilite_letter) 
             if key:
                 handle = key['key-hand-image-handle']
                 finger = key['key-finger']
+
+                # Assign the key image to the correct side.
                 if finger and handle:
                     if finger[0] == 'L':
                         lhand_image = handle
                     else:
                         rhand_image = handle
+
+                # Put the other hand on the SHIFT key if needed.
+                if state & gtk.gdk.SHIFT_MASK:
+                    if finger[0] == 'L':
+                        rhand_image = self.rhand_shift 
+                    else:
+                        rhand_image = self.lhand_shift 
+
+                # TODO: Do something about ALTGR.
 
         lhand_image.render_cairo(cr)
         rhand_image.render_cairo(cr)
@@ -554,8 +581,11 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
             self.active_group = event.group
             self.active_state = state
             self.queue_draw()
+
+            info = self.keymap.translate_keyboard_state(
+                0x18, self.active_state, self.active_group)
             
-            #print "press %d state=%x group=%d" % (event.hardware_keycode, self.active_state, self.active_group)
+            print "press %d state=%x group=%d level=%d" % (event.hardware_keycode, self.active_state, self.active_group, info[2])
         
         return False
 
@@ -564,7 +594,7 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
         if self.draw_hands:
             self.queue_draw()
         else:
-            key, dummy, dummy = self.find_key_by_letter(self.hilite_letter)
+            key, dummy, dummy = self.get_key_state_group_for_letter(self.hilite_letter)
             if key:
                 self._expose_key(key)
 
@@ -574,10 +604,10 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
         if self.draw_hands:
             self.queue_draw()
         else:
-            key, dummy, dummy = self.find_key_by_letter(old_letter)
+            key, dummy, dummy = self.get_key_state_group_for_letter(old_letter)
             if key:
                 self._expose_key(key)
-            key, dummy, dummy = self.find_key_by_letter(letter)
+            key, dummy, dummy = self.get_key_state_group_for_letter(letter)
             if key:
                 self._expose_key(key)
 

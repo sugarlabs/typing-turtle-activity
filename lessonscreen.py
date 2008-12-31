@@ -266,21 +266,21 @@ class LessonScreen(gtk.VBox):
             self.line_marks[0] = self.lessonbuffer.create_mark(None, self.lessonbuffer.get_end_iter(), True)
             
             # Determine what modifier keys are needed.
-            key, level, group = self.keyboard.find_key_by_letter(self.text[0])
+            key, state, group = self.keyboard.get_key_state_group_for_letter(self.text[0])
 
             if key:
-                state = 0
-                
-                # Insert shift key if positive level.
-                if level > 0:                    
+                if state & gtk.gdk.SHIFT_MASK:
                     shift_key = self.keyboard.find_key_by_label('shift')
                     pixbuf = self.keyboard.get_key_pixbuf(shift_key)
                     self.lessonbuffer.insert_pixbuf(self.lessonbuffer.get_end_iter(), pixbuf)
                     self.lessonbuffer.insert(self.lessonbuffer.get_end_iter(), ' ')
-                    
-                    # This is highly questionable but I don't have better solution yet!
-                    state |= gtk.gdk.SHIFT_MASK
                 
+                if state & gtk.gdk.MOD5_MASK:
+                    altgr_key = self.keyboard.find_key_by_label('altgr')
+                    pixbuf = self.keyboard.get_key_pixbuf(altgr_key)
+                    self.lessonbuffer.insert_pixbuf(self.lessonbuffer.get_end_iter(), pixbuf)
+                    self.lessonbuffer.insert(self.lessonbuffer.get_end_iter(), ' ')
+
                 pixbuf = self.keyboard.get_key_pixbuf(key, state, group)
                 self.lessonbuffer.insert_pixbuf(self.lessonbuffer.get_end_iter(), pixbuf)
             

@@ -3,14 +3,6 @@
 # Script for generating en_US lesson content for Typing Turtle.
 #
 
-python ../../lessonbuilder.py --make-key-lesson \
-    --title="Test" \
-    --desc="Quick dummy lesson" \
-    --keys=A \
-    --wordlist=2of12.txt \
-    --order=-1 \
-    --output=test.lesson
-
 # Generate the introductory lesson.
 python ../../lessonbuilder.py --make-intro-lesson --order=0 --output=intro.lesson
 
@@ -19,7 +11,7 @@ python ../../lessonbuilder.py --make-key-lesson \
     --title="The Home Row" \
     --desc="This lesson teaches you the a, s, d, f, g, h, j, k and l keys \nin the middle of the keyboard.\nThese keys are called the Home Row." \
     --keys=asdfghjkl \
-    --wordlist=2of12.txt \
+    --wordlist=2of12.txt --badwordlist=badwords.txt \
     --order=1 \
     --output=homerow.lesson
     
@@ -27,7 +19,7 @@ python ../../lessonbuilder.py --make-key-lesson \
     --title="The Top Row" \
     --desc="This lesson teaches you the q, w, e, r, t, y, u, i, o and p keys \non the top row of the keyboard." \
     --keys=qwertyuiop --base-keys=asdfghjkl \
-    --wordlist=2of12.txt \
+    --wordlist=2of12.txt --badwordlist=badwords.txt \
     --order=2 \
     --output=toprow.lesson
 
@@ -35,7 +27,7 @@ python ../../lessonbuilder.py --make-key-lesson \
     --title="The Bottom Row" \
     --desc="This lesson teaches you the z, x, c, v, b, n and m keys \non the bottom row of the keyboard." \
     --keys=zxcvbnm --base-keys=asdfghjklqwertyuiop \
-    --wordlist=2of12.txt \
+    --wordlist=2of12.txt --badwordlist=badwords.txt \
     --order=3 \
     --output=bottomrow.lesson
 
@@ -45,7 +37,7 @@ python ../../lessonbuilder.py --make-key-lesson \
     --desc="This lesson teaches you the CAPITAL letters which are typed by your left hand.\nThese are Q, W, E, R, T, A, S, D, F, G, Z, X, C, V and B." \
     --keys=QWERTASDFGZXCVB \
     --base-keys=abcdefghijklmnopqrstuvwxyz \
-    --wordlist=2of12.txt \
+    --wordlist=2of12.txt --badwordlist=badwords.txt \
     --order=4 \
     --output=leftcapital.lesson
 
@@ -54,6 +46,6 @@ python ../../lessonbuilder.py --make-key-lesson \
     --desc="This lesson teaches you the CAPITAL letters which are typed by your right hand.\nThese are Y, U, I, O, P, H, J, K, L, B, N, and M." \
     --keys=YUIOPHJKLBNM \
     --base-keys=abcdefghijklmnopqrstuvwxyzQWERTASDFGZXCVB \
-    --wordlist=2of12.txt \
+    --wordlist=2of12.txt --badwordlist=badwords.txt \
     --order=5 \
     --output=rightcapital.lesson

@@ -1,0 +1,11 @@
+#!/bin/bash
+#LANG=en_EN
+
+python ../../lessonbuilder.py --make-key-lesson \
+    --title="Test" \
+    --desc="Quick dummy lesson" \
+    "--keys=AæΩ" \
+    --wordlist=2of12.txt --badwordlist=badwords.txt \
+    --order=-1 \
+    --output=test.lesson
+

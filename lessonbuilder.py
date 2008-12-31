@@ -19,6 +19,9 @@
 import os, sys, random, json, locale, re
 from gettext import gettext as _
 
+# For modifier constants.
+import gtk
+
 # Set up remote debugging.
 #import dbgp.client
 #dbgp.client.brkOnExcept(host='192.168.1.104', port=12900)
@@ -314,12 +317,33 @@ def build_lesson(
             % { 'name': name, 'keynames': keynames },
         'key', '\n')
 
-    for key in new_keys:
-        k = kb.find_key_by_letter(key)
-        add_step(lesson,
-            _('Press the %(name)s key using your %(finger)s finger.') \
-                % { 'name': key, 'finger': FINGERS[k['key-finger']] },
-            'key', key)
+    for letter in new_keys:
+        key, state, group = kb.get_key_state_group_for_letter(letter)
+
+        finger = FINGERS[key['key-finger']]
+
+        if state == gtk.gdk.SHIFT_MASK:
+            # Choose the finger to press the SHIFT key with.
+            if key['key-finger'][0] == 'R':
+                shift_finger = FINGERS['LP']
+            else:
+                shift_finger = FINGERS['RP']
+
+            instructions = _('Press and hold the SHIFT key with your %(finger)s finger, ') % { 'finger': shift_finger }
+            instructions += _('then press the %(letter)s key with your %(finger)s finger.') % { 'letter': letter, 'finger': finger }
+
+        elif state == gtk.gdk.MOD5_MASK:
+            instructions = _('Press and hold the ALTGR key, ') 
+            instructions += _('then press the %(letter)s key with your %(finger)s finger.') % { 'letter': letter, 'finger': finger }
+
+        elif state == gtk.gdk.SHIFT_MASK | gtk.gdk.MOD5_MASK:
+            instructions = _('Press and hold the ALTGR and SHIFT keys, ')
+            instructions += _('then press the %(letter)s key with your %(finger)s finger.') % { 'letter': letter, 'finger': finger }
+
+        else:
+            instructions = _('Press the %(letter)s key with your %(finger)s finger.') % { 'letter': letter, 'finger': finger }
+
+        add_step(lesson, instructions, 'key', letter)
 
     add_step(lesson,
         _('Practice typing the keys you just learned.'),

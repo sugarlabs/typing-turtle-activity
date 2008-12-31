@@ -14,7 +14,7 @@ First Release
 - Ability of lessons to list medals in other lessons as prerequisites.  Disable unavailable lessons.
 - Some sort of lesson sorting criteria.
 - Split into file-per-screen.
-+ Scroll lessons list to the first non-medaled lesson at startup.  Or just remember scroll position.
+- Scroll lessons list to the first non-medaled lesson at startup.  Or just remember scroll position.
 + Status message on the main screen.  "You unlocked a new lesson!" for example.  Eventually have the turtle 'say' it.
 - Implement a long text copying lesson and fix bugs in the scrolling and typing.
 + Graphical WPM and accuracy meters.
@@ -26,28 +26,22 @@ First Release
 - Change key shown when modified is held.
 - Indicate next key to press on keyboard.
 - Translate keyboard to native key layout.
-+ Use keyboard geometry file from system instead of hardcoding.
 + Make medal WPM adjustable somehow?  Perhaps a settable Goal WPM?
 + Highlight regions of keyboard, color by finger.
-+ Allow lessons to choose between forcing correct keypresses and allowing incorrect ones (with support for Backspace).
 + Artwork and animations.
-  + Background picture in main screen.
   + Speed meter picture?
   + Accuracy meter picture?
-  + Animated turtle in main screen.
-  + Medal pictures: Bronze, Silver, Gold.
-  + Icons for remaining keyboard keys.
-  + Overlay of correct hand position on keyboard.
 + Sound effects.
   + Welcome to the activity sound.
   + Speed up / slow down sounds when WPM crosses threshold: Slow, Medium, Fast.
   + Medal award sounds for each medal type: None, Bronze, Silver, Gold.  Applause sound.
   + Incorrect key pressed tick sound. 
 + Develop lessons.
-  + Continue to develop lessons for all keys on the keyboard.
+  - Continue to develop lessons for all keys on the keyboard.
   - Develop 'focus' lessons e.g. fj.
   - Mark some lessons as "locational" versus "textual" and translate from the English keyboard to native.  Ex: Home row, Left hand, Numbers, etc.
   - Give each lesson criteria for each medal type based on Accuracy, WPM.
+- Automatically generate lessons similar to 'home row' based on a list of keys.
 
 Future Release
 + Goal support with progress reporting.  WPM, Accuracy, Entire keyboard learned, etc.
@@ -55,7 +49,6 @@ Future Release
 + History screen: List of lessons completed with statistics.
 + Progress screen: Line graphs of Accuracy, WPM over time.
 + Lesson editor activity or mode.
-+ Automatically generate lessons similar to 'home row' based on a list of keys.
 
 Balloon Game
 

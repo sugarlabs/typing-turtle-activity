@@ -175,7 +175,7 @@ class MainScreen(gtk.VBox):
                          "<span size='8000' color='#c0c0c0'>" + lesson['description'] + "</span>")
         
         if medal_type != 'none':
-            hint = _('You earned a medal in this lesson!  Advance  to the next one\nby clicking the red arrow button to the right.')
+            hint = _('You earned a medal in this lesson!  Advance to the next one\nby clicking the arrow button to the right.')
         else:
             hint = ''
                 
