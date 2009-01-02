@@ -521,6 +521,8 @@ if __name__ == "__main__":
                       help="Text file containing words to use.")
     parser.add_option("--badwordlist", dest="badwordlist", metavar="FILE",
                       help="Text file containing words *not* to use.")
+    parser.add_option("--seed", dest="seed", type="int", metavar="N", default=0x12345678,
+                      help="Random seed.")
     
     (options, args) = parser.parse_args()
     
@@ -538,6 +540,8 @@ if __name__ == "__main__":
     
     options.desc = options.desc.replace('\\n', '\n')
     
+	random.seed(options.seed)
+
     if options.make_intro_lesson:
         lesson = build_intro_lesson()
         open(options.output, 'w').write(json.write(lesson))
