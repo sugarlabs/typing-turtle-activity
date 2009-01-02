@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# vi: sw=4 et
 # Copyright 2008 by Kate Scheppke and Wade Brainerd.  
 # This file is part of Typing Turtle.
 #
@@ -13,8 +15,6 @@
 # 
 # You should have received a copy of the GNU General Public License
 # along with Typing Turtle.  If not, see <http://www.gnu.org/licenses/>.
-#!/usr/bin/env python
-# vi:sw=4 et
 
 import os, sys, random, json, locale, re
 from gettext import gettext as _
@@ -42,18 +42,24 @@ CONGRATS = [
     _('You did it!'),
 ]
 
+def get_congrats():
+    return random.choice(CONGRATS) + ' '
+
 HINTS = [
     _('Be careful to use the correct finger to press each key.  Look at the keyboard below if you need help remembering.'),
     _('Try to type at the same speed, all the time.  As you get more comfortable you can increase the speed a little.')
 ]
 
+def get_hint():
+    return random.choice(HINTS)
+
 FINGERS = {
-    'LP': _('left pinky'),
+    'LP': _('left little'),
     'LR': _('left ring'),
     'LM': _('left middle'),
     'LI': _('left index'),
     'LT': _('left thumb'),
-    'RP': _('right pinky'),
+    'RP': _('right little'),
     'RR': _('right ring'),
     'RM': _('right middle'),
     'RI': _('right index'),
@@ -258,9 +264,6 @@ def filter_wordlist(words, all_keys, req_keys, minlen, maxlen, bad_words):
     return good_words
 
 def make_random_words(words, required_keys, keys, count):
-    if len(words) == 0:
-        return make_jumbles(required_keys, keys, count, 5)
-    
     text = ''
     for x in range(0, count):
         text += random.choice(words) + ' '
@@ -308,12 +311,15 @@ def build_lesson(
 
     keynames = new_keys[0]
     if len(new_keys) >= 2:
-        for k in new_keys[1:-2]:
-            keynames += k + ', '
+        for k in new_keys[1:-1]:
+            keynames += ', ' + k
         keynames += new_keys[-2] + ' and ' + new_keys[-1]
+        keynames += _(' keys')
+    else:
+        keynames += _(' key')
 
     add_step(lesson,
-        _('Welcome to the %(name)s lesson!\n\nIn this lesson, you will learn the %(keynames)s keys.  Press the Enter key when you are ready to begin!') \
+        _('Welcome to the %(name)s lesson!\n\nIn this lesson, you will learn the %(keynames)s.  Press the Enter key when you are ready to begin!') \
             % { 'name': name, 'keynames': keynames },
         'key', '\n')
 
@@ -346,7 +352,7 @@ def build_lesson(
         add_step(lesson, instructions, 'key', letter)
 
     add_step(lesson,
-        _('Practice typing the keys you just learned.'),
+        get_congrats() + _('Practice typing the keys you just learned.'),
         'text', make_random_doubles(new_keys, count=40))
     
     add_step(lesson,
@@ -354,7 +360,7 @@ def build_lesson(
         'text', make_random_doubles(new_keys, count=40))
     
     add_step(lesson,
-        _('Now put the keys together into pairs.'),
+        get_congrats() + _('Now put the keys together into pairs.'),
         'text', make_weighted_wordlist_pairs(pairs, new_keys, new_keys, count=50))
     
     add_step(lesson,
@@ -363,7 +369,7 @@ def build_lesson(
     
     if base_keys != '':
         add_step(lesson,
-            _('Now practice all the keys you know.'),
+            get_congrats() + _('Now practice all the keys you know.'),
             'text', make_weighted_wordlist_pairs(pairs, new_keys, all_keys, count=50))
     
         add_step(lesson,
@@ -375,17 +381,31 @@ def build_lesson(
             _('Almost done.  Keep practicing key pairs.'),
             'text', make_weighted_wordlist_pairs(pairs, new_keys, new_keys, count=100))
 
-    add_step(lesson,
-        _('Time to type real words.'),
-        'text', make_random_words(good_words, new_keys, all_keys, count=100))
+    if len(good_words) == 0:
+        add_step(lesson,
+            get_congrats() + _('Time to type jumbles.'),
+            'text', make_jumbles(new_keys, all_keys, 100, 5))
+        
+        add_step(lesson,
+            _('Keep practicing these jumbles.'),
+            'text', make_jumbles(new_keys, all_keys, 100, 5))
+        
+        add_step(lesson,
+            _('Almost finished. Try to type as quickly and accurately as you can!'),
+            'text', make_jumbles(new_keys, all_keys, 100, 5))
     
-    add_step(lesson,
-        _('Keep practicing these words.'),
-        'text', make_random_words(good_words, new_keys, all_keys, count=100))
-    
-    add_step(lesson,
-        _('Almost finished. Try to type as quickly and accurately as you can!'),
-        'text', make_random_words(good_words, new_keys, all_keys, count=200))
+    else:
+        add_step(lesson,
+            get_congrats() + _('Time to type real words.'),
+            'text', make_random_words(good_words, new_keys, all_keys, count=100))
+        
+        add_step(lesson,
+            _('Keep practicing these words.'),
+            'text', make_random_words(good_words, new_keys, all_keys, count=100))
+        
+        add_step(lesson,
+            _('Almost finished. Try to type as quickly and accurately as you can!'),
+            'text', make_random_words(good_words, new_keys, all_keys, count=200))
     
     text = '$report'
     add_step(lesson, text, 'key', '\n')
@@ -537,10 +557,14 @@ if __name__ == "__main__":
     bad_words = []
     if options.badwordlist:
         bad_words = load_wordlist(options.badwordlist)
+
+    # Convert string arguments to Unicode.
+    options.name = unicode(options.name)
+    options.keys = unicode(options.keys)
+    options.base_keys = unicode(options.base_keys)
+    options.desc = unicode(options.desc.replace('\\n', '\n'))
     
-    options.desc = options.desc.replace('\\n', '\n')
-    
-	random.seed(options.seed)
+    random.seed(options.seed)
 
     if options.make_intro_lesson:
         lesson = build_intro_lesson()
