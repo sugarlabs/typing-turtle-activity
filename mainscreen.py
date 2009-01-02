@@ -143,7 +143,8 @@ class MainScreen(gtk.VBox):
         """Returns the index of the first lesson without a medal."""
         index = len(self.lessons)-1
         for i in xrange(0, len(self.lessons)):
-            if not self.activity.data['medals'].has_key(self.lessons[i]['name']):
+            if self.lessons[i]['order'] >= 0 and \
+               not self.activity.data['medals'].has_key(self.lessons[i]['name']):
                 index = min(index, i)
         return index
     

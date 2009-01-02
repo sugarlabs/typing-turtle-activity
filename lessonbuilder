@@ -313,13 +313,12 @@ def build_lesson(
     if len(new_keys) >= 2:
         for k in new_keys[1:-1]:
             keynames += ', ' + k
-        keynames += new_keys[-2] + ' and ' + new_keys[-1]
-        keynames += _(' keys')
+        keynames += _(' and %s keys') % new_keys[-1]
     else:
         keynames += _(' key')
 
     add_step(lesson,
-        _('Welcome to the %(name)s lesson!\n\nIn this lesson, you will learn the %(keynames)s.  Press the Enter key when you are ready to begin!') \
+        _('Welcome to the %(name)s lesson!\n\nIn this lesson, you will learn the %(keynames)s.  Press the ENTER key when you are ready to begin!') \
             % { 'name': name, 'keynames': keynames },
         'key', '\n')
 
@@ -437,25 +436,25 @@ def build_intro_lesson():
     text += _('Always use the correct finger to press each key!\n\n')
     text += _('If you learn which finger presses each key, and keep practicing, you will be typing like a pro before you know it!\n\n')
     text += _('Now, place your hands on the keyboard just like the picture below.\n')
-    text += _('When you\'re ready, press the space bar with your thumb!')
+    text += _('When you\'re ready, press the SPACE bar with your thumb!')
     add_step(lesson, text, 'key', ' ')
 
     text = ''
-    text += _('Good job!  You correctly typed your first key.  When typing, the space bar is ')
-    text += _('used to insert spaces between words.\n\n')
-    text += _('Press the space bar again with your thumb.')
+    text += _('Good job!  You correctly typed your first key.  When typing, the SPACE bar is ')
+    text += _('used to insert blank spaces between words.\n\n')
+    text += _('Press the SPACE bar again with your thumb.')
     add_step(lesson, text, 'key', ' ')
     
     text = ''
-    text += _('Now I\'ll teach you the second key, enter.  ')
-    text += _('That\'s the big square key near your right pinky finger.\n\n')
-    text += _('Without moving any other fingers, reach your pinky over and press ')
-    text += _('Enter.\nCheck the picture below if you need a hint!')
+    text += _('Now I\'ll teach you the second key, ENTER.  ')
+    text += _('That\'s the big square key near your right little finger.\n\n')
+    text += _('Without moving any other fingers, reach your little finger over and press ')
+    text += _('ENTER.\nCheck the picture below if you need a hint!')
     add_step(lesson, text, 'key', '\n')
     
     text = ''
-    text += _('Great!  When typing, the enter key is used to begin a new line.\n\n')
-    text += _('Press the enter key again with your right pinky.')
+    text += _('Great!  When typing, the ENTER key is used to begin a new line.\n\n')
+    text += _('Press the ENTER key again with your right little finger.')
     add_step(lesson, text, 'key', '\n')
     
     text = ''

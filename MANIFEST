@@ -7,10 +7,10 @@ keyboard.py
 lessonscreen.py
 medalscreen.py
 mainscreen.py
+lessonbuilder
 activity/Activity-typingturtle.svg
 activity/activity.info
 po/TypingTurtle.pot
-lessonbuilder.py
 images/tt-back.jpg
 images/OLPC_Rhand_M.svg
 images/silver-medal.svg
@@ -60,7 +60,14 @@ images/OLPC_Rhand_COMMA.svg
 images/OLPC_Rhand_QUESTIONMARK.svg
 images/OLPC_Lhand_C.svg
 images/OLPC_Rhand_O.svg
+lessons/en_US/MAKELESSONS
+lessons/en_US/MAKETESTLESSONS
+lessons/en_US/2of12.txt
+lessons/en_US/badwords.txt
 lessons/en_US/bottomrow.lesson
 lessons/en_US/intro.lesson
 lessons/en_US/toprow.lesson
 lessons/en_US/homerow.lesson
+lessons/en_US/rightcapital.lesson
+lessons/en_US/test.lesson
+lessons/en_US/leftcapital.lesson

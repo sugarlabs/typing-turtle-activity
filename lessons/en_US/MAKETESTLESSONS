@@ -1,21 +1,8 @@
-#!/usr/bin/python
-# coding: utf-8
-#
-# Script which generates en_US lesson content for Typing Turtle.
-#
-import sys
+../../lessonbuilder --make-key-lesson \
+    --title="Test lesson" \
+    --desc="This lesson exists to test out obscure Typing Turtle features.\nPlease skip it by pressing the arrow button to the right." \
+    --keys="æΩABbB" \
+    --wordlist=2of12.txt \
+    --order=-1 \
+    --output=test.lesson
 
-# Add typing-turtle directory to path.
-sys.path.append('../../')
-from lessonbuilder import *
-
-words = load_wordlist('2of12.txt')
-bad_words = load_wordlist('badwords.txt')
-
-lesson = build_lesson(
-	name='Test', 
-	description='Quick dummy lesson', 
-	order=-1,
-	new_keys=u'AæΩ', base_keys='', 
-	words=words, bad_words=bad_words)
-open('test.lesson', 'w').write(json.write(lesson))

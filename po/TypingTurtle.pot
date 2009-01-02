@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-21 23:11+0000\n"
+"POT-Creation-Date: 2009-01-02 16:44+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,48 +16,46 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: activity/activity.info:2 typingturtle.py:49 mainscreen.py:39
+#: activity/activity.info:2 typingturtle.py:56 mainscreen.py:48
 msgid "Typing Turtle"
 msgstr ""
 
-#: lessonscreen.py:57 medalscreen.py:56
+#: lessonscreen.py:59
 msgid "Go Back"
 msgstr ""
 
-#: lessonscreen.py:150
+#: lessonscreen.py:167
 #, python-format
 msgid "<b>WPM:</b> %(wpm)d"
 msgstr ""
 
-#: lessonscreen.py:155 medalscreen.py:49
+#: lessonscreen.py:175 medalscreen.py:49
 #, python-format
 msgid "<b>Accuracy:</b> %(accuracy)d%%"
 msgstr ""
 
-#: lessonscreen.py:433
+#: lessonscreen.py:528
 msgid "Good job!"
 msgstr ""
 
-#: lessonscreen.py:434
+#: lessonscreen.py:529
 msgid "Well done!"
 msgstr ""
 
-#: lessonscreen.py:435
+#: lessonscreen.py:530
 msgid "Nice work!"
 msgstr ""
 
-#: lessonscreen.py:436
+#: lessonscreen.py:531
 msgid "Way to go!"
 msgstr ""
 
-#: lessonscreen.py:440
+#: lessonscreen.py:536
 #, python-format
-msgid ""
-"You finished the lesson in %(time)d seconds, with %(errors)d errors.\n"
-"\n"
+msgid "You finished the lesson in %(time)d seconds, with %(errors)d errors.\n"
 msgstr ""
 
-#: lessonscreen.py:442
+#: lessonscreen.py:538
 #, python-format
 msgid ""
 "Your words per minute (WPM) was %(wpm)d, and your accuracy was %(accuracy)d%"
@@ -65,15 +63,24 @@ msgid ""
 "\n"
 msgstr ""
 
-#: lessonscreen.py:448
+#: lessonscreen.py:541
 #, python-format
-msgid ""
-"Congratulations!  You earned a %(type)s medal!\n"
-"\n"
-"Press Enter to see your certificate."
+msgid "You finished the lesson with %(errors)d errors.\n"
 msgstr ""
 
-#: lessonscreen.py:457
+#: lessonscreen.py:543
+#, python-format
+msgid ""
+"Your accuracy was %(accuracy)d%%.\n"
+"\n"
+msgstr ""
+
+#: lessonscreen.py:549
+#, python-format
+msgid "Congratulations!  You earned a %(type)s medal!"
+msgstr ""
+
+#: lessonscreen.py:557
 msgid ""
 "You need to practice this lesson more before moving on.  If you are having a "
 "hard time, repeat the earlier lessons until you have mastered them "
@@ -81,20 +88,16 @@ msgid ""
 "\n"
 msgstr ""
 
-#: lessonscreen.py:462
+#: lessonscreen.py:562
 msgid ""
-"You almost got a medal!  Next time, try not to make as many errors!\n"
+"You almost got a medal!  Next time, try not to make as many errors.\n"
 "\n"
 msgstr ""
 
-#: lessonscreen.py:465
+#: lessonscreen.py:565
 msgid ""
-"You almost got a medal!  Next time, try to type a little faster!\n"
+"You almost got a medal!  Next time, try to type a little faster.\n"
 "\n"
-msgstr ""
-
-#: lessonscreen.py:467
-msgid "Press Enter to return to the main screen."
 msgstr ""
 
 #: medalscreen.py:38
@@ -116,11 +119,28 @@ msgstr ""
 msgid "<b>Words Per Minute:</b> %(wpm)d"
 msgstr ""
 
-#: mainscreen.py:42
-msgid ""
-"Welcome to Typing Turtle! To begin, select a lesson from the list below."
+#: medalscreen.py:56
+msgid "Ok"
 msgstr ""
 
-#: mainscreen.py:50
-msgid "Available Lessons"
+#: mainscreen.py:179
+msgid ""
+"You earned a medal in this lesson!  Advance to the next one\n"
+"by clicking the arrow button to the right."
+msgstr ""
+
+#: mainscreen.py:210
+msgid "No Medal Yet"
+msgstr ""
+
+#: mainscreen.py:211
+msgid "Bronze Medal"
+msgstr ""
+
+#: mainscreen.py:212
+msgid "Silver Medal"
+msgstr ""
+
+#: mainscreen.py:213
+msgid "Gold Medal"
 msgstr ""

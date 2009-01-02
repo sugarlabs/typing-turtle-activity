@@ -569,10 +569,6 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
         key = self.key_scan_map.get(event.hardware_keycode)
         if key:
             key['key-pressed'] = event.type == gtk.gdk.KEY_PRESS
-            if self.draw_hands:
-                self.queue_draw()
-            else:
-                self._expose_key(key)
 
         # Hack to get the current modifier state - which will not be represented by the event.
         state = gtk.gdk.device_get_core_pointer().get_state(self.window)[1]
@@ -580,12 +576,21 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
         if self.active_group != event.group or self.active_state != state:
             self.active_group = event.group
             self.active_state = state
-            self.queue_draw()
 
-            info = self.keymap.translate_keyboard_state(
-                0x18, self.active_state, self.active_group)
-            
+            self.queue_draw()
+            #self.window.process_updates(True)
+
+            #info = self.keymap.translate_keyboard_state(
+            #    0x18, self.active_state, self.active_group)
             #print "press %d state=%x group=%d level=%d" % (event.hardware_keycode, self.active_state, self.active_group, info[2])
+
+        else:
+            if self.draw_hands:
+                self.queue_draw()
+                #self.window.process_updates(True)
+            else:
+                if key:
+                    self._expose_key(key)
         
         return False
 
