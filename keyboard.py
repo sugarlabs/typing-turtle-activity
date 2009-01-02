@@ -585,7 +585,7 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
             info = self.keymap.translate_keyboard_state(
                 0x18, self.active_state, self.active_group)
             
-            print "press %d state=%x group=%d level=%d" % (event.hardware_keycode, self.active_state, self.active_group, info[2])
+            #print "press %d state=%x group=%d level=%d" % (event.hardware_keycode, self.active_state, self.active_group, info[2])
         
         return False
 

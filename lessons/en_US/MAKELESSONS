@@ -1,51 +1,56 @@
-#!/bin/bash
+#!/usr/bin/python
 #
-# Script for generating en_US lesson content for Typing Turtle.
+# Script which generates en_US lesson content for Typing Turtle.
 #
+# Add typing-turtle directory to path.
+import sys
+sys.path.append('../../')
 
-# Generate the introductory lesson.
-python ../../lessonbuilder.py --make-intro-lesson --order=0 --output=intro.lesson
+from lessonbuilder import *
 
-# Generate the home, top and bottom row lessons.
-python ../../lessonbuilder.py --make-key-lesson \
-    --title="The Home Row" \
-    --desc="This lesson teaches you the a, s, d, f, g, h, j, k and l keys \nin the middle of the keyboard.\nThese keys are called the Home Row." \
-    --keys=asdfghjkl \
-    --wordlist=2of12.txt --badwordlist=badwords.txt \
-    --order=1 \
-    --output=homerow.lesson
-    
-python ../../lessonbuilder.py --make-key-lesson \
-    --title="The Top Row" \
-    --desc="This lesson teaches you the q, w, e, r, t, y, u, i, o and p keys \non the top row of the keyboard." \
-    --keys=qwertyuiop --base-keys=asdfghjkl \
-    --wordlist=2of12.txt --badwordlist=badwords.txt \
-    --order=2 \
-    --output=toprow.lesson
+words = load_wordlist('2of12.txt')
+bad_words = load_wordlist('badwords.txt')
 
-python ../../lessonbuilder.py --make-key-lesson \
-    --title="The Bottom Row" \
-    --desc="This lesson teaches you the z, x, c, v, b, n and m keys \non the bottom row of the keyboard." \
-    --keys=zxcvbnm --base-keys=asdfghjklqwertyuiop \
-    --wordlist=2of12.txt --badwordlist=badwords.txt \
-    --order=3 \
-    --output=bottomrow.lesson
+lesson = build_intro_lesson()
+open('intro.lesson', 'w').write(json.write(lesson))
 
-# Generate left and right hand capital lessons.
-python ../../lessonbuilder.py --make-key-lesson \
-    --title="Left Hand Capitals" \
-    --desc="This lesson teaches you the CAPITAL letters which are typed by your left hand.\nThese are Q, W, E, R, T, A, S, D, F, G, Z, X, C, V and B." \
-    --keys=QWERTASDFGZXCVB \
-    --base-keys=abcdefghijklmnopqrstuvwxyz \
-    --wordlist=2of12.txt --badwordlist=badwords.txt \
-    --order=4 \
-    --output=leftcapital.lesson
+lesson = build_lesson(
+	name='The Home Row', 
+	description='This lesson teaches you the a, s, d, f, g, h, j, k and l keys \nin the middle of the keyboard.\nThese keys are called the Home Row.', 
+	order=0,
+	new_keys='asdfghjkl', base_keys='', 
+	words=words, bad_words=bad_words)
+open('homerow.lesson', 'w').write(json.write(lesson))
 
-python ../../lessonbuilder.py --make-key-lesson \
-    --title="Right Hand Capitals" \
-    --desc="This lesson teaches you the CAPITAL letters which are typed by your right hand.\nThese are Y, U, I, O, P, H, J, K, L, B, N, and M." \
-    --keys=YUIOPHJKLBNM \
-    --base-keys=abcdefghijklmnopqrstuvwxyzQWERTASDFGZXCVB \
-    --wordlist=2of12.txt --badwordlist=badwords.txt \
-    --order=5 \
-    --output=rightcapital.lesson
+lesson = build_lesson(
+	name='The Top Row', 
+	description='This lesson teaches you the q, w, e, r, t, y, u, i, o and p keys \non the top row of the keyboard.', 
+	order=1,
+	new_keys='qwertyuiop', base_keys='asdfghjkl', 
+	words=words, bad_words=bad_words)
+open('toprow.lesson', 'w').write(json.write(lesson))
+
+lesson = build_lesson(
+	name='The Bottom Row', 
+	description='This lesson teaches you the z, x, c, v, b, n and m keys \non the bottom row of the keyboard.', 
+	order=2,
+	new_keys='zxcvbnm', base_keys='asdfghjklqwertyuiop', 
+	words=words, bad_words=bad_words)
+open('bottomrow.lesson', 'w').write(json.write(lesson))
+
+lesson = build_lesson(
+	name='Left Hand Capitals', 
+	description='This lesson teaches you the CAPITAL letters which are typed by your left hand.\nThese are Q, W, E, R, T, A, S, D, F, G, Z, X, C, V and B.', 
+	order=3,
+	new_keys='QWERTASDFGZXCVB', base_keys='abcdefghijklmnopqrstuvwxyz', 
+	words=words, bad_words=bad_words)
+open('leftcapital.lesson', 'w').write(json.write(lesson))
+
+lesson = build_lesson(
+	name='Right Hand Capitals', 
+	description='This lesson teaches you the CAPITAL letters which are typed by your right hand.\nThese are Y, U, I, O, P, H, J, K, L, B, N, and M.', 
+	order=4,
+	new_keys='YUIOPHJKLBNM', base_keys='abcdefghijklmnopqrstuvwxyzQWERTASDFGZXCVB', 
+	words=words, bad_words=bad_words)
+open('rightcapital.lesson', 'w').write(json.write(lesson))
+

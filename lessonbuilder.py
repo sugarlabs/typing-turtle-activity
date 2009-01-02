@@ -459,11 +459,8 @@ def build_intro_lesson():
 # Differrent languages invoke different sets of keys with different sets of shifts, so one
 # algorithm will not be able to determine an effective learning order.
 #
-# The correct approach is to create a shell script for each language which repeatedly calls
+# The correct approach is to create a script for each language which repeatedly calls
 # lessonbuilder.py with different options to create the various lessons.
-#
-# Further, the lesson system needs to be expanded to properly handle all various shift
-# and language change keys.
 #
 
 #TOPROW_SCANCODES = [ 0x17, 0x18, 0x19, 0x1a, 0x1b, 0x1c, 0x1d, 0x1e, 0x1f, 0x20, 0x21 ]
