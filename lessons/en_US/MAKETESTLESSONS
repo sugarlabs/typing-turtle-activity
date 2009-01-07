@@ -1,3 +1,11 @@
+../../lessonbuilder --make-game-lesson \
+    --title="Balloon game test" \
+    --desc="." \
+    --keys="asdfghjkl" \
+    --wordlist=2of12.txt \
+    --order=-2 \
+    --output=balloon-test.lesson
+
 ../../lessonbuilder --make-key-lesson \
     --title="Test lesson" \
     --desc="This lesson exists to test out obscure Typing Turtle features.\nPlease skip it by pressing the arrow button to the right." \

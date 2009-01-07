@@ -144,7 +144,7 @@ class LessonScreen(gtk.VBox):
         gobject.timeout_add(1000, self.timer_cb)
 
     def realize_cb(self, widget):
-        self.activity.add_events(gtk.gdk.KEY_PRESS_MASK)
+        self.activity.add_events(gtk.gdk.KEY_PRESS_MASK|gtk.gdk.KEY_RELEASE_MASK)
         self.key_press_cb_id = self.activity.connect('key-press-event', self.key_cb)
         self.key_release_cb_id = self.activity.connect('key-release-event', self.key_cb)
         
@@ -433,7 +433,7 @@ class LessonScreen(gtk.VBox):
                         self.advance_step()
                     else:
                         self.begin_line()
-                    return
+                    return False
                 
                 self.update_stats()
                 

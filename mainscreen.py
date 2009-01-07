@@ -26,7 +26,7 @@ import sugar.activity.activity
 from sugar.graphics import *
 
 # Import activity modules.
-import lessonscreen, medalscreen
+import lessonscreen, medalscreen, balloongame
 
 # Temporary SVGs of medals from Wikimedia Commons.
 # See the links below for licensing information.
@@ -245,7 +245,12 @@ class MainScreen(gtk.VBox):
         self.show_lesson(self.lesson_index-1)
     
     def lesson_clicked_cb(self, widget):
-        self.activity.push_screen(lessonscreen.LessonScreen(self.visible_lesson, self.activity))
+        if self.visible_lesson['type'] == 'balloon':
+            reload(balloongame)
+            self.activity.push_screen(balloongame.BalloonGame(self.visible_lesson, self.activity))
+        else:
+            reload(lessonscreen)
+            self.activity.push_screen(lessonscreen.LessonScreen(self.visible_lesson, self.activity))
     
     def medal_clicked_cb(self, widget):
         if self.activity.data['medals'].has_key(self.visible_lesson['name']):

@@ -269,22 +269,31 @@ def make_random_words(words, required_keys, keys, count):
         text += random.choice(words) + ' '
     return text.strip()
 
-def add_step(lesson, instructions, mode, text):
+def make_step(instructions, mode, text):
     print instructions
     print text
     step = {}
     step['instructions'] = instructions
     step['text'] = text
     step['mode'] = mode
-    lesson['steps'].append(step)
+    return step
 
-def build_lesson(
-    name, description, 
-    order,
+def build_game_words(
     new_keys, base_keys, 
     words, bad_words):
 
-    print "Building lesson '%s'..." % name
+    all_keys = new_keys + base_keys
+
+    good_words = filter_wordlist(words=words, 
+        all_keys=all_keys, req_keys=new_keys, 
+        minlen=2, maxlen=8, 
+        bad_words=bad_words)
+    
+    return good_words 
+
+def build_key_steps(
+    new_keys, base_keys, 
+    words, bad_words):
 
     all_keys = new_keys + base_keys
 
@@ -295,16 +304,7 @@ def build_lesson(
     
     pairs = get_pairs_from_wordlist(words)
         
-    lesson = {}
-    lesson['name'] = name
-    lesson['description'] = description
-    lesson['order'] = order
-    lesson['medals'] = [
-        { 'name': 'bronze', 'wpm': 5,  'accuracy': 60 },
-        { 'name': 'silver', 'wpm': 10, 'accuracy': 75 },
-        { 'name': 'gold',   'wpm': 20, 'accuracy': 90 }
-    ]
-    lesson['steps'] = []
+    steps = []
 
     kb = keyboard.KeyboardData()
     kb.set_layout(keyboard.DEFAULT_LAYOUT)
@@ -317,10 +317,10 @@ def build_lesson(
     else:
         keynames += _(' key')
 
-    add_step(lesson,
-        _('Welcome to the %(name)s lesson!\n\nIn this lesson, you will learn the %(keynames)s.  Press the ENTER key when you are ready to begin!') \
-            % { 'name': name, 'keynames': keynames },
-        'key', '\n')
+    steps.append(make_step(
+        _('In this lesson, you will learn the %(keynames)s.\n\nPress the ENTER key when you are ready to begin!') \
+            % { 'keynames': keynames },
+        'key', '\n'))
 
     for letter in new_keys:
         key, state, group = kb.get_key_state_group_for_letter(letter)
@@ -348,87 +348,72 @@ def build_lesson(
         else:
             instructions = _('Press the %(letter)s key with your %(finger)s finger.') % { 'letter': letter, 'finger': finger }
 
-        add_step(lesson, instructions, 'key', letter)
+        steps.append(make_step(instructions, 'key', letter))
 
-    add_step(lesson,
+    steps.append(make_step(
         get_congrats() + _('Practice typing the keys you just learned.'),
-        'text', make_random_doubles(new_keys, count=40))
+        'text', make_random_doubles(new_keys, count=40)))
     
-    add_step(lesson,
+    steps.append(make_step(
         _('Keep practicing the new keys.'),
-        'text', make_random_doubles(new_keys, count=40))
+        'text', make_random_doubles(new_keys, count=40)))
     
-    add_step(lesson,
+    steps.append(make_step(
         get_congrats() + _('Now put the keys together into pairs.'),
-        'text', make_weighted_wordlist_pairs(pairs, new_keys, new_keys, count=50))
+        'text', make_weighted_wordlist_pairs(pairs, new_keys, new_keys, count=50)))
     
-    add_step(lesson,
+    steps.append(make_step(
         _('Keep practicing key pairs.'),
-        'text', make_weighted_wordlist_pairs(pairs, new_keys, new_keys, count=50))
+        'text', make_weighted_wordlist_pairs(pairs, new_keys, new_keys, count=50)))
     
     if base_keys != '':
-        add_step(lesson,
+        steps.append(make_step(
             get_congrats() + _('Now practice all the keys you know.'),
-            'text', make_weighted_wordlist_pairs(pairs, new_keys, all_keys, count=50))
+            'text', make_weighted_wordlist_pairs(pairs, new_keys, all_keys, count=50)))
     
-        add_step(lesson,
+        steps.append(make_step(
             _('Almost done.  Keep practicing all the keys you know.'),
-            'text', make_weighted_wordlist_pairs(pairs, new_keys, all_keys, count=50))
+            'text', make_weighted_wordlist_pairs(pairs, new_keys, all_keys, count=50)))
 
     else:
-        add_step(lesson,
+        steps.append(make_step(
             _('Almost done.  Keep practicing key pairs.'),
-            'text', make_weighted_wordlist_pairs(pairs, new_keys, new_keys, count=100))
+            'text', make_weighted_wordlist_pairs(pairs, new_keys, new_keys, count=100)))
 
     if len(good_words) == 0:
-        add_step(lesson,
+        steps.append(make_step(
             get_congrats() + _('Time to type jumbles.'),
-            'text', make_jumbles(new_keys, all_keys, 100, 5))
+            'text', make_jumbles(new_keys, all_keys, 100, 5)))
         
-        add_step(lesson,
+        steps.append(make_step(
             _('Keep practicing these jumbles.'),
-            'text', make_jumbles(new_keys, all_keys, 100, 5))
+            'text', make_jumbles(new_keys, all_keys, 100, 5)))
         
-        add_step(lesson,
+        steps.append(make_step(
             _('Almost finished. Try to type as quickly and accurately as you can!'),
-            'text', make_jumbles(new_keys, all_keys, 100, 5))
+            'text', make_jumbles(new_keys, all_keys, 100, 5)))
     
     else:
-        add_step(lesson,
+        steps.append(make_step(
             get_congrats() + _('Time to type real words.'),
-            'text', make_random_words(good_words, new_keys, all_keys, count=100))
+            'text', make_random_words(good_words, new_keys, all_keys, count=100)))
         
-        add_step(lesson,
+        steps.append(make_step(
             _('Keep practicing these words.'),
-            'text', make_random_words(good_words, new_keys, all_keys, count=100))
+            'text', make_random_words(good_words, new_keys, all_keys, count=100)))
         
-        add_step(lesson,
+        steps.append(make_step(
             _('Almost finished. Try to type as quickly and accurately as you can!'),
-            'text', make_random_words(good_words, new_keys, all_keys, count=200))
+            'text', make_random_words(good_words, new_keys, all_keys, count=200)))
     
     text = '$report'
-    add_step(lesson, text, 'key', '\n')
+    steps.append(make_step(text, 'key', ' '))
 
-    return lesson
+    return steps 
 
-def write_lesson(filename, lesson):
-    code = locale.getlocale(locale.LC_ALL)[0]
-    text = json.write(lesson)
-    open(os.path.join('lessons', code, filename), 'w').write(text)   
+def build_intro_steps():
+    steps = []
 
-def build_intro_lesson():
-    lesson = {}
-    lesson['name'] = _('Welcome') 
-    lesson['description'] = _('Click here to begin your typing adventure.') 
-    lesson['order'] = 0
-    lesson['report'] = 'simple'
-    lesson['medals'] = [
-        { 'name': 'bronze', 'wpm': 0, 'accuracy': 10 },
-        { 'name': 'silver', 'wpm': 0, 'accuracy': 70 },
-        { 'name': 'gold', 'wpm': 0, 'accuracy': 100 }
-    ]
-    lesson['steps'] = []
-    
     text = ''
     text += _('Hi, welcome to Typing Turtle!  My name is Max the turtle, ')
     text += _('and I\'ll to teach you how to type.\n\n')
@@ -437,25 +422,25 @@ def build_intro_lesson():
     text += _('If you learn which finger presses each key, and keep practicing, you will be typing like a pro before you know it!\n\n')
     text += _('Now, place your hands on the keyboard just like the picture below.\n')
     text += _('When you\'re ready, press the SPACE bar with your thumb!')
-    add_step(lesson, text, 'key', ' ')
+    steps.append(make_step(text, 'key', ' '))
 
     text = ''
     text += _('Good job!  You correctly typed your first key.  When typing, the SPACE bar is ')
     text += _('used to insert blank spaces between words.\n\n')
     text += _('Press the SPACE bar again with your thumb.')
-    add_step(lesson, text, 'key', ' ')
+    steps.append(make_step(text, 'key', ' '))
     
     text = ''
     text += _('Now I\'ll teach you the second key, ENTER.  ')
     text += _('That\'s the big square key near your right little finger.\n\n')
     text += _('Without moving any other fingers, reach your little finger over and press ')
     text += _('ENTER.\nCheck the picture below if you need a hint!')
-    add_step(lesson, text, 'key', '\n')
+    steps.append(make_step(text, 'key', '\n'))
     
     text = ''
     text += _('Great!  When typing, the ENTER key is used to begin a new line.\n\n')
     text += _('Press the ENTER key again with your right little finger.')
-    add_step(lesson, text, 'key', '\n')
+    steps.append(make_step(text, 'key', '\n'))
     
     text = ''
     text += _('Wonderful!  Now I\'m going to tell you a little more about Typing Turtle.\n\n')
@@ -465,87 +450,56 @@ def build_intro_lesson():
     text += _('When you see a big picture of a key like this one, you are supposed to ')
     text += _('press that key on the keyboard.\nRemember, always use the correct finger to ')
     text += _('type each key!')
-    add_step(lesson, text, 'key', ' ')
+    steps.append(make_step(text, 'key', ' '))
 
     text = '$report'
-    add_step(lesson, text, 'key', '\n')
+    steps.append(make_step(text, 'key', '\n'))
 
-    return lesson
+    return steps 
 
-# Note to myself.
-#
-# From looking at the real keyboard layouts, this path (--make-all-lessons) is foolish.
-# Differrent languages invoke different sets of keys with different sets of shifts, so one
-# algorithm will not be able to determine an effective learning order.
-#
-# The correct approach is to create a script for each language which repeatedly calls
-# lessonbuilder.py with different options to create the various lessons.
-#
-
-#TOPROW_SCANCODES = [ 0x17, 0x18, 0x19, 0x1a, 0x1b, 0x1c, 0x1d, 0x1e, 0x1f, 0x20, 0x21 ]
-#HOMEROW_SCANCODES = [ 0x25, 0x26, 0x27, 0x28, 0x29, 0x2a, 0x2b, 0x2c, 0x2d, 0x2e, 0x2f, 0x30, 0x33 ]
-#BOTTOMROW_SCANCODES = [ 0x32, 0x34, 0x35, 0x36, 0x37, 0x38, 0x39, 0x3a ]
-
-def make_default_lesson_set(words, bad_words):
-    write_lesson(
-        'intro.lesson',
-        build_intro_lesson())
-
-    lesson = build_lesson(
-        name=_('The Home Row'),
-        description=_('This lesson teaches you the first a, s, d, f, g, h, j, k and l keys \nin the middle of the keyboard.\nThese keys are called the Home Row.'), 
-        order=2, 
-        new_keys=_('asdfghjkl'), base_keys='', 
-        words=words, bad_words=bad_words)
-    write_lesson('homerow.lesson', lesson)
-    
-    lesson = build_lesson(
-        name=_('The Top Row'),
-        description=_('This lesson teaches you the q, w, e, r, t, y, u, i, o and p keys \non the top row of the keyboard.'), 
-        order=3, 
-        new_keys='qwertyuiop', base_keys='asdfghjkl', 
-        words=words, bad_words=bad_words)
-    write_lesson('toprow.lesson', lesson)
-
-    lesson = build_lesson(
-        name=_('The Bottom Row'),
-        description=_('This lesson teaches you the z, x, c, v, b, n and m keys \non the bottom row of the keyboard.'), 
-        order=4, 
-        new_keys='zxcvbnm', base_keys='asdfghjklqwertyuiop', 
-        words=words, bad_words=bad_words)
-    write_lesson('bottomrow.lesson', lesson)
-    
 if __name__ == "__main__":
     import optparse
     parser = optparse.OptionParser("usage: %prog [options]")
-    parser.add_option("--make-all-lessons", dest="make_all_lessons", action="store_true",
-                      help="Automatically generate a complete lesson set.")
-    parser.add_option("--make-intro-lesson", dest="make_intro_lesson", action="store_true",
-                      help="Generate the introductory lesson.")
-    parser.add_option("--make-key-lesson", dest="make_key_lesson", action="store_true",
-                      help="Generate a lesson to teach a specific set of keys.")
-    parser.add_option("--output", dest="output", metavar="FILE",
-                      help="Output file.")
+
+    parser.add_option("--title", dest="name", default="Generated",
+                      help="Lesson title.")
+    parser.add_option("--desc", dest="desc", default="Default description.",
+                      help="Lesson description.  Use \\n to break lines.")
+    parser.add_option("--order", dest="order", type="int", metavar="N", default=0,
+                      help="Order of this lesson in the index.")
+    parser.add_option("--seed", dest="seed", type="int", metavar="N", default=0x12345678,
+                      help="Random seed.")
     parser.add_option("--keys", dest="keys", metavar="KEYS", default='',
                       help="Keys to teach.")
     parser.add_option("--base-keys", dest="base_keys", metavar="KEYS", default='',
                       help="Keys already taught prior to this lesson.")
-    parser.add_option("--title", dest="name", default="Generated",
-                      help="Lesson name.")
-    parser.add_option("--desc", dest="desc", default="Default description.",
-                      help="Lesson description.")
-    parser.add_option("--order", dest="order", type="int", metavar="N", default=0,
-                      help="Order of this lesson in the index.")
     parser.add_option("--wordlist", dest="wordlist", metavar="FILE",
                       help="Text file containing words to use.")
     parser.add_option("--badwordlist", dest="badwordlist", metavar="FILE",
                       help="Text file containing words *not* to use.")
-    parser.add_option("--seed", dest="seed", type="int", metavar="N", default=0x12345678,
-                      help="Random seed.")
-    
+    parser.add_option("--game-type", dest="game-type", metavar="TYPE", default='balloon',
+                      help="Type of game to use.  Currently just 'balloon'.")
+    parser.add_option("--output", dest="output", metavar="FILE",
+                      help="Output file.")
+
+    type_group = optparse.OptionGroup(parser, 
+        'Lesson Types', 
+        'Specify one of these to control the kind of lesson created.')
+    type_group.add_option("--make-intro-lesson", dest="make_intro_lesson", action="store_true",
+                      help="Generate the introductory lesson.")
+    type_group.add_option("--make-key-lesson", dest="make_key_lesson", action="store_true",
+                      help="Generate a lesson to teach a specific set of keys.")
+    type_group.add_option("--make-game-lesson", dest="make_game_lesson", action="store_true",
+                      help="Generate a lesson which plays a game.")
+    #type_group.add_option("--make-capital-lesson", dest="make_capital_lesson", action="store_true",
+    #                  help="Generate a lesson which teaches CAPITAL letters (might not be appropriate for some languages).")
+    #type_group.add_option("--make-punctuation-lesson", dest="make_punctuation_lesson", action="store_true",
+    #                  help="Generate a lesson which teaches punctuation (might not be appropriate for some languages).")
+    parser.add_option_group(type_group)
+
     (options, args) = parser.parse_args()
-    
-    if not options.make_all_lessons and not options.make_key_lesson and not options.make_intro_lesson:
+
+    if not (options.make_intro_lesson or options.make_key_lesson or options.make_game_lesson):
         parser.error('no lesson type given')
 
     if not options.output:
@@ -565,27 +519,35 @@ if __name__ == "__main__":
     
     random.seed(options.seed)
 
+    print "Building lesson '%s'..." % options.name
+
+    lesson = {}
+    lesson['name'] = options.name
+    lesson['description'] = options.desc
+    lesson['order'] = options.order
+
     if options.make_intro_lesson:
-        lesson = build_intro_lesson()
-        open(options.output, 'w').write(json.write(lesson))
-        sys.exit()
+        lesson['name'] = _('Welcome') 
+        lesson['type'] = 'normal' 
+        lesson['description'] = _('Click here to begin your typing adventure.') 
+        lesson['steps'] = build_intro_steps()
     
-    if options.make_key_lesson:        
+    elif options.make_key_lesson:        
         if not options.wordlist:
             parser.error('no wordlist file given')
         
-        lesson = build_lesson(
-            name=options.name, description=options.desc, 
-            order=options.order,
+        lesson['type'] = 'normal' 
+        lesson['steps'] = build_key_steps(
             new_keys=options.keys, base_keys=options.base_keys, 
             words=words, bad_words=bad_words)
-        open(options.output, 'w').write(json.write(lesson))
-        sys.exit()
 
-    if options.make_all_lessons:
+    elif options.make_game_lesson:
         if not options.wordlist:
             parser.error('no wordlist file given')
         
-        make_default_lesson_set(words=words, bad_words=bad_words)
-        sys.exit()
+        lesson['type'] = 'balloon' 
+        lesson['words'] = build_game_words(
+            new_keys=options.keys, base_keys=options.base_keys, 
+            words=words, bad_words=bad_words)
 
+    open(options.output, 'w').write(json.write(lesson))
