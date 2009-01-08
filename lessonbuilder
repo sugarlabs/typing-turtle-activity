@@ -292,7 +292,7 @@ def build_game_words(
     return good_words 
 
 def build_key_steps(
-    new_keys, base_keys, 
+    count, new_keys, base_keys, 
     words, bad_words):
 
     all_keys = new_keys + base_keys
@@ -352,59 +352,26 @@ def build_key_steps(
 
     steps.append(make_step(
         get_congrats() + _('Practice typing the keys you just learned.'),
-        'text', make_random_doubles(new_keys, count=40)))
-    
-    steps.append(make_step(
-        _('Keep practicing the new keys.'),
-        'text', make_random_doubles(new_keys, count=40)))
+        'text', make_random_doubles(new_keys, count)))
     
     steps.append(make_step(
         get_congrats() + _('Now put the keys together into pairs.'),
-        'text', make_weighted_wordlist_pairs(pairs, new_keys, new_keys, count=50)))
-    
-    steps.append(make_step(
-        _('Keep practicing key pairs.'),
-        'text', make_weighted_wordlist_pairs(pairs, new_keys, new_keys, count=50)))
+        'text', make_weighted_wordlist_pairs(pairs, new_keys, new_keys, count)))
     
     if base_keys != '':
         steps.append(make_step(
             get_congrats() + _('Now practice all the keys you know.'),
-            'text', make_weighted_wordlist_pairs(pairs, new_keys, all_keys, count=50)))
-    
-        steps.append(make_step(
-            _('Almost done.  Keep practicing all the keys you know.'),
-            'text', make_weighted_wordlist_pairs(pairs, new_keys, all_keys, count=50)))
-
-    else:
-        steps.append(make_step(
-            _('Almost done.  Keep practicing key pairs.'),
-            'text', make_weighted_wordlist_pairs(pairs, new_keys, new_keys, count=100)))
+            'text', make_weighted_wordlist_pairs(pairs, new_keys, all_keys, count)))
 
     if len(good_words) == 0:
         steps.append(make_step(
             get_congrats() + _('Time to type jumbles.'),
-            'text', make_jumbles(new_keys, all_keys, 100, 5)))
+            'text', make_jumbles(new_keys, all_keys, count, 5)))
         
-        steps.append(make_step(
-            _('Keep practicing these jumbles.'),
-            'text', make_jumbles(new_keys, all_keys, 100, 5)))
-        
-        steps.append(make_step(
-            _('Almost finished. Try to type as quickly and accurately as you can!'),
-            'text', make_jumbles(new_keys, all_keys, 100, 5)))
-    
     else:
         steps.append(make_step(
             get_congrats() + _('Time to type real words.'),
-            'text', make_random_words(good_words, new_keys, all_keys, count=100)))
-        
-        steps.append(make_step(
-            _('Keep practicing these words.'),
-            'text', make_random_words(good_words, new_keys, all_keys, count=100)))
-        
-        steps.append(make_step(
-            _('Almost finished. Try to type as quickly and accurately as you can!'),
-            'text', make_random_words(good_words, new_keys, all_keys, count=200)))
+            'text', make_random_words(good_words, new_keys, all_keys, count)))
     
     text = '$report'
     steps.append(make_step(text, 'key', ' '))
@@ -415,26 +382,21 @@ def build_intro_steps():
     steps = []
 
     text = ''
-    text += _('Hi, welcome to Typing Turtle!  My name is Max the turtle, ')
-    text += _('and I\'ll to teach you how to type.\n\n')
-    text += _('First, I will tell you the secret of fast typing... ')
+    text += _('Hihowareyah!  Ready to learn the secret of fast typing?\n')
     text += _('Always use the correct finger to press each key!\n\n')
-    text += _('If you learn which finger presses each key, and keep practicing, you will be typing like a pro before you know it!\n\n')
     text += _('Now, place your hands on the keyboard just like the picture below.\n')
     text += _('When you\'re ready, press the SPACE bar with your thumb!')
     steps.append(make_step(text, 'key', ' '))
 
     text = ''
-    text += _('Good job!  You correctly typed your first key.  When typing, the SPACE bar is ')
-    text += _('used to insert blank spaces between words.\n\n')
+    text += _('Good job!  The SPACE bar is used to insert spaces between words.\n\n')
     text += _('Press the SPACE bar again with your thumb.')
     steps.append(make_step(text, 'key', ' '))
     
     text = ''
     text += _('Now I\'ll teach you the second key, ENTER.  ')
     text += _('That\'s the big square key near your right little finger.\n\n')
-    text += _('Without moving any other fingers, reach your little finger over and press ')
-    text += _('ENTER.\nCheck the picture below if you need a hint!')
+    text += _('Now, reach your little finger over and press ENTER.')
     steps.append(make_step(text, 'key', '\n'))
     
     text = ''
@@ -443,15 +405,6 @@ def build_intro_steps():
     steps.append(make_step(text, 'key', '\n'))
     
     text = ''
-    text += _('Wonderful!  Now I\'m going to tell you a little more about Typing Turtle.\n\n')
-    text += _('The box you are reading is where instructions will appear.  The keyboard ')
-    text += _('picture below shows what your hands should be doing.  The numbers ')
-    text += _('up top show how quickly and accurately you are typing.\n\n')
-    text += _('When you see a big picture of a key like this one, you are supposed to ')
-    text += _('press that key on the keyboard.\nRemember, always use the correct finger to ')
-    text += _('type each key!')
-    steps.append(make_step(text, 'key', ' '))
-
     text = '$report'
     steps.append(make_step(text, 'key', '\n'))
 
@@ -473,6 +426,8 @@ if __name__ == "__main__":
                       help="Keys to teach.")
     parser.add_option("--base-keys", dest="base_keys", metavar="KEYS", default='',
                       help="Keys already taught prior to this lesson.")
+    parser.add_option("--length", dest="length", type="int", metavar="N", default=60,
+                      help="Length of the lesson.  Default 60.")
     parser.add_option("--wordlist", dest="wordlist", metavar="FILE",
                       help="Text file containing words to use.")
     parser.add_option("--badwordlist", dest="badwordlist", metavar="FILE",
@@ -538,7 +493,7 @@ if __name__ == "__main__":
         
         lesson['type'] = 'normal' 
         lesson['steps'] = build_key_steps(
-            new_keys=options.keys, base_keys=options.base_keys, 
+            count=options.length, new_keys=options.keys, base_keys=options.base_keys, 
             words=words, bad_words=bad_words)
 
     elif options.make_game_lesson:

@@ -33,14 +33,14 @@ import keyboard, medalscreen
 PARAGRAPH_CODE = u'\xb6'
 
 # Maximium width of a text line in text lesson mode.
-LINE_WIDTH = 80
+LINE_WIDTH = 70
 
 # Requirements for earning medals.
 # Words per minute goals came from http://en.wikipedia.org/wiki/Words_per_minute.
 DEFAULT_MEDALS = [
-    { 'name': 'bronze', 'wpm': 25, 'accuracy': 75 },
-    { 'name': 'silver', 'wpm': 35, 'accuracy': 85 },
-    { 'name': 'gold',   'wpm': 45, 'accuracy': 95 }
+    { 'name': 'bronze', 'wpm': 15, 'accuracy': 75 },
+    { 'name': 'silver', 'wpm': 20, 'accuracy': 85 },
+    { 'name': 'gold',   'wpm': 25, 'accuracy': 95 }
 ]
 
 class LessonScreen(gtk.VBox):
@@ -79,12 +79,13 @@ class LessonScreen(gtk.VBox):
         # Set up font styles.
         self.tagtable = gtk.TextTagTable()
         instructions_tag = gtk.TextTag('instructions')
-        #instructions_tag.props.size = 10000
+        instructions_tag.props.size = 10000
         instructions_tag.props.justification = gtk.JUSTIFY_CENTER
         self.tagtable.add(instructions_tag)
 
         text_tag = gtk.TextTag('text')
         text_tag.props.family = 'Monospace'
+        text_tag.props.size = 10000
         self.tagtable.add(text_tag)
         
         image_tag = gtk.TextTag('image')
@@ -94,11 +95,13 @@ class LessonScreen(gtk.VBox):
         
         correct_copy_tag = gtk.TextTag('correct-copy')
         correct_copy_tag.props.family = 'Monospace'
+        correct_copy_tag.props.size = 10000
         correct_copy_tag.props.foreground = '#0000ff'
         self.tagtable.add(correct_copy_tag)
         
         incorrect_copy_tag = gtk.TextTag('incorrect-copy')
         incorrect_copy_tag.props.family = 'Monospace'
+        incorrect_copy_tag.props.size = 10000
         incorrect_copy_tag.props.foreground = '#ff0000'
         self.tagtable.add(incorrect_copy_tag)
         
@@ -214,10 +217,6 @@ class LessonScreen(gtk.VBox):
         return new_lines
 
     def advance_step(self):
-        # Clear the buffer *after* key steps.
-        if self.step and self.mode == 'key':
-            self.lessonbuffer.set_text('')
-        
         # Clear step related variables.
         self.step = None
         
@@ -243,8 +242,7 @@ class LessonScreen(gtk.VBox):
         self.mode = self.step['mode']
         
         # Clear the buffer *before* key steps.
-        if self.mode == 'key':
-            self.lessonbuffer.set_text('')
+        self.lessonbuffer.set_text('')
         
         # Output the instructions.
         self.instructions = self.step['instructions']
@@ -255,7 +253,7 @@ class LessonScreen(gtk.VBox):
             self.lessonbuffer.get_end_iter(), '\n\n' + self.instructions + '\n', 'instructions')
         
         self.text = unicode(self.step['text'])
-        
+
         if self.mode == 'key':
             self.lines = [self.text.replace('\n', PARAGRAPH_CODE)]
             self.line_marks = {}
@@ -530,7 +528,7 @@ class LessonScreen(gtk.VBox):
             _('Nice work!'),
             _('Way to go!')
         ]
-        text += random.choice(congrats) + '\n\n'
+        text += random.choice(congrats) + ' '
         
         if self.total_time > 0:
             text += _('You finished the lesson in %(time)d seconds, with %(errors)d errors.\n') % \
