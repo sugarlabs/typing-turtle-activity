@@ -32,6 +32,11 @@ import keyboard
 # Set up localization.
 locale.setlocale(locale.LC_ALL, '')
 
+def error(s):
+    print "lessonbuilder: ERROR: ", s 
+    print "The lesson could not be generated, exiting.\n\n"
+    sys.exit(1)
+
 CONGRATS = [
     _('Well done!'),
     _('Good job.'),
@@ -132,7 +137,7 @@ RE_NONALPHA = re.compile('\W+', re.UNICODE)
 
 def load_wordlist(path):
     try:
-        text = open(path, 'r').read()
+        text = unicode(open(path, 'r').read())
         
         # Split words by non-alpha characters.  This extracts all actual words,
         # minus punctuation.  Note- Could get messed up by hyphenation, leading
@@ -159,8 +164,6 @@ def get_pairs_from_wordlist(words):
             c1_value = c0_map.setdefault(c1, 0)
             c0_map[c1] = c1_value + 1
 
-    #print char_map['j']
-    
     # Convert to list of pairs with probability.    
     pairs = []
     for c0, c0_map in char_map.items():
@@ -270,8 +273,6 @@ def make_random_words(words, required_keys, keys, count):
     return text.strip()
 
 def make_step(instructions, mode, text):
-    print instructions
-    print text
     step = {}
     step['instructions'] = instructions
     step['text'] = text
@@ -324,6 +325,10 @@ def build_key_steps(
 
     for letter in new_keys:
         key, state, group = kb.get_key_state_group_for_letter(letter)
+
+        if not key:
+            error("There is no key combination in the current keymap for the '%s' letter. " % letter + \
+                  "Are you sure the keymap is set correctly?\n")
 
         finger = FINGERS[key['key-finger']]
 
