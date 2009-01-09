@@ -15,12 +15,21 @@
     --order=1 \
     --output=homerow.lesson
     
+../../lessonbuilder --make-game-lesson \
+    --title="Home Row Balloon Practice" \
+    --desc="Practice the home row keys in this exciting game!\nDon\'t let any balloons get by!" \
+    --keys="asdfghjkl" \
+    --game='balloon' \
+    --wordlist=2of12.txt \
+    --order=2 \
+    --output=homerow.lesson
+    
 ../../lessonbuilder --make-key-lesson \
     --title="The Top Row" \
     --desc="This lesson teaches you the q, w, e, r, t, y, u, i, o and p keys \non the top row of the keyboard." \
     --keys="qwertyuiop" --base-keys="asdfghjkl" \
     --wordlist=2of12.txt \
-    --order=2 \
+    --order=3 \
     --output=toprow.lesson
 
 ../../lessonbuilder --make-key-lesson \
@@ -28,7 +37,7 @@
     --desc="This lesson teaches you the z, x, c, v, b, n and m keys \non the bottom row of the keyboard." \
     --keys="zxcvbnm" --base-keys="asdfghjklqwertyuiop" \
     --wordlist=2of12.txt \
-    --order=3 \
+    --order=4 \
     --output=bottomrow.lesson
 
 # Generate left and right hand capital lessons.
@@ -38,7 +47,7 @@
     --keys="QWERTASDFGZXCVB" \
     --base-keys="abcdefghijklmnopqrstuvwxyz" \
     --wordlist=2of12.txt \
-    --order=4 \
+    --order=5 \
     --output=leftcapital.lesson
 
 ../../lessonbuilder --make-key-lesson \
@@ -47,5 +56,5 @@
     --keys="YUIOPHJKLBNM" \
     --base-keys="abcdefghijklmnopqrstuvwxyzQWERTASDFGZXCVB" \
     --wordlist=2of12.txt \
-    --order=5 \
+    --order=6 \
     --output=rightcapital.lesson

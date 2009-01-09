@@ -173,7 +173,7 @@ class MainScreen(gtk.VBox):
         label = gtk.Label()
         label.set_alignment(0.0, 0.5)
         label.set_markup("<span size='16000'><b>" + lesson['name'] + "</b></span>\n" + 
-                         "<span size='8000' color='#c0c0c0'>" + lesson['description'] + "</span>")
+                         "<span size='9000' color='#c0c0c0'>" + lesson['description'] + "</span>")
         
         if medal_type != 'none':
             hint = _('You earned a medal in this lesson!  Advance to the next one\nby clicking the arrow button to the right.')

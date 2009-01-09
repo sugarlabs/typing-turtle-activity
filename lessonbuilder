@@ -432,7 +432,7 @@ if __name__ == "__main__":
                       help="Text file containing words to use.")
     parser.add_option("--badwordlist", dest="badwordlist", metavar="FILE",
                       help="Text file containing words *not* to use.")
-    parser.add_option("--game-type", dest="game-type", metavar="TYPE", default='balloon',
+    parser.add_option("--game", dest="game", metavar="TYPE", default='balloon',
                       help="Type of game to use.  Currently just 'balloon'.")
     parser.add_option("--output", dest="output", metavar="FILE",
                       help="Output file.")
@@ -500,7 +500,7 @@ if __name__ == "__main__":
         if not options.wordlist:
             parser.error('no wordlist file given')
         
-        lesson['type'] = 'balloon' 
+        lesson['type'] = options.game
         lesson['words'] = build_game_words(
             new_keys=options.keys, base_keys=options.base_keys, 
             words=words, bad_words=bad_words)
