@@ -22,7 +22,7 @@
     --game='balloon' \
     --wordlist=2of12.txt \
     --order=2 \
-    --output=homerow.lesson
+    --output=homerowballoon.lesson
     
 ../../lessonbuilder --make-key-lesson \
     --title="The Top Row" \

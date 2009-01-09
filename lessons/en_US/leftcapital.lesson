@@ -1,1 +1,113 @@
-{"steps":[{"text":"\n","mode":"key","instructions":"In this lesson, you will learn the Q, W, E, R, T, A, S, D, F, G, Z, X, C, V and B keys.\n\nPress the ENTER key when you are ready to begin!"},{"text":"Q","mode":"key","instructions":"Press and hold the SHIFT key with your right little finger, then press the Q key with your left little finger."},{"text":"W","mode":"key","instructions":"Press and hold the SHIFT key with your right little finger, then press the W key with your left ring finger."},{"text":"E","mode":"key","instructions":"Press and hold the SHIFT key with your right little finger, then press the E key with your left middle finger."},{"text":"R","mode":"key","instructions":"Press and hold the SHIFT key with your right little finger, then press the R key with your left index finger."},{"text":"T","mode":"key","instructions":"Press and hold the SHIFT key with your right little finger, then press the T key with your left index finger."},{"text":"A","mode":"key","instructions":"Press and hold the SHIFT key with your right little finger, then press the A key with your left little finger."},{"text":"S","mode":"key","instructions":"Press and hold the SHIFT key with your right little finger, then press the S key with your left ring finger."},{"text":"D","mode":"key","instructions":"Press and hold the SHIFT key with your right little finger, then press the D key with your left middle finger."},{"text":"F","mode":"key","instructions":"Press and hold the SHIFT key with your right little finger, then press the F key with your left index finger."},{"text":"G","mode":"key","instructions":"Press and hold the SHIFT key with your right little finger, then press the G key with your left index finger."},{"text":"Z","mode":"key","instructions":"Press and hold the SHIFT key with your right little finger, then press the Z key with your left little finger."},{"text":"X","mode":"key","instructions":"Press and hold the SHIFT key with your right little finger, then press the X key with your left ring finger."},{"text":"C","mode":"key","instructions":"Press and hold the SHIFT key with your right little finger, then press the C key with your left middle finger."},{"text":"V","mode":"key","instructions":"Press and hold the SHIFT key with your right little finger, then press the V key with your left index finger."},{"text":"B","mode":"key","instructions":"Press and hold the SHIFT key with your right little finger, then press the B key with your left index finger."},{"text":"RR CC XX TT CC VV BB VV XX WW GG AA EE VV FF QQ AA TT EE QQ DD DD VV FF TT AA SS EE WW WW DD EE ZZ CC FF SS CC TT QQ WW VV GG DD XX SS ZZ WW XX XX GG DD RR SS SS VV TT DD DD BB DD","mode":"text","instructions":"You did it! Practice typing the keys you just learned."},{"text":"XF AB DB CB AV RQ ZG BQ WC SF RA BT FE ZT CT XE ZA GW XE QT QC AC WA QT ZT AW VT QB ZX TE DE SF BD XG QD TG VR DX GF FX GE TD WA DA BC QV ZG ZE TC TG SG AZ WQ XX BF RS TT CE BD EA","mode":"text","instructions":"Nice work. Now put the keys together into pairs."},{"text":"Ty EE sB CF dW aD Ch ZF cR oC Xm RC WQ wR eT ZE Vg Fo pW CV xQ wA vA Rp jS GG TR DQ VQ VT pA VZ uZ XW Xg XC sS mB Sa WC Cu cE CR gQ AE Sl DE Db Cj Xk lZ Cu XE fB tQ aZ iD tQ Sv QR","mode":"text","instructions":"Good job. Now practice all the keys you know."},{"text":"RtZq XWEp EhQa EdGi ZWFZ CVVh ZcCT RbVV XtQa ZjZd WsSr WbFo SqAb GECk GRRl WQBE RfTj BWGn EpZu XvDV FpDS FwQV ABZB EuZF BfFq TsBZ QsEa TsRj XjAV QeRt QWQy CZZc GXDX ReGo DnDb WATG CsXx AmSt ExTZ ACVl VfQQ BXWh GTSC SoSD WnEh CaFS DpQA QDVa EaDW FpFA CuVB CVQi TnBs ScRW XiXx EzFp ZuDV DlFr TBQr FTZv","mode":"text","instructions":"Good job. Time to type jumbles."},{"text":" ","mode":"key","instructions":"$report"}],"order":5,"type":"normal","name":"Left Hand Capitals","description":"This lesson teaches you the CAPITAL letters which are typed by your left hand.\nThese are Q, W, E, R, T, A, S, D, F, G, Z, X, C, V and B."}
+{
+    "description": "This lesson teaches you the CAPITAL letters which are typed by your left hand.\nThese are Q, W, E, R, T, A, S, D, F, G, Z, X, C, V and B.", 
+    "name": "Left Hand Capitals", 
+    "order": 5, 
+    "steps": [
+        {
+            "instructions": "In this lesson, you will learn the Q, W, E, R, T, A, S, D, F, G, Z, X, C, V and B keys.\n\nPress the ENTER key when you are ready to begin!", 
+            "mode": "key", 
+            "text": "\n"
+        }, 
+        {
+            "instructions": "Press and hold the SHIFT key with your right little finger, then press the Q key with your left little finger.", 
+            "mode": "key", 
+            "text": "Q"
+        }, 
+        {
+            "instructions": "Press and hold the SHIFT key with your right little finger, then press the W key with your left ring finger.", 
+            "mode": "key", 
+            "text": "W"
+        }, 
+        {
+            "instructions": "Press and hold the SHIFT key with your right little finger, then press the E key with your left middle finger.", 
+            "mode": "key", 
+            "text": "E"
+        }, 
+        {
+            "instructions": "Press and hold the SHIFT key with your right little finger, then press the R key with your left index finger.", 
+            "mode": "key", 
+            "text": "R"
+        }, 
+        {
+            "instructions": "Press and hold the SHIFT key with your right little finger, then press the T key with your left index finger.", 
+            "mode": "key", 
+            "text": "T"
+        }, 
+        {
+            "instructions": "Press and hold the SHIFT key with your right little finger, then press the A key with your left little finger.", 
+            "mode": "key", 
+            "text": "A"
+        }, 
+        {
+            "instructions": "Press and hold the SHIFT key with your right little finger, then press the S key with your left ring finger.", 
+            "mode": "key", 
+            "text": "S"
+        }, 
+        {
+            "instructions": "Press and hold the SHIFT key with your right little finger, then press the D key with your left middle finger.", 
+            "mode": "key", 
+            "text": "D"
+        }, 
+        {
+            "instructions": "Press and hold the SHIFT key with your right little finger, then press the F key with your left index finger.", 
+            "mode": "key", 
+            "text": "F"
+        }, 
+        {
+            "instructions": "Press and hold the SHIFT key with your right little finger, then press the G key with your left index finger.", 
+            "mode": "key", 
+            "text": "G"
+        }, 
+        {
+            "instructions": "Press and hold the SHIFT key with your right little finger, then press the Z key with your left little finger.", 
+            "mode": "key", 
+            "text": "Z"
+        }, 
+        {
+            "instructions": "Press and hold the SHIFT key with your right little finger, then press the X key with your left ring finger.", 
+            "mode": "key", 
+            "text": "X"
+        }, 
+        {
+            "instructions": "Press and hold the SHIFT key with your right little finger, then press the C key with your left middle finger.", 
+            "mode": "key", 
+            "text": "C"
+        }, 
+        {
+            "instructions": "Press and hold the SHIFT key with your right little finger, then press the V key with your left index finger.", 
+            "mode": "key", 
+            "text": "V"
+        }, 
+        {
+            "instructions": "Press and hold the SHIFT key with your right little finger, then press the B key with your left index finger.", 
+            "mode": "key", 
+            "text": "B"
+        }, 
+        {
+            "instructions": "You did it! Practice typing the keys you just learned.", 
+            "mode": "text", 
+            "text": "RR CC XX TT CC VV BB VV XX WW GG AA EE VV FF QQ AA TT EE QQ DD DD VV FF TT AA SS EE WW WW DD EE ZZ CC FF SS CC TT QQ WW VV GG DD XX SS ZZ WW XX XX GG DD RR SS SS VV TT DD DD BB DD"
+        }, 
+        {
+            "instructions": "Nice work. Now put the keys together into pairs.", 
+            "mode": "text", 
+            "text": "XF AB DB CB AV RQ ZG BQ WC SF RA BT FE ZT CT XE ZA GW XE QT QC AC WA QT ZT AW VT QB ZX TE DE SF BD XG QD TG VR DX GF FX GE TD WA DA BC QV ZG ZE TC TG SG AZ WQ XX BF RS TT CE BD EA"
+        }, 
+        {
+            "instructions": "Good job. Now practice all the keys you know.", 
+            "mode": "text", 
+            "text": "Ty EE sB CF dW aD Ch ZF cR oC Xm RC WQ wR eT ZE Vg Fo pW CV xQ wA vA Rp jS GG TR DQ VQ VT pA VZ uZ XW Xg XC sS mB Sa WC Cu cE CR gQ AE Sl DE Db Cj Xk lZ Cu XE fB tQ aZ iD tQ Sv QR"
+        }, 
+        {
+            "instructions": "Good job. Time to type jumbles.", 
+            "mode": "text", 
+            "text": "RtZq XWEp EhQa EdGi ZWFZ CVVh ZcCT RbVV XtQa ZjZd WsSr WbFo SqAb GECk GRRl WQBE RfTj BWGn EpZu XvDV FpDS FwQV ABZB EuZF BfFq TsBZ QsEa TsRj XjAV QeRt QWQy CZZc GXDX ReGo DnDb WATG CsXx AmSt ExTZ ACVl VfQQ BXWh GTSC SoSD WnEh CaFS DpQA QDVa EaDW FpFA CuVB CVQi TnBs ScRW XiXx EzFp ZuDV DlFr TBQr FTZv"
+        }, 
+        {
+            "instructions": "$report", 
+            "mode": "key", 
+            "text": " "
+        }
+    ], 
+    "type": "normal"
+}

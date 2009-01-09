@@ -1,1 +1,98 @@
-{"steps":[{"text":"\n","mode":"key","instructions":"In this lesson, you will learn the Y, U, I, O, P, H, J, K, L, B, N and M keys.\n\nPress the ENTER key when you are ready to begin!"},{"text":"Y","mode":"key","instructions":"Press and hold the SHIFT key with your left little finger, then press the Y key with your right index finger."},{"text":"U","mode":"key","instructions":"Press and hold the SHIFT key with your left little finger, then press the U key with your right index finger."},{"text":"I","mode":"key","instructions":"Press and hold the SHIFT key with your left little finger, then press the I key with your right middle finger."},{"text":"O","mode":"key","instructions":"Press and hold the SHIFT key with your left little finger, then press the O key with your right ring finger."},{"text":"P","mode":"key","instructions":"Press and hold the SHIFT key with your left little finger, then press the P key with your right little finger."},{"text":"H","mode":"key","instructions":"Press and hold the SHIFT key with your left little finger, then press the H key with your right index finger."},{"text":"J","mode":"key","instructions":"Press and hold the SHIFT key with your left little finger, then press the J key with your right index finger."},{"text":"K","mode":"key","instructions":"Press and hold the SHIFT key with your left little finger, then press the K key with your right middle finger."},{"text":"L","mode":"key","instructions":"Press and hold the SHIFT key with your left little finger, then press the L key with your right ring finger."},{"text":"B","mode":"key","instructions":"Press and hold the SHIFT key with your right little finger, then press the B key with your left index finger."},{"text":"N","mode":"key","instructions":"Press and hold the SHIFT key with your left little finger, then press the N key with your right index finger."},{"text":"M","mode":"key","instructions":"Press and hold the SHIFT key with your left little finger, then press the M key with your right index finger."},{"text":"II BB LL OO NN NN MM NN LL YY KK PP UU MM JJ YY PP OO II YY HH HH NN JJ OO PP PP UU YY UU JJ II LL NN JJ HH NN OO YY UU NN KK HH BB HH LL UU BB LL KK HH II HH HH MM OO HH HH MM HH","mode":"text","instructions":"You did it! Practice typing the keys you just learned."},{"text":"BK PM HM BM PN IY LK MY UN HK OP MO JU LO NO BU LP KU BI YO YB PB UP YO LO PU NO YM LB OU HU HK MH BK YH OK NI JB KJ KB KI OJ UP JP MB YM LK LI OB OK PK PL UY BB MJ OP OO BU MJ UP","mode":"text","instructions":"Nice work. Now put the keys together into pairs."},{"text":"OC OU AM NN lU hJ Bq LN kO QB Bx Id UY ZI mO aI Np KQ WU Ne CY ZP GP IQ uH KM JI BY fY NH WP Mb DL dU Bq dB AP xM Hi UB BF kU BP qY PO Hw BI Jj Nu Bu vL ND dI oM DY iL sH SY HF YP","mode":"text","instructions":"Good job. Now practice all the keys you know."},{"text":"OSLR BUIW UqYi UmKs LIJb BfNr LjBH IjNf LSYi LtLm UAPT UjKz PEPi KONu KPIw UUMO IoOt MUKy IWLD BGHf KWJL KZYf PgLh UDLN MoJE OTMb YAUh OAIt BtPf YmOS YIYC NbLk KcHc InKQ JyJj UKOa BABX PxHS UXOb PeMw MoYY McUr KHPe PQHB UyIr BhJL JWYK YBMi IhJU KWJK BDMg NfYs OyMA HkOU BsBC IBJW LDHf HwJR OhYT JHLG","mode":"text","instructions":"Good job. Time to type jumbles."},{"text":" ","mode":"key","instructions":"$report"}],"order":6,"type":"normal","name":"Right Hand Capitals","description":"This lesson teaches you the CAPITAL letters which are typed by your right hand.\nThese are Y, U, I, O, P, H, J, K, L, B, N, and M."}
+{
+    "description": "This lesson teaches you the CAPITAL letters which are typed by your right hand.\nThese are Y, U, I, O, P, H, J, K, L, B, N, and M.", 
+    "name": "Right Hand Capitals", 
+    "order": 6, 
+    "steps": [
+        {
+            "instructions": "In this lesson, you will learn the Y, U, I, O, P, H, J, K, L, B, N and M keys.\n\nPress the ENTER key when you are ready to begin!", 
+            "mode": "key", 
+            "text": "\n"
+        }, 
+        {
+            "instructions": "Press and hold the SHIFT key with your left little finger, then press the Y key with your right index finger.", 
+            "mode": "key", 
+            "text": "Y"
+        }, 
+        {
+            "instructions": "Press and hold the SHIFT key with your left little finger, then press the U key with your right index finger.", 
+            "mode": "key", 
+            "text": "U"
+        }, 
+        {
+            "instructions": "Press and hold the SHIFT key with your left little finger, then press the I key with your right middle finger.", 
+            "mode": "key", 
+            "text": "I"
+        }, 
+        {
+            "instructions": "Press and hold the SHIFT key with your left little finger, then press the O key with your right ring finger.", 
+            "mode": "key", 
+            "text": "O"
+        }, 
+        {
+            "instructions": "Press and hold the SHIFT key with your left little finger, then press the P key with your right little finger.", 
+            "mode": "key", 
+            "text": "P"
+        }, 
+        {
+            "instructions": "Press and hold the SHIFT key with your left little finger, then press the H key with your right index finger.", 
+            "mode": "key", 
+            "text": "H"
+        }, 
+        {
+            "instructions": "Press and hold the SHIFT key with your left little finger, then press the J key with your right index finger.", 
+            "mode": "key", 
+            "text": "J"
+        }, 
+        {
+            "instructions": "Press and hold the SHIFT key with your left little finger, then press the K key with your right middle finger.", 
+            "mode": "key", 
+            "text": "K"
+        }, 
+        {
+            "instructions": "Press and hold the SHIFT key with your left little finger, then press the L key with your right ring finger.", 
+            "mode": "key", 
+            "text": "L"
+        }, 
+        {
+            "instructions": "Press and hold the SHIFT key with your right little finger, then press the B key with your left index finger.", 
+            "mode": "key", 
+            "text": "B"
+        }, 
+        {
+            "instructions": "Press and hold the SHIFT key with your left little finger, then press the N key with your right index finger.", 
+            "mode": "key", 
+            "text": "N"
+        }, 
+        {
+            "instructions": "Press and hold the SHIFT key with your left little finger, then press the M key with your right index finger.", 
+            "mode": "key", 
+            "text": "M"
+        }, 
+        {
+            "instructions": "You did it! Practice typing the keys you just learned.", 
+            "mode": "text", 
+            "text": "II BB LL OO NN NN MM NN LL YY KK PP UU MM JJ YY PP OO II YY HH HH NN JJ OO PP PP UU YY UU JJ II LL NN JJ HH NN OO YY UU NN KK HH BB HH LL UU BB LL KK HH II HH HH MM OO HH HH MM HH"
+        }, 
+        {
+            "instructions": "Nice work. Now put the keys together into pairs.", 
+            "mode": "text", 
+            "text": "BK PM HM BM PN IY LK MY UN HK OP MO JU LO NO BU LP KU BI YO YB PB UP YO LO PU NO YM LB OU HU HK MH BK YH OK NI JB KJ KB KI OJ UP JP MB YM LK LI OB OK PK PL UY BB MJ OP OO BU MJ UP"
+        }, 
+        {
+            "instructions": "Good job. Now practice all the keys you know.", 
+            "mode": "text", 
+            "text": "OC OU AM NN lU hJ Bq LN kO QB Bx Id UY ZI mO aI Np KQ WU Ne CY ZP GP IQ uH KM JI BY fY NH WP Mb DL dU Bq dB AP xM Hi UB BF kU BP qY PO Hw BI Jj Nu Bu vL ND dI oM DY iL sH SY HF YP"
+        }, 
+        {
+            "instructions": "Good job. Time to type jumbles.", 
+            "mode": "text", 
+            "text": "OSLR BUIW UqYi UmKs LIJb BfNr LjBH IjNf LSYi LtLm UAPT UjKz PEPi KONu KPIw UUMO IoOt MUKy IWLD BGHf KWJL KZYf PgLh UDLN MoJE OTMb YAUh OAIt BtPf YmOS YIYC NbLk KcHc InKQ JyJj UKOa BABX PxHS UXOb PeMw MoYY McUr KHPe PQHB UyIr BhJL JWYK YBMi IhJU KWJK BDMg NfYs OyMA HkOU BsBC IBJW LDHf HwJR OhYT JHLG"
+        }, 
+        {
+            "instructions": "$report", 
+            "mode": "key", 
+            "text": " "
+        }
+    ], 
+    "type": "normal"
+}

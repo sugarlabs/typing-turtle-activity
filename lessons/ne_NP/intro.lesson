@@ -1,1 +1,33 @@
-{"steps":[{"text":" ","mode":"key","instructions":"Hihowareyah!  Ready to learn the secret of fast typing?\nAlways use the correct finger to press each key!\n\nNow, place your hands on the keyboard just like the picture below.\nWhen you're ready, press the SPACE bar with your thumb!"},{"text":" ","mode":"key","instructions":"Good job!  The SPACE bar is used to insert spaces between words.\n\nPress the SPACE bar again with your thumb."},{"text":"\n","mode":"key","instructions":"Now I'll teach you the second key, ENTER.  That's the big square key near your right little finger.\n\nNow, reach your little finger over and press ENTER."},{"text":"\n","mode":"key","instructions":"Great!  When typing, the ENTER key is used to begin a new line.\n\nPress the ENTER key again with your right little finger."},{"text":"\n","mode":"key","instructions":"$report"}],"order":0,"type":"normal","name":"Welcome","description":"Click here to begin your typing adventure."}
+{
+    "description": "Click here to begin your typing adventure.", 
+    "name": "Welcome", 
+    "order": 0, 
+    "steps": [
+        {
+            "instructions": "Hihowareyah!  Ready to learn the secret of fast typing?\nAlways use the correct finger to press each key!\n\nNow, place your hands on the keyboard just like the picture below.\nWhen you're ready, press the SPACE bar with your thumb!", 
+            "mode": "key", 
+            "text": " "
+        }, 
+        {
+            "instructions": "Good job!  The SPACE bar is used to insert spaces between words.\n\nPress the SPACE bar again with your thumb.", 
+            "mode": "key", 
+            "text": " "
+        }, 
+        {
+            "instructions": "Now I'll teach you the second key, ENTER.  That's the big square key near your right little finger.\n\nNow, reach your little finger over and press ENTER.", 
+            "mode": "key", 
+            "text": "\n"
+        }, 
+        {
+            "instructions": "Great!  When typing, the ENTER key is used to begin a new line.\n\nPress the ENTER key again with your right little finger.", 
+            "mode": "key", 
+            "text": "\n"
+        }, 
+        {
+            "instructions": "$report", 
+            "mode": "key", 
+            "text": "\n"
+        }
+    ], 
+    "type": "normal"
+}

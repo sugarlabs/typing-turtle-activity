@@ -181,7 +181,8 @@ class BalloonGame(gtk.VBox):
         if len(self.balloons) == 0 and self.stage_idx >= len(BALLOON_STAGES):
             self.finished = True
  
-        self.queue_draw()
+        #self.queue_draw()
+        self.draw()
 
         return True
 
@@ -231,8 +232,8 @@ class BalloonGame(gtk.VBox):
         gc = self.area.window.new_gc()
         
         # Draw background.
-        #gc.foreground = self.area.get_colormap().alloc_color(65535,65535,65535)
-        #self.area.window.draw_rectangle(gc, True, 0, 0, bounds.width, bounds.height)
+        gc.foreground = self.area.get_colormap().alloc_color(65535,65535,65535)
+        self.area.window.draw_rectangle(gc, True, 0, 0, self.bounds.width, self.bounds.height)
 
         # Draw the balloons.
         for b in self.balloons:

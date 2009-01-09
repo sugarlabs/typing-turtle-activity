@@ -1,1 +1,78 @@
-{"order":2,"type":"balloon","name":"Home Row Balloon Practice","words":["had","hag","has","lass","lash","jag","hah","fa","ass","ask","halal","alfalfa","saga","salsa","aha","flag","flak","sass","sash","gaff","ad","ah","as","da","flask","flash","half","hall","shad","ash","shag","shah","slash","shh","ha","fall","la","ll","alga","falls","hash","sh","hajj","slag","algal","sag","gal","gag","gad","add","alas","all","glad","glass","shall","sad","lag","salad","gash","lad","dash","gaga","dad","ssh","fag","fad","gala","gall","ska","gas"],"description":"Practice the home row keys in this exciting game!\nDon\\'t let any balloons get by!"}
+{
+    "description": "This lesson teaches you the a, s, d, f, g, h, j, k and l keys \nin the middle of the keyboard.\nThese keys are called the Home Row.", 
+    "name": "The Home Row", 
+    "order": 1, 
+    "steps": [
+        {
+            "instructions": "In this lesson, you will learn the a, s, d, f, g, h, j, k and l keys.\n\nPress the ENTER key when you are ready to begin!", 
+            "mode": "key", 
+            "text": "\n"
+        }, 
+        {
+            "instructions": "Press the a key with your left little finger.", 
+            "mode": "key", 
+            "text": "a"
+        }, 
+        {
+            "instructions": "Press the s key with your left ring finger.", 
+            "mode": "key", 
+            "text": "s"
+        }, 
+        {
+            "instructions": "Press the d key with your left middle finger.", 
+            "mode": "key", 
+            "text": "d"
+        }, 
+        {
+            "instructions": "Press the f key with your left index finger.", 
+            "mode": "key", 
+            "text": "f"
+        }, 
+        {
+            "instructions": "Press the g key with your left index finger.", 
+            "mode": "key", 
+            "text": "g"
+        }, 
+        {
+            "instructions": "Press the h key with your right index finger.", 
+            "mode": "key", 
+            "text": "h"
+        }, 
+        {
+            "instructions": "Press the j key with your right index finger.", 
+            "mode": "key", 
+            "text": "j"
+        }, 
+        {
+            "instructions": "Press the k key with your right middle finger.", 
+            "mode": "key", 
+            "text": "k"
+        }, 
+        {
+            "instructions": "Press the l key with your right ring finger.", 
+            "mode": "key", 
+            "text": "l"
+        }, 
+        {
+            "instructions": "You did it! Practice typing the keys you just learned.", 
+            "mode": "text", 
+            "text": "ss kk jj dd kk kk ll ll jj aa hh ff ss ll hh aa ff dd ss aa gg gg ll hh dd ff ff ss aa aa gg ss jj kk gg ff kk dd aa ss ll hh gg jj ff jj aa jj jj hh gg dd ff ff ll dd gg gg ll gg"
+        }, 
+        {
+            "instructions": "Nice work. Now put the keys together into pairs.", 
+            "mode": "text", 
+            "text": "ff ka hd la aj ff lg la gj ll gl ld ha kh gs fh gk hj sk ld la ll gj dj kj gl fj hf kl hs sd hh fa ll gf dh aa ja ld ld fs sj ga lh aj dk fa sa af hs jj kj ka ss kg ff fa lj gf fd"
+        }, 
+        {
+            "instructions": "Nice work. Time to type real words.", 
+            "mode": "text", 
+            "text": "hag lag salad hall la fa half shh ad has alga gal sash aha ass half alga dad gaff has gall had gash sad gag salad ask as glass halal ha hajj sh shag glad shh ska dash sag shall gaga lass shh flak as sag ha flak gaga all ll sad da alga hajj ll sh shall shah salsa"
+        }, 
+        {
+            "instructions": "$report", 
+            "mode": "key", 
+            "text": " "
+        }
+    ], 
+    "type": "normal"
+}

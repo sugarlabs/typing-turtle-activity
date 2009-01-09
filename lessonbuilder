@@ -16,7 +16,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Typing Turtle.  If not, see <http://www.gnu.org/licenses/>.
 
-import os, sys, random, json, locale, re
+import os, sys, random, simplejson, locale, re
 from gettext import gettext as _
 
 # For modifier constants.
@@ -510,4 +510,6 @@ if __name__ == "__main__":
             new_keys=options.keys, base_keys=options.base_keys, 
             words=words, bad_words=bad_words)
 
-    open(options.output, 'w').write(json.write(lesson))
+    text = simplejson.dumps(lesson, sort_keys=True, indent=4)
+
+    open(options.output, 'w').write(text)

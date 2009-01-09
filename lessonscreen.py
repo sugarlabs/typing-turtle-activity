@@ -552,15 +552,13 @@ class LessonScreen(gtk.VBox):
             need_accuracy = report['accuracy'] < medals[0]['accuracy']
             
             if need_accuracy and need_wpm:
-                text += _('You need to practice this lesson more before moving on.  If you are having a hard time, '
-                          'repeat the earlier lessons until you have mastered them completely before trying this one '
-                          'again.\n\n')
+                text += _('You need to practice this lesson more before moving on.')
                 
             elif need_accuracy:
-                text += _('You almost got a medal!  Next time, try not to make as many errors.\n\n')
+                text += _('You almost got a medal!  Next time, try not to make as many errors.')
                 
             elif need_wpm:
-                text += _('You almost got a medal!  Next time, try to type a little faster.\n\n')
+                text += _('You almost got a medal!  Next time, try to type a little faster.')
             
         return text
         
