@@ -620,15 +620,16 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
         self.draw_hands = enable
         self.queue_draw()
 
-    def get_key_pixbuf(self, key, state=0, group=0):
-        w = key['key-width']
-        h = key['key-height']
+    def get_key_pixbuf(self, key, state=0, group=0, scale=1):
+        w = key['key-width'] * scale
+        h = key['key-height'] * scale
         
         pixmap = gtk.gdk.Pixmap(self.root_window.window, w, h)
         
         cr = pixmap.cairo_create()
+        cr.scale(scale, scale)
         cr.translate(-key['key-x'], -key['key-y'])
-        
+
         old_state, old_group = self.active_state, self.active_group
         self.active_state, self.active_group = state, group
         

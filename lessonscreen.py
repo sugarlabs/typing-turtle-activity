@@ -79,29 +79,28 @@ class LessonScreen(gtk.VBox):
         # Set up font styles.
         self.tagtable = gtk.TextTagTable()
         instructions_tag = gtk.TextTag('instructions')
-        instructions_tag.props.size = 10000
+        instructions_tag.props.size = 9000
         instructions_tag.props.justification = gtk.JUSTIFY_CENTER
         self.tagtable.add(instructions_tag)
 
         text_tag = gtk.TextTag('text')
         text_tag.props.family = 'Monospace'
-        text_tag.props.size = 10000
+        text_tag.props.size = 9000
         self.tagtable.add(text_tag)
         
         image_tag = gtk.TextTag('image')
         image_tag.props.justification = gtk.JUSTIFY_CENTER
-        image_tag.props.size = 20000
         self.tagtable.add(image_tag)
         
         correct_copy_tag = gtk.TextTag('correct-copy')
         correct_copy_tag.props.family = 'Monospace'
-        correct_copy_tag.props.size = 10000
+        correct_copy_tag.props.size = 9000
         correct_copy_tag.props.foreground = '#0000ff'
         self.tagtable.add(correct_copy_tag)
         
         incorrect_copy_tag = gtk.TextTag('incorrect-copy')
         incorrect_copy_tag.props.family = 'Monospace'
-        incorrect_copy_tag.props.size = 10000
+        incorrect_copy_tag.props.size = 9000
         incorrect_copy_tag.props.foreground = '#ff0000'
         self.tagtable.add(incorrect_copy_tag)
         
@@ -269,17 +268,17 @@ class LessonScreen(gtk.VBox):
             if key:
                 if state & gtk.gdk.SHIFT_MASK:
                     shift_key = self.keyboard.find_key_by_label('shift')
-                    pixbuf = self.keyboard.get_key_pixbuf(shift_key)
+                    pixbuf = self.keyboard.get_key_pixbuf(shift_key, scale=1.25)
                     self.lessonbuffer.insert_pixbuf(self.lessonbuffer.get_end_iter(), pixbuf)
                     self.lessonbuffer.insert(self.lessonbuffer.get_end_iter(), ' ')
                 
                 if state & gtk.gdk.MOD5_MASK:
-                    altgr_key = self.keyboard.find_key_by_label('altgr')
+                    altgr_key = self.keyboard.find_key_by_label('altgr', scale=1.25)
                     pixbuf = self.keyboard.get_key_pixbuf(altgr_key)
                     self.lessonbuffer.insert_pixbuf(self.lessonbuffer.get_end_iter(), pixbuf)
                     self.lessonbuffer.insert(self.lessonbuffer.get_end_iter(), ' ')
 
-                pixbuf = self.keyboard.get_key_pixbuf(key, state, group)
+                pixbuf = self.keyboard.get_key_pixbuf(key, state, group, 1.25)
                 self.lessonbuffer.insert_pixbuf(self.lessonbuffer.get_end_iter(), pixbuf)
             
             self.lessonbuffer.apply_tag_by_name('image',
