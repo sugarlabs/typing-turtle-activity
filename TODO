@@ -52,14 +52,17 @@ Future Release
 
 Balloon Game
 
-+ Create BalloonGameScreen class (use gtk.Layout?).
-+ Generate a list of random words, or read from lesson dictionary.
-+ Score display.
-+ Floating balloons with words on them.  Random velocities, "floaty" look.
-+ Balloon letters disappear when typed.
-+ Balloon pops when word typed, score increased.
-+ Rate of balloons increases over time.
+- Create BalloonGameScreen class (use gtk.Layout?).
+- Generate a list of random words, or read from lesson dictionary.
+- Score display.
+- Floating balloons with words on them.  Random velocities, "floaty" look.
+- Balloon letters disappear when typed.
+- Balloon pops when word typed, score increased.
+- Rate of balloons increases over time.
 + Game finished popup, displays score and medal text.
++ Fix flickering
++ Improve graphics.
++ Support for displaying high score in home screen.
 
 Paper Airplane Game
 
