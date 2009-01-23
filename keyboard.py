@@ -21,6 +21,7 @@ pygtk.require('2.0')
 import gtk
 import rsvg
 import os
+import pango
 
 import sugar.activity.activity
 
@@ -436,56 +437,51 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
         # Pick the smaller ratio to fit while preserving aspect ratio.
         return min(ratio_x, ratio_y)
     
-    def _setup_transform(self, cr):
+    def _setup_context(self, gc):
         # Set up the screen transform.
         screen_ratio = self._get_screen_ratio()
         
-        bounds = self.get_allocation()
-        cr.translate(
-            (bounds.width - self.keys[0]['layout-width']*screen_ratio)/2,
-            (bounds.height - self.keys[0]['layout-height']*screen_ratio)/2)
+        #bounds = self.get_allocation()
+        #cr.translate(
+        #    (bounds.width - self.keys[0]['layout-width']*screen_ratio)/2,
+        #    (bounds.height - self.keys[0]['layout-height']*screen_ratio)/2)
         
-        cr.scale(screen_ratio, screen_ratio)
+        #cr.scale(screen_ratio, screen_ratio)
         
-    def _expose_key(self, k, cr=None):
+    def _expose_key(self, k, gc=None):
         # Setup cairo context if needed.
-        if not cr:
+        if not gc:
             if not self.window:
                 return
-            cr = self.window.cairo_create()
-            self._setup_transform(cr)
-        
-        cr.save()
+            gc = self.window.new_gc()
+            self._setup_context(gc)
         
         x1 = k['key-x']
         y1 = k['key-y']
         x2 = x1 + k['key-width']
         y2 = y1 + k['key-height']
         
+        gc = self.window.new_gc()
+        
         # Outline rounded box.
+        gc.foreground = self.get_colormap().alloc_color(0.1*65536,0.1*65536,0.1*65536)
+        
         corner = 5
-        cr.move_to(x1 + corner, y1)
-        cr.line_to(x2 - corner, y1)
-        cr.line_to(x2, y1 + corner)
-        cr.line_to(x2, y2 - corner)
-        cr.line_to(x2 - corner, y2)
-        cr.line_to(x1 + corner, y2)
-        cr.line_to(x1, y2 - corner)
-        cr.line_to(x1, y1 + corner)
-        cr.close_path()
+        self.window.draw_line(gc, x1 + corner, y1, x2 - corner, y1)
+        self.window.draw_line(gc, x2 - corner, y1, x2, y1 + corner)
+        self.window.draw_line(gc, x2, y1 + corner, x2, y2 - corner)
+        self.window.draw_line(gc, x2, y2 - corner, x2 - corner, y2)
+        self.window.draw_line(gc, x2 - corner, y2, x1 + corner, y2)
+        self.window.draw_line(gc, x1 + corner, y2, x1, y2 - corner)
+        self.window.draw_line(gc, x1, y2 - corner, x1, y1 + corner)
+        self.window.draw_line(gc, x1, y1 + corner, x1 + corner, y1)
         
         if k['key-pressed']:
-            cr.set_source_rgb(0.6, 0.6, 1.0)
+            gc.foreground = self.get_colormap().alloc_color(0.6*65536,0.6*65536,1.0*65536)
         #elif k['key-hilite']:
         #    cr.set_source_rgb(0.6, 1.0, 0.6)
         else:
-            cr.set_source_rgb(1.0, 1.0, 1.0)
-        cr.fill_preserve()
-        
-        cr.set_source_rgb(0.1, 0.1, 0.1)
-        cr.stroke_preserve()
-        
-        cr.clip()
+            gc.foreground = self.get_colormap().alloc_color(1.0*65536,1.0*65536,1.0*65536)
         
         # Inner text.
         text = ''
@@ -501,21 +497,19 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
                 except:
                     pass
         
-        cr.set_font_size(16)
-        x_bearing, y_bearing, width, height = cr.text_extents(text)[:4]
-        
-        cr.move_to(x1+8 - x_bearing, y2-8 - height - y_bearing)
-        cr.show_text(text)
-        
-        cr.restore()
+        try:
+            layout = self.create_pango_layout(unicode(text))
+            self.window.draw_layout(gc, x1+8, y1+8, layout)
+        except:
+            pass
 
-    def _expose_hands(self, cr):
-        cr.save()
+    def _expose_hands(self, gc):
+        #cr.save()
 
         # Transform based on the original SVG resolution.
         ratio = self.keys[0]['layout-width'] / 3158.0
-        cr.scale(ratio, ratio)
-        cr.translate(0, -150)
+        #cr.scale(ratio, ratio)
+        #cr.translate(0, -150)
 
         lhand_image = self.lhand_home
         rhand_image = self.rhand_home
@@ -542,26 +536,25 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
 
                 # TODO: Do something about ALTGR.
 
-        lhand_image.render_cairo(cr)
-        rhand_image.render_cairo(cr)
+        #lhand_image.render_cairo(cr)
+        #rhand_image.render_cairo(cr)
 
-        cr.restore()
+        #cr.restore()
 
     def _expose_cb(self, area, event):
-        cr = self.window.cairo_create()
+        gc = self.window.new_gc()
+        self._setup_context(gc)
         
-        cr.rectangle(event.area.x, event.area.y, event.area.width, event.area.height)
-        cr.clip()
-        
-        self._setup_transform(cr)
+        #cr.rectangle(event.area.x, event.area.y, event.area.width, event.area.height)
+        #cr.clip()
         
         # Draw the keys.
         for k in self.keys:
-            self._expose_key(k, cr)
+            self._expose_key(k, gc)
         
         # Draw overlay images.
         if self.draw_hands:
-            self._expose_hands(cr)
+            self._expose_hands(gc)
         
         return True
 
@@ -626,9 +619,9 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
         
         pixmap = gtk.gdk.Pixmap(self.root_window.window, w, h)
         
-        cr = pixmap.cairo_create()
-        cr.scale(scale, scale)
-        cr.translate(-key['key-x'], -key['key-y'])
+        #cr = pixmap.cairo_create()
+        #cr.scale(scale, scale)
+        #cr.translate(-key['key-x'], -key['key-y'])
 
         old_state, old_group = self.active_state, self.active_group
         self.active_state, self.active_group = state, group
@@ -636,7 +629,7 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
         old_pressed = key['key-pressed']
         key['key-pressed'] = False
         
-        self._expose_key(key, cr)
+        #self._expose_key(key, gc)
         
         key['key-pressed'] = old_pressed
         self.active_state, self.active_group = old_state, old_group
