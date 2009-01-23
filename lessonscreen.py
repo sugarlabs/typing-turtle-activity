@@ -273,8 +273,8 @@ class LessonScreen(gtk.VBox):
                     self.lessonbuffer.insert(self.lessonbuffer.get_end_iter(), ' ')
                 
                 if state & gtk.gdk.MOD5_MASK:
-                    altgr_key = self.keyboard.find_key_by_label('altgr', scale=1.25)
-                    pixbuf = self.keyboard.get_key_pixbuf(altgr_key)
+                    altgr_key = self.keyboard.find_key_by_label('altgr')
+                    pixbuf = self.keyboard.get_key_pixbuf(altgr_key, scale=1.25)
                     self.lessonbuffer.insert_pixbuf(self.lessonbuffer.get_end_iter(), pixbuf)
                     self.lessonbuffer.insert(self.lessonbuffer.get_end_iter(), ' ')
 

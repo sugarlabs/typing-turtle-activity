@@ -394,6 +394,8 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
         
         self.draw_hands = False
         
+        self.modify_bg(gtk.STATE_NORMAL, self.get_colormap().alloc_color('#d0d0d0'))
+
         # Load stock SVG files.
         self.lhand_home = self._load_image('OLPC_Lhand_HOMEROW.svg')
         self.rhand_home = self._load_image('OLPC_Rhand_HOMEROW.svg')
@@ -437,51 +439,48 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
         # Pick the smaller ratio to fit while preserving aspect ratio.
         return min(ratio_x, ratio_y)
     
-    def _setup_context(self, gc):
-        # Set up the screen transform.
-        screen_ratio = self._get_screen_ratio()
-        
-        #bounds = self.get_allocation()
-        #cr.translate(
-        #    (bounds.width - self.keys[0]['layout-width']*screen_ratio)/2,
-        #    (bounds.height - self.keys[0]['layout-height']*screen_ratio)/2)
-        
-        #cr.scale(screen_ratio, screen_ratio)
-        
-    def _expose_key(self, k, gc=None):
-        # Setup cairo context if needed.
-        if not gc:
-            if not self.window:
-                return
-            gc = self.window.new_gc()
-            self._setup_context(gc)
-        
-        x1 = k['key-x']
-        y1 = k['key-y']
-        x2 = x1 + k['key-width']
-        y2 = y1 + k['key-height']
-        
-        gc = self.window.new_gc()
-        
+    def _expose_key(self, k, draw, gc, for_pixmap, w=0, h=0):
+        if for_pixmap:
+            x1 = 5 
+            y1 = 5
+            x2 = w - 5
+            y2 = h - 5
+
+        else:
+            # Set up the screen transform.
+            screen_ratio = self._get_screen_ratio()
+            bounds = self.get_allocation()
+            screen_x = (bounds.width-self.keys[0]['layout-width']*screen_ratio)/2
+            screen_y = (bounds.height-self.keys[0]['layout-height']*screen_ratio)/2
+
+            x1 = int(k['key-x'] * screen_ratio + screen_x)
+            y1 = int(k['key-y'] * screen_ratio + screen_y)
+            x2 = int(x1 + k['key-width'] * screen_ratio)
+            y2 = int(y1 + k['key-height'] * screen_ratio)
+
         # Outline rounded box.
-        gc.foreground = self.get_colormap().alloc_color(0.1*65536,0.1*65536,0.1*65536)
+        gc.foreground = self.get_colormap().alloc_color((0.4*65536),int(0.7*65536),int(0.4*65536))
+        #gc.foreground = self.get_colormap().alloc_color(int(0.1*65536),int(0.1*65536),int(0.1*65536))
         
         corner = 5
-        self.window.draw_line(gc, x1 + corner, y1, x2 - corner, y1)
-        self.window.draw_line(gc, x2 - corner, y1, x2, y1 + corner)
-        self.window.draw_line(gc, x2, y1 + corner, x2, y2 - corner)
-        self.window.draw_line(gc, x2, y2 - corner, x2 - corner, y2)
-        self.window.draw_line(gc, x2 - corner, y2, x1 + corner, y2)
-        self.window.draw_line(gc, x1 + corner, y2, x1, y2 - corner)
-        self.window.draw_line(gc, x1, y2 - corner, x1, y1 + corner)
-        self.window.draw_line(gc, x1, y1 + corner, x1 + corner, y1)
+        points = [
+            (x1 + corner, y1), 
+            (x2 - corner, y1),
+            (x2, y1 + corner),
+            (x2, y2 - corner),
+            (x2 - corner, y2),
+            (x1 + corner, y2),
+            (x1, y2 - corner),
+            (x1, y1 + corner)
+        ]
+        draw.draw_polygon(gc, True, points)
         
-        if k['key-pressed']:
-            gc.foreground = self.get_colormap().alloc_color(0.6*65536,0.6*65536,1.0*65536)
-        #elif k['key-hilite']:
-        #    cr.set_source_rgb(0.6, 1.0, 0.6)
-        else:
-            gc.foreground = self.get_colormap().alloc_color(1.0*65536,1.0*65536,1.0*65536)
+        gc.foreground = self.get_colormap().alloc_color(int(1.0*65536),int(1.0*65536),int(1.0*65536))
+        if not for_pixmap:
+            if k['key-pressed']:
+                gc.foreground = self.get_colormap().alloc_color(int(0.6*65536),int(0.6*65536),int(1.0*65536))
+            #elif k['key-hilite']:
+            #    cr.set_source_rgb(0.6, 1.0, 0.6)
         
         # Inner text.
         text = ''
@@ -499,17 +498,27 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
         
         try:
             layout = self.create_pango_layout(unicode(text))
-            self.window.draw_layout(gc, x1+8, y1+8, layout)
+            #size = layout.get_size()
+            draw.draw_layout(gc, x1+8, y2-28, layout)
         except:
             pass
 
     def _expose_hands(self, gc):
-        #cr.save()
+        # Hands are still rendered through cairo, sigh.
+        cr = self.window.cairo_create()
+
+        screen_ratio = self._get_screen_ratio()
+        bounds = self.get_allocation()
+        cr.translate(
+            (bounds.width - self.keys[0]['layout-width']*screen_ratio)/2,
+            (bounds.height - self.keys[0]['layout-height']*screen_ratio)/2)
+        
+        cr.scale(screen_ratio, screen_ratio)
 
         # Transform based on the original SVG resolution.
         ratio = self.keys[0]['layout-width'] / 3158.0
-        #cr.scale(ratio, ratio)
-        #cr.translate(0, -150)
+        cr.scale(ratio, ratio)
+        cr.translate(0, -150)
 
         lhand_image = self.lhand_home
         rhand_image = self.rhand_home
@@ -536,21 +545,22 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
 
                 # TODO: Do something about ALTGR.
 
-        #lhand_image.render_cairo(cr)
-        #rhand_image.render_cairo(cr)
+        #pb = lhand_image.get_pixbuf()
+        #lhand_image.set_dpi(30)
+        #self.window.draw_pixbuf(gc, pb, 0, 0, 0, 0)
+        #pb = rhand_image.get_pixbuf()
+        #rhand_image.set_dpi(30)
+        #self.window.draw_pixbuf(gc, pb, 0, 0, 0, 0)
 
-        #cr.restore()
+        lhand_image.render_cairo(cr)
+        rhand_image.render_cairo(cr)
 
     def _expose_cb(self, area, event):
         gc = self.window.new_gc()
-        self._setup_context(gc)
-        
-        #cr.rectangle(event.area.x, event.area.y, event.area.width, event.area.height)
-        #cr.clip()
         
         # Draw the keys.
         for k in self.keys:
-            self._expose_key(k, gc)
+            self._expose_key(k, self.window, gc, False)
         
         # Draw overlay images.
         if self.draw_hands:
@@ -583,7 +593,7 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
                 #self.window.process_updates(True)
             else:
                 if key:
-                    self._expose_key(key)
+                    pass #self._expose_key(key)
         
         return False
 
@@ -604,39 +614,35 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
         else:
             key, dummy, dummy = self.get_key_state_group_for_letter(old_letter)
             if key:
-                self._expose_key(key)
+                pass # self._expose_key(key)
             key, dummy, dummy = self.get_key_state_group_for_letter(letter)
             if key:
-                self._expose_key(key)
+                pass # self._expose_key(key)
 
     def set_draw_hands(self, enable):
         self.draw_hands = enable
         self.queue_draw()
 
     def get_key_pixbuf(self, key, state=0, group=0, scale=1):
-        w = key['key-width'] * scale
-        h = key['key-height'] * scale
+        w = int(key['key-width'] * scale)
+        h = int(key['key-height'] * scale)
         
-        pixmap = gtk.gdk.Pixmap(self.root_window.window, w, h)
-        
-        #cr = pixmap.cairo_create()
-        #cr.scale(scale, scale)
-        #cr.translate(-key['key-x'], -key['key-y'])
-
         old_state, old_group = self.active_state, self.active_group
         self.active_state, self.active_group = state, group
         
-        old_pressed = key['key-pressed']
-        key['key-pressed'] = False
+        pixmap = gtk.gdk.Pixmap(self.root_window.window, w, h)
+        gc = pixmap.new_gc()
         
-        #self._expose_key(key, gc)
-        
-        key['key-pressed'] = old_pressed
-        self.active_state, self.active_group = old_state, old_group
+        gc.foreground = self.get_colormap().alloc_color('#d0d0d0')
+        pixmap.draw_rectangle(gc, True, 0, 0, w, h)
+
+        self._expose_key(key, pixmap, gc, True, w, h)
         
         pb = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, False, 8, w, h)
         pb.get_from_drawable(pixmap, self.root_window.window.get_colormap(), 0, 0, 0, 0,w, h)
         
+        self.active_state, self.active_group = old_state, old_group
+
         return pb
     
 if __name__ == "__main__":
