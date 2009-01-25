@@ -202,8 +202,9 @@ def filter_pairs(pairs, required_keys, keys):
     return good_pairs
     
 def get_weighted_random_pair(pairs):
-    # TODO: I'm currently ignoring the weighting because it's preventing keys from
-    # ever appearing, for example j never appears in the home row lesson.
+    # TODO: I'm currently ignoring the weighting because it's preventing certain keys 
+    # from ever appearing due to their unpopularity, for example j never appears in the 
+    # home row lesson.
     return random.choice(pairs)
     #n = random.uniform(0, 1)
     #for p in pairs:
@@ -387,7 +388,7 @@ def build_intro_steps():
     steps = []
 
     text = ''
-    text += _('Hihowareyah!  Ready to learn the secret of fast typing?\n')
+    text += _('Hihowahyah!  Ready to learn the secret of fast typing?\n')
     text += _('Always use the correct finger to press each key!\n\n')
     text += _('Now, place your hands on the keyboard just like the picture below.\n')
     text += _('When you\'re ready, press the SPACE bar with your thumb!')

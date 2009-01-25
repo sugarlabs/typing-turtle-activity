@@ -112,7 +112,6 @@ class LessonScreen(gtk.VBox):
         self.lessontext.set_right_margin(20)
         self.lessontext.set_wrap_mode(gtk.WRAP_WORD)
         self.lessontext.modify_base(gtk.STATE_NORMAL, self.get_colormap().alloc_color('#ffffcc'))
-        #self.lessontext.modify_bg(gtk.STATE_NORMAL, self.get_colormap().alloc_color('#ffff80'))
         
         self.lessonscroll = gtk.ScrolledWindow()
         self.lessonscroll.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_ALWAYS)
@@ -134,17 +133,11 @@ class LessonScreen(gtk.VBox):
         self.connect('unrealize', self.unrealize_cb)
         
         self.show_all()
-        
-        # Load hand overlay SVGs.
-        bundle_path = sugar.activity.activity.get_bundle_path()
-        #for o in KEY_OVERLAYS.keys():
-        #    pass
+
+        self.timer_id = None
         
         self.begin_lesson()
         
-        # Initialize stats update timer.        
-        gobject.timeout_add(1000, self.timer_cb)
-
     def realize_cb(self, widget):
         self.activity.add_events(gtk.gdk.KEY_PRESS_MASK|gtk.gdk.KEY_RELEASE_MASK)
         self.key_press_cb_id = self.activity.connect('key-press-event', self.key_cb)
@@ -153,32 +146,40 @@ class LessonScreen(gtk.VBox):
     def unrealize_cb(self, widget):
         self.activity.disconnect(self.key_press_cb_id)
         self.activity.disconnect(self.key_release_cb_id)
-        
+
+    def start_timer(self):
+        self.start_time = time.time()
+        self.timer_id = gobject.timeout_add(1000, self.timer_cb)
+
+    def stop_timer(self):
+        if self.timer_id:
+            gobject.source_remove(self.timer_id)
+        self.start_time = None
+        self.timer_id = None
+
+    def timer_cb(self):
+        self.update_stats()
+        return True
+    
     def update_stats(self):
         if self.lesson_finished:
             return
         
         if self.start_time:
-            self.total_time = time.time() - self.start_time
-            
-            if self.total_time >= 1.0:
-                self.wpm = 60 * (self.correct_keys / 5) / self.total_time
-            else:
-                self.wpm = 1.0
-                
+            self.total_time += time.time() - self.start_time
+        self.start_time = time.time()
+
+        if self.total_time >= 1.0:
+            self.wpm = 60 * (self.correct_keys / 5) / self.total_time
             self.wpmlabel.set_markup(_('<b>WPM:</b> %(wpm)d') % { 'wpm': int(self.wpm) } )
+
         else:
-            self.total_time = 0.0
-            self.wpm = 100.0
-        
+            self.wpm = 1.0
+                
         if self.total_keys:                
             self.accuracy = 100.0 * self.correct_keys / self.total_keys
             
             self.accuracylabel.set_markup(_('<b>Accuracy:</b> %(accuracy)d%%') % { 'accuracy' : int(self.accuracy) } )
-    
-    def timer_cb(self):
-        self.update_stats()
-        return True
     
     def begin_lesson(self):
         self.lesson_finished = False
@@ -190,7 +191,8 @@ class LessonScreen(gtk.VBox):
         self.incorrect_keys = 0
         
         self.start_time = None
-        
+        self.total_time = 0
+
         self.step = None
         
         self.next_step_idx = 0
@@ -216,6 +218,9 @@ class LessonScreen(gtk.VBox):
         return new_lines
 
     def advance_step(self):
+        # Stop the WPM timer.
+        self.stop_timer()
+
         # Clear step related variables.
         self.step = None
         
@@ -324,7 +329,6 @@ class LessonScreen(gtk.VBox):
         self.line_idx = 0
         self.begin_line()
 
-            
     def begin_line(self):
         self.line = self.lines[self.line_idx]
         self.line_mark = self.line_marks[self.line_idx]
@@ -373,9 +377,9 @@ class LessonScreen(gtk.VBox):
                 self.total_keys += 1
         
         elif self.mode == 'text':
-            # Timer starts with first text mode keypress.
-            if not self.start_time:
-                self.start_time = time.time()
+            # WPM timer starts with first text mode keypress.
+            if not self.timer_id:
+                self.start_timer()
             
             # Handle backspace by deleting text and optionally moving up lines.
             if key_name == 'BackSpace':

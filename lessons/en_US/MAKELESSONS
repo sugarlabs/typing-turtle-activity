@@ -12,6 +12,7 @@
     --desc="This lesson teaches you the a, s, d, f, g, h, j, k and l keys \nin the middle of the keyboard.\nThese keys are called the Home Row." \
     --keys="asdfghjkl" \
     --wordlist=2of12.txt \
+    --badwordlist=badwords.txt \
     --order=1 \
     --output=homerow.lesson
     
@@ -21,6 +22,7 @@
     --keys="asdfghjkl" \
     --game='balloon' \
     --wordlist=2of12.txt \
+    --badwordlist=badwords.txt \
     --order=2 \
     --output=homerowballoon.lesson
     
@@ -29,6 +31,7 @@
     --desc="This lesson teaches you the q, w, e, r, t, y, u, i, o and p keys \non the top row of the keyboard." \
     --keys="qwertyuiop" --base-keys="asdfghjkl" \
     --wordlist=2of12.txt \
+    --badwordlist=badwords.txt \
     --order=3 \
     --output=toprow.lesson
 
@@ -37,6 +40,7 @@
     --desc="This lesson teaches you the z, x, c, v, b, n and m keys \non the bottom row of the keyboard." \
     --keys="zxcvbnm" --base-keys="asdfghjklqwertyuiop" \
     --wordlist=2of12.txt \
+    --badwordlist=badwords.txt \
     --order=4 \
     --output=bottomrow.lesson
 
@@ -47,6 +51,7 @@
     --keys="QWERTASDFGZXCVB" \
     --base-keys="abcdefghijklmnopqrstuvwxyz" \
     --wordlist=2of12.txt \
+    --badwordlist=badwords.txt \
     --order=5 \
     --output=leftcapital.lesson
 
@@ -56,5 +61,6 @@
     --keys="YUIOPHJKLBNM" \
     --base-keys="abcdefghijklmnopqrstuvwxyzQWERTASDFGZXCVB" \
     --wordlist=2of12.txt \
+    --badwordlist=badwords.txt \
     --order=6 \
     --output=rightcapital.lesson

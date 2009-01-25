@@ -1,47 +1,38 @@
 Typing Turtle
 
+Notes
+
+How to handle capitals and punctuation?
+
+Are capitals and punctuation universal concepts?  Certainly for all Roman languages.  
+Do other languages have capital-like and punctuation-like concepts with different rules?
+Is there a generic way that punctuation could just be handled naturally?
+  It depends on how nicely we want them to work.  For example knowing that you put quotes
+  around words, we can randomly enquote words.  Knowing that semicolons, periods and 
+  commas appear after words also allows us to randomly append them.
+  If we don't care, we can just suggest that a) punctuation be taught after the rest
+  of the alphabet, and b) native text be given which includes plenty of punctuation.
+Is there a generic way that we can handle capitalization?
+  It would be nice to just be able to capitalize the beginning of any word.
+  OTOH, acronyms and stuff would be nice to include and those will only come from 
+  wordlists.
+
+The answer to both: Right now, I think it's best to just encourage expansive word lists.
+Note that this means that we have top *stop* stripping non-alpha characters from words
+as we read them in!
+
+BTW, after all that work, when are we going to teach Enter?
+
 First Release
-- Write to Loser, Wes about developing artwork.
-- Draw incorrect characters in red.
-- Support backspace, backspace to previous lines.
-- Scrolling TextView in lesson.
-- Missing spaces at the end of some lines thanks to dodgy word wrap.
-- Handle ends of line in a sane manner.
-- Implement two step types: key learning and text copying.
-- Split text into lines for long lessons.
-- Try out an insensitive gtk.Entry instead of the gtk.Label.
-- Better flow at the end of a level.  Report the result on the Lesson screen: Need more work, Medal received, etc.
-- Ability of lessons to list medals in other lessons as prerequisites.  Disable unavailable lessons.
-- Some sort of lesson sorting criteria.
-- Split into file-per-screen.
-- Scroll lessons list to the first non-medaled lesson at startup.  Or just remember scroll position.
 + Status message on the main screen.  "You unlocked a new lesson!" for example.  Eventually have the turtle 'say' it.
-- Implement a long text copying lesson and fix bugs in the scrolling and typing.
 + Graphical WPM and accuracy meters.
-- WPM meter updated in 1sec timer in addition to on keypress.
-- Working medals assignment: "You got a medal!" popup, display next to lesson.
-- Nice looking keyboard.
-- Highlighted keyboard keys when pressed.
-- Support for displaying modifier keys in Keyboard.
-- Change key shown when modified is held.
-- Indicate next key to press on keyboard.
-- Translate keyboard to native key layout.
 + Make medal WPM adjustable somehow?  Perhaps a settable Goal WPM?
 + Highlight regions of keyboard, color by finger.
-+ Artwork and animations.
-  + Speed meter picture?
-  + Accuracy meter picture?
 + Sound effects.
   + Welcome to the activity sound.
   + Speed up / slow down sounds when WPM crosses threshold: Slow, Medium, Fast.
   + Medal award sounds for each medal type: None, Bronze, Silver, Gold.  Applause sound.
   + Incorrect key pressed tick sound. 
-+ Develop lessons.
-  - Continue to develop lessons for all keys on the keyboard.
-  - Develop 'focus' lessons e.g. fj.
-  - Mark some lessons as "locational" versus "textual" and translate from the English keyboard to native.  Ex: Home row, Left hand, Numbers, etc.
-  - Give each lesson criteria for each medal type based on Accuracy, WPM.
-- Automatically generate lessons similar to 'home row' based on a list of keys.
 
 Future Release
 + Goal support with progress reporting.  WPM, Accuracy, Entire keyboard learned, etc.
@@ -52,13 +43,6 @@ Future Release
 
 Balloon Game
 
-- Create BalloonGameScreen class (use gtk.Layout?).
-- Generate a list of random words, or read from lesson dictionary.
-- Score display.
-- Floating balloons with words on them.  Random velocities, "floaty" look.
-- Balloon letters disappear when typed.
-- Balloon pops when word typed, score increased.
-- Rate of balloons increases over time.
 + Game finished popup, displays score and medal text.
 + Fix flickering
 + Improve graphics.
