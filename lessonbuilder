@@ -445,18 +445,35 @@ if __name__ == "__main__":
 
     type_group = optparse.OptionGroup(parser, 
         'Lesson Types', 
-        'Specify one of these to control the kind of lesson created.')
-    type_group.add_option("--make-intro-lesson", dest="make_intro_lesson", action="store_true",
+        'You must pass a lesson type to control the kind of lesson created.')
+    type_group.add_option("--intro-lesson", dest="make_intro_lesson", action="store_true",
                       help="Generate the introductory lesson.")
-    type_group.add_option("--make-key-lesson", dest="make_key_lesson", action="store_true",
+    type_group.add_option("--key-lesson", dest="make_key_lesson", action="store_true",
                       help="Generate a lesson to teach a specific set of keys.")
-    type_group.add_option("--make-game-lesson", dest="make_game_lesson", action="store_true",
+    type_group.add_option("--game-lesson", dest="make_game_lesson", action="store_true",
                       help="Generate a lesson which plays a game.")
-    #type_group.add_option("--make-capital-lesson", dest="make_capital_lesson", action="store_true",
+    #type_group.add_option("--capital-lesson", dest="make_capital_lesson", action="store_true",
     #                  help="Generate a lesson which teaches CAPITAL letters (might not be appropriate for some languages).")
-    #type_group.add_option("--make-punctuation-lesson", dest="make_punctuation_lesson", action="store_true",
+    #type_group.add_option("--punctuation-lesson", dest="make_punctuation_lesson", action="store_true",
     #                  help="Generate a lesson which teaches punctuation (might not be appropriate for some languages).")
     parser.add_option_group(type_group)
+
+    medal_group = optparse.OptionGroup(parser, 
+        'Medal Requirements', 
+        'Optionally pass these arguments to override medal requirements.')
+    medal_group.add_option("--bronze-wpm", dest="bronze_wpm", type="int", metavar="N", default=60,
+                      help="Words per minute for a Bronze medal.  Default 15.")
+    medal_group.add_option("--silver-wpm", dest="silver_wpm", type="int", metavar="N", default=60,
+                      help="Words per minute for a Silver medal.  Default 20.")
+    medal_group.add_option("--gold-wpm", dest="gold_wpm", type="int", metavar="N", default=60,
+                      help="Words per minute for a Gold medal.  Default 25.")
+    medal_group.add_option("--bronze-acc", dest="bronze_accuracy", type="int", metavar="N", default=60,
+                      help="Accuracy for a Bronze medal.  Default 75.")
+    medal_group.add_option("--silver-acc", dest="silver_accuracy", type="int", metavar="N", default=60,
+                      help="Accuracy for a Silver medal.  Default 85.")
+    medal_group.add_option("--gold-acc", dest="gold_accuracy", type="int", metavar="N", default=60,
+                      help="Accuracy for a Gold medal.  Default 95.")
+    parser.add_option_group(medal_group)
 
     (options, args) = parser.parse_args()
 
@@ -486,6 +503,12 @@ if __name__ == "__main__":
     lesson['name'] = options.name
     lesson['description'] = options.desc
     lesson['order'] = options.order
+
+    lesson['medals'] = [ 
+        { 'name': 'bronze', 'wpm': options.bronze_wpm, 'accuracy': options.bronze_accuracy },
+        { 'name': 'silver', 'wpm': options.silver_wpm, 'accuracy': options.silver_accuracy },
+        { 'name': 'gold',   'wpm': options.gold_wpm,   'accuracy': options.gold_accuracy },
+    ]
 
     if options.make_intro_lesson:
         lesson['name'] = _('Welcome') 

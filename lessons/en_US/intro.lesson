@@ -1,10 +1,27 @@
 {
     "description": "Click here to begin your typing adventure.", 
+    "medals": [
+        {
+            "accuracy": 60, 
+            "name": "bronze", 
+            "wpm": 0
+        }, 
+        {
+            "accuracy": 60, 
+            "name": "silver", 
+            "wpm": 0
+        }, 
+        {
+            "accuracy": 60, 
+            "name": "gold", 
+            "wpm": 0
+        }
+    ], 
     "name": "Welcome", 
     "order": 0, 
     "steps": [
         {
-            "instructions": "Hihowareyah!  Ready to learn the secret of fast typing?\nAlways use the correct finger to press each key!\n\nNow, place your hands on the keyboard just like the picture below.\nWhen you're ready, press the SPACE bar with your thumb!", 
+            "instructions": "Hihowahyah!  Ready to learn the secret of fast typing?\nAlways use the correct finger to press each key!\n\nNow, place your hands on the keyboard just like the picture below.\nWhen you're ready, press the SPACE bar with your thumb!", 
             "mode": "key", 
             "text": " "
         }, 

@@ -1,5 +1,22 @@
 {
     "description": "This lesson teaches you the CAPITAL letters which are typed by your right hand.\nThese are Y, U, I, O, P, H, J, K, L, B, N, and M.", 
+    "medals": [
+        {
+            "accuracy": 60, 
+            "name": "bronze", 
+            "wpm": 60
+        }, 
+        {
+            "accuracy": 60, 
+            "name": "silver", 
+            "wpm": 60
+        }, 
+        {
+            "accuracy": 60, 
+            "name": "gold", 
+            "wpm": 60
+        }
+    ], 
     "name": "Right Hand Capitals", 
     "order": 6, 
     "steps": [

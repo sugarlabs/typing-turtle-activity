@@ -1,5 +1,22 @@
 {
     "description": "This lesson teaches you the q, w, e, r, t, y, u, i, o and p keys \non the top row of the keyboard.", 
+    "medals": [
+        {
+            "accuracy": 60, 
+            "name": "bronze", 
+            "wpm": 60
+        }, 
+        {
+            "accuracy": 60, 
+            "name": "silver", 
+            "wpm": 60
+        }, 
+        {
+            "accuracy": 60, 
+            "name": "gold", 
+            "wpm": 60
+        }
+    ], 
     "name": "The Top Row", 
     "order": 3, 
     "steps": [
@@ -76,7 +93,7 @@
         {
             "instructions": "Wonderful! Time to type real words.", 
             "mode": "text", 
-            "text": "passport heater gist southpaw seraph dais prude ti ford stratify wheedler paisley sharpie satire kith flagpole sage defeater walrus halfway prepared lisp aerosol folktale tis ward estrous kiri pate liqueur depress sealer stalk powder litterer outsold flight hashish prideful treasury reforge hooker thud ratty skittish weal portage jollity togs you frigid teepee haggle lees disagree ferrous sorrily lewd disease prepare"
+            "text": "passport heater odiously southpaw kiddie dais prude ti ford whole wheedler paisley sharpie satire iodide flagpole skitter defeater foolish halfway prepared lisp aerosol folktale halfway ward estrous kiri pate liqueur depress sealer stalk equip litterer outsold flight hashish prideful treasury reforge thirties thud ratty sweetish weal portage jollity togs apathy theses teepee haggle whoreish disagree ferrous sorrily lewd disease weight"
         }, 
         {
             "instructions": "$report", 

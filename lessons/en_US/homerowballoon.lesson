@@ -1,5 +1,22 @@
 {
     "description": "Practice the home row keys in this exciting game!\nDon\\'t let any balloons get by!", 
+    "medals": [
+        {
+            "accuracy": 60, 
+            "name": "bronze", 
+            "wpm": 60
+        }, 
+        {
+            "accuracy": 60, 
+            "name": "silver", 
+            "wpm": 60
+        }, 
+        {
+            "accuracy": 60, 
+            "name": "gold", 
+            "wpm": 60
+        }
+    ], 
     "name": "Home Row Balloon Practice", 
     "order": 2, 
     "type": "balloon", 
@@ -12,7 +29,6 @@
         "jag", 
         "hah", 
         "fa", 
-        "ass", 
         "ask", 
         "halal", 
         "alfalfa", 
@@ -41,7 +57,6 @@
         "ha", 
         "fall", 
         "la", 
-        "ll", 
         "alga", 
         "falls", 
         "hash", 

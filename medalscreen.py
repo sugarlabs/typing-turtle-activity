@@ -53,11 +53,12 @@ class MedalScreen(gtk.EventBox):
         statbox.pack_start(accuracylabel, True)
         
         oklabel = gtk.Label()
-        oklabel.set_markup("<span size='10000'>" + _('Ok') + '</span>')
+        oklabel.set_markup("<span size='10000'>" + _('Press the ENTER key to continue.') + '</span>')
         okbtn = gtk.Button()
         okbtn.add(oklabel)
         okbtn.connect('clicked', self.ok_cb)
-        
+        okbtn.grab_focus()
+
         btnbox = gtk.HBox()
         btnbox.pack_start(okbtn, True, True, 100)
         

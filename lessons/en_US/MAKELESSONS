@@ -4,63 +4,60 @@
 #
 
 # Generate the introductory lesson.
-../../lessonbuilder --make-intro-lesson --order=0 --output=intro.lesson
+../../lessonbuilder --intro-lesson \
+    --bronze-wpm=0 --silver-wpm=0 --gold-wpm=0 \
+    --order=0 \
+    --output=intro.lesson
 
 # Generate the home, top and bottom row lessons.
-../../lessonbuilder --make-key-lesson \
+../../lessonbuilder --key-lesson \
     --title="The Home Row" \
     --desc="This lesson teaches you the a, s, d, f, g, h, j, k and l keys \nin the middle of the keyboard.\nThese keys are called the Home Row." \
     --keys="asdfghjkl" \
-    --wordlist=2of12.txt \
-    --badwordlist=badwords.txt \
+    --wordlist=2of12.txt --badwordlist=badwords.txt \
     --order=1 \
     --output=homerow.lesson
     
-../../lessonbuilder --make-game-lesson \
+../../lessonbuilder --game-lesson \
     --title="Home Row Balloon Practice" \
     --desc="Practice the home row keys in this exciting game!\nDon\'t let any balloons get by!" \
     --keys="asdfghjkl" \
     --game='balloon' \
-    --wordlist=2of12.txt \
-    --badwordlist=badwords.txt \
+    --wordlist=2of12.txt --badwordlist=badwords.txt \
     --order=2 \
     --output=homerowballoon.lesson
     
-../../lessonbuilder --make-key-lesson \
+../../lessonbuilder --key-lesson \
     --title="The Top Row" \
     --desc="This lesson teaches you the q, w, e, r, t, y, u, i, o and p keys \non the top row of the keyboard." \
     --keys="qwertyuiop" --base-keys="asdfghjkl" \
-    --wordlist=2of12.txt \
-    --badwordlist=badwords.txt \
+    --wordlist=2of12.txt --badwordlist=badwords.txt \
     --order=3 \
     --output=toprow.lesson
 
-../../lessonbuilder --make-key-lesson \
+../../lessonbuilder --key-lesson \
     --title="The Bottom Row" \
     --desc="This lesson teaches you the z, x, c, v, b, n and m keys \non the bottom row of the keyboard." \
     --keys="zxcvbnm" --base-keys="asdfghjklqwertyuiop" \
-    --wordlist=2of12.txt \
-    --badwordlist=badwords.txt \
+    --wordlist=2of12.txt --badwordlist=badwords.txt \
     --order=4 \
     --output=bottomrow.lesson
 
 # Generate left and right hand capital lessons.
-../../lessonbuilder --make-key-lesson \
+../../lessonbuilder --key-lesson \
     --title="Left Hand Capitals" \
     --desc="This lesson teaches you the CAPITAL letters which are typed by your left hand.\nThese are Q, W, E, R, T, A, S, D, F, G, Z, X, C, V and B." \
     --keys="QWERTASDFGZXCVB" \
     --base-keys="abcdefghijklmnopqrstuvwxyz" \
-    --wordlist=2of12.txt \
-    --badwordlist=badwords.txt \
+    --wordlist=2of12.txt --badwordlist=badwords.txt \
     --order=5 \
     --output=leftcapital.lesson
 
-../../lessonbuilder --make-key-lesson \
+../../lessonbuilder --key-lesson \
     --title="Right Hand Capitals" \
     --desc="This lesson teaches you the CAPITAL letters which are typed by your right hand.\nThese are Y, U, I, O, P, H, J, K, L, B, N, and M." \
     --keys="YUIOPHJKLBNM" \
     --base-keys="abcdefghijklmnopqrstuvwxyzQWERTASDFGZXCVB" \
-    --wordlist=2of12.txt \
-    --badwordlist=badwords.txt \
+    --wordlist=2of12.txt --badwordlist=badwords.txt \
     --order=6 \
     --output=rightcapital.lesson

@@ -1,5 +1,22 @@
 {
     "description": "This lesson teaches you the z, x, c, v, b, n and m keys \non the bottom row of the keyboard.", 
+    "medals": [
+        {
+            "accuracy": 60, 
+            "name": "bronze", 
+            "wpm": 60
+        }, 
+        {
+            "accuracy": 60, 
+            "name": "silver", 
+            "wpm": 60
+        }, 
+        {
+            "accuracy": 60, 
+            "name": "gold", 
+            "wpm": 60
+        }
+    ], 
     "name": "The Bottom Row", 
     "order": 4, 
     "steps": [
@@ -61,7 +78,7 @@
         {
             "instructions": "Wonderful! Time to type real words.", 
             "mode": "text", 
-            "text": "outclass waxy flannels mirror stubbly felicity cogently reinfect chef muteness mincing success fullback binding surcease picot soviet voluble suasion discern befogged cards meanness genii focus remiss clad libel beige capital embezzle popover inferno medullae grocery scanner flan concord sneering feverish view breakout banyan lawgiver audacity scarlet sunless relaxer earmuffs gizzard sitting pimply svelte scalper scruff fraction laminate then purveyor callous"
+            "text": "outclass waxy phoebe mirror donut felicity rampage reinfect cruelly complex mincing success jinxed binding anther fauvism soviet pardon suasion monist befogged overfill meanness genii focus wondrous clay libel beige capital embezzle popover inferno medullae grocery scanner caveat concord sneering feverish view breakout minnow lawgiver dribbler scarlet sunless harangue earmuffs gizzard sitting pimply bullfrog scalper ambition initial auburn then purveyor callous"
         }, 
         {
             "instructions": "$report", 

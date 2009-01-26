@@ -466,6 +466,8 @@ class LessonScreen(gtk.VBox):
 
         lesson_name = self.lesson['name']
         
+        print self.total_time, self.wpm
+        
         # Add to the lesson history.
         report = { 
             'lesson': lesson_name,

@@ -23,8 +23,8 @@ import gobject, pygtk, gtk, pango
 # parameters about them.
 BALLOON_STAGES = [
     { 'count': 10, 'delay': 80 },
-    { 'count': 20, 'delay': 60 },
-    { 'count': 70, 'delay': 40 },
+    #{ 'count': 20, 'delay': 60 },
+    #{ 'count': 70, 'delay': 40 },
 ]
 
 class Balloon:
@@ -205,8 +205,11 @@ class BalloonGame(gtk.VBox):
         self.area.window.draw_rectangle(gc, False, x, y, w, h)
 
         # Draw text
-        report = _('You finished!\n\nYour score was %(score)d.') % \
-            { 'score': self.score }
+        report = _('You finished!')
+        report += '\n\n'
+        report += _('Your score was %(score)d.') % { 'score': self.score }
+        report += '\n\n'
+        report += _('Press the ENTER key to continue.')
     
         gc.foreground = self.area.get_colormap().alloc_color(0,0,0)
         layout = self.area.create_pango_layout(report)
