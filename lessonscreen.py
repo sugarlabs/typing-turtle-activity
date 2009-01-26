@@ -44,7 +44,6 @@ DEFAULT_MEDALS = [
 ]
 
 class LessonScreen(gtk.VBox):
-    
     def __init__(self, lesson, activity):
         gtk.VBox.__init__(self)
         

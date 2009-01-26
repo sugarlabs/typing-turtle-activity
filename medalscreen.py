@@ -34,14 +34,51 @@ class MedalScreen(gtk.EventBox):
         self.medal = medal
         self.activity = activity
         
-        cert0 = gtk.Label()
-        cert0.set_markup("<span size='35000'><b><i>" + _('Certificate of\nAchievement') + "</i></b></span>")
+        # Load the image.
+        medal_type = medal['type']
+        bundle = sugar.activity.activity.get_bundle_path()
+        images = {
+            'bronze': bundle+'/images/bronze-medal.svg',
+            'silver': bundle+'/images/silver-medal.svg',
+            'gold':   bundle+'/images/gold-medal.svg'
+        }
+        medalpixbuf = gtk.gdk.pixbuf_new_from_file(images[medal_type])
+        medalpixbuf = medalpixbuf.scale_simple(350, 350, gtk.gdk.INTERP_BILINEAR)
         
-        cert1 = gtk.Label()
-        cert1.set_markup("<span size='18000'>" + 
-            (_('This certifies that on <i><b><u>%(date)s</u></b></i>,\n<i><b><u>%(nick)s</u></b></i> earned a %(type)s medal\nin Typing Turtle lesson <i><b><u>%(lesson)s</u></b></i>.') % medal) +
-            "</span>")
+        medalimage = gtk.Image()
+        medalimage.set_from_pixbuf(medalpixbuf)
+
+        # Certifications section.
+        title = gtk.Label()
+        title.set_markup(_("<span font_desc='Serif Bold Italic 28'>Certificate of Achievement</span>"))
         
+        text0 = gtk.Label()
+        text0.set_markup(_("<span font_desc='Sans 18'>This certifies that</span>"))
+
+        text1 = gtk.Label()
+        text1.set_markup(_("<span font_desc='Sans 18'><b><u><i>%(nick)s</i></u></b></span>") % medal)
+
+        text2 = gtk.Label()
+        text2.set_markup(_("<span font_desc='Sans 18'>earned a %(type)s medal</span>") % medal)
+
+        text3 = gtk.Label()
+        text3.set_markup(_("<span font_desc='Sans 18'>in lesson <i>%(lesson)s</i> on </span>") % medal)
+
+        text4 = gtk.Label()
+        text4.set_markup(_("<span font_desc='Sans 18'><b><u><i>%(date)s</i></u></b></span>") % medal)
+
+        textbox = gtk.VBox()
+        textbox.pack_start(text0)
+        textbox.pack_start(text1)
+        textbox.pack_start(text2)
+        textbox.pack_start(text3)
+        textbox.pack_start(text4)
+
+        medalbox = gtk.HBox()
+        medalbox.pack_start(textbox)
+        medalbox.pack_end(medalimage)
+
+        # Stats section.
         wpmlabel = gtk.Label()
         wpmlabel.set_markup("<span size='18000'>" + (_('<b>Words Per Minute:</b> %(wpm)d') % medal) + "</span>" )
         
@@ -54,26 +91,38 @@ class MedalScreen(gtk.EventBox):
         
         oklabel = gtk.Label()
         oklabel.set_markup("<span size='10000'>" + _('Press the ENTER key to continue.') + '</span>')
-        okbtn = gtk.Button()
-        okbtn.add(oklabel)
-        okbtn.connect('clicked', self.ok_cb)
-        okbtn.grab_focus()
+        self.okbtn = gtk.Button()
+        self.okbtn.add(oklabel)
+        self.okbtn.connect('clicked', self.ok_cb)
 
         btnbox = gtk.HBox()
-        btnbox.pack_start(okbtn, True, True, 100)
+        btnbox.pack_start(self.okbtn, True, True, 100)
         
         vbox = gtk.VBox()
         
-        vbox.pack_start(cert0, True, False, 0)
-        vbox.pack_start(cert1, False, False, 0)
+        vbox.pack_start(title, False, False, 0)
+        vbox.pack_start(medalbox, True, False, 0)
         vbox.pack_start(gtk.HSeparator(), False, False, 20)
         vbox.pack_start(statbox, False, False, 0)
-        vbox.pack_start(gtk.HSeparator(), False, False, 20)
-        vbox.pack_start(btnbox, False, False, 40)
         
-        self.add(vbox)
+        frame = gtk.Frame()
+        frame.add(vbox)
+        frame.set_border_width(10)
+
+        box = gtk.VBox() 
+        box.pack_start(frame, True, True)
+        box.pack_start(btnbox, False, False, 40)
+
+        self.add(box)
         
         self.show_all()
+
+        self.connect('realize', self.realize_cb)
+
+    def realize_cb(self, widget):
+        # For some odd reason, if I do this in the constructor, nothing happens.
+        self.okbtn.set_flags(gtk.CAN_DEFAULT)
+        self.okbtn.grab_default()
 
     def ok_cb(self, widget):
         self.activity.pop_screen()

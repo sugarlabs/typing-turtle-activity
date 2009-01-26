@@ -1,10 +1,38 @@
 #!/bin/bash
 #
-# Script for generating en_US lesson content for Typing Turtle.
+# Script for generating US English lesson content for Typing Turtle.
+# Author: Wade Brainerd <wadetb@gmail.com>
+#
+# Typing Turtle content is generated using the 'lessonbuilder' program
+# which comes in the TypingTurtle.activity directory.  This program
+# can generate different kinds of lessons using a word list file.
+# 
+# You must supply a word list for your language.  It can be a plain
+# text dictionary, the text of a public domain novel, etc.  You can
+# concatenate several sources together into one word list.  It's 
+# important to supply a good word list that will include all the 
+# letters in your language, plus variations like capitals and punctuation.
+#
+# To create lesson content for a new language, copy this directory:
+# TypingTurtle.activity/lessons/en_US/
+#
+# to:
+# TypingTurtle.activity/lessons/xx_YY/
+#
+# where xx is your language code and YY is your country code.
+#
+# Modify the commands in the MAKELESSONS file in the new directory
+# to generate lesson content for your language, taking into account
+# the particulars of your keyboard layout and language.
+#
+# For more information on the lessonbuilder program, run:
+# ../../lessonbuilder --help
 #
 
 # Generate the introductory lesson.
 ../../lessonbuilder --intro-lesson \
+    --title="Welcome" \
+    --desc="Click here to begin your typing adventure." \
     --bronze-wpm=0 --silver-wpm=0 --gold-wpm=0 \
     --order=0 \
     --output=intro.lesson
@@ -20,7 +48,7 @@
     
 ../../lessonbuilder --game-lesson \
     --title="Home Row Balloon Practice" \
-    --desc="Practice the home row keys in this exciting game!\nDon\'t let any balloons get by!" \
+    --desc="Practice the home row keys in this exciting game!\nDon't let any balloons get by!" \
     --keys="asdfghjkl" \
     --game='balloon' \
     --wordlist=2of12.txt --badwordlist=badwords.txt \
@@ -46,7 +74,7 @@
 # Generate left and right hand capital lessons.
 ../../lessonbuilder --key-lesson \
     --title="Left Hand Capitals" \
-    --desc="This lesson teaches you the CAPITAL letters which are typed by your left hand.\nThese are Q, W, E, R, T, A, S, D, F, G, Z, X, C, V and B." \
+    --desc="This lesson teaches you the CAPITAL letters which are typed \nby your left hand.\nThese are Q, W, E, R, T, A, S, D, F, G, Z, X, C, V and B." \
     --keys="QWERTASDFGZXCVB" \
     --base-keys="abcdefghijklmnopqrstuvwxyz" \
     --wordlist=2of12.txt --badwordlist=badwords.txt \
@@ -55,7 +83,7 @@
 
 ../../lessonbuilder --key-lesson \
     --title="Right Hand Capitals" \
-    --desc="This lesson teaches you the CAPITAL letters which are typed by your right hand.\nThese are Y, U, I, O, P, H, J, K, L, B, N, and M." \
+    --desc="This lesson teaches you the CAPITAL letters which are typed \nby your right hand.\nThese are Y, U, I, O, P, H, J, K, L, B, N, and M." \
     --keys="YUIOPHJKLBNM" \
     --base-keys="abcdefghijklmnopqrstuvwxyzQWERTASDFGZXCVB" \
     --wordlist=2of12.txt --badwordlist=badwords.txt \

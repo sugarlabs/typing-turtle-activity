@@ -511,9 +511,7 @@ if __name__ == "__main__":
     ]
 
     if options.make_intro_lesson:
-        lesson['name'] = _('Welcome') 
         lesson['type'] = 'normal' 
-        lesson['description'] = _('Click here to begin your typing adventure.') 
         lesson['steps'] = build_intro_steps()
     
     elif options.make_key_lesson:        
