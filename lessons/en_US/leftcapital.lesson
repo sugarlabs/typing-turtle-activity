@@ -2,19 +2,19 @@
     "description": "This lesson teaches you the CAPITAL letters which are typed \nby your left hand.\nThese are Q, W, E, R, T, A, S, D, F, G, Z, X, C, V and B.", 
     "medals": [
         {
-            "accuracy": 60, 
+            "accuracy": 70, 
             "name": "bronze", 
-            "wpm": 60
+            "wpm": 15
         }, 
         {
-            "accuracy": 60, 
+            "accuracy": 80, 
             "name": "silver", 
-            "wpm": 60
+            "wpm": 20
         }, 
         {
-            "accuracy": 60, 
+            "accuracy": 90, 
             "name": "gold", 
-            "wpm": 60
+            "wpm": 25
         }
     ], 
     "name": "Left Hand Capitals", 
@@ -108,17 +108,17 @@
         {
             "instructions": "Nice work. Now put the keys together into pairs.", 
             "mode": "text", 
-            "text": "XF AB DB CB AV RQ ZG BQ WC SF RA BT FE ZT CT XE ZA GW XE QT QC AC WA QT ZT AW VT QB ZX TE DE SF BD XG QD TG VR DX GF FX GE TD WA DA BC QV ZG ZE TC TG SG AZ WQ XX BF RS TT CE BD EA"
+            "text": "RV TT DD WA FA RV SW AS AQ WA BC SA CA SE RB EQ AQ CS AW SA AS WA AR SD CS BC CC SG TR DV FT ET VC AB DS SR EC TD SC SC DW EG DT DV GB BD VC ST CR GB CT CS TT AT EB RV VC CE DQ BB"
         }, 
         {
-            "instructions": "Good job. Now practice all the keys you know.", 
+            "instructions": "Nice work. Now practice all the keys you know.", 
             "mode": "text", 
-            "text": "Ty EE sB CF dW aD Ch ZF cR oC Xm RC WQ wR eT ZE Vg Fo pW CV xQ wA vA Rp jS GG TR DQ VQ VT pA VZ uZ XW Xg XC sS mB Sa WC Cu cE CR gQ AE Sl DE Db Cj Xk lZ Cu XE fB tQ aZ iD tQ Sv QR"
+            "text": "Ax Am Cl DT AB DV CB Zh Eo CS AT Sw uB Tz FT CB Aq Si CR Cn An Ao Ve Va Rh Cl SG Qi Er Sq Av Ty By Vu Ab AS Be Tr Ev Ce To BD Zu Zs Gd Ea Cz Xu Wa Fo Ai Va Sv Ry Ec Ai By Ce Aa TS"
         }, 
         {
-            "instructions": "Good job. Time to type jumbles.", 
+            "instructions": "Wonderful! Time to type real words.", 
             "mode": "text", 
-            "text": "RtZq XWEp EhQa EdGi ZWFZ CVVh ZcCT RbVV XtQa ZjZd WsSr WbFo SqAb GECk GRRl WQBE RfTj BWGn EpZu XvDV FpDS FwQV ABZB EuZF BfFq TsBZ QsEa TsRj XjAV QeRt QWQy CZZc GXDX ReGo DnDb WATG CsXx AmSt ExTZ ACVl VfQQ BXWh GTSC SoSD WnEh CaFS DpQA QDVa EaDW FpFA CuVB CVQi TnBs ScRW XiXx EzFp ZuDV DlFr TBQr FTZv"
+            "text": "Sikh Cathie Rollin Glenn Severn Bengal Eadwig Goddard Carib Scorpius Theban Wilton Boeotian Breton Catania Rosalie Torbay Tet Rowland Gretchen Salween Corday Tupian Aachen Bush Rushmore Alamo Cedric Shylock Walker Smollett Chinese Cochin Quechua Donne Wisdom Tver Beninese Bede Quebecer Amman Bromley Angles Satanism Annamese Silesia Daniel Chengdu Freda Thimbu Sporades Copland Eleanor Chretien Freyja Devonian Elinor Eskimoan Susanna Segovia"
         }, 
         {
             "instructions": "$report", 

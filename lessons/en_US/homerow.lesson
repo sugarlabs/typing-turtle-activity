@@ -2,19 +2,19 @@
     "description": "This lesson teaches you the a, s, d, f, g, h, j, k and l keys \nin the middle of the keyboard.\nThese keys are called the Home Row.", 
     "medals": [
         {
-            "accuracy": 60, 
+            "accuracy": 70, 
             "name": "bronze", 
-            "wpm": 60
+            "wpm": 15
         }, 
         {
-            "accuracy": 60, 
+            "accuracy": 80, 
             "name": "silver", 
-            "wpm": 60
+            "wpm": 20
         }, 
         {
-            "accuracy": 60, 
+            "accuracy": 90, 
             "name": "gold", 
-            "wpm": 60
+            "wpm": 25
         }
     ], 
     "name": "The Home Row", 
@@ -78,12 +78,12 @@
         {
             "instructions": "Nice work. Now put the keys together into pairs.", 
             "mode": "text", 
-            "text": "ff ka hd la aj ff lg la gj ll gl ld ha kh gs fh gk hj sk ld la ll gj dj kj gl fj hf kl hs sd hh fa ll gf dh aa ja ld ld fs sj ga lh aj dk fa sa af hs jj kj ka ss kg ff fa lj gf fd"
+            "text": "dl kl fs ll kf dl kh ll jd la sl af ad sd lg sj fj hj ds af ll la jd sg hj gl jj hf kl aa hs hk gh la gf aj gk lf af af hd fh da kk kf lj gh ag ka aa fg hj ja ss kg dl gh fd hh fg"
         }, 
         {
             "instructions": "Nice work. Time to type real words.", 
             "mode": "text", 
-            "text": "hag lag salad shad la fa hall shh ad has falls gag gaff flag ask hall falls dad ad has gall had lad lag gad salad halal da glass alfalfa ha slag hajj shag glass shh ska dash gal shall gaga lass shh sass as gal ha flak gaga glad alga lag flask falls hajj alga hajj shall shah salsa"
+            "text": "had salad gash fa alga hah shad shh gaff hag falls gag glad aha add shad sh dad glad hag fad had lad sad gad gash halal as shall alfalfa ha sal algal shah glass shh flask dash gas ska gaga has shh flak ah gal ha flak dash dahl alga salad flash falls algal alga algal ska shah dada"
         }, 
         {
             "instructions": "$report", 

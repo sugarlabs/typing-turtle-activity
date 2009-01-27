@@ -2,19 +2,19 @@
     "description": "This lesson teaches you the z, x, c, v, b, n and m keys \non the bottom row of the keyboard.", 
     "medals": [
         {
-            "accuracy": 60, 
+            "accuracy": 70, 
             "name": "bronze", 
-            "wpm": 60
+            "wpm": 15
         }, 
         {
-            "accuracy": 60, 
+            "accuracy": 80, 
             "name": "silver", 
-            "wpm": 60
+            "wpm": 20
         }, 
         {
-            "accuracy": 60, 
+            "accuracy": 90, 
             "name": "gold", 
-            "wpm": 60
+            "wpm": 25
         }
     ], 
     "name": "The Bottom Row", 
@@ -68,17 +68,17 @@
         {
             "instructions": "Nice work. Now put the keys together into pairs.", 
             "mode": "text", 
-            "text": "bb zz mv mb mc bb nx mb cm mb cc xc nn bv bn cz cm xn nb xc mb mb cm bv xn cc bz bc zz vv bv mv bb nc cn nx xb bm nm nm vv cz cc vv mc zv bb mm nb vv zv xn zz nc zm bb bb bz cn zv"
+            "text": "nb bc cm nn mv nb mc nn cb nn bb zz mm vv bv zv cb xv nz zz nn nn cb vv vn nv bz cn bc zb mv cm nm nn zc cz xb nx mn mn zm zn nv zm zb xm nm cc xc zb vn vn bc nc xn nb nm xv zc xm"
         }, 
         {
             "instructions": "Nice work. Now practice all the keys you know.", 
             "mode": "text", 
-            "text": "fm bo be sb hn dz ml hm gb mq tn gn bm xl md ml nh ec nz tv ng gz am cu rb be zp uv ov kc mn xp ym tb va zi an ci cc cl no zk zi yz vy tc mn bv iv uc nm cu ux tn xi nm ym cl gm fn"
+            "text": "mj va cu zl ms xq pn yb bp vd mn ym bw kc cm pn ax ns cd xd ng mg vi ov rv cu zc bv rc zm ez lm ox ux ev tb ic im wn cl am zq tb yv sv xi xa wc em mu lb ov nx mn hn lb ox cl xo md"
         }, 
         {
             "instructions": "Wonderful! Time to type real words.", 
             "mode": "text", 
-            "text": "outclass waxy phoebe mirror donut felicity rampage reinfect cruelly complex mincing success jinxed binding anther fauvism soviet pardon suasion monist befogged overfill meanness genii focus wondrous clay libel beige capital embezzle popover inferno medullae grocery scanner caveat concord sneering feverish view breakout minnow lawgiver dribbler scarlet sunless harangue earmuffs gizzard sitting pimply bullfrog scalper ambition initial auburn then purveyor callous"
+            "text": "sinewed czardom uneven smasher schooner masked prone syllable oxidant protect genuine cooties slovenly oxidize garcon fogeydom bluesy ultimo fauces coot overstep realign fusion retrace ulna mauler rhetoric bible remade gruesome shelling pinwheel chyme phonemic cinerary indict lighting vasa quean resource heretic slagging ambition cope zygotic deprive canner chide courtly marked former illness baseball peatbog dogmatic cryer slavish grovel culprit em"
         }, 
         {
             "instructions": "$report", 

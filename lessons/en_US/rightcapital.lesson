@@ -2,19 +2,19 @@
     "description": "This lesson teaches you the CAPITAL letters which are typed \nby your right hand.\nThese are Y, U, I, O, P, H, J, K, L, B, N, and M.", 
     "medals": [
         {
-            "accuracy": 60, 
+            "accuracy": 70, 
             "name": "bronze", 
-            "wpm": 60
+            "wpm": 15
         }, 
         {
-            "accuracy": 60, 
+            "accuracy": 80, 
             "name": "silver", 
-            "wpm": 60
+            "wpm": 20
         }, 
         {
-            "accuracy": 60, 
+            "accuracy": 90, 
             "name": "gold", 
-            "wpm": 60
+            "wpm": 25
         }
     ], 
     "name": "Right Hand Capitals", 
@@ -93,17 +93,17 @@
         {
             "instructions": "Nice work. Now put the keys together into pairs.", 
             "mode": "text", 
-            "text": "BK PM HM BM PN IY LK MY UN HK OP MO JU LO NO BU LP KU BI YO YB PB UP YO LO PU NO YM LB OU HU HK MH BK YH OK NI JB KJ KB KI OJ UP JP MB YM LK LI OB OK PK PL UY BB MJ OP OO BU MJ UP"
+            "text": "PU OU HM MI MP PU LO MI BB MI IJ PO LP MO OB IP BB BO PI PO MI MI BB MH BO IJ BL LI OP KP MP HM UI MI HI LO IO OM PN PN HU IP IJ HU KP II UI KO PM KP BH BO OU OL IN PU UI BI HI BH"
         }, 
         {
-            "instructions": "Good job. Now practice all the keys you know.", 
+            "instructions": "Nice work. Now practice all the keys you know.", 
             "mode": "text", 
-            "text": "OC OU AM NN lU hJ Bq LN kO QB Bx Id UY ZI mO aI Np KQ WU Ne CY ZP GP IQ uH KM JI BY fY NH WP Mb DL dU Bq dB AP xM Hi UB BF kU BP qY PO Hw BI Jj Nu Bu vL ND dI oM DY iL sH SY HF YP"
+            "text": "BL Os Ur AN SI IQ eP LA PO BH Uz PA NE LT Ix eP TH Hi PG EB Mi BD Ku Mc Ug Ol HM UI Om JA Ob Ip ID IV Ji Lv Br Or Us Nu Hu DJ Lv OP RL FO Oe OP Mu Ot RO My TK Um Ig RN ID Nu Iq Lh"
         }, 
         {
-            "instructions": "Good job. Time to type jumbles.", 
+            "instructions": "Wonderful! Time to type real words.", 
             "mode": "text", 
-            "text": "OSLR BUIW UqYi UmKs LIJb BfNr LjBH IjNf LSYi LtLm UAPT UjKz PEPi KONu KPIw UUMO IoOt MUKy IWLD BGHf KWJL KZYf PgLh UDLN MoJE OTMb YAUh OAIt BtPf YmOS YIYC NbLk KcHc InKQ JyJj UKOa BABX PxHS UXOb PeMw MoYY McUr KHPe PQHB UyIr BhJL JWYK YBMi IhJU KWJK BDMg NfYs OyMA HkOU BsBC IBJW LDHf HwJR OhYT JHLG"
+            "text": "Yuma Janette Lisbon Ipswich Jake Mexico Leland Mays Hindi Mike Jeanne Belgium Lapland Lome Helsinki Nicobar Lear Plautus Orion Mia Kananga Javanese Hirohito Yosemite Mia Managua Mongol Oder Bradford Lerwick Loyalist Judean Kirk Helene Malaysia Boswell Burnside Plath Mogilyov Boadicea Humboldt Orrin Burundi Unionism Judy Lloyd Kleenex Babylon Julian Kirby Pristina Nolan Pearl Bruneian Bhutan Imogen PCP Master Montcalm Pinter"
         }, 
         {
             "instructions": "$report", 

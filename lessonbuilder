@@ -133,16 +133,17 @@ def make_all_joined_pairs(keys1, keys2):
             text += k2 + k1 + ' '
     return text.strip()
 
-RE_NONALPHA = re.compile('\W+', re.UNICODE)
+RE_WHITESPACE = re.compile('\s+', re.UNICODE)
 
 def load_wordlist(path):
     try:
         text = unicode(open(path, 'r').read())
         
-        # Split words by non-alpha characters.  This extracts all actual words,
-        # minus punctuation.  Note- Could get messed up by hyphenation, leading
-        # to fragments in the word list.
-        words = RE_NONALPHA.split(text)
+        # Split words by whitespace characters.
+        # This preserves partial punctuation in some words, which is
+        # intentional since we want to teach punctuation in its natural
+        # form.
+        words = RE_WHITESPACE.split(text)
         
         return words
     
@@ -452,27 +453,23 @@ if __name__ == "__main__":
                       help="Generate a lesson to teach a specific set of keys.")
     type_group.add_option("--game-lesson", dest="make_game_lesson", action="store_true",
                       help="Generate a lesson which plays a game.")
-    #type_group.add_option("--capital-lesson", dest="make_capital_lesson", action="store_true",
-    #                  help="Generate a lesson which teaches CAPITAL letters (might not be appropriate for some languages).")
-    #type_group.add_option("--punctuation-lesson", dest="make_punctuation_lesson", action="store_true",
-    #                  help="Generate a lesson which teaches punctuation (might not be appropriate for some languages).")
     parser.add_option_group(type_group)
 
     medal_group = optparse.OptionGroup(parser, 
         'Medal Requirements', 
         'Optionally pass these arguments to override medal requirements.')
-    medal_group.add_option("--bronze-wpm", dest="bronze_wpm", type="int", metavar="N", default=60,
+    medal_group.add_option("--bronze-wpm", dest="bronze_wpm", type="int", metavar="N", default=15,
                       help="Words per minute for a Bronze medal.  Default 15.")
-    medal_group.add_option("--silver-wpm", dest="silver_wpm", type="int", metavar="N", default=60,
+    medal_group.add_option("--silver-wpm", dest="silver_wpm", type="int", metavar="N", default=20,
                       help="Words per minute for a Silver medal.  Default 20.")
-    medal_group.add_option("--gold-wpm", dest="gold_wpm", type="int", metavar="N", default=60,
+    medal_group.add_option("--gold-wpm", dest="gold_wpm", type="int", metavar="N", default=25,
                       help="Words per minute for a Gold medal.  Default 25.")
-    medal_group.add_option("--bronze-acc", dest="bronze_accuracy", type="int", metavar="N", default=60,
-                      help="Accuracy for a Bronze medal.  Default 75.")
-    medal_group.add_option("--silver-acc", dest="silver_accuracy", type="int", metavar="N", default=60,
-                      help="Accuracy for a Silver medal.  Default 85.")
-    medal_group.add_option("--gold-acc", dest="gold_accuracy", type="int", metavar="N", default=60,
-                      help="Accuracy for a Gold medal.  Default 95.")
+    medal_group.add_option("--bronze-acc", dest="bronze_accuracy", type="int", metavar="N", default=70,
+                      help="Accuracy for a Bronze medal.  Default 70.")
+    medal_group.add_option("--silver-acc", dest="silver_accuracy", type="int", metavar="N", default=80,
+                      help="Accuracy for a Silver medal.  Default 80.")
+    medal_group.add_option("--gold-acc", dest="gold_accuracy", type="int", metavar="N", default=90,
+                      help="Accuracy for a Gold medal.  Default 90.")
     parser.add_option_group(medal_group)
 
     (options, args) = parser.parse_args()
