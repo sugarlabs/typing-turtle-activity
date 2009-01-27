@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-01-02 16:44+0000\n"
+"POT-Creation-Date: 2009-01-27 04:26+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,42 +20,42 @@ msgstr ""
 msgid "Typing Turtle"
 msgstr ""
 
-#: lessonscreen.py:59
+#: lessonscreen.py:58 balloongame.py:51
 msgid "Go Back"
 msgstr ""
 
-#: lessonscreen.py:167
+#: lessonscreen.py:173
 #, python-format
 msgid "<b>WPM:</b> %(wpm)d"
 msgstr ""
 
-#: lessonscreen.py:175 medalscreen.py:49
+#: lessonscreen.py:181 medalscreen.py:86
 #, python-format
 msgid "<b>Accuracy:</b> %(accuracy)d%%"
 msgstr ""
 
-#: lessonscreen.py:528
+#: lessonscreen.py:530
 msgid "Good job!"
 msgstr ""
 
-#: lessonscreen.py:529
+#: lessonscreen.py:531
 msgid "Well done!"
 msgstr ""
 
-#: lessonscreen.py:530
+#: lessonscreen.py:532
 msgid "Nice work!"
 msgstr ""
 
-#: lessonscreen.py:531
+#: lessonscreen.py:533
 msgid "Way to go!"
 msgstr ""
 
-#: lessonscreen.py:536
+#: lessonscreen.py:538
 #, python-format
 msgid "You finished the lesson in %(time)d seconds, with %(errors)d errors.\n"
 msgstr ""
 
-#: lessonscreen.py:538
+#: lessonscreen.py:540
 #, python-format
 msgid ""
 "Your words per minute (WPM) was %(wpm)d, and your accuracy was %(accuracy)d%"
@@ -63,64 +63,71 @@ msgid ""
 "\n"
 msgstr ""
 
-#: lessonscreen.py:541
+#: lessonscreen.py:543
 #, python-format
 msgid "You finished the lesson with %(errors)d errors.\n"
 msgstr ""
 
-#: lessonscreen.py:543
+#: lessonscreen.py:545
 #, python-format
 msgid ""
 "Your accuracy was %(accuracy)d%%.\n"
 "\n"
 msgstr ""
 
-#: lessonscreen.py:549
+#: lessonscreen.py:551
 #, python-format
 msgid "Congratulations!  You earned a %(type)s medal!"
 msgstr ""
 
-#: lessonscreen.py:557
-msgid ""
-"You need to practice this lesson more before moving on.  If you are having a "
-"hard time, repeat the earlier lessons until you have mastered them "
-"completely before trying this one again.\n"
-"\n"
+#: lessonscreen.py:559
+msgid "You need to practice this lesson more before moving on."
 msgstr ""
 
 #: lessonscreen.py:562
-msgid ""
-"You almost got a medal!  Next time, try not to make as many errors.\n"
-"\n"
+msgid "You almost got a medal!  Next time, try not to make as many errors."
 msgstr ""
 
 #: lessonscreen.py:565
-msgid ""
-"You almost got a medal!  Next time, try to type a little faster.\n"
-"\n"
+msgid "You almost got a medal!  Next time, try to type a little faster."
 msgstr ""
 
-#: medalscreen.py:38
+#: medalscreen.py:53
 msgid ""
-"Certificate of\n"
-"Achievement"
+"<span font_desc='Serif Bold Italic 28'>Certificate of Achievement</span>"
 msgstr ""
 
-#: medalscreen.py:42
+#: medalscreen.py:56
+msgid "<span font_desc='Sans 18'>This certifies that</span>"
+msgstr ""
+
+#: medalscreen.py:59
 #, python-format
-msgid ""
-"This certifies that on <i><b><u>%(date)s</u></b></i>,\n"
-"<i><b><u>%(nick)s</u></b></i> earned a %(type)s medal\n"
-"in Typing Turtle lesson <i><b><u>%(lesson)s</u></b></i>."
+msgid "<span font_desc='Sans 18'><b><u><i>%(nick)s</i></u></b></span>"
 msgstr ""
 
-#: medalscreen.py:46
+#: medalscreen.py:62
+#, python-format
+msgid "<span font_desc='Sans 18'>earned a %(type)s medal</span>"
+msgstr ""
+
+#: medalscreen.py:65
+#, python-format
+msgid "<span font_desc='Sans 18'>in lesson <i>%(lesson)s</i> on </span>"
+msgstr ""
+
+#: medalscreen.py:68
+#, python-format
+msgid "<span font_desc='Sans 18'><b><u><i>%(date)s</i></u></b></span>"
+msgstr ""
+
+#: medalscreen.py:83
 #, python-format
 msgid "<b>Words Per Minute:</b> %(wpm)d"
 msgstr ""
 
-#: medalscreen.py:56
-msgid "Ok"
+#: medalscreen.py:93 balloongame.py:212
+msgid "Press the ENTER key to continue."
 msgstr ""
 
 #: mainscreen.py:179
@@ -143,4 +150,22 @@ msgstr ""
 
 #: mainscreen.py:213
 msgid "Gold Medal"
+msgstr ""
+
+#: balloongame.py:208
+msgid "You finished the game!"
+msgstr ""
+
+#: balloongame.py:210
+#, python-format
+msgid "Your score was %(score)d."
+msgstr ""
+
+#: balloongame.py:250 balloongame.py:258
+#, python-format
+msgid "SCORE: %d"
+msgstr ""
+
+#: balloongame.py:269
+msgid "Type the words to pop the balloons!"
 msgstr ""
