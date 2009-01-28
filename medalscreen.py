@@ -53,19 +53,19 @@ class MedalScreen(gtk.EventBox):
         title.set_markup(_("<span font_desc='Serif Bold Italic 28'>Certificate of Achievement</span>"))
         
         text0 = gtk.Label()
-        text0.set_markup(_("<span font_desc='Sans 18'>This certifies that</span>"))
+        text0.set_markup(_("<span font_desc='Sans 16'>This certifies that</span>"))
 
         text1 = gtk.Label()
-        text1.set_markup(_("<span font_desc='Sans 18'><b><u><i>%(nick)s</i></u></b></span>") % medal)
+        text1.set_markup(_("<span font_desc='Sans 16'><b><u><i>%(nick)s</i></u></b></span>") % medal)
 
         text2 = gtk.Label()
-        text2.set_markup(_("<span font_desc='Sans 18'>earned a %(type)s medal</span>") % medal)
+        text2.set_markup(_("<span font_desc='Sans 16'>earned a %(type)s medal in </span>") % medal)
 
         text3 = gtk.Label()
-        text3.set_markup(_("<span font_desc='Sans 18'>in lesson <i>%(lesson)s</i> on </span>") % medal)
+        text3.set_markup(_("<span font_desc='Sans 16'>in <b><u><i>%(lesson)s</i></u></b></span>") % medal)
 
         text4 = gtk.Label()
-        text4.set_markup(_("<span font_desc='Sans 18'><b><u><i>%(date)s</i></u></b></span>") % medal)
+        text4.set_markup(_("<span font_desc='Sans 16'>on <b><u><i>%(date)s</i></u></b>.</span>") % medal)
 
         textbox = gtk.VBox()
         textbox.pack_start(text0)
@@ -79,15 +79,20 @@ class MedalScreen(gtk.EventBox):
         medalbox.pack_end(medalimage)
 
         # Stats section.
-        wpmlabel = gtk.Label()
-        wpmlabel.set_markup("<span size='18000'>" + (_('<b>Words Per Minute:</b> %(wpm)d') % medal) + "</span>" )
-        
-        accuracylabel = gtk.Label()
-        accuracylabel.set_markup("<span size='15000'>" + (_('<b>Accuracy:</b> %(accuracy)d%%') % medal) + "</span>" )
-        
         statbox = gtk.HBox()
-        statbox.pack_start(wpmlabel, True)
-        statbox.pack_start(accuracylabel, True)
+        if medal.has_key('wpm'):
+            stat1 = gtk.Label()
+            stat1.set_markup("<span size='18000'>" + (_('<b>Words Per Minute:</b> %(wpm)d') % medal) + "</span>" )
+            statbox.pack_start(stat1, True)
+        
+            stat2 = gtk.Label()
+            stat2.set_markup("<span size='18000'>" + (_('<b>Accuracy:</b> %(accuracy)d%%') % medal) + "</span>" )
+            statbox.pack_start(stat2, True)
+
+        elif medal.has_key('score'):
+            stat1 = gtk.Label()
+            stat1.set_markup("<span size='18000'>" + (_('<b>SCORE:</b> %(score)d') % medal) + "</span>" )
+            statbox.pack_start(stat1, True)
         
         oklabel = gtk.Label()
         oklabel.set_markup("<span size='10000'>" + _('Press the ENTER key to continue.') + '</span>')

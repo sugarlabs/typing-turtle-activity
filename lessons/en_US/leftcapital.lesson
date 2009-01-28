@@ -4,21 +4,24 @@
         {
             "accuracy": 70, 
             "name": "bronze", 
+            "score": 4000, 
             "wpm": 15
         }, 
         {
             "accuracy": 80, 
             "name": "silver", 
+            "score": 6000, 
             "wpm": 20
         }, 
         {
             "accuracy": 90, 
             "name": "gold", 
+            "score": 10000, 
             "wpm": 25
         }
     ], 
     "name": "Left Hand Capitals", 
-    "order": 5, 
+    "order": 7, 
     "steps": [
         {
             "instructions": "In this lesson, you will learn the Q, W, E, R, T, A, S, D, F, G, Z, X, C, V and B keys.\n\nPress the ENTER key when you are ready to begin!", 

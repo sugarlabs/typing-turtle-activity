@@ -14,7 +14,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Typing Turtle.  If not, see <http://www.gnu.org/licenses/>.
 
-import random
+import random, datetime
 from gettext import gettext as _
 
 import gobject, pygtk, gtk, pango
@@ -23,8 +23,14 @@ import gobject, pygtk, gtk, pango
 # parameters about them.
 BALLOON_STAGES = [
     { 'count': 10, 'delay': 80 },
-    { 'count': 20, 'delay': 60 },
-    { 'count': 70, 'delay': 40 },
+    #{ 'count': 20, 'delay': 60 },
+    #{ 'count': 70, 'delay': 40 },
+]
+
+DEFAULT_MEDALS = [
+    { 'name': 'bronze', 'score': 4000 },
+    { 'name': 'silver', 'score': 6000 },
+    { 'name': 'gold',   'score': 10000 }
 ]
 
 class Balloon:
@@ -81,6 +87,7 @@ class BalloonGame(gtk.VBox):
         self.stage = BALLOON_STAGES[self.stage_idx]
         self.count_left = self.stage['count']
 
+        self.medal = None
         self.finished = False
 
         # Start the animation loop running.        
@@ -187,8 +194,7 @@ class BalloonGame(gtk.VBox):
                 self.spawn_delay = random.randint(delay-20, delay+20)
 
         if len(self.balloons) == 0 and self.stage_idx >= len(BALLOON_STAGES):
-            self.finished = True
-            self.queue_draw()
+            self.finish_game()
  
         return True
 
@@ -205,19 +211,83 @@ class BalloonGame(gtk.VBox):
         self.area.window.draw_rectangle(gc, False, x, y, w, h)
 
         # Draw text
-        report = _('You finished the game!')
-        report += '\n\n'
-        report += _('Your score was %(score)d.') % { 'score': self.score }
-        report += '\n\n'
-        report += _('Press the ENTER key to continue.')
-    
         gc.foreground = self.area.get_colormap().alloc_color(0,0,0)
-        layout = self.area.create_pango_layout(report)
-        layout.set_font_description(pango.FontDescription('Times 14'))    
+
+        title = _('You finished!') + '\n'
+        layout = self.area.create_pango_layout(title)
+        layout.set_font_description(pango.FontDescription('Serif Bold 16'))    
         size = layout.get_size()
         tx = x+w/2-(size[0]/pango.SCALE)/2
-        ty = y+h/2-(size[1]/pango.SCALE)/2
+        ty = y + 100
         self.area.window.draw_layout(gc, tx, ty, layout)
+
+        report = ''
+        report += _('Your score was %(score)d.') % { 'score': self.score } + '\n'
+        if self.medal:
+            report += _('You earned a %(type)s medal!') % self.medal + '\n'
+        report += '\n'
+        report += _('Press the ENTER key to continue.')
+    
+        layout = self.area.create_pango_layout(report)
+        layout.set_font_description(pango.FontDescription('Times 12'))    
+        size = layout.get_size()
+        tx = x+w/2-(size[0]/pango.SCALE)/2
+        ty = y + 200
+        self.area.window.draw_layout(gc, tx, ty, layout)
+
+    def finish_game(self):
+        self.finished = True
+
+        # Add to the lesson history.
+        report = { 
+            'lesson': self.lesson['name'],
+            'score': self.score,
+        }
+        self.activity.add_history(report)
+
+        # Show the medal screen, if one should be given.
+        got_medal = None
+        
+        medals = self.lesson.get('medals', DEFAULT_MEDALS)
+        for medal in medals:
+            if self.score >= medal['score']:
+                got_medal = medal['name']
+        
+        if got_medal:
+            # Award the medal.
+            medal = {
+                'lesson': self.lesson['name'],
+                'type': got_medal,
+                'date': datetime.date.today().strftime('%B %d, %Y'),
+                'nick': self.activity.owner.props.nick,
+                'score': self.score
+            }
+            self.medal = medal
+
+            # Compare this medal with any existing medals for this lesson.
+            # Only record the best one.
+            add_medal = True
+            if self.activity.data['medals'].has_key(self.lesson['name']):
+                old_medal = self.activity.data['medals'][self.lesson['name']]
+
+                order = ' '.join([m['name'] for m in medals])
+                add_idx = order.index(medal['type'])
+                old_idx = order.index(old_medal['type']) 
+
+                if add_idx < old_idx:
+                    add_medal = False
+                elif add_idx == old_idx:
+                    if medal['score'] < old_medal['score']:
+                        add_medal = False
+            
+            if add_medal:
+                self.activity.data['motd'] = 'newmedal'
+                self.activity.data['medals'][self.lesson['name']] = medal
+                
+                # Refresh the main screen given the new medal.
+                self.activity.mainscreen.show_lesson(self.activity.mainscreen.lesson_index)
+
+        self.queue_draw()
 
     def queue_draw_balloon(self, b):
         x1 = int(b.x - b.size/2)

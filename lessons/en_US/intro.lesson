@@ -4,16 +4,19 @@
         {
             "accuracy": 70, 
             "name": "bronze", 
+            "score": 4000, 
             "wpm": 0
         }, 
         {
             "accuracy": 80, 
             "name": "silver", 
+            "score": 6000, 
             "wpm": 0
         }, 
         {
             "accuracy": 90, 
             "name": "gold", 
+            "score": 10000, 
             "wpm": 0
         }
     ], 

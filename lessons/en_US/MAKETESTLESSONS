@@ -1,10 +1,12 @@
 ../../lessonbuilder --game-lesson \
-    --title="Balloon game test" \
-    --desc="." \
+    --title="Home Row Balloon Practice" \
+    --desc="Practice the home row keys in this exciting game!\nDon't let any balloons get by!" \
+    --bronze-score=500 --silver-score=1000 --gold-score=1500 \
     --keys="asdfghjkl" \
-    --wordlist=2of12.txt \
+    --game='balloon' \
+    --wordlist=5desk.txt --badwordlist=badwords.txt \
     --order=-2 \
-    --output=balloon-test.lesson
+    --output=homerowballoon.lesson
 
 ../../lessonbuilder --key-lesson \
     --title="Test lesson" \

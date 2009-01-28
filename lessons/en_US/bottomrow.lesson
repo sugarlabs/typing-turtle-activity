@@ -4,21 +4,24 @@
         {
             "accuracy": 70, 
             "name": "bronze", 
+            "score": 4000, 
             "wpm": 15
         }, 
         {
             "accuracy": 80, 
             "name": "silver", 
+            "score": 6000, 
             "wpm": 20
         }, 
         {
             "accuracy": 90, 
             "name": "gold", 
+            "score": 10000, 
             "wpm": 25
         }
     ], 
     "name": "The Bottom Row", 
-    "order": 4, 
+    "order": 5, 
     "steps": [
         {
             "instructions": "In this lesson, you will learn the z, x, c, v, b, n and m keys.\n\nPress the ENTER key when you are ready to begin!", 

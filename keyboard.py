@@ -243,7 +243,9 @@ class KeyboardData:
         # Access the current GTK keymap.
         self.keymap = gtk.gdk.keymap_get_default()
 
-    def set_layout(self, layout): pass
+    def set_layout(self, layout): 
+        pass
+
     def _build_key_list(self, layout):
         """Builds a list of Keys objects from a layout description.  
            Also fills in derived and inherited key properties.  
@@ -460,7 +462,6 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
 
         # Outline rounded box.
         gc.foreground = self.get_colormap().alloc_color((0.4*65536),int(0.7*65536),int(0.4*65536))
-        #gc.foreground = self.get_colormap().alloc_color(int(0.1*65536),int(0.1*65536),int(0.1*65536))
         
         corner = 5
         points = [
@@ -541,7 +542,7 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
                     if finger[0] == 'L':
                         rhand_image = self.rhand_shift 
                     else:
-                        rhand_image = self.lhand_shift 
+                        lhand_image = self.lhand_shift 
 
                 # TODO: Do something about ALTGR.
 
