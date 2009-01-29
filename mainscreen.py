@@ -111,20 +111,20 @@ class MainScreen(gtk.VBox):
         self.prevlessonbtn.add(previcon)
         self.prevlessonbtn.connect('clicked', self.prev_lesson_clicked_cb)
         
+        # Load lessons for this language.
         bundle_path = sugar.activity.activity.get_bundle_path() 
         code = locale.getlocale(locale.LC_ALL)[0]
         path = bundle_path + '/lessons/' + code
-        
-        # Find all .lesson files in ./lessons/en_US/ for example.
-        self.lessons = []
-        for f in glob.iglob(path + '/*.lesson'):
-            fd = open(f, 'r')
-            try:
-                lesson = json.read(fd.read())
-                self.lessons.append(lesson)
-            finally:
-                fd.close()
-        
+        self.load_lessons(path)
+
+        # Fallback to en_US lessons if none found.
+        if not len(self.lessons):
+            self.load_lessons(bundle_path + '/lessons/en_US')
+
+        # We cannot run without lessons/
+        if not len(self.lessons):
+            sys.exit(1)
+
         # Sort by the 'order' field.
         self.lessons.sort(lambda x, y: x.get('order', 0) - y.get('order', 0))
         
@@ -138,6 +138,18 @@ class MainScreen(gtk.VBox):
         self.pack_start(lessonscrollbox, True)
         
         self.show_next_lesson()
+
+    def load_lessons(self, path):
+        # Find all .lesson files in ./lessons/en_US/ for example.
+        self.lessons = []
+        for f in glob.iglob(path + '/*.lesson'):
+            fd = open(f, 'r')
+            try:
+                lesson = json.read(fd.read())
+                self.lessons.append(lesson)
+            finally:
+                fd.close()
+
 
     def get_next_lesson(self):
         """Returns the index of the first lesson without a medal."""

@@ -91,17 +91,12 @@
         {
             "instructions": "Nice work. Now put the keys together into pairs.", 
             "mode": "text", 
-            "text": "UI PI KP MI MH UI OK MI II MI KO PU YM LI OM HI II IN PO PU MI MI II LI IN KO IO LO PI MO MH KP IJ OL MP OK HM OU PU PU MP HI ML MO MH IU IJ LP PO MO IP IN PI OL HM UI IJ IO KP IP"
+            "text": "Pe Og HM Yi JA Pi Lh Ye AL Yo Ub PC TO MO LT Is AI DO Oz PC Ye Yo CO MC GI UD EM MT Oe Ku Js HD Pu Yu HU LA IW OL PD PD KG Iq UI Ko Ky II Pt Up Ne Ku FM GI Oi cJ Ib Pi Pr DI HT IA"
         }, 
         {
-            "instructions": "Nice work. Now practice all the keys you know.", 
+            "instructions": "Nice work. Time to type real words.", 
             "mode": "text", 
-            "text": "BI Mc Yo AN PE IW cJ Ms PM EN Uf Ia NT LO HD cJ Um Ki PD DH Ka BL Ly Py NA Yo HU UF Ut MP OS Im CO IV Ib LP He Is Ps Om Mu DP LP OP SO Ub OS OP Or It SI Py TK Uk ID Pt CO Om Iq Lj"
-        }, 
-        {
-            "instructions": "Wonderful! Time to type real words.", 
-            "mode": "text", 
-            "text": "Molucca Mbini Harrow Ipswich Kanpur Ophelia Parkman Yafo Isabel Lori Marconi Herschel Jacky Lome Long Nehemiah Knox Howrah Marcia Jere LVN Orville Hounslow Loafer Psalms Martian Poznan Lapland Plato Kenton Hutu Judean Lamb Izmir Kepler Hazel Mainz Mortimer Mozart Hopper Kremlin Kampala Laplace Mendel Humanism Iowan Judith Yoruban Kevlar Moravian Hassid Owens Kroc Islamic Libyan Macaulay Hellene Levis Karelian Ming"
+            "text": "MC Paula Pilipino Orlando Niles Manchu Johanna Juneau Harry Nagoya Uppsala Numidia Peking Jeanie Median Manet Plymouth Kosice Lydian Justine Kilauea Hurston Pilate Lister Lear Mohammed Merle Kiel Marlyn Heather Lett Lapp Planck Harold Mongolic Nauru Pavlov Jackie Klondike Patna Maranon Milne Nauru Laplace Parmesan Oder Papuan Kola Melville Oriental Lipetsk Iqaluit Kamet Herbert Magus Mongolia Planck Patna Lofoten Mizar"
         }, 
         {
             "instructions": "$report", 

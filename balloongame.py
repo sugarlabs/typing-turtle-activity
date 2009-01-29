@@ -19,18 +19,11 @@ from gettext import gettext as _
 
 import gobject, pygtk, gtk, pango
 
-# Each 'stage' contains a certain number of balloons as well as
-# parameters about them.
-BALLOON_STAGES = [
-    { 'count': 10, 'delay': 80 },
-    #{ 'count': 20, 'delay': 60 },
-    #{ 'count': 70, 'delay': 40 },
-]
-
-DEFAULT_MEDALS = [
-    { 'name': 'bronze', 'score': 4000 },
-    { 'name': 'silver', 'score': 6000 },
-    { 'name': 'gold',   'score': 10000 }
+BALLOON_COLORS = [
+    (65535, 0, 0),
+    (0, 0, 65535),
+    (65535, 32768, 0),
+    (0, 32768, 65535),
 ]
 
 class Balloon:
@@ -40,7 +33,8 @@ class Balloon:
         self.vx = vx
         self.vy = vy
         self.word = word
-        self.size = 100
+        self.size = max(100, 50 + len(word) * 20) 
+        self.color = random.choice(BALLOON_COLORS)
 
 class BalloonGame(gtk.VBox):
     def __init__(self, lesson, activity):
@@ -65,7 +59,7 @@ class BalloonGame(gtk.VBox):
         
         # Build the game drawing area.
         self.area = gtk.DrawingArea()
-        self.area.modify_bg(gtk.STATE_NORMAL, self.get_colormap().alloc_color('#ffffff'))
+        self.area.modify_bg(gtk.STATE_NORMAL, self.get_colormap().alloc_color('#c0c0ff'))
         self.area.connect("expose-event", self.expose_cb)
 
         # Connect keyboard grabbing and releasing callbacks.        
@@ -83,9 +77,8 @@ class BalloonGame(gtk.VBox):
         self.score = 0
         self.spawn_delay = 10
 
-        self.stage_idx = 0
-        self.stage = BALLOON_STAGES[self.stage_idx]
-        self.count_left = self.stage['count']
+        self.count = 0
+        self.count_left = self.lesson.get('length', 60)
 
         self.medal = None
         self.finished = False
@@ -169,31 +162,29 @@ class BalloonGame(gtk.VBox):
 
         self.spawn_delay -= 1
         if self.spawn_delay <= 0:
+            self.count += 1
             self.count_left -= 1
 
-            if self.count_left <= 0:
-                self.stage_idx += 1
+            word = random.choice(self.lesson['words'])
 
-                if self.stage_idx < len(BALLOON_STAGES):
-                    self.stage = BALLOON_STAGES[self.stage_idx]
-                    self.count_left = self.stage['count']
+            x = random.randint(100, self.bounds.width - 100)
+            y = self.bounds.height + 100
 
+            vx = random.uniform(-2, 2)
+            vy = -3 #random.uniform(-5, -3)
+
+            b = Balloon(x, y, vx, vy, word)
+            self.balloons.append(b)
+
+            if self.count < 10:
+                delay = 80
+            elif self.count < 20:
+                delay = 60
             else:
-                word = random.choice(self.lesson['words'])
+                delay = 40
+            self.spawn_delay = random.randint(delay-20, delay+20)
 
-                x = random.randint(100, self.bounds.width - 100)
-                y = self.bounds.height + 100
-
-                vx = random.uniform(-2, 2)
-                vy = -3 #random.uniform(-5, -3)
-
-                b = Balloon(x, y, vx, vy, word)
-                self.balloons.append(b)
-
-                delay = self.stage['delay']
-                self.spawn_delay = random.randint(delay-20, delay+20)
-
-        if len(self.balloons) == 0 and self.stage_idx >= len(BALLOON_STAGES):
+        if len(self.balloons) == 0 and self.count_left <= 0:
             self.finish_game()
  
         return True
@@ -248,7 +239,7 @@ class BalloonGame(gtk.VBox):
         # Show the medal screen, if one should be given.
         got_medal = None
         
-        medals = self.lesson.get('medals', DEFAULT_MEDALS)
+        medals = self.lesson['medals']
         for medal in medals:
             if self.score >= medal['score']:
                 got_medal = medal['name']
@@ -293,20 +284,25 @@ class BalloonGame(gtk.VBox):
         x1 = int(b.x - b.size/2)
         y1 = int(b.y - b.size/2)
         x2 = int(b.x + b.size/2)
-        y2 = int(b.y + b.size/2)
+        y2 = int(b.y + b.size/2 - b.size*b.vy)
         self.queue_draw_area(x1, y1, x2, y2)
 
     def draw_balloon(self, gc, b):
         x = int(b.x)
         y = int(b.y)
         
+        # Draw the string.
+        gc.foreground = self.area.get_colormap().alloc_color(0,0,0)
+        self.area.window.draw_line(gc, b.x, b.y+b.size/2, b.x-int(b.size/2*b.vx), b.y+b.size/2-int(b.size/2*b.vy))
+        
         # Draw the balloon.
-        gc.foreground = self.area.get_colormap().alloc_color(65535,0,0)
+        gc.foreground = self.area.get_colormap().alloc_color(b.color[0],b.color[1],b.color[2])
         self.area.window.draw_arc(gc, True, x-b.size/2, y-b.size/2, b.size, b.size, 0, 360*64)
     
         # Draw the text.
         gc.foreground = self.area.get_colormap().alloc_color(0,0,0)
         layout = self.area.create_pango_layout(b.word)
+        layout.set_font_description(pango.FontDescription('Sans 12'))    
         size = layout.get_size()
         tx = x-(size[0]/pango.SCALE)/2
         ty = y-(size[1]/pango.SCALE)/2

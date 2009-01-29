@@ -16,7 +16,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Typing Turtle.  If not, see <http://www.gnu.org/licenses/>.
 
-import os, sys, random, simplejson, locale, re
+import os, sys, random, simplejson, locale, re, optparse
 from gettext import gettext as _
 
 # For modifier constants.
@@ -172,13 +172,13 @@ def get_pairs_from_wordlist(words):
             pairs.append((c0+c1, c1_value))
 
     # Sort by frequency.
-    pairs.sort(cmp=lambda x,y: x[1] - y[1])
+    #pairs.sort(cmp=lambda x,y: x[1] - y[1])
     
     # Normalize the weights.
-    total = 0.0
-    for p in pairs:
-        total += p[1]
-    pairs = [(p[0], p[1]/total) for p in pairs]
+    #total = 0.0
+    #for p in pairs:
+    #    total += p[1]
+    #pairs = [(p[0], p[1]/total) for p in pairs]
 
     return pairs
 
@@ -236,35 +236,26 @@ def filter_wordlist(words, all_keys, req_keys, minlen, maxlen, bad_words):
     # Filter word list based on variety of contraints.
     good_words = []
 
+    unknown_re = re.compile('[^'+re.escape(all_keys)+']')
+    req_re = re.compile('['+re.escape(req_keys)+']')
+
     for word in words:
         if len(word) < minlen or len(word) > maxlen:
             continue
         
-        good = True
-        
         # Check for letters that are not supported.
-        for c in word:
-            if all_keys.find(c) == -1:
-                good = False
-                break
+        if unknown_re.search(word):
+            continue 
         
-        # Make sure required letters are present.
-        any_req = False
-        for c in req_keys:
-            if word.find(c) >= 0:
-                any_req = True
-                break
-        if not any_req:
-            good = False
-        
+        # Make sure at least one required letter is present.
+        if not req_re.search(word):
+            continue
+
         # Remove bad words.
-        for bad in bad_words:
-            if word == bad:
-                good = False
-                break
+        if word in bad_words:
+            continue
         
-        if good:
-            good_words.append(word)
+        good_words.append(word)
 
     return good_words
 
@@ -307,7 +298,7 @@ def build_key_steps(
         minlen=2, maxlen=8, 
         bad_words=bad_words)
     
-    pairs = get_pairs_from_wordlist(words)
+    pairs = get_pairs_from_wordlist(good_words)
         
     steps = []
 
@@ -365,13 +356,8 @@ def build_key_steps(
     
     steps.append(make_step(
         get_congrats() + _('Now put the keys together into pairs.'),
-        'text', make_weighted_wordlist_pairs(pairs, new_keys, new_keys, count)))
+        'text', make_weighted_wordlist_pairs(pairs, new_keys, all_keys, count)))
     
-    if base_keys != '':
-        steps.append(make_step(
-            get_congrats() + _('Now practice all the keys you know.'),
-            'text', make_weighted_wordlist_pairs(pairs, new_keys, all_keys, count)))
-
     if len(good_words) == 0:
         steps.append(make_step(
             get_congrats() + _('Time to type jumbles.'),
@@ -433,8 +419,7 @@ def build_text_step(path):
 
     return steps
 
-if __name__ == "__main__":
-    import optparse
+def main():
     parser = optparse.OptionParser("usage: %prog [options]")
 
     parser.add_option("--title", dest="name", default="Generated",
@@ -555,6 +540,7 @@ if __name__ == "__main__":
             parser.error('no wordlist file given')
         
         lesson['type'] = options.game
+        lesson['length'] = options.length
         lesson['words'] = build_game_words(
             new_keys=options.keys, base_keys=options.base_keys, 
             words=words, bad_words=bad_words)
@@ -562,3 +548,11 @@ if __name__ == "__main__":
     text = simplejson.dumps(lesson, sort_keys=True, indent=4)
 
     open(options.output, 'w').write(text)
+
+if __name__ == "__main__":
+    try:
+        main()
+    except KeyboardInterrupt:
+        print "Ctrl-C detected, aborting."
+        sys.exit(1)
+

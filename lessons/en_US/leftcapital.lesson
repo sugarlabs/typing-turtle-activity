@@ -111,17 +111,12 @@
         {
             "instructions": "Nice work. Now put the keys together into pairs.", 
             "mode": "text", 
-            "text": "RV TT DD WA FA RV SW AS AQ WA BC SA CA SE RB EQ AQ CS AW SA AS WA AR SD CS BC CC SG TR DV FT ET VC AB DS SR EC TD SC SC DW EG DT DV GB BD VC ST CR GB CT CS TT AT EB RV VC CE DQ BB"
+            "text": "TD Sa Br Ze Er TD Gd Za AR Zi TS Ro Vo Ez Gu CR AC Ak Su Ro Za Zh AW Di Am Wa Ae Dn ST En Ey Bh Ts Zs Ec Dy Ce Fo RT RT Eg Cy We Em Es Av Ts Wy Sv En Aq Am Sa Zw Ch TD To Af By Ap"
         }, 
         {
-            "instructions": "Nice work. Now practice all the keys you know.", 
+            "instructions": "Nice work. Time to type real words.", 
             "mode": "text", 
-            "text": "Ax Am Cl DT AB DV CB Zh Eo CS AT Sw uB Tz FT CB Aq Si CR Cn An Ao Ve Va Rh Cl SG Qi Er Sq Av Ty By Vu Ab AS Be Tr Ev Ce To BD Zu Zs Gd Ea Cz Xu Wa Fo Ai Va Sv Ry Ec Ai By Ce Aa TS"
-        }, 
-        {
-            "instructions": "Wonderful! Time to type real words.", 
-            "mode": "text", 
-            "text": "Sikh Cathie Rollin Glenn Severn Bengal Eadwig Goddard Carib Scorpius Theban Wilton Boeotian Breton Catania Rosalie Torbay Tet Rowland Gretchen Salween Corday Tupian Aachen Bush Rushmore Alamo Cedric Shylock Walker Smollett Chinese Cochin Quechua Donne Wisdom Tver Beninese Bede Quebecer Amman Bromley Angles Satanism Annamese Silesia Daniel Chengdu Freda Thimbu Sporades Copland Eleanor Chretien Freyja Devonian Elinor Eskimoan Susanna Segovia"
+            "text": "Dniester Alpine Antalya Tartary Alvin Gordimer Trollope Triad Sphinx Spencer Brady Dalmatia Zeus Qiqihar Quintin Actium Gilman Craiova Blanch Dirk Titicaca Silvia Ruskin Andy Burgundy Cetus Egyptian Deneb Zola Ennius Cos Romblon Ronny Thaddeus Rupert Beryl Cobb Fatima Colbert Rome Bagdad Calvert Cummings Freyja Choctaw Eichmann Simon Bulgar Chauncey Bourbon Roland Tuesday Rumania Sextans Ella Wycliffe Ronny Born Docetist Guianan"
         }, 
         {
             "instructions": "$report", 
