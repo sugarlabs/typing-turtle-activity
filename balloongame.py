@@ -160,7 +160,7 @@ class BalloonGame(gtk.VBox):
             self.update_balloon(b)
 
         self.spawn_delay -= 1
-        if if self.count_left >= 0 && self.spawn_delay <= 0:
+        if self.count_left >= 0 and self.spawn_delay <= 0:
             self.count += 1
             self.count_left -= 1
 

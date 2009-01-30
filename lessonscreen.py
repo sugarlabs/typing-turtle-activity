@@ -87,6 +87,10 @@ class LessonScreen(gtk.VBox):
         text_tag.props.size = 9000
         self.tagtable.add(text_tag)
         
+        spacer_tag = gtk.TextTag('spacer')
+        spacer_tag.props.size = 10
+        self.tagtable.add(spacer_tag)
+        
         image_tag = gtk.TextTag('image')
         image_tag.props.justification = gtk.JUSTIFY_CENTER
         self.tagtable.add(image_tag)
@@ -311,6 +315,10 @@ class LessonScreen(gtk.VBox):
             self.line_marks = {} 
             line_idx = 0
             for l in self.lines:
+                # Add a little space between lines.  Not working atm.
+                #self.lessonbuffer.insert_with_tags_by_name(
+                #    self.lessonbuffer.get_end_iter(), '\n', 'spacer')
+
                 # Add the text to copy.
                 self.lessonbuffer.insert_with_tags_by_name(
                     self.lessonbuffer.get_end_iter(), '\n' + l.encode('utf-8') + '\n', 'text')
