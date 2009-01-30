@@ -323,6 +323,7 @@ class KeyboardData:
         """Sets the keyboard's layout from  a layout description."""
         self._build_key_list(layout)
         self._layout_keys()
+        self._make_key_images()
 
     def find_key_by_label(self, label):
         for k in self.keys:
@@ -421,14 +422,22 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
     def _load_image(self, name):
         bundle_path = sugar.activity.activity.get_bundle_path() 
         filename = os.path.join(bundle_path, 'images', name)
-        return rsvg.Handle(filename)
+        return gtk.gdk.pixbuf_new_from_file_at_size(filename, 775, 265)
+        #return rsvg.Handle(filename)
 
     def load_hand_images(self):
         for key in self.keys:
             if key['key-hand-image']:
                 key['key-hand-image-handle'] = self._load_image(key['key-hand-image']) 
-    
+
+    def _make_key_images(self):
+        for key in self.keys:
+            pb = self.get_key_image(key, 0, 0)
+            key['key-image'] = pb
+
     def _get_screen_ratio(self):
+        return 1.0
+
         bounds = self.get_allocation()
         
         # This calculates a ratio from layout coordinates to the DrawingArea's
@@ -440,13 +449,13 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
         
         # Pick the smaller ratio to fit while preserving aspect ratio.
         return min(ratio_x, ratio_y)
-    
+
     def _expose_key(self, k, draw, gc, for_pixmap, w=0, h=0):
         if for_pixmap:
-            x1 = 5 
-            y1 = 5
-            x2 = w - 5
-            y2 = h - 5
+            x1 = 0 
+            y1 = 0
+            x2 = w
+            y2 = h
 
         else:
             # Set up the screen transform.
@@ -459,6 +468,9 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
             y1 = int(k['key-y'] * screen_ratio + screen_y)
             x2 = int(x1 + k['key-width'] * screen_ratio)
             y2 = int(y1 + k['key-height'] * screen_ratio)
+
+            draw.draw_image(gc, k['key-image'], 0, 0, x1, y1, x2-x1, y2-y1) 
+            return
 
         # Outline rounded box.
         gc.foreground = self.get_colormap().alloc_color((0.4*65536),int(0.7*65536),int(0.4*65536))
@@ -505,22 +517,6 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
             pass
 
     def _expose_hands(self, gc):
-        # Hands are still rendered through cairo, sigh.
-        cr = self.window.cairo_create()
-
-        screen_ratio = self._get_screen_ratio()
-        bounds = self.get_allocation()
-        cr.translate(
-            (bounds.width - self.keys[0]['layout-width']*screen_ratio)/2,
-            (bounds.height - self.keys[0]['layout-height']*screen_ratio)/2)
-        
-        cr.scale(screen_ratio, screen_ratio)
-
-        # Transform based on the original SVG resolution.
-        ratio = self.keys[0]['layout-width'] / 3158.0
-        cr.scale(ratio, ratio)
-        cr.translate(0, -150)
-
         lhand_image = self.lhand_home
         rhand_image = self.rhand_home
 
@@ -546,15 +542,12 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
 
                 # TODO: Do something about ALTGR.
 
-        #pb = lhand_image.get_pixbuf()
-        #lhand_image.set_dpi(30)
-        #self.window.draw_pixbuf(gc, pb, 0, 0, 0, 0)
-        #pb = rhand_image.get_pixbuf()
-        #rhand_image.set_dpi(30)
-        #self.window.draw_pixbuf(gc, pb, 0, 0, 0, 0)
+        bounds = self.get_allocation()
+        screen_x = (bounds.width-self.keys[0]['layout-width'])/2
+        screen_y = (bounds.height-self.keys[0]['layout-height'])/2
 
-        lhand_image.render_cairo(cr)
-        rhand_image.render_cairo(cr)
+        self.window.draw_pixbuf(gc, lhand_image, 0, 0, screen_x, screen_y)
+        self.window.draw_pixbuf(gc, rhand_image, 0, 0, screen_x, screen_y)
 
     def _expose_cb(self, area, event):
         gc = self.window.new_gc()
@@ -590,7 +583,8 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
 
         else:
             if self.draw_hands:
-                self.queue_draw()
+                pass
+                #self.queue_draw()
                 #self.window.process_updates(True)
             else:
                 if key:
@@ -645,6 +639,28 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
         self.active_state, self.active_group = old_state, old_group
 
         return pb
+
+    def get_key_image(self, key, state=0, group=0, scale=1):
+        w = int(key['key-width'] * scale)
+        h = int(key['key-height'] * scale)
+        
+        old_state, old_group = self.active_state, self.active_group
+        self.active_state, self.active_group = state, group
+        
+        pixmap = gtk.gdk.Pixmap(self.root_window.window, w, h)
+        gc = pixmap.new_gc()
+        
+        gc.foreground = self.get_colormap().alloc_color('#d0d0d0')
+        pixmap.draw_rectangle(gc, True, 0, 0, w, h)
+
+        self._expose_key(key, pixmap, gc, True, w, h)
+        
+        image = pixmap.get_image(0, 0, w, h)
+        
+        self.active_state, self.active_group = old_state, old_group
+
+        return image
+
     
 if __name__ == "__main__":
     window = gtk.Window(gtk.WINDOW_TOPLEVEL)

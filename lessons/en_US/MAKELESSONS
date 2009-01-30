@@ -34,6 +34,7 @@
     --title="Welcome" \
     --desc="Click here to begin your typing adventure." \
     --bronze-wpm=0 --silver-wpm=0 --gold-wpm=0 \
+    --bronze-accuracy=25 --silver-accuracy=50 --gold-accuracy=100 \
     --order=0 \
     --output=intro.lesson
 
