@@ -59,7 +59,6 @@ class BalloonGame(gtk.VBox):
         
         # Build the game drawing area.
         self.area = gtk.DrawingArea()
-        self.area.modify_bg(gtk.STATE_NORMAL, self.get_colormap().alloc_color('#c0c0ff'))
         self.area.connect("expose-event", self.expose_cb)
 
         # Connect keyboard grabbing and releasing callbacks.        
@@ -161,7 +160,7 @@ class BalloonGame(gtk.VBox):
             self.update_balloon(b)
 
         self.spawn_delay -= 1
-        if self.spawn_delay <= 0:
+        if if self.count_left >= 0 && self.spawn_delay <= 0:
             self.count += 1
             self.count_left -= 1
 
@@ -184,7 +183,7 @@ class BalloonGame(gtk.VBox):
                 delay = 40
             self.spawn_delay = random.randint(delay-20, delay+20)
 
-        if len(self.balloons) == 0 and self.count_left <= 0:
+        if self.count_left <= 0 and len(self.balloons) == 0:
             self.finish_game()
  
         return True
@@ -284,7 +283,7 @@ class BalloonGame(gtk.VBox):
         x1 = int(b.x - b.size/2)
         y1 = int(b.y - b.size/2)
         x2 = int(b.x + b.size/2)
-        y2 = int(b.y + b.size/2 - b.size*b.vy)
+        y2 = int(b.y + b.size/2)
         self.queue_draw_area(x1, y1, x2, y2)
 
     def draw_balloon(self, gc, b):
@@ -292,8 +291,8 @@ class BalloonGame(gtk.VBox):
         y = int(b.y)
         
         # Draw the string.
-        gc.foreground = self.area.get_colormap().alloc_color(0,0,0)
-        self.area.window.draw_line(gc, b.x, b.y+b.size/2, b.x-int(b.size/2*b.vx), b.y+b.size/2-int(b.size/2*b.vy))
+        #gc.foreground = self.area.get_colormap().alloc_color(0,0,0)
+        #self.area.window.draw_line(gc, b.x, b.y+b.size/2, b.x-int(b.size/2*b.vx), b.y+b.size/2-int(b.size/2*b.vy))
         
         # Draw the balloon.
         gc.foreground = self.area.get_colormap().alloc_color(b.color[0],b.color[1],b.color[2])
@@ -345,7 +344,7 @@ class BalloonGame(gtk.VBox):
         gc = self.area.window.new_gc()
         
         # Draw background.
-        gc.foreground = self.area.get_colormap().alloc_color(65535,65535,65535)
+        gc.foreground = self.area.get_colormap().alloc_color(60000,60000,65535)
         self.area.window.draw_rectangle(gc, True, 0, 0, self.bounds.width, self.bounds.height)
 
         # Draw the balloons.
