@@ -44,10 +44,11 @@ DEFAULT_MEDALS = [
 ]
 
 class LessonScreen(gtk.VBox):
-    def __init__(self, lesson, activity):
+    def __init__(self, lesson, keyboard_images, activity):
         gtk.VBox.__init__(self)
         
         self.lesson = lesson
+        self.keyboard_images = keyboard_images
         self.activity = activity
         
         # Build the user interface.
@@ -123,9 +124,8 @@ class LessonScreen(gtk.VBox):
         frame = gtk.Frame()
         frame.add(self.lessonscroll)
         
-        self.keyboard = keyboard.KeyboardWidget(self.activity)
-        self.keyboard.set_layout(keyboard.DEFAULT_LAYOUT)
-        self.keyboard.load_hand_images()
+        self.keyboard = keyboard.KeyboardWidget(self.keyboard_images, self.activity)
+        self.keyboard.set_layout(keyboard.OLPC_LAYOUT)
         
         self.pack_start(hbox, False, False, 10)
         self.pack_start(frame, True, True)

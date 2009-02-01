@@ -20,10 +20,15 @@ import pygtk
 pygtk.require('2.0')
 import gtk
 import rsvg
-import os
+import os, glob
 import pango
 
 import sugar.activity.activity
+
+# Tweaking variables.
+KEYBOARD_SCALE = 1.25
+HAND_SCALE = 1.4
+HAND_YOFFSET = -35
 
 PARAGRAPH_CODE = u'\xb6'
 
@@ -96,8 +101,8 @@ KEY_PROPS = [
 #
 # Entirely new keyboard layouts can be created just by copying this structure and
 # modifying the following values, without changing the code.
-DEFAULT_LAYOUT = {
-    'layout-name': "default",
+OLPC_LAYOUT = {
+    'layout-name': "olpc",
 
     'layout-width': 775,
     'layout-height': 265,
@@ -109,24 +114,6 @@ DEFAULT_LAYOUT = {
     'key-gap': 5,
 
     'groups': [
-        # Note- Top row disabled for now to make more room for the other rows.
-        #{
-        #    'group-name': "row0",
-        #    'group-x': 10,
-        #   'group-y': 10,
-        # 
-        #    'key-height': 35,
-        # 
-        #    'keys': [
-        #        {}, # Escape 
-        #        {}, # Show Source
-        #        {'key-width':182}, # Zoom
-        #        {'key-width':182}, # Size 
-        #        {'key-width':181}, # Volume
-        #        {}, # Window
-        #        {}, # Frame
-        #    ]
-        #},
         {
             'group-name': "numbers",
             'group-x': 10,
@@ -234,9 +221,20 @@ DEFAULT_LAYOUT = {
     ]
 }
 
-KEYBOARD_SCALE = 1.25
-HAND_SCALE = 1.4
-HAND_YOFFSET = -35
+class KeyboardImages:
+    def __init__(self):
+        self.width = 775 * 1.4
+        self.height = 265 * 1.4
+
+        self.images = {}
+
+    def load_images(self):
+        bundle_path = sugar.activity.activity.get_bundle_path() 
+        path = os.path.join(bundle_path, 'images')
+        for filename in glob.iglob(path + '/*.svg'):
+            image = gtk.gdk.pixbuf_new_from_file_at_size(filename, self.width, self.height)
+            name = os.path.basename(filename)
+            self.images[name] = image
 
 class KeyboardData:
     def __init__(self): 
@@ -375,7 +373,7 @@ class KeyboardData:
         # Find list of key combinations that can generate this keyval.
         entries = self.keymap.get_entries_for_keyval(keyval)
         if not entries:
-	    return None, 0, 0
+            return None, 0, 0
 
         keycode, group, level = entries[0]
 
@@ -393,10 +391,11 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
     """A GTK widget which implements an interactive visual keyboard, with support
        for custom data driven layouts."""
 
-    def __init__(self, root_window):
+    def __init__(self, image, root_window):
         KeyboardData.__init__(self)
         gtk.DrawingArea.__init__(self)
         
+        self.image = image
         self.root_window = root_window
         
         self.connect("expose-event", self._expose_cb)
@@ -426,26 +425,6 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
     def _unrealize_cb(self, widget):
         self.root_window.disconnect(self.key_press_cb_id)
         self.root_window.disconnect(self.key_release_cb_id)
-
-    def _load_image(self, name):
-        bundle_path = sugar.activity.activity.get_bundle_path() 
-        filename = os.path.join(bundle_path, 'images', name)
-
-        w = int(self.keys[0]['layout-width']*HAND_SCALE)
-        h = int(self.keys[0]['layout-height']*HAND_SCALE)
-        
-        return gtk.gdk.pixbuf_new_from_file_at_size(filename, w, h)
-
-    def load_hand_images(self):
-        # Load stock SVG files.
-        self.lhand_home = self._load_image('OLPC_Lhand_HOMEROW.svg')
-        self.rhand_home = self._load_image('OLPC_Rhand_HOMEROW.svg')
-        self.lhand_shift = self._load_image('OLPC_Lhand_SHIFT.svg')
-        self.rhand_shift = self._load_image('OLPC_Rhand_SHIFT.svg')
-
-        for key in self.keys:
-            if key['key-hand-image']:
-                key['key-hand-image-handle'] = self._load_image(key['key-hand-image']) 
 
     def _make_key_images(self):
         group = self.active_group
@@ -501,13 +480,13 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
             pass
 
     def _expose_hands(self, gc):
-        lhand_image = self.lhand_home
-        rhand_image = self.rhand_home
+        lhand_image = self.image.images['OLPC_Lhand_HOMEROW.svg']
+        rhand_image = self.image.images['OLPC_Rhand_HOMEROW.svg']
 
         if self.hilite_letter:
             key, state, group = self.get_key_state_group_for_letter(self.hilite_letter) 
             if key:
-                handle = key['key-hand-image-handle']
+                handle = self.image.images[key['key-hand-image']]
                 finger = key['key-finger']
 
                 # Assign the key image to the correct side.

@@ -27,7 +27,6 @@ First Release
 + Status message on the main screen.  "You unlocked a new lesson!" for example.  Eventually have the turtle 'say' it.
 + Graphical WPM and accuracy meters.
 + Make medal WPM adjustable somehow?  Perhaps a settable Goal WPM?
-+ Highlight regions of keyboard, color by finger.
 + Sound effects.
   + Welcome to the activity sound.
   + Speed up / slow down sounds when WPM crosses threshold: Slow, Medium, Fast.
@@ -35,6 +34,7 @@ First Release
   + Incorrect key pressed tick sound. 
 
 Future Release
++ Highlight regions of keyboard, color by finger.
 + Goal support with progress reporting.  WPM, Accuracy, Entire keyboard learned, etc.
 + Keymap showing skill per key.  Star icons on keys that are mastered.
 + History screen: List of lessons completed with statistics.
@@ -43,10 +43,10 @@ Future Release
 
 Balloon Game
 
-+ Game finished popup, displays score and medal text.
-+ Fix flickering
+- Game finished popup, displays score and medal text.
+- Fix flickering
 + Improve graphics.
-+ Support for displaying high score in home screen.
+- Support for displaying high score in home screen.
 
 Paper Airplane Game
 

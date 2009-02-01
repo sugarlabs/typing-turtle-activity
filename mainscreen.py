@@ -27,6 +27,7 @@ from sugar.graphics import *
 
 # Import activity modules.
 import lessonscreen, medalscreen, balloongame
+import keyboard
 
 # Temporary SVGs of medals from Wikimedia Commons.
 # See the links below for licensing information.
@@ -127,6 +128,10 @@ class MainScreen(gtk.VBox):
 
         # Sort by the 'order' field.
         self.lessons.sort(lambda x, y: x.get('order', 0) - y.get('order', 0))
+
+        # Load all the keyboard images.
+        self.keyboard_images = keyboard.KeyboardImages()
+        self.keyboard_images.load_images()
         
         lessonscrollbox = gtk.HBox()
         lessonscrollbox.set_spacing(10)
@@ -149,7 +154,6 @@ class MainScreen(gtk.VBox):
                 self.lessons.append(lesson)
             finally:
                 fd.close()
-
 
     def get_next_lesson(self):
         """Returns the index of the first lesson without a medal."""
@@ -262,7 +266,7 @@ class MainScreen(gtk.VBox):
             self.activity.push_screen(balloongame.BalloonGame(self.visible_lesson, self.activity))
         else:
             reload(lessonscreen)
-            self.activity.push_screen(lessonscreen.LessonScreen(self.visible_lesson, self.activity))
+            self.activity.push_screen(lessonscreen.LessonScreen(self.visible_lesson, self.keyboard_images, self.activity))
     
     def medal_clicked_cb(self, widget):
         if self.activity.data['medals'].has_key(self.visible_lesson['name']):
