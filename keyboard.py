@@ -499,9 +499,9 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
                 # Put the other hand on the SHIFT key if needed.
                 if state & gtk.gdk.SHIFT_MASK:
                     if finger[0] == 'L':
-                        rhand_image = self.rhand_shift 
+                        rhand_image = self.image.images['OLPC_Rhand_SHIFT.svg']
                     else:
-                        lhand_image = self.lhand_shift 
+                        lhand_image = self.image.images['OLPC_Lhand_SHIFT.svg']
 
                 # TODO: Do something about ALTGR.
 

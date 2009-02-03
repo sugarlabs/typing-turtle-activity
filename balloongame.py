@@ -123,7 +123,7 @@ class BalloonGame(gtk.VBox):
             for b in self.balloons:
                 if b.word[0] == key:
                     b.word = b.word[1:]
-                    self.add_score(10)
+                    self.add_score(1)
 
                     # Pop the balloon if it's been typed.
                     if len(b.word) == 0:
@@ -137,8 +137,6 @@ class BalloonGame(gtk.VBox):
         return False
     
     def update_balloon(self, b):
-        self.queue_draw_balloon(b)
-        
         b.x += b.vx
         b.y += b.vy 
 
@@ -170,17 +168,17 @@ class BalloonGame(gtk.VBox):
             y = self.bounds.height + 100
 
             vx = random.uniform(-2, 2)
-            vy = -3 #random.uniform(-5, -3)
+            vy = -2 #random.uniform(-5, -3)
 
             b = Balloon(x, y, vx, vy, word)
             self.balloons.append(b)
 
             if self.count < 10:
-                delay = 80
+                delay = 200
             elif self.count < 20:
-                delay = 60
+                delay = 150
             else:
-                delay = 40
+                delay = 100
             self.spawn_delay = random.randint(delay-20, delay+20)
 
         if self.count_left <= 0 and len(self.balloons) == 0:
@@ -280,19 +278,21 @@ class BalloonGame(gtk.VBox):
         self.queue_draw()
 
     def queue_draw_balloon(self, b):
-        x1 = int(b.x - b.size/2)
-        y1 = int(b.y - b.size/2)
-        x2 = int(b.x + b.size/2)
-        y2 = int(b.y + b.size/2)
-        self.queue_draw_area(x1, y1, x2, y2)
+        x = int(b.x - b.size/2) - 5
+        y = int(b.y - b.size/2) - 5
+        w = int(b.size + 100)
+        h = int(b.size*1.5 + 10)
+        self.area.queue_draw_area(x, y, w, h)
 
     def draw_balloon(self, gc, b):
         x = int(b.x)
         y = int(b.y)
         
         # Draw the string.
-        #gc.foreground = self.area.get_colormap().alloc_color(0,0,0)
-        #self.area.window.draw_line(gc, b.x, b.y+b.size/2, b.x-int(b.size/2*b.vx), b.y+b.size/2-int(b.size/2*b.vy))
+        gc.foreground = self.area.get_colormap().alloc_color(0,0,0)
+        self.area.window.draw_line(gc, 
+            int(b.x), int(b.y+b.size/2), 
+            int(b.x), int(b.y+b.size))
         
         # Draw the balloon.
         gc.foreground = self.area.get_colormap().alloc_color(b.color[0],b.color[1],b.color[2])

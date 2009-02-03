@@ -475,12 +475,12 @@ def main():
                       help="Accuracy for a Silver medal.  Default 80.")
     medal_group.add_option("--gold-acc", dest="gold_accuracy", type="int", metavar="N", default=90,
                       help="Accuracy for a Gold medal.  Default 90.")
-    medal_group.add_option("--bronze-score", dest="bronze_score", type="int", metavar="N", default=4000,
-                      help="Game score for a Bronze medal.  Default 4000.")
-    medal_group.add_option("--silver-score", dest="silver_score", type="int", metavar="N", default=6000,
-                      help="Game score  for a Silver medal.  Default 6000.")
-    medal_group.add_option("--gold-score", dest="gold_score", type="int", metavar="N", default=10000,
-                      help="Game score for a Gold medal.  Default 10000.")
+    medal_group.add_option("--bronze-score", dest="bronze_score", type="int", metavar="N", default=3000,
+                      help="Game score for a Bronze medal.  Default 3000.")
+    medal_group.add_option("--silver-score", dest="silver_score", type="int", metavar="N", default=4500,
+                      help="Game score  for a Silver medal.  Default 4500.")
+    medal_group.add_option("--gold-score", dest="gold_score", type="int", metavar="N", default=6000,
+                      help="Game score for a Gold medal.  Default 6000.")
     parser.add_option_group(medal_group)
 
     (options, args) = parser.parse_args()
