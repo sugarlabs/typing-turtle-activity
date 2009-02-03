@@ -15,7 +15,7 @@
 # along with Typing Turtle.  If not, see <http://www.gnu.org/licenses/>.
 
 # Import standard Python modules.
-import logging, os, math, time, copy, json, locale, datetime, random, re, glob
+import logging, os, math, time, copy, simplejson, locale, datetime, random, re, glob
 from gettext import gettext as _
 
 # Import PyGTK.
@@ -115,6 +115,7 @@ class MainScreen(gtk.VBox):
         # Load lessons for this language.
         bundle_path = sugar.activity.activity.get_bundle_path() 
         code = locale.getlocale(locale.LC_ALL)[0]
+        code = 'ne_NP'
         path = bundle_path + '/lessons/' + code
         self.load_lessons(path)
 
@@ -150,7 +151,7 @@ class MainScreen(gtk.VBox):
         for f in glob.iglob(path + '/*.lesson'):
             fd = open(f, 'r')
             try:
-                lesson = json.read(fd.read())
+                lesson = simplejson.loads(fd.read())
                 self.lessons.append(lesson)
             finally:
                 fd.close()

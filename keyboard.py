@@ -249,7 +249,8 @@ class KeyboardData:
         self.scale = KEYBOARD_SCALE
 
     def set_layout(self, layout): 
-        pass
+        self._build_key_list(layout)
+        self._layout_keys()
 
     def _build_key_list(self, layout):
         """Builds a list of Keys objects from a layout description.  
@@ -330,12 +331,6 @@ class KeyboardData:
             k['key-y'] = int(k['key-y'] * self.scale)
             k['key-width'] = int(k['key-width'] * self.scale)
             k['key-height'] = int(k['key-height'] * self.scale)
-
-    def set_layout(self, layout):
-        """Sets the keyboard's layout from  a layout description."""
-        self._build_key_list(layout)
-        self._layout_keys()
-        self._make_key_images()
 
     def find_key_by_label(self, label):
         for k in self.keys:
@@ -425,6 +420,11 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
     def _unrealize_cb(self, widget):
         self.root_window.disconnect(self.key_press_cb_id)
         self.root_window.disconnect(self.key_release_cb_id)
+
+    def set_layout(self, layout):
+        """Sets the keyboard's layout from  a layout description."""
+        KeyboardData.set_layout(self, layout)
+        self._make_key_images()
 
     def _make_key_images(self):
         group = self.active_group

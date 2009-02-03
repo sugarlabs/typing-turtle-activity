@@ -1,10 +1,30 @@
 {
-    "description": "Click here to begin your typing adventure.", 
-    "name": "Welcome", 
+    "description": "\u0915\u0943\u092f\u093e\u0915\u0932\u093e\u092a \u0938\u0941\u0930\u0941 \u0917\u0930\u094d\u0928 \u092f\u0939\u093e\u0901 \u0925\u093f\u091a \u0964", 
+    "medals": [
+        {
+            "accuracy": 70, 
+            "name": "bronze", 
+            "score": 3000, 
+            "wpm": 0
+        }, 
+        {
+            "accuracy": 80, 
+            "name": "silver", 
+            "score": 4500, 
+            "wpm": 0
+        }, 
+        {
+            "accuracy": 90, 
+            "name": "gold", 
+            "score": 6000, 
+            "wpm": 0
+        }
+    ], 
+    "name": "\u0938\u094d\u0935\u093e\u0917\u0924\u092e", 
     "order": 0, 
     "steps": [
         {
-            "instructions": "Hihowareyah!  Ready to learn the secret of fast typing?\nAlways use the correct finger to press each key!\n\nNow, place your hands on the keyboard just like the picture below.\nWhen you're ready, press the SPACE bar with your thumb!", 
+            "instructions": "Hihowahyah!  Ready to learn the secret of fast typing?\nAlways use the correct finger to press each key!\n\nNow, place your hands on the keyboard just like the picture below.\nWhen you're ready, press the SPACE bar with your thumb!", 
             "mode": "key", 
             "text": " "
         }, 

@@ -1,51 +1,68 @@
 #!/bin/bash
 #
-# Script for generating en_US lesson content for Typing Turtle.
+# Script for generating Nepali lesson content for Typing Turtle.
+# Author: Wade Brainerd <wadetb@gmail.com>
+#
+# See the TypingTurtle.activity/lessons/en_US/MAKELESSONS for more information.
 #
 
 # Generate the introductory lesson.
-../../lessonbuilder --make-intro-lesson --order=0 --output=intro.lesson
+../../lessonbuilder --intro-lesson \
+    --title="स्वागतम" \
+    --desc="कृयाकलाप सुरु गर्न यहाँ थिच ।" \
+    --bronze-wpm=0 --silver-wpm=0 --gold-wpm=0 \
+    --order=0 \
+    --output=intro.lesson
 
 # Generate the home, top and bottom row lessons.
-../../lessonbuilder --make-key-lesson \
-    --title="The Home Row" \
-    --desc="This lesson teaches you the ब, क, म, ा, न, ज, व, प and ि keys \nin the middle of the keyboard.\nThese keys are called the Home Row." \
-    --keys="बकमाजवपि" \
-    --wordlist=ne_NP.dic \
+../../lessonbuilder --key-lesson \
+    --title="गृह पंक्ति" \
+    --desc="यो पाठले तिमीलाई ब, क, म, ा, न, ज, व, प and ि keys \nin the middle of the keyboard.\nThese keys are called the Home Row." \
+    --keys="बकमानजवपि" \
+    --wordlist=ne_NP.txt --badwordlist=badwords.txt \
     --order=1 \
     --output=homerow.lesson
     
-../../lessonbuilder --make-key-lesson \
+../../lessonbuilder --game-lesson \
+    --title="Home Row Balloon Practice" \
+    --desc="Practice the home row keys in this exciting game!\nDon't let any balloons get by!" \
+    --keys="बकमानजवपि" \
+    --game='balloon' \
+    --wordlist=ne_NP.txt --badwordlist=badwords.txt \
+    --order=2 \
+    --output=homerowballoon.lesson
+    
+../../lessonbuilder --key-lesson \
     --title="The Top Row" \
     --desc="This lesson teaches you the त्र, ध, भ, च, त, थ, ग, ष, य and उ keys \non the top row of the keyboard." \
     --keys="त्रधभचतथगषयउ" --base-keys="बकमानजवपि" \
-    --wordlist=ne_NP.dic \
-    --order=2 \
+    --wordlist=ne_NP.txt --badwordlist=badwords.txt \
+    --order=3 \
     --output=toprow.lesson
 
-../../lessonbuilder --make-key-lesson \
+../../lessonbuilder --key-lesson \
     --title="The Bottom Row" \
     --desc="This lesson teaches you the श, ह, अ, ख, द, ल and ः keys \non the bottom row of the keyboard." \
-    --keys="शहअखदःः" --base-keys="बकमानजवपित्रधभचतथगषयउ" \
-    --wordlist=ne_NP.dic \
-    --order=3 \
+    --keys="शहअखदलः" --base-keys="बकमानजवपित्रधभचतथगषयउ" \
+    --wordlist=ne_NP.txt --badwordlist=badwords.txt \
+    --order=4 \
     --output=bottomrow.lesson
 
 # Generate left and right hand capital lessons.
-../../lessonbuilder --make-key-lesson \
+../../lessonbuilder --key-lesson \
     --title="Left Hand Capitals" \
-    --desc="This lesson teaches you the SECONDARY letters which are typed by your left hand.\nThese are त्त, ड्ढ, ऐ, द्ब, ट्ट, आ, ङ्क, ङ्ग, ँ, द्द, क्क, ह्य, ऋ, ॐ and ौ." \
+    --desc="This lesson teaches you the CAPITAL letters which are typed \nby your left hand.\nThese are त्त, ड्ढ, ऐ, द्ब, ट्ट, आ, ङ्क, ङ्ग, ँ, द्द, क्क, ह्य, ऋ, ॐ and ौ." \
     --keys="त्तड्ढऐद्बट्टआङ्कङ्गँद्दक्कह्यऋॐौ" \
-    --base-keys="बदअमभानजषवपिःलयउत्रचकतगखधहथश"
-    --wordlist=ne_NP.dic \
-    --order=4 \
+    --base-keys="बदअमभानजषवपिःलयउत्रचकतगखधहथश" \
+    --wordlist=ne_NP.txt --badwordlist=badwords.txt \
+    --order=5 \
     --output=leftcapital.lesson
 
-../../lessonbuilder --make-key-lesson \
+../../lessonbuilder --key-lesson \
     --title="Right Hand Capitals" \
-    --desc="This lesson teaches you the CAPITAL letters which are typed by your right hand.\nThese are ठ्ठ, ऊ, क्ष, इ, ए, झ, ो, फ, ी, ौ, द्य, and ड्ड." \
+    --desc="This lesson teaches you the CAPITAL letters which are typed \nby your right hand.\nThese are ठ्ठ, ऊ, क्ष, इ, ए, झ, ो, फ, ी, ौ, द्य, and ड्ड." \
     --keys="ठ्ठऊक्षइएझोफीौद्यड्ड" \
     --base-keys="बदअमभानजषवपिःलयउत्रचकतगखधहथशत्तड्ढऐद्बट्टआङ्कङ्गँद्दक्कह्यऋॐौ" \
-    --wordlist=ne_NP.dic \
-    --order=5 \
+    --wordlist=ne_NP.txt --badwordlist=badwords.txt \
+    --order=6 \
     --output=rightcapital.lesson

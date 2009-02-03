@@ -303,7 +303,7 @@ def build_key_steps(
     steps = []
 
     kb = keyboard.KeyboardData()
-    kb.set_layout(keyboard.DEFAULT_LAYOUT)
+    kb.set_layout(keyboard.OLPC_LAYOUT)
 
     keynames = new_keys[0]
     if len(new_keys) >= 2:
