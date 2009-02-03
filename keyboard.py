@@ -120,20 +120,20 @@ OLPC_LAYOUT = {
             'group-y': 10,
             
             'keys': [
-                {'key-scan':0x31,'key-width':35}, 
-                {'key-scan':0x0a}, 
-                {'key-scan':0x0b}, 
-                {'key-scan':0x0c}, 
-                {'key-scan':0x0d}, 
-                {'key-scan':0x0e}, 
-                {'key-scan':0x0f}, 
-                {'key-scan':0x10}, 
-                {'key-scan':0x11}, 
-                {'key-scan':0x12}, 
-                {'key-scan':0x13}, 
-                {'key-scan':0x14}, 
-                {'key-scan':0x15,'key-width':65},
-                {'key-scan':0x16,'key-label':"erase",'key-width':95}
+                {'key-scan':0x31,'key-finger':'LP','key-width':35}, 
+                {'key-scan':0x0a,'key-finger':'LP'}, 
+                {'key-scan':0x0b,'key-finger':'LR'}, 
+                {'key-scan':0x0c,'key-finger':'LM'}, 
+                {'key-scan':0x0d,'key-finger':'LI'}, 
+                {'key-scan':0x0e,'key-finger':'LI'}, 
+                {'key-scan':0x0f,'key-finger':'RI'}, 
+                {'key-scan':0x10,'key-finger':'RI'}, 
+                {'key-scan':0x11,'key-finger':'RM'}, 
+                {'key-scan':0x12,'key-finger':'RR'}, 
+                {'key-scan':0x13,'key-finger':'RP'}, 
+                {'key-scan':0x14,'key-finger':'RP'}, 
+                {'key-scan':0x15,'key-finger':'RP','key-width':65},
+                {'key-scan':0x16,'key-finger':'RP','key-label':"erase",'key-width':95}
             ]
         },
         {

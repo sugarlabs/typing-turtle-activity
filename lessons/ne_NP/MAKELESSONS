@@ -11,6 +11,7 @@
     --title="स्वागतम" \
     --desc="कृयाकलाप सुरु गर्न यहाँ थिच ।" \
     --bronze-wpm=0 --silver-wpm=0 --gold-wpm=0 \
+    --locale=ne_NP \
     --order=0 \
     --output=intro.lesson
 
@@ -20,6 +21,7 @@
     --desc="यो पाठले तिमीलाई ब, क, म, ा, न, ज, व, प and ि keys \nin the middle of the keyboard.\nThese keys are called the Home Row." \
     --keys="बकमानजवपि" \
     --wordlist=ne_NP.txt --badwordlist=badwords.txt \
+    --locale=ne_NP \
     --order=1 \
     --output=homerow.lesson
     
@@ -29,6 +31,7 @@
     --keys="बकमानजवपि" \
     --game='balloon' \
     --wordlist=ne_NP.txt --badwordlist=badwords.txt \
+    --locale=ne_NP \
     --order=2 \
     --output=homerowballoon.lesson
     
@@ -37,6 +40,7 @@
     --desc="This lesson teaches you the त्र, ध, भ, च, त, थ, ग, ष, य and उ keys \non the top row of the keyboard." \
     --keys="त्रधभचतथगषयउ" --base-keys="बकमानजवपि" \
     --wordlist=ne_NP.txt --badwordlist=badwords.txt \
+    --locale=ne_NP \
     --order=3 \
     --output=toprow.lesson
 
@@ -45,6 +49,7 @@
     --desc="This lesson teaches you the श, ह, अ, ख, द, ल and ः keys \non the bottom row of the keyboard." \
     --keys="शहअखदलः" --base-keys="बकमानजवपित्रधभचतथगषयउ" \
     --wordlist=ne_NP.txt --badwordlist=badwords.txt \
+    --locale=ne_NP \
     --order=4 \
     --output=bottomrow.lesson
 
@@ -55,6 +60,7 @@
     --keys="त्तड्ढऐद्बट्टआङ्कङ्गँद्दक्कह्यऋॐौ" \
     --base-keys="बदअमभानजषवपिःलयउत्रचकतगखधहथश" \
     --wordlist=ne_NP.txt --badwordlist=badwords.txt \
+    --locale=ne_NP \
     --order=5 \
     --output=leftcapital.lesson
 
@@ -64,5 +70,6 @@
     --keys="ठ्ठऊक्षइएझोफीौद्यड्ड" \
     --base-keys="बदअमभानजषवपिःलयउत्रचकतगखधहथशत्तड्ढऐद्बट्टआङ्कङ्गँद्दक्कह्यऋॐौ" \
     --wordlist=ne_NP.txt --badwordlist=badwords.txt \
+    --locale=ne_NP \
     --order=6 \
     --output=rightcapital.lesson
