@@ -1,28 +1,5 @@
 Typing Turtle
 
-Notes
-
-How to handle capitals and punctuation?
-
-Are capitals and punctuation universal concepts?  Certainly for all Roman languages.  
-Do other languages have capital-like and punctuation-like concepts with different rules?
-Is there a generic way that punctuation could just be handled naturally?
-  It depends on how nicely we want them to work.  For example knowing that you put quotes
-  around words, we can randomly enquote words.  Knowing that semicolons, periods and 
-  commas appear after words also allows us to randomly append them.
-  If we don't care, we can just suggest that a) punctuation be taught after the rest
-  of the alphabet, and b) native text be given which includes plenty of punctuation.
-Is there a generic way that we can handle capitalization?
-  It would be nice to just be able to capitalize the beginning of any word.
-  OTOH, acronyms and stuff would be nice to include and those will only come from 
-  wordlists.
-
-The answer to both: Right now, I think it's best to just encourage expansive word lists.
-Note that this means that we have top *stop* stripping non-alpha characters from words
-as we read them in!
-
-BTW, after all that work, when are we going to teach Enter?
-
 First Release
 + Status message on the main screen.  "You unlocked a new lesson!" for example.  Eventually have the turtle 'say' it.
 + Graphical WPM and accuracy meters.

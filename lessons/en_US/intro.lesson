@@ -1,22 +1,22 @@
 {
-    "description": "Click here to begin your typing adventure.", 
+    "description": "Click Start Lesson to begin your typing adventure.", 
     "medals": [
         {
-            "accuracy": 70, 
+            "accuracy": 25, 
             "name": "bronze", 
-            "score": 4000, 
+            "score": 3000, 
             "wpm": 0
         }, 
         {
-            "accuracy": 80, 
+            "accuracy": 50, 
             "name": "silver", 
-            "score": 6000, 
+            "score": 4500, 
             "wpm": 0
         }, 
         {
-            "accuracy": 90, 
+            "accuracy": 100, 
             "name": "gold", 
-            "score": 10000, 
+            "score": 6000, 
             "wpm": 0
         }
     ], 

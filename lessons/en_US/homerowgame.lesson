@@ -1,22 +1,23 @@
 {
     "description": "Practice the home row keys in this exciting game!\nDon't let any balloons get by!", 
+    "length": 60, 
     "medals": [
         {
             "accuracy": 70, 
             "name": "bronze", 
-            "score": 4000, 
+            "score": 3000, 
             "wpm": 15
         }, 
         {
             "accuracy": 80, 
             "name": "silver", 
-            "score": 6000, 
+            "score": 4500, 
             "wpm": 20
         }, 
         {
             "accuracy": 90, 
             "name": "gold", 
-            "score": 10000, 
+            "score": 6000, 
             "wpm": 25
         }
     ], 

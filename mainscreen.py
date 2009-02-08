@@ -102,15 +102,31 @@ class MainScreen(gtk.VBox):
         # Build lessons list.
         self.lessonbox = gtk.HBox()
         
-        nexticon = sugar.graphics.icon.Icon(icon_name='go-next')
+        #nexticon = sugar.graphics.icon.Icon(icon_name='go-next')
+        #self.nextlessonbtn.add(nexticon)
+        nextlabel = gtk.Label()
+        nextlabel.set_markup("<span size='8000'>" + _('Next') + "</span>")
+
         self.nextlessonbtn = gtk.Button()
-        self.nextlessonbtn.add(nexticon)
+        self.nextlessonbtn.add(nextlabel)
         self.nextlessonbtn.connect('clicked', self.next_lesson_clicked_cb)
         
-        previcon = sugar.graphics.icon.Icon(icon_name='go-previous')
+        #previcon = sugar.graphics.icon.Icon(icon_name='go-previous')
+        #self.prevlessonbtn.add(previcon)
+        prevlabel = gtk.Label()
+        prevlabel.set_markup("<span size='8000'>" + _('Previous') + "</span>")
+
         self.prevlessonbtn = gtk.Button()
-        self.prevlessonbtn.add(previcon)
+        self.prevlessonbtn.add(prevlabel)
         self.prevlessonbtn.connect('clicked', self.prev_lesson_clicked_cb)
+        
+        lessonlabel = gtk.Label()
+        lessonlabel.set_markup("<span size='12000'>" + _('Start Lesson') + "</span>")
+        
+        lessonbtn = gtk.Button()
+        lessonbtn.add(lessonlabel)
+        lessonbtn.connect('clicked', self.lesson_clicked_cb)
+        lessonbtn.modify_bg(gtk.STATE_NORMAL, self.get_colormap().alloc_color('#60b060'))
         
         # Load lessons for this language.
         bundle_path = sugar.activity.activity.get_bundle_path() 
@@ -133,14 +149,19 @@ class MainScreen(gtk.VBox):
         self.keyboard_images = keyboard.KeyboardImages()
         self.keyboard_images.load_images()
         
-        lessonscrollbox = gtk.HBox()
-        lessonscrollbox.set_spacing(10)
-        lessonscrollbox.pack_start(self.prevlessonbtn, False)
-        lessonscrollbox.pack_start(self.lessonbox)
-        lessonscrollbox.pack_start(self.nextlessonbtn, False)
+        lessonnavbox = gtk.HBox()
+        lessonnavbox.set_spacing(10)
+        lessonnavbox.pack_start(self.prevlessonbtn, True)
+        lessonnavbox.pack_start(lessonbtn, True)
+        lessonnavbox.pack_start(self.nextlessonbtn, True)
+        
+        lessonbox = gtk.VBox()
+        lessonbox.set_spacing(10)
+        lessonbox.pack_start(lessonnavbox, False)
+        lessonbox.pack_start(self.lessonbox)
         
         self.pack_start(self.titlescene, False, True, 10)
-        self.pack_start(lessonscrollbox, True)
+        self.pack_start(lessonbox, True)
         
         self.show_next_lesson()
 
@@ -186,28 +207,27 @@ class MainScreen(gtk.VBox):
             medal_type = self.activity.data['medals'][lesson['name']]['type']
         
         # Create the lesson button.
-        label = gtk.Label()
-        label.set_alignment(0.0, 0.5)
-        label.set_markup("<span size='16000'><b>" + lesson['name'] + "</b></span>\n" + 
-                         "<span size='9000' color='#c0c0c0'>" + lesson['description'] + "</span>")
+        namelabel = gtk.Label()
+        namelabel.set_alignment(0.5, 0.5)
+        namelabel.set_markup("<span size='16000'><b>" + lesson['name'] + "</b></span>")
+        desclabel = gtk.Label()
+        desclabel.set_alignment(0.5, 0.5)
+        desclabel.set_markup("<span size='9000' color='#808080'>" + lesson['description'] + "</span>")
         
         if medal_type != 'none':
-            hint = _('You earned a medal in this lesson!  Advance to the next one\nby clicking the arrow button to the right.')
+            hint = _('You earned a medal in this lesson!  Advance to the next one\nby clicking the Next button.')
         else:
             hint = ''
                 
-        hintlabel = gtk.Label()
-        hintlabel.set_alignment(0.0, 0.8)
-        hintlabel.set_markup("<span size='8000' color='#c0c040'>" + hint + "</span>")
+        #hintlabel = gtk.Label()
+        #hintlabel.set_alignment(0.0, 0.8)
+        #hintlabel.set_markup("<span size='8000' color='#606020'>" + hint + "</span>")
         
         labelbox = gtk.VBox()
-        labelbox.pack_start(label)
-        labelbox.pack_start(hintlabel)
-        
-        lessonbtn = gtk.Button()
-        lessonbtn.add(labelbox)
-        lessonbtn.connect('clicked', self.lesson_clicked_cb)
-        
+        labelbox.pack_start(namelabel)
+        labelbox.pack_start(desclabel)
+        #labelbox.pack_start(hintlabel)
+
         # Create the medal image.
         bundle = sugar.activity.activity.get_bundle_path()
         images = {
@@ -217,7 +237,7 @@ class MainScreen(gtk.VBox):
             'gold':   bundle+'/images/gold-medal.svg'
         }
         medalpixbuf = gtk.gdk.pixbuf_new_from_file(images[medal_type])
-        medalpixbuf = medalpixbuf.scale_simple(250, 250, gtk.gdk.INTERP_BILINEAR)
+        medalpixbuf = medalpixbuf.scale_simple(200, 200, gtk.gdk.INTERP_BILINEAR)
         
         medalimage = gtk.Image()
         medalimage.set_from_pixbuf(medalpixbuf)
@@ -234,23 +254,24 @@ class MainScreen(gtk.VBox):
         medalbox.pack_start(medalimage)
         medalbox.pack_start(medallabel)
         
-        medalbtn = gtk.Button()
-        medalbtn.add(medalbox)
-        medalbtn.connect('clicked', self.medal_clicked_cb)
+        #medalbtn = gtk.Button()
+        #medalbtn.add(medalbox)
+        #medalbtn.connect('clicked', self.medal_clicked_cb)
         
         # Hilite the button in the direction of the first unmedaled lesson.
         next_index = self.get_next_lesson()
         if next_index > self.lesson_index:
             self.nextlessonbtn.modify_bg(gtk.STATE_NORMAL, self.get_colormap().alloc_color('#ff8080'))
         else:
-            self.nextlessonbtn.modify_bg(gtk.STATE_NORMAL, self.get_colormap().alloc_color('#808080'))
+            self.nextlessonbtn.modify_bg(gtk.STATE_NORMAL, self.get_colormap().alloc_color('#40a040'))
         if next_index < self.lesson_index:
             self.prevlessonbtn.modify_bg(gtk.STATE_NORMAL, self.get_colormap().alloc_color('#ff8080'))
         else:
-            self.prevlessonbtn.modify_bg(gtk.STATE_NORMAL, self.get_colormap().alloc_color('#808080'))
+            self.prevlessonbtn.modify_bg(gtk.STATE_NORMAL, self.get_colormap().alloc_color('#40a040'))
         
-        self.lessonbox.pack_start(lessonbtn, True)
-        self.lessonbox.pack_start(medalbtn, False)
+        if medal_type != 'none':
+            self.lessonbox.pack_start(medalbox, False)
+        self.lessonbox.pack_start(labelbox, True)
 
         self.lessonbox.show_all()
     
