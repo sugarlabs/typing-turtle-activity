@@ -223,8 +223,8 @@ OLPC_LAYOUT = {
 
 class KeyboardImages:
     def __init__(self):
-        self.width = 775 * 1.4
-        self.height = 265 * 1.4
+        self.width = int(775 * 1.4)
+        self.height = int(265 * 1.4)
 
         self.images = {}
 

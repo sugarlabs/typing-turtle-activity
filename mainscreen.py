@@ -40,7 +40,7 @@ class TitleScene(gtk.DrawingArea):
         gtk.DrawingArea.__init__(self)
 
         bundle = sugar.activity.activity.get_bundle_path()
-        self.backgroundpixbuf = gtk.gdk.pixbuf_new_from_file(bundle + '/images/tt-all-cropped.jpg')
+        self.backgroundpixbuf = gtk.gdk.pixbuf_new_from_file(bundle + '/images/main-background-2.jpg')
         
         self.set_size_request(self.backgroundpixbuf.get_width(), self.backgroundpixbuf.get_height())
         
@@ -67,13 +67,13 @@ class TitleScene(gtk.DrawingArea):
         pc = self.create_pango_context()
         
         layout = self.create_pango_layout('')
-        layout.set_font_description(pango.FontDescription('Times 60'))
+        layout.set_font_description(pango.FontDescription('Times 45'))
         
         layout.set_text(self.title_original)
         original_size = layout.get_size()
         
-        x = (bounds.width-original_size[0]/pango.SCALE)/2
-        y = 10
+        x = (bounds.width-original_size[0]/pango.SCALE)-20
+        y = 30
 
         layout.set_text(self.title_text)        
         self.window.draw_layout(gc, x, y, layout)
@@ -149,15 +149,15 @@ class MainScreen(gtk.VBox):
         self.keyboard_images = keyboard.KeyboardImages()
         self.keyboard_images.load_images()
         
-        lessonnavbox = gtk.HBox()
-        lessonnavbox.set_spacing(10)
-        lessonnavbox.pack_start(self.prevlessonbtn, True)
-        lessonnavbox.pack_start(lessonbtn, True)
-        lessonnavbox.pack_start(self.nextlessonbtn, True)
+        navbox = gtk.HBox()
+        navbox.set_spacing(10)
+        navbox.pack_start(self.prevlessonbtn, True)
+        navbox.pack_start(lessonbtn, True)
+        navbox.pack_start(self.nextlessonbtn, True)
         
         lessonbox = gtk.VBox()
         lessonbox.set_spacing(10)
-        lessonbox.pack_start(lessonnavbox, False)
+        lessonbox.pack_start(navbox, False)
         lessonbox.pack_start(self.lessonbox)
         
         self.pack_start(self.titlescene, False, True, 10)
@@ -209,10 +209,10 @@ class MainScreen(gtk.VBox):
         # Create the lesson button.
         namelabel = gtk.Label()
         namelabel.set_alignment(0.5, 0.5)
-        namelabel.set_markup("<span size='16000'><b>" + lesson['name'] + "</b></span>")
+        namelabel.set_markup("<span size='20000'><b>" + lesson['name'] + "</b></span>")
         desclabel = gtk.Label()
         desclabel.set_alignment(0.5, 0.5)
-        desclabel.set_markup("<span size='9000' color='#808080'>" + lesson['description'] + "</span>")
+        desclabel.set_markup("<span size='10000' color='#808080'>" + lesson['description'] + "</span>")
         
         if medal_type != 'none':
             hint = _('You earned a medal in this lesson!  Advance to the next one\nby clicking the Next button.')
@@ -224,8 +224,10 @@ class MainScreen(gtk.VBox):
         #hintlabel.set_markup("<span size='8000' color='#606020'>" + hint + "</span>")
         
         labelbox = gtk.VBox()
-        labelbox.pack_start(namelabel)
-        labelbox.pack_start(desclabel)
+        labelbox.set_spacing(10)
+        labelbox.set_border_width(20)
+        labelbox.pack_start(namelabel, False)
+        labelbox.pack_start(desclabel, False)
         #labelbox.pack_start(hintlabel)
 
         # Create the medal image.
@@ -254,9 +256,9 @@ class MainScreen(gtk.VBox):
         medalbox.pack_start(medalimage)
         medalbox.pack_start(medallabel)
         
-        #medalbtn = gtk.Button()
-        #medalbtn.add(medalbox)
-        #medalbtn.connect('clicked', self.medal_clicked_cb)
+        medalbtn = gtk.Button()
+        medalbtn.add(medalbox)
+        medalbtn.connect('clicked', self.medal_clicked_cb)
         
         # Hilite the button in the direction of the first unmedaled lesson.
         next_index = self.get_next_lesson()
@@ -269,9 +271,9 @@ class MainScreen(gtk.VBox):
         else:
             self.prevlessonbtn.modify_bg(gtk.STATE_NORMAL, self.get_colormap().alloc_color('#40a040'))
         
-        if medal_type != 'none':
-            self.lessonbox.pack_start(medalbox, False)
         self.lessonbox.pack_start(labelbox, True)
+        if medal_type != 'none':
+            self.lessonbox.pack_start(medalbtn, False)
 
         self.lessonbox.show_all()
     
