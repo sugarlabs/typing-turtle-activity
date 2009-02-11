@@ -40,7 +40,7 @@ class TitleScene(gtk.DrawingArea):
         gtk.DrawingArea.__init__(self)
 
         bundle = sugar.activity.activity.get_bundle_path()
-        self.backgroundpixbuf = gtk.gdk.pixbuf_new_from_file(bundle + '/images/main-background-2.jpg')
+        self.backgroundpixbuf = gtk.gdk.pixbuf_new_from_file(bundle + '/images/main-background.jpg')
         
         self.set_size_request(self.backgroundpixbuf.get_width(), self.backgroundpixbuf.get_height())
         
