@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-03 08:35+0000\n"
+"POT-Creation-Date: 2009-02-11 02:39+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -135,25 +135,37 @@ msgstr ""
 msgid "Press the ENTER key to continue."
 msgstr ""
 
-#: mainscreen.py:196
-msgid ""
-"You earned a medal in this lesson!  Advance to the next one\n"
-"by clicking the arrow button to the right."
+#: mainscreen.py:108
+msgid "Next"
 msgstr ""
 
-#: mainscreen.py:227
+#: mainscreen.py:117
+msgid "Previous"
+msgstr ""
+
+#: mainscreen.py:124
+msgid "Start Lesson"
+msgstr ""
+
+#: mainscreen.py:218
+msgid ""
+"You earned a medal in this lesson!  Advance to the next one\n"
+"by clicking the Next button."
+msgstr ""
+
+#: mainscreen.py:248
 msgid "No Medal Yet"
 msgstr ""
 
-#: mainscreen.py:228
+#: mainscreen.py:249
 msgid "Bronze Medal"
 msgstr ""
 
-#: mainscreen.py:229
+#: mainscreen.py:250
 msgid "Silver Medal"
 msgstr ""
 
-#: mainscreen.py:230
+#: mainscreen.py:251
 msgid "Gold Medal"
 msgstr ""
 

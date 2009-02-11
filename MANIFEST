@@ -12,7 +12,6 @@ lessonbuilder
 activity/Activity-typingturtle.svg
 activity/activity.info
 po/TypingTurtle.pot
-images/tt-back.jpg
 images/OLPC_Rhand_M.svg
 images/silver-medal.svg
 images/OLPC_Rhand_HOMEROW.svg
@@ -22,11 +21,9 @@ images/OLPC_Rhand_U.svg
 images/OLPC_Rhand_SEMICOLON.svg
 images/OLPC_Rhand_SHIFT.svg
 images/OLPC_Lhand_H.svg
-images/main-background.png
 images/OLPC_Lhand_B.svg
 images/OLPC_Rhand_I.svg
 images/OLPC_Rhand_PERIOD.svg
-images/tt-fore.jpg
 images/OLPC_Lhand_S.svg
 images/OLPC_Lhand_HOMEROW.svg
 images/OLPC_Rhand_N.svg
@@ -34,11 +31,9 @@ images/OLPC_Lhand_W.svg
 images/OLPC_Lhand_A.svg
 images/OLPC_Rhand_K.svg
 images/OLPC_Lhand_F.svg
-images/tt-all.jpg
 images/bronze-medal.svg
 images/OLPC_Lhand_V.svg
 images/OLPC_Rhand_L.svg
-images/tt-stage.jpg
 images/OLPC_Lhand_SPACE.svg
 images/OLPC_Lhand_G.svg
 images/OLPC_Lhand_SHIFT.svg
@@ -54,7 +49,6 @@ images/OLPC_Lhand_E.svg
 images/OLPC_Rhand_SPACE.svg
 images/OLPC_Lhand_R.svg
 images/OLPC_Lhand_T.svg
-images/tt-all-cropped.jpg
 images/OLPC_Lhand_D.svg
 images/OLPC_Lhand_X.svg
 images/OLPC_Rhand_COMMA.svg
@@ -88,3 +82,7 @@ lessons/ne_NP/homerow.lesson
 lessons/ne_NP/ne_NP.txt
 lessons/ne_NP/homerowballoon.lesson
 lessons/ne_NP/out.log
+images/main-background.jpg
+lessons/ne_NP/rightcapital.lesson
+lessons/ne_NP/bottomrow.lesson
+lessons/ne_NP/leftcapital.lesson
