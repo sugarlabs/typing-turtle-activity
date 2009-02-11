@@ -11,6 +11,7 @@
     --title="स्वागतम" \
     --desc="कृयाकलाप सुरु गर्न यहाँ थिच ।" \
     --bronze-wpm=0 --silver-wpm=0 --gold-wpm=0 \
+    --bronze-acc=25 --silver-acc=50 --gold-acc=100 \
     --locale=ne_NP \
     --order=0 \
     --output=intro.lesson
