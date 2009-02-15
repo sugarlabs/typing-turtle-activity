@@ -212,7 +212,7 @@ class MainScreen(gtk.VBox):
         namelabel.set_markup("<span size='20000'><b>" + lesson['name'] + "</b></span>")
         desclabel = gtk.Label()
         desclabel.set_alignment(0.5, 0.5)
-        desclabel.set_markup("<span size='10000' color='#808080'>" + lesson['description'] + "</span>")
+        desclabel.set_markup("<span size='10000' color='#606060'>" + lesson['description'] + "</span>")
         
         if medal_type != 'none':
             hint = _('You earned a medal in this lesson!  Advance to the next one\nby clicking the Next button.')

@@ -13,7 +13,7 @@
 	<g display="inline">
 	</g>
 	<g display="inline">
-		<path fill="none" stroke="#898989" stroke-width="8" stroke-linecap="round" d="M788.881,398.329
+		<path fill="none" stroke="#898989" stroke-width="16" stroke-linecap="round" d="M788.881,398.329
 			c31.153-45.656,8.326-140.727,25.245-199.407c13.965-48.476-3.088-159.392,68.215-152.544
 			c58.144,5.64,52.638,76.406,44.581,129.984c-4.699,30.348-7.788,60.292-12.891,83.791c-10.608,48.342,5.371,121.256,3.76,163.957
 			c-1.209,30.079,12.22,63.649,16.113,96.683c4.029,35.047,1.478,71.303,3.223,106.351c3.224,70.095,13.025,145.292,6.446,215.924
@@ -38,10 +38,10 @@
 	<g display="inline">
 	</g>
 	<g display="inline">
-		<path fill="none" stroke="#FCB054" stroke-width="8" stroke-linecap="round" d="M924.64,112.31
+		<path fill="none" stroke="#FCB054" stroke-width="16" stroke-linecap="round" d="M924.64,112.31
 			c0.537-31.288-7.923-56.667-42.299-60.024c-38.404-3.625-56.667,25.111-67.006,60.024"/>
-		<line fill="none" stroke="#FCB054" stroke-width="8" stroke-linecap="round" x1="924.64" y1="112.31" x2="815.335" y2="112.31"/>
-		<path fill="none" stroke="#9C6B54" stroke-width="8" stroke-linecap="round" d="M815.335,112.31
+		<line fill="none" stroke="#FCB054" stroke-width="16" stroke-linecap="round" x1="924.64" y1="112.31" x2="815.335" y2="112.31"/>
+		<path fill="none" stroke="#9C6B54" stroke-width="16" stroke-linecap="round" d="M815.335,112.31
 			c-8.863,29.81-11.951,63.917-17.054,85.939c-11.951,52.101,21.753,154.423-9.4,200.079
 			c-34.376-29.811-53.443-120.316-53.712-199.407c-0.269-59.89,1.611-146.77-12.891-170.806
 			c-17.859-29.273-64.187-31.153-87.015-9.668c-20.276,46.461-8.191,107.29-14.905,169.865
@@ -66,11 +66,11 @@
 	<g display="inline">
 	</g>
 	<g display="inline">
-		<path fill="none" stroke="#FCB054" stroke-width="8" stroke-linecap="round" d="M733.423,98.344
+		<path fill="none" stroke="#FCB054" stroke-width="16" stroke-linecap="round" d="M733.423,98.344
 			c-2.014-14.771-5.773-28.199-13.159-40.149c-17.726-29.273-64.187-31.153-87.014-9.669
 			c-13.025,17.859-17.457,33.705-18.263,49.818"/>
-		<line fill="none" stroke="#FCB054" stroke-width="8" stroke-linecap="round" x1="733.423" y1="98.344" x2="614.987" y2="98.344"/>
-		<path fill="none" stroke="#9C6B54" stroke-width="8" stroke-linecap="round" d="M614.987,98.344
+		<line fill="none" stroke="#FCB054" stroke-width="16" stroke-linecap="round" x1="733.423" y1="98.344" x2="614.987" y2="98.344"/>
+		<path fill="none" stroke="#9C6B54" stroke-width="16" stroke-linecap="round" d="M614.987,98.344
 			c-1.343,26.991,7.52,54.787,3.357,93.997c-6.715,61.366,32.765,132.804,9.399,180.205c-21.217-20.008-20.276-53.578-25.782-80.568
 			c-19.202-91.714-45.387-172.015-77.346-244.929c-22.56-35.048-88.491-47.67-109.573-3.223
 			c6.849,99.233,41.896,176.714,51.563,277.155c2.82,29.677,9.4,68.887-12.891,90.237
@@ -94,7 +94,7 @@
 	<g display="inline">
 	</g>
 	<g display="inline">
-		<path fill="none" stroke="#9C6B54" stroke-width="8" stroke-linecap="round" d="M419.206,120.367
+		<path fill="none" stroke="#9C6B54" stroke-width="16" stroke-linecap="round" d="M419.206,120.367
 			c12.891,69.826,39.479,117.898,47.4,200.615c2.82,29.677,9.4,68.887-12.891,90.237C392.215,331.59,340.92,224.032,315.138,105.058
 			c-9.803-44.715-18.799-87.416-67.678-80.568c-71.974,10.071-32.496,149.052-19.336,199.811
 			c28.333,109.976,58.681,202.764,83.791,312.605c12.086,53.041,32.765,117.765,0,167.583
@@ -112,7 +112,7 @@
 			c-0.269-59.89,1.611-146.77-12.891-170.806c-17.859-29.273-64.187-31.153-87.014-9.668
 			c-20.276,46.461-8.191,107.29-14.905,169.865c-6.715,61.366,32.765,132.804,9.399,180.205
 			c-21.217-20.008-20.276-53.578-25.782-80.568c-15.039-71.706-35.584-119.376-59.083-171.611"/>
-		<path fill="none" stroke="#FCB054" stroke-width="8" stroke-linecap="round" d="M542.879,120.367
+		<path fill="none" stroke="#FCB054" stroke-width="16" stroke-linecap="round" d="M542.879,120.367
 			c-6.58-14.637-13.294-29.407-20.276-45.253c-22.56-35.047-88.491-47.67-109.574-3.223c1.209,17.457,3.357,33.436,6.178,48.476
 			H542.879z"/>
 	</g>
@@ -121,12 +121,12 @@
 	<g display="inline">
 	</g>
 	<g display="inline">
-		<path fill="none" stroke="#FCB054" stroke-width="8" stroke-linecap="round" d="M324.001,140.375
+		<path fill="none" stroke="#FCB054" stroke-width="16" stroke-linecap="round" d="M324.001,140.375
 			c-3.357-11.683-6.312-23.365-8.863-35.316c-9.803-44.715-17.859-65.528-66.737-58.681c-42.433,5.908-46.73,49.147-40.284,93.997"
 			/>
 		
-			<line fill="none" stroke="#FCB054" stroke-width="8" stroke-linecap="round" x1="324.001" y1="140.375" x2="208.116" y2="140.375"/>
-		<path fill="none" stroke="#9C6B54" stroke-width="8" stroke-linecap="round" d="M208.116,140.375
+			<line fill="none" stroke="#FCB054" stroke-width="16" stroke-linecap="round" x1="324.001" y1="140.375" x2="208.116" y2="140.375"/>
+		<path fill="none" stroke="#9C6B54" stroke-width="16" stroke-linecap="round" d="M208.116,140.375
 			c4.565,31.153,14.368,63.112,20.008,83.926c30.213,109.976,58.681,202.764,83.791,312.605c12.086,53.041,32.765,117.765,0,167.583
 			c-48.878-20.545-122.732-49.415-141.8-96.683c-7.654-18.665-3.626-41.761-9.668-61.231
 			C139.364,479.703,81.892,414.173,8.978,440.224C-8.21,497.159,23.479,553.02,37.982,604.583
@@ -150,12 +150,12 @@
 	<g>
 	</g>
 	<g>
-		<path fill="none" stroke="#FCB054" stroke-width="8" stroke-linecap="round" d="M161.923,127.886
+		<path fill="none" stroke="#FCB054" stroke-width="16" stroke-linecap="round" d="M161.923,127.886
 			c-6.311-8.729-12.085-17.188-17.591-25.514c-25.11-38.27-59.889-73.049-93.997-42.029c-32.228,29.273-25.782,69.289-9.131,105.813
 			"/>
-		<path fill="none" stroke="#FCB054" stroke-width="8" stroke-linecap="round" d="M161.923,127.886
+		<path fill="none" stroke="#FCB054" stroke-width="16" stroke-linecap="round" d="M161.923,127.886
 			c-2.686-3.223-5.103-6.445-7.52-9.534L41.205,166.157"/>
-		<path fill="none" stroke="#9C6B54" stroke-width="8" stroke-linecap="round" d="M41.205,166.157
+		<path fill="none" stroke="#9C6B54" stroke-width="16" stroke-linecap="round" d="M41.205,166.157
 			c6.177,13.428,13.563,26.318,21.083,38.136c65.529,102.859,224.518,222.771,249.628,332.613
 			c12.086,53.041,32.765,117.765,0,167.583c-48.878-20.545-122.732-49.415-141.8-96.683c-7.654-18.665-3.626-41.761-9.668-61.231
 			C139.364,479.703,81.892,414.173,8.978,440.224C-8.21,497.159,23.479,553.02,37.982,604.583

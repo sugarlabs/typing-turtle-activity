@@ -19,6 +19,8 @@ from gettext import gettext as _
 
 import gobject, pygtk, gtk, pango
 
+import medalscreen
+
 BALLOON_COLORS = [
     (65535, 0, 0),
     (0, 0, 65535),
@@ -118,6 +120,10 @@ class BalloonGame(gtk.VBox):
             key_name = gtk.gdk.keyval_name(event.keyval)
             if key_name == 'Return':
                 self.activity.pop_screen()
+
+                # Show the new medal if there was one.
+                if self.medal:
+                    self.activity.push_screen(medalscreen.MedalScreen(self.medal, self.activity))
 
         else:
             for b in self.balloons:

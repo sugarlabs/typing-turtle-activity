@@ -13,7 +13,7 @@
 	<g display="inline">
 	</g>
 	<g display="inline">
-		<path fill="none" stroke="#9C6B54" stroke-width="8" stroke-linecap="round" d="M1981.83,559.506
+		<path fill="none" stroke="#9C6B54" stroke-width="16" stroke-linecap="round" d="M1981.83,559.506
 			c31.153-45.656,8.326-140.727,25.245-199.407c13.965-48.476-3.088-159.392,68.215-152.544
 			c58.144,5.64,52.638,76.406,44.581,129.984c-4.699,30.348-7.788,60.292-12.891,83.791c-10.608,48.342,5.371,121.256,3.76,163.957
 			c-1.209,30.079,12.22,63.649,16.113,96.683c4.029,35.047,1.478,71.303,3.223,106.351c3.224,70.095,13.025,145.292,6.446,215.924
@@ -38,7 +38,7 @@
 	<g display="inline">
 	</g>
 	<g display="inline">
-		<path fill="none" stroke="#9C6B54" stroke-width="8" stroke-linecap="round" d="M326.201,559.71
+		<path fill="none" stroke="#9C6B54" stroke-width="16" stroke-linecap="round" d="M326.201,559.71
 			c-31.153-45.655-8.191-140.726-25.11-199.407c-13.965-48.475,2.954-159.391-68.349-152.543
 			c-58.144,5.64-52.504,76.406-44.447,129.984c4.7,30.348,7.788,60.292,12.891,83.791c10.608,48.341-5.505,121.256-3.894,163.957
 			c1.208,30.079-12.219,63.649-16.114,96.683c-4.028,35.047-1.477,71.303-3.223,106.351c-3.223,70.095-13.025,145.292-6.445,215.924
@@ -62,9 +62,9 @@
 	<g display="inline">
 	</g>
 	<g display="inline">
-		<path fill="none" stroke="#FCB054" stroke-width="8" stroke-linecap="round" d="M2117.588,273.488
+		<path fill="none" stroke="#FCB054" stroke-width="16" stroke-linecap="round" d="M2117.588,273.488
 			c0.537-31.288-7.923-56.667-42.299-60.024c-38.404-3.625-56.667,25.111-67.006,60.024"/>
-		<path fill="none" stroke="#9C6B54" stroke-width="8" stroke-linecap="round" d="M2008.284,273.488
+		<path fill="none" stroke="#9C6B54" stroke-width="16" stroke-linecap="round" d="M2008.284,273.488
 			c-8.863,29.81-11.951,63.917-17.054,85.939c-11.951,52.101,21.753,154.423-9.4,200.079
 			c-34.376-29.811-53.443-120.316-53.712-199.407c-0.269-59.89,1.611-146.77-12.891-170.806
 			c-17.859-29.273-64.187-31.153-87.015-9.668c-20.276,46.461-8.191,107.29-14.905,169.865
@@ -89,9 +89,9 @@
 	<g display="inline">
 	</g>
 	<g display="inline">
-		<path fill="none" stroke="#FCB054" stroke-width="8" stroke-linecap="round" d="M174.729,274.509
+		<path fill="none" stroke="#FCB054" stroke-width="16" stroke-linecap="round" d="M174.729,274.509
 			c-0.537-31.288,7.923-56.667,42.299-60.024c38.404-3.625,56.532,25.111,66.872,60.024"/>
-		<path fill="none" stroke="#9C6B54" stroke-width="8" stroke-linecap="round" d="M283.899,274.509
+		<path fill="none" stroke="#9C6B54" stroke-width="16" stroke-linecap="round" d="M283.899,274.509
 			c8.863,29.81,11.951,63.917,17.054,85.939c11.951,52.101-21.619,154.423,9.534,200.078c34.376-29.81,53.31-120.315,53.578-199.407
 			c0.269-59.889-1.611-146.769,12.891-170.805c17.859-29.273,64.187-31.153,87.014-9.669c20.276,46.462,8.326,107.291,15.04,169.866
 			c6.714,61.366-30.75,136.832-7.385,184.233c21.216-20.008,20.276-53.578,25.782-80.568
@@ -115,10 +115,10 @@
 	<g display="inline">
 	</g>
 	<g display="inline">
-		<path fill="none" stroke="#FCB054" stroke-width="8" stroke-linecap="round" d="M1926.372,259.522
+		<path fill="none" stroke="#FCB054" stroke-width="16" stroke-linecap="round" d="M1926.372,259.522
 			c-2.014-14.771-5.773-28.199-13.159-40.149c-17.726-29.273-64.187-31.153-87.014-9.669
 			c-13.025,17.859-17.457,33.705-18.263,49.818"/>
-		<path fill="none" stroke="#9C6B54" stroke-width="8" stroke-linecap="round" d="M1807.936,259.522
+		<path fill="none" stroke="#9C6B54" stroke-width="16" stroke-linecap="round" d="M1807.936,259.522
 			c-1.343,26.991,7.52,54.787,3.357,93.997c-6.715,61.366,32.765,132.804,9.399,180.205c-21.217-20.008-20.276-53.578-25.782-80.568
 			c-19.202-91.714-45.387-172.015-77.346-244.929c-22.56-35.048-88.491-47.67-109.573-3.223
 			c6.849,99.233,41.896,176.714,51.563,277.155c2.82,29.677,9.4,68.887-12.891,90.237
@@ -142,9 +142,9 @@
 	<g display="inline">
 	</g>
 	<g display="inline">
-		<path fill="none" stroke="#FCB054" stroke-width="8" stroke-linecap="round" d="M373.955,248.471
+		<path fill="none" stroke="#FCB054" stroke-width="16" stroke-linecap="round" d="M373.955,248.471
 			c1.88-14.771,5.774-28.064,13.025-40.149c17.859-29.273,64.186-31.153,87.014-9.669c13.025,17.859,17.591,33.705,18.396,49.818"/>
-		<path fill="none" stroke="#9C6B54" stroke-width="8" stroke-linecap="round" d="M492.391,248.471
+		<path fill="none" stroke="#9C6B54" stroke-width="16" stroke-linecap="round" d="M492.391,248.471
 			c1.343,26.99-7.654,54.787-3.357,93.997c6.714,61.366-32.765,132.804-9.4,180.205c21.216-20.008,20.276-53.578,25.782-80.568
 			c19.203-91.715,45.387-172.015,77.346-244.929c22.559-35.048,88.491-47.67,109.573-3.223
 			c-6.849,99.233-41.896,176.714-51.564,277.155c-2.82,29.677-9.4,68.887,12.891,90.237
@@ -168,7 +168,7 @@
 	<g display="inline">
 	</g>
 	<g display="inline">
-		<path fill="none" stroke="#9C6B54" stroke-width="8" stroke-linecap="round" d="M1612.155,281.544
+		<path fill="none" stroke="#9C6B54" stroke-width="16" stroke-linecap="round" d="M1612.155,281.544
 			c12.891,69.826,39.479,117.898,47.4,200.615c2.82,29.677,9.4,68.887-12.891,90.237
 			c-61.501-79.629-112.796-187.188-138.578-306.161c-9.803-44.715-18.799-87.416-67.678-80.568
 			c-71.974,10.071-32.496,149.052-19.336,199.811c28.333,109.976,58.681,202.764,83.791,312.605
@@ -186,7 +186,7 @@
 			c-0.269-59.89,1.611-146.77-12.891-170.806c-17.859-29.273-64.187-31.153-87.014-9.668
 			c-20.276,46.461-8.191,107.29-14.905,169.865c-6.715,61.366,32.765,132.804,9.399,180.205
 			c-21.217-20.008-20.276-53.578-25.782-80.568c-15.039-71.706-35.584-119.376-59.083-171.611"/>
-		<path fill="none" stroke="#FCB054" stroke-width="8" stroke-linecap="round" d="M1735.828,281.544
+		<path fill="none" stroke="#FCB054" stroke-width="16" stroke-linecap="round" d="M1735.828,281.544
 			c-6.58-14.637-13.294-29.407-20.276-45.253c-22.56-35.047-88.491-47.67-109.574-3.223c1.209,17.457,3.357,33.436,6.178,48.476"/>
 	</g>
 </g>
@@ -194,7 +194,7 @@
 	<g display="inline">
 	</g>
 	<g display="inline">
-		<path fill="none" stroke="#9C6B54" stroke-width="8" stroke-linecap="round" d="M686.265,278.512
+		<path fill="none" stroke="#9C6B54" stroke-width="16" stroke-linecap="round" d="M686.265,278.512
 			c-12.891,69.826-39.344,117.898-47.401,200.616c-2.82,29.676-9.399,68.886,12.891,90.236
 			c61.5-79.629,112.796-187.188,138.578-306.16c9.802-44.716,18.799-87.417,67.677-80.569
 			c71.975,10.071,32.496,149.053,19.336,199.811c-28.333,109.977-58.681,202.765-83.791,312.606
@@ -212,7 +212,7 @@
 			c34.376-29.811,55.458-116.287,55.727-195.379c0.269-59.89-1.611-146.77,12.891-170.806c17.859-29.273,64.187-31.153,87.014-9.668
 			c20.276,46.461,8.191,107.29,14.905,169.865c6.714,61.366-32.765,132.804-9.4,180.205c21.216-20.008,20.276-53.578,25.782-80.568
 			c15.04-71.706,35.584-119.376,59.083-171.611"/>
-		<path fill="none" stroke="#FCB054" stroke-width="8" stroke-linecap="round" d="M562.592,278.512
+		<path fill="none" stroke="#FCB054" stroke-width="16" stroke-linecap="round" d="M562.592,278.512
 			c6.58-14.502,13.294-29.407,20.276-45.253c22.559-35.047,88.491-47.669,109.573-3.223c-1.208,17.457-3.357,33.437-6.177,48.476"/>
 	</g>
 </g>
@@ -220,10 +220,10 @@
 	<g display="inline">
 	</g>
 	<g display="inline">
-		<path fill="none" stroke="#FCB054" stroke-width="8" stroke-linecap="round" d="M1516.95,301.552
+		<path fill="none" stroke="#FCB054" stroke-width="16" stroke-linecap="round" d="M1516.95,301.552
 			c-3.357-11.683-6.312-23.365-8.863-35.316c-9.803-44.715-17.859-65.528-66.737-58.681c-42.433,5.908-46.73,49.147-40.284,93.997"
 			/>
-		<path fill="none" stroke="#9C6B54" stroke-width="8" stroke-linecap="round" d="M1401.065,301.552
+		<path fill="none" stroke="#9C6B54" stroke-width="16" stroke-linecap="round" d="M1401.065,301.552
 			c4.565,31.153,14.368,63.112,20.008,83.926c30.213,109.976,58.681,202.764,83.791,312.605c12.086,53.041,32.765,117.765,0,167.583
 			c-48.878-20.545-122.732-49.415-141.8-96.683c-7.654-18.665-3.626-41.761-9.668-61.231
 			c-21.082-66.872-78.554-132.401-151.469-106.351c-17.188,56.935,14.502,112.796,29.004,164.359
@@ -247,9 +247,9 @@
 	<g display="inline">
 	</g>
 	<g display="inline">
-		<path fill="none" stroke="#FCB054" stroke-width="8" stroke-linecap="round" d="M787.47,297.46
+		<path fill="none" stroke="#FCB054" stroke-width="16" stroke-linecap="round" d="M787.47,297.46
 			c3.357-11.549,6.311-23.365,8.863-35.182c9.802-44.716,17.994-65.664,66.872-58.815c42.433,5.908,46.596,49.146,40.15,93.997"/>
-		<path fill="none" stroke="#9C6B54" stroke-width="8" stroke-linecap="round" d="M903.355,297.46
+		<path fill="none" stroke="#9C6B54" stroke-width="16" stroke-linecap="round" d="M903.355,297.46
 			c-4.566,31.287-14.234,63.246-20.008,84.06c-30.213,109.977-58.681,202.765-83.791,312.606
 			c-12.085,53.041-32.765,117.764,0,167.582c48.878-20.545,122.733-49.415,141.801-96.682c7.654-18.665,3.625-41.762,9.668-61.232
 			c21.082-66.872,78.555-132.401,151.469-106.351c17.188,56.936-14.502,112.796-29.005,164.36
@@ -273,12 +273,12 @@
 	<g display="inline">
 	</g>
 	<g display="inline">
-		<path fill="none" stroke="#FCB054" stroke-width="8" stroke-linecap="round" d="M1354.872,289.064
+		<path fill="none" stroke="#FCB054" stroke-width="16" stroke-linecap="round" d="M1354.872,289.064
 			c-6.311-8.729-12.085-17.188-17.591-25.514c-25.11-38.27-59.889-73.049-93.997-42.029c-32.228,29.273-25.782,69.289-9.131,105.813
 			"/>
-		<path fill="none" stroke="#FCB054" stroke-width="8" stroke-linecap="round" d="M1354.872,289.064
+		<path fill="none" stroke="#FCB054" stroke-width="16" stroke-linecap="round" d="M1354.872,289.064
 			c-2.686-3.223-5.103-6.445-7.52-9.534"/>
-		<path fill="none" stroke="#9C6B54" stroke-width="8" stroke-linecap="round" d="M1234.153,327.334
+		<path fill="none" stroke="#9C6B54" stroke-width="16" stroke-linecap="round" d="M1234.153,327.334
 			c6.177,13.428,13.563,26.318,21.083,38.136c65.529,102.859,224.518,222.771,249.628,332.613
 			c12.086,53.041,32.765,117.765,0,167.583c-48.878-20.545-122.732-49.415-141.8-96.683c-7.654-18.665-3.626-41.761-9.668-61.231
 			c-21.082-66.872-78.554-132.401-151.469-106.351c-17.188,56.935,14.502,112.796,29.004,164.359
@@ -302,9 +302,9 @@
 	<g display="inline">
 	</g>
 	<g display="inline">
-		<path fill="none" stroke="#FCB054" stroke-width="8" stroke-linecap="round" d="M949.608,287.449
+		<path fill="none" stroke="#FCB054" stroke-width="16" stroke-linecap="round" d="M949.608,287.449
 			c6.58-9.131,12.757-18.128,18.531-26.99c25.11-38.27,60.023-72.914,93.997-42.03c32.228,29.273,25.917,69.289,9.131,105.948"/>
-		<path fill="none" stroke="#9C6B54" stroke-width="8" stroke-linecap="round" d="M1071.267,324.376
+		<path fill="none" stroke="#9C6B54" stroke-width="16" stroke-linecap="round" d="M1071.267,324.376
 			c-6.043,13.294-13.563,26.319-21.082,38.136c-65.529,102.859-224.518,222.772-249.628,332.614
 			c-12.085,53.041-32.765,117.764,0,167.582c48.878-20.545,122.733-49.415,141.801-96.682c7.654-18.665,3.625-41.762,9.668-61.232
 			c21.082-66.872,78.555-132.401,151.469-106.351c17.188,56.936-14.502,112.796-29.005,164.36
@@ -328,9 +328,9 @@
 	<g display="inline">
 	</g>
 	<g display="inline">
-		<path fill="none" stroke="#FCB054" stroke-width="8" stroke-linecap="round" d="M2280.45,314.666
+		<path fill="none" stroke="#FCB054" stroke-width="16" stroke-linecap="round" d="M2280.45,314.666
 			c16.785-26.453,22.828-52.504-4.699-73.317c-30.751-23.23-61.367-8.191-88.491,16.114"/>
-		<path fill="none" stroke="#9C6B54" stroke-width="8" stroke-linecap="round" d="M2187.259,257.462
+		<path fill="none" stroke="#9C6B54" stroke-width="16" stroke-linecap="round" d="M2187.259,257.462
 			c-22.962,20.813-43.507,48.341-59.353,64.454c-37.464,38.002-62.172,143.01-112.662,165.568
 			c-27.93,8.058-72.914-43.238-73.183-122.329c-0.269-59.89,1.611-146.77-12.891-170.806c-17.859-29.273-64.187-31.153-87.015-9.668
 			c-20.276,46.461-2.148,118.301-8.862,180.876c-6.714,61.366,22.022,131.998-12.622,171.208
@@ -353,7 +353,7 @@
 	<g display="inline">
 	</g>
 	<g display="inline">
-		<path fill="none" stroke="#9C6B54" stroke-width="8" stroke-linecap="round" d="M1983.192,478.09
+		<path fill="none" stroke="#9C6B54" stroke-width="16" stroke-linecap="round" d="M1983.192,478.09
 			c-15.577,77.614-17.859,91.445,10.071,81.374c31.152-45.655,32.093-129.983,37.867-195.244
 			c4.431-50.355-3.357-156.975,68.215-152.678c33.973,2.015,52.638,76.54,44.581,130.118c-4.7,30.348-7.788,60.293-12.892,83.792
 			c-10.607,48.341-4.162,117.361-5.773,160.063c-1.209,30.079-3.357,63.381,0.537,96.414c4.028,35.047,1.477,71.303,3.223,106.351
@@ -372,19 +372,19 @@
 			c5.505,26.991,4.565,60.562,25.781,80.569c23.634,1.745,42.97-12.892,49.685-74.123"/>
 	</g>
 </g>
-<path display="none" fill="none" stroke="#FCB054" stroke-width="8" stroke-linecap="round" d="M1978.292,362.281
+<path display="none" fill="none" stroke="#FCB054" stroke-width="16" stroke-linecap="round" d="M1978.292,362.281
 	c16.33,22.834,19,54.212,6.891,114.805"/>
-<path display="none" fill="none" stroke="#FCB054" stroke-width="8" stroke-linecap="round" d="M1899.292,362.493
+<path display="none" fill="none" stroke="#FCB054" stroke-width="16" stroke-linecap="round" d="M1899.292,362.493
 	c22.828-21.484,72-10,79-0.212"/>
-<path display="none" fill="none" stroke="#FCB054" stroke-width="8" stroke-linecap="round" d="M1871.292,458.493
+<path display="none" fill="none" stroke="#FCB054" stroke-width="16" stroke-linecap="round" d="M1871.292,458.493
 	c6.714-62.575,7.724-49.538,28-96"/>
 <g id="XMLID_62_" display="none">
 	<g display="inline">
 	</g>
 	<g display="inline">
-		<path fill="none" stroke="#9C6B54" stroke-width="8" stroke-linecap="round" d="M2117.533,243.53
+		<path fill="none" stroke="#9C6B54" stroke-width="16" stroke-linecap="round" d="M2117.533,243.53
 			c0.537-31.287-7.923-56.666-42.299-60.023c-38.404-3.76-56.532,25.11-66.872,60.023"/>
-		<path fill="none" stroke="#9C6B54" stroke-width="8" stroke-linecap="round" d="M1671.317,365.458
+		<path fill="none" stroke="#9C6B54" stroke-width="16" stroke-linecap="round" d="M1671.317,365.458
 			c-8.057,30.078-13.563,23.364,2.686,119.106c4.969,29.273-5.103,63.516-27.394,84.866
 			c-61.5-79.629-112.796-187.188-138.577-306.161c-9.803-44.715-18.8-87.417-67.678-80.568
 			c-71.975,10.071-32.496,149.052-19.337,199.811c28.333,109.976,58.681,202.764,83.792,312.605
@@ -397,7 +397,7 @@
 			c-7.386-43.775-19.873-86.88-16.113-125.688c1.745-19.604,11.011-38.941,12.891-58.009c6.58-70.632-3.223-145.829-6.445-215.924
 			c-1.746-35.048,0.806-71.304-3.223-106.351c-3.895-33.033-17.322-66.604-16.114-96.683c1.611-42.701-8.325-114.676-3.76-163.957
 			c2.417-25.916-2.282-76.54,2.417-106.888c3.223-21.888,7.923-46.327,8.191-67.946"/>
-		<path fill="none" stroke="#9C6B54" stroke-width="8" stroke-linecap="round" d="M2008.362,243.53
+		<path fill="none" stroke="#9C6B54" stroke-width="16" stroke-linecap="round" d="M2008.362,243.53
 			c-8.862,29.677-4.028,91.982-9.131,114.005c-11.951,51.967,13.697,153.349-17.456,199.004
 			c-34.376-29.81-53.31-120.315-53.578-199.407c-0.269-59.889,1.611-146.769-12.892-170.805
 			c-17.859-29.273-64.186-31.153-87.014-9.669c-20.276,46.462-4.297,110.245-11.011,172.82
@@ -405,15 +405,15 @@
 			c-19.202-91.714,2.283-21.889-29.676-94.803"/>
 	</g>
 </g>
-<path display="none" fill="none" stroke="#FCB054" stroke-width="8" stroke-linecap="round" d="M1783.292,365.493
+<path display="none" fill="none" stroke="#FCB054" stroke-width="16" stroke-linecap="round" d="M1783.292,365.493
 	c-24-38-88-42-110-6"/>
 <g id="XMLID_61_">
 	<g>
 	</g>
 	<g>
-		<path fill="none" stroke="#FCB054" stroke-width="8" stroke-linecap="round" d="M2207.5,437.612
+		<path fill="none" stroke="#FCB054" stroke-width="16" stroke-linecap="round" d="M2207.5,437.612
 			c16.785-26.453,22.828-52.504-4.699-73.317c-30.751-23.23-61.367-8.191-88.491,16.113"/>
-		<path fill="none" stroke="#9C6B54" stroke-width="8" stroke-linecap="round" d="M2114.31,380.408
+		<path fill="none" stroke="#9C6B54" stroke-width="16" stroke-linecap="round" d="M2114.31,380.408
 			c-22.963,20.813-35.719,59.486-51.027,76.138c-22.021,23.901-42.029,34.913-67.946,46.998
 			c-27.93,8.057-53.98-60.292-54.249-139.384c-0.269-59.889,1.611-146.769-12.892-170.805
 			c-17.859-29.273-64.186-31.153-87.014-9.669c-20.276,46.462-2.148,118.168-8.862,180.742
@@ -438,9 +438,9 @@
 	<g display="inline">
 	</g>
 	<g display="inline">
-		<path fill="none" stroke="#FCB054" stroke-width="8" stroke-linecap="round" d="M2371.4,458.279
+		<path fill="none" stroke="#FCB054" stroke-width="16" stroke-linecap="round" d="M2371.4,458.279
 			c17.215-26.176,23.683-52.124-3.501-73.385c-30.367-23.729-59.367-7.819-93.629,9.617"/>
-		<path fill="none" stroke="#9C6B54" stroke-width="8" stroke-linecap="round" d="M1819.959,450.609
+		<path fill="none" stroke="#9C6B54" stroke-width="16" stroke-linecap="round" d="M1819.959,450.609
 			c-0.737-4.175-1.369-6.603-1.488-7.545c-17.487-88.654-39.499-163.416-69.354-234.813c-21.984-35.411-87.701-49.109-109.507-5.013
 			c5.227,99.332,39.003,177.375,47.028,277.961c2.334,29.719,8.272,69.031-14.364,90.015
 			c-60.191-80.623-109.722-189.006-133.556-308.385c-9.071-44.869-17.369-87.712-66.353-81.663
@@ -455,9 +455,9 @@
 			c-6.669-43.891-18.451-87.193-14.058-125.934c2.065-19.574,11.646-38.757,13.837-57.791c7.733-70.515,11.46-150.63,9.384-220.769
 			c-1.149-36.548,4.527-46.931,7.463-86.903c3.128-43.462,5.384-50.006,3.206-72.872c-2.753-28.785,78.146-105.894,88.2-112.981
 			c33.968-24.021,43.881-22.517,74.083-38.004c19.773-10.152,22.078-3.266,34.056-21.2"/>
-		<path fill="none" stroke="#9C6B54" stroke-width="8" stroke-linecap="round" d="M1818.086,441.984c0,0,0.132,0.136,0.125,0.539
+		<path fill="none" stroke="#9C6B54" stroke-width="16" stroke-linecap="round" d="M1818.086,441.984c0,0,0.132,0.136,0.125,0.539
 			c0.132,0.136,0.13,0.271,0.26,0.541"/>
-		<path fill="none" stroke="#9C6B54" stroke-width="8" stroke-linecap="round" d="M2274.27,394.511
+		<path fill="none" stroke="#9C6B54" stroke-width="16" stroke-linecap="round" d="M2274.27,394.511
 			c-31.032,16.951-30.964,20.981-71.006,46.918c-27.148,17.687-91.905,68.468-116.004,72.104
 			c-39.978-2.668-78.025-74.065-94.012-155.98c-11.393-58.875-27.153-129.908-41.262-154.179
 			c-17.378-29.561-63.668-32.197-86.844-11.089c-21.033,46.124,7.854,102.867,16.102,165.183
@@ -468,9 +468,9 @@
 	<g display="inline">
 	</g>
 	<g display="inline">
-		<path fill="none" stroke="#FCB054" stroke-width="8" stroke-linecap="round" d="M47.238,454.005
+		<path fill="none" stroke="#FCB054" stroke-width="16" stroke-linecap="round" d="M47.238,454.005
 			c-9.002-49.543-0.763-63.108,4.537-67.492c10.336-8.495,54.022-39.023,78.945,31.479"/>
-		<path fill="none" stroke="#9C6B54" stroke-width="8" stroke-linecap="round" d="M510.788,434.476
+		<path fill="none" stroke="#9C6B54" stroke-width="16" stroke-linecap="round" d="M510.788,434.476
 			c0.247-1.347,0.495-2.56,0.749-3.504c0.121-0.808,0.242-1.615,0.497-2.425c17.245-87.039,44.433-149.127,76.358-225.394
 			c21.983-35.411,105.39-43.221,106.871,6.312c-28.134,86.411-45.91,140.958-53.935,241.545
 			c-2.334,29.719,1.27,94.123,23.906,115.106c39.689-53.159,116.544-223.498,133.556-308.384
@@ -485,11 +485,11 @@
 			c32.628-271.548,70.619-584.816,111.714-855.967c6.669-43.891,18.451-87.192,14.058-125.934
 			c-2.065-19.573-11.646-38.756-13.837-57.791c-8.374-76.816-10.728-138.689-27.179-208.524
 			c-6.056-25.418,15.354-71.295-15.021-97.39c-28.469-24.515-89.263-219.061-93.012-243.038"/>
-		<path fill="none" stroke="#9C6B54" stroke-width="8" stroke-linecap="round" d="M254.224,570.955
+		<path fill="none" stroke="#9C6B54" stroke-width="16" stroke-linecap="round" d="M254.224,570.955
 			c27.113-25.558,27.503-124.945,43.487-206.994c11.53-58.743,73.568-141.41,87.675-165.681
 			c17.379-29.562,63.669-32.198,86.845-11.089c21.033,46.124-41.62,99.39-50,161.842c-8.019,59.894-11.127,190.215,56.81,189.104
 			c32.441-44.715,37.578-124.841,32.992-109.59"/>
-		<path fill="none" stroke="#9C6B54" stroke-width="8" stroke-linecap="round" d="M131.258,417.983
+		<path fill="none" stroke="#9C6B54" stroke-width="16" stroke-linecap="round" d="M131.258,417.983
 			c15.043,49.445,84.083,197.926,122.966,152.972"/>
 	</g>
 </g>
@@ -497,7 +497,7 @@
 	<g display="inline">
 	</g>
 	<g display="inline">
-		<path fill="none" stroke="#9C6B54" stroke-width="8" stroke-linecap="round" d="M1353.404,707.816
+		<path fill="none" stroke="#9C6B54" stroke-width="16" stroke-linecap="round" d="M1353.404,707.816
 			c6.043,19.471,2.014,42.567,9.668,61.232c19.068,47.267,92.922,76.138,141.801,96.683c32.765-49.818,12.085-114.542,0-167.583
 			c-25.11-109.842-55.458-202.63-83.792-312.606c-13.16-50.758-52.638-189.738,19.336-199.81
 			c48.878-6.849,57.875,35.853,67.678,80.568c25.782,118.973,77.077,226.532,138.578,306.161
@@ -516,13 +516,13 @@
 			c-35.047-40.553-85.269-64.857-103.128-109.573c-9.399-23.097-6.177-49.952-12.891-74.123"/>
 	</g>
 </g>
-<path display="none" fill="none" stroke="#FCB054" stroke-width="8" stroke-linecap="round" d="M1233.94,767.493
+<path display="none" fill="none" stroke="#FCB054" stroke-width="16" stroke-linecap="round" d="M1233.94,767.493
 	c-14.502-51.564-46.192-107.425-29.004-164.36c72.914-26.05,130.387,39.479,151.469,106.351"/>
 <g id="XMLID_57_" display="none">
 	<g display="inline">
 	</g>
 	<g display="inline">
-		<path fill="none" stroke="#9C6B54" stroke-width="8" stroke-linecap="round" d="M947.506,703.788
+		<path fill="none" stroke="#9C6B54" stroke-width="16" stroke-linecap="round" d="M947.506,703.788
 			c-6.042,19.471-2.014,42.567-9.668,61.232c-19.068,47.267-92.922,76.137-141.801,96.682c-32.765-49.818-12.085-114.541,0-167.582
 			c25.11-109.842,55.458-202.63,83.792-312.606c13.159-50.758,52.638-189.739-19.336-199.811
 			c-48.878-6.848-57.875,35.854-67.678,80.569c-25.782,118.973-77.077,226.532-138.578,306.16
@@ -542,13 +542,13 @@
 			"/>
 	</g>
 </g>
-<path display="none" fill="none" stroke="#FCB054" stroke-width="8" stroke-linecap="round" d="M1066.933,763.471
+<path display="none" fill="none" stroke="#FCB054" stroke-width="16" stroke-linecap="round" d="M1066.933,763.471
 	c14.502-51.564,46.192-107.425,29.004-164.36c-72.914-26.05-130.387,39.479-151.469,106.351"/>
 <g id="XMLID_56_" display="none">
 	<g display="inline">
 	</g>
 	<g display="inline">
-		<path fill="none" stroke="#9C6B54" stroke-width="8" stroke-linecap="round" d="M2669.258,187.571
+		<path fill="none" stroke="#9C6B54" stroke-width="16" stroke-linecap="round" d="M2669.258,187.571
 			c-18.611,24.212-29.91,21.915-59.952,53.863c-34.439,36.858-34.002,37.992-78.049,80.023
 			c-21.75,20.735-66.614,67.564-105.93,138.065c-17.158,30.772-56.09,77.981-64.014,147.98
 			c-8.026,69.609-22.862,146.569-11.211,216.544c3.045,18.916-0.982,39.977,2.329,59.378c6.262,38.483,29.33,76.978,47.635,117.422
@@ -569,17 +569,17 @@
 			c94.661-37.049,122.829-118.221,308.011-238.027"/>
 	</g>
 </g>
-<path display="none" fill="none" stroke="#FCB054" stroke-width="8" stroke-linecap="round" d="M2675.292,103.493
+<path display="none" fill="none" stroke="#FCB054" stroke-width="16" stroke-linecap="round" d="M2675.292,103.493
 	c34,38,8.396,68.713-8,90"/>
-<path display="none" fill="none" stroke="#FCB054" stroke-width="8" stroke-linecap="round" d="M2571.292,131.493
+<path display="none" fill="none" stroke="#FCB054" stroke-width="16" stroke-linecap="round" d="M2571.292,131.493
 	c68.683-42.927,58-52,106-28"/>
 <g id="XMLID_55_" display="none">
 	<g display="inline">
 	</g>
 	<g display="inline">
-		<path fill="none" stroke="#FCB054" stroke-width="8" stroke-linecap="round" d="M256.312,435.463
+		<path fill="none" stroke="#FCB054" stroke-width="16" stroke-linecap="round" d="M256.312,435.463
 			c4.566-43.91,18.128-69.424,54.115-72.378c30.75-2.551,33.705-0.806,57.875,26.453"/>
-		<path fill="none" stroke="#9C6B54" stroke-width="8" stroke-linecap="round" d="M368.303,389.539
+		<path fill="none" stroke="#9C6B54" stroke-width="16" stroke-linecap="round" d="M368.303,389.539
 			c6.58,33.57-18.934,197.931,6.982,210.016c27.931,8.057,8.728-158.317,8.997-237.408c0.269-59.89-1.611-146.77,12.891-170.806
 			c17.859-29.273,64.187-31.153,87.014-9.668c20.276,46.461,2.148,118.167,8.862,180.742c6.714,61.366,1.612,139.786,36.256,179.131
 			c21.216-20.008,20.276-53.578,25.782-80.569c19.202-91.714,21.753-179.802,53.712-252.717
@@ -600,7 +600,7 @@
 	<g display="inline">
 	</g>
 	<g display="inline">
-		<path fill="none" stroke="#9C6B54" stroke-width="8" stroke-linecap="round" d="M442.496,457.59
+		<path fill="none" stroke="#9C6B54" stroke-width="16" stroke-linecap="round" d="M442.496,457.59
 			c-22.559,69.021-24.036,70.497-58.546,80.972c-51.027-31.557-51.43-129.581-68.349-188.263
 			c-13.965-48.475,2.955-159.392-68.349-152.543c-58.144,5.64-52.504,76.406-44.447,129.984c4.7,30.348,7.789,60.292,12.891,83.791
 			c10.608,48.341-5.505,121.256-3.894,163.957c1.208,30.079-12.22,63.649-16.114,96.683c-4.029,35.047-1.477,71.303-3.223,106.351
@@ -618,19 +618,19 @@
 			c-5.506,26.99,1.477,176.982-17.994,184.502c-24.037-1.478-22.425-11.146-12.085-71.975"/>
 	</g>
 </g>
-<path display="none" fill="none" stroke="#FCB054" stroke-width="8" stroke-linecap="round" d="M478.43,364.582
+<path display="none" fill="none" stroke="#FCB054" stroke-width="16" stroke-linecap="round" d="M478.43,364.582
 	c-24.842,13.074-15.931,34.557-34.499,91.496"/>
-<path display="none" fill="none" stroke="#FCB054" stroke-width="8" stroke-linecap="round" d="M556.426,364.582
+<path display="none" fill="none" stroke="#FCB054" stroke-width="16" stroke-linecap="round" d="M556.426,364.582
 	c-32.999-19.499-49.498-14.999-77.996,0"/>
-<path display="none" fill="none" stroke="#FCB054" stroke-width="8" stroke-linecap="round" d="M565.425,459.077
+<path display="none" fill="none" stroke="#FCB054" stroke-width="16" stroke-linecap="round" d="M565.425,459.077
 	c10.5-61.496,17.999-76.496-9-94.495"/>
 <g id="XMLID_53_" display="none">
 	<g display="inline">
 	</g>
 	<g display="inline">
-		<path fill="none" stroke="#9C6B54" stroke-width="8" stroke-linecap="round" d="M181.271,246.956
+		<path fill="none" stroke="#9C6B54" stroke-width="16" stroke-linecap="round" d="M181.271,246.956
 			c-0.537-31.287,7.923-56.666,42.299-60.023c38.404-3.76,56.532,25.11,66.872,60.023"/>
-		<path fill="none" stroke="#9C6B54" stroke-width="8" stroke-linecap="round" d="M757.47,384.997
+		<path fill="none" stroke="#9C6B54" stroke-width="16" stroke-linecap="round" d="M757.47,384.997
 			c8.057,29.944,17.725,42.567-38.136,122.464c-14.1,20.008-20.008,51.967-14.1,64.053c45.79-1.611,96.146-185.711,121.524-302.804
 			c9.802-44.716,18.799-87.417,67.678-80.569c71.975,10.071,32.496,149.053,19.336,199.811
 			c-28.333,109.977-94.668,200.75-119.779,310.592c-12.085,53.041-32.765,117.765,0,167.583
@@ -644,7 +644,7 @@
 			c-1.746-19.604-11.011-38.941-12.891-58.009c-6.58-70.632,3.223-145.829,6.445-215.924c1.746-35.048-0.806-71.304,3.223-106.351
 			c3.894-33.033,17.322-66.604,16.114-96.683c-1.612-42.701,8.325-114.676,3.76-163.957c-2.417-25.916,2.283-76.54-2.417-106.888
 			c-3.223-21.888-7.923-46.327-8.191-67.946"/>
-		<path fill="none" stroke="#9C6B54" stroke-width="8" stroke-linecap="round" d="M290.441,246.956
+		<path fill="none" stroke="#9C6B54" stroke-width="16" stroke-linecap="round" d="M290.441,246.956
 			c8.863,29.676,4.028,91.982,9.131,114.005c11.951,51.967-13.697,153.349,17.457,199.004
 			c34.376-29.811,53.31-120.315,53.578-199.407c0.269-59.889-1.611-146.769,12.891-170.805
 			c17.859-29.274,64.187-31.154,87.014-9.669c20.276,46.462,4.297,110.379,11.011,172.954
@@ -652,13 +652,13 @@
 			c22.022-33.973,33.973-48.072,65.798-77.212"/>
 	</g>
 </g>
-<path display="none" fill="none" stroke="#FCB054" stroke-width="8" stroke-linecap="round" d="M645.552,384.982
+<path display="none" fill="none" stroke="#FCB054" stroke-width="16" stroke-linecap="round" d="M645.552,384.982
 	c24-38,89.739-31.489,111.739,4.511"/>
 <g id="XMLID_52_" display="none">
 	<g display="inline">
 	</g>
 	<g display="inline">
-		<path fill="none" stroke="#9C6B54" stroke-width="8" stroke-linecap="round" d="M861.693,447.945
+		<path fill="none" stroke="#9C6B54" stroke-width="16" stroke-linecap="round" d="M861.693,447.945
 			c-77.883,57.069-118.436,78.018-205.316,116.153c-22.291-21.351-15.711-60.561-12.891-90.237
 			c9.668-100.442,44.715-177.922,51.563-277.155c-21.082-44.447-87.014-31.825-109.573,3.223
 			c-31.958,72.914-58.144,153.214-77.346,244.928c-5.505,26.991-4.565,60.562-25.782,80.569
@@ -677,15 +677,15 @@
 			c25.111-109.842,44.044-75.331,119.107-153.349"/>
 	</g>
 </g>
-<path display="none" fill="none" stroke="#FCB054" stroke-width="8" stroke-linecap="round" d="M958.761,395.984
+<path display="none" fill="none" stroke="#FCB054" stroke-width="16" stroke-linecap="round" d="M958.761,395.984
 	c-40.957-25.484-63.535,28.488-100.495,55.497"/>
-<path display="none" fill="none" stroke="#FCB054" stroke-width="8" stroke-linecap="round" d="M913.763,539.977
+<path display="none" fill="none" stroke="#FCB054" stroke-width="16" stroke-linecap="round" d="M913.763,539.977
 	c36.344-37.798,112.495-101.995,44.998-143.993"/>
 <g id="XMLID_51_" display="none">
 	<g display="inline">
 	</g>
 	<g display="inline">
-		<path fill="none" stroke="#9C6B54" stroke-width="8" stroke-linecap="round" d="M1017.721,434.443
+		<path fill="none" stroke="#9C6B54" stroke-width="16" stroke-linecap="round" d="M1017.721,434.443
 			c-79.897,47.133-220.624,99.905-307.503,138.041c-22.291-21.351-34.242-64.857-31.422-94.533
 			c9.668-100.442,36.927-178.057,43.776-277.291c-21.082-44.447-78.286-29.272-100.845,5.774
 			c-31.959,72.915-46.729,149.857-65.932,241.571c-5.506,26.991-14.771,60.964-35.987,80.972
@@ -704,15 +704,15 @@
 			c25.111-109.842,133.476-123.001,230.023-177.653"/>
 	</g>
 </g>
-<path display="none" fill="none" stroke="#FCB054" stroke-width="8" stroke-linecap="round" d="M1136.241,420.976
+<path display="none" fill="none" stroke="#FCB054" stroke-width="16" stroke-linecap="round" d="M1136.241,420.976
 	c-40.957-25.484-71.997-4.5-118.494,13.499"/>
-<path display="none" fill="none" stroke="#FCB054" stroke-width="8" stroke-linecap="round" d="M1083.743,527.471
+<path display="none" fill="none" stroke="#FCB054" stroke-width="16" stroke-linecap="round" d="M1083.743,527.471
 	c37.614-26.33,95.995-44.998,52.498-106.495"/>
 <g id="XMLID_50_" display="none">
 	<g display="inline">
 	</g>
 	<g display="inline">
-		<path fill="none" stroke="#9C6B54" stroke-width="8" stroke-linecap="round" d="M1410.978,457.9
+		<path fill="none" stroke="#9C6B54" stroke-width="16" stroke-linecap="round" d="M1410.978,457.9
 			c77.883,57.069,118.436,78.018,205.315,116.153c22.291-21.352,15.711-60.562,12.892-90.237
 			c-9.669-100.442-44.716-177.922-51.564-277.156c21.082-44.446,87.015-31.824,109.573,3.224
 			c31.959,72.914,58.144,153.214,77.346,244.928c5.506,26.991,4.565,60.561,25.782,80.569
@@ -732,15 +732,15 @@
 			c-25.11-109.842-44.044-75.332-119.107-153.349"/>
 	</g>
 </g>
-<path display="none" fill="none" stroke="#FCB054" stroke-width="8" stroke-linecap="round" d="M1313.905,405.958
+<path display="none" fill="none" stroke="#FCB054" stroke-width="16" stroke-linecap="round" d="M1313.905,405.958
 	c40.957-25.484,63.535,28.488,100.495,55.497"/>
-<path display="none" fill="none" stroke="#FCB054" stroke-width="8" stroke-linecap="round" d="M1358.903,549.952
+<path display="none" fill="none" stroke="#FCB054" stroke-width="16" stroke-linecap="round" d="M1358.903,549.952
 	c-36.345-37.798-112.495-101.995-44.998-143.993"/>
 <g id="XMLID_49_" display="none">
 	<g display="inline">
 	</g>
 	<g display="inline">
-		<path fill="none" stroke="#9C6B54" stroke-width="8" stroke-linecap="round" d="M1617.702,425.452
+		<path fill="none" stroke="#9C6B54" stroke-width="16" stroke-linecap="round" d="M1617.702,425.452
 			c31.556,71.975,19.202,98.965,52.504,129.044c16.517-35.987-10.608-96.011-20.948-126.09
 			c-24.036-68.887-15.71-124.21-22.559-223.443c21.082-44.447,67.946-33.168,90.505,1.88
 			c31.959,72.914,29.677,154.691,48.879,246.405c5.505,26.99,13.563,53.176,25.781,80.568c23.365-47.4-16.113-118.838-9.399-180.205
@@ -760,13 +760,13 @@
 			c41.224-84.866,52.101-120.719,54.652-171.746c6.042-117.093-13.429-121.524-37.465-193.499"/>
 	</g>
 </g>
-<path display="none" fill="none" stroke="#FCB054" stroke-width="8" stroke-linecap="round" d="M1491.725,498.965
+<path display="none" fill="none" stroke="#FCB054" stroke-width="16" stroke-linecap="round" d="M1491.725,498.965
 	c-28.499-166.491,87.796-159.626,121.494-80.995"/>
 <g id="XMLID_48_" display="none">
 	<g display="inline">
 	</g>
 	<g display="inline">
-		<path fill="none" stroke="#9C6B54" stroke-width="8" stroke-linecap="round" d="M2076.751,140.512
+		<path fill="none" stroke="#9C6B54" stroke-width="16" stroke-linecap="round" d="M2076.751,140.512
 			c3.356,33.301,15.711,124.478,16.382,148.514c1.611,46.462,20.68,246.54,19.068,289.242
 			c-1.209,30.078,12.219,63.648,16.113,96.682c4.028,35.048,1.478,71.304,3.223,106.351c3.223,70.095,13.025,145.292,6.445,215.924
 			c-1.88,19.068-11.146,38.404-12.891,58.01c-3.76,38.807,8.729,81.911,16.113,125.687
@@ -786,15 +786,15 @@
 			c10.474,59.89,22.559,158.988,40.553,166.509c15.039-52.504-8.191-318.515-6.043-379.613"/>
 	</g>
 </g>
-<path display="none" fill="none" stroke="#FCB054" stroke-width="8" stroke-linecap="round" d="M2017.661,23.008
+<path display="none" fill="none" stroke="#FCB054" stroke-width="16" stroke-linecap="round" d="M2017.661,23.008
 	c58.363-2.484,52.979,63.095,58.498,116.994"/>
-<path display="none" fill="none" stroke="#FCB054" stroke-width="8" stroke-linecap="round" d="M1975.663,146
+<path display="none" fill="none" stroke="#FCB054" stroke-width="16" stroke-linecap="round" d="M1975.663,146
 	c2.162-59.602-28.498-119.992,41.998-122.992"/>
 <g id="XMLID_47_" display="none">
 	<g display="inline">
 	</g>
 	<g display="inline">
-		<path fill="none" stroke="#9C6B54" stroke-width="8" stroke-linecap="round" d="M1896.71,131.495
+		<path fill="none" stroke="#9C6B54" stroke-width="16" stroke-linecap="round" d="M1896.71,131.495
 			c13.025,59.487,69.961,386.46,87.954,393.98c15.039-52.503,8.862-252.045,11.011-313.009
 			c10.475-22.425,71.975-52.503,98.966-2.954c3.356,33.437,0.269,54.921,1.074,78.957c1.477,46.462,20.545,246.54,18.934,289.241
 			c-1.209,30.079,12.219,63.649,16.113,96.683c4.028,35.048,1.478,71.304,3.223,106.351c3.223,70.095,13.025,145.292,6.445,215.924
@@ -813,15 +813,15 @@
 			c23.364-47.401-17.591-327.243-32.899-388.609"/>
 	</g>
 </g>
-<path display="none" fill="none" stroke="#FCB054" stroke-width="8" stroke-linecap="round" d="M1826.647,17.979
+<path display="none" fill="none" stroke="#FCB054" stroke-width="16" stroke-linecap="round" d="M1826.647,17.979
 	c58.059,2.511,61.059,59.507,70.058,112.005"/>
-<path display="none" fill="none" stroke="#FCB054" stroke-width="8" stroke-linecap="round" d="M1791.71,135.983
+<path display="none" fill="none" stroke="#FCB054" stroke-width="16" stroke-linecap="round" d="M1791.71,135.983
 	c-10.5-56.997-35.56-115.005,34.937-118.005"/>
 <g id="XMLID_46_" display="none">
 	<g display="inline">
 	</g>
 	<g display="inline">
-		<path fill="none" stroke="#9C6B54" stroke-width="8" stroke-linecap="round" d="M1695.662,78.92
+		<path fill="none" stroke="#9C6B54" stroke-width="16" stroke-linecap="round" d="M1695.662,78.92
 			c19.605,61.501,81.509,272.457,100.711,364.17c5.505,26.99,4.565,60.561,25.782,80.568c23.364-47.401-16.114-118.839-9.4-180.205
 			c6.714-62.575-5.236-123.404,15.04-169.865c22.827-21.485,69.154-19.605,87.014,9.668
 			c14.503,24.036,12.622,110.916,12.891,170.806c0.269,79.092,21.217,165.568,55.593,195.379
@@ -841,13 +841,13 @@
 			c22.29-21.351,15.711-60.561,12.891-90.236c-8.729-90.103-65.798-286.556-85.269-385.655"/>
 	</g>
 </g>
-<path display="none" fill="none" stroke="#FCB054" stroke-width="8" stroke-linecap="round" d="M1575.202,82
+<path display="none" fill="none" stroke="#FCB054" stroke-width="16" stroke-linecap="round" d="M1575.202,82
 	c-6-107.994,79.496-97.494,119.994-7.499"/>
 <g id="XMLID_45_" display="none">
 	<g display="inline">
 	</g>
 	<g display="inline">
-		<path fill="none" stroke="#9C6B54" stroke-width="8" stroke-linecap="round" d="M1482.712,128.478
+		<path fill="none" stroke="#9C6B54" stroke-width="16" stroke-linecap="round" d="M1482.712,128.478
 			c42.03,120.047,52.504,207.061,102.054,317.977c13.428,22.56,74.929,121.524,68.752,29.14
 			c-6.715-100.711-44.716-177.923-51.564-277.156c21.082-44.447,87.015-31.824,109.573,3.223
 			c31.959,72.915,58.144,153.215,77.346,244.929c5.506,26.99,4.565,60.561,25.782,80.568
@@ -867,15 +867,15 @@
 			c-34.913-152.678-110.782-466.761-128.641-536.05"/>
 	</g>
 </g>
-<path display="none" fill="none" stroke="#FCB054" stroke-width="8" stroke-linecap="round" d="M1396.221,28.5
+<path display="none" fill="none" stroke="#FCB054" stroke-width="16" stroke-linecap="round" d="M1396.221,28.5
 	c58.586-14.646,70.372,57.287,85.495,100.494"/>
-<path display="none" fill="none" stroke="#FCB054" stroke-width="8" stroke-linecap="round" d="M1369.222,155.993
+<path display="none" fill="none" stroke="#FCB054" stroke-width="16" stroke-linecap="round" d="M1369.222,155.993
 	c-13.16-50.758-20.999-115.494,26.999-127.493"/>
 <g id="XMLID_44_" display="none">
 	<g display="inline">
 	</g>
 	<g display="inline">
-		<path fill="none" stroke="#9C6B54" stroke-width="8" stroke-linecap="round" d="M1304.257,89.454
+		<path fill="none" stroke="#9C6B54" stroke-width="16" stroke-linecap="round" d="M1304.257,89.454
 			c64.455,107.961,184.502,264.534,262.519,371.958c13.563,22.425,92.923,105.947,86.746,13.696
 			c-6.849-100.711-44.716-177.922-51.564-277.156c21.083-44.447,87.015-31.824,109.573,3.223
 			c31.959,72.915,58.145,153.215,77.347,244.929c5.505,26.99,4.565,60.561,25.781,80.568c23.365-47.4-16.113-118.838-9.399-180.205
@@ -895,15 +895,15 @@
 			c-34.913-152.678-275.545-495.094-297.164-555.521"/>
 	</g>
 </g>
-<path display="none" fill="none" stroke="#FCB054" stroke-width="8" stroke-linecap="round" d="M1206.739,12.989
+<path display="none" fill="none" stroke="#FCB054" stroke-width="16" stroke-linecap="round" d="M1206.739,12.989
 	c58.586-14.646,75.103,41.407,100.495,79.496"/>
-<path display="none" fill="none" stroke="#FCB054" stroke-width="8" stroke-linecap="round" d="M1200.74,135.983
+<path display="none" fill="none" stroke="#FCB054" stroke-width="16" stroke-linecap="round" d="M1200.74,135.983
 	c-31.499-58.497-50.998-86.996,4.5-121.494"/>
 <g id="XMLID_43_" display="none">
 	<g display="inline">
 	</g>
 	<g display="inline">
-		<path fill="none" stroke="#9C6B54" stroke-width="8" stroke-linecap="round" d="M919.778,86.95
+		<path fill="none" stroke="#9C6B54" stroke-width="16" stroke-linecap="round" d="M919.778,86.95
 			c-64.455,107.962-133.475,264.534-211.492,371.958c-13.563,22.425-92.922,105.947-86.746,13.696
 			c6.848-100.711,44.715-177.922,51.564-277.155c-21.082-44.447-87.014-31.825-109.573,3.223
 			c-31.959,72.914-58.144,153.214-77.346,244.928c-5.505,26.991-4.565,60.562-25.782,80.569
@@ -922,15 +922,15 @@
 			c34.913-152.677,224.518-495.094,246.003-555.52"/>
 	</g>
 </g>
-<path display="none" fill="none" stroke="#FCB054" stroke-width="8" stroke-linecap="round" d="M1017.318,10.456
+<path display="none" fill="none" stroke="#FCB054" stroke-width="16" stroke-linecap="round" d="M1017.318,10.456
 	c-58.586-14.646-75.102,41.407-100.494,79.496"/>
-<path display="none" fill="none" stroke="#FCB054" stroke-width="8" stroke-linecap="round" d="M1023.318,133.449
+<path display="none" fill="none" stroke="#FCB054" stroke-width="16" stroke-linecap="round" d="M1023.318,133.449
 	c31.498-58.497,50.998-86.996-4.5-121.494"/>
 <g id="XMLID_42_" display="none">
 	<g display="inline">
 	</g>
 	<g display="inline">
-		<path fill="none" stroke="#9C6B54" stroke-width="8" stroke-linecap="round" d="M756.34,85.44
+		<path fill="none" stroke="#9C6B54" stroke-width="16" stroke-linecap="round" d="M756.34,85.44
 			c-19.068,104.605-37.733,244.123-76.137,392.504c-11.951,46.461-41.761,83.388-44.984,1.477
 			c-3.894-100.845,38.539-178.728,45.387-277.962c-21.082-44.447-87.014-31.824-109.573,3.224
 			c-31.959,72.914-46.998,150.126-66.2,241.84c-5.506,26.99-6.043,85.402-26.991,80.971c-2.148-61.231,6.177-116.152-0.537-177.519
@@ -949,15 +949,15 @@
 			c34.913-152.678,53.578-502.613,75.063-563.04"/>
 	</g>
 </g>
-<path display="none" fill="none" stroke="#FCB054" stroke-width="8" stroke-linecap="round" d="M819.757,9.989
+<path display="none" fill="none" stroke="#FCB054" stroke-width="16" stroke-linecap="round" d="M819.757,9.989
 	c-59.997,4.5-49.104,37.065-62.997,77.996"/>
-<path display="none" fill="none" stroke="#FCB054" stroke-width="8" stroke-linecap="round" d="M859.862,131.916
+<path display="none" fill="none" stroke="#FCB054" stroke-width="16" stroke-linecap="round" d="M859.862,131.916
 	c19.893-63.429,17.287-108.859-38.604-121.926"/>
 <g id="XMLID_41_" display="none">
 	<g display="inline">
 	</g>
 	<g display="inline">
-		<path fill="none" stroke="#9C6B54" stroke-width="8" stroke-linecap="round" d="M558.255,70.051
+		<path fill="none" stroke="#9C6B54" stroke-width="16" stroke-linecap="round" d="M558.255,70.051
 			c-19.471,61.366-36.122,277.291-55.324,369.004c-5.506,26.99-4.565,60.561-25.782,80.568
 			c-23.365-47.401,16.114-118.839,9.4-180.205c-6.714-62.575,2.551-105.947-17.725-152.409
 			c-22.828-21.484-69.155-19.604-87.014,9.669c-14.502,24.036-9.937,93.459-10.205,153.349
@@ -976,13 +976,13 @@
 			c-22.291-21.351-15.711-60.561-12.891-90.236c8.594-90.103,2.551-285.481,22.022-384.581"/>
 	</g>
 </g>
-<path display="none" fill="none" stroke="#FCB054" stroke-width="8" stroke-linecap="round" d="M660.766,78.986
+<path display="none" fill="none" stroke="#FCB054" stroke-width="16" stroke-linecap="round" d="M660.766,78.986
 	c11.999-77.996-84.486-88.558-101.995-13.5"/>
 <g id="XMLID_40_" display="none">
 	<g display="inline">
 	</g>
 	<g display="inline">
-		<path fill="none" stroke="#9C6B54" stroke-width="8" stroke-linecap="round" d="M339.571,123.445
+		<path fill="none" stroke="#9C6B54" stroke-width="16" stroke-linecap="round" d="M339.571,123.445
 			c-13.025,59.486-32.496,391.026-50.49,398.546c-15.04-52.504-8.594-232.038-10.742-293.001
 			c-5.909-37.062-85.403-35.45-95.877,20.008c-3.357,33.436-3.625,11.951-4.431,35.987c-1.477,46.461-20.545,246.54-18.934,289.241
 			c1.208,30.079-12.22,63.649-16.114,96.682c-4.028,35.048-1.477,71.304-3.223,106.351c-3.223,70.095-13.025,145.292-6.445,215.924
@@ -1000,15 +1000,15 @@
 			c-23.365-47.4-13.697-335.836,1.611-397.203"/>
 	</g>
 </g>
-<path display="none" fill="none" stroke="#FCB054" stroke-width="8" stroke-linecap="round" d="M409.586,9.944
+<path display="none" fill="none" stroke="#FCB054" stroke-width="16" stroke-linecap="round" d="M409.586,9.944
 	c-62.308-5.955-61.059,59.507-70.058,112.005"/>
-<path display="none" fill="none" stroke="#FCB054" stroke-width="8" stroke-linecap="round" d="M450.774,123.983
+<path display="none" fill="none" stroke="#FCB054" stroke-width="16" stroke-linecap="round" d="M450.774,123.983
 	c4.5-59.997,7.5-110.994-41.188-114.039"/>
 <g id="XMLID_39_" display="none">
 	<g display="inline">
 	</g>
 	<g display="inline">
-		<path fill="none" stroke="#9C6B54" stroke-width="8" stroke-linecap="round" d="M151.68,118.498
+		<path fill="none" stroke="#9C6B54" stroke-width="16" stroke-linecap="round" d="M151.68,118.498
 			c-3.357,33.436,13.428,140.458,12.623,164.495c-1.477,46.461,17.994,217.535,25.513,266.95
 			c3.357,22.425-14.905,94.399-18.799,127.433c-4.028,35.047-1.477,71.303-3.223,106.351
 			c-3.223,70.095-13.025,145.292-6.445,215.924c1.88,19.067,11.145,38.404,12.891,58.009c3.76,38.808-8.728,81.912-16.114,125.688
@@ -1028,8 +1028,8 @@
 			c-15.04-52.504-63.783-339.462-65.932-400.426"/>
 	</g>
 </g>
-<path display="none" fill="none" stroke="#FCB054" stroke-width="8" stroke-linecap="round" d="M194.276,26.488
+<path display="none" fill="none" stroke="#FCB054" stroke-width="16" stroke-linecap="round" d="M194.276,26.488
 	c-38.998,1.5-43.498,38.998-41.999,91.496"/>
-<path display="none" fill="none" stroke="#FCB054" stroke-width="8" stroke-linecap="round" d="M251.639,127.466
+<path display="none" fill="none" stroke="#FCB054" stroke-width="16" stroke-linecap="round" d="M251.639,127.466
 	c-9.366-61.979-9.366-102.478-57.363-100.978"/>
 </svg>

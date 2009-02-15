@@ -3,7 +3,6 @@ Typing Turtle
 First Release
 + Status message on the main screen.  "You unlocked a new lesson!" for example.  Eventually have the turtle 'say' it.
 + Graphical WPM and accuracy meters.
-+ Make medal WPM adjustable somehow?  Perhaps a settable Goal WPM?
 + Sound effects.
   + Welcome to the activity sound.
   + Speed up / slow down sounds when WPM crosses threshold: Slow, Medium, Fast.
