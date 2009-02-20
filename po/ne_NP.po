@@ -1,0 +1,262 @@
+# test
+#
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: test test\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-02-11 02:39+0000\n"
+"PO-Revision-Date: 2009-02-12 12:40+0530\n"
+"Last-Translator: Pradosh Kharel <pradosh.kharel@gmail.com>\n"
+"Language-Team: Nepali\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: activity/activity.info:2
+#: typingturtle.py:56
+#: mainscreen.py:49
+msgid "Typing Turtle"
+msgstr "टाईपीङ्ग टर्टल"
+
+#: lessonscreen.py:59
+#: balloongame.py:51
+msgid "Go Back"
+msgstr "पछाडी"
+
+#: lessonscreen.py:177
+#, python-format
+msgid "<b>WPM:</b> %(wpm)d"
+msgstr "<b>शब्द प्रती मिनेट:</b> %(wpm)d"
+
+#: lessonscreen.py:185
+#: medalscreen.py:89
+#, python-format
+msgid "<b>Accuracy:</b> %(accuracy)d%%"
+msgstr "<b>शुद्धता:</b> %(accuracy)d%%"
+
+#: lessonscreen.py:536
+msgid "Good job!"
+msgstr "राम्रो काम !"
+
+#: lessonscreen.py:537
+msgid "Well done!"
+msgstr "राम्रो गर्यौ"
+
+#: lessonscreen.py:538
+msgid "Nice work!"
+msgstr "स्याबास"
+
+#: lessonscreen.py:539
+msgid "Way to go!"
+msgstr "राम्रो"
+
+#: lessonscreen.py:544
+#, python-format
+msgid "You finished the lesson in %(time)d seconds, with %(errors)d errors.\n"
+msgstr "तिमीले यो पाठ %(time)d सेकेन्डमा %(errors)d गलतीहरु गरेर सकायौ । \n"
+
+#: lessonscreen.py:546
+#, python-format
+msgid ""
+"Your words per minute (WPM) was %(wpm)d, and your accuracy was %(accuracy)d%%.\n"
+"\n"
+msgstr ""
+"तिम्रो शब्द प्रती मिनेट (श.प्र.मि) %(wpm)d र शुद्धता %(accuracy)d%% हो । \n"
+"\n"
+
+#: lessonscreen.py:549
+#, python-format
+msgid "You finished the lesson with %(errors)d errors.\n"
+msgstr "तिमीले यो पाठ %(errors)d गलती गरेर सकायौ । \n"
+
+#: lessonscreen.py:551
+#, python-format
+msgid ""
+"Your accuracy was %(accuracy)d%%.\n"
+"\n"
+msgstr ""
+"तिम्रो शुद्धता %(accuracy)d%% थियो । \n"
+"\n"
+
+#: lessonscreen.py:557
+#, python-format
+msgid "Congratulations!  You earned a %(type)s medal!"
+msgstr "बधाई छ! तिमीले एकओटा %(type)s पदक जित्यौ !"
+
+#: lessonscreen.py:565
+msgid "You need to practice this lesson more before moving on."
+msgstr "तिमीले यो पाठको अझै अभ्यास गर्नु पर्छ । "
+
+#: lessonscreen.py:568
+msgid "You almost got a medal!  Next time, try not to make as many errors."
+msgstr "तिमीले झण्डै पदक पयौ ! अर्को पटक धेरै गलतीहरु नगर ।"
+
+#: lessonscreen.py:571
+msgid "You almost got a medal!  Next time, try to type a little faster."
+msgstr "तिमीले झण्डै पदक पयौ ! अर्को पटक छिटो टाईप गर्न प्रयास गर ।"
+
+#: medalscreen.py:53
+msgid "<span font_desc='Serif Bold Italic 28'>Certificate of Achievement</span>"
+msgstr "<span font_desc='Serif Bold Italic 28'>उपलब्धिको प्रमाणपत्र</span>"
+
+#: medalscreen.py:56
+msgid "<span font_desc='Sans 16'>This certifies that</span>"
+msgstr "<span font_desc='Sans 16'>यसले यो प्रमाण गर्छकी</span>"
+
+#: medalscreen.py:62
+#, python-format
+msgid "<span font_desc='Sans 16'>earned a %(type)s medal in </span>"
+msgstr "<span font_desc='Sans 16'>ले एकओटा %(type)s पदक यो </span>"
+
+#: medalscreen.py:65
+#, python-format
+msgid "<span font_desc='Sans 16'>in <b><u><i>%(lesson)s</i></u></b></span>"
+msgstr "<span font_desc='Sans 16'>in <b><u><i>%(lesson)s पाठमा</i></u></b></span>"
+
+#: medalscreen.py:68
+#, python-format
+msgid "<span font_desc='Sans 16'>on <b><u><i>%(date)s</i></u></b>.</span>"
+msgstr "<span font_desc='Sans 16'>on <b><u><i>%(date)s गते</i></u></b>.</span>"
+
+#: medalscreen.py:85
+#, python-format
+msgid "<b>Words Per Minute:</b> %(wpm)d"
+msgstr "<b>शब्द प्रती मिनेट:</b> %(wpm)d"
+
+#: medalscreen.py:94
+#, python-format
+msgid "<b>SCORE:</b> %(score)d"
+msgstr "<b>अंक:</b> %(score)d"
+
+#: medalscreen.py:98
+#: balloongame.py:217
+msgid "Press the ENTER key to continue."
+msgstr "अघि बढ्नको लागि एन्टर कि थिच"
+
+#: mainscreen.py:108
+msgid "Next"
+msgstr "अघि"
+
+#: mainscreen.py:117
+msgid "Previous"
+msgstr "पछाडी"
+
+#: mainscreen.py:124
+msgid "Start Lesson"
+msgstr "पाठ सुरु गर"
+
+#: mainscreen.py:218
+msgid ""
+"You earned a medal in this lesson!  Advance to the next one\n"
+"by clicking the Next button."
+msgstr ""
+"तिमीले यो पाठमा एकओटा पदक कमायौ ! दाईने बटन थिचेर \n"
+"अर्को पाठ सुरु गर"
+
+#: mainscreen.py:248
+msgid "No Medal Yet"
+msgstr "कुनै पदक छैन"
+
+#: mainscreen.py:249
+msgid "Bronze Medal"
+msgstr "कास्य पदक"
+
+#: mainscreen.py:250
+msgid "Silver Medal"
+msgstr "रजत पदक"
+
+#: mainscreen.py:251
+msgid "Gold Medal"
+msgstr "स्वर्ण पदक"
+
+#: balloongame.py:204
+msgid "You finished!"
+msgstr "तिमीले सकायौ !"
+
+#: balloongame.py:213
+#, python-format
+msgid "Your score was %(score)d."
+msgstr "तिम्रो अंक %(score)d हो ।"
+
+#: balloongame.py:215
+#, python-format
+msgid "You earned a %(type)s medal!"
+msgstr "तिमीले %(type)s पदक कमायौ !"
+
+#: balloongame.py:315
+#: balloongame.py:323
+#, python-format
+msgid "SCORE: %d"
+msgstr "अंक: %d"
+
+#: balloongame.py:334
+msgid "Type the words to pop the balloons!"
+msgstr "फुकुना फुटाउनको लागि शब्द टाईप गर !"
+
+#: lessonbuilder.py:380
+#, python-format
+msgid "Hihowahyah!  Ready to learn the secret of fast typing?\n"
+msgstr "के तिमीलाई छिटो टाईप गर्ने सिप सिक्न मन छ?\n"
+
+#: lessonbuilder.py:381
+#, python-format
+msgid ""
+"Always use the correct finger to press each key!\n"
+"\n"
+msgstr ""
+"जहिलेपनी कि थिच्न ठिक औँला प्रयोग गर !\n"
+"\n"
+
+#: lessonbuilder.py:382
+#, python-format
+msgid "Now, place your hands on the keyboard just like the picture below.\n"
+msgstr "अब आफ्नो हात तलको पोटो मा देखाए जसरी किबोर्डमा राख । \n"
+
+#: lessonbuilder.py:383
+#, python-format
+msgid "When you're ready, press the SPACE bar with your thumb!"
+msgstr "तयार भएपछी बुढी औलाले SPACE BAR थिच ! "
+
+#: lessonbuilder.py:387
+msgid ""
+"Good job!  The SPACE bar is used to insert spaces between words.\n"
+"\n"
+msgstr ""
+"राम्रो ! SPACE BAR शब्दहरुको बिचमा खाली ठाउँ राख्नको लागी प्रयोग गरिन्छ । \n"
+"\n"
+
+#: lessonbuilder.py:388
+msgid "Press the SPACE bar again with your thumb."
+msgstr "फेरी आफ्नो बुढी औलाले SPACE BAR थिच ।"
+
+#: lessonbuilder.py:392
+#, python-format
+msgid "Now I'll teach you the second key, ENTER.  "
+msgstr "अब, म तिमीलाई दोस्रो कि सिकाउँछु, एन्टर ।"
+
+#: lessonbuilder.py:393
+#, python-format
+msgid ""
+"That's the big square key near your right little finger.\n"
+"\n"
+msgstr ""
+"तयो भन्या तिम्रो दायाँ हातको कान्छी औँलाको नजिक को वर्ग हो। \n"
+"\n"
+
+#: lessonbuilder.py:394
+msgid "Now, reach your little finger over and press ENTER."
+msgstr "अब तिम्रो दायाँ हातको कान्छी औँलाले एन्टर थिच ।"
+
+#: lessonbuilder.py:398
+msgid ""
+"Great!  When typing, the ENTER key is used to begin a new line.\n"
+"\n"
+msgstr ""
+"स्याबास ! टाईप गरिरहेको बेला एन्टर कि नयाँ लाईन सुरु गर्न प्रयोग गरिन्छ । \n"
+"\n"
+
+#: lessonbuilder.py:399
+msgid "Press the ENTER key again with your right little finger."
+msgstr "फेरि आफ्नो दायाँ हातको कान्छी औँलाले एन्टर थिच ।"
+

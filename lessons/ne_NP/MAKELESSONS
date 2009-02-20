@@ -7,7 +7,7 @@
 #
 
 # Generate the introductory lesson.
-../../lessonbuilder --intro-lesson \
+../../lessonbuilder.py --intro-lesson \
     --title="स्वागतम" \
     --desc="कृयाकलाप सुरु गर्न यहाँ थिच ।" \
     --bronze-wpm=0 --silver-wpm=0 --gold-wpm=0 \
@@ -17,7 +17,7 @@
     --output=intro.lesson
 
 # Generate the home, top and bottom row lessons.
-../../lessonbuilder --key-lesson \
+../../lessonbuilder.py --key-lesson \
     --title="गृह पंक्ति" \
     --desc="यो पाठले तिमीलाई ब, क, म, ा, न, ज, व, प and ि keys \nin the middle of the keyboard.\nThese keys are called the Home Row." \
     --keys="बकमानजवपि" \
@@ -26,7 +26,7 @@
     --order=1 \
     --output=homerow.lesson
     
-../../lessonbuilder --game-lesson \
+../../lessonbuilder.py --game-lesson \
     --title="Home Row Balloon Practice" \
     --desc="Practice the home row keys in this exciting game!\nDon't let any balloons get by!" \
     --keys="बकमानजवपि" \
@@ -36,7 +36,7 @@
     --order=2 \
     --output=homerowballoon.lesson
     
-../../lessonbuilder --key-lesson \
+../../lessonbuilder.py --key-lesson \
     --title="The Top Row" \
     --desc="This lesson teaches you the त्र, ध, भ, च, त, थ, ग, ष, य and उ keys \non the top row of the keyboard." \
     --keys="त्रधभचतथगषयउ" --base-keys="बकमानजवपि" \
@@ -45,7 +45,7 @@
     --order=3 \
     --output=toprow.lesson
 
-../../lessonbuilder --key-lesson \
+../../lessonbuilder.py --key-lesson \
     --title="The Bottom Row" \
     --desc="This lesson teaches you the श, ह, अ, ख, द, ल and ः keys \non the bottom row of the keyboard." \
     --keys="शहअखदलः" --base-keys="बकमानजवपित्रधभचतथगषयउ" \
@@ -55,7 +55,7 @@
     --output=bottomrow.lesson
 
 # Generate left and right hand capital lessons.
-../../lessonbuilder --key-lesson \
+../../lessonbuilder.py --key-lesson \
     --title="Left Hand Capitals" \
     --desc="This lesson teaches you the CAPITAL letters which are typed \nby your left hand.\nThese are त्त, ड्ढ, ऐ, द्ब, ट्ट, आ, ङ्क, ङ्ग, ँ, द्द, क्क, ह्य, ऋ, ॐ and ौ." \
     --keys="त्तड्ढऐद्बट्टआङ्कङ्गँद्दक्कह्यऋॐौ" \
@@ -65,7 +65,7 @@
     --order=5 \
     --output=leftcapital.lesson
 
-../../lessonbuilder --key-lesson \
+../../lessonbuilder.py --key-lesson \
     --title="Right Hand Capitals" \
     --desc="This lesson teaches you the CAPITAL letters which are typed \nby your right hand.\nThese are ठ्ठ, ऊ, क्ष, इ, ए, झ, ो, फ, ी, ौ, द्य, and ड्ड." \
     --keys="ठ्ठऊक्षइएझोफीौद्यड्ड" \

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-11 02:39+0000\n"
+"POT-Creation-Date: 2009-02-20 07:41+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,7 +20,7 @@ msgstr ""
 msgid "Typing Turtle"
 msgstr ""
 
-#: lessonscreen.py:59 balloongame.py:51
+#: lessonscreen.py:59 balloongame.py:53
 msgid "Go Back"
 msgstr ""
 
@@ -38,7 +38,7 @@ msgstr ""
 msgid "Good job!"
 msgstr ""
 
-#: lessonscreen.py:537
+#: lessonscreen.py:537 lessonbuilder.py:38
 msgid "Well done!"
 msgstr ""
 
@@ -46,7 +46,7 @@ msgstr ""
 msgid "Nice work!"
 msgstr ""
 
-#: lessonscreen.py:539
+#: lessonscreen.py:539 lessonbuilder.py:41
 msgid "Way to go!"
 msgstr ""
 
@@ -92,6 +92,190 @@ msgstr ""
 msgid "You almost got a medal!  Next time, try to type a little faster."
 msgstr ""
 
+#: lessonbuilder.py:39
+msgid "Good job."
+msgstr ""
+
+#: lessonbuilder.py:40
+msgid "Awesome!"
+msgstr ""
+
+#: lessonbuilder.py:42
+msgid "Wonderful!"
+msgstr ""
+
+#: lessonbuilder.py:43
+msgid "Nice work."
+msgstr ""
+
+#: lessonbuilder.py:44
+msgid "You did it!"
+msgstr ""
+
+#: lessonbuilder.py:51
+msgid ""
+"Be careful to use the correct finger to press each key.  Look at the "
+"keyboard below if you need help remembering."
+msgstr ""
+
+#: lessonbuilder.py:52
+msgid ""
+"Try to type at the same speed, all the time.  As you get more comfortable "
+"you can increase the speed a little."
+msgstr ""
+
+#: lessonbuilder.py:59
+msgid "left little"
+msgstr ""
+
+#: lessonbuilder.py:60
+msgid "left ring"
+msgstr ""
+
+#: lessonbuilder.py:61
+msgid "left middle"
+msgstr ""
+
+#: lessonbuilder.py:62
+msgid "left index"
+msgstr ""
+
+#: lessonbuilder.py:63
+msgid "left thumb"
+msgstr ""
+
+#: lessonbuilder.py:64
+msgid "right little"
+msgstr ""
+
+#: lessonbuilder.py:65
+msgid "right ring"
+msgstr ""
+
+#: lessonbuilder.py:66
+msgid "right middle"
+msgstr ""
+
+#: lessonbuilder.py:67
+msgid "right index"
+msgstr ""
+
+#: lessonbuilder.py:68
+msgid "right thumb"
+msgstr ""
+
+#: lessonbuilder.py:309
+#, python-format
+msgid " and %s keys"
+msgstr ""
+
+#: lessonbuilder.py:311
+msgid " key"
+msgstr ""
+
+#: lessonbuilder.py:314
+#, python-format
+msgid ""
+"In this lesson, you will learn the %(keynames)s.\n"
+"\n"
+"Press the ENTER key when you are ready to begin!"
+msgstr ""
+
+#: lessonbuilder.py:337
+#, python-format
+msgid "Press and hold the SHIFT key with your %(finger)s finger, "
+msgstr ""
+
+#: lessonbuilder.py:338 lessonbuilder.py:342 lessonbuilder.py:346
+#, python-format
+msgid "then press the %(letter)s key with your %(finger)s finger."
+msgstr ""
+
+#: lessonbuilder.py:341
+msgid "Press and hold the ALTGR key, "
+msgstr ""
+
+#: lessonbuilder.py:345
+msgid "Press and hold the ALTGR and SHIFT keys, "
+msgstr ""
+
+#: lessonbuilder.py:349
+#, python-format
+msgid "Press the %(letter)s key with your %(finger)s finger."
+msgstr ""
+
+#: lessonbuilder.py:354
+msgid "Practice typing the keys you just learned."
+msgstr ""
+
+#: lessonbuilder.py:358
+msgid "Now put the keys together into pairs."
+msgstr ""
+
+#: lessonbuilder.py:363
+msgid "Time to type jumbles."
+msgstr ""
+
+#: lessonbuilder.py:368
+msgid "Time to type real words."
+msgstr ""
+
+#: lessonbuilder.py:380
+msgid "Hihowahyah!  Ready to learn the secret of fast typing?\n"
+msgstr ""
+
+#: lessonbuilder.py:381
+msgid ""
+"Always use the correct finger to press each key!\n"
+"\n"
+msgstr ""
+
+#: lessonbuilder.py:382
+msgid "Now, place your hands on the keyboard just like the picture below.\n"
+msgstr ""
+
+#: lessonbuilder.py:383
+msgid "When you're ready, press the SPACE bar with your thumb!"
+msgstr ""
+
+#: lessonbuilder.py:387
+msgid ""
+"Good job!  The SPACE bar is used to insert spaces between words.\n"
+"\n"
+msgstr ""
+
+#: lessonbuilder.py:388
+msgid "Press the SPACE bar again with your thumb."
+msgstr ""
+
+#: lessonbuilder.py:392
+msgid "Now I'll teach you the second key, ENTER.  "
+msgstr ""
+
+#: lessonbuilder.py:393
+msgid ""
+"That's the big square key near your right little finger.\n"
+"\n"
+msgstr ""
+
+#: lessonbuilder.py:394
+msgid "Now, reach your little finger over and press ENTER."
+msgstr ""
+
+#: lessonbuilder.py:398
+msgid ""
+"Great!  When typing, the ENTER key is used to begin a new line.\n"
+"\n"
+msgstr ""
+
+#: lessonbuilder.py:399
+msgid "Press the ENTER key again with your right little finger."
+msgstr ""
+
+#: lessonbuilder.py:411
+msgid "Copy out the following text."
+msgstr ""
+
 #: medalscreen.py:53
 msgid ""
 "<span font_desc='Serif Bold Italic 28'>Certificate of Achievement</span>"
@@ -131,7 +315,7 @@ msgstr ""
 msgid "<b>SCORE:</b> %(score)d"
 msgstr ""
 
-#: medalscreen.py:98 balloongame.py:217
+#: medalscreen.py:98 balloongame.py:223
 msgid "Press the ENTER key to continue."
 msgstr ""
 
@@ -169,25 +353,25 @@ msgstr ""
 msgid "Gold Medal"
 msgstr ""
 
-#: balloongame.py:204
+#: balloongame.py:210
 msgid "You finished!"
 msgstr ""
 
-#: balloongame.py:213
+#: balloongame.py:219
 #, python-format
 msgid "Your score was %(score)d."
 msgstr ""
 
-#: balloongame.py:215
+#: balloongame.py:221
 #, python-format
 msgid "You earned a %(type)s medal!"
 msgstr ""
 
-#: balloongame.py:315 balloongame.py:323
+#: balloongame.py:321 balloongame.py:329
 #, python-format
 msgid "SCORE: %d"
 msgstr ""
 
-#: balloongame.py:334
+#: balloongame.py:340
 msgid "Type the words to pop the balloons!"
 msgstr ""

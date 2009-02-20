@@ -8,7 +8,7 @@ lessonscreen.py
 medalscreen.py
 mainscreen.py
 balloongame.py
-lessonbuilder
+lessonbuilder.py
 activity/Activity-typingturtle.svg
 activity/activity.info
 po/TypingTurtle.pot

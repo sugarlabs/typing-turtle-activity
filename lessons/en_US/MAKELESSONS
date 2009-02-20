@@ -3,7 +3,7 @@
 # Script for generating US English lesson content for Typing Turtle.
 # Author: Wade Brainerd <wadetb@gmail.com>
 #
-# Typing Turtle content is generated using the 'lessonbuilder' program
+# Typing Turtle content is generated using the 'lessonbuilder.py' program
 # which comes in the TypingTurtle.activity directory.  This program
 # can generate different kinds of lessons using a word list file.
 # 
@@ -25,12 +25,12 @@
 # to generate lesson content for your language, taking into account
 # the particulars of your keyboard layout and language.
 #
-# For more information on the lessonbuilder program, run:
-# ../../lessonbuilder --help
+# For more information on the lessonbuilder.py program, run:
+# ../../lessonbuilder.py --help
 #
 
 # Generate the introductory lesson.
-../../lessonbuilder --intro-lesson \
+../../lessonbuilder.py --intro-lesson \
     --title="Welcome" \
     --desc="Click Start Lesson to begin your typing adventure." \
     --bronze-wpm=0 --silver-wpm=0 --gold-wpm=0 \
@@ -39,7 +39,7 @@
     --output=intro.lesson
 
 # Generate the home, top and bottom row lessons.
-../../lessonbuilder --key-lesson \
+../../lessonbuilder.py --key-lesson \
     --title="The Home Row" \
     --desc="This lesson teaches you the a, s, d, f, g, h, j, k and l keys \nin the middle of the keyboard.\nThese keys are called the Home Row." \
     --keys="asdfghjkl" \
@@ -47,7 +47,7 @@
     --order=1 \
     --output=homerow.lesson
     
-../../lessonbuilder --game-lesson \
+../../lessonbuilder.py --game-lesson \
     --title="Home Row Balloons" \
     --desc="Practice the home row keys in this exciting game!\nDon't let any balloons get by!" \
     --keys="asdfghjkl" \
@@ -56,7 +56,7 @@
     --order=2 \
     --output=homerowgame.lesson
     
-../../lessonbuilder --key-lesson \
+../../lessonbuilder.py --key-lesson \
     --title="The Top Row" \
     --desc="This lesson teaches you the q, w, e, r, t, y, u, i, o and p keys \non the top row of the keyboard." \
     --keys="qwertyuiop" --base-keys="asdfghjkl" \
@@ -64,7 +64,7 @@
     --order=3 \
     --output=toprow.lesson
 
-../../lessonbuilder --game-lesson \
+../../lessonbuilder.py --game-lesson \
     --title="Top Row Balloons" \
     --desc="Practice the top row keys in this exciting game!\nDon't let any balloons get by!" \
     --keys="qwertyuiop" --base-keys="asdfghjkl" \
@@ -73,7 +73,7 @@
     --order=4 \
     --output=toprowgame.lesson
     
-../../lessonbuilder --key-lesson \
+../../lessonbuilder.py --key-lesson \
     --title="The Bottom Row" \
     --desc="This lesson teaches you the z, x, c, v, b, n and m keys \non the bottom row of the keyboard." \
     --keys="zxcvbnm" --base-keys="asdfghjklqwertyuiop" \
@@ -81,7 +81,7 @@
     --order=5 \
     --output=bottomrow.lesson
 
-../../lessonbuilder --game-lesson \
+../../lessonbuilder.py --game-lesson \
     --title="Bottom Row Balloons" \
     --desc="Practice the bottom row keys in this exciting game!\nDon't let any balloons get by!" \
     --keys="zxcvbnm" --base-keys="asdfghjklqwertyuiop" \
@@ -91,7 +91,7 @@
     --output=bottomrowgame.lesson
     
 # Generate left and right hand capital lessons.
-../../lessonbuilder --key-lesson \
+../../lessonbuilder.py --key-lesson \
     --title="Left Hand Capitals" \
     --desc="This lesson teaches you the CAPITAL letters which are typed \nby your left hand.\nThese are Q, W, E, R, T, A, S, D, F, G, Z, X, C, V and B." \
     --keys="QWERTASDFGZXCVB" --base-keys="abcdefghijklmnopqrstuvwxyz" \
@@ -99,7 +99,7 @@
     --order=7 \
     --output=leftcapital.lesson
 
-../../lessonbuilder --game-lesson \
+../../lessonbuilder.py --game-lesson \
     --title="Left Hand Capital Balloons" \
     --desc="Practice the left hand CAPITAL letters!\nDon't let any balloons get by!" \
     --keys="QWERTASDFGZXCVB" --base-keys="abcdefghijklmnopqrstuvwxyz" \
@@ -108,7 +108,7 @@
     --order=8 \
     --output=leftcapitalgame.lesson
     
-../../lessonbuilder --key-lesson \
+../../lessonbuilder.py --key-lesson \
     --title="Right Hand Capitals" \
     --desc="This lesson teaches you the CAPITAL letters which are typed \nby your right hand.\nThese are Y, U, I, O, P, H, J, K, L, N, and M." \
     --keys="YUIOPHJKLNM" --base-keys="abcdefghijklmnopqrstuvwxyzQWERTASDFGZXCVB" \
@@ -116,7 +116,7 @@
     --order=9 \
     --output=rightcapital.lesson
 
-../../lessonbuilder --game-lesson \
+../../lessonbuilder.py --game-lesson \
     --title="Right Hand Capital Balloons" \
     --desc="Practice the right hand CAPITAL letters!\nDon't let any balloons get by!" \
     --keys="YUIOPHJKLNM" --base-keys="abcdefghijklmnopqrstuvwxyzQWERTASDFGZXCVB" \
