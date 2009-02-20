@@ -534,7 +534,9 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
                 image = k['key-image-altgr']
             elif self.active_state == gtk.gdk.SHIFT_MASK|gtk.gdk.MOD5_MASK:
                 image = k['key-image-shift-altgr']
-
+            else:
+                continue
+ 
             self.window.draw_image(gc, image, 0, 0, x1, y1, x2-x1, y2-y1) 
         
         # Draw overlay images.

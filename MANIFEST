@@ -81,3 +81,6 @@ lessons/ne_NP/out.log
 lessons/ne_NP/rightcapital.lesson
 lessons/ne_NP/bottomrow.lesson
 lessons/ne_NP/leftcapital.lesson
+locale/ne_NP/activity.linfo
+locale/ne_NP/LC_MESSAGES/org.laptop.community.TypingTurtle.mo
+po/ne_NP.po

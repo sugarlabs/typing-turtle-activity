@@ -130,7 +130,7 @@ class MainScreen(gtk.VBox):
         
         # Load lessons for this language.
         bundle_path = sugar.activity.activity.get_bundle_path() 
-        code = locale.getlocale(locale.LC_ALL)[0]
+        code = locale.getdefaultlocale()[0]
         path = bundle_path + '/lessons/' + code
         self.load_lessons(path)
 
