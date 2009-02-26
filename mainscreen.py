@@ -27,6 +27,7 @@ from sugar.graphics import *
 
 # Import activity modules.
 import lessonscreen, medalscreen, balloongame
+import titlescene
 import keyboard
 
 # Temporary SVGs of medals from Wikimedia Commons.
@@ -35,61 +36,6 @@ import keyboard
 # http://commons.wikimedia.org/wiki/File:Silver_medal_world_centered.svg
 # http://commons.wikimedia.org/wiki/File:Bronze_medal_world_centered.svg
 
-class TitleScene(gtk.DrawingArea):
-    def __init__(self):
-        gtk.DrawingArea.__init__(self)
-
-        bundle = sugar.activity.activity.get_bundle_path()
-        self.backgroundpixbuf = gtk.gdk.pixbuf_new_from_file(bundle + '/images/main-background.jpg')
-        
-        self.set_size_request(self.backgroundpixbuf.get_width(), self.backgroundpixbuf.get_height())
-        
-        self.connect("expose-event", self.expose_cb)
-        
-        self.title_original = _('Typing Turtle')
-        self.title_src = self.title_original
-        self.title_text = ''
-        self.title_counter = 50
-        
-        gobject.timeout_add(10, self.timer_cb)
-
-    def expose_cb(self, area, event):
-        bounds = self.get_allocation()
-        
-        gc = self.get_style().fg_gc[gtk.STATE_NORMAL]
-        
-        self.window.draw_pixbuf(
-            gc, self.backgroundpixbuf, 
-            event.area.x, event.area.y, 
-            event.area.x, event.area.y, event.area.width, event.area.height)
-        
-        # Animated Typing Turtle title.
-        pc = self.create_pango_context()
-        
-        layout = self.create_pango_layout('')
-        layout.set_font_description(pango.FontDescription('Times 45'))
-        
-        layout.set_text(self.title_original)
-        original_size = layout.get_size()
-        
-        x = (bounds.width-original_size[0]/pango.SCALE)-20
-        y = 30
-
-        layout.set_text(self.title_text)        
-        self.window.draw_layout(gc, x, y, layout)
-
-    def timer_cb(self):
-        self.title_counter -= 1
-        if self.title_counter == 0:
-            if len(self.title_src) > 0:
-                self.title_text += self.title_src[0]
-                self.title_src = self.title_src[1:]
-                self.queue_draw()
-            
-            self.title_counter = random.randint(1, 5)
-            
-        return True
-    
 class MainScreen(gtk.VBox):
     def __init__(self, activity):
         gtk.VBox.__init__(self)
@@ -97,7 +43,7 @@ class MainScreen(gtk.VBox):
         self.activity = activity
         
         # Build background.
-        self.titlescene = TitleScene()
+        self.titlescene = titlescene.TitleScene()
         
         # Build lessons list.
         self.lessonbox = gtk.HBox()
@@ -129,14 +75,12 @@ class MainScreen(gtk.VBox):
         lessonbtn.modify_bg(gtk.STATE_NORMAL, self.get_colormap().alloc_color('#60b060'))
         
         # Load lessons for this language.
-        bundle_path = sugar.activity.activity.get_bundle_path() 
         code = locale.getdefaultlocale()[0]
-        path = bundle_path + '/lessons/' + code
-        self.load_lessons(path)
+        self.load_lessons('lessons/' + code)
 
         # Fallback to en_US lessons if none found.
         if not len(self.lessons):
-            self.load_lessons(bundle_path + '/lessons/en_US')
+            self.load_lessons('lessons/en_US')
 
         # We cannot run without lessons/
         if not len(self.lessons):
@@ -201,7 +145,7 @@ class MainScreen(gtk.VBox):
         
         self.lesson_index = index
         self.visible_lesson = lesson
-        
+
         medal_type = 'none'
         if self.activity.data['medals'].has_key(lesson['name']):
             medal_type = self.activity.data['medals'][lesson['name']]['type']
@@ -231,12 +175,11 @@ class MainScreen(gtk.VBox):
         #labelbox.pack_start(hintlabel)
 
         # Create the medal image.
-        bundle = sugar.activity.activity.get_bundle_path()
         images = {
-            'none':   bundle+'/images/no-medal.svg',
-            'bronze': bundle+'/images/bronze-medal.svg',
-            'silver': bundle+'/images/silver-medal.svg',
-            'gold':   bundle+'/images/gold-medal.svg'
+            'none':   'images/no-medal.svg',
+            'bronze': 'images/bronze-medal.svg',
+            'silver': 'images/silver-medal.svg',
+            'gold':   'images/gold-medal.svg'
         }
         medalpixbuf = gtk.gdk.pixbuf_new_from_file(images[medal_type])
         medalpixbuf = medalpixbuf.scale_simple(200, 200, gtk.gdk.INTERP_BILINEAR)

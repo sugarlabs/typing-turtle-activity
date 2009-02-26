@@ -23,8 +23,6 @@ import rsvg
 import os, glob
 import pango
 
-import sugar.activity.activity
-
 # Tweaking variables.
 KEYBOARD_SCALE = 1.25
 HAND_SCALE = 1.4
@@ -229,9 +227,7 @@ class KeyboardImages:
         self.images = {}
 
     def load_images(self):
-        bundle_path = sugar.activity.activity.get_bundle_path() 
-        path = os.path.join(bundle_path, 'images')
-        for filename in glob.iglob(path + '/*.svg'):
+        for filename in glob.iglob('images/OLPC_*.svg'):
             image = gtk.gdk.pixbuf_new_from_file_at_size(filename, self.width, self.height)
             name = os.path.basename(filename)
             self.images[name] = image

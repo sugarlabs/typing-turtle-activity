@@ -40,11 +40,12 @@ log = logging.getLogger('Typing Turtle')
 log.setLevel(logging.DEBUG)
 logging.basicConfig()
 
+# Change to bundle directory.
+bundle_path = sugar.activity.activity.get_bundle_path() 
+os.chdir(bundle_path)
+
 # Import activity modules.
 import mainscreen, lessonscreen, medalscreen
-
-# Set to True to allow access to all lessons.
-DEBUG_LESSONS = True
 
 # This is the main Typing Turtle activity class.
 # 
@@ -65,15 +66,11 @@ class TypingTurtle(sugar.activity.activity.Activity):
         # All data which is saved in the Journal entry is placed in this dictionary.
         self.data = {
             'motd': 'welcome',
-            'level': 0,
             'history': [],
             'medals': {}
         }
 
-        if DEBUG_LESSONS:
-            self.data['level'] = 1000
-        
-        # This has to happen last, because it calls the read_file method when restoring from the Journal.
+        # This calls the read_file method when restoring from the Journal.
         self.set_canvas(self.screenbox)
         
         # Start with the main screen.
@@ -109,6 +106,8 @@ class TypingTurtle(sugar.activity.activity.Activity):
         self.data['history'].append(entry)
 
     def read_file(self, file_path):
+        print 'read_file'
+
         if self.metadata['mime_type'] != 'text/plain':
             return
         
@@ -120,7 +119,11 @@ class TypingTurtle(sugar.activity.activity.Activity):
         finally:
             fd.close()
 
+        self.mainscreen.show_next_lesson()
+
     def write_file(self, file_path):
+        print 'write_file'
+
         if not self.metadata['mime_type']:
             self.metadata['mime_type'] = 'text/plain'
         
