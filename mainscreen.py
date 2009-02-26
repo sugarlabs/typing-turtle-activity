@@ -183,8 +183,10 @@ class MainScreen(gtk.VBox):
             'silver': 'images/silver-medal.svg',
             'gold':   'images/gold-medal.svg'
         }
+
+        medal_size = int(2.0 * sugar.graphics.style.GRID_CELL_SIZE)
         medalpixbuf = gtk.gdk.pixbuf_new_from_file(images[medal_type])
-        medalpixbuf = medalpixbuf.scale_simple(200, 200, gtk.gdk.INTERP_BILINEAR)
+        medalpixbuf = medalpixbuf.scale_simple(medal_size, medal_size, gtk.gdk.INTERP_BILINEAR)
         
         medalimage = gtk.Image()
         medalimage.set_from_pixbuf(medalpixbuf)

@@ -23,9 +23,11 @@ import gobject, pygtk, gtk, pango
 
 # Import Sugar UI modules.
 import sugar.activity.activity
-from sugar.graphics import *
+import sugar.graphics.style
 
 class MedalScreen(gtk.EventBox):
+    MEDAL_SIZE = int(4.5 * sugar.graphics.style.GRID_CELL_SIZE)
+
     def __init__(self, medal, activity):
         gtk.EventBox.__init__(self)
         
@@ -36,14 +38,13 @@ class MedalScreen(gtk.EventBox):
         
         # Load the image.
         medal_type = medal['type']
-        bundle = sugar.activity.activity.get_bundle_path()
         images = {
-            'bronze': bundle+'/images/bronze-medal.svg',
-            'silver': bundle+'/images/silver-medal.svg',
-            'gold':   bundle+'/images/gold-medal.svg'
+            'bronze': 'images/bronze-medal.svg',
+            'silver': 'images/silver-medal.svg',
+            'gold':   'images/gold-medal.svg'
         }
         medalpixbuf = gtk.gdk.pixbuf_new_from_file(images[medal_type])
-        medalpixbuf = medalpixbuf.scale_simple(350, 350, gtk.gdk.INTERP_BILINEAR)
+        medalpixbuf = medalpixbuf.scale_simple(MedalScreen.MEDAL_SIZE, MedalScreen.MEDAL_SIZE, gtk.gdk.INTERP_BILINEAR)
         
         medalimage = gtk.Image()
         medalimage.set_from_pixbuf(medalpixbuf)
