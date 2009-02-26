@@ -34,40 +34,6 @@ def error(s):
     print "The lesson could not be generated, exiting.\n\n"
     sys.exit(1)
 
-CONGRATS = [
-    _('Well done!'),
-    _('Good job.'),
-    _('Awesome!'),
-    _('Way to go!'),
-    _('Wonderful!'),
-    _('Nice work.'),
-    _('You did it!'),
-]
-
-def get_congrats():
-    return random.choice(CONGRATS) + ' '
-
-HINTS = [
-    _('Be careful to use the correct finger to press each key.  Look at the keyboard below if you need help remembering.'),
-    _('Try to type at the same speed, all the time.  As you get more comfortable you can increase the speed a little.')
-]
-
-def get_hint():
-    return random.choice(HINTS)
-
-FINGERS = {
-    'LP': _('left little'),
-    'LR': _('left ring'),
-    'LM': _('left middle'),
-    'LI': _('left index'),
-    'LT': _('left thumb'),
-    'RP': _('right little'),
-    'RR': _('right ring'),
-    'RM': _('right middle'),
-    'RI': _('right index'),
-    'RT': _('right thumb'),
-}
-
 def make_all_triples(keys):
     text = ''
     for k in new_keys:
@@ -287,6 +253,40 @@ def build_game_words(
 def build_key_steps(
     count, new_keys, base_keys, 
     words, bad_words):
+
+    CONGRATS = [
+        _('Well done!'),
+        _('Good job.'),
+        _('Awesome!'),
+        _('Way to go!'),
+        _('Wonderful!'),
+        _('Nice work.'),
+        _('You did it!'),
+    ]
+
+    def get_congrats():
+        return random.choice(CONGRATS) + ' '
+
+    HINTS = [
+        _('Be careful to use the correct finger to press each key.  Look at the keyboard below if you need help remembering.'),
+        _('Try to type at the same speed, all the time.  As you get more comfortable you can increase the speed a little.')
+    ]
+
+    def get_hint():
+        return random.choice(HINTS)
+
+    FINGERS = {
+        'LP': _('left little'),
+        'LR': _('left ring'),
+        'LM': _('left middle'),
+        'LI': _('left index'),
+        'LT': _('left thumb'),
+        'RP': _('right little'),
+        'RR': _('right ring'),
+        'RM': _('right middle'),
+        'RI': _('right index'),
+        'RT': _('right thumb'),
+    }
 
     all_keys = new_keys + base_keys
 
