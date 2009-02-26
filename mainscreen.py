@@ -90,7 +90,9 @@ class MainScreen(gtk.VBox):
         self.lessons.sort(lambda x, y: x.get('order', 0) - y.get('order', 0))
 
         # Load all the keyboard images.
-        self.keyboard_images = keyboard.KeyboardImages()
+        width = int(gtk.gdk.screen_width())
+        height = int(gtk.gdk.screen_height()*0.4)
+        self.keyboard_images = keyboard.KeyboardImages(width, height)
         self.keyboard_images.load_images()
         
         navbox = gtk.HBox()

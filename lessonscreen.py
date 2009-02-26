@@ -129,7 +129,7 @@ class LessonScreen(gtk.VBox):
         
         self.pack_start(hbox, False, False, 10)
         self.pack_start(frame, True, True)
-        self.pack_start(self.keyboard, True)
+        self.pack_start(self.keyboard, False)
         
         # Connect keyboard grabbing and releasing callbacks.        
         self.connect('realize', self.realize_cb)
@@ -140,15 +140,22 @@ class LessonScreen(gtk.VBox):
         self.timer_id = None
         
         self.begin_lesson()
+
+    # Used to suppress warning beeps on keypresses.
+    def keynav_failed_cb(self, widget, dir):
+        print "keynav failed"
+        return False
         
     def realize_cb(self, widget):
         self.activity.add_events(gtk.gdk.KEY_PRESS_MASK|gtk.gdk.KEY_RELEASE_MASK)
         self.key_press_cb_id = self.activity.connect('key-press-event', self.key_cb)
         self.key_release_cb_id = self.activity.connect('key-release-event', self.key_cb)
+        self.keynav_failed_cb_id = self.activity.connect('keynav-failed', self.keynav_failed_cb)
         
     def unrealize_cb(self, widget):
         self.activity.disconnect(self.key_press_cb_id)
         self.activity.disconnect(self.key_release_cb_id)
+        self.activity.disconnect(self.keynav_failed_cb_id)
 
     def start_timer(self):
         self.start_time = time.time()

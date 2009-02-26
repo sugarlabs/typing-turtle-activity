@@ -24,9 +24,7 @@ import os, glob
 import pango
 
 # Tweaking variables.
-KEYBOARD_SCALE = 1.25
-HAND_SCALE = 1.4
-HAND_YOFFSET = -35
+HAND_YOFFSET = -15
 
 PARAGRAPH_CODE = u'\xb6'
 
@@ -220,15 +218,15 @@ OLPC_LAYOUT = {
 }
 
 class KeyboardImages:
-    def __init__(self):
-        self.width = int(775 * 1.4)
-        self.height = int(265 * 1.4)
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
 
         self.images = {}
 
     def load_images(self):
         for filename in glob.iglob('images/OLPC_*.svg'):
-            image = gtk.gdk.pixbuf_new_from_file_at_size(filename, self.width, self.height)
+            image = gtk.gdk.pixbuf_new_from_file_at_scale(filename, self.width, self.height, False)
             name = os.path.basename(filename)
             self.images[name] = image
 
@@ -240,9 +238,6 @@ class KeyboardData:
         
         # Access the current GTK keymap.
         self.keymap = gtk.gdk.keymap_get_default()
-
-        # Layout scaling factor.
-        self.scale = KEYBOARD_SCALE
 
     def set_layout(self, layout): 
         self._build_key_list(layout)
@@ -321,13 +316,6 @@ class KeyboardData:
             else: # k['group-layout'] == 'custom' or unsupported
                 pass
 
-        # Apply the scale.
-        for k in self.keys:
-            k['key-x'] = int(k['key-x'] * self.scale)
-            k['key-y'] = int(k['key-y'] * self.scale)
-            k['key-width'] = int(k['key-width'] * self.scale)
-            k['key-height'] = int(k['key-height'] * self.scale)
-
     def find_key_by_label(self, label):
         for k in self.keys:
             if k['key-label'] == label:
@@ -389,6 +377,9 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
         self.image = image
         self.root_window = root_window
         
+        # Match the image cache in dimensions.
+        self.set_size_request(image.width, image.height)
+
         self.connect("expose-event", self._expose_cb)
         
         # Active language group and modifier state.
@@ -420,6 +411,16 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
     def set_layout(self, layout):
         """Sets the keyboard's layout from  a layout description."""
         KeyboardData.set_layout(self, layout)
+
+        # Scale the keyboard to match the images.
+        width_scale = float(self.image.width) / self.keys[0]['layout-width']
+        height_scale = float(self.image.height) / self.keys[0]['layout-height']
+        for k in self.keys:
+            k['key-x'] = int(k['key-x'] * width_scale)
+            k['key-y'] = int(k['key-y'] * height_scale)
+            k['key-width'] = int(k['key-width'] * width_scale)
+            k['key-height'] = int(k['key-height'] * height_scale)
+
         self._make_key_images()
 
     def _make_key_images(self):
@@ -502,8 +503,8 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
                 # TODO: Do something about ALTGR.
 
         bounds = self.get_allocation()
-        screen_x = int(bounds.width-self.keys[0]['layout-width']*self.scale)/2
-        screen_y = int(bounds.height-self.keys[0]['layout-height']*self.scale)/2
+        screen_x = int(bounds.width-self.image.width)/2
+        screen_y = int(bounds.height-self.image.height)/2
 
         self.window.draw_pixbuf(gc, lhand_image, 0, 0, screen_x, screen_y + HAND_YOFFSET)
         self.window.draw_pixbuf(gc, rhand_image, 0, 0, screen_x, screen_y + HAND_YOFFSET)
@@ -512,8 +513,8 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
         gc = self.window.new_gc()
         
         bounds = self.get_allocation()
-        screen_x = int(bounds.width-self.keys[0]['layout-width']*self.scale)/2
-        screen_y = int(bounds.height-self.keys[0]['layout-height']*self.scale)/2
+        screen_x = int(bounds.width-self.image.width)/2
+        screen_y = int(bounds.height-self.image.height)/2
 
         # Draw the keys.
         for k in self.keys:
