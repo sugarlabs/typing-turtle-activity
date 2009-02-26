@@ -337,8 +337,8 @@ class LessonScreen(gtk.VBox):
             
             self.lessontext.set_cursor_visible(True)
             
-            # Hide hands for typing mode - performance is too slow to type.  Sigh for now.
-            #self.keyboard.set_draw_hands(False)
+            # Enable hands for typing mode now that it's fast enough.            
+            self.keyboard.set_draw_hands(True)
 
         self.line_idx = 0
         self.begin_line()

@@ -429,10 +429,10 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
         group = self.active_group
 
         for key in self.keys:
-            key['key-image'] = self.get_key_image(key, 0, group)
-            key['key-image-shift'] = self.get_key_image(key, gtk.gdk.SHIFT_MASK, group)
-            key['key-image-altgr'] = self.get_key_image(key, gtk.gdk.MOD5_MASK, group)
-            key['key-image-shift-altgr'] = self.get_key_image(key, gtk.gdk.SHIFT_MASK|gtk.gdk.MOD5_MASK, group)
+            key['key-images'] = {}
+            for group in [0, 1]:
+                for state in [0, gtk.gdk.SHIFT_MASK, gtk.gdk.MOD5_MASK, gtk.gdk.SHIFT_MASK|gtk.gdk.MOD5_MASK]:
+                    key['key-images'][(state, group)] = self.get_key_image(key, state, group)
 
     def _draw_key(self, k, draw, gc, for_pixmap, w=0, h=0):
         x1 = 0 
@@ -525,18 +525,13 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
             x2 = x1 + k['key-width']
             y2 = y1 + k['key-height']
 
-            if self.active_state == 0:
-                image = k['key-image']
-            elif self.active_state == gtk.gdk.SHIFT_MASK:
-                image = k['key-image-shift']
-            elif self.active_state == gtk.gdk.MOD5_MASK:
-                image = k['key-image-altgr']
-            elif self.active_state == gtk.gdk.SHIFT_MASK|gtk.gdk.MOD5_MASK:
-                image = k['key-image-shift-altgr']
-            else:
-                continue
- 
-            self.window.draw_image(gc, image, 0, 0, x1, y1, x2-x1, y2-y1) 
+            # Index cached key images by state and group.
+            state = self.active_state & (gtk.gdk.SHIFT_MASK|gtk.gdk.MOD5_MASK)
+            index = (state, self.active_group)
+            image = k['key-images'].get(index)
+
+            if image:
+                self.window.draw_image(gc, image, 0, 0, x1, y1, x2-x1, y2-y1) 
         
         # Draw overlay images.
         if self.draw_hands:
@@ -552,23 +547,15 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
         # Hack to get the current modifier state - which will not be represented by the event.
         state = gtk.gdk.device_get_core_pointer().get_state(self.window)[1]
 
+        #info = self.keymap.translate_keyboard_state(0x18, state, event.group)
+        #print "press %d state=%x group=%d level=%d" % (event.hardware_keycode, self.active_state, self.active_group, info[2])
+
         if self.active_group != event.group or self.active_state != state:
             self.active_group = event.group
             self.active_state = state
 
             self.queue_draw()
 
-            #info = self.keymap.translate_keyboard_state(
-            #    0x18, self.active_state, self.active_group)
-            #print "press %d state=%x group=%d level=%d" % (event.hardware_keycode, self.active_state, self.active_group, info[2])
-
-        else:
-            if self.draw_hands:
-                pass
-            else:
-                if key:
-                    pass
-        
         return False
 
     def _keys_changed_cb(self, keymap):
@@ -577,25 +564,11 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
 
     def clear_hilite(self):
         self.hilite_letter = None
-        if self.draw_hands:
-            self.queue_draw()
-        else:
-            key, dummy, dummy = self.get_key_state_group_for_letter(self.hilite_letter)
-            if key:
-                self._draw_key(key)
+        self.queue_draw()
 
     def set_hilite_letter(self, letter):
-        old_letter = self.hilite_letter
         self.hilite_letter = letter
-        if self.draw_hands:
-            self.queue_draw()
-        else:
-            key, dummy, dummy = self.get_key_state_group_for_letter(old_letter)
-            if key:
-                pass
-            key, dummy, dummy = self.get_key_state_group_for_letter(letter)
-            if key:
-                pass
+        self.queue_draw()
 
     def set_draw_hands(self, enable):
         self.draw_hands = enable
