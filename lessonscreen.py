@@ -140,22 +140,15 @@ class LessonScreen(gtk.VBox):
         self.timer_id = None
         
         self.begin_lesson()
-
-    # Used to suppress warning beeps on keypresses.
-    def keynav_failed_cb(self, widget, dir):
-        print "keynav failed"
-        return False
         
     def realize_cb(self, widget):
         self.activity.add_events(gtk.gdk.KEY_PRESS_MASK|gtk.gdk.KEY_RELEASE_MASK)
         self.key_press_cb_id = self.activity.connect('key-press-event', self.key_cb)
         self.key_release_cb_id = self.activity.connect('key-release-event', self.key_cb)
-        self.keynav_failed_cb_id = self.activity.connect('keynav-failed', self.keynav_failed_cb)
         
     def unrealize_cb(self, widget):
         self.activity.disconnect(self.key_press_cb_id)
         self.activity.disconnect(self.key_release_cb_id)
-        self.activity.disconnect(self.keynav_failed_cb_id)
 
     def start_timer(self):
         self.start_time = time.time()
@@ -352,15 +345,18 @@ class LessonScreen(gtk.VBox):
         self.hilite_next_key()
 
     def key_cb(self, widget, event):
+        # Pass events on to the keyboard.
+        self.keyboard.key_press_release_cb(widget, event)
+
         # Ignore either press or release events, depending on mode.
         if self.mode == 'key' and event.type == gtk.gdk.KEY_PRESS:
-            return False
+            return True 
         if self.mode != 'key' and event.type == gtk.gdk.KEY_RELEASE:
-            return False
+            return True
         
         # Ignore hotkeys.
         if event.state & (gtk.gdk.CONTROL_MASK | gtk.gdk.MOD1_MASK):
-            return False
+            return True
         
         # Extract information about the key pressed.
         key = gtk.gdk.keyval_to_unicode(event.keyval)
@@ -448,13 +444,13 @@ class LessonScreen(gtk.VBox):
                         self.advance_step()
                     else:
                         self.begin_line()
-                    return False
+                    return True
                 
                 self.update_stats()
                 
                 self.hilite_next_key()
         
-        return False
+        return True 
 
     def hilite_next_key(self):
         if not self.line:

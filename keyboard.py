@@ -397,18 +397,18 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
         self.modify_bg(gtk.STATE_NORMAL, self.get_colormap().alloc_color('#d0d0d0'))
 
         # Connect keyboard grabbing and releasing callbacks.        
-        self.connect('realize', self._realize_cb)
-        self.connect('unrealize', self._unrealize_cb)
+        #self.connect('realize', self._realize_cb)
+        #self.connect('unrealize', self._unrealize_cb)
 
-    def _realize_cb(self, widget):
-        # Setup keyboard event snooping in the root window.
-        self.root_window.add_events(gtk.gdk.KEY_PRESS_MASK | gtk.gdk.KEY_RELEASE_MASK)
-        self.key_press_cb_id = self.root_window.connect('key-press-event', self._key_press_release_cb)
-        self.key_release_cb_id = self.root_window.connect('key-release-event', self._key_press_release_cb)
+    #def _realize_cb(self, widget):
+    #    # Setup keyboard event snooping in the root window.
+    #    self.root_window.add_events(gtk.gdk.KEY_PRESS_MASK | gtk.gdk.KEY_RELEASE_MASK)
+    #    self.key_press_cb_id = self.root_window.connect('key-press-event', self._key_press_release_cb)
+    #    self.key_release_cb_id = self.root_window.connect('key-release-event', self._key_press_release_cb)
 
-    def _unrealize_cb(self, widget):
-        self.root_window.disconnect(self.key_press_cb_id)
-        self.root_window.disconnect(self.key_release_cb_id)
+    #def _unrealize_cb(self, widget):
+    #    self.root_window.disconnect(self.key_press_cb_id)
+    #    self.root_window.disconnect(self.key_release_cb_id)
 
     def set_layout(self, layout):
         """Sets the keyboard's layout from  a layout description."""
@@ -539,7 +539,7 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
         
         return True
 
-    def _key_press_release_cb(self, widget, event):
+    def key_press_release_cb(self, widget, event):
         key = self.key_scan_map.get(event.hardware_keycode)
         if key:
             key['key-pressed'] = event.type == gtk.gdk.KEY_PRESS
