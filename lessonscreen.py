@@ -283,17 +283,17 @@ class LessonScreen(gtk.VBox):
             if key:
                 if state & gtk.gdk.SHIFT_MASK:
                     shift_key = self.keyboard.find_key_by_label('shift')
-                    pixbuf = self.keyboard.get_key_pixbuf(shift_key, scale=1.25)
+                    pixbuf = self.keyboard.get_key_pixbuf(shift_key, scale=1)
                     self.lessonbuffer.insert_pixbuf(self.lessonbuffer.get_end_iter(), pixbuf)
                     self.lessonbuffer.insert(self.lessonbuffer.get_end_iter(), ' ')
                 
                 if state & gtk.gdk.MOD5_MASK:
                     altgr_key = self.keyboard.find_key_by_label('altgr')
-                    pixbuf = self.keyboard.get_key_pixbuf(altgr_key, scale=1.25)
+                    pixbuf = self.keyboard.get_key_pixbuf(altgr_key, scale=1)
                     self.lessonbuffer.insert_pixbuf(self.lessonbuffer.get_end_iter(), pixbuf)
                     self.lessonbuffer.insert(self.lessonbuffer.get_end_iter(), ' ')
 
-                pixbuf = self.keyboard.get_key_pixbuf(key, state, group, 1.25)
+                pixbuf = self.keyboard.get_key_pixbuf(key, state, group, 1)
                 self.lessonbuffer.insert_pixbuf(self.lessonbuffer.get_end_iter(), pixbuf)
             
             self.lessonbuffer.apply_tag_by_name('image',

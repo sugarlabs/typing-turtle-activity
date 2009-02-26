@@ -387,6 +387,8 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
         # information about key group and state.
         self.active_group = 0
         self.active_state = 0
+
+        self.keymap.connect("keys-changed", self._keys_changed_cb)
         
         self.hilite_letter = None
         
@@ -568,6 +570,10 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
                     pass
         
         return False
+
+    def _keys_changed_cb(self, keymap):
+        print "keys-changed event"
+        self._make_key_images()
 
     def clear_hilite(self):
         self.hilite_letter = None

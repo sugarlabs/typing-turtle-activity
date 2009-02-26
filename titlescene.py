@@ -40,7 +40,7 @@ class TitleScene(gtk.DrawingArea):
         height_ratio = float(gtk.gdk.screen_height()*TitleScene.BACKGROUND_HEIGHT_RATIO) / pbuf.get_height()
 
         ratio = min(width_ratio, height_ratio)
-        self.backgroundpixbuf = pbuf.scale_simple(pbuf.get_width()*ratio, pbuf.get_height()*ratio, gtk.gdk.INTERP_BILINEAR)
+        self.backgroundpixbuf = pbuf.scale_simple(int(pbuf.get_width()*ratio), int(pbuf.get_height()*ratio), gtk.gdk.INTERP_BILINEAR)
  
         self.set_size_request(self.backgroundpixbuf.get_width(), self.backgroundpixbuf.get_height())
         
