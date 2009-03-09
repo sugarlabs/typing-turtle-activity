@@ -91,7 +91,7 @@ class MainScreen(gtk.VBox):
 
         # Load all the keyboard images.
         width = int(gtk.gdk.screen_width())
-        height = int(gtk.gdk.screen_height()*0.4)
+        height = int(gtk.gdk.screen_height()*0.3)
         self.keyboard_images = keyboard.KeyboardImages(width, height)
         self.keyboard_images.load_images()
         

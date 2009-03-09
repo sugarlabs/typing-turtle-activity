@@ -127,6 +127,9 @@ class LessonScreen(gtk.VBox):
         self.keyboard = keyboard.KeyboardWidget(self.keyboard_images, self.activity)
         self.keyboard.set_layout(keyboard.OLPC_LAYOUT)
         
+        code = locale.getdefaultlocale()[0]
+        self.keyboard.load_key_map('lessons/%s/%s.key' % (code, code))
+
         self.pack_start(hbox, False, False, 10)
         self.pack_start(frame, True, True)
         self.pack_start(self.keyboard, False)
@@ -359,8 +362,9 @@ class LessonScreen(gtk.VBox):
             return True
         
         # Extract information about the key pressed.
-        key = gtk.gdk.keyval_to_unicode(event.keyval)
-        if key != 0: key = unichr(key)
+        key = event.string
+        #key = gtk.gdk.keyval_to_unicode(event.keyval)
+        #if key != 0: key = unichr(key)
         key_name = gtk.gdk.keyval_name(event.keyval)
         
         # Convert Return keys to paragraph symbols.

@@ -22,10 +22,12 @@ import gtk
 import rsvg
 import os, glob
 import pango
+import simplejson
 
 # Tweaking variables.
 HAND_YOFFSET = -15
 
+# Unicode symbol for the paragraph key.
 PARAGRAPH_CODE = u'\xb6'
 
 # List of all key properties in the keyboard layout description.
@@ -370,7 +372,7 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
     """A GTK widget which implements an interactive visual keyboard, with support
        for custom data driven layouts."""
 
-    def __init__(self, image, root_window):
+    def __init__(self, image, root_window, poll_keys=False, record_map=False):
         KeyboardData.__init__(self)
         gtk.DrawingArea.__init__(self)
         
@@ -396,19 +398,30 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
         
         self.modify_bg(gtk.STATE_NORMAL, self.get_colormap().alloc_color('#d0d0d0'))
 
+        self.record_map = record_map
+
+        self.letter_map = [] 
+        
         # Connect keyboard grabbing and releasing callbacks.        
-        #self.connect('realize', self._realize_cb)
-        #self.connect('unrealize', self._unrealize_cb)
+        if poll_keys:
+            self.connect('realize', self._realize_cb)
+            self.connect('unrealize', self._unrealize_cb)
 
-    #def _realize_cb(self, widget):
-    #    # Setup keyboard event snooping in the root window.
-    #    self.root_window.add_events(gtk.gdk.KEY_PRESS_MASK | gtk.gdk.KEY_RELEASE_MASK)
-    #    self.key_press_cb_id = self.root_window.connect('key-press-event', self._key_press_release_cb)
-    #    self.key_release_cb_id = self.root_window.connect('key-release-event', self._key_press_release_cb)
+    def _realize_cb(self, widget):
+        # Setup keyboard event snooping in the root window.
+        self.root_window.add_events(gtk.gdk.KEY_PRESS_MASK | gtk.gdk.KEY_RELEASE_MASK)
+        self.key_press_cb_id = self.root_window.connect('key-press-event', self.key_press_release_cb)
+        self.key_release_cb_id = self.root_window.connect('key-release-event', self.key_press_release_cb)
 
-    #def _unrealize_cb(self, widget):
-    #    self.root_window.disconnect(self.key_press_cb_id)
-    #    self.root_window.disconnect(self.key_release_cb_id)
+    def _unrealize_cb(self, widget):
+        self.root_window.disconnect(self.key_press_cb_id)
+        self.root_window.disconnect(self.key_release_cb_id)
+
+    def load_key_map(self, filename):
+        try:
+            self.letter_map = simplejson.loads(open(filename, 'r').read())
+        except:
+            pass
 
     def set_layout(self, layout):
         """Sets the keyboard's layout from  a layout description."""
@@ -423,16 +436,17 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
             k['key-width'] = int(k['key-width'] * width_scale)
             k['key-height'] = int(k['key-height'] * height_scale)
 
-        self._make_key_images()
+        self._make_all_key_images()
 
-    def _make_key_images(self):
-        group = self.active_group
+    def _make_key_images(self, key):
+        key['key-images'] = {}
+        for group in [0, 1]:
+            for state in [0, gtk.gdk.SHIFT_MASK, gtk.gdk.MOD5_MASK, gtk.gdk.SHIFT_MASK|gtk.gdk.MOD5_MASK]:
+                key['key-images'][(state, group)] = self.get_key_image(key, state, group)
 
+    def _make_all_key_images(self):
         for key in self.keys:
-            key['key-images'] = {}
-            for group in [0, 1]:
-                for state in [0, gtk.gdk.SHIFT_MASK, gtk.gdk.MOD5_MASK, gtk.gdk.SHIFT_MASK|gtk.gdk.MOD5_MASK]:
-                    key['key-images'][(state, group)] = self.get_key_image(key, state, group)
+            self._make_key_images(key)
 
     def _draw_key(self, k, draw, gc, for_pixmap, w=0, h=0):
         x1 = 0 
@@ -441,7 +455,7 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
         y2 = h
 
         # Outline rounded box.
-        gc.foreground = self.get_colormap().alloc_color((0.4*65536),int(0.7*65536),int(0.4*65536))
+        gc.foreground = self.get_colormap().alloc_color(int(0.4*65536),int(0.7*65536),int(0.4*65536))
         
         corner = 5
         points = [
@@ -462,15 +476,26 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
         text = ''
         if k['key-label']:
             text = k['key-label']
+
         else:
-            info = self.keymap.translate_keyboard_state(
-                k['key-scan'], self.active_state, self.active_group)
-            if info:
-                key = gtk.gdk.keyval_to_unicode(info[0])
-                try:
-                    text = unichr(key).encode('utf-8')
-                except:
-                    pass
+            for l in self.letter_map:
+                if l['scan'] == k['key-scan'] and \
+                   l['state'] == self.active_state & (gtk.gdk.SHIFT_MASK|gtk.gdk.MOD5_MASK) and \
+                   l['group'] == self.active_group:
+                    text = l['letter']
+
+        if text == '' and self.record_map:
+            text = k['key-scan']
+
+        #    else:
+        #        info = self.keymap.translate_keyboard_state(
+        #            k['key-scan'], self.active_state, self.active_group)
+        #        if info:
+        #            key = gtk.gdk.keyval_to_unicode(info[0])
+        #            try:
+        #                text = unichr(key).encode('utf-8')
+        #            except:
+        #                pass
         
         try:
             layout = self.create_pango_layout(unicode(text))
@@ -547,19 +572,33 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
         # Hack to get the current modifier state - which will not be represented by the event.
         state = gtk.gdk.device_get_core_pointer().get_state(self.window)[1]
 
-        #info = self.keymap.translate_keyboard_state(0x18, state, event.group)
-        #print "press %d state=%x group=%d level=%d" % (event.hardware_keycode, self.active_state, self.active_group, info[2])
-
         if self.active_group != event.group or self.active_state != state:
             self.active_group = event.group
             self.active_state = state
 
             self.queue_draw()
 
+        if self.record_map and event.string:
+            l = {
+                'scan': event.hardware_keycode,
+                'state': int(event.state) & (gtk.gdk.SHIFT_MASK|gtk.gdk.MOD5_MASK),
+                'group': event.group,
+                'letter': unicode(event.string)
+            }
+            print '%r' % l
+            self.letter_map.append(l)
+            self._make_key_images(key)
+            self.queue_draw()
+
         return False
 
+    def save_letter_map(self, filename):
+        text = simplejson.dumps(self.letter_map, sort_keys=True, indent=4)
+        f = open(filename, 'w')
+        f.write(text)
+        f.close()
+
     def _keys_changed_cb(self, keymap):
-        print "keys-changed event"
         self._make_key_images()
 
     def clear_hilite(self):
@@ -617,15 +656,3 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
 
         return image
     
-if __name__ == "__main__":
-    window = gtk.Window(gtk.WINDOW_TOPLEVEL)
-    window.set_title("keyboard widget")
-    window.connect("destroy", lambda w: gtk.main_quit())
-
-    k = KeyboardWidget(window)
-    k.set_layout(DEFAULT_LAYOUT)
-
-    window.add(k)
-    window.show_all()
-
-    gtk.main()
