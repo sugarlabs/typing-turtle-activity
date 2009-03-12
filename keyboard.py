@@ -372,7 +372,7 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
     """A GTK widget which implements an interactive visual keyboard, with support
        for custom data driven layouts."""
 
-    def __init__(self, image, root_window, poll_keys=False, record_map=False):
+    def __init__(self, image, root_window, poll_keys=False):
         KeyboardData.__init__(self)
         gtk.DrawingArea.__init__(self)
         
@@ -398,9 +398,7 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
         
         self.modify_bg(gtk.STATE_NORMAL, self.get_colormap().alloc_color('#d0d0d0'))
 
-        self.record_map = record_map
-
-        self.letter_map = [] 
+        self.letter_map = {} 
         
         # Connect keyboard grabbing and releasing callbacks.        
         if poll_keys:
@@ -417,11 +415,24 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
         self.root_window.disconnect(self.key_press_cb_id)
         self.root_window.disconnect(self.key_release_cb_id)
 
-    def load_key_map(self, filename):
-        try:
-            self.letter_map = simplejson.loads(open(filename, 'r').read())
-        except:
-            pass
+    def load_letter_map(self, filename):
+        self.letter_map = simplejson.loads(open(filename, 'r').read())
+
+    def save_letter_map(self, filename):
+        text = simplejson.dumps(self.letter_map, ensure_ascii=False, sort_keys=True, indent=4)
+        f = open(filename, 'w')
+        f.write(text)
+        f.close()
+
+    def get_key_sig(self, scan, state, group):
+        sig = 'scan%d' % scan
+        if state & gtk.gdk.SHIFT_MASK:
+            sig += ' shift'
+        if state & gtk.gdk.MOD5_MASK:
+            sig += ' altgr'
+        if group != 0:
+            sig += ' group%d' % group
+        return sig
 
     def set_layout(self, layout):
         """Sets the keyboard's layout from  a layout description."""
@@ -478,24 +489,19 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
             text = k['key-label']
 
         else:
-            for l in self.letter_map:
-                if l['scan'] == k['key-scan'] and \
-                   l['state'] == self.active_state & (gtk.gdk.SHIFT_MASK|gtk.gdk.MOD5_MASK) and \
-                   l['group'] == self.active_group:
-                    text = l['letter']
+            sig = self.get_key_sig(k['key-scan'], self.active_state, self.active_group)
+            if self.letter_map.has_key(sig):
+                text = self.letter_map[sig]
 
-        if text == '' and self.record_map:
-            text = k['key-scan']
-
-        #    else:
-        #        info = self.keymap.translate_keyboard_state(
-        #            k['key-scan'], self.active_state, self.active_group)
-        #        if info:
-        #            key = gtk.gdk.keyval_to_unicode(info[0])
-        #            try:
-        #                text = unichr(key).encode('utf-8')
-        #            except:
-        #                pass
+            #else:
+            #    info = self.keymap.translate_keyboard_state(
+            #        k['key-scan'], self.active_state, self.active_group)
+            #    if info:
+            #        key = gtk.gdk.keyval_to_unicode(info[0])
+            #        try:
+            #            text = unichr(key).encode('utf-8')
+            #        except:
+            #            pass
         
         try:
             layout = self.create_pango_layout(unicode(text))
@@ -578,25 +584,14 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
 
             self.queue_draw()
 
-        if self.record_map and event.string:
-            l = {
-                'scan': event.hardware_keycode,
-                'state': int(event.state) & (gtk.gdk.SHIFT_MASK|gtk.gdk.MOD5_MASK),
-                'group': event.group,
-                'letter': unicode(event.string)
-            }
-            print '%r' % l
-            self.letter_map.append(l)
-            self._make_key_images(key)
-            self.queue_draw()
+        if event.string:
+            sig = self.get_key_sig(event.hardware_keycode, event.state, event.group)
+            if not self.letter_map.has_key(sig):
+                self.letter_map[sig] = event.string
+                self._make_key_images(key)
+                self.queue_draw()
 
         return False
-
-    def save_letter_map(self, filename):
-        text = simplejson.dumps(self.letter_map, sort_keys=True, indent=4)
-        f = open(filename, 'w')
-        f.write(text)
-        f.close()
 
     def _keys_changed_cb(self, keymap):
         self._make_key_images()

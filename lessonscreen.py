@@ -125,10 +125,15 @@ class LessonScreen(gtk.VBox):
         frame.add(self.lessonscroll)
         
         self.keyboard = keyboard.KeyboardWidget(self.keyboard_images, self.activity)
-        self.keyboard.set_layout(keyboard.OLPC_LAYOUT)
         
+        # Attempt to load a letter map for the current locale.
         code = locale.getdefaultlocale()[0]
-        self.keyboard.load_key_map('lessons/%s/%s.key' % (code, code))
+        try:
+            self.keyboard.load_letter_map('lessons/%s/%s.key' % (code, code))
+        except:
+            self.keyboard.load_letter_map('lessons/en_US/en_US.key' % (code, code))
+
+        self.keyboard.set_layout(keyboard.OLPC_LAYOUT)
 
         self.pack_start(hbox, False, False, 10)
         self.pack_start(frame, True, True)
