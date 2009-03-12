@@ -118,19 +118,19 @@ OLPC_LAYOUT = {
             'group-y': 10,
             
             'keys': [
-                {'key-scan':0x31,'key-finger':'LP','key-width':35}, 
-                {'key-scan':0x0a,'key-finger':'LP'}, 
-                {'key-scan':0x0b,'key-finger':'LR'}, 
-                {'key-scan':0x0c,'key-finger':'LM'}, 
-                {'key-scan':0x0d,'key-finger':'LI'}, 
-                {'key-scan':0x0e,'key-finger':'LI'}, 
-                {'key-scan':0x0f,'key-finger':'RI'}, 
-                {'key-scan':0x10,'key-finger':'RI'}, 
-                {'key-scan':0x11,'key-finger':'RM'}, 
-                {'key-scan':0x12,'key-finger':'RR'}, 
-                {'key-scan':0x13,'key-finger':'RP'}, 
-                {'key-scan':0x14,'key-finger':'RP'}, 
-                {'key-scan':0x15,'key-finger':'RP','key-width':65},
+                {'key-scan':0x31,'key-finger':'LP','key-hand-image':'OLPC_Lhand_tilde.svg','key-width':35}, 
+                {'key-scan':0x0a,'key-finger':'LP','key-hand-image':'OLPC_Lhand_1.svg'}, 
+                {'key-scan':0x0b,'key-finger':'LR','key-hand-image':'OLPC_Lhand_2.svg'}, 
+                {'key-scan':0x0c,'key-finger':'LM','key-hand-image':'OLPC_Lhand_3.svg'}, 
+                {'key-scan':0x0d,'key-finger':'LI','key-hand-image':'OLPC_Lhand_4.svg'}, 
+                {'key-scan':0x0e,'key-finger':'LI','key-hand-image':'OLPC_Lhand_5.svg'}, 
+                {'key-scan':0x0f,'key-finger':'RI','key-hand-image':'OLPC_Rhand_6.svg'}, 
+                {'key-scan':0x10,'key-finger':'RI','key-hand-image':'OLPC_Rhand_7.svg'}, 
+                {'key-scan':0x11,'key-finger':'RM','key-hand-image':'OLPC_Rhand_8.svg'}, 
+                {'key-scan':0x12,'key-finger':'RR','key-hand-image':'OLPC_Rhand_9.svg'}, 
+                {'key-scan':0x13,'key-finger':'RP','key-hand-image':'OLPC_Rhand_0.svg'}, 
+                {'key-scan':0x14,'key-finger':'RP','key-hand-image':'OLPC_Rhand_minus.svg'}, 
+                {'key-scan':0x15,'key-finger':'RP','key-hand-image':'OLPC_Rhand_plus.svg','key-width':65},
                 {'key-scan':0x16,'key-finger':'RP','key-label':"erase",'key-width':95}
             ]
         },
@@ -151,8 +151,8 @@ OLPC_LAYOUT = {
                 {'key-scan':0x1f,'key-finger':'RM','key-hand-image':'OLPC_Rhand_I.svg'}, 
                 {'key-scan':0x20,'key-finger':'RR','key-hand-image':'OLPC_Rhand_O.svg'}, 
                 {'key-scan':0x21,'key-finger':'RP','key-hand-image':'OLPC_Rhand_P.svg'}, 
-                {'key-scan':0x22,'key-finger':'RP'}, 
-                {'key-scan':0x23,'key-finger':'RP','key-width':55},
+                {'key-scan':0x22,'key-finger':'RP','key-hand-image':'OLPC_Rhand_bracketL.svg'}, 
+                {'key-scan':0x23,'key-finger':'RP','key-hand-image':'OLPC_Rhand_bracketR.svg','key-width':55},
                 {'key-scan':0x24,'key-finger':'RP','key-hand-image':'OLPC_Rhand_ENTER.svg','key-label':"enter",'key-width':95,'key-height':95}
             ]
         },
@@ -238,6 +238,8 @@ class KeyboardData:
         self.keys = None
         self.key_scan_map = None
         
+        self.letter_map = {} 
+        
         # Access the current GTK keymap.
         self.keymap = gtk.gdk.keymap_get_default()
 
@@ -318,29 +320,20 @@ class KeyboardData:
             else: # k['group-layout'] == 'custom' or unsupported
                 pass
 
+    def load_letter_map(self, filename):
+        self.letter_map = simplejson.loads(open(filename, 'r').read())
+
+    def save_letter_map(self, filename):
+        text = simplejson.dumps(self.letter_map, ensure_ascii=False, sort_keys=True, indent=4)
+        f = open(filename, 'w')
+        f.write(text)
+        f.close()
+
     def find_key_by_label(self, label):
         for k in self.keys:
             if k['key-label'] == label:
                 return k
         return None
-
-    def find_key_by_letter(self, letter):
-        """Returns tuple of (key, level, group)."""
-        # Special processing for the enter key.
-        if letter == '\n' or letter == PARAGRAPH_CODE:
-            return self.find_key_by_label('enter'), 0, 0
-
-        # Convert unicode to GDK keyval.
-        keyval = gtk.gdk.unicode_to_keyval(ord(letter))
-        
-        # Find list of key combinations that can generate this keyval.
-        # If found, return the key whose scan code matches the first combo.
-        entries = self.keymap.get_entries_for_keyval(keyval)
-        if entries:
-            code = entries[0][0]
-            return self.key_scan_map.get(code), entries[0][2], entries[0][1]
-        else:
-            return None, None, None
 
     def get_key_state_group_for_letter(self, letter):
         """Returns a (key, modifier_state) which when pressed will generate letter."""
@@ -348,25 +341,10 @@ class KeyboardData:
         if letter == '\n' or letter == PARAGRAPH_CODE:
             return self.find_key_by_label('enter'), 0, 0
 
-        # Convert unicode to GDK keyval.
-        keyval = gtk.gdk.unicode_to_keyval(ord(letter))
-        
-        # Find list of key combinations that can generate this keyval.
-        entries = self.keymap.get_entries_for_keyval(keyval)
-        if not entries:
-            return None, 0, 0
-
-        keycode, group, level = entries[0]
-
-        # TODO: Level -> state calculations are hardcoded to what the XO keyboard does.
-        # They were discovered through experimentation.
-        state = 0
-        if level & 1: # Level bit 0 corresponds to the SHIFT key.
-            state |= gtk.gdk.SHIFT_MASK
-        if level & 2: # Level bit 1 corresponds to the ALTGR key.
-            state |= gtk.gdk.MOD5_MASK
-
-        return self.key_scan_map.get(keycode), state, group
+		# Look up the key in the letter map.
+        for sig, l in self.letter_map.items():
+            if l == letter:
+                return self.parse_key_sig(sig)
 
 class KeyboardWidget(KeyboardData, gtk.DrawingArea):
     """A GTK widget which implements an interactive visual keyboard, with support
@@ -398,8 +376,6 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
         
         self.modify_bg(gtk.STATE_NORMAL, self.get_colormap().alloc_color('#d0d0d0'))
 
-        self.letter_map = {} 
-        
         # Connect keyboard grabbing and releasing callbacks.        
         if poll_keys:
             self.connect('realize', self._realize_cb)
@@ -415,16 +391,7 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
         self.root_window.disconnect(self.key_press_cb_id)
         self.root_window.disconnect(self.key_release_cb_id)
 
-    def load_letter_map(self, filename):
-        self.letter_map = simplejson.loads(open(filename, 'r').read())
-
-    def save_letter_map(self, filename):
-        text = simplejson.dumps(self.letter_map, ensure_ascii=False, sort_keys=True, indent=4)
-        f = open(filename, 'w')
-        f.write(text)
-        f.close()
-
-    def get_key_sig(self, scan, state, group):
+    def format_key_sig(self, scan, state, group):
         sig = 'scan%d' % scan
         if state & gtk.gdk.SHIFT_MASK:
             sig += ' shift'
@@ -433,6 +400,20 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
         if group != 0:
             sig += ' group%d' % group
         return sig
+
+    def parse_key_sig(self, sig):
+        m = re.match(r'scan(?P<scan>\d+) (?P<shift>shift)? (?P<altgr>altgr)? group(?P<group>\d+)', sig)
+
+        state = 0
+        if m.group('shift'):
+            state |= gtk.gdk.SHIFT_MASK
+        if m.group('altgr'):
+            state |= gtk.gdk.MOD5_MASK
+
+        scan = int(m.group('scan'))
+        group = int(m.group('group'))
+
+        return scan, state, group
 
     def set_layout(self, layout):
         """Sets the keyboard's layout from  a layout description."""
@@ -489,19 +470,9 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
             text = k['key-label']
 
         else:
-            sig = self.get_key_sig(k['key-scan'], self.active_state, self.active_group)
+            sig = self.format_key_sig(k['key-scan'], self.active_state, self.active_group)
             if self.letter_map.has_key(sig):
                 text = self.letter_map[sig]
-
-            #else:
-            #    info = self.keymap.translate_keyboard_state(
-            #        k['key-scan'], self.active_state, self.active_group)
-            #    if info:
-            #        key = gtk.gdk.keyval_to_unicode(info[0])
-            #        try:
-            #            text = unichr(key).encode('utf-8')
-            #        except:
-            #            pass
         
         try:
             layout = self.create_pango_layout(unicode(text))
@@ -585,7 +556,7 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
             self.queue_draw()
 
         if event.string:
-            sig = self.get_key_sig(event.hardware_keycode, event.state, event.group)
+            sig = self.format_key_sig(event.hardware_keycode, event.state, event.group)
             if not self.letter_map.has_key(sig):
                 self.letter_map[sig] = event.string
                 self._make_key_images(key)

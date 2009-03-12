@@ -131,7 +131,7 @@ class LessonScreen(gtk.VBox):
         try:
             self.keyboard.load_letter_map('lessons/%s/%s.key' % (code, code))
         except:
-            self.keyboard.load_letter_map('lessons/en_US/en_US.key' % (code, code))
+            self.keyboard.load_letter_map('lessons/en_US/en_US.key')
 
         self.keyboard.set_layout(keyboard.OLPC_LAYOUT)
 
@@ -355,6 +355,10 @@ class LessonScreen(gtk.VBox):
     def key_cb(self, widget, event):
         # Pass events on to the keyboard.
         self.keyboard.key_press_release_cb(widget, event)
+
+        # Ignore events which don't produce a character.
+        if not event.string:
+            return True
 
         # Ignore either press or release events, depending on mode.
         if self.mode == 'key' and event.type == gtk.gdk.KEY_PRESS:

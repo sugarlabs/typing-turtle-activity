@@ -300,6 +300,14 @@ def build_key_steps(
     steps = []
 
     kb = keyboard.KeyboardData()
+
+    # Attempt to load a letter map for the current locale.
+    code = locale.getdefaultlocale()[0]
+    try:
+        kb.load_letter_map('lessons/%s/%s.key' % (code, code))
+    except:
+        kb.load_letter_map('lessons/en_US/en_US.key')
+
     kb.set_layout(keyboard.OLPC_LAYOUT)
 
     keynames = new_keys[0]
@@ -553,7 +561,7 @@ def main():
             new_keys=options.keys, base_keys=options.base_keys, 
             words=words, bad_words=bad_words)
 
-    text = simplejson.dumps(lesson, sort_keys=True, indent=4)
+    text = simplejson.dumps(lesson, ensure_ascii=False, sort_keys=True, indent=4)
 
     open(options.output, 'w').write(text)
 
