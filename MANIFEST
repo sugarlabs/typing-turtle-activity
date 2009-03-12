@@ -84,3 +84,6 @@ lessons/ne_NP/leftcapital.lesson
 locale/ne_NP/activity.linfo
 locale/ne_NP/LC_MESSAGES/org.laptop.community.TypingTurtle.mo
 po/ne_NP.po
+keybuilder.py
+lessons/en_US/en_US.key
+lessons/ne_NP/ne_NP.key

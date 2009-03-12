@@ -10,12 +10,13 @@ First Release
   + Incorrect key pressed tick sound. 
 
 Future Release
-+ Highlight regions of keyboard, color by finger.
++ Highlight regions of keyboard, color by finger used.
 + Goal support with progress reporting.  WPM, Accuracy, Entire keyboard learned, etc.
-+ Keymap showing skill per key.  Star icons on keys that are mastered.
++ Keyboard image showing "skill per key".  Star icons on keys that are mastered.
 + History screen: List of lessons completed with statistics.
 + Progress screen: Line graphs of Accuracy, WPM over time.
-+ Lesson editor activity or mode.
++ Some sort of award when all the lessons are complete, followed by general skill work.
++ Lesson editor standalone PyGTK app.
 
 Balloon Game
 

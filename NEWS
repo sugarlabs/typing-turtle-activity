@@ -1,3 +1,8 @@
+17
+
+Introduced keybuilder and custom keymaps to work around limitations in XKB system.  
+Translators can now completely specify the keyboard layout via a JSON file.
+
 15
 
 14
