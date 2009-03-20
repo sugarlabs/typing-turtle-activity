@@ -20,7 +20,7 @@ import pygtk
 pygtk.require('2.0')
 import gtk
 import rsvg
-import os, glob
+import os, glob, re
 import pango
 import simplejson
 
@@ -329,6 +329,35 @@ class KeyboardData:
         f.write(text)
         f.close()
 
+    def format_key_sig(self, scan, state, group):
+        sig = 'scan%d' % scan
+        if state & gtk.gdk.SHIFT_MASK:
+            sig += ' shift'
+        if state & gtk.gdk.MOD5_MASK:
+            sig += ' altgr'
+        if group != 0:
+            sig += ' group%d' % group
+        return sig
+
+    KEY_SIG_RE = re.compile(r'scan(?P<scan>\d+) ?(?P<shift>shift)? ?(?P<altgr>altgr)?( group)?(?P<group>\d+)?')
+
+    def parse_key_sig(self, sig):
+        m = KeyboardData.KEY_SIG_RE.match(sig)
+
+        state = 0
+        if m.group('shift'):
+            state |= gtk.gdk.SHIFT_MASK
+        if m.group('altgr'):
+            state |= gtk.gdk.MOD5_MASK
+
+        scan = int(m.group('scan'))
+
+        group = 0
+        if m.group('group'):
+            group = int(m.group('group'))
+        
+        return scan, state, group
+
     def find_key_by_label(self, label):
         for k in self.keys:
             if k['key-label'] == label:
@@ -344,7 +373,12 @@ class KeyboardData:
 		# Look up the key in the letter map.
         for sig, l in self.letter_map.items():
             if l == letter:
-                return self.parse_key_sig(sig)
+                scan, state, group = self.parse_key_sig(sig)
+                for k in self.keys:
+                    if k['key-scan'] == scan:
+                        return k, state, group
+
+        return None, None, None
 
 class KeyboardWidget(KeyboardData, gtk.DrawingArea):
     """A GTK widget which implements an interactive visual keyboard, with support
@@ -390,30 +424,6 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
     def _unrealize_cb(self, widget):
         self.root_window.disconnect(self.key_press_cb_id)
         self.root_window.disconnect(self.key_release_cb_id)
-
-    def format_key_sig(self, scan, state, group):
-        sig = 'scan%d' % scan
-        if state & gtk.gdk.SHIFT_MASK:
-            sig += ' shift'
-        if state & gtk.gdk.MOD5_MASK:
-            sig += ' altgr'
-        if group != 0:
-            sig += ' group%d' % group
-        return sig
-
-    def parse_key_sig(self, sig):
-        m = re.match(r'scan(?P<scan>\d+) (?P<shift>shift)? (?P<altgr>altgr)? group(?P<group>\d+)', sig)
-
-        state = 0
-        if m.group('shift'):
-            state |= gtk.gdk.SHIFT_MASK
-        if m.group('altgr'):
-            state |= gtk.gdk.MOD5_MASK
-
-        scan = int(m.group('scan'))
-        group = int(m.group('group'))
-
-        return scan, state, group
 
     def set_layout(self, layout):
         """Sets the keyboard's layout from  a layout description."""

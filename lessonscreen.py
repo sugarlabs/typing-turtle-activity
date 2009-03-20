@@ -360,6 +360,8 @@ class LessonScreen(gtk.VBox):
         if not event.string:
             return True
 
+        print 'key_cb: ' + event.string
+
         # Ignore either press or release events, depending on mode.
         if self.mode == 'key' and event.type == gtk.gdk.KEY_PRESS:
             return True 
