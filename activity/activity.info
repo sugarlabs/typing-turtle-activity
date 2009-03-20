@@ -1,6 +1,6 @@
 [Activity]
 name = Typing Turtle
-activity_version = 17
+activity_version = 18
 host_version = 1
 service_name = org.laptop.community.TypingTurtle
 icon = Activity-typingturtle
