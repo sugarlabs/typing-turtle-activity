@@ -26,7 +26,8 @@ import sugar.activity.activity
 from sugar.graphics import *
 
 # Import activity modules.
-import lessonscreen, medalscreen, balloongame
+import lessonscreen, medalscreen, editlessonscreen
+import balloongame
 import titlescene
 import keyboard
 
@@ -82,7 +83,7 @@ class MainScreen(gtk.VBox):
         if not len(self.lessons):
             self.load_lessons('lessons/en_US')
 
-        # We cannot run without lessons/
+        # We cannot run without lessons.
         if not len(self.lessons):
             sys.exit(1)
 
@@ -95,6 +96,13 @@ class MainScreen(gtk.VBox):
         self.keyboard_images = keyboard.KeyboardImages(width, height)
         self.keyboard_images.load_images()
         
+        editbtn = gtk.Button()
+        editbtn.add(gtk.Label(_('Edit Lessons')))
+        editbtn.connect('clicked', self.edit_lessons_cb)
+
+        toolbar = gtk.HBox()
+        toolbar.pack_end(editbtn)
+
         navbox = gtk.HBox()
         navbox.set_spacing(10)
         navbox.pack_start(self.prevlessonbtn, True)
@@ -106,6 +114,7 @@ class MainScreen(gtk.VBox):
         lessonbox.pack_start(navbox, False)
         lessonbox.pack_start(self.lessonbox)
         
+        self.pack_start(toolbar)
         self.pack_start(self.titlescene, False, True, 10)
         self.pack_start(lessonbox, True)
         
@@ -242,3 +251,6 @@ class MainScreen(gtk.VBox):
         if self.activity.data['medals'].has_key(self.visible_lesson['name']):
             medal = self.activity.data['medals'][self.visible_lesson['name']]
             self.activity.push_screen(medalscreen.MedalScreen(medal, self.activity))
+    
+    def edit_lessons_cb(self, widget):
+        self.activity.push_screen(editlessonscreen.EditLessonScreen(self.activity))
