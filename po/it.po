@@ -2,160 +2,165 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-02-26 00:26+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2009-05-12 12:39-0400\n"
+"Last-Translator: Carlo Falciola <cfalciola@yahoo.it>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 1.3.0\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 1.2.1\n"
 
 #: activity/activity.info:2 mainscreen.py:49 typingturtle.py:56
 msgid "Typing Turtle"
-msgstr ""
+msgstr "Tartaruga Dattilografa"
 
 #: medalscreen.py:53
 msgid ""
 "<span font_desc='Serif Bold Italic 28'>Certificate of Achievement</span>"
-msgstr ""
+msgstr "<span font_desc='Serif Bold Italic 28'>Attestato di Merito</span>"
 
 #: medalscreen.py:56
 msgid "<span font_desc='Sans 16'>This certifies that</span>"
-msgstr ""
+msgstr "<span font_desc='Sans 16'>Si certifica che</span>"
 
 #: medalscreen.py:59
 #, python-format
 msgid "<span font_desc='Sans 16'><b><u><i>%(nick)s</i></u></b></span>"
-msgstr ""
+msgstr "<span font_desc='Sans 16'><b><u><i>%(nick)s</i></u></b></span>"
 
 #: medalscreen.py:62
 #, python-format
 msgid "<span font_desc='Sans 16'>earned a %(type)s medal in </span>"
-msgstr ""
+msgstr "<span font_desc='Sans 16'>ha meritato una medaglia in %(type)s </span>"
 
 #: medalscreen.py:65
 #, python-format
 msgid "<span font_desc='Sans 16'>in <b><u><i>%(lesson)s</i></u></b></span>"
-msgstr ""
+msgstr "<span font_desc='Sans 16'>in <b><u><i>%(lesson)s</i></u></b></span>"
 
 #: medalscreen.py:68
 #, python-format
 msgid "<span font_desc='Sans 16'>on <b><u><i>%(date)s</i></u></b>.</span>"
-msgstr ""
+msgstr "<span font_desc='Sans 16'>on <b><u><i>%(date)s</i></u></b>.</span>"
 
 #: medalscreen.py:85
 #, python-format
 msgid "<b>Words Per Minute:</b> %(wpm)d"
-msgstr ""
+msgstr "<b>Parole Al Minuto:</b> %(wpm)d"
 
 #: medalscreen.py:89 lessonscreen.py:185
 #, python-format
 msgid "<b>Accuracy:</b> %(accuracy)d%%"
-msgstr ""
+msgstr "<b>Accuratezza:</b> %(accuracy)d%%"
 
 #: medalscreen.py:94
 #, python-format
 msgid "<b>SCORE:</b> %(score)d"
-msgstr ""
+msgstr "<b>Punteggio:</b> %(score)d"
 
 #: medalscreen.py:98 balloongame.py:223
 msgid "Press the ENTER key to continue."
-msgstr ""
+msgstr "Premi il tasto ENTER per procedere."
 
 #: lessonbuilder.py:258 lessonscreen.py:537
 msgid "Well done!"
-msgstr ""
+msgstr "Ben fatto!"
 
 #: lessonbuilder.py:259
 msgid "Good job."
-msgstr ""
+msgstr "Bel lavoro."
 
 #: lessonbuilder.py:260
 msgid "Awesome!"
-msgstr ""
+msgstr "Ottimo!"
 
 #: lessonbuilder.py:261 lessonscreen.py:539
 msgid "Way to go!"
-msgstr ""
+msgstr "Così si fa!"
 
 #: lessonbuilder.py:262
 msgid "Wonderful!"
-msgstr ""
+msgstr "Meraviglioso!"
 
 #: lessonbuilder.py:263
 msgid "Nice work."
-msgstr ""
+msgstr "Ottimo lavoro!"
 
 #: lessonbuilder.py:264
 msgid "You did it!"
-msgstr ""
+msgstr "Ce l'hai fatta!"
 
 #: lessonbuilder.py:271
 msgid ""
 "Be careful to use the correct finger to press each key.  Look at the "
 "keyboard below if you need help remembering."
 msgstr ""
+"Fai attenzione ad utilizzare il dito corretto per premere ogni tasto.  "
+"Guarda la tastiera qui sotto se hai bisogno di aiuto per ricordare."
 
 #: lessonbuilder.py:272
 msgid ""
 "Try to type at the same speed, all the time.  As you get more comfortable "
 "you can increase the speed a little."
 msgstr ""
+"Prova a scrivere sempre alla stessa velocità.  Quando ti sentirai più a tuo "
+"agio potrai provare ad aumentare un po' la velocità."
 
 #: lessonbuilder.py:279
 msgid "left little"
-msgstr ""
+msgstr "mignolo sinistro"
 
 #: lessonbuilder.py:280
 msgid "left ring"
-msgstr ""
+msgstr "anulare sinistro"
 
 #: lessonbuilder.py:281
 msgid "left middle"
-msgstr ""
+msgstr "medio sinistro"
 
 #: lessonbuilder.py:282
 msgid "left index"
-msgstr ""
+msgstr "indice sinistro"
 
 #: lessonbuilder.py:283
 msgid "left thumb"
-msgstr ""
+msgstr "pollice sinistro"
 
 #: lessonbuilder.py:284
 msgid "right little"
-msgstr ""
+msgstr "mignolo destro"
 
 #: lessonbuilder.py:285
 msgid "right ring"
-msgstr ""
+msgstr "anulare destro"
 
 #: lessonbuilder.py:286
 msgid "right middle"
-msgstr ""
+msgstr "medio destro"
 
 #: lessonbuilder.py:287
 msgid "right index"
-msgstr ""
+msgstr "indice destro"
 
 #: lessonbuilder.py:288
 msgid "right thumb"
-msgstr ""
+msgstr "pollice destro"
 
 #: lessonbuilder.py:309
 #, python-format
 msgid " and %s keys"
-msgstr ""
+msgstr " e %s tasti"
 
 #: lessonbuilder.py:311
 msgid " key"
-msgstr ""
+msgstr " tasto"
 
 #: lessonbuilder.py:314
 #, python-format
@@ -164,180 +169,196 @@ msgid ""
 "\n"
 "Press the ENTER key when you are ready to begin!"
 msgstr ""
+"In questa lezione, apprenderai le %(keynames)s.\n"
+"\n"
+"Premi il tasto ENTER quando sei pronto per iniziare!"
 
 #: lessonbuilder.py:337
 #, python-format
 msgid "Press and hold the SHIFT key with your %(finger)s finger, "
-msgstr ""
+msgstr "Premi e tieni premuto il tasto SHIFT con il tuo dito %(finger)s, "
 
 #: lessonbuilder.py:338 lessonbuilder.py:342 lessonbuilder.py:346
 #, python-format
 msgid "then press the %(letter)s key with your %(finger)s finger."
-msgstr ""
+msgstr "poi premi il tasto %(letter)s con il tuo dito %(finger)s."
 
 #: lessonbuilder.py:341
 msgid "Press and hold the ALTGR key, "
-msgstr ""
+msgstr "Premi e tieni premuto il tasto ALTGR, "
 
 #: lessonbuilder.py:345
 msgid "Press and hold the ALTGR and SHIFT keys, "
-msgstr ""
+msgstr "Premi e tieni premuti i tasti ALTGR e SHIFT, "
 
 #: lessonbuilder.py:349
 #, python-format
 msgid "Press the %(letter)s key with your %(finger)s finger."
-msgstr ""
+msgstr "Premi il tasto %(letter)s con il dito %(finger)s."
 
 #: lessonbuilder.py:354
 msgid "Practice typing the keys you just learned."
-msgstr ""
+msgstr "Facciamo un po' di pratica con i tasti appena imparati. "
 
 #: lessonbuilder.py:358
 msgid "Now put the keys together into pairs."
-msgstr ""
+msgstr "Ora mettiamo i tasti assieme a coppie."
 
 #: lessonbuilder.py:363
 msgid "Time to type jumbles."
-msgstr ""
+msgstr "Ed ora tasti a caso."
 
 #: lessonbuilder.py:368
 msgid "Time to type real words."
-msgstr ""
+msgstr "Adesso scriviamo parole reali."
 
 #: lessonbuilder.py:380
 msgid "Hihowahyah!  Ready to learn the secret of fast typing?\n"
-msgstr ""
+msgstr "Eccoci!  Sei pronto ad imparare i segreti per scrivere velocemente alla "
+"tastiera?\n"
 
 #: lessonbuilder.py:381
 msgid ""
 "Always use the correct finger to press each key!\n"
 "\n"
 msgstr ""
+"Utilizza sempre il dito giusto per ogni tasto!\n"
+"\n"
 
 #: lessonbuilder.py:382
 msgid "Now, place your hands on the keyboard just like the picture below.\n"
-msgstr ""
+msgstr "Ora appoggia le tue mani sulla tastiera proprio come nel disegno qui sotto.\n"
 
 #: lessonbuilder.py:383
 msgid "When you're ready, press the SPACE bar with your thumb!"
 msgstr ""
+"Quando ti senti pronto, premi la barra spaziatrice (SPACE) con il pollice!"
 
 #: lessonbuilder.py:387
 msgid ""
 "Good job!  The SPACE bar is used to insert spaces between words.\n"
 "\n"
 msgstr ""
+"Ben fatto!  La barra spaziatrice si usa per inserire gli spazi fra le "
+"parole.\n"
+"\n"
 
 #: lessonbuilder.py:388
 msgid "Press the SPACE bar again with your thumb."
-msgstr ""
+msgstr "Premi ancora una volta la  Barra Spaziatrice col pollice."
 
 #: lessonbuilder.py:392
 msgid "Now I'll teach you the second key, ENTER.  "
-msgstr ""
+msgstr "Ed ora, impariamo un secondo tasto: \\\"Invio\\\" (Enter)."
 
 #: lessonbuilder.py:393
 msgid ""
 "That's the big square key near your right little finger.\n"
 "\n"
 msgstr ""
+"E' quel tasto rettangolare, grande, vicino al tuo dito mignolo destro.\n"
+"\n"
 
 #: lessonbuilder.py:394
 msgid "Now, reach your little finger over and press ENTER."
-msgstr ""
+msgstr "Ora, muovi il tuo mignolo e premi Invio. "
 
 #: lessonbuilder.py:398
 msgid ""
 "Great!  When typing, the ENTER key is used to begin a new line.\n"
 "\n"
 msgstr ""
+"Ottimo!  Quando si scrive, il tasto Invio è usato  per andare a capo.\n"
+"\n"
 
 #: lessonbuilder.py:399
 msgid "Press the ENTER key again with your right little finger."
-msgstr ""
+msgstr "Premi ancora il tasto Invio usando il tuo dito mignolo destro."
 
 #: lessonbuilder.py:411
 msgid "Copy out the following text."
-msgstr ""
+msgstr "Copia il testo qui di seguito."
 
 #: mainscreen.py:108
 msgid "Next"
-msgstr ""
+msgstr "Prossimo"
 
 #: mainscreen.py:117
 msgid "Previous"
-msgstr ""
+msgstr "Precedente"
 
 #: mainscreen.py:124
 msgid "Start Lesson"
-msgstr ""
+msgstr "Inizia la lezione"
 
 #: mainscreen.py:218
 msgid ""
 "You earned a medal in this lesson!  Advance to the next one\n"
 "by clicking the Next button."
 msgstr ""
+"Hai vinto una medaglia in questa lezione! Procedi alla prossima \n"
+"Premendo il pulsante \\\"Prossima\\\"."
 
 #: mainscreen.py:248
 msgid "No Medal Yet"
-msgstr ""
+msgstr "Niente  medaglia, per ora"
 
 #: mainscreen.py:249
 msgid "Bronze Medal"
-msgstr ""
+msgstr "Medaglia di Bronzo"
 
 #: mainscreen.py:250
 msgid "Silver Medal"
-msgstr ""
+msgstr "Medaglia d'Argento"
 
 #: mainscreen.py:251
 msgid "Gold Medal"
-msgstr ""
+msgstr "Medaglia d'Oro"
 
 #: balloongame.py:53 lessonscreen.py:59
 msgid "Go Back"
-msgstr ""
+msgstr "Torna Indietro"
 
 #: balloongame.py:210
 msgid "You finished!"
-msgstr ""
+msgstr "Hai finito !"
 
 #: balloongame.py:219
 #, python-format
 msgid "Your score was %(score)d."
-msgstr ""
+msgstr "Il tuo punteggio è stato di %(score)d."
 
 #: balloongame.py:221
 #, python-format
 msgid "You earned a %(type)s medal!"
-msgstr ""
+msgstr "Hai vinto una medaglia di %(type)s !"
 
 #: balloongame.py:321 balloongame.py:329
 #, python-format
 msgid "SCORE: %d"
-msgstr ""
+msgstr "PUNTEGGIO: %d"
 
 #: balloongame.py:340
 msgid "Type the words to pop the balloons!"
-msgstr ""
+msgstr "Scrivi le parole per far scoppiare i palloncini!"
 
 #: lessonscreen.py:177
 #, python-format
 msgid "<b>WPM:</b> %(wpm)d"
-msgstr ""
+msgstr "<b>PAM:</b> %(wpm)d"
 
 #: lessonscreen.py:536
 msgid "Good job!"
-msgstr ""
+msgstr "Bravo!"
 
 #: lessonscreen.py:538
 msgid "Nice work!"
-msgstr ""
+msgstr "Ottimo lavoro!"
 
 #: lessonscreen.py:544
 #, python-format
 msgid "You finished the lesson in %(time)d seconds, with %(errors)d errors.\n"
-msgstr ""
+msgstr "Hai terminato la lezione in %(time)d secondi, e hai fatto %(errors)d errori.\n"
 
 #: lessonscreen.py:546
 #, python-format
@@ -346,11 +367,14 @@ msgid ""
 "%.\n"
 "\n"
 msgstr ""
+"Hai scritto %(wpm)d Parole Per Minuto (PPM) , con una precisione del %"
+"(accuracy)d%%.\n"
+"\n"
 
 #: lessonscreen.py:549
 #, python-format
 msgid "You finished the lesson with %(errors)d errors.\n"
-msgstr ""
+msgstr "Hai terminato la lezione facendo %(errors)d errori. \n"
 
 #: lessonscreen.py:551
 #, python-format
@@ -358,20 +382,25 @@ msgid ""
 "Your accuracy was %(accuracy)d%%.\n"
 "\n"
 msgstr ""
+"La tua precisione è stata del %(accuracy)d%% .\n"
+"\n"
 
 #: lessonscreen.py:557
 #, python-format
 msgid "Congratulations!  You earned a %(type)s medal!"
-msgstr ""
+msgstr "Complimenti! Hai meritato una medaglia di %(type)s !"
 
 #: lessonscreen.py:565
 msgid "You need to practice this lesson more before moving on."
-msgstr ""
+msgstr "Devi fare ancora pratica su questa lezione prima di andare avanti."
 
 #: lessonscreen.py:568
 msgid "You almost got a medal!  Next time, try not to make as many errors."
 msgstr ""
+"Hai quasi vinto una medaglia!  La prossima volta cerca di fare meno errori."
 
 #: lessonscreen.py:571
 msgid "You almost got a medal!  Next time, try to type a little faster."
 msgstr ""
+"Hai quasi vinto una medaglia! La prossima volta cerca di scrivere un pò più "
+"veloce."
