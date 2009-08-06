@@ -15,7 +15,7 @@
 # along with Typing Turtle.  If not, see <http://www.gnu.org/licenses/>.
 
 # Import standard Python modules.
-import logging, os, math, time, copy, json, locale, datetime, random, re
+import logging, os, math, time, copy, locale, datetime, random, re
 from gettext import gettext as _
 
 # Import PyGTK.

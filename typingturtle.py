@@ -115,7 +115,7 @@ class TypingTurtle(sugar.activity.activity.Activity):
         try:
             text = fd.read()
             print "read %s" % text
-            self.data = json.read(text)
+            self.data = json.loads(text)
         finally:
             fd.close()
 
@@ -129,7 +129,7 @@ class TypingTurtle(sugar.activity.activity.Activity):
         
         fd = open(file_path, 'w')
         try:
-            text = json.write(self.data)
+            text = json.dumps(self.data)
             fd.write(text)
             print "wrote %s" % text
         finally:

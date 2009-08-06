@@ -16,7 +16,7 @@
 # vi:sw=4 et 
 
 # Import standard Python modules.
-import logging, os, math, time, copy, json, locale, datetime, random, re
+import logging, os, math, time, copy, locale, datetime, random, re
 from gettext import gettext as _
 
 # Import PyGTK.

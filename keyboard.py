@@ -22,7 +22,7 @@ import gtk
 import rsvg
 import os, glob, re
 import pango
-import simplejson
+import json
 
 # Tweaking variables.
 HAND_YOFFSET = -15
@@ -321,10 +321,10 @@ class KeyboardData:
                 pass
 
     def load_letter_map(self, filename):
-        self.letter_map = simplejson.loads(open(filename, 'r').read())
+        self.letter_map = json.loads(open(filename, 'r').read())
 
     def save_letter_map(self, filename):
-        text = simplejson.dumps(self.letter_map, ensure_ascii=False, sort_keys=True, indent=4)
+        text = json.dumps(self.letter_map, ensure_ascii=False, sort_keys=True, indent=4)
         f = open(filename, 'w')
         f.write(text)
         f.close()
