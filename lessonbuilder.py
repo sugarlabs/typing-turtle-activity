@@ -16,8 +16,9 @@
 # You should have received a copy of the GNU General Public License
 # along with Typing Turtle.  If not, see <http://www.gnu.org/licenses/>.
 
-import os, sys, random, json, locale, re, optparse
+import os, sys, random, locale, re, optparse
 from gettext import gettext as _
+from port import json
 
 # For modifier constants.
 import gtk

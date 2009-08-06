@@ -22,7 +22,7 @@ import gtk
 import rsvg
 import os, glob, re
 import pango
-import json
+from port import json
 
 # Tweaking variables.
 HAND_YOFFSET = -15

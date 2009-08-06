@@ -16,8 +16,9 @@
 """Typing Turtle - Interactive typing tutor for the OLPC XO."""
 
 # Import standard Python modules.
-import logging, os, math, time, copy, json, locale, datetime, random, re
+import logging, os, math, time, copy, locale, datetime, random, re
 from gettext import gettext as _
+from port import json
 
 # Set up remote debugging.
 #import dbgp.client

@@ -15,8 +15,9 @@
 # along with Typing Turtle.  If not, see <http://www.gnu.org/licenses/>.
 
 # Import standard Python modules.
-import logging, os, math, time, copy, cjson, locale, datetime, random, re, glob
+import logging, os, math, time, copy, locale, datetime, random, re, glob
 from gettext import gettext as _
+from port import json
 
 # Import PyGTK.
 import gobject, pygtk, gtk, pango
@@ -126,7 +127,7 @@ class MainScreen(gtk.VBox):
         for f in glob.iglob(path + '/*.lesson'):
             fd = open(f, 'r')
             try:
-                lesson = cjson.decode(fd.read())
+                lesson = json.loads(fd.read())
                 self.lessons.append(lesson)
             finally:
                 fd.close()
