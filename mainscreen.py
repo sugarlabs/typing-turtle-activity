@@ -97,12 +97,14 @@ class MainScreen(gtk.VBox):
         self.keyboard_images = keyboard.KeyboardImages(width, height)
         self.keyboard_images.load_images()
         
-        editbtn = gtk.Button()
-        editbtn.add(gtk.Label(_('Edit Lessons')))
-        editbtn.connect('clicked', self.edit_lessons_cb)
-
-        toolbar = gtk.HBox()
-        toolbar.pack_end(editbtn)
+        # not yet ready
+        #
+        #editbtn = gtk.Button()
+        #editbtn.add(gtk.Label(_('Edit Lessons')))
+        #editbtn.connect('clicked', self.edit_lessons_cb)
+        #
+        #toolbar = gtk.HBox()
+        #toolbar.pack_end(editbtn)
 
         navbox = gtk.HBox()
         navbox.set_spacing(10)
@@ -115,7 +117,7 @@ class MainScreen(gtk.VBox):
         lessonbox.pack_start(navbox, False)
         lessonbox.pack_start(self.lessonbox)
         
-        self.pack_start(toolbar)
+        #self.pack_start(toolbar)
         self.pack_start(self.titlescene, False, True, 10)
         self.pack_start(lessonbox, True)
         

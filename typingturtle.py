@@ -24,8 +24,9 @@ from port import json
 #import dbgp.client
 #dbgp.client.brkOnExcept(host='192.168.1.104', port=12900)
 
-# Set up localization.
-locale.setlocale(locale.LC_ALL, '')
+# there is need to set up localization.
+# since sugar.activity.main already seted up gettext envronment
+#locale.setlocale(locale.LC_ALL, '')
 
 # Import PyGTK.
 import gobject, pygtk, gtk, pango

@@ -402,7 +402,8 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
         self.active_group = 0
         self.active_state = 0
 
-        self.keymap.connect("keys-changed", self._keys_changed_cb)
+        # still in development
+        #self.keymap.connect("keys-changed", self._keys_changed_cb)
         
         self.hilite_letter = None
         
