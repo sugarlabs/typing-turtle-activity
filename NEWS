@@ -1,3 +1,7 @@
+20
+
+* #1164 Bug while starting the turtle activity
+
 17
 
 Introduced keybuilder and custom keymaps to work around limitations in XKB system.  
