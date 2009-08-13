@@ -77,7 +77,7 @@ class MainScreen(gtk.VBox):
         lessonbtn.modify_bg(gtk.STATE_NORMAL, self.get_colormap().alloc_color('#60b060'))
         
         # Load lessons for this language.
-        code = locale.getdefaultlocale()[0]
+        code = locale.getdefaultlocale()[0] or 'en_US'
         self.load_lessons('lessons/' + code)
 
         # Fallback to en_US lessons if none found.

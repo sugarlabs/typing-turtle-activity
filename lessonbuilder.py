@@ -303,7 +303,7 @@ def build_key_steps(
     kb = keyboard.KeyboardData()
 
     # Attempt to load a letter map for the current locale.
-    code = locale.getdefaultlocale()[0]
+    code = locale.getdefaultlocale()[0] or 'en_US'
     try:
         kb.load_letter_map('lessons/%s/%s.key' % (code, code))
     except:

@@ -127,7 +127,7 @@ class LessonScreen(gtk.VBox):
         self.keyboard = keyboard.KeyboardWidget(self.keyboard_images, self.activity)
         
         # Attempt to load a letter map for the current locale.
-        code = locale.getdefaultlocale()[0]
+        code = locale.getdefaultlocale()[0] or 'en_US'
         try:
             self.keyboard.load_letter_map('lessons/%s/%s.key' % (code, code))
         except:
