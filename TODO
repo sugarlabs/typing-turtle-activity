@@ -1,6 +1,16 @@
 Typing Turtle
 
+Lesson Editor
++ Fix Delete Lesson
++ Wire up step editing keys
++ Aesthetic improvements to lesson editor
++ Better help text
++ Saving and loading from Journal
++ Import and export from JSON data in Journal
++ Graphical lesson builder
+
 First Release
++ Export PDF of lesson history and progress.
 + Status message on the main screen.  "You unlocked a new lesson!" for example.  Eventually have the turtle 'say' it.
 + Graphical WPM and accuracy meters.
 + Sound effects.

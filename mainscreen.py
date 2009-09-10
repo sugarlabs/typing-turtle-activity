@@ -27,7 +27,7 @@ import sugar.activity.activity
 from sugar.graphics import *
 
 # Import activity modules.
-import lessonscreen, medalscreen, editlessonscreen
+import lessonscreen, medalscreen, editlessonlistscreen
 import balloongame
 import titlescene
 import keyboard
@@ -97,14 +97,13 @@ class MainScreen(gtk.VBox):
         self.keyboard_images = keyboard.KeyboardImages(width, height)
         self.keyboard_images.load_images()
         
-        # not yet ready
-        #
-        #editbtn = gtk.Button()
-        #editbtn.add(gtk.Label(_('Edit Lessons')))
-        #editbtn.connect('clicked', self.edit_lessons_cb)
-        #
-        #toolbar = gtk.HBox()
-        #toolbar.pack_end(editbtn)
+        # Access lesson editor.
+        editbtn = gtk.Button()
+        editbtn.add(gtk.Label(_('Edit Lessons')))
+        editbtn.connect('clicked', self.edit_lessons_cb)
+        
+        toolbar = gtk.HBox()
+        toolbar.pack_end(editbtn)
 
         navbox = gtk.HBox()
         navbox.set_spacing(10)
@@ -117,7 +116,7 @@ class MainScreen(gtk.VBox):
         lessonbox.pack_start(navbox, False)
         lessonbox.pack_start(self.lessonbox)
         
-        #self.pack_start(toolbar)
+        self.pack_start(toolbar)
         self.pack_start(self.titlescene, False, True, 10)
         self.pack_start(lessonbox, True)
         
@@ -256,4 +255,4 @@ class MainScreen(gtk.VBox):
             self.activity.push_screen(medalscreen.MedalScreen(medal, self.activity))
     
     def edit_lessons_cb(self, widget):
-        self.activity.push_screen(editlessonscreen.EditLessonScreen(self.activity))
+        self.activity.push_screen(editlessonlistscreen.EditLessonListScreen(self.activity, self.lessons))
