@@ -36,6 +36,8 @@ class EditLessonScreen(gtk.VBox):
         self.activity = activity
         self.lesson = lesson
 
+        self.in_build = False
+        
         # Add the header.
         title = gtk.Label()
         title.set_markup("<span size='20000'><b>" + _("Edit a Lesson") + "</b></span>")
@@ -50,14 +52,6 @@ class EditLessonScreen(gtk.VBox):
         titlebox.pack_start(stopbtn, False, False, 10)
         titlebox.pack_end(title, False, False, 10)
 
-        help = gtk.Label()
-        help.set_padding(10, 0)
-        help.set_alignment(1.0, 0.5)
-        help.set_markup(
-            _("Choose the lesson that you wish to modify.  If you wish to add a new lesson, ") +
-            _("or delete an existing lesson, use the buttons at the bottom.")
-            )
-
         self.vp = gtk.Viewport()
 
         self.scroll = gtk.ScrolledWindow()
@@ -65,7 +59,6 @@ class EditLessonScreen(gtk.VBox):
         self.scroll.add(self.vp)
 
         self.pack_start(titlebox, False, False, 10)
-        self.pack_start(help, False, False, 10)
         self.pack_start(gtk.HSeparator(), False, False, 0)
         self.pack_start(self.scroll, True, True, 0)
 
@@ -151,6 +144,8 @@ class EditLessonScreen(gtk.VBox):
         return stepbox
 
     def build(self):
+        self.in_build = True
+        
         # Add the editing controls.
         detailslabel = gtk.Label()
         detailslabel.set_markup("<span size='x-large'><b>" + _('Lesson Details') + "</b></span>")
@@ -175,7 +170,10 @@ class EditLessonScreen(gtk.VBox):
         typelabel.set_padding(20, 0)
 
         self.textradio = gtk.RadioButton(None, _('Normal Lesson'))
+        self.textradio.connect('toggled', self.type_toggled_cb)
+        
         self.balloonradio = gtk.RadioButton(self.textradio, _('Balloon Game'))
+        self.balloonradio.connect('toggled', self.type_toggled_cb)
         
         self.textradio.set_active(self.lesson['type'] == 'normal')
         self.balloonradio.set_active(self.lesson['type'] == 'balloon')        
@@ -216,6 +214,10 @@ class EditLessonScreen(gtk.VBox):
         self.vbox.pack_start(gtk.HSeparator(), False, False, 0)
         
         if self.lesson['type'] == 'normal':
+            if not self.lesson.has_key('steps') or len(self.lesson['steps']) == 0:
+                step = { 'instructions': '', 'text': '' }
+                self.lesson['steps'] = [ step ]
+            
             self.stepboxes = []
             
             for step in self.lesson['steps']:
@@ -225,6 +227,9 @@ class EditLessonScreen(gtk.VBox):
                 self.vbox.pack_start(stepbox, False, False, 0)
                 
         if self.lesson['type'] == 'balloon':
+            if not self.lesson.has_key('words') or len(self.lesson['words']) == 0:
+                self.lesson['words'] = []
+            
             textlabel = gtk.Label()
             textlabel.set_markup("<span size='large' weight='bold'>" + _('Words') + "</span>")
             textlabel.set_alignment(0.0, 0.5)
@@ -245,6 +250,8 @@ class EditLessonScreen(gtk.VBox):
             self.vbox.pack_start(textbox, False, False, 10)
 
         self.vbox.show_all()
+        
+        self.in_build = False
         
         # Remove any existing controls.
         if self.vp.get_child():
@@ -308,3 +315,13 @@ class EditLessonScreen(gtk.VBox):
             self.lesson['steps'].insert(index+1, step)
             self.build()
 
+    def type_toggled_cb(self, btn):
+        # Prevent infinite recursion
+        if self.in_build:
+            return
+        
+        if self.textradio.get_active():
+            self.lesson['type'] = 'normal'
+        if self.balloonradio.get_active():
+            self.lesson['type'] = 'balloon'
+        self.build()
