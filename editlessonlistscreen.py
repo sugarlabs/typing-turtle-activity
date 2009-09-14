@@ -170,6 +170,7 @@ class EditLessonListScreen(gtk.VBox):
                 del self.liststore[id]
                 self.treeview.get_selection().select_path(id)
                 self.treeview.grab_focus()
+                self.update_sensitivity()
 
     def move_lesson_up_clicked_cb(self, btn):
         path = self.treeview.get_cursor()[0]
@@ -181,6 +182,7 @@ class EditLessonListScreen(gtk.VBox):
                 self.liststore.swap(self.liststore.get_iter(id), self.liststore.get_iter(id - 1))
                 self.treeview.get_selection().select_path(id - 1)
                 self.treeview.grab_focus()
+                self.update_sensitivity()
 
     def move_lesson_down_clicked_cb(self, btn):
         path = self.treeview.get_cursor()[0]
@@ -192,14 +194,10 @@ class EditLessonListScreen(gtk.VBox):
                 self.liststore.swap(self.liststore.get_iter(id), self.liststore.get_iter(id + 1))
                 self.treeview.get_selection().select_path(id + 1)
                 self.treeview.grab_focus()
+                self.update_sensitivity()
 
     def lesson_selected_cb(self, treeview):
-        path = treeview.get_cursor()[0]
-        enable = path is not None
-        
-        self.delbtn.set_sensitive(True)
-        self.moveupbtn.set_sensitive(True)
-        self.movedownbtn.set_sensitive(True)
+        self.update_sensitivity()
 
     def lesson_activated_cb(self, treeview, path, column):
         id = path[0]
@@ -207,7 +205,27 @@ class EditLessonListScreen(gtk.VBox):
         self.activity.push_screen(editlessonscreen.EditLessonScreen(self.activity, lesson))
 
     def enter(self):
-        self.delbtn.set_sensitive(False)
-        self.moveupbtn.set_sensitive(False)
-        self.movedownbtn.set_sensitive(False)
+        self.update_sensitivity()
 
+    def update_sensitivity(self):
+        path = self.treeview.get_cursor()[0]
+        
+        if path:
+            self.delbtn.set_sensitive(True)
+            
+            if path[0] > 0:
+                self.moveupbtn.set_sensitive(True)
+            else:
+                self.moveupbtn.set_sensitive(False)
+                
+            if path[0] < len(self.lessons) - 1:
+                self.movedownbtn.set_sensitive(True)
+            else:
+                self.movedownbtn.set_sensitive(False)
+                
+        else:
+            self.delbtn.set_sensitive(False)
+            self.moveupbtn.set_sensitive(False)
+            self.movedownbtn.set_sensitive(False)
+            
+        
