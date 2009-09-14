@@ -76,39 +76,42 @@ class EditLessonListScreen(gtk.VBox):
         col.set_expand(True)
         self.treeview.append_column(col)
 
+        renderer = gtk.CellRendererText()
+        col = gtk.TreeViewColumn(_('Type'), renderer)
+        col.set_cell_data_func(renderer, self.type_render_cb) 
+        col.set_expand(False)
+        self.treeview.append_column(col)
+
         scroll = gtk.ScrolledWindow()
         scroll.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
         scroll.add(self.treeview)
 
-        addlabel = gtk.Label()
-        addlabel.set_markup(_('Add Lesson'))
-        addlessonbtn = gtk.Button()
-        addlessonbtn.add(addlabel)
-        addlessonbtn.connect('clicked', self.add_lesson_clicked_cb)
+        self.addbtn = gtk.Button()
+        self.addbtn.add(sugar.graphics.icon.Icon(icon_name='list-add'))
+        self.addbtn.connect('clicked', self.add_lesson_clicked_cb)
+        self.delbtn = gtk.Button()
+        self.delbtn.add(sugar.graphics.icon.Icon(icon_name='list-remove'))
+        self.delbtn.connect('clicked', self.del_lesson_clicked_cb)
+        self.delbtn.set_sensitive(False)
+        self.moveupbtn = gtk.Button()
+        self.moveupbtn.add(sugar.graphics.icon.Icon(icon_name='go-up'))
+        self.moveupbtn.connect('clicked', self.move_lesson_up_clicked_cb)
+        self.moveupbtn.set_sensitive(False)
+        self.movedownbtn = gtk.Button()
+        self.movedownbtn.add(sugar.graphics.icon.Icon(icon_name='go-down'))
+        self.movedownbtn.connect('clicked', self.move_lesson_down_clicked_cb)
+        self.movedownbtn.set_sensitive(False)
 
-        editlabel = gtk.Label()
-        editlabel.set_markup('<span size="x-large"><b>'+_('Edit Lesson')+'</b></span>')
-        self.editlessonbtn = gtk.Button()
-        self.editlessonbtn.add(editlabel)
-        self.editlessonbtn.connect('clicked', self.edit_lesson_clicked_cb)
-        self.editlessonbtn.set_sensitive(False)
-
-        dellabel = gtk.Label()
-        dellabel.set_markup(_('Delete Lesson'))
-        self.dellessonbtn = gtk.Button()
-        self.dellessonbtn.add(dellabel)
-        self.dellessonbtn.connect('clicked', self.del_lesson_clicked_cb)
-        self.dellessonbtn.set_sensitive(False)
-
-        buttonbox = gtk.HBox()
-        buttonbox.pack_start(addlessonbtn, True, False, 10)
-        buttonbox.pack_start(self.editlessonbtn, True, False, 10)
-        buttonbox.pack_start(self.dellessonbtn, True, False, 10)
+        btnbox = gtk.HBox()
+        btnbox.pack_end(self.addbtn, False, False)
+        btnbox.pack_end(self.delbtn, False, False)
+        btnbox.pack_end(self.moveupbtn, False, False)
+        btnbox.pack_end(self.movedownbtn, False, False)
 
         self.pack_start(titlebox, False, False, 10)
         self.pack_start(gtk.HSeparator(), False, False, 0)
         self.pack_start(scroll, True, True, 10)
-        self.pack_start(buttonbox, False, False, 10)
+        self.pack_start(btnbox, False, False, 10)
 
         self.build()
 
@@ -129,6 +132,14 @@ class EditLessonListScreen(gtk.VBox):
         id = model.get_value(iter, 0)
         t = self.lessons[id]
         cell_renderer.set_property('text', t['description'])
+
+    def type_render_cb(self, column, cell_renderer, model, iter):
+        id = model.get_value(iter, 0)
+        t = self.lessons[id]
+        if t['type'] == 'normal':
+            cell_renderer.set_property('text', _('Text'))
+        if t['type'] == 'balloon':
+            cell_renderer.set_property('text', _('Balloon Game'))
 
     def stop_clicked_cb(self, btn):
         # Refresh the main screen given the new lesson data.
@@ -151,23 +162,35 @@ class EditLessonListScreen(gtk.VBox):
             self.lessons.pop(id)
             self.build()
 
-    def edit_lesson_clicked_cb(self, btn):
+    def move_lesson_up_clicked_cb(self, btn):
         path = self.treeview.get_cursor()[0]
         if path:
             model = self.liststore
             iter = model.get_iter(path)
             id = model.get_value(iter, 0)
-            lesson = self.lessons[id]
-            self.activity.push_screen(editlessonscreen.EditLessonScreen(self.activity, lesson))
-        
+            if id > 0:
+                lesson = self.lessons.pop(id)
+                self.lessons.insert(id - 1, lesson)
+                self.build()
+
+    def move_lesson_down_clicked_cb(self, btn):
+        path = self.treeview.get_cursor()[0]
+        if path:
+            model = self.liststore
+            iter = model.get_iter(path)
+            id = model.get_value(iter, 0)
+            if id < len(self.lessons) - 1:
+                lesson = self.lessons.pop(id)
+                self.lessons.insert(id + 1, lesson)
+                self.build()
+
     def lesson_selected_cb(self, treeview):
         path = treeview.get_cursor()[0]
-        if path:
-            self.editlessonbtn.set_sensitive(True)
-            self.dellessonbtn.set_sensitive(True)
-        else:
-            self.editlessonbtn.set_sensitive(False)
-            self.dellessonbtn.set_sensitive(False)
+        enable = path is not None
+        
+        self.delbtn.set_sensitive(True)
+        self.moveupbtn.set_sensitive(True)
+        self.movedownbtn.set_sensitive(True)
 
     def lesson_activated_cb(self, treeview, path, column):
         model = treeview.get_model()

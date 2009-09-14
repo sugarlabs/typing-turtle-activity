@@ -27,7 +27,7 @@ import sugar.activity.activity
 from sugar.graphics import *
 
 # Import activity modules.
-import lessonscreen, medalscreen, editlessonlistscreen
+import lessonscreen, medalscreen
 import balloongame
 import titlescene
 import keyboard
@@ -97,14 +97,6 @@ class MainScreen(gtk.VBox):
         self.keyboard_images = keyboard.KeyboardImages(width, height)
         self.keyboard_images.load_images()
         
-        # Access lesson editor.
-        editbtn = gtk.Button()
-        editbtn.add(gtk.Label(_('Edit Lessons')))
-        editbtn.connect('clicked', self.edit_lessons_cb)
-        
-        toolbar = gtk.HBox()
-        toolbar.pack_end(editbtn)
-
         navbox = gtk.HBox()
         navbox.set_spacing(10)
         navbox.pack_start(self.prevlessonbtn, True)
@@ -116,12 +108,17 @@ class MainScreen(gtk.VBox):
         lessonbox.pack_start(navbox, False)
         lessonbox.pack_start(self.lessonbox)
         
-        self.pack_start(toolbar)
         self.pack_start(self.titlescene, False, True, 10)
         self.pack_start(lessonbox, True)
         
         self.show_next_lesson()
 
+    def enter(self):
+        self.activity.editorbtn.set_sensitive(True)
+    
+    def leave(self):
+        self.activity.editorbtn.set_sensitive(False)
+    
     def load_lessons(self, path):
         # Find all .lesson files in ./lessons/en_US/ for example.
         self.lessons = []
@@ -253,6 +250,3 @@ class MainScreen(gtk.VBox):
         if self.activity.data['medals'].has_key(self.visible_lesson['name']):
             medal = self.activity.data['medals'][self.visible_lesson['name']]
             self.activity.push_screen(medalscreen.MedalScreen(medal, self.activity))
-    
-    def edit_lessons_cb(self, widget):
-        self.activity.push_screen(editlessonlistscreen.EditLessonListScreen(self.activity, self.lessons))

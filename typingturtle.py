@@ -34,6 +34,7 @@ import gobject, pygtk, gtk, pango
 # Import Sugar UI modules.
 import sugar.activity.activity
 from sugar.graphics import *
+from sugar.graphics import toolbutton
 
 from sugar.presence import presenceservice
 
@@ -47,7 +48,7 @@ bundle_path = sugar.activity.activity.get_bundle_path()
 os.chdir(bundle_path)
 
 # Import activity modules.
-import mainscreen, lessonscreen, medalscreen
+import mainscreen, editlessonlistscreen
 
 # This is the main Typing Turtle activity class.
 # 
@@ -85,55 +86,89 @@ class TypingTurtle(sugar.activity.activity.Activity):
         activity_toolbar = self.tbox.get_activity_toolbar()
         activity_toolbar.share.props.visible = False
 
+        self.editorbtn = sugar.graphics.toolbutton.ToolButton('format-justify-left')
+        self.editorbtn.set_tooltip(_("Edit Lessons"))
+        self.editorbtn.connect('clicked', self.editor_clicked_cb)
+
+        share_idx = activity_toolbar.get_item_index(activity_toolbar.share) 
+        activity_toolbar.insert(self.editorbtn, share_idx)
+        self.editorbtn.show_all()
+
     def build_toolbox(self):
         self.tbox = sugar.activity.activity.ActivityToolbox(self)
         self.tbox.show_all()
         
         self.set_toolbox(self.tbox)
 
+    def editor_clicked_cb(self, btn):
+        self.push_screen(editlessonlistscreen.EditLessonListScreen(self, self.mainscreen.lessons))
+
     def push_screen(self, screen):
         if len(self.screens):
-            self.screenbox.remove(self.screens[-1])
+            oldscreen = self.screens[-1]
+            
+            try:
+                oldscreen.leave()
+            except:
+                pass
+            
+            self.screenbox.remove(oldscreen)
         
         self.screenbox.pack_start(screen, True, True)
         self.screens.append(screen)
+        
+        try:
+            screen.enter()
+        except:
+            pass
 
     def pop_screen(self):
-        self.screenbox.remove(self.screens[-1])
-        self.screens.pop()
+        oldscreen = self.screens.pop()
+        
+        try:
+            oldscreen.leave()
+        except:
+            pass
+        
+        self.screenbox.remove(oldscreen)
+        
         if len(self.screens):
-            self.screenbox.pack_start(self.screens[-1])
+            screen = self.screens[-1]
 
+            try:
+                screen.enter()
+            except:
+                pass
+            
+            self.screenbox.pack_start(screen)
+            
     def add_history(self, entry):
         self.data['history'].append(entry)
 
     def read_file(self, file_path):
-        print 'read_file'
-
         if self.metadata['mime_type'] != 'text/plain':
             return
         
         fd = open(file_path, 'r')
         try:
             text = fd.read()
-            print "read %s" % text
             self.data = json.loads(text)
+            if self.data.has_key('lessons'):
+                self.mainscreen.lessons = self.data['lessons']
         finally:
             fd.close()
 
         self.mainscreen.show_next_lesson()
 
     def write_file(self, file_path):
-        print 'write_file'
-
         if not self.metadata['mime_type']:
             self.metadata['mime_type'] = 'text/plain'
         
         fd = open(file_path, 'w')
         try:
+            self.data['lessons'] = self.mainscreen.lessons
             text = json.dumps(self.data)
             fd.write(text)
-            print "wrote %s" % text
         finally:
             fd.close()
 
