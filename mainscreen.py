@@ -217,11 +217,11 @@ class MainScreen(gtk.VBox):
         
         # Hilite the button in the direction of the first unmedaled lesson.
         next_index = self.get_next_lesson()
-        if next_index > self.lesson_index:
+        if next_index > self.lesson_index and index < len(self.lessons)-1:
             self.nextlessonbtn.modify_bg(gtk.STATE_NORMAL, self.get_colormap().alloc_color('#ff8080'))
         else:
             self.nextlessonbtn.modify_bg(gtk.STATE_NORMAL, self.get_colormap().alloc_color('#40a040'))
-        if next_index < self.lesson_index:
+        if next_index < self.lesson_index and index > 0:
             self.prevlessonbtn.modify_bg(gtk.STATE_NORMAL, self.get_colormap().alloc_color('#ff8080'))
         else:
             self.prevlessonbtn.modify_bg(gtk.STATE_NORMAL, self.get_colormap().alloc_color('#40a040'))

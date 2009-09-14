@@ -120,21 +120,21 @@ class EditLessonListScreen(gtk.VBox):
     def build(self):
         # Fill the lesson list.
         self.liststore.clear()
-        for t in range(0, len(self.lessons)-1):
-            self.liststore.append((t,))
+        for t in range(0, len(self.lessons)):
+            self.liststore.append((0,))
     
     def name_render_cb(self, column, cell_renderer, model, iter):
-        id = model.get_value(iter, 0)
+        id = model.get_path(iter)[0]
         t = self.lessons[id]
         cell_renderer.set_property('text', t['name'])
     
     def description_render_cb(self, column, cell_renderer, model, iter):
-        id = model.get_value(iter, 0)
+        id = model.get_path(iter)[0]
         t = self.lessons[id]
         cell_renderer.set_property('text', t['description'])
 
     def type_render_cb(self, column, cell_renderer, model, iter):
-        id = model.get_value(iter, 0)
+        id = model.get_path(iter)[0]
         t = self.lessons[id]
         if t['type'] == 'normal':
             cell_renderer.set_property('text', _('Text'))
@@ -142,7 +142,15 @@ class EditLessonListScreen(gtk.VBox):
             cell_renderer.set_property('text', _('Balloon Game'))
 
     def stop_clicked_cb(self, btn):
+        # Assign lesson order.
+        num = 0
+        for l in self.lessons:
+            l['order'] = num
+            num = num + 1
+            
         # Refresh the main screen given the new lesson data.
+        if self.activity.mainscreen.lesson_index >= len(self.lessons):
+            self.activity.mainscreen.lesson_index = len(self.lessons) - 1
         self.activity.mainscreen.show_lesson(self.activity.mainscreen.lesson_index)
         
         self.activity.pop_screen()
@@ -151,38 +159,39 @@ class EditLessonListScreen(gtk.VBox):
         lesson = { 'name':'', 'description':'', 'type':'normal', 'steps':[ { 'instructions':'', 'text':'' } ] }
         self.lessons.append(lesson)
         self.activity.push_screen(editlessonscreen.EditLessonScreen(self.activity, lesson))
-        self.build()
+        self.liststore.append()
 
     def del_lesson_clicked_cb(self, btn):
-        path = self.treeview.get_cursor()[0]
-        if path:
-            model = self.liststore
-            iter = model.get_iter(path)
-            id = model.get_value(iter, 0)
-            self.lessons.pop(id)
-            self.build()
+        if len(self.lessons) > 1:
+            path = self.treeview.get_cursor()[0]
+            if path:
+                id = path[0]
+                self.lessons.pop(id)
+                del self.liststore[id]
+                self.treeview.get_selection().select_path(id)
+                self.treeview.grab_focus()
 
     def move_lesson_up_clicked_cb(self, btn):
         path = self.treeview.get_cursor()[0]
         if path:
-            model = self.liststore
-            iter = model.get_iter(path)
-            id = model.get_value(iter, 0)
+            id = path[0]
             if id > 0:
                 lesson = self.lessons.pop(id)
                 self.lessons.insert(id - 1, lesson)
-                self.build()
+                self.liststore.swap(self.liststore.get_iter(id), self.liststore.get_iter(id - 1))
+                self.treeview.get_selection().select_path(id - 1)
+                self.treeview.grab_focus()
 
     def move_lesson_down_clicked_cb(self, btn):
         path = self.treeview.get_cursor()[0]
         if path:
-            model = self.liststore
-            iter = model.get_iter(path)
-            id = model.get_value(iter, 0)
+            id = path[0]
             if id < len(self.lessons) - 1:
                 lesson = self.lessons.pop(id)
                 self.lessons.insert(id + 1, lesson)
-                self.build()
+                self.liststore.swap(self.liststore.get_iter(id), self.liststore.get_iter(id + 1))
+                self.treeview.get_selection().select_path(id + 1)
+                self.treeview.grab_focus()
 
     def lesson_selected_cb(self, treeview):
         path = treeview.get_cursor()[0]
@@ -193,9 +202,12 @@ class EditLessonListScreen(gtk.VBox):
         self.movedownbtn.set_sensitive(True)
 
     def lesson_activated_cb(self, treeview, path, column):
-        model = treeview.get_model()
-        id = model.get_value(model.get_iter(path), 0)
+        id = path[0]
         lesson = self.lessons[id]
         self.activity.push_screen(editlessonscreen.EditLessonScreen(self.activity, lesson))
 
+    def enter(self):
+        self.delbtn.set_sensitive(False)
+        self.moveupbtn.set_sensitive(False)
+        self.movedownbtn.set_sensitive(False)
 

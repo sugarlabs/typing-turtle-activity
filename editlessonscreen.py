@@ -74,10 +74,10 @@ class EditLessonScreen(gtk.VBox):
         steplabel.set_alignment(0.0, 0.5)
         steplabel.set_padding(10, 0)
 
-        generatelabel = gtk.Label()
-        generatelabel.set_markup(_('Generate'))
-        generatebtn = gtk.Button()
-        generatebtn.add(generatelabel)
+        #generatelabel = gtk.Label()
+        #generatelabel.set_markup(_('Generate'))
+        #generatebtn = gtk.Button()
+        #generatebtn.add(generatelabel)
         delstepbtn = gtk.Button()
         delstepbtn.add(sugar.graphics.icon.Icon(icon_name='list-remove'))
         delstepbtn.connect('clicked', self.del_step_clicked_cb, idx)
@@ -97,7 +97,7 @@ class EditLessonScreen(gtk.VBox):
         btnbox.pack_end(delstepbtn, False, False)
         btnbox.pack_end(moveupbtn, False, False)
         btnbox.pack_end(movedownbtn, False, False)
-        btnbox.pack_end(generatebtn, False, False)
+        #btnbox.pack_end(generatebtn, False, False)
 
         instlabel = gtk.Label()
         instlabel.set_markup("<span size='large' weight='bold'>" + _('Instructions') + "</span>")
