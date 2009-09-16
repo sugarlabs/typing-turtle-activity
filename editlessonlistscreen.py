@@ -19,6 +19,7 @@
 # Import standard Python modules.
 import logging, os, math, time, copy, locale, datetime, random, re
 from gettext import gettext as _
+from port import json
 
 # Import PyGTK.
 import gobject, pygtk, gtk, pango
@@ -26,6 +27,9 @@ import gobject, pygtk, gtk, pango
 # Import Sugar UI modules.
 import sugar.activity.activity
 import sugar.graphics.style
+import sugar.graphics.objectchooser
+import sugar.mime
+import sugar.datastore.datastore
 
 # Import activity modules.
 import editlessonscreen
@@ -86,6 +90,16 @@ class EditLessonListScreen(gtk.VBox):
         scroll.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
         scroll.add(self.treeview)
 
+        importlabel = gtk.Label(_('Import Lessons from Journal'))
+        self.importbtn = gtk.Button()
+        self.importbtn.add(importlabel)
+        self.importbtn.connect('clicked', self.import_clicked_cb)
+        
+        exportlabel = gtk.Label(_('Export Lessons to Journal'))
+        self.exportbtn = gtk.Button()
+        self.exportbtn.add(exportlabel)
+        self.exportbtn.connect('clicked', self.export_clicked_cb)
+        
         self.addbtn = gtk.Button()
         self.addbtn.add(sugar.graphics.icon.Icon(icon_name='list-add'))
         self.addbtn.connect('clicked', self.add_lesson_clicked_cb)
@@ -103,6 +117,8 @@ class EditLessonListScreen(gtk.VBox):
         self.movedownbtn.set_sensitive(False)
 
         btnbox = gtk.HBox()
+        btnbox.pack_start(self.importbtn, False, False, 10)
+        btnbox.pack_start(self.exportbtn, False, False)
         btnbox.pack_end(self.addbtn, False, False)
         btnbox.pack_end(self.delbtn, False, False)
         btnbox.pack_end(self.moveupbtn, False, False)
@@ -147,7 +163,7 @@ class EditLessonListScreen(gtk.VBox):
         for l in self.lessons:
             l['order'] = num
             num = num + 1
-            
+        
         # Refresh the main screen given the new lesson data.
         if self.activity.mainscreen.lesson_index >= len(self.lessons):
             self.activity.mainscreen.lesson_index = len(self.lessons) - 1
@@ -238,3 +254,59 @@ class EditLessonListScreen(gtk.VBox):
             self.movedownbtn.set_sensitive(False)
             
         
+    def import_clicked_cb(self, btn):
+        chooser = sugar.graphics.objectchooser.ObjectChooser(
+            None, self, None,
+            what_filter='text/x-typing-turtle-lessons')
+        
+        try:
+            result = chooser.run()
+            
+            if result == gtk.RESPONSE_ACCEPT:
+                jobject = chooser.get_selected_object()
+                
+                if jobject and jobject.file_path:
+                    fd = open(jobject.file_path, 'r')
+                    
+                    try:
+                        data = json.loads(fd.read())
+                        
+                        # Replace lessons without destroying the object.
+                        while len(self.lessons):
+                            self.lessons.pop()
+                        for l in data['lessons']:
+                            self.lessons.append(l)
+                        self.build()
+                    
+                    finally:
+                        fd.close()
+        
+        finally:
+            chooser.destroy()
+            del chooser
+        
+    def export_clicked_cb(self, btn):
+        # Create the new journal entry
+        fileObject = sugar.datastore.datastore.create()
+
+        meta = self.activity.metadata
+        fileObject.metadata['title'] = meta['title'] + _(' (Exported Lessons)')
+        fileObject.metadata['title_set_by_user'] = meta['title_set_by_user']
+        fileObject.metadata['mime_type'] = 'text/x-typing-turtle-lessons'
+        fileObject.metadata['icon-color'] = meta['icon-color']
+        fileObject.file_path = os.path.join(self.activity.get_activity_root(), 'instance', '%i' % time.time())
+        
+        fd = open(fileObject.file_path, 'w')
+        
+        try:
+            data = { 'lessons': self.lessons }
+            fd.write(json.dumps(data))
+            
+        finally:
+            fd.close()
+        
+        sugar.datastore.datastore.write(fileObject, transfer_ownership=True)
+        fileObject.destroy()
+        del fileObject
+
+    
