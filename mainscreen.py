@@ -78,11 +78,11 @@ class MainScreen(gtk.VBox):
         
         # Load lessons for this language.
         code = locale.getdefaultlocale()[0] or 'en_US'
-        self.load_lessons('lessons/' + code)
+        self.load_lessons('lessons/' + code + '.lessons')
 
         # Fallback to en_US lessons if none found.
         if not len(self.lessons):
-            self.load_lessons('lessons/en_US')
+            self.load_lessons('lessons/en_US.lessons')
 
         # We cannot run without lessons.
         if not len(self.lessons):
@@ -120,15 +120,12 @@ class MainScreen(gtk.VBox):
         self.activity.editorbtn.set_sensitive(False)
     
     def load_lessons(self, path):
-        # Find all .lesson files in ./lessons/en_US/ for example.
-        self.lessons = []
-        for f in glob.iglob(path + '/*.lesson'):
-            fd = open(f, 'r')
-            try:
-                lesson = json.loads(fd.read())
-                self.lessons.append(lesson)
-            finally:
-                fd.close()
+        fd = open(path, 'r')
+        try:
+            data = json.loads(fd.read())
+            self.lessons = data['lessons']
+        finally:
+            fd.close()
 
     def get_next_lesson(self):
         """Returns the index of the first lesson without a medal."""
