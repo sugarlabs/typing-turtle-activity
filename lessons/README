@@ -1,0 +1,28 @@
+Lesson Directory README
+=======================
+
+When Typing Turtle starts a new Journal instance, it looks in this directory
+for the lesson data.
+
+It takes the current language code, for example en_US or ne_NP, and tries to
+load the lessons from a file xx_YY.lessons.  If it fails, it defaults to
+en_US.lessons.
+
+Updating the lessons in the Activity Bundle
+===========================================
+
+By adding or modifying files in this directory, you can change the lessons
+that are built into Typing Turtle, and add custom lessons for additional
+languages.
+
+First, create your lessons using the Typing Turtle Lesson Editor. Export them
+to the Journal using the Export Lessons to Journal button.
+
+At the Terminal, change directory to TypingTurtle.activity/lessons and run:
+
+copy-from-journal -q Exported lesson-data
+mv lesson-data en_US.lessons
+
+Replace en_US.lessons with the lessons file you wish to create or update.
+
+Contact wadetb@gmail.com with any questions.
