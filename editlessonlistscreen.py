@@ -20,6 +20,7 @@
 import logging, os, math, time, copy, locale, datetime, random, re
 from gettext import gettext as _
 from port import json
+from port import chooser
 
 # Import PyGTK.
 import gobject, pygtk, gtk, pango
@@ -27,7 +28,6 @@ import gobject, pygtk, gtk, pango
 # Import Sugar UI modules.
 import sugar.activity.activity
 import sugar.graphics.style
-import sugar.graphics.objectchooser
 import sugar.mime
 import sugar.datastore.datastore
 
@@ -255,36 +255,24 @@ class EditLessonListScreen(gtk.VBox):
             
         
     def import_clicked_cb(self, btn):
-        chooser = sugar.graphics.objectchooser.ObjectChooser(
-            None, self, None,
-            what_filter='text/x-typing-turtle-lessons')
+        jobject = chooser.pick(None, None, self, 'text/x-typing-turtle-lessons')
         
-        try:
-            result = chooser.run()
+        if jobject and jobject.file_path:
+            fd = open(jobject.file_path, 'r')
             
-            if result == gtk.RESPONSE_ACCEPT:
-                jobject = chooser.get_selected_object()
+            try:
+                data = json.loads(fd.read())
                 
-                if jobject and jobject.file_path:
-                    fd = open(jobject.file_path, 'r')
-                    
-                    try:
-                        data = json.loads(fd.read())
-                        
-                        # Replace lessons without destroying the object.
-                        while len(self.lessons):
-                            self.lessons.pop()
-                        for l in data['lessons']:
-                            self.lessons.append(l)
-                        self.build()
-                    
-                    finally:
-                        fd.close()
-        
-        finally:
-            chooser.destroy()
-            del chooser
-        
+                # Replace lessons without destroying the object.
+                while len(self.lessons):
+                    self.lessons.pop()
+                for l in data['lessons']:
+                    self.lessons.append(l)
+                self.build()
+            
+            finally:
+                fd.close()
+    
     def export_clicked_cb(self, btn):
         # Create the new journal entry
         fileObject = sugar.datastore.datastore.create()
@@ -309,4 +297,4 @@ class EditLessonListScreen(gtk.VBox):
         fileObject.destroy()
         del fileObject
 
-    
+     
