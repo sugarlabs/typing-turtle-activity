@@ -91,6 +91,11 @@ class EditLessonScreen(gtk.VBox):
         movedownbtn.add(sugar.graphics.icon.Icon(icon_name='go-down'))
         movedownbtn.connect('clicked', self.move_step_down_clicked_cb, idx)
 
+        if idx == 0:
+            moveupbtn.set_sensitive(False)
+        if idx == len(self.lesson['steps']) - 1:
+            movedownbtn.set_sensitive(False)
+
         btnbox = gtk.HBox()
         btnbox.pack_start(steplabel, False, False)
         btnbox.pack_end(addstepbtn, False, False)
@@ -103,6 +108,8 @@ class EditLessonScreen(gtk.VBox):
         instlabel.set_markup("<span size='large' weight='bold'>" + _('Instructions') + "</span>")
         instlabel.set_alignment(0.0, 0.5)
         instlabel.set_padding(20, 0)
+
+        self.labelsizegroup.add_widget(instlabel)
 
         stepbox.insttext = gtk.TextView(gtk.TextBuffer())
         stepbox.insttext.props.wrap_mode = gtk.WRAP_WORD
@@ -120,6 +127,8 @@ class EditLessonScreen(gtk.VBox):
         textlabel.set_markup("<span size='large' weight='bold'>" + _('Text') + "</span>")
         textlabel.set_alignment(0.0, 0.5)
         textlabel.set_padding(20, 0)
+
+        self.labelsizegroup.add_widget(textlabel)
 
         stepbox.texttext = gtk.TextView(gtk.TextBuffer())
         stepbox.texttext.props.wrap_mode = gtk.WRAP_WORD
@@ -143,10 +152,53 @@ class EditLessonScreen(gtk.VBox):
         
         return stepbox
 
+    def build_medal(self, medal, name):
+        box = gtk.HBox()
+
+        label = gtk.Label()
+        label.set_markup("<span size='large' weight='bold'>" + name + "</span>")
+        label.set_alignment(0.0, 0.5)
+        label.set_padding(20, 0)
+
+        self.labelsizegroup.add_widget(label)
+        
+        box.pack_start(label, False, False)
+
+        if self.lesson['type'] == 'normal':
+            acclabel = gtk.Label(_('Accuracy'))       
+            wpmlabel = gtk.Label(_('WPM'))
+            
+            box.accent = gtk.Entry()
+            box.wpment = gtk.Entry()
+
+            box.accent.set_text(str(medal['accuracy']))
+            box.wpment.set_text(str(medal['wpm']))
+        
+            box.pack_start(acclabel, False, False, 10)
+            box.pack_start(box.accent, False, False)
+            box.pack_start(wpmlabel, False, False, 10)
+            box.pack_start(box.wpment, False, False)
+        
+        elif self.lesson['type'] == 'balloon':
+            scorelabel = gtk.Label(_('Score'))
+            
+            box.scoreent = gtk.Entry()
+            box.scoreent.set_text(str(medal['score']))
+        
+            box.pack_start(scorelabel, False, False, 10)
+            box.pack_start(box.scoreent, False, False)
+            
+        return box
+      
     def build(self):
         self.in_build = True
         
-        # Add the editing controls.
+        self.vbox = gtk.VBox()
+        self.vbox.set_border_width(20)
+        
+        self.labelsizegroup = gtk.SizeGroup(gtk.SIZE_GROUP_HORIZONTAL)   
+
+        # Lesson details widgets.
         detailslabel = gtk.Label()
         detailslabel.set_markup("<span size='x-large'><b>" + _('Lesson Details') + "</b></span>")
         detailslabel.set_alignment(0.0, 0.5)
@@ -199,25 +251,25 @@ class EditLessonScreen(gtk.VBox):
         descbox = gtk.HBox()
         descbox.pack_start(desclabel, False, False)
         descbox.pack_start(descscroll, True, True)
-
-        sizegroup = gtk.SizeGroup(gtk.SIZE_GROUP_HORIZONTAL)   
-        sizegroup.add_widget(namelabel)
-        sizegroup.add_widget(typelabel)    
-        sizegroup.add_widget(desclabel)    
-
-        self.vbox = gtk.VBox()
-        self.vbox.set_border_width(20)
+    
+        self.labelsizegroup.add_widget(namelabel)
+        self.labelsizegroup.add_widget(typelabel)    
+        self.labelsizegroup.add_widget(desclabel)    
+  
         self.vbox.pack_start(detailslabel, False, False, 10)        
         self.vbox.pack_start(namebox, False, False, 10)
         self.vbox.pack_start(typebox, False, False, 10)
         self.vbox.pack_start(descbox, False, False, 10)
         self.vbox.pack_start(gtk.HSeparator(), False, False, 0)
         
+        # Steps or words widgets.
         if self.lesson['type'] == 'normal':
             if not self.lesson.has_key('steps') or len(self.lesson['steps']) == 0:
                 step = { 'instructions': '', 'text': '' }
-                self.lesson['steps'] = [ step ]
+                self.lesson['steps'] = [ step ]              
             
+            self.vbox.pack_start(gtk.HSeparator(), False, False, 0)
+        
             self.stepboxes = []
             
             for step in self.lesson['steps']:
@@ -230,10 +282,14 @@ class EditLessonScreen(gtk.VBox):
             if not self.lesson.has_key('words') or len(self.lesson['words']) == 0:
                 self.lesson['words'] = []
             
+            self.vbox.pack_start(gtk.HSeparator(), False, False, 0)
+        
             textlabel = gtk.Label()
             textlabel.set_markup("<span size='large' weight='bold'>" + _('Words') + "</span>")
             textlabel.set_alignment(0.0, 0.5)
             textlabel.set_padding(20, 0)
+
+            self.labelsizegroup.add_widget(textlabel)
 
             self.wordstext = gtk.TextView(gtk.TextBuffer())
             self.wordstext.props.wrap_mode = gtk.WRAP_WORD
@@ -248,6 +304,24 @@ class EditLessonScreen(gtk.VBox):
             textbox.pack_start(textscroll, True, True)
             
             self.vbox.pack_start(textbox, False, False, 10)
+
+        # Medal requirements widgets.
+        medalslabel = gtk.Label()
+        medalslabel.set_markup("<span size='x-large'><b>" + _('Medal Requirements') + "</b></span>")
+        medalslabel.set_alignment(0.0, 0.5)
+        medalslabel.set_padding(10, 0)
+
+        self.vbox.pack_start(gtk.HSeparator(), False, False, 0)
+        self.vbox.pack_start(medalslabel, False, False, 10)
+        
+        self.medalboxes = []
+        self.medalboxes.append(self.build_medal(self.lesson['medals'][0], _('Bronze')))
+        self.medalboxes.append(self.build_medal(self.lesson['medals'][1], _('Silver')))
+        self.medalboxes.append(self.build_medal(self.lesson['medals'][2], _('Gold')))
+        
+        self.vbox.pack_start(self.medalboxes[0], False, False, 10)
+        self.vbox.pack_start(self.medalboxes[1], False, False, 10)
+        self.vbox.pack_start(self.medalboxes[2], False, False, 10)
 
         self.vbox.show_all()
         
@@ -287,12 +361,19 @@ class EditLessonScreen(gtk.VBox):
                 
             self.lesson['steps'] = steps
 
+            for i in range(0, 3):
+                self.lesson['medals'][i]['accuracy'] = int(self.medalboxes[i].accent.get_text())                
+                self.lesson['medals'][i]['wpm'] = int(self.medalboxes[i].wpment.get_text())
+                
         if self.balloonradio.get_active():
             self.lesson['type'] = 'balloon'
             
             buf = self.wordstext.get_buffer()
             text = buf.get_text(buf.get_start_iter(), buf.get_end_iter())
             self.lesson['words'] = text.split(' ')
+            
+            for i in range(0, 3):
+                self.lesson['medals'][i]['score'] = int(self.medalboxes[i].scoreent.get_text())                
 
     def add_step_clicked_cb(self, btn, index):
         step = { 'instructions': '', 'text': '' }

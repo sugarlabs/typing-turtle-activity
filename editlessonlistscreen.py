@@ -156,7 +156,16 @@ class EditLessonListScreen(gtk.VBox):
         self.activity.pop_screen()
     
     def add_lesson_clicked_cb(self, btn):
-        lesson = { 'name':'', 'description':'', 'type':'normal', 'steps':[ { 'instructions':'', 'text':'' } ] }
+        lesson = {}
+        lesson['name'] = ''
+        lesson['description'] = ''
+        lesson['type'] = 'normal'
+        lesson['steps'] = [ { 'instructions':'', 'text':'' } ]
+        lesson['medals'] = [ 
+            { 'name': 'bronze', 'wpm': 15, 'accuracy': 70, 'score': 3000 },
+            { 'name': 'silver', 'wpm': 20, 'accuracy': 80, 'score': 4500 },
+            { 'name': 'gold',   'wpm': 25, 'accuracy': 90, 'score': 6000 },
+        ]
         self.lessons.append(lesson)
         self.activity.push_screen(editlessonscreen.EditLessonScreen(self.activity, lesson))
         self.liststore.append()

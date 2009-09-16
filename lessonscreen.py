@@ -254,7 +254,10 @@ class LessonScreen(gtk.VBox):
         self.next_step_idx = self.next_step_idx + 1
         
         # Single character steps are handled differently from multi-character steps.
-        self.mode = self.step['mode']
+        if len(self.step['text']) == 1:
+            self.mode = 'key'
+        else:
+            self.mode = 'text'
         
         # Clear the buffer *before* key steps.
         self.lessonbuffer.set_text('')
@@ -360,7 +363,7 @@ class LessonScreen(gtk.VBox):
         if not event.string:
             return True
 
-        print 'key_cb: ' + event.string
+        #print 'key_cb: ' + event.string
 
         # Ignore either press or release events, depending on mode.
         if self.mode == 'key' and event.type == gtk.gdk.KEY_PRESS:
