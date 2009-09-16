@@ -204,8 +204,6 @@ class LessonScreen(gtk.VBox):
         self.start_time = None
         self.total_time = 0
 
-        self.step = None
-        
         self.next_step_idx = 0
         self.advance_step()
 
@@ -233,28 +231,38 @@ class LessonScreen(gtk.VBox):
         self.stop_timer()
 
         # Clear step related variables.
-        self.step = None
-        
         self.text = None
         self.line = None
         self.line_marks = None
+       
+        # TODO: Play 'step finished' sound here.
         
-        # Leave this screen if the lesson is finished.
-        if self.next_step_idx >= len(self.lesson['steps']):
-            self.end_lesson()
-            return
+        # Set up step if a valid index.
+        if self.next_step_idx < len(self.lesson['steps']):
+            step = self.lesson['steps'][self.next_step_idx]
+            self.next_step_idx = self.next_step_idx + 1
+            
+            self.text = unicode(step['text'])
+            self.instructions = unicode(step['instructions'])
         
-        # Mark the lesson as finished if this is the last step.
-        if self.next_step_idx == len(self.lesson['steps']) - 1:
+        # Show report after the last step.
+        elif self.next_step_idx == len(self.lesson['steps']) and not self.lesson_finished:
             self.lesson_finished = True
+            
+            self.instructions = self.get_lesson_report()
+            self.text = '\n'
         
-        # TODO - Play 'step finished' sound here.
+        # Leave this screen when the lesson is finished.
+        else:
+            self.end_lesson()
+            return      
         
-        self.step = self.lesson['steps'][self.next_step_idx]
-        self.next_step_idx = self.next_step_idx + 1
+        # Fix empty steps.
+        if len(self.text) == 0:
+            self.text = '\n'
         
         # Single character steps are handled differently from multi-character steps.
-        if len(self.step['text']) == 1:
+        if len(self.text) == 1:
             self.mode = 'key'
         else:
             self.mode = 'text'
@@ -262,16 +270,10 @@ class LessonScreen(gtk.VBox):
         # Clear the buffer *before* key steps.
         self.lessonbuffer.set_text('')
         
-        # Output the instructions.
-        self.instructions = self.step['instructions']
-        if self.instructions.find('$report') != -1:
-            self.instructions = self.get_lesson_report()
-        
+        # Output the instructions.        
         self.lessonbuffer.insert_with_tags_by_name(
             self.lessonbuffer.get_end_iter(), '\n\n' + self.instructions + '\n', 'instructions')
         
-        self.text = unicode(self.step['text'])
-
         if self.mode == 'key':
             self.lines = [self.text.replace('\n', PARAGRAPH_CODE)]
             self.line_marks = {}
