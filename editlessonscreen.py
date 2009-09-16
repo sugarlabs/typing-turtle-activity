@@ -376,32 +376,36 @@ class EditLessonScreen(gtk.VBox):
                 self.lesson['medals'][i]['score'] = int(self.medalboxes[i].scoreent.get_text())                
 
     def add_step_clicked_cb(self, btn, index):
+        self.save()
+
         step = { 'instructions': '', 'text': '' }
         self.lesson['steps'].insert(index, step)
         
-        self.save()
         self.build()
     
     def del_step_clicked_cb(self, btn, index):
+        self.save()
+
         self.lesson['steps'].pop(index)
         
-        self.save()
         self.build()
     
     def move_step_up_clicked_cb(self, btn, index):
         if index > 0:
+            self.save()
+
             step = self.lesson['steps'].pop(index)
             self.lesson['steps'].insert(index-1, step)
             
-            self.save()
             self.build()
     
     def move_step_down_clicked_cb(self, btn, index):
         if index < len(self.lesson['steps']) - 1:
+            self.save()
+
             step = self.lesson['steps'].pop(index)
             self.lesson['steps'].insert(index+1, step)
             
-            self.save()
             self.build()
 
     def type_toggled_cb(self, btn):
