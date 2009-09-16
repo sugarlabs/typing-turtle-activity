@@ -377,9 +377,6 @@ def build_key_steps(
             get_congrats() + _('Time to type real words.'),
             'text', make_random_words(good_words, new_keys, all_keys, count)))
     
-    text = '$report'
-    steps.append(make_step(text, 'key', ' '))
-
     return steps 
 
 def build_intro_steps():
@@ -408,10 +405,6 @@ def build_intro_steps():
     text += _('Press the ENTER key again with your right little finger.')
     steps.append(make_step(text, 'key', '\n'))
     
-    text = ''
-    text = '$report'
-    steps.append(make_step(text, 'key', '\n'))
-
     return steps 
 
 def build_text_step(path):

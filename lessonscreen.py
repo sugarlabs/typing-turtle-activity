@@ -35,14 +35,6 @@ PARAGRAPH_CODE = u'\xb6'
 # Maximium width of a text line in text lesson mode.
 LINE_WIDTH = 70
 
-# Requirements for earning medals.
-# Words per minute goals came from http://en.wikipedia.org/wiki/Words_per_minute.
-DEFAULT_MEDALS = [
-    { 'name': 'bronze', 'wpm': 15, 'accuracy': 75 },
-    { 'name': 'silver', 'wpm': 20, 'accuracy': 85 },
-    { 'name': 'gold',   'wpm': 25, 'accuracy': 95 }
-]
-
 class LessonScreen(gtk.VBox):
     def __init__(self, lesson, keyboard_images, activity):
         gtk.VBox.__init__(self)
@@ -231,7 +223,6 @@ class LessonScreen(gtk.VBox):
         self.stop_timer()
 
         # Clear step related variables.
-        self.text = None
         self.line = None
         self.line_marks = None
        
@@ -274,6 +265,7 @@ class LessonScreen(gtk.VBox):
         self.lessonbuffer.insert_with_tags_by_name(
             self.lessonbuffer.get_end_iter(), '\n\n' + self.instructions + '\n', 'instructions')
         
+        # Key steps have just one key to press, and show a picture of the key to be pressed beneath the text.
         if self.mode == 'key':
             self.lines = [self.text.replace('\n', PARAGRAPH_CODE)]
             self.line_marks = {}
@@ -310,12 +302,13 @@ class LessonScreen(gtk.VBox):
             
             # Enable hands for key mode.            
             self.keyboard.set_draw_hands(True)
-            
-        else:
+        
+        # Text steps require the user to copy out the text that is displayed. 
+        elif self.mode == 'text':
             # Split text into lines.
             self.lines = self.text.splitlines(True)
             
-            # Substitute paragraph codes.
+            # Substitute paragraph codes for newlines.
             self.lines = [l.replace('\n', PARAGRAPH_CODE) for l in self.lines]
             
             # Split by line length in addition to by paragraphs.
@@ -508,7 +501,7 @@ class LessonScreen(gtk.VBox):
         # Show the medal screen, if one should be given.
         got_medal = None
         
-        medals = self.lesson.get('medals', DEFAULT_MEDALS)
+        medals = self.lesson['medals']
         for medal in medals:
             if self.wpm >= medal['wpm'] and self.accuracy >= medal['accuracy']:
                 got_medal = medal['name']
