@@ -1,13 +1,14 @@
 Typing Turtle
 
 Lesson Editor
-+ Fix Delete Lesson
-+ Wire up step editing keys
-+ Aesthetic improvements to lesson editor
-+ Better help text
-+ Saving and loading from Journal
-+ Import and export from JSON data in Journal
-+ Graphical lesson builder
+- Fix Delete Lesson
+- Wire up step editing keys
+- Aesthetic improvements to lesson editor
+- Better help text
+- Saving and loading from Journal
+- Import and export from JSON data in Journal
+- Graphical lesson builder
++ Automatic step and wordlist generation.
 
 First Release
 + Export PDF of lesson history and progress.
@@ -17,7 +18,9 @@ First Release
   + Welcome to the activity sound.
   + Speed up / slow down sounds when WPM crosses threshold: Slow, Medium, Fast.
   + Medal award sounds for each medal type: None, Bronze, Silver, Gold.  Applause sound.
-  + Incorrect key pressed tick sound. 
+  + Incorrect key pressed tick sound.
++ Lesson option to specify that incorrect keys are ignored.
++ Fix the keyboard.
 
 Future Release
 + Highlight regions of keyboard, color by finger used.
@@ -26,7 +29,6 @@ Future Release
 + History screen: List of lessons completed with statistics.
 + Progress screen: Line graphs of Accuracy, WPM over time.
 + Some sort of award when all the lessons are complete, followed by general skill work.
-+ Lesson editor standalone PyGTK app.
 
 Balloon Game
 
