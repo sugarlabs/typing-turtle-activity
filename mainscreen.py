@@ -53,7 +53,7 @@ class MainScreen(gtk.VBox):
         #nexticon = sugar.graphics.icon.Icon(icon_name='go-next')
         #self.nextlessonbtn.add(nexticon)
         nextlabel = gtk.Label()
-        nextlabel.set_markup("<span size='8000'>" + _('Next') + "</span>")
+        nextlabel.set_markup("<span size='large'>" + _('Next') + "</span>")
 
         self.nextlessonbtn = gtk.Button()
         self.nextlessonbtn.add(nextlabel)
@@ -62,14 +62,14 @@ class MainScreen(gtk.VBox):
         #previcon = sugar.graphics.icon.Icon(icon_name='go-previous')
         #self.prevlessonbtn.add(previcon)
         prevlabel = gtk.Label()
-        prevlabel.set_markup("<span size='8000'>" + _('Previous') + "</span>")
+        prevlabel.set_markup("<span size='large'>" + _('Previous') + "</span>")
 
         self.prevlessonbtn = gtk.Button()
         self.prevlessonbtn.add(prevlabel)
         self.prevlessonbtn.connect('clicked', self.prev_lesson_clicked_cb)
         
         lessonlabel = gtk.Label()
-        lessonlabel.set_markup("<span size='12000'>" + _('Start Lesson') + "</span>")
+        lessonlabel.set_markup("<span size='x-large' weight='bold'>" + _('Start Lesson') + "</span>")
         
         lessonbtn = gtk.Button()
         lessonbtn.add(lessonlabel)
@@ -160,10 +160,10 @@ class MainScreen(gtk.VBox):
         # Create the lesson button.
         namelabel = gtk.Label()
         namelabel.set_alignment(0.5, 0.5)
-        namelabel.set_markup("<span size='20000'><b>" + lesson['name'] + "</b></span>")
+        namelabel.set_markup("<span size='x-large' weight='bold'>" + lesson['name'] + "</span>")
         desclabel = gtk.Label()
         desclabel.set_alignment(0.5, 0.5)
-        desclabel.set_markup("<span size='10000' color='#606060'>" + lesson['description'] + "</span>")
+        desclabel.set_markup("<span size='large' color='#606060'>" + lesson['description'] + "</span>")
         
         if medal_type != 'none':
             hint = _('You earned a medal in this lesson!  Advance to the next one\nby clicking the Next button.')

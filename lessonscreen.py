@@ -121,9 +121,9 @@ class LessonScreen(gtk.VBox):
         # Attempt to load a letter map for the current locale.
         code = locale.getdefaultlocale()[0] or 'en_US'
         try:
-            self.keyboard.load_letter_map('lessons/%s/%s.key' % (code, code))
+            self.keyboard.load_letter_map('lessons/%s.key' % code)
         except:
-            self.keyboard.load_letter_map('lessons/en_US/en_US.key')
+            self.keyboard.load_letter_map('lessons/en_US.key')
 
         self.keyboard.set_layout(keyboard.OLPC_LAYOUT)
 
@@ -277,7 +277,7 @@ class LessonScreen(gtk.VBox):
             
             # Determine what modifier keys are needed.
             key, state, group = self.keyboard.get_key_state_group_for_letter(self.text[0])
-
+            
             if key:
                 if state & gtk.gdk.SHIFT_MASK:
                     shift_key = self.keyboard.find_key_by_label('shift')
@@ -358,8 +358,6 @@ class LessonScreen(gtk.VBox):
         if not event.string:
             return True
 
-        #print 'key_cb: ' + event.string
-
         # Ignore either press or release events, depending on mode.
         if self.mode == 'key' and event.type == gtk.gdk.KEY_PRESS:
             return True 
@@ -372,16 +370,12 @@ class LessonScreen(gtk.VBox):
         
         # Extract information about the key pressed.
         key = event.string
-        #key = gtk.gdk.keyval_to_unicode(event.keyval)
-        #if key != 0: key = unichr(key)
         key_name = gtk.gdk.keyval_name(event.keyval)
         
         # Convert Return keys to paragraph symbols.
         if key_name == 'Return':
             key = PARAGRAPH_CODE
-        
-        #print "key_press_cb: key=%s key_name=%s event.keyval=%d" % (key, key_name, event.keyval)
-        
+               
         if self.mode == 'key':
             # Check to see if they pressed the correct key.
             if key == self.line[0]:

@@ -370,13 +370,26 @@ class KeyboardData:
         if letter == '\n' or letter == PARAGRAPH_CODE:
             return self.find_key_by_label('enter'), 0, 0
 
-		# Look up the key in the letter map.
+        # Look up the key in the letter map.
+        # Find the one with the fewest modifier keys.
+        best_score = 3
+        best_result = None
+        
         for sig, l in self.letter_map.items():
-            if l == letter:
+            if unicode(l) == unicode(letter):
                 scan, state, group = self.parse_key_sig(sig)
-                for k in self.keys:
-                    if k['key-scan'] == scan:
-                        return k, state, group
+                
+                score = 0
+                if state & gtk.gdk.SHIFT_MASK: score += 1
+                if state & gtk.gdk.MOD5_MASK: score += 1
+                if score < best_score:
+                    best_score = score
+                    best_result = scan, state, group
+
+        if best_result is not None:                
+            for k in self.keys:
+                if k['key-scan'] == best_result[0]:
+                    return k, best_result[1], best_result[2]
 
         return None, None, None
 
