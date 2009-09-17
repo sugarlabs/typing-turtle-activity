@@ -45,7 +45,7 @@ class LessonScreen(gtk.VBox):
         
         # Build the user interface.
         title = gtk.Label()
-        title.set_markup("<span size='20000'><b>" + lesson['name'] + "</b></span>")
+        title.set_markup("<span size='x-large' weight='bold'>" + lesson['name'] + "</span>")
         title.set_alignment(1.0, 0.0)
         
         stoplabel = gtk.Label(_('Go Back'))
@@ -71,13 +71,13 @@ class LessonScreen(gtk.VBox):
         # Set up font styles.
         self.tagtable = gtk.TextTagTable()
         instructions_tag = gtk.TextTag('instructions')
-        instructions_tag.props.size = 9000
+        instructions_tag.props.size = 10000
         instructions_tag.props.justification = gtk.JUSTIFY_CENTER
         self.tagtable.add(instructions_tag)
 
         text_tag = gtk.TextTag('text')
         text_tag.props.family = 'Monospace'
-        text_tag.props.size = 9000
+        text_tag.props.size = 10000
         self.tagtable.add(text_tag)
         
         spacer_tag = gtk.TextTag('spacer')
@@ -90,13 +90,13 @@ class LessonScreen(gtk.VBox):
         
         correct_copy_tag = gtk.TextTag('correct-copy')
         correct_copy_tag.props.family = 'Monospace'
-        correct_copy_tag.props.size = 9000
+        correct_copy_tag.props.size = 10000
         correct_copy_tag.props.foreground = '#0000ff'
         self.tagtable.add(correct_copy_tag)
         
         incorrect_copy_tag = gtk.TextTag('incorrect-copy')
         incorrect_copy_tag.props.family = 'Monospace'
-        incorrect_copy_tag.props.size = 9000
+        incorrect_copy_tag.props.size = 10000
         incorrect_copy_tag.props.foreground = '#ff0000'
         self.tagtable.add(incorrect_copy_tag)
         

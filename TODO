@@ -9,6 +9,7 @@ Lesson Editor
 - Import and export from JSON data in Journal
 - Graphical lesson builder
 + Automatic step and wordlist generation.
++ Balloon game options: # of balloons, balloon speed, time between balloons.
 
 First Release
 + Export PDF of lesson history and progress.
