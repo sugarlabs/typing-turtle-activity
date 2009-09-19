@@ -30,6 +30,7 @@ Future Release
 + History screen: List of lessons completed with statistics.
 + Progress screen: Line graphs of Accuracy, WPM over time.
 + Some sort of award when all the lessons are complete, followed by general skill work.
++ Ergonomics lesson.
 
 Balloon Game
 
@@ -37,6 +38,11 @@ Balloon Game
 - Fix flickering
 + Improve graphics.
 - Support for displaying high score in home screen.
++ Swaying strings
++ Moving clouds
++ Show Balloons left, Balloons popped.
++ Put a box behind "Type the words to pop the balloons!" text.
++ Prettier balloon pictures.
 
 Paper Airplane Game
 

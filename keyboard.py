@@ -409,6 +409,8 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
 
         self.connect("expose-event", self._expose_cb)
         
+        self.modify_font(pango.FontDescription('Monospace 10'))
+        
         # Active language group and modifier state.
         # See http://www.pygtk.org/docs/pygtk/class-gdkkeymap.html for more
         # information about key group and state.
@@ -500,7 +502,8 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
         
         try:
             layout = self.create_pango_layout(unicode(text))
-            draw.draw_layout(gc, x1+8, y2-28, layout)
+            layout.set_font_description(pango.FontDescription('Monospace 12'))
+            draw.draw_layout(gc, x1+8, y2-23, layout)
         except:
             pass
 

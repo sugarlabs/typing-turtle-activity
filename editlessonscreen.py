@@ -113,6 +113,7 @@ class EditLessonScreen(gtk.VBox):
 
         stepbox.insttext = gtk.TextView(gtk.TextBuffer())
         stepbox.insttext.props.wrap_mode = gtk.WRAP_WORD
+        stepbox.insttext.modify_font(pango.FontDescription('Monospace 10'))
         instscroll = gtk.ScrolledWindow()
         instscroll.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
         instscroll.add(stepbox.insttext)
@@ -132,6 +133,7 @@ class EditLessonScreen(gtk.VBox):
 
         stepbox.texttext = gtk.TextView(gtk.TextBuffer())
         stepbox.texttext.props.wrap_mode = gtk.WRAP_WORD
+        stepbox.texttext.modify_font(pango.FontDescription('monospace 10'))
         textscroll = gtk.ScrolledWindow()
         textscroll.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
         textscroll.add(stepbox.texttext)
@@ -293,6 +295,7 @@ class EditLessonScreen(gtk.VBox):
 
             self.wordstext = gtk.TextView(gtk.TextBuffer())
             self.wordstext.props.wrap_mode = gtk.WRAP_WORD
+            self.wordstext.modify_font(pango.FontDescription('Monospace 10'))
             textscroll = gtk.ScrolledWindow()
             textscroll.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
             textscroll.add(self.wordstext)

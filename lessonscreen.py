@@ -54,6 +54,9 @@ class LessonScreen(gtk.VBox):
         stopbtn.connect('clicked', self.stop_cb)
         
         # TODO- These will be replaced by graphical displays using gtk.DrawingArea.
+        self.wpm = 0
+        self.accuracy = 0
+        
         self.wpmlabel = gtk.Label()
         self.accuracylabel = gtk.Label()
         
