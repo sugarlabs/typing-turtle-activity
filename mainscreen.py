@@ -78,10 +78,11 @@ class MainScreen(gtk.VBox):
         
         # Load lessons for this language.
         code = locale.getdefaultlocale()[0] or 'en_US'
-        self.load_lessons('lessons/' + code + '.lessons')
+        try:
+            self.load_lessons('lessons/' + code + '.lessons')
 
-        # Fallback to en_US lessons if none found.
-        if not len(self.lessons):
+        except:
+            # Fallback to en_US lessons if none found.
             self.load_lessons('lessons/en_US.lessons')
 
         # We cannot run without lessons.
