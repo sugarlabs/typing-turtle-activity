@@ -1,3 +1,7 @@
+22
+
+* Fix exception when localized lesson data is missing.
+
 21
 
 * Added a lesson editor.
