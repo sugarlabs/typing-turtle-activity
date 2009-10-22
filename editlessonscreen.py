@@ -482,6 +482,8 @@ class EditLessonScreen(gtk.VBox):
         self.build()
 
     def generate_ok_clicked_cb(self, btn, box):
+        self.save()
+        
         new_keys = box.newkeysent.get_text()
         known_keys = box.knownkeysent.get_text()
         length = int(box.lengthent.get_text())
@@ -496,7 +498,8 @@ class EditLessonScreen(gtk.VBox):
             if self.lesson['type'] == 'balloon':
                 self.lesson['words'] = lessonbuilder.build_game_words(length, new_keys, known_keys, words, [])                
                 
-            self.build()
-
         except Exception, e:
             logging.error('Unable to generate lesson: ' + str(e))
+
+        self.build()
+
