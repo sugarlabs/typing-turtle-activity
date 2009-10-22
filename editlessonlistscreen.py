@@ -100,6 +100,11 @@ class EditLessonListScreen(gtk.VBox):
         self.exportbtn.add(exportlabel)
         self.exportbtn.connect('clicked', self.export_clicked_cb)
         
+        exportlabel = gtk.Label(_('Save Lessons to Activity'))
+        self.defaultsbtn = gtk.Button()
+        self.defaultsbtn.add(exportlabel)
+        self.defaultsbtn.connect('clicked', self.set_default_clicked_cb)
+        
         self.addbtn = gtk.Button()
         self.addbtn.add(sugar.graphics.icon.Icon(icon_name='list-add'))
         self.addbtn.connect('clicked', self.add_lesson_clicked_cb)
@@ -119,6 +124,7 @@ class EditLessonListScreen(gtk.VBox):
         btnbox = gtk.HBox()
         btnbox.pack_start(self.importbtn, False, False, 10)
         btnbox.pack_start(self.exportbtn, False, False)
+        btnbox.pack_start(self.defaultsbtn, False, False, 10)
         btnbox.pack_end(self.addbtn, False, False)
         btnbox.pack_end(self.delbtn, False, False)
         btnbox.pack_end(self.moveupbtn, False, False)
@@ -297,4 +303,16 @@ class EditLessonListScreen(gtk.VBox):
         fileObject.destroy()
         del fileObject
 
-     
+    def set_default_clicked_cb(self, btn):
+        code = locale.getdefaultlocale()[0] or 'en_US'
+        path = sugar.activity.activity.get_bundle_path() + '/lessons/%s.lessons' % code
+        
+        fd = open(path, 'w')
+        
+        try:
+            data = { 'lessons': self.lessons }
+            fd.write(json.dumps(data))
+            
+        finally:
+            fd.close()
+            
