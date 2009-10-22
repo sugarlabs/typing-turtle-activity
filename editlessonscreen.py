@@ -102,12 +102,12 @@ class EditLessonScreen(gtk.VBox):
         okbtn.connect('clicked', self.generate_ok_clicked_cb, generatebox)
         okbtn.set_alignment(0.5, 0.5)
 
-        box.pack_end(okbtn)
+        box.pack_end(okbtn, expand=False)
                 
         generatebox.pack_start(box)
         
         return generatebox
-    
+
     def build_step(self, step, idx):
         stepbox = gtk.VBox()
         stepbox.set_spacing(5)
@@ -295,17 +295,34 @@ class EditLessonScreen(gtk.VBox):
         descbox = gtk.HBox()
         descbox.pack_start(desclabel, expand=False)
         descbox.pack_start(descscroll)
-    
+
+        # Build the options.
+        optslabel = gtk.Label()
+        optslabel.set_markup("<span size='large' weight='bold'>" + _('Options') + "</span>")
+        optslabel.set_alignment(0.0, 0.5)
+        optslabel.set_padding(20, 0)
+
+        self.mistakescheck = gtk.CheckButton(_('Allow Mistakes'))
+        self.mistakescheck.set_active(self.lesson.get('options', {}).get('mistakes', True))
+        self.backspacecheck = gtk.CheckButton(_('Allow Backspace'))
+        self.backspacecheck.set_active(self.lesson.get('options', {}).get('backspace', True))
+
+        optsbox = gtk.HBox()
+        optsbox.pack_start(optslabel, expand=False)
+        optsbox.pack_start(self.backspacecheck, expand=False)
+        optsbox.pack_start(self.mistakescheck, expand=False)
+            
         self.labelsizegroup.add_widget(namelabel)
         self.labelsizegroup.add_widget(typelabel)    
         self.labelsizegroup.add_widget(desclabel)    
+        self.labelsizegroup.add_widget(optslabel)    
   
         self.vbox.pack_start(detailslabel, expand=False)        
         self.vbox.pack_start(namebox, expand=False)
         self.vbox.pack_start(typebox, expand=False)
         self.vbox.pack_start(descbox, expand=False)
-        self.vbox.pack_start(gtk.HSeparator(), expand=False)
-        
+        self.vbox.pack_start(optsbox, expand=False)
+
         # Build the generator.
         generatelabel = gtk.Label()
         generatelabel.set_markup("<span size='x-large'><b>" + _('Automatic Lesson Generator') + "</b></span>")
@@ -313,7 +330,7 @@ class EditLessonScreen(gtk.VBox):
         generatelabel.set_padding(10, 0)
 
         generatebox = self.build_generate()
-        self.vbox.pack_start(generatelabel, expand=False)      
+        self.vbox.pack_start(generatelabel, expand=False, padding=10)      
         self.vbox.pack_start(generatebox, expand=False)       
         
         self.has_normal_widgets = False
@@ -326,9 +343,7 @@ class EditLessonScreen(gtk.VBox):
             if not self.lesson.has_key('steps') or len(self.lesson['steps']) == 0:
                 step = { 'instructions': '', 'text': '' }
                 self.lesson['steps'] = [ step ]              
-            
-            self.vbox.pack_start(gtk.HSeparator(), expand=False)
-        
+                  
             self.stepboxes = []
             
             for step in self.lesson['steps']:
@@ -343,8 +358,6 @@ class EditLessonScreen(gtk.VBox):
             if not self.lesson.has_key('words') or len(self.lesson['words']) == 0:
                 self.lesson['words'] = []
             
-            self.vbox.pack_start(gtk.HSeparator(), expand=False)
-        
             textlabel = gtk.Label()
             textlabel.set_markup("<span size='large' weight='bold'>" + _('Words') + "</span>")
             textlabel.set_alignment(0.0, 0.5)
@@ -373,8 +386,7 @@ class EditLessonScreen(gtk.VBox):
         medalslabel.set_alignment(0.0, 0.5)
         medalslabel.set_padding(10, 0)
 
-        self.vbox.pack_start(gtk.HSeparator(), expand=False)
-        self.vbox.pack_start(medalslabel, expand=False)
+        self.vbox.pack_start(medalslabel, expand=False, padding=10)
         
         self.medalboxes = []
         self.medalboxes.append(self.build_medal(self.lesson['medals'][0], _('Bronze')))
@@ -405,6 +417,11 @@ class EditLessonScreen(gtk.VBox):
         
         buf = self.desctext.get_buffer()
         self.lesson['description'] = buf.get_text(buf.get_start_iter(), buf.get_end_iter())
+        
+        if not self.lesson.has_key('options'):
+            self.lesson['options'] = {}
+        self.lesson['options']['mistakes'] = self.mistakescheck.get_active()
+        self.lesson['options']['backspace'] = self.backspacecheck.get_active()
         
         if self.textradio.get_active():
             self.lesson['type'] = 'normal'

@@ -392,7 +392,7 @@ class LessonScreen(gtk.VBox):
                 
             else:
                 # TODO - Play 'incorrect key' sound here.
-                
+               
                 self.incorrect_keys += 1
                 self.total_keys += 1
         
@@ -402,25 +402,26 @@ class LessonScreen(gtk.VBox):
                 self.start_timer()
             
             # Handle backspace by deleting text and optionally moving up lines.
-            if key_name == 'BackSpace':               
-                # Move to previous line if at the end of the current one.
-                if self.char_idx == 0 and self.line_idx > 0:
-                    self.line_idx -= 1 
-                    self.begin_line()
+            if key_name == 'BackSpace':
+                if self.lesson.get('options', {}).get('backspace', True):               
+                    # Move to previous line if at the end of the current one.
+                    if self.char_idx == 0 and self.line_idx > 0:
+                        self.line_idx -= 1 
+                        self.begin_line()
+                        
+                        self.char_idx = len(self.line)
                     
-                    self.char_idx = len(self.line)
-                
-                # Then delete the current character.
-                if self.char_idx > 0:
-                    self.char_idx -= 1
-                    
-                    iter = self.lessonbuffer.get_iter_at_mark(self.line_mark)
-                    iter.forward_chars(self.char_idx)
-                    
-                    iter_end = iter.copy()
-                    iter_end.forward_char()
-                    
-                    self.lessonbuffer.delete(iter, iter_end)
+                    # Then delete the current character.
+                    if self.char_idx > 0:
+                        self.char_idx -= 1
+                        
+                        iter = self.lessonbuffer.get_iter_at_mark(self.line_mark)
+                        iter.forward_chars(self.char_idx)
+                        
+                        iter_end = iter.copy()
+                        iter_end.forward_char()
+                        
+                        self.lessonbuffer.delete(iter, iter_end)
     
                 self.hilite_next_key()
     
@@ -439,22 +440,23 @@ class LessonScreen(gtk.VBox):
                     tag_name = 'incorrect-copy'
                     self.incorrect_keys += 1
                     self.total_keys += 1
-                
-                # Insert the key into the bufffer.
-                iter = self.lessonbuffer.get_iter_at_mark(self.line_mark)
-                iter.forward_chars(self.char_idx)
-                
-                self.lessonbuffer.insert_with_tags_by_name(iter, key, tag_name)
-                
-                # Advance to the next character (or else).
-                self.char_idx += 1
-                if self.char_idx >= len(self.line):
-                    self.line_idx += 1
-                    if self.line_idx >= len(self.lines):
-                        self.advance_step()
-                    else:
-                        self.begin_line()
-                    return True
+
+                # Insert the key into the buffer if correct or if mistakes are allowed.
+                if tag_name == 'correct-copy' or self.lesson.get('options', {}).get('mistakes', True):
+                    iter = self.lessonbuffer.get_iter_at_mark(self.line_mark)
+                    iter.forward_chars(self.char_idx)
+                    
+                    self.lessonbuffer.insert_with_tags_by_name(iter, key, tag_name)
+                    
+                    # Advance to the next character (or else).
+                    self.char_idx += 1
+                    if self.char_idx >= len(self.line):
+                        self.line_idx += 1
+                        if self.line_idx >= len(self.lines):
+                            self.advance_step()
+                        else:
+                            self.begin_line()
+                        return True
                 
                 self.update_stats()
                 
