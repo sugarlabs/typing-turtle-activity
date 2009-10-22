@@ -357,8 +357,12 @@ class LessonScreen(gtk.VBox):
         # Pass events on to the keyboard.
         self.keyboard.key_press_release_cb(widget, event)
 
-        # Ignore events which don't produce a character.
-        if not event.string:
+        # Extract information about the key pressed.
+        key = event.string
+        key_name = gtk.gdk.keyval_name(event.keyval)
+        
+        # Ignore events which don't produce a character, except backspace.
+        if not (key_name == 'BackSpace' or key):
             return True
 
         # Ignore either press or release events, depending on mode.
@@ -370,10 +374,6 @@ class LessonScreen(gtk.VBox):
         # Ignore hotkeys.
         if event.state & (gtk.gdk.CONTROL_MASK | gtk.gdk.MOD1_MASK):
             return True
-        
-        # Extract information about the key pressed.
-        key = event.string
-        key_name = gtk.gdk.keyval_name(event.keyval)
         
         # Convert Return keys to paragraph symbols.
         if key_name == 'Return':
@@ -402,7 +402,7 @@ class LessonScreen(gtk.VBox):
                 self.start_timer()
             
             # Handle backspace by deleting text and optionally moving up lines.
-            if key_name == 'BackSpace':
+            if key_name == 'BackSpace':               
                 # Move to previous line if at the end of the current one.
                 if self.char_idx == 0 and self.line_idx > 0:
                     self.line_idx -= 1 
