@@ -1,3 +1,7 @@
+23
+
+* Added an automatic lesson generator.  Uses the myspell dictionary to automatically generate lessons using a given set of keys.
+
 22
 
 * Fix exception when localized lesson data is missing.
