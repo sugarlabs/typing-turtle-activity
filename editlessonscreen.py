@@ -28,6 +28,9 @@ import sugar.activity.activity
 import sugar.graphics.style
 import sugar.graphics.icon
 
+# Import lessonbuilder functions.
+import lessonbuilder
+
 class EditLessonScreen(gtk.VBox):
     def __init__(self, activity, lesson):
         gtk.VBox.__init__(self)
@@ -66,18 +69,55 @@ class EditLessonScreen(gtk.VBox):
         
         self.show_all()
 
+    def build_generate(self):
+        generatebox = gtk.VBox()
+        generatebox.set_spacing(5)
+
+        newlabel = gtk.Label(_('New keys'))       
+        knownlabel = gtk.Label(_('Known keys'))
+        lengthlabel = gtk.Label(_('Length'))       
+        
+        generatebox.newkeysent = gtk.Entry()
+        generatebox.newkeysent.set_width_chars(8)
+        generatebox.knownkeysent = gtk.Entry()
+        generatebox.knownkeysent.set_width_chars(15)
+        generatebox.lengthent = gtk.Entry()
+        generatebox.lengthent.set_width_chars(5)
+        generatebox.lengthent.set_text('60')
+
+        box = gtk.HBox()
+        box.set_spacing(10)
+        box.pack_start(newlabel, expand=False)
+        box.pack_start(generatebox.newkeysent, expand=False)
+        box.pack_start(knownlabel, expand=False)
+        box.pack_start(generatebox.knownkeysent, expand=False)
+        box.pack_start(lengthlabel, expand=False)
+        box.pack_start(generatebox.lengthent, expand=False)
+        box.show_all()
+        
+        oklabel = gtk.Label()
+        oklabel.set_markup(_('Generate!'))
+        okbtn = gtk.Button()
+        okbtn.add(oklabel)
+        okbtn.connect('clicked', self.generate_ok_clicked_cb, generatebox)
+        okbtn.set_alignment(0.5, 0.5)
+
+        box.pack_end(okbtn)
+                
+        generatebox.pack_start(box)
+        
+        return generatebox
+    
     def build_step(self, step, idx):
         stepbox = gtk.VBox()
+        stepbox.set_spacing(5)
 
         steplabel = gtk.Label()
         steplabel.set_markup("<span size='x-large' weight='bold'>" + (_('Step #%d') % (idx+1)) + "</span>")
         steplabel.set_alignment(0.0, 0.5)
         steplabel.set_padding(10, 0)
 
-        #generatelabel = gtk.Label()
-        #generatelabel.set_markup(_('Generate'))
-        #generatebtn = gtk.Button()
-        #generatebtn.add(generatelabel)
+        # Build the tool buttons.
         delstepbtn = gtk.Button()
         delstepbtn.add(sugar.graphics.icon.Icon(icon_name='list-remove'))
         delstepbtn.connect('clicked', self.del_step_clicked_cb, idx)
@@ -102,8 +142,8 @@ class EditLessonScreen(gtk.VBox):
         btnbox.pack_end(delstepbtn, False, False)
         btnbox.pack_end(moveupbtn, False, False)
         btnbox.pack_end(movedownbtn, False, False)
-        #btnbox.pack_end(generatebtn, False, False)
 
+        # Build the instructions entry.
         instlabel = gtk.Label()
         instlabel.set_markup("<span size='large' weight='bold'>" + _('Instructions') + "</span>")
         instlabel.set_alignment(0.0, 0.5)
@@ -124,6 +164,7 @@ class EditLessonScreen(gtk.VBox):
         instbox.pack_start(instlabel, False, False)
         instbox.pack_start(instscroll, True, True)
 
+        # Build the text entry.
         textlabel = gtk.Label()
         textlabel.set_markup("<span size='large' weight='bold'>" + _('Text') + "</span>")
         textlabel.set_alignment(0.0, 0.5)
@@ -141,16 +182,16 @@ class EditLessonScreen(gtk.VBox):
         stepbox.texttext.get_buffer().set_text(step['text'])
 
         textbox = gtk.HBox()
-        textbox.pack_start(textlabel, False, False)
-        textbox.pack_start(textscroll, True, True)
+        textbox.pack_start(textlabel, expand=False)
+        textbox.pack_start(textscroll)
 
         sizegroup = gtk.SizeGroup(gtk.SIZE_GROUP_HORIZONTAL)   
         sizegroup.add_widget(instlabel)
         sizegroup.add_widget(textlabel)    
 
-        stepbox.pack_start(btnbox, False, False, 10)
-        stepbox.pack_start(instbox, False, False, 10)
-        stepbox.pack_start(textbox, False, False, 10)
+        stepbox.pack_start(btnbox, expand=False)
+        stepbox.pack_start(instbox, expand=False)
+        stepbox.pack_start(textbox, expand=False)
         
         return stepbox
 
@@ -197,6 +238,7 @@ class EditLessonScreen(gtk.VBox):
         
         self.vbox = gtk.VBox()
         self.vbox.set_border_width(20)
+        self.vbox.set_spacing(5)
         
         self.labelsizegroup = gtk.SizeGroup(gtk.SIZE_GROUP_HORIZONTAL)   
 
@@ -215,8 +257,8 @@ class EditLessonScreen(gtk.VBox):
         self.nameent.set_text(self.lesson['name'])
 
         namebox = gtk.HBox()
-        namebox.pack_start(namelabel, False, False)
-        namebox.pack_start(self.nameent, True, True)
+        namebox.pack_start(namelabel, expand=False)
+        namebox.pack_start(self.nameent)
         
         typelabel = gtk.Label()
         typelabel.set_markup("<span size='large' weight='bold'>" + _('Type') + "</span>")
@@ -233,9 +275,9 @@ class EditLessonScreen(gtk.VBox):
         self.balloonradio.set_active(self.lesson['type'] == 'balloon')        
 
         typebox = gtk.HBox()
-        typebox.pack_start(typelabel, False, False)
-        typebox.pack_start(self.textradio, False, False)
-        typebox.pack_start(self.balloonradio, False, False)
+        typebox.pack_start(typelabel, expand=False)
+        typebox.pack_start(self.textradio, expand=False)
+        typebox.pack_start(self.balloonradio, expand=False)
         
         desclabel = gtk.Label()
         desclabel.set_markup("<span size='large' weight='bold'>" + _('Description') + "</span>")
@@ -251,26 +293,41 @@ class EditLessonScreen(gtk.VBox):
         self.desctext.get_buffer().set_text(self.lesson['description'])
 
         descbox = gtk.HBox()
-        descbox.pack_start(desclabel, False, False)
-        descbox.pack_start(descscroll, True, True)
+        descbox.pack_start(desclabel, expand=False)
+        descbox.pack_start(descscroll)
     
         self.labelsizegroup.add_widget(namelabel)
         self.labelsizegroup.add_widget(typelabel)    
         self.labelsizegroup.add_widget(desclabel)    
   
-        self.vbox.pack_start(detailslabel, False, False, 10)        
-        self.vbox.pack_start(namebox, False, False, 10)
-        self.vbox.pack_start(typebox, False, False, 10)
-        self.vbox.pack_start(descbox, False, False, 10)
-        self.vbox.pack_start(gtk.HSeparator(), False, False, 0)
+        self.vbox.pack_start(detailslabel, expand=False)        
+        self.vbox.pack_start(namebox, expand=False)
+        self.vbox.pack_start(typebox, expand=False)
+        self.vbox.pack_start(descbox, expand=False)
+        self.vbox.pack_start(gtk.HSeparator(), expand=False)
+        
+        # Build the generator.
+        generatelabel = gtk.Label()
+        generatelabel.set_markup("<span size='x-large'><b>" + _('Automatic Lesson Generator') + "</b></span>")
+        generatelabel.set_alignment(0.0, 0.5)
+        generatelabel.set_padding(10, 0)
+
+        generatebox = self.build_generate()
+        self.vbox.pack_start(generatelabel, expand=False)      
+        self.vbox.pack_start(generatebox, expand=False)       
+        
+        self.has_normal_widgets = False
+        self.has_balloon_widgets = False
         
         # Steps or words widgets.
         if self.lesson['type'] == 'normal':
+            self.has_normal_widgets = True
+            
             if not self.lesson.has_key('steps') or len(self.lesson['steps']) == 0:
                 step = { 'instructions': '', 'text': '' }
                 self.lesson['steps'] = [ step ]              
             
-            self.vbox.pack_start(gtk.HSeparator(), False, False, 0)
+            self.vbox.pack_start(gtk.HSeparator(), expand=False)
         
             self.stepboxes = []
             
@@ -278,13 +335,15 @@ class EditLessonScreen(gtk.VBox):
                 stepbox = self.build_step(step, len(self.stepboxes))
                 self.stepboxes.append(stepbox)
                 
-                self.vbox.pack_start(stepbox, False, False, 0)
+                self.vbox.pack_start(stepbox, expand=False)
                 
         if self.lesson['type'] == 'balloon':
+            self.has_balloon_widgets = True
+
             if not self.lesson.has_key('words') or len(self.lesson['words']) == 0:
                 self.lesson['words'] = []
             
-            self.vbox.pack_start(gtk.HSeparator(), False, False, 0)
+            self.vbox.pack_start(gtk.HSeparator(), expand=False)
         
             textlabel = gtk.Label()
             textlabel.set_markup("<span size='large' weight='bold'>" + _('Words') + "</span>")
@@ -303,10 +362,10 @@ class EditLessonScreen(gtk.VBox):
             self.wordstext.get_buffer().set_text(' '.join(self.lesson['words']))
     
             textbox = gtk.HBox()
-            textbox.pack_start(textlabel, False, False)
-            textbox.pack_start(textscroll, True, True)
+            textbox.pack_start(textlabel, expand=False)
+            textbox.pack_start(textscroll)
             
-            self.vbox.pack_start(textbox, False, False, 10)
+            self.vbox.pack_start(textbox, expand=False)
 
         # Medal requirements widgets.
         medalslabel = gtk.Label()
@@ -314,17 +373,17 @@ class EditLessonScreen(gtk.VBox):
         medalslabel.set_alignment(0.0, 0.5)
         medalslabel.set_padding(10, 0)
 
-        self.vbox.pack_start(gtk.HSeparator(), False, False, 0)
-        self.vbox.pack_start(medalslabel, False, False, 10)
+        self.vbox.pack_start(gtk.HSeparator(), expand=False)
+        self.vbox.pack_start(medalslabel, expand=False)
         
         self.medalboxes = []
         self.medalboxes.append(self.build_medal(self.lesson['medals'][0], _('Bronze')))
         self.medalboxes.append(self.build_medal(self.lesson['medals'][1], _('Silver')))
         self.medalboxes.append(self.build_medal(self.lesson['medals'][2], _('Gold')))
         
-        self.vbox.pack_start(self.medalboxes[0], False, False, 10)
-        self.vbox.pack_start(self.medalboxes[1], False, False, 10)
-        self.vbox.pack_start(self.medalboxes[2], False, False, 10)
+        self.vbox.pack_start(self.medalboxes[0], expand=False)
+        self.vbox.pack_start(self.medalboxes[1], expand=False)
+        self.vbox.pack_start(self.medalboxes[2], expand=False)
 
         self.vbox.show_all()
         
@@ -350,33 +409,36 @@ class EditLessonScreen(gtk.VBox):
         if self.textradio.get_active():
             self.lesson['type'] = 'normal'
        
-            steps = []
-            for sb in self.stepboxes:
-                step = {}
+            if self.has_normal_widgets:
+                steps = []
                 
-                buf = sb.insttext.get_buffer()
-                step['instructions'] = buf.get_text(buf.get_start_iter(), buf.get_end_iter())
+                for sb in self.stepboxes:
+                    step = {}
+                    
+                    buf = sb.insttext.get_buffer()
+                    step['instructions'] = buf.get_text(buf.get_start_iter(), buf.get_end_iter())
+                    
+                    buf = sb.texttext.get_buffer()
+                    step['text'] = buf.get_text(buf.get_start_iter(), buf.get_end_iter())
+                    
+                    steps.append(step)
                 
-                buf = sb.texttext.get_buffer()
-                step['text'] = buf.get_text(buf.get_start_iter(), buf.get_end_iter())
-                
-                steps.append(step)
-                
-            self.lesson['steps'] = steps
-
-            for i in range(0, 3):
-                self.lesson['medals'][i]['accuracy'] = int(self.medalboxes[i].accent.get_text())                
-                self.lesson['medals'][i]['wpm'] = int(self.medalboxes[i].wpment.get_text())
-                
+                self.lesson['steps'] = steps
+    
+                for i in range(0, 3):
+                    self.lesson['medals'][i]['accuracy'] = int(self.medalboxes[i].accent.get_text())                
+                    self.lesson['medals'][i]['wpm'] = int(self.medalboxes[i].wpment.get_text())
+                    
         if self.balloonradio.get_active():
             self.lesson['type'] = 'balloon'
-            
-            buf = self.wordstext.get_buffer()
-            text = buf.get_text(buf.get_start_iter(), buf.get_end_iter())
-            self.lesson['words'] = text.split(' ')
-            
-            for i in range(0, 3):
-                self.lesson['medals'][i]['score'] = int(self.medalboxes[i].scoreent.get_text())                
+
+            if self.has_balloon_widgets:
+                buf = self.wordstext.get_buffer()
+                text = buf.get_text(buf.get_start_iter(), buf.get_end_iter())
+                self.lesson['words'] = text.split(' ')
+                
+                for i in range(0, 3):
+                    self.lesson['medals'][i]['score'] = int(self.medalboxes[i].scoreent.get_text())                
 
     def add_step_clicked_cb(self, btn, index):
         self.save()
@@ -418,3 +480,23 @@ class EditLessonScreen(gtk.VBox):
         
         self.save()
         self.build()
+
+    def generate_ok_clicked_cb(self, btn, box):
+        new_keys = box.newkeysent.get_text()
+        known_keys = box.knownkeysent.get_text()
+        length = int(box.lengthent.get_text())
+        
+        try:
+            code = locale.getdefaultlocale()[0] or 'en_US'
+            words = lessonbuilder.load_wordlist('/usr/share/myspell/%s.dic' % code)
+            
+            if self.lesson['type'] == 'normal':
+                self.lesson['steps'] = lessonbuilder.build_key_steps(length, new_keys, known_keys, words, [])
+            
+            if self.lesson['type'] == 'balloon':
+                self.lesson['words'] = lessonbuilder.build_game_words(length, new_keys, known_keys, words, [])                
+                
+            self.build()
+
+        except Exception, e:
+            logging.error('Unable to generate lesson: ' + str(e))
