@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-26 00:26+0000\n"
+"POT-Creation-Date: 2009-10-22 00:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,148 +16,152 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: activity/activity.info:2 mainscreen.py:49 typingturtle.py:56
+#: activity/activity.info:2 /home/wadeb/typing-turtle/titlescene.py:49
+#: /home/wadeb/typing-turtle/typingturtle.py:60
 msgid "Typing Turtle"
 msgstr ""
 
-#: medalscreen.py:53
-msgid ""
-"<span font_desc='Serif Bold Italic 28'>Certificate of Achievement</span>"
+#: /home/wadeb/typing-turtle/editlessonlistscreen.py:46
+#: /home/wadeb/typing-turtle/typingturtle.py:90
+msgid "Edit Lessons"
 msgstr ""
 
-#: medalscreen.py:56
-msgid "<span font_desc='Sans 16'>This certifies that</span>"
+#: /home/wadeb/typing-turtle/editlessonlistscreen.py:49
+#: /home/wadeb/typing-turtle/balloongame.py:53
+#: /home/wadeb/typing-turtle/lessonscreen.py:51
+#: /home/wadeb/typing-turtle/editlessonscreen.py:49
+msgid "Go Back"
 msgstr ""
 
-#: medalscreen.py:59
-#, python-format
-msgid "<span font_desc='Sans 16'><b><u><i>%(nick)s</i></u></b></span>"
+#: /home/wadeb/typing-turtle/editlessonlistscreen.py:73
+#: /home/wadeb/typing-turtle/editlessonscreen.py:252
+msgid "Name"
 msgstr ""
 
-#: medalscreen.py:62
-#, python-format
-msgid "<span font_desc='Sans 16'>earned a %(type)s medal in </span>"
+#: /home/wadeb/typing-turtle/editlessonlistscreen.py:78
+#: /home/wadeb/typing-turtle/editlessonscreen.py:283
+msgid "Description"
 msgstr ""
 
-#: medalscreen.py:65
-#, python-format
-msgid "<span font_desc='Sans 16'>in <b><u><i>%(lesson)s</i></u></b></span>"
+#: /home/wadeb/typing-turtle/editlessonlistscreen.py:84
+#: /home/wadeb/typing-turtle/editlessonscreen.py:264
+msgid "Type"
 msgstr ""
 
-#: medalscreen.py:68
-#, python-format
-msgid "<span font_desc='Sans 16'>on <b><u><i>%(date)s</i></u></b>.</span>"
+#: /home/wadeb/typing-turtle/editlessonlistscreen.py:93
+msgid "Import Lessons from Journal"
 msgstr ""
 
-#: medalscreen.py:85
-#, python-format
-msgid "<b>Words Per Minute:</b> %(wpm)d"
+#: /home/wadeb/typing-turtle/editlessonlistscreen.py:98
+msgid "Export Lessons to Journal"
 msgstr ""
 
-#: medalscreen.py:89 lessonscreen.py:185
-#, python-format
-msgid "<b>Accuracy:</b> %(accuracy)d%%"
+#: /home/wadeb/typing-turtle/editlessonlistscreen.py:156
+#: /home/wadeb/typing-turtle/editlessonscreen.py:169
+msgid "Text"
 msgstr ""
 
-#: medalscreen.py:94
-#, python-format
-msgid "<b>SCORE:</b> %(score)d"
+#: /home/wadeb/typing-turtle/editlessonlistscreen.py:158
+#: /home/wadeb/typing-turtle/editlessonscreen.py:271
+msgid "Balloon Game"
 msgstr ""
 
-#: medalscreen.py:98 balloongame.py:223
-msgid "Press the ENTER key to continue."
+#: /home/wadeb/typing-turtle/editlessonlistscreen.py:281
+msgid " (Exported Lessons)"
 msgstr ""
 
-#: lessonbuilder.py:258 lessonscreen.py:537
+#: /home/wadeb/typing-turtle/lessonbuilder.py:261
+#: /home/wadeb/typing-turtle/lessonscreen.py:550
 msgid "Well done!"
 msgstr ""
 
-#: lessonbuilder.py:259
+#: /home/wadeb/typing-turtle/lessonbuilder.py:262
 msgid "Good job."
 msgstr ""
 
-#: lessonbuilder.py:260
+#: /home/wadeb/typing-turtle/lessonbuilder.py:263
 msgid "Awesome!"
 msgstr ""
 
-#: lessonbuilder.py:261 lessonscreen.py:539
+#: /home/wadeb/typing-turtle/lessonbuilder.py:264
+#: /home/wadeb/typing-turtle/lessonscreen.py:552
 msgid "Way to go!"
 msgstr ""
 
-#: lessonbuilder.py:262
+#: /home/wadeb/typing-turtle/lessonbuilder.py:265
 msgid "Wonderful!"
 msgstr ""
 
-#: lessonbuilder.py:263
+#: /home/wadeb/typing-turtle/lessonbuilder.py:266
 msgid "Nice work."
 msgstr ""
 
-#: lessonbuilder.py:264
+#: /home/wadeb/typing-turtle/lessonbuilder.py:267
 msgid "You did it!"
 msgstr ""
 
-#: lessonbuilder.py:271
+#: /home/wadeb/typing-turtle/lessonbuilder.py:274
 msgid ""
 "Be careful to use the correct finger to press each key.  Look at the "
 "keyboard below if you need help remembering."
 msgstr ""
 
-#: lessonbuilder.py:272
+#: /home/wadeb/typing-turtle/lessonbuilder.py:275
 msgid ""
 "Try to type at the same speed, all the time.  As you get more comfortable "
 "you can increase the speed a little."
 msgstr ""
 
-#: lessonbuilder.py:279
+#: /home/wadeb/typing-turtle/lessonbuilder.py:282
 msgid "left little"
 msgstr ""
 
-#: lessonbuilder.py:280
+#: /home/wadeb/typing-turtle/lessonbuilder.py:283
 msgid "left ring"
 msgstr ""
 
-#: lessonbuilder.py:281
+#: /home/wadeb/typing-turtle/lessonbuilder.py:284
 msgid "left middle"
 msgstr ""
 
-#: lessonbuilder.py:282
+#: /home/wadeb/typing-turtle/lessonbuilder.py:285
 msgid "left index"
 msgstr ""
 
-#: lessonbuilder.py:283
+#: /home/wadeb/typing-turtle/lessonbuilder.py:286
 msgid "left thumb"
 msgstr ""
 
-#: lessonbuilder.py:284
+#: /home/wadeb/typing-turtle/lessonbuilder.py:287
 msgid "right little"
 msgstr ""
 
-#: lessonbuilder.py:285
+#: /home/wadeb/typing-turtle/lessonbuilder.py:288
 msgid "right ring"
 msgstr ""
 
-#: lessonbuilder.py:286
+#: /home/wadeb/typing-turtle/lessonbuilder.py:289
 msgid "right middle"
 msgstr ""
 
-#: lessonbuilder.py:287
+#: /home/wadeb/typing-turtle/lessonbuilder.py:290
 msgid "right index"
 msgstr ""
 
-#: lessonbuilder.py:288
+#: /home/wadeb/typing-turtle/lessonbuilder.py:291
 msgid "right thumb"
 msgstr ""
 
-#: lessonbuilder.py:309
+#: /home/wadeb/typing-turtle/lessonbuilder.py:320
 #, python-format
 msgid " and %s keys"
 msgstr ""
 
-#: lessonbuilder.py:311
+#: /home/wadeb/typing-turtle/lessonbuilder.py:322
 msgid " key"
 msgstr ""
 
-#: lessonbuilder.py:314
+#: /home/wadeb/typing-turtle/lessonbuilder.py:325
 #, python-format
 msgid ""
 "In this lesson, you will learn the %(keynames)s.\n"
@@ -165,181 +169,196 @@ msgid ""
 "Press the ENTER key when you are ready to begin!"
 msgstr ""
 
-#: lessonbuilder.py:337
+#: /home/wadeb/typing-turtle/lessonbuilder.py:348
 #, python-format
 msgid "Press and hold the SHIFT key with your %(finger)s finger, "
 msgstr ""
 
-#: lessonbuilder.py:338 lessonbuilder.py:342 lessonbuilder.py:346
+#: /home/wadeb/typing-turtle/lessonbuilder.py:349
+#: /home/wadeb/typing-turtle/lessonbuilder.py:353
+#: /home/wadeb/typing-turtle/lessonbuilder.py:357
 #, python-format
 msgid "then press the %(letter)s key with your %(finger)s finger."
 msgstr ""
 
-#: lessonbuilder.py:341
+#: /home/wadeb/typing-turtle/lessonbuilder.py:352
 msgid "Press and hold the ALTGR key, "
 msgstr ""
 
-#: lessonbuilder.py:345
+#: /home/wadeb/typing-turtle/lessonbuilder.py:356
 msgid "Press and hold the ALTGR and SHIFT keys, "
 msgstr ""
 
-#: lessonbuilder.py:349
+#: /home/wadeb/typing-turtle/lessonbuilder.py:360
 #, python-format
 msgid "Press the %(letter)s key with your %(finger)s finger."
 msgstr ""
 
-#: lessonbuilder.py:354
+#: /home/wadeb/typing-turtle/lessonbuilder.py:365
 msgid "Practice typing the keys you just learned."
 msgstr ""
 
-#: lessonbuilder.py:358
+#: /home/wadeb/typing-turtle/lessonbuilder.py:369
 msgid "Now put the keys together into pairs."
 msgstr ""
 
-#: lessonbuilder.py:363
+#: /home/wadeb/typing-turtle/lessonbuilder.py:374
 msgid "Time to type jumbles."
 msgstr ""
 
-#: lessonbuilder.py:368
+#: /home/wadeb/typing-turtle/lessonbuilder.py:379
 msgid "Time to type real words."
 msgstr ""
 
-#: lessonbuilder.py:380
+#: /home/wadeb/typing-turtle/lessonbuilder.py:388
 msgid "Hihowahyah!  Ready to learn the secret of fast typing?\n"
 msgstr ""
 
-#: lessonbuilder.py:381
+#: /home/wadeb/typing-turtle/lessonbuilder.py:389
 msgid ""
 "Always use the correct finger to press each key!\n"
 "\n"
 msgstr ""
 
-#: lessonbuilder.py:382
+#: /home/wadeb/typing-turtle/lessonbuilder.py:390
 msgid "Now, place your hands on the keyboard just like the picture below.\n"
 msgstr ""
 
-#: lessonbuilder.py:383
+#: /home/wadeb/typing-turtle/lessonbuilder.py:391
 msgid "When you're ready, press the SPACE bar with your thumb!"
 msgstr ""
 
-#: lessonbuilder.py:387
+#: /home/wadeb/typing-turtle/lessonbuilder.py:395
 msgid ""
 "Good job!  The SPACE bar is used to insert spaces between words.\n"
 "\n"
 msgstr ""
 
-#: lessonbuilder.py:388
+#: /home/wadeb/typing-turtle/lessonbuilder.py:396
 msgid "Press the SPACE bar again with your thumb."
 msgstr ""
 
-#: lessonbuilder.py:392
+#: /home/wadeb/typing-turtle/lessonbuilder.py:400
 msgid "Now I'll teach you the second key, ENTER.  "
 msgstr ""
 
-#: lessonbuilder.py:393
+#: /home/wadeb/typing-turtle/lessonbuilder.py:401
 msgid ""
 "That's the big square key near your right little finger.\n"
 "\n"
 msgstr ""
 
-#: lessonbuilder.py:394
+#: /home/wadeb/typing-turtle/lessonbuilder.py:402
 msgid "Now, reach your little finger over and press ENTER."
 msgstr ""
 
-#: lessonbuilder.py:398
+#: /home/wadeb/typing-turtle/lessonbuilder.py:406
 msgid ""
 "Great!  When typing, the ENTER key is used to begin a new line.\n"
 "\n"
 msgstr ""
 
-#: lessonbuilder.py:399
+#: /home/wadeb/typing-turtle/lessonbuilder.py:407
 msgid "Press the ENTER key again with your right little finger."
 msgstr ""
 
-#: lessonbuilder.py:411
+#: /home/wadeb/typing-turtle/lessonbuilder.py:415
 msgid "Copy out the following text."
 msgstr ""
 
-#: mainscreen.py:108
-msgid "Next"
-msgstr ""
-
-#: mainscreen.py:117
-msgid "Previous"
-msgstr ""
-
-#: mainscreen.py:124
-msgid "Start Lesson"
-msgstr ""
-
-#: mainscreen.py:218
-msgid ""
-"You earned a medal in this lesson!  Advance to the next one\n"
-"by clicking the Next button."
-msgstr ""
-
-#: mainscreen.py:248
-msgid "No Medal Yet"
-msgstr ""
-
-#: mainscreen.py:249
-msgid "Bronze Medal"
-msgstr ""
-
-#: mainscreen.py:250
-msgid "Silver Medal"
-msgstr ""
-
-#: mainscreen.py:251
-msgid "Gold Medal"
-msgstr ""
-
-#: balloongame.py:53 lessonscreen.py:59
-msgid "Go Back"
-msgstr ""
-
-#: balloongame.py:210
+#: /home/wadeb/typing-turtle/balloongame.py:210
 msgid "You finished!"
 msgstr ""
 
-#: balloongame.py:219
+#: /home/wadeb/typing-turtle/balloongame.py:219
 #, python-format
 msgid "Your score was %(score)d."
 msgstr ""
 
-#: balloongame.py:221
+#: /home/wadeb/typing-turtle/balloongame.py:221
 #, python-format
 msgid "You earned a %(type)s medal!"
 msgstr ""
 
-#: balloongame.py:321 balloongame.py:329
+#: /home/wadeb/typing-turtle/balloongame.py:223
+#: /home/wadeb/typing-turtle/medalscreen.py:99
+msgid "Press the ENTER key to continue."
+msgstr ""
+
+#: /home/wadeb/typing-turtle/balloongame.py:321
+#: /home/wadeb/typing-turtle/balloongame.py:329
 #, python-format
 msgid "SCORE: %d"
 msgstr ""
 
-#: balloongame.py:340
+#: /home/wadeb/typing-turtle/balloongame.py:340
 msgid "Type the words to pop the balloons!"
 msgstr ""
 
-#: lessonscreen.py:177
+#: /home/wadeb/typing-turtle/medalscreen.py:54
+msgid ""
+"<span font_desc='Serif Bold Italic 28'>Certificate of Achievement</span>"
+msgstr ""
+
+#: /home/wadeb/typing-turtle/medalscreen.py:57
+msgid "<span font_desc='Sans 16'>This certifies that</span>"
+msgstr ""
+
+#: /home/wadeb/typing-turtle/medalscreen.py:60
+#, python-format
+msgid "<span font_desc='Sans 16'><b><u><i>%(nick)s</i></u></b></span>"
+msgstr ""
+
+#: /home/wadeb/typing-turtle/medalscreen.py:63
+#, python-format
+msgid "<span font_desc='Sans 16'>earned a %(type)s medal in </span>"
+msgstr ""
+
+#: /home/wadeb/typing-turtle/medalscreen.py:66
+#, python-format
+msgid "<span font_desc='Sans 16'>in <b><u><i>%(lesson)s</i></u></b></span>"
+msgstr ""
+
+#: /home/wadeb/typing-turtle/medalscreen.py:69
+#, python-format
+msgid "<span font_desc='Sans 16'>on <b><u><i>%(date)s</i></u></b>.</span>"
+msgstr ""
+
+#: /home/wadeb/typing-turtle/medalscreen.py:86
+#, python-format
+msgid "<b>Words Per Minute:</b> %(wpm)d"
+msgstr ""
+
+#: /home/wadeb/typing-turtle/medalscreen.py:90
+#: /home/wadeb/typing-turtle/lessonscreen.py:188
+#, python-format
+msgid "<b>Accuracy:</b> %(accuracy)d%%"
+msgstr ""
+
+#: /home/wadeb/typing-turtle/medalscreen.py:95
+#, python-format
+msgid "<b>SCORE:</b> %(score)d"
+msgstr ""
+
+#: /home/wadeb/typing-turtle/lessonscreen.py:180
 #, python-format
 msgid "<b>WPM:</b> %(wpm)d"
 msgstr ""
 
-#: lessonscreen.py:536
+#: /home/wadeb/typing-turtle/lessonscreen.py:549
 msgid "Good job!"
 msgstr ""
 
-#: lessonscreen.py:538
+#: /home/wadeb/typing-turtle/lessonscreen.py:551
 msgid "Nice work!"
 msgstr ""
 
-#: lessonscreen.py:544
+#: /home/wadeb/typing-turtle/lessonscreen.py:557
 #, python-format
 msgid "You finished the lesson in %(time)d seconds, with %(errors)d errors.\n"
 msgstr ""
 
-#: lessonscreen.py:546
+#: /home/wadeb/typing-turtle/lessonscreen.py:559
 #, python-format
 msgid ""
 "Your words per minute (WPM) was %(wpm)d, and your accuracy was %(accuracy)d%"
@@ -347,31 +366,138 @@ msgid ""
 "\n"
 msgstr ""
 
-#: lessonscreen.py:549
+#: /home/wadeb/typing-turtle/lessonscreen.py:562
 #, python-format
 msgid "You finished the lesson with %(errors)d errors.\n"
 msgstr ""
 
-#: lessonscreen.py:551
+#: /home/wadeb/typing-turtle/lessonscreen.py:564
 #, python-format
 msgid ""
 "Your accuracy was %(accuracy)d%%.\n"
 "\n"
 msgstr ""
 
-#: lessonscreen.py:557
+#: /home/wadeb/typing-turtle/lessonscreen.py:570
 #, python-format
 msgid "Congratulations!  You earned a %(type)s medal!"
 msgstr ""
 
-#: lessonscreen.py:565
+#: /home/wadeb/typing-turtle/lessonscreen.py:578
 msgid "You need to practice this lesson more before moving on."
 msgstr ""
 
-#: lessonscreen.py:568
+#: /home/wadeb/typing-turtle/lessonscreen.py:581
 msgid "You almost got a medal!  Next time, try not to make as many errors."
 msgstr ""
 
-#: lessonscreen.py:571
+#: /home/wadeb/typing-turtle/lessonscreen.py:584
 msgid "You almost got a medal!  Next time, try to type a little faster."
+msgstr ""
+
+#: /home/wadeb/typing-turtle/mainscreen.py:56
+msgid "Next"
+msgstr ""
+
+#: /home/wadeb/typing-turtle/mainscreen.py:65
+msgid "Previous"
+msgstr ""
+
+#: /home/wadeb/typing-turtle/mainscreen.py:72
+msgid "Start Lesson"
+msgstr ""
+
+#: /home/wadeb/typing-turtle/mainscreen.py:170
+msgid ""
+"You earned a medal in this lesson!  Advance to the next one\n"
+"by clicking the Next button."
+msgstr ""
+
+#: /home/wadeb/typing-turtle/mainscreen.py:201
+msgid "No Medal Yet"
+msgstr ""
+
+#: /home/wadeb/typing-turtle/mainscreen.py:202
+msgid "Bronze Medal"
+msgstr ""
+
+#: /home/wadeb/typing-turtle/mainscreen.py:203
+msgid "Silver Medal"
+msgstr ""
+
+#: /home/wadeb/typing-turtle/mainscreen.py:204
+msgid "Gold Medal"
+msgstr ""
+
+#: /home/wadeb/typing-turtle/editlessonscreen.py:46
+msgid "Edit a Lesson"
+msgstr ""
+
+#: /home/wadeb/typing-turtle/editlessonscreen.py:76
+msgid "New keys"
+msgstr ""
+
+#: /home/wadeb/typing-turtle/editlessonscreen.py:77
+msgid "Known keys"
+msgstr ""
+
+#: /home/wadeb/typing-turtle/editlessonscreen.py:78
+msgid "Length"
+msgstr ""
+
+#: /home/wadeb/typing-turtle/editlessonscreen.py:99
+msgid "Generate!"
+msgstr ""
+
+#: /home/wadeb/typing-turtle/editlessonscreen.py:116
+#, python-format
+msgid "Step #%d"
+msgstr ""
+
+#: /home/wadeb/typing-turtle/editlessonscreen.py:148
+msgid "Instructions"
+msgstr ""
+
+#: /home/wadeb/typing-turtle/editlessonscreen.py:211
+msgid "Accuracy"
+msgstr ""
+
+#: /home/wadeb/typing-turtle/editlessonscreen.py:212
+msgid "WPM"
+msgstr ""
+
+#: /home/wadeb/typing-turtle/editlessonscreen.py:226
+msgid "Score"
+msgstr ""
+
+#: /home/wadeb/typing-turtle/editlessonscreen.py:247
+msgid "Lesson Details"
+msgstr ""
+
+#: /home/wadeb/typing-turtle/editlessonscreen.py:268
+msgid "Normal Lesson"
+msgstr ""
+
+#: /home/wadeb/typing-turtle/editlessonscreen.py:311
+msgid "Automatic Lesson Generator"
+msgstr ""
+
+#: /home/wadeb/typing-turtle/editlessonscreen.py:349
+msgid "Words"
+msgstr ""
+
+#: /home/wadeb/typing-turtle/editlessonscreen.py:372
+msgid "Medal Requirements"
+msgstr ""
+
+#: /home/wadeb/typing-turtle/editlessonscreen.py:380
+msgid "Bronze"
+msgstr ""
+
+#: /home/wadeb/typing-turtle/editlessonscreen.py:381
+msgid "Silver"
+msgstr ""
+
+#: /home/wadeb/typing-turtle/editlessonscreen.py:382
+msgid "Gold"
 msgstr ""
