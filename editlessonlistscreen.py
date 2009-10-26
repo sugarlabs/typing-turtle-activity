@@ -28,6 +28,7 @@ import gobject, pygtk, gtk, pango
 # Import Sugar UI modules.
 import sugar.activity.activity
 import sugar.graphics.style
+import sugar.graphics.alert
 import sugar.mime
 import sugar.datastore.datastore
 
@@ -196,12 +197,24 @@ class EditLessonListScreen(gtk.VBox):
         if len(self.lessons) > 1:
             path = self.treeview.get_cursor()[0]
             if path:
+                msg = sugar.graphics.alert.ConfirmationAlert()
+                msg.props.title = _('Delete Lesson?')
+                msg.props.msg = _('Deleting the lesson will erase the lesson content.')
+        
+                def alert_response_cb(alert, response_id, self, id):
+                    self.activity.remove_alert(alert)
+                    if response_id is gtk.RESPONSE_OK:
+                        self.lessons.pop(id)
+                        del self.liststore[id]
+                        self.treeview.get_selection().select_path(id)
+                        self.treeview.grab_focus()
+                        self.update_sensitivity()
+                
                 id = path[0]
-                self.lessons.pop(id)
-                del self.liststore[id]
-                self.treeview.get_selection().select_path(id)
-                self.treeview.grab_focus()
-                self.update_sensitivity()
+                msg.connect('response', alert_response_cb, self, id)
+                
+                self.activity.add_alert(msg)
+                msg.show_all()
 
     def move_lesson_up_clicked_cb(self, btn):
         path = self.treeview.get_cursor()[0]
