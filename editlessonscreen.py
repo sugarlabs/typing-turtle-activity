@@ -50,7 +50,7 @@ class EditLessonScreen(gtk.VBox):
         stopbtn = gtk.Button()
         stopbtn.add(stoplabel)
         stopbtn.connect('clicked', self.stop_clicked_cb)
-       
+               
         titlebox = gtk.HBox()
         titlebox.pack_start(stopbtn, False, False, 10)
         titlebox.pack_end(title, False, False, 10)
@@ -84,6 +84,13 @@ class EditLessonScreen(gtk.VBox):
         generatebox.lengthent = gtk.Entry()
         generatebox.lengthent.set_width_chars(5)
         generatebox.lengthent.set_text('60')
+        
+        oklabel = gtk.Label()
+        oklabel.set_markup(_('Generate!'))
+        okbtn = gtk.Button()
+        okbtn.add(oklabel)
+        okbtn.connect('clicked', self.generate_ok_clicked_cb, generatebox)
+        okbtn.set_alignment(0.5, 0.5)
 
         box = gtk.HBox()
         box.set_spacing(10)
@@ -93,18 +100,18 @@ class EditLessonScreen(gtk.VBox):
         box.pack_start(generatebox.knownkeysent, expand=False)
         box.pack_start(lengthlabel, expand=False)
         box.pack_start(generatebox.lengthent, expand=False)
+        box.pack_end(okbtn, expand=False)
         box.show_all()
         
-        oklabel = gtk.Label()
-        oklabel.set_markup(_('Generate!'))
-        okbtn = gtk.Button()
-        okbtn.add(oklabel)
-        okbtn.connect('clicked', self.generate_ok_clicked_cb, generatebox)
-        okbtn.set_alignment(0.5, 0.5)
+        wordslabel = gtk.Label()
+        wordslabel.set_markup(_('Edit Word List'))
+        wordsbtn = gtk.Button()
+        wordsbtn.add(wordslabel)
+        wordsbtn.connect('clicked', self.generate_words_clicked_cb)
+        wordsbtn.set_alignment(0.5, 0.5)
 
-        box.pack_end(okbtn, expand=False)
-                
         generatebox.pack_start(box)
+        generatebox.pack_start(wordsbtn, expand=False, fill=False)               
         
         return generatebox
 
@@ -497,18 +504,26 @@ class EditLessonScreen(gtk.VBox):
         
         self.save()
         self.build()
+        
+    def get_wordlist(self):
+        if len(self.activity.wordlist):
+            return self.activity.wordlist
+        
+        # Load the myspell dictionary.
+        # TODO: Find a better way to determine its location.
+        code = locale.getdefaultlocale()[0] or 'en_US'
+        return lessonbuilder.load_wordlist('/usr/share/myspell/%s.dic' % code)
 
     def generate_ok_clicked_cb(self, btn, box):
         self.save()
-        
+
         new_keys = box.newkeysent.get_text()
         known_keys = box.knownkeysent.get_text()
         length = int(box.lengthent.get_text())
         
         try:
-            code = locale.getdefaultlocale()[0] or 'en_US'
-            words = lessonbuilder.load_wordlist('/usr/share/myspell/%s.dic' % code)
-            
+            words = self.get_wordlist()
+
             if self.lesson['type'] == 'normal':
                 self.lesson['steps'] = lessonbuilder.build_key_steps(length, new_keys, known_keys, words, [])
             
@@ -520,3 +535,52 @@ class EditLessonScreen(gtk.VBox):
 
         self.build()
 
+    def generate_words_clicked_cb(self, btn):
+        self.activity.push_screen(WordListScreen(self.activity))
+
+class WordListScreen(gtk.VBox):
+    def __init__(self, activity):
+        gtk.VBox.__init__(self)
+        self.set_border_width(10)
+
+        self.activity = activity
+        
+        # Add the header.
+        title = gtk.Label()
+        title.set_markup("<span size='20000'><b>" + _("Edit Word List") + "</b></span>")
+        title.set_alignment(1.0, 0.0)
+        
+        stoplabel = gtk.Label(_('Go Back'))
+        stopbtn = gtk.Button()
+        stopbtn.add(stoplabel)
+        stopbtn.connect('clicked', self.stop_clicked_cb)
+       
+        titlebox = gtk.HBox()
+        titlebox.pack_start(stopbtn, False, False, 10)
+        titlebox.pack_end(title, False, False, 10)
+
+        subtitle = gtk.Label()
+        subtitle.set_markup("<span size='10000'>" + _("Type or paste words here, for the Automatic Lesson Generator.  If empty, the dictionary will be used.") + "</span>")
+        subtitle.set_alignment(1.0, 0.0)
+
+        self.wordlisttext = gtk.TextView(gtk.TextBuffer())
+        self.wordlisttext.props.wrap_mode = gtk.WRAP_WORD
+        wordlistscroll = gtk.ScrolledWindow()
+        wordlistscroll.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        wordlistscroll.add(self.wordlisttext)
+        wordlistscroll.set_size_request(-1, 75)
+        self.wordlisttext.get_buffer().set_text(' '.join(self.activity.wordlist))
+
+        self.pack_start(titlebox, expand=False)
+        self.pack_start(subtitle, expand=False)
+        self.pack_start(gtk.HSeparator(), expand=False)
+        self.pack_start(wordlistscroll)
+        
+        self.show_all()
+
+    def stop_clicked_cb(self, btn):
+        buf = self.wordlisttext.get_buffer()
+        wordstext = buf.get_text(buf.get_start_iter(), buf.get_end_iter())
+        self.activity.wordlist = wordstext.split()
+        
+        self.activity.pop_screen()
