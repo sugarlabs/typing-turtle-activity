@@ -1,3 +1,11 @@
+24
+
+Mostly lesson editor changes.
+* Differentiate Key and Text steps.  This has some user visible effects; mostly that the instruction text has changed slightly.
+* Ability to specify a custom wordlist when generating lessons.
+* Warning dialog when deleting a lesson.
+* Removed some hardcoded fonts.
+
 23
 
 * Added an automatic lesson generator.  Uses the myspell dictionary to automatically generate lessons using a given set of keys.
