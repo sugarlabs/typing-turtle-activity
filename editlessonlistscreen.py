@@ -183,7 +183,7 @@ class EditLessonListScreen(gtk.VBox):
         lesson['name'] = ''
         lesson['description'] = ''
         lesson['type'] = 'normal'
-        lesson['steps'] = [ { 'instructions':'', 'text':'' } ]
+        lesson['steps'] = [ { 'mode':'text', 'instructions':'', 'text':'' } ]
         lesson['medals'] = [ 
             { 'name': 'bronze', 'wpm': 15, 'accuracy': 70, 'score': 3000 },
             { 'name': 'silver', 'wpm': 20, 'accuracy': 80, 'score': 4500 },

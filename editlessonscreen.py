@@ -124,6 +124,17 @@ class EditLessonScreen(gtk.VBox):
         steplabel.set_alignment(0.0, 0.5)
         steplabel.set_padding(10, 0)
 
+        # Build the step type combo box.
+        stepbox.typecombo = gtk.combo_box_new_text()
+        stepbox.typecombo.append_text(_('Keys'))
+        stepbox.typecombo.append_text(_('Words'))
+
+        steptype = step.get('mode', 'text') 
+        if steptype == 'key':
+            stepbox.typecombo.set_active(0)
+        elif steptype == 'text': 
+            stepbox.typecombo.set_active(1)
+        
         # Build the tool buttons.
         delstepbtn = gtk.Button()
         delstepbtn.add(sugar.graphics.icon.Icon(icon_name='list-remove'))
@@ -145,6 +156,7 @@ class EditLessonScreen(gtk.VBox):
 
         btnbox = gtk.HBox()
         btnbox.pack_start(steplabel, False, False)
+        btnbox.pack_start(stepbox.typecombo, expand=False, padding=10)
         btnbox.pack_end(addstepbtn, False, False)
         btnbox.pack_end(delstepbtn, False, False)
         btnbox.pack_end(moveupbtn, False, False)
@@ -444,6 +456,11 @@ class EditLessonScreen(gtk.VBox):
                     
                     buf = sb.texttext.get_buffer()
                     step['text'] = buf.get_text(buf.get_start_iter(), buf.get_end_iter())
+                    
+                    if sb.typecombo.get_active() == 0:
+                        step['mode'] = 'key'
+                    elif sb.typecombo.get_active() == 1:
+                        step['mode'] = 'text'
                     
                     steps.append(step)
                 

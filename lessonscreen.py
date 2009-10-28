@@ -35,6 +35,19 @@ PARAGRAPH_CODE = u'\xb6'
 # Maximium width of a text line in text lesson mode.
 LINE_WIDTH = 70
 
+FINGERS = {
+    'LP': _('left little finger'),
+    'LR': _('left ring finger'),
+    'LM': _('left middle finger'),
+    'LI': _('left index finger'),
+    'LT': _('left thumb'),
+    'RP': _('right little finger'),
+    'RR': _('right ring finger'),
+    'RM': _('right middle finger'),
+    'RI': _('right index finger'),
+    'RT': _('right thumb'),
+}
+
 class LessonScreen(gtk.VBox):
     def __init__(self, lesson, keyboard_images, activity):
         gtk.VBox.__init__(self)
@@ -74,17 +87,15 @@ class LessonScreen(gtk.VBox):
         # Set up font styles.
         self.tagtable = gtk.TextTagTable()
         instructions_tag = gtk.TextTag('instructions')
-        instructions_tag.props.size = 10000
         instructions_tag.props.justification = gtk.JUSTIFY_CENTER
         self.tagtable.add(instructions_tag)
 
         text_tag = gtk.TextTag('text')
         text_tag.props.family = 'Monospace'
-        text_tag.props.size = 10000
         self.tagtable.add(text_tag)
         
         spacer_tag = gtk.TextTag('spacer')
-        spacer_tag.props.size = 10
+        spacer_tag.props.size = 3000
         self.tagtable.add(spacer_tag)
         
         image_tag = gtk.TextTag('image')
@@ -93,13 +104,11 @@ class LessonScreen(gtk.VBox):
         
         correct_copy_tag = gtk.TextTag('correct-copy')
         correct_copy_tag.props.family = 'Monospace'
-        correct_copy_tag.props.size = 10000
         correct_copy_tag.props.foreground = '#0000ff'
         self.tagtable.add(correct_copy_tag)
         
         incorrect_copy_tag = gtk.TextTag('incorrect-copy')
         incorrect_copy_tag.props.family = 'Monospace'
-        incorrect_copy_tag.props.size = 10000
         incorrect_copy_tag.props.foreground = '#ff0000'
         self.tagtable.add(incorrect_copy_tag)
         
@@ -238,6 +247,13 @@ class LessonScreen(gtk.VBox):
             
             self.text = unicode(step['text'])
             self.instructions = unicode(step['instructions'])
+            if step.has_key('mode'):
+                self.mode = step['mode']
+            else:
+                if len(self.text) == 1:
+                    self.mode = 'key'
+                else:
+                    self.mode = 'text'
         
         # Show report after the last step.
         elif self.next_step_idx == len(self.lesson['steps']) and not self.lesson_finished:
@@ -245,6 +261,7 @@ class LessonScreen(gtk.VBox):
             
             self.instructions = self.get_lesson_report()
             self.text = '\n'
+            self.mode = 'key'
         
         # Leave this screen when the lesson is finished.
         else:
@@ -254,12 +271,6 @@ class LessonScreen(gtk.VBox):
         # Fix empty steps.
         if len(self.text) == 0:
             self.text = '\n'
-        
-        # Single character steps are handled differently from multi-character steps.
-        if len(self.text) == 1:
-            self.mode = 'key'
-        else:
-            self.mode = 'text'
         
         # Clear the buffer *before* key steps.
         self.lessonbuffer.set_text('')
@@ -274,32 +285,9 @@ class LessonScreen(gtk.VBox):
             self.line_marks = {}
             
             self.lessonbuffer.insert_with_tags_by_name(
-                self.lessonbuffer.get_end_iter(), '\n\n', 'instructions')
+                self.lessonbuffer.get_end_iter(), '\n', 'instructions')
             
             self.line_marks[0] = self.lessonbuffer.create_mark(None, self.lessonbuffer.get_end_iter(), True)
-            
-            # Determine what modifier keys are needed.
-            key, state, group = self.keyboard.get_key_state_group_for_letter(self.text[0])
-            
-            if key:
-                if state & gtk.gdk.SHIFT_MASK:
-                    shift_key = self.keyboard.find_key_by_label('shift')
-                    pixbuf = self.keyboard.get_key_pixbuf(shift_key, scale=1)
-                    self.lessonbuffer.insert_pixbuf(self.lessonbuffer.get_end_iter(), pixbuf)
-                    self.lessonbuffer.insert(self.lessonbuffer.get_end_iter(), ' ')
-                
-                if state & gtk.gdk.MOD5_MASK:
-                    altgr_key = self.keyboard.find_key_by_label('altgr')
-                    pixbuf = self.keyboard.get_key_pixbuf(altgr_key, scale=1)
-                    self.lessonbuffer.insert_pixbuf(self.lessonbuffer.get_end_iter(), pixbuf)
-                    self.lessonbuffer.insert(self.lessonbuffer.get_end_iter(), ' ')
-
-                pixbuf = self.keyboard.get_key_pixbuf(key, state, group, 1)
-                self.lessonbuffer.insert_pixbuf(self.lessonbuffer.get_end_iter(), pixbuf)
-            
-            self.lessonbuffer.apply_tag_by_name('image',
-                self.lessonbuffer.get_iter_at_mark(self.line_marks[0]),
-                self.lessonbuffer.get_end_iter())
             
             self.lessontext.set_cursor_visible(False)
             
@@ -324,13 +312,15 @@ class LessonScreen(gtk.VBox):
             self.line_marks = {} 
             line_idx = 0
             for l in self.lines:
-                # Add a little space between lines.  Not working atm.
-                #self.lessonbuffer.insert_with_tags_by_name(
-                #    self.lessonbuffer.get_end_iter(), '\n', 'spacer')
+                # Add a little space between lines.
+                self.lessonbuffer.insert_with_tags_by_name(
+                    self.lessonbuffer.get_end_iter(), '\n', 'text')
+                self.lessonbuffer.insert_with_tags_by_name(
+                    self.lessonbuffer.get_end_iter(), '\n', 'spacer')
 
                 # Add the text to copy.
                 self.lessonbuffer.insert_with_tags_by_name(
-                    self.lessonbuffer.get_end_iter(), '\n' + l.encode('utf-8') + '\n', 'text')
+                    self.lessonbuffer.get_end_iter(), l.encode('utf-8') + '\n', 'text')
                 
                 # Leave a marker where we will later insert text.
                 self.line_marks[line_idx] = self.lessonbuffer.create_mark(None, self.lessonbuffer.get_end_iter(), True)
@@ -381,12 +371,15 @@ class LessonScreen(gtk.VBox):
                
         if self.mode == 'key':
             # Check to see if they pressed the correct key.
-            if key == self.line[0]:
+            if key == self.line[self.char_idx]:
                 self.correct_keys += 1
                 self.total_keys += 1
                 
-                # Advance to the next step.
-                self.advance_step()
+                # Advance to the next character (or else step).
+                self.char_idx += 1
+                if self.char_idx >= len(self.line):
+                    self.advance_step()
+
                 self.update_stats()
                 self.hilite_next_key()
                 
@@ -465,24 +458,86 @@ class LessonScreen(gtk.VBox):
         return True 
 
     def hilite_next_key(self):
-        if not self.line:
-            return
-        
-        if len(self.line) > 0:
-            char = self.line[self.char_idx]
-            self.keyboard.set_hilite_letter(char)
-        
-        # Move the cursor to the insert location.
-        iter = self.lessonbuffer.get_iter_at_mark(self.line_mark)
-        iter.forward_chars(self.char_idx)
-        self.lessonbuffer.place_cursor(iter)
-        
-        # Gain focus (this causes the cursor line to draw).
-        self.lessontext.grab_focus()
-        
-        # Scroll the TextView so the cursor is on screen.
-        self.lessontext.scroll_to_mark(self.lessonbuffer.get_insert(), 0)
+        char = self.line[self.char_idx]
+        self.keyboard.set_hilite_letter(char)
 
+        # In Text mode, move the cursor to the insert location.
+        if self.mode == 'text':
+            iter = self.lessonbuffer.get_iter_at_mark(self.line_mark)
+            iter.forward_chars(self.char_idx)
+            self.lessonbuffer.place_cursor(iter)
+            
+            # Gain focus (this causes the cursor line to draw).
+            self.lessontext.grab_focus()
+            
+            # Scroll the TextView so the cursor is on screen.
+            self.lessontext.scroll_to_mark(self.lessonbuffer.get_insert(), 0)
+
+        # In Key mode, display the finger hint and the key image.
+        if self.mode == 'key':
+            iter = self.lessonbuffer.get_iter_at_mark(self.line_mark)
+            self.lessonbuffer.delete(iter, self.lessonbuffer.get_end_iter())
+
+            # Determine what modifier keys are needed.
+            key, state, group = self.keyboard.get_key_state_group_for_letter(char)
+            
+            # Append the instructions and key images.
+            if key:
+                letter = char
+                if letter == PARAGRAPH_CODE:
+                    letter = 'enter'
+                if letter == ' ':
+                    letter = 'space'
+
+                instructions = ''                
+                
+                try:
+                    finger = FINGERS[key['key-finger']]
+                except:
+                    finger = ''
+        
+                if state == gtk.gdk.SHIFT_MASK:
+                    # Choose the finger to press the SHIFT key with.
+                    if key['key-finger'][0] == 'R':
+                        shift_finger = FINGERS['LP']
+                    else:
+                        shift_finger = FINGERS['RP']
+
+                    instructions = _('Press and hold the shift key with your %(finger)s, ') % { 'finger': shift_finger }
+                    instructions += _('then press the %(letter)s key with your %(finger)s.') % { 'letter': letter, 'finger': finger }
+        
+                elif state == gtk.gdk.MOD5_MASK:
+                    instructions = _('Press and hold the altgr key, ') 
+                    instructions += _('then press the %(letter)s key with your %(finger)s.') % { 'letter': letter, 'finger': finger }
+        
+                elif state == gtk.gdk.SHIFT_MASK | gtk.gdk.MOD5_MASK:
+                    instructions = _('Press and hold the altgr and shift keys, ')
+                    instructions += _('then press the %(letter)s key with your %(finger)s.') % { 'letter': letter, 'finger': finger }
+        
+                else:
+                    instructions = _('Press the %(letter)s key with your %(finger)s.') % { 'letter': letter, 'finger': finger }
+
+                self.lessonbuffer.insert(self.lessonbuffer.get_end_iter(), instructions + '\n\n')
+
+                if state & gtk.gdk.SHIFT_MASK:
+                    shift_key = self.keyboard.find_key_by_label('shift')
+                    pixbuf = self.keyboard.get_key_pixbuf(shift_key, scale=1)
+                    self.lessonbuffer.insert_pixbuf(self.lessonbuffer.get_end_iter(), pixbuf)
+                    self.lessonbuffer.insert(self.lessonbuffer.get_end_iter(), ' ')
+                
+                if state & gtk.gdk.MOD5_MASK:
+                    altgr_key = self.keyboard.find_key_by_label('altgr')
+                    pixbuf = self.keyboard.get_key_pixbuf(altgr_key, scale=1)
+                    self.lessonbuffer.insert_pixbuf(self.lessonbuffer.get_end_iter(), pixbuf)
+                    self.lessonbuffer.insert(self.lessonbuffer.get_end_iter(), ' ')
+
+                pixbuf = self.keyboard.get_key_pixbuf(key, state, group, 1)
+                self.lessonbuffer.insert_pixbuf(self.lessonbuffer.get_end_iter(), pixbuf)
+            
+            self.lessonbuffer.apply_tag_by_name('image',
+                self.lessonbuffer.get_iter_at_mark(self.line_marks[0]),
+                self.lessonbuffer.get_end_iter())
+                   
     def get_lesson_report(self):
         self.update_stats()
 
