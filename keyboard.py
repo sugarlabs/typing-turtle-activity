@@ -409,7 +409,7 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
 
         self.connect("expose-event", self._expose_cb)
         
-        self.modify_font(pango.FontDescription('Monospace 10'))
+        #self.modify_font(pango.FontDescription('Monospace 10'))
         
         # Active language group and modifier state.
         # See http://www.pygtk.org/docs/pygtk/class-gdkkeymap.html for more
