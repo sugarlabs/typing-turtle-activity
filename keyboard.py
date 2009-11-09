@@ -502,7 +502,7 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
         
         try:
             layout = self.create_pango_layout(unicode(text))
-            layout.set_font_description(pango.FontDescription('Monospace 12'))
+            layout.set_font_description(pango.FontDescription('Monospace'))
             draw.draw_layout(gc, x1+8, y2-23, layout)
         except:
             pass
