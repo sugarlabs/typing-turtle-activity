@@ -458,6 +458,9 @@ class LessonScreen(gtk.VBox):
         return True 
 
     def hilite_next_key(self):
+        if not self.line:
+            return
+            
         char = self.line[self.char_idx]
         self.keyboard.set_hilite_letter(char)
 
