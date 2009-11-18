@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-28 02:16+0000\n"
+"POT-Creation-Date: 2009-11-18 23:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -84,7 +84,7 @@ msgid " (Exported Lessons)"
 msgstr ""
 
 #: /home/wadeb/typing-turtle/lessonbuilder.py:261
-#: /home/wadeb/typing-turtle/lessonscreen.py:607
+#: /home/wadeb/typing-turtle/lessonscreen.py:610
 msgid "Well done!"
 msgstr ""
 
@@ -97,7 +97,7 @@ msgid "Awesome!"
 msgstr ""
 
 #: /home/wadeb/typing-turtle/lessonbuilder.py:264
-#: /home/wadeb/typing-turtle/lessonscreen.py:609
+#: /home/wadeb/typing-turtle/lessonscreen.py:612
 msgid "Way to go!"
 msgstr ""
 
@@ -371,45 +371,45 @@ msgstr ""
 msgid "<b>WPM:</b> %(wpm)d"
 msgstr ""
 
-#: /home/wadeb/typing-turtle/lessonscreen.py:506
+#: /home/wadeb/typing-turtle/lessonscreen.py:509
 #, python-format
 msgid "Press and hold the shift key with your %(finger)s, "
 msgstr ""
 
-#: /home/wadeb/typing-turtle/lessonscreen.py:507
-#: /home/wadeb/typing-turtle/lessonscreen.py:511
-#: /home/wadeb/typing-turtle/lessonscreen.py:515
+#: /home/wadeb/typing-turtle/lessonscreen.py:510
+#: /home/wadeb/typing-turtle/lessonscreen.py:514
+#: /home/wadeb/typing-turtle/lessonscreen.py:518
 #, python-format
 msgid "then press the %(letter)s key with your %(finger)s."
 msgstr ""
 
-#: /home/wadeb/typing-turtle/lessonscreen.py:510
+#: /home/wadeb/typing-turtle/lessonscreen.py:513
 msgid "Press and hold the altgr key, "
 msgstr ""
 
-#: /home/wadeb/typing-turtle/lessonscreen.py:514
+#: /home/wadeb/typing-turtle/lessonscreen.py:517
 msgid "Press and hold the altgr and shift keys, "
 msgstr ""
 
-#: /home/wadeb/typing-turtle/lessonscreen.py:518
+#: /home/wadeb/typing-turtle/lessonscreen.py:521
 #, python-format
 msgid "Press the %(letter)s key with your %(finger)s."
 msgstr ""
 
-#: /home/wadeb/typing-turtle/lessonscreen.py:606
+#: /home/wadeb/typing-turtle/lessonscreen.py:609
 msgid "Good job!"
 msgstr ""
 
-#: /home/wadeb/typing-turtle/lessonscreen.py:608
+#: /home/wadeb/typing-turtle/lessonscreen.py:611
 msgid "Nice work!"
 msgstr ""
 
-#: /home/wadeb/typing-turtle/lessonscreen.py:614
+#: /home/wadeb/typing-turtle/lessonscreen.py:617
 #, python-format
 msgid "You finished the lesson in %(time)d seconds, with %(errors)d errors.\n"
 msgstr ""
 
-#: /home/wadeb/typing-turtle/lessonscreen.py:616
+#: /home/wadeb/typing-turtle/lessonscreen.py:619
 #, python-format
 msgid ""
 "Your words per minute (WPM) was %(wpm)d, and your accuracy was %(accuracy)d%"
@@ -417,32 +417,32 @@ msgid ""
 "\n"
 msgstr ""
 
-#: /home/wadeb/typing-turtle/lessonscreen.py:619
+#: /home/wadeb/typing-turtle/lessonscreen.py:622
 #, python-format
 msgid "You finished the lesson with %(errors)d errors.\n"
 msgstr ""
 
-#: /home/wadeb/typing-turtle/lessonscreen.py:621
+#: /home/wadeb/typing-turtle/lessonscreen.py:624
 #, python-format
 msgid ""
 "Your accuracy was %(accuracy)d%%.\n"
 "\n"
 msgstr ""
 
-#: /home/wadeb/typing-turtle/lessonscreen.py:627
+#: /home/wadeb/typing-turtle/lessonscreen.py:630
 #, python-format
 msgid "Congratulations!  You earned a %(type)s medal!"
 msgstr ""
 
-#: /home/wadeb/typing-turtle/lessonscreen.py:635
+#: /home/wadeb/typing-turtle/lessonscreen.py:638
 msgid "You need to practice this lesson more before moving on."
 msgstr ""
 
-#: /home/wadeb/typing-turtle/lessonscreen.py:638
+#: /home/wadeb/typing-turtle/lessonscreen.py:641
 msgid "You almost got a medal!  Next time, try not to make as many errors."
 msgstr ""
 
-#: /home/wadeb/typing-turtle/lessonscreen.py:641
+#: /home/wadeb/typing-turtle/lessonscreen.py:644
 msgid "You almost got a medal!  Next time, try to type a little faster."
 msgstr ""
 
