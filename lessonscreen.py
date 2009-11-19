@@ -135,7 +135,7 @@ class LessonScreen(gtk.VBox):
         try:
             self.keyboard.load_letter_map('lessons/%s.key' % code)
         except:
-            self.keyboard.load_letter_map('lessons/en_US.key')
+            pass
 
         self.keyboard.set_layout(keyboard.OLPC_LAYOUT)
 
@@ -536,7 +536,12 @@ class LessonScreen(gtk.VBox):
 
                 pixbuf = self.keyboard.get_key_pixbuf(key, state, group, 1)
                 self.lessonbuffer.insert_pixbuf(self.lessonbuffer.get_end_iter(), pixbuf)
-            
+
+            else: # No key found in the keymap.
+                instructions = _("Uh oh!  Your keyboard cannot type the letter '%s'.\n") % char
+                instructions += _("Please change your keyboard settings and try this lesson again.")
+                self.lessonbuffer.insert(self.lessonbuffer.get_end_iter(), instructions + '\n\n')
+
             self.lessonbuffer.apply_tag_by_name('image',
                 self.lessonbuffer.get_iter_at_mark(self.line_marks[0]),
                 self.lessonbuffer.get_end_iter())
