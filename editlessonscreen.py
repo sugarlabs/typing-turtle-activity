@@ -241,7 +241,8 @@ class EditLessonScreen(gtk.VBox):
             box.pack_start(wpmlabel, False, False, 10)
             box.pack_start(box.wpment, False, False)
         
-        elif self.lesson['type'] == 'balloon':
+        elif self.lesson['type'] == 'balloon' or \
+             self.lesson['type'] == 'kite':
             scorelabel = gtk.Label(_('Score'))
             
             box.scoreent = gtk.Entry()
@@ -290,13 +291,18 @@ class EditLessonScreen(gtk.VBox):
         self.balloonradio = gtk.RadioButton(self.textradio, _('Balloon Game'))
         self.balloonradio.connect('toggled', self.type_toggled_cb)
         
+        self.kiteradio = gtk.RadioButton(self.textradio, _('Kite Game'))
+        self.kiteradio.connect('toggled', self.type_toggled_cb)
+        
         self.textradio.set_active(self.lesson['type'] == 'normal')
         self.balloonradio.set_active(self.lesson['type'] == 'balloon')        
+        self.kiteradio.set_active(self.lesson['type'] == 'kite')        
 
         typebox = gtk.HBox()
         typebox.pack_start(typelabel, expand=False)
         typebox.pack_start(self.textradio, expand=False)
         typebox.pack_start(self.balloonradio, expand=False)
+        typebox.pack_start(self.kiteradio, expand=False)
         
         desclabel = gtk.Label()
         desclabel.set_markup("<span size='large' weight='bold'>" + _('Description') + "</span>")
@@ -353,7 +359,7 @@ class EditLessonScreen(gtk.VBox):
         self.vbox.pack_start(generatebox, expand=False)       
         
         self.has_normal_widgets = False
-        self.has_balloon_widgets = False
+        self.has_game_widgets = False
         
         # Steps or words widgets.
         if self.lesson['type'] == 'normal':
@@ -371,8 +377,9 @@ class EditLessonScreen(gtk.VBox):
                 
                 self.vbox.pack_start(stepbox, expand=False)
                 
-        if self.lesson['type'] == 'balloon':
-            self.has_balloon_widgets = True
+        if self.lesson['type'] == 'balloon' or \
+           self.lesson['type'] == 'kite':
+            self.has_game_widgets = True
 
             if not self.lesson.has_key('words') or len(self.lesson['words']) == 0:
                 self.lesson['words'] = []
@@ -466,20 +473,25 @@ class EditLessonScreen(gtk.VBox):
                 
                 self.lesson['steps'] = steps
     
-                for i in range(0, 3):
-                    self.lesson['medals'][i]['accuracy'] = int(self.medalboxes[i].accent.get_text())                
-                    self.lesson['medals'][i]['wpm'] = int(self.medalboxes[i].wpment.get_text())
-                    
         if self.balloonradio.get_active():
             self.lesson['type'] = 'balloon'
 
-            if self.has_balloon_widgets:
-                buf = self.wordstext.get_buffer()
-                text = buf.get_text(buf.get_start_iter(), buf.get_end_iter())
-                self.lesson['words'] = text.split(' ')
-                
-                for i in range(0, 3):
-                    self.lesson['medals'][i]['score'] = int(self.medalboxes[i].scoreent.get_text())                
+        if self.kiteradio.get_active():
+            self.lesson['type'] = 'kite'
+
+        if self.has_game_widgets:
+            buf = self.wordstext.get_buffer()
+            text = buf.get_text(buf.get_start_iter(), buf.get_end_iter())
+            self.lesson['words'] = text.split(' ')
+            
+            for i in range(0, 3):
+                self.lesson['medals'][i]['score'] = int(self.medalboxes[i].scoreent.get_text())                
+
+        else:
+            for i in range(0, 3):
+                self.lesson['medals'][i]['accuracy'] = int(self.medalboxes[i].accent.get_text())                
+                self.lesson['medals'][i]['wpm'] = int(self.medalboxes[i].wpment.get_text())
+                    
 
     def add_step_clicked_cb(self, btn, index):
         self.save()

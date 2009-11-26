@@ -29,6 +29,7 @@ from sugar.graphics import *
 # Import activity modules.
 import lessonscreen, medalscreen
 import balloongame
+import kitegame
 import titlescene
 import keyboard
 
@@ -240,6 +241,9 @@ class MainScreen(gtk.VBox):
         if self.visible_lesson['type'] == 'balloon':
             reload(balloongame)
             self.activity.push_screen(balloongame.BalloonGame(self.visible_lesson, self.activity))
+        elif self.visible_lesson['type'] == 'kite':
+            reload(kitegame)
+            self.activity.push_screen(kitegame.KiteGame(self.visible_lesson, self.activity))
         else:
             reload(lessonscreen)
             self.activity.push_screen(lessonscreen.LessonScreen(self.visible_lesson, self.keyboard_images, self.activity))
