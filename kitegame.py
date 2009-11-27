@@ -21,23 +21,6 @@ import gobject, pygtk, gtk, pango
 
 import medalscreen
 
-BALLOON_COLORS = [
-    (65535, 0, 0),
-    (0, 0, 65535),
-    (65535, 32768, 0),
-    (0, 32768, 65535),
-]
-
-class Balloon:
-    def __init__(self, x, y, vx, vy, word):
-        self.x = x
-        self.y = y
-        self.vx = vx
-        self.vy = vy
-        self.word = word
-        self.size = max(100, 50 + len(word) * 20) 
-        self.color = random.choice(BALLOON_COLORS)
-
 class KiteGame(gtk.VBox):
     def __init__(self, lesson, activity):
         gtk.VBox.__init__(self)
@@ -73,10 +56,9 @@ class KiteGame(gtk.VBox):
         self.show_all()
         
         # Initialize the game data.
-        self.balloons = []
+        self.text = ''
 
         self.score = 0
-        self.spawn_delay = 10
 
         self.count = 0
         self.count_left = self.lesson.get('length', 60)
@@ -90,12 +72,6 @@ class KiteGame(gtk.VBox):
     def realize_cb(self, widget):
         self.activity.add_events(gtk.gdk.KEY_PRESS_MASK)
         self.key_press_cb_id = self.activity.connect('key-press-event', self.key_cb)
-
-        # Clear the mouse cursor. 
-        #pixmap = gtk.gdk.Pixmap(widget.window, 10, 10)
-        #color = gtk.gdk.Color()
-        #cursor = gtk.gdk.Cursor(pixmap, pixmap, color, color, 5, 5)
-        #widget.window.set_cursor(cursor)
         
     def unrealize_cb(self, widget):
         self.activity.disconnect(self.key_press_cb_id)
@@ -126,33 +102,9 @@ class KiteGame(gtk.VBox):
                     self.activity.push_screen(medalscreen.MedalScreen(self.medal, self.activity))
 
         else:
-            for b in self.balloons:
-                if b.word[0] == key:
-                    b.word = b.word[1:]
-                    self.add_score(1)
-
-                    # Pop the balloon if it's been typed.
-                    if len(b.word) == 0:
-                        self.balloons.remove(b)
-                        self.add_score(100)
-
-                    self.queue_draw_balloon(b)
-
-                    break
+            pass
         
         return False
-    
-    def update_balloon(self, b):
-        b.x += b.vx
-        b.y += b.vy 
-
-        if b.x < 100 or b.x >= self.bounds.width - 100:
-            b.vx = -b.vx
-
-        if b.y < -100:
-            self.balloons.remove(b)
-
-        self.queue_draw_balloon(b)
     
     def tick(self):
         if self.finished:
@@ -160,35 +112,15 @@ class KiteGame(gtk.VBox):
 
         self.bounds = self.area.get_allocation()
             
-        for b in self.balloons:
-            self.update_balloon(b)
+        #self.spawn_delay -= 1
+        #if self.count_left >= 0 and self.spawn_delay <= 0:
+        #    self.count += 1
+        #    self.count_left -= 1
+        #
+        #    word = random.choice(self.lesson['words'])
 
-        self.spawn_delay -= 1
-        if self.count_left >= 0 and self.spawn_delay <= 0:
-            self.count += 1
-            self.count_left -= 1
-
-            word = random.choice(self.lesson['words'])
-
-            x = random.randint(100, self.bounds.width - 100)
-            y = self.bounds.height + 100
-
-            vx = random.uniform(-2, 2)
-            vy = -2 #random.uniform(-5, -3)
-
-            b = Balloon(x, y, vx, vy, word)
-            self.balloons.append(b)
-
-            if self.count < 10:
-                delay = 200
-            elif self.count < 20:
-                delay = 150
-            else:
-                delay = 100
-            self.spawn_delay = random.randint(delay-20, delay+20)
-
-        if self.count_left <= 0 and len(self.balloons) == 0:
-            self.finish_game()
+        #if self.count_left <= 0:
+        #    self.finish_game()
  
         return True
 
@@ -290,28 +222,16 @@ class KiteGame(gtk.VBox):
         h = int(b.size*1.5 + 10)
         self.area.queue_draw_area(x, y, w, h)
 
-    def draw_balloon(self, gc, b):
-        x = int(b.x)
-        y = int(b.y)
-        
-        # Draw the string.
-        gc.foreground = self.area.get_colormap().alloc_color(0,0,0)
-        self.area.window.draw_line(gc, 
-            int(b.x), int(b.y+b.size/2), 
-            int(b.x), int(b.y+b.size))
-        
+    def draw_kite(self, gc):
+        x = 300
+        y = 300
+
+        size = 100
+        color = (65535, 0 ,0)
+
         # Draw the balloon.
-        gc.foreground = self.area.get_colormap().alloc_color(b.color[0],b.color[1],b.color[2])
-        self.area.window.draw_arc(gc, True, x-b.size/2, y-b.size/2, b.size, b.size, 0, 360*64)
-    
-        # Draw the text.
-        gc.foreground = self.area.get_colormap().alloc_color(0,0,0)
-        layout = self.area.create_pango_layout(b.word)
-        layout.set_font_description(pango.FontDescription('Sans 12'))    
-        size = layout.get_size()
-        tx = x-(size[0]/pango.SCALE)/2
-        ty = y-(size[1]/pango.SCALE)/2
-        self.area.window.draw_layout(gc, tx, ty, layout)
+        gc.foreground = self.area.get_colormap().alloc_color(color[0],color[1],color[2])
+        self.area.window.draw_arc(gc, True, x-size/2, y-size/2, size, size, 0, 360*64)
     
     def add_score(self, num):
         self.score += num
@@ -334,10 +254,9 @@ class KiteGame(gtk.VBox):
         self.area.window.draw_layout(gc, x, y, layout)
 
     def draw_instructions(self, gc):
-        # Draw instructions.
         gc.foreground = self.area.get_colormap().alloc_color(0,0,0)
 
-        layout = self.area.create_pango_layout(_('Type the words to pop the balloons!'))
+        layout = self.area.create_pango_layout(_('Type the words to fly the kite!'))
         layout.set_font_description(pango.FontDescription('Times 14'))    
         size = layout.get_size()
         x = (self.bounds.width - size[0]/pango.SCALE)/2
@@ -352,10 +271,6 @@ class KiteGame(gtk.VBox):
         # Draw background.
         gc.foreground = self.area.get_colormap().alloc_color(60000,60000,65535)
         self.area.window.draw_rectangle(gc, True, 0, 0, self.bounds.width, self.bounds.height)
-
-        # Draw the balloons.
-        for b in self.balloons:
-            self.draw_balloon(gc, b)
 
         if self.finished:
             self.draw_results(gc)
