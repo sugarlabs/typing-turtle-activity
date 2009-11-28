@@ -142,15 +142,13 @@ class KiteGame(gtk.VBox):
             return
 
         correct_keys = 0
-        total_keys = 0
+        total_keys = len(self.key_hist) 
 
         t = time.time()
         avg_key_time = 0
-        for i in xrange(len(self.key_hist)):
-            h = self.key_hist[i]
+        for h in self.key_hist[1:]:
             if h[1]:
                 correct_keys += 1
-            total_keys += 1
             avg_key_time += t - h[0]
             t = h[0]
 
@@ -160,9 +158,7 @@ class KiteGame(gtk.VBox):
             wpm = 12.0 / avg_key_time 
         else:
             wpm = 0
-        #wpm = float(correct_keys) * 12.0 / 5.0
 
-        #wpm = 12.0 / max(0.2, (t - self.correct_time))
         wpm = self.wpm * 0.99 + wpm * 0.01
         if int(wpm) != int(self.wpm):
             self.queue_draw_score()
@@ -174,14 +170,12 @@ class KiteGame(gtk.VBox):
         progress = float(total_keys) / 20.0
 
         pct = wpm / 50.0
-#        pct = pct * progress
 
         oldkitey = self.kitey
         newkitey = (self.bounds.height - 50 - KITE_SIZE/2) * (1.0 - pct)
         if self.kitey is None:
             self.kitey = newkitey
         else:
-            #self.kitey = newkitey #self.kitey * 0.5 + newkitey * 0.5
             self.kitey += (newkitey - self.kitey) * 0.1
             self.kitey += (self.kitey - oldkitey) * 0.5
 
