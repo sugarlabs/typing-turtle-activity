@@ -70,6 +70,7 @@ class KiteGame(gtk.VBox):
         self.kitevx = 0
 
         self.wpm = 0
+        self.correct_time = 0
 
         self.score = 0
 
@@ -126,11 +127,13 @@ class KiteGame(gtk.VBox):
                 self.add_score(100)
                 if len(self.text) == 0:
                     self.finish_game()
+                self.correct_time = time.time()
 
             else:
                 self.add_score(-100)
 
             self.key_hist.insert(0,(time.time(), correct))
+            self.key_hist = self.key_hist[:5]
 
         return False
     
@@ -142,19 +145,28 @@ class KiteGame(gtk.VBox):
         total_keys = 0
 
         t = time.time()
+        avg_key_time = 0
         for i in xrange(len(self.key_hist)):
             h = self.key_hist[i]
-            if t - h[0] > 10.0:
-                self.key_hist = self.key_hist[:i]
-                break
             if h[1]:
                 correct_keys += 1
             total_keys += 1
+            avg_key_time += t - h[0]
+            t = h[0]
 
-        wpm = float(correct_keys) * 6.0 / 5.0
-        if int(wpm) != self.wpm:
-            self.wpm = int(wpm)
+        if total_keys > 0:
+            avg_key_time = avg_key_time / float(total_keys)
+        if avg_key_time > 0:
+            wpm = 12.0 / avg_key_time 
+        else:
+            wpm = 0
+        #wpm = float(correct_keys) * 12.0 / 5.0
+
+        #wpm = 12.0 / max(0.2, (t - self.correct_time))
+        wpm = self.wpm * 0.99 + wpm * 0.01
+        if int(wpm) != int(self.wpm):
             self.queue_draw_score()
+        self.wpm = wpm
 
         # Erase old kite.
         self.queue_draw_kite()
@@ -171,7 +183,7 @@ class KiteGame(gtk.VBox):
         else:
             #self.kitey = newkitey #self.kitey * 0.5 + newkitey * 0.5
             self.kitey += (newkitey - self.kitey) * 0.1
-            self.kitey += (self.kitey - oldkitey) * 0.1
+            self.kitey += (self.kitey - oldkitey) * 0.5
 
         if total_keys > 0:
             acc = float(correct_keys) / total_keys
@@ -184,7 +196,7 @@ class KiteGame(gtk.VBox):
         if self.kitex is None:
             self.kitex = newkitex
         else:
-            self.kitex += (newkitex - self.kitex) * 0.1
+            self.kitex += (newkitex - self.kitex) * 0.01
             self.kitex += (self.kitex - oldkitex) * 0.1
 
         # Draw new kite.
@@ -317,7 +329,7 @@ class KiteGame(gtk.VBox):
 
     def get_score_text(self):
         return _("SCORE: %d") % self.score + "\n" + \
-               _("WPM: %d") % self.wpm
+               _("WPM: %d") % int(self.wpm)
 
     def queue_draw_score(self):
         layout = self.area.create_pango_layout(self.get_score_text())
