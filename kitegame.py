@@ -17,9 +17,11 @@
 import random, datetime
 from gettext import gettext as _
 
-import gobject, pygtk, gtk, pango
+import gobject, pygtk, gtk, pango, time
 
 import medalscreen
+
+KITE_SIZE = 300
 
 class KiteGame(gtk.VBox):
     def __init__(self, lesson, activity):
@@ -57,11 +59,19 @@ class KiteGame(gtk.VBox):
         
         # Initialize the game data.
         self.text = ''
+        for i in range(0, self.lesson['length']):
+            if i > 0: self.text += ' '
+            self.text += random.choice(self.lesson['words'])
+
+        self.key_hist = []
+
+        self.kitex = 150 
+        self.kitey = None 
+        self.kitevx = 0
+
+        self.wpm = 0
 
         self.score = 0
-
-        self.count = 0
-        self.count_left = self.lesson.get('length', 60)
 
         self.medal = None
         self.finished = False
@@ -102,26 +112,84 @@ class KiteGame(gtk.VBox):
                     self.activity.push_screen(medalscreen.MedalScreen(self.medal, self.activity))
 
         else:
-            pass
-        
+            # Automatically consume spaces when the next correct letter is typed.
+            correct = False
+            if self.text[0] == ' ' and len(self.text) > 1 and key == unicode(self.text[1]):
+                self.text = self.text[1:]
+                correct = True
+            elif key == unicode(self.text[0]):
+                correct = True
+
+            if correct:
+                self.text = self.text[1:]
+                self.queue_draw_text()
+                self.add_score(100)
+                if len(self.text) == 0:
+                    self.finish_game()
+
+            else:
+                self.add_score(-100)
+
+            self.key_hist.insert(0,(time.time(), correct))
+
         return False
     
     def tick(self):
         if self.finished:
             return
 
-        self.bounds = self.area.get_allocation()
-            
-        #self.spawn_delay -= 1
-        #if self.count_left >= 0 and self.spawn_delay <= 0:
-        #    self.count += 1
-        #    self.count_left -= 1
-        #
-        #    word = random.choice(self.lesson['words'])
+        correct_keys = 0
+        total_keys = 0
 
-        #if self.count_left <= 0:
-        #    self.finish_game()
- 
+        t = time.time()
+        for i in xrange(len(self.key_hist)):
+            h = self.key_hist[i]
+            if t - h[0] > 10.0:
+                self.key_hist = self.key_hist[:i]
+                break
+            if h[1]:
+                correct_keys += 1
+            total_keys += 1
+
+        wpm = float(correct_keys) * 6.0 / 5.0
+        if int(wpm) != self.wpm:
+            self.wpm = int(wpm)
+            self.queue_draw_score()
+
+        # Erase old kite.
+        self.queue_draw_kite()
+
+        progress = float(total_keys) / 20.0
+
+        pct = wpm / 50.0
+#        pct = pct * progress
+
+        oldkitey = self.kitey
+        newkitey = (self.bounds.height - 50 - KITE_SIZE/2) * (1.0 - pct)
+        if self.kitey is None:
+            self.kitey = newkitey
+        else:
+            #self.kitey = newkitey #self.kitey * 0.5 + newkitey * 0.5
+            self.kitey += (newkitey - self.kitey) * 0.1
+            self.kitey += (self.kitey - oldkitey) * 0.1
+
+        if total_keys > 0:
+            acc = float(correct_keys) / total_keys
+        else:
+            acc = 0
+        acc = acc * progress
+
+        oldkitex = self.kitex
+        newkitex = 150 + acc * self.bounds.width*0.3
+        if self.kitex is None:
+            self.kitex = newkitex
+        else:
+            self.kitex += (newkitex - self.kitex) * 0.1
+            self.kitex += (self.kitex - oldkitex) * 0.1
+
+        # Draw new kite.
+        self.queue_draw_kite()
+
         return True
 
     def draw_results(self, gc):
@@ -215,30 +283,44 @@ class KiteGame(gtk.VBox):
 
         self.queue_draw()
 
-    def queue_draw_balloon(self, b):
-        x = int(b.x - b.size/2) - 5
-        y = int(b.y - b.size/2) - 5
-        w = int(b.size + 100)
-        h = int(b.size*1.5 + 10)
-        self.area.queue_draw_area(x, y, w, h)
+    def queue_draw_kite(self):
+        if self.kitey is None:
+            return
+
+        x = int(self.kitex)
+        y = int(self.kitey) - KITE_SIZE/2
+        if y < 0:
+            y = 0
+
+        self.queue_draw_area(
+            x-KITE_SIZE/2, y,
+            x+KITE_SIZE, y+KITE_SIZE*2)
 
     def draw_kite(self, gc):
-        x = 300
-        y = 300
+        if self.kitey is None or self.kitex is None:
+            return
 
-        size = 100
         color = (65535, 0 ,0)
+ 
+        p0 = (int(self.kitex), int(self.kitey-KITE_SIZE*0.3))
+        p1 = (int(self.kitex+KITE_SIZE*0.3), int(self.kitey))
+        p2 = (int(self.kitex), int(self.kitey+KITE_SIZE*0.45))
+        p3 = (int(self.kitex-KITE_SIZE*0.3), int(self.kitey))
+        pts = [ p0, p1, p2, p3 ]
 
-        # Draw the balloon.
         gc.foreground = self.area.get_colormap().alloc_color(color[0],color[1],color[2])
-        self.area.window.draw_arc(gc, True, x-size/2, y-size/2, size, size, 0, 360*64)
+        self.area.window.draw_polygon(gc, True, pts)
     
     def add_score(self, num):
         self.score += num
         self.queue_draw_score()
 
+    def get_score_text(self):
+        return _("SCORE: %d") % self.score + "\n" + \
+               _("WPM: %d") % self.wpm
+
     def queue_draw_score(self):
-        layout = self.area.create_pango_layout(_('SCORE: %d') % self.score)
+        layout = self.area.create_pango_layout(self.get_score_text())
         layout.set_font_description(pango.FontDescription('Times 14'))    
         size = layout.get_size()
         x = self.bounds.width-20-size[0]/pango.SCALE
@@ -246,29 +328,49 @@ class KiteGame(gtk.VBox):
         self.queue_draw_area(x, y, x+size[0], y+size[1])
 
     def draw_score(self, gc):
-        layout = self.area.create_pango_layout(_('SCORE: %d') % self.score)
+        layout = self.area.create_pango_layout(self.get_score_text())
         layout.set_font_description(pango.FontDescription('Times 14'))    
         size = layout.get_size()
         x = self.bounds.width-20-size[0]/pango.SCALE
         y = 20
         self.area.window.draw_layout(gc, x, y, layout)
 
-    def draw_instructions(self, gc):
-        gc.foreground = self.area.get_colormap().alloc_color(0,0,0)
+#    def draw_instructions(self, gc):
+#        gc.foreground = self.area.get_colormap().alloc_color(0,0,0)
+#
+#        layout = self.area.create_pango_layout(_('Type the words to fly the kite!'))
+#        layout.set_font_description(pango.FontDescription('Times 14'))    
+#        size = layout.get_size()
+#        x = (self.bounds.width - size[0]/pango.SCALE)/2
+#        y = self.bounds.height-20 - size[1]/pango.SCALE 
+#        self.area.window.draw_layout(gc, x, y, layout)
 
-        layout = self.area.create_pango_layout(_('Type the words to fly the kite!'))
+    def queue_draw_text(self):
+        layout = self.area.create_pango_layout(self.text[:50])
         layout.set_font_description(pango.FontDescription('Times 14'))    
         size = layout.get_size()
-        x = (self.bounds.width - size[0]/pango.SCALE)/2
+        height = 20 + size[1] / pango.SCALE
+        self.queue_draw_area(
+            0, self.bounds.height - height, 
+            self.bounds.width, self.bounds.height)
+
+    def draw_text(self, gc):
+        gc.foreground = self.area.get_colormap().alloc_color(0,0,0)
+
+        layout = self.area.create_pango_layout(self.text[:50])
+        layout.set_font_description(pango.FontDescription('Times 14'))    
+        size = layout.get_size()
+        x = 20
         y = self.bounds.height-20 - size[1]/pango.SCALE 
         self.area.window.draw_layout(gc, x, y, layout)
+
+        self.area.window.draw_line(gc, x, y, x+self.bounds.width, y)
 
     def draw(self):
         self.bounds = self.area.get_allocation()
 
         gc = self.area.window.new_gc()
         
-        # Draw background.
         gc.foreground = self.area.get_colormap().alloc_color(60000,60000,65535)
         self.area.window.draw_rectangle(gc, True, 0, 0, self.bounds.width, self.bounds.height)
 
@@ -276,9 +378,11 @@ class KiteGame(gtk.VBox):
             self.draw_results(gc)
 
         else:
-            self.draw_instructions(gc)
-
+#            self.draw_instructions(gc)
+            self.draw_kite(gc)
+            self.draw_text(gc)
             self.draw_score(gc)
 
     def expose_cb(self, area, event):
         self.draw()
+
