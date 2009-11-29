@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-09-20 00:32-0400\n"
-"PO-Revision-Date: 2009-11-18 00:23-0800\n"
+"PO-Revision-Date: 2009-11-25 18:33-0800\n"
 "Last-Translator: Батнасан <batnasan_bagsh@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 #: titlescene.py:49
 #: typingturtle.py:60
 msgid "Typing Turtle"
-msgstr "Бичээч яст мэлхий"
+msgstr "  Бичээч яст мэлхий"
 
 #: balloongame.py:53
 #: editlessonlistscreen.py:49
@@ -114,7 +114,7 @@ msgstr "Зааварчилгаанууд"
 
 #: editlessonscreen.py:170
 msgid "Accuracy"
-msgstr "Чармайлт"
+msgstr "Амжилт"
 
 #: editlessonscreen.py:171
 msgid "WPM"
@@ -184,7 +184,7 @@ msgstr "Та чадчихлаа!"
 
 #: lessonbuilder.py:272
 msgid "Be careful to use the correct finger to press each key.  Look at the keyboard below if you need help remembering."
-msgstr "Та трвчлуур бүр дээр зөв хуруугаар болгоомжтой дар. Тусламж хэрэгтэй үедээ компьютерийн гарлуугаа хар."
+msgstr "Та товчлуур бүр дээр зөв хуруугаар болгоомжтой дар. Тусламж хэрэгтэй үедээ компьютерийн гарлуугаа хар."
 
 #: lessonbuilder.py:273
 msgid "Try to type at the same speed, all the time.  As you get more comfortable you can increase the speed a little."
@@ -364,7 +364,7 @@ msgstr "<b>Үг / Мин:</b> %(wpm)d"
 #: medalscreen.py:90
 #, python-format
 msgid "<b>Accuracy:</b> %(accuracy)d%%"
-msgstr "<b>Чармайлт:</b> %(accuracy)d%%"
+msgstr "<b>Амжилт:</b> %(accuracy)d%%"
 
 #: lessonscreen.py:549
 msgid "Good job!"
@@ -385,7 +385,7 @@ msgid ""
 "Your words per minute (WPM) was %(wpm)d, and your accuracy was %(accuracy)d%%.\n"
 "\n"
 msgstr ""
-"Таны нэг минутанд бичсэн үгийн тоо  (Үг / Мин )  %(wpm)d, болон таны чармайлт  %(accuracy)d%% байна..\n"
+"Таны нэг минутанд бичсэн үгийн тоо  (Үг / Мин )  %(wpm)d, болон таны амжилт  %(accuracy)d%% байна..\n"
 "\n"
 
 #: lessonscreen.py:562
@@ -399,7 +399,7 @@ msgid ""
 "Your accuracy was %(accuracy)d%%.\n"
 "\n"
 msgstr ""
-"Таны чармайлт %(accuracy)d%% байсан.\n"
+"Таны амжилт %(accuracy)d%% байсан.\n"
 "\n"
 
 #: lessonscreen.py:570
@@ -457,11 +457,11 @@ msgstr "Алтан медаль"
 
 #: medalscreen.py:54
 msgid "<span font_desc='Serif Bold Italic 28'>Certificate of Achievement</span>"
-msgstr "<span font_desc='Serif Bold Italic 28'>амжилтийн батламж</span>"
+msgstr "<span font_desc='Serif Bold Italic 28'>АМЖИЛТИЙН БАТЛАМЖ</span>"
 
 #: medalscreen.py:57
 msgid "<span font_desc='Sans 16'>This certifies that</span>"
-msgstr "<span font_desc='Sans 16'>Энэхүү батламжийгt</span>"
+msgstr "<span font_desc='Sans 16'>Энэхүү батламжийг</span>"
 
 #: medalscreen.py:60
 #, python-format
