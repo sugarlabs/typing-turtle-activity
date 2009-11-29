@@ -124,15 +124,15 @@ class KiteGame(gtk.VBox):
             if correct:
                 self.text = self.text[1:]
                 self.queue_draw_text()
-                self.add_score(100)
+                self.add_score(10)
                 if len(self.text) == 0:
                     self.finish_game()
                 self.correct_time = time.time()
 
             else:
-                self.add_score(-100)
+                self.add_score(-10)
 
-            self.key_hist.insert(0,(time.time(), correct))
+            self.key_hist.insert(0, (time.time(), correct))
             self.key_hist = self.key_hist[:5]
 
         return False
