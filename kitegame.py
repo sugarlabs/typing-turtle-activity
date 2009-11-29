@@ -32,7 +32,7 @@ class KiteGame(gtk.VBox):
         
         # Build title bar.
         title = gtk.Label()
-        title.set_markup("<span size='20000'><b>" + lesson['name'] + "</b></span>")
+        title.set_markup("<span size='x-large'><b>" + lesson['name'] + "</b></span>")
         title.set_alignment(1.0, 0.0)
         
         stoplabel = gtk.Label(_('Go Back'))
@@ -67,10 +67,8 @@ class KiteGame(gtk.VBox):
 
         self.kitex = 150 
         self.kitey = None 
-        self.kitevx = 0
 
         self.wpm = 0
-        self.correct_time = 0
 
         self.score = 0
 
@@ -127,13 +125,12 @@ class KiteGame(gtk.VBox):
                 self.add_score(10)
                 if len(self.text) == 0:
                     self.finish_game()
-                self.correct_time = time.time()
 
             else:
                 self.add_score(-10)
 
             self.key_hist.insert(0, (time.time(), correct))
-            self.key_hist = self.key_hist[:5]
+            self.key_hist = self.key_hist[:10]
 
         return False
     
@@ -141,25 +138,30 @@ class KiteGame(gtk.VBox):
         if self.finished:
             return
 
+        # Calculate average WPM using the key press history.
         correct_keys = 0
-        total_keys = len(self.key_hist) 
+        total_keys = 0 
 
         t = time.time()
         avg_key_time = 0
-        for h in self.key_hist[1:]:
-            if h[1]:
+        for h in self.key_hist[2:]:
+            if time.time() - h[0] > 5.0:
+                break
+            if h[1]: 
                 correct_keys += 1
-            avg_key_time += t - h[0]
-            t = h[0]
+                avg_key_time += t - h[0]
+                t = h[0]
+            total_keys += 1
 
         if total_keys > 0:
-            avg_key_time = avg_key_time / float(total_keys)
+            avg_key_time = avg_key_time / float(correct_keys)
+            
         if avg_key_time > 0:
             wpm = 12.0 / avg_key_time 
         else:
             wpm = 0
 
-        wpm = self.wpm * 0.99 + wpm * 0.01
+        wpm = self.wpm * 0.9 + wpm * 0.1
         if int(wpm) != int(self.wpm):
             self.queue_draw_score()
         self.wpm = wpm
@@ -169,28 +171,27 @@ class KiteGame(gtk.VBox):
 
         progress = float(total_keys) / 20.0
 
-        pct = wpm / 50.0
-
+        # Height is a factor of words per minute.
         oldkitey = self.kitey
-        newkitey = (self.bounds.height - 50 - KITE_SIZE/2) * (1.0 - pct)
+        newkitey = (self.bounds.height - 40 - KITE_SIZE/2) * (1.0 - (progress * (wpm / 30.0)))
         if self.kitey is None:
             self.kitey = newkitey
         else:
             self.kitey += (newkitey - self.kitey) * 0.1
             self.kitey += (self.kitey - oldkitey) * 0.5
 
+        # Movement across the screen is a factor of accuracy with a tiny bit of WPM.
         if total_keys > 0:
-            acc = float(correct_keys) / total_keys
+            acc = progress * float(correct_keys) / total_keys
         else:
             acc = 0
-        acc = acc * progress
 
         oldkitex = self.kitex
-        newkitex = 150 + acc * self.bounds.width*0.3
+        newkitex = 150 + acc * self.bounds.width*0.3 + wpm
         if self.kitex is None:
             self.kitex = newkitex
         else:
-            self.kitex += (newkitex - self.kitex) * 0.01
+            self.kitex += (newkitex - self.kitex) * 0.05
             self.kitex += (self.kitex - oldkitex) * 0.1
 
         # Draw new kite.
@@ -310,7 +311,7 @@ class KiteGame(gtk.VBox):
  
         p0 = (int(self.kitex), int(self.kitey-KITE_SIZE*0.3))
         p1 = (int(self.kitex+KITE_SIZE*0.3), int(self.kitey))
-        p2 = (int(self.kitex), int(self.kitey+KITE_SIZE*0.45))
+        p2 = (int(self.kitex), int(self.kitey+KITE_SIZE*0.5))
         p3 = (int(self.kitex-KITE_SIZE*0.3), int(self.kitey))
         pts = [ p0, p1, p2, p3 ]
 
@@ -326,34 +327,34 @@ class KiteGame(gtk.VBox):
                _("WPM: %d") % int(self.wpm)
 
     def queue_draw_score(self):
-        layout = self.area.create_pango_layout(self.get_score_text())
-        layout.set_font_description(pango.FontDescription('Times 14'))    
+        layout = self.area.create_pango_layout('')
+        layout.set_markup("<span size='large'>" + self.get_score_text() + "</span>")
         size = layout.get_size()
         x = self.bounds.width-20-size[0]/pango.SCALE
         y = 20
         self.queue_draw_area(x, y, x+size[0], y+size[1])
 
     def draw_score(self, gc):
-        layout = self.area.create_pango_layout(self.get_score_text())
-        layout.set_font_description(pango.FontDescription('Times 14'))    
+        layout = self.area.create_pango_layout('')
+        layout.set_markup("<span size='large'>" + self.get_score_text() + "</span>")
         size = layout.get_size()
         x = self.bounds.width-20-size[0]/pango.SCALE
         y = 20
         self.area.window.draw_layout(gc, x, y, layout)
 
-#    def draw_instructions(self, gc):
-#        gc.foreground = self.area.get_colormap().alloc_color(0,0,0)
-#
-#        layout = self.area.create_pango_layout(_('Type the words to fly the kite!'))
-#        layout.set_font_description(pango.FontDescription('Times 14'))    
-#        size = layout.get_size()
-#        x = (self.bounds.width - size[0]/pango.SCALE)/2
-#        y = self.bounds.height-20 - size[1]/pango.SCALE 
-#        self.area.window.draw_layout(gc, x, y, layout)
+    def draw_instructions(self, gc):
+        gc.foreground = self.area.get_colormap().alloc_color(0,0,0)
+
+        layout = self.area.create_pango_layout('')
+        layout.set_markup("<span size='x-large' weight='bold'>" + _('Type the words smoothly to fly the kite!') + "</span>")
+        size = layout.get_size()
+        x = (self.bounds.width - size[0]/pango.SCALE)/2
+        y = 40 - size[1]/pango.SCALE 
+        self.area.window.draw_layout(gc, x, y, layout)
 
     def queue_draw_text(self):
-        layout = self.area.create_pango_layout(self.text[:50])
-        layout.set_font_description(pango.FontDescription('Times 14'))    
+        layout = self.area.create_pango_layout('')
+        layout.set_markup("<span size='x-large'>" + self.text[:50] + "</span>")
         size = layout.get_size()
         height = 20 + size[1] / pango.SCALE
         self.queue_draw_area(
@@ -363,12 +364,12 @@ class KiteGame(gtk.VBox):
     def draw_text(self, gc):
         gc.foreground = self.area.get_colormap().alloc_color(0,0,0)
 
-        layout = self.area.create_pango_layout(self.text[:50])
-        layout.set_font_description(pango.FontDescription('Times 14'))    
+        layout = self.area.create_pango_layout('')
+        layout.set_markup("<span size='x-large'>" + self.text[:50] + "</span>")
         size = layout.get_size()
-        x = 20
+        x = 0
         y = self.bounds.height-20 - size[1]/pango.SCALE 
-        self.area.window.draw_layout(gc, x, y, layout)
+        self.area.window.draw_layout(gc, 50, y+5, layout)
 
         self.area.window.draw_line(gc, x, y, x+self.bounds.width, y)
 
@@ -384,7 +385,7 @@ class KiteGame(gtk.VBox):
             self.draw_results(gc)
 
         else:
-#            self.draw_instructions(gc)
+            self.draw_instructions(gc)
             self.draw_kite(gc)
             self.draw_text(gc)
             self.draw_score(gc)
