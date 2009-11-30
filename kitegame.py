@@ -17,11 +17,72 @@
 import random, datetime
 from gettext import gettext as _
 
-import gobject, pygtk, gtk, pango, time
+import gobject, pygtk, gtk, pango, time, math
 
 import medalscreen
 
 KITE_SIZE = 300
+
+class Rope:
+    def __init__(self, start, end, num_segs):
+        self.start = start
+        self.end = end
+        
+        self.points = []
+        for i in xrange(num_segs+1):
+            t = float(i) / float(num_segs)
+            p = (start[0] + (end[0] - start[0])*t, start[1] + (end[1] - start[1])*t)
+            self.points.append(p)
+        
+        self.seg_length = math.sqrt((end[0]-start[0]) ** 2 + (end[1]-start[1]) ** 2) / float(num_segs)
+
+        self.int_points = []
+        
+    def apply_gravity(self, force):
+        for j in xrange(len(self.points)):
+            p = self.points[j]
+            self.points[j] = (p[0], p[1] + force)
+        
+    def tick(self, num_iterations):
+        for i in xrange(num_iterations):
+            for j in xrange(len(self.points)-1):
+                p0 = self.points[j]
+                p1 = self.points[j+1]
+                
+                l = math.sqrt((p1[0]-p0[0]) ** 2 + (p1[1]-p0[1]) ** 2)
+
+                if l > 0:
+                    d = (l - self.seg_length) * 0.5 / l
+
+                    v = ((p1[0]-p0[0])*d, (p1[1]-p0[1])*d)
+                    
+                    
+                    p0n = (p0[0] + v[0], p0[1] + v[1])
+                    p1n = (p1[0] - v[0], p1[1] - v[1])
+                    
+                    self.points[j] = p0n
+                    self.points[j+1] = p1n
+            
+            self.points[0] = (self.start[0], self.start[1])
+            self.points[-1] = (self.end[0], self.end[1])
+
+        self.int_points = [(int(p[0]), int(p[1])) for p in self.points]
+
+    def queue_draw(self, area):
+        minx = 1.0e32
+        miny = 1.0e32
+        maxx = -1.0e32
+        maxy = -1.0e32
+        for p in self.points:
+            if p[0] < minx: minx = p[0]
+            if p[0] > maxx: maxx = p[0]
+            if p[1] < miny: miny = p[1]
+            if p[1] > maxy: maxy = p[1]
+        area.queue_draw_area(int(minx), int(miny), int(maxx-minx)+1, int(maxy-miny)+1)
+        
+    def draw(self, area, gc):
+        if self.int_points:
+            area.window.draw_lines(gc, self.int_points)
 
 class KiteGame(gtk.VBox):
     def __init__(self, lesson, activity):
@@ -65,7 +126,7 @@ class KiteGame(gtk.VBox):
 
         self.key_hist = []
 
-        self.kitex = 150 
+        self.kitex = None 
         self.kitey = None 
 
         self.wpm = 0
@@ -75,6 +136,8 @@ class KiteGame(gtk.VBox):
         self.medal = None
         self.finished = False
 
+        self.rope = None
+        
         # Start the animation loop running.        
         self.update_timer = gobject.timeout_add(20, self.tick, priority=gobject.PRIORITY_HIGH_IDLE+30)
     
@@ -145,7 +208,7 @@ class KiteGame(gtk.VBox):
         t = time.time()
         avg_key_time = 0
         for h in self.key_hist[2:]:
-            if time.time() - h[0] > 5.0:
+            if time.time() - h[0] > 10.0:
                 break
             if h[1]: 
                 correct_keys += 1
@@ -153,7 +216,7 @@ class KiteGame(gtk.VBox):
                 t = h[0]
             total_keys += 1
 
-        if total_keys > 0:
+        if correct_keys > 0:
             avg_key_time = avg_key_time / float(correct_keys)
             
         if avg_key_time > 0:
@@ -187,13 +250,20 @@ class KiteGame(gtk.VBox):
             acc = 0
 
         oldkitex = self.kitex
-        newkitex = 150 + acc * self.bounds.width*0.3 + wpm
+        newkitex = self.bounds.width*0.5 + acc * self.bounds.width*0.3 + wpm
         if self.kitex is None:
             self.kitex = newkitex
         else:
             self.kitex += (newkitex - self.kitex) * 0.05
             self.kitex += (self.kitex - oldkitex) * 0.1
 
+        # Update the rope.
+        if self.rope is None:
+            self.rope = Rope((self.kitex, self.kitey), (self.bounds.width*0.4, self.bounds.height*0.8), 5)
+        self.rope.start = (self.kitex, self.kitey)
+        self.rope.apply_gravity(5.0)
+        self.rope.tick(1)
+        
         # Draw new kite.
         self.queue_draw_kite()
 
@@ -299,10 +369,13 @@ class KiteGame(gtk.VBox):
         if y < 0:
             y = 0
 
-        self.queue_draw_area(
+        self.area.queue_draw_area(
             x-KITE_SIZE/2, y,
-            x+KITE_SIZE, y+KITE_SIZE*2)
+            KITE_SIZE, KITE_SIZE)
 
+        if self.rope:
+            self.rope.queue_draw(self.area)
+        
     def draw_kite(self, gc):
         if self.kitey is None or self.kitex is None:
             return
@@ -317,6 +390,10 @@ class KiteGame(gtk.VBox):
 
         gc.foreground = self.area.get_colormap().alloc_color(color[0],color[1],color[2])
         self.area.window.draw_polygon(gc, True, pts)
+        
+        if self.rope:
+            gc.foreground = self.area.get_colormap().alloc_color(0,0,0)
+            self.rope.draw(self.area, gc)
     
     def add_score(self, num):
         self.score += num
@@ -332,7 +409,7 @@ class KiteGame(gtk.VBox):
         size = layout.get_size()
         x = self.bounds.width-20-size[0]/pango.SCALE
         y = 20
-        self.queue_draw_area(x, y, x+size[0], y+size[1])
+        self.area.queue_draw_area(x, y, size[0], size[1])
 
     def draw_score(self, gc):
         layout = self.area.create_pango_layout('')
@@ -357,9 +434,9 @@ class KiteGame(gtk.VBox):
         layout.set_markup("<span size='x-large'>" + self.text[:50] + "</span>")
         size = layout.get_size()
         height = 20 + size[1] / pango.SCALE
-        self.queue_draw_area(
+        self.area.queue_draw_area(
             0, self.bounds.height - height, 
-            self.bounds.width, self.bounds.height)
+            self.bounds.width, height)
 
     def draw_text(self, gc):
         gc.foreground = self.area.get_colormap().alloc_color(0,0,0)
