@@ -236,7 +236,7 @@ class KiteGame(gtk.VBox):
 
         # Height is a factor of words per minute.
         oldkitey = self.kitey
-        newkitey = (self.bounds.height - 40 - KITE_SIZE/2) * (1.0 - (progress * (wpm / 30.0)))
+        newkitey = (self.bounds.height - KITE_SIZE/2) * (1.0 - (progress * (wpm / 30.0)))
         if self.kitey is None:
             self.kitey = newkitey
         else:
@@ -250,7 +250,7 @@ class KiteGame(gtk.VBox):
             acc = 0
 
         oldkitex = self.kitex
-        newkitex = self.bounds.width*0.5 + acc * self.bounds.width*0.3 + wpm
+        newkitex = self.bounds.width*0.5 + acc*self.bounds.width*0.3 + wpm*0.5
         if self.kitex is None:
             self.kitex = newkitex
         else:
@@ -259,7 +259,7 @@ class KiteGame(gtk.VBox):
 
         # Update the rope.
         if self.rope is None:
-            self.rope = Rope((self.kitex, self.kitey), (self.bounds.width*0.4, self.bounds.height*0.8), 5)
+            self.rope = Rope((self.kitex, self.kitey), (self.bounds.width*0.35, self.bounds.height*0.8), 5)
         self.rope.start = (self.kitex, self.kitey)
         self.rope.apply_gravity(5.0)
         self.rope.tick(1)
@@ -433,22 +433,26 @@ class KiteGame(gtk.VBox):
         layout = self.area.create_pango_layout('')
         layout.set_markup("<span size='x-large'>" + self.text[:50] + "</span>")
         size = layout.get_size()
-        height = 20 + size[1] / pango.SCALE
+        x = 0
+        y = int(self.bounds.height*0.5 - size[1]/pango.SCALE) 
         self.area.queue_draw_area(
-            0, self.bounds.height - height, 
-            self.bounds.width, height)
+            x, y, self.bounds.width, self.bounds.height)
 
     def draw_text(self, gc):
-        gc.foreground = self.area.get_colormap().alloc_color(0,0,0)
-
         layout = self.area.create_pango_layout('')
         layout.set_markup("<span size='x-large'>" + self.text[:50] + "</span>")
         size = layout.get_size()
-        x = 0
-        y = self.bounds.height-20 - size[1]/pango.SCALE 
-        self.area.window.draw_layout(gc, 50, y+5, layout)
+        x = int(self.bounds.width*0.25)
+        y = int(self.bounds.height*0.5 - size[1]/pango.SCALE) 
 
-        self.area.window.draw_line(gc, x, y, x+self.bounds.width, y)
+        gc.foreground = self.area.get_colormap().alloc_color(65535,65535,65535)
+        self.area.window.draw_rectangle(gc, True, 0, y, self.bounds.width, size[1]/pango.SCALE+10)
+
+        gc.foreground = self.area.get_colormap().alloc_color(0,0,0)
+        self.area.window.draw_layout(gc, x, y+5, layout)
+
+        self.area.window.draw_line(gc, 0, y, self.bounds.width, y)
+        self.area.window.draw_line(gc, 0, y+size[1]/pango.SCALE+10, self.bounds.width, y+size[1]/pango.SCALE+10)
 
     def draw(self):
         self.bounds = self.area.get_allocation()
