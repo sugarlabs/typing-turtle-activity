@@ -434,7 +434,7 @@ class KiteGame(gtk.VBox):
         layout.set_markup("<span size='x-large'>" + self.text[:50] + "</span>")
         size = layout.get_size()
         x = 0
-        y = int(self.bounds.height*0.5 - size[1]/pango.SCALE) 
+        y = int(self.bounds.height*0.25 - size[1]/pango.SCALE) 
         self.area.queue_draw_area(
             x, y, self.bounds.width, self.bounds.height)
 
@@ -443,7 +443,7 @@ class KiteGame(gtk.VBox):
         layout.set_markup("<span size='x-large'>" + self.text[:50] + "</span>")
         size = layout.get_size()
         x = int(self.bounds.width*0.25)
-        y = int(self.bounds.height*0.5 - size[1]/pango.SCALE) 
+        y = int(self.bounds.height*0.25 - size[1]/pango.SCALE) 
 
         gc.foreground = self.area.get_colormap().alloc_color(65535,65535,65535)
         self.area.window.draw_rectangle(gc, True, 0, y, self.bounds.width, size[1]/pango.SCALE+10)
