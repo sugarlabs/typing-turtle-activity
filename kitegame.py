@@ -81,8 +81,20 @@ class Rope:
         area.queue_draw_area(int(minx), int(miny), int(maxx-minx)+1, int(maxy-miny)+1)
         
     def draw(self, area, gc):
-        if self.int_points:
-            area.window.draw_lines(gc, self.int_points)
+        #for i in xrange(len(self.points)-1):
+        #    p0 = self.points[i]
+        #    p1 = self.points[i+1]
+        #    area.window.draw_line(gc, int(p0[0]), int(p0[1]), int(p1[0]), int(p1[1]))
+
+        #if self.int_points:
+        #    area.window.draw_lines(gc, self.int_points)
+
+        # For some insane reason, filling a polygon is infinitely faster than
+        # drawing lines using either of the above methods.
+        # Plus this way we get a thicker line.
+        r = [(p[0] - 1, p[1] - 1) for p in self.int_points]
+        r.reverse()
+        area.window.draw_polygon(gc, True, self.int_points + r)
 
 class KiteGame(gtk.VBox):
     def __init__(self, lesson, activity):
@@ -137,6 +149,8 @@ class KiteGame(gtk.VBox):
         self.finished = False
 
         self.rope = None
+
+        self.draw_queued = False
         
         # Start the animation loop running.        
         self.update_timer = gobject.timeout_add(20, self.tick, priority=gobject.PRIORITY_HIGH_IDLE+30)
@@ -201,6 +215,9 @@ class KiteGame(gtk.VBox):
         if self.finished:
             return
 
+        if not self.draw_queued:
+            self.queue_draw_kite()
+
         # Calculate average WPM using the key press history.
         correct_keys = 0
         total_keys = 0 
@@ -228,9 +245,6 @@ class KiteGame(gtk.VBox):
         if int(wpm) != int(self.wpm):
             self.queue_draw_score()
         self.wpm = wpm
-
-        # Erase old kite.
-        self.queue_draw_kite()
 
         progress = float(total_keys) / 20.0
 
@@ -265,7 +279,9 @@ class KiteGame(gtk.VBox):
         self.rope.tick(1)
         
         # Draw new kite.
-        self.queue_draw_kite()
+        if not self.draw_queued:
+            self.queue_draw_kite()
+            self.draw_queued = True
 
         return True
 
@@ -456,6 +472,7 @@ class KiteGame(gtk.VBox):
 
     def draw(self):
         self.bounds = self.area.get_allocation()
+        self.draw_queued = False
 
         gc = self.area.window.new_gc()
         
