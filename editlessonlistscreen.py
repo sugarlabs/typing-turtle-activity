@@ -28,6 +28,7 @@ import gobject, pygtk, gtk, pango
 # Import Sugar UI modules.
 import sugar.activity.activity
 import sugar.graphics.style
+import sugar.graphics.alert
 import sugar.mime
 import sugar.datastore.datastore
 
@@ -100,6 +101,11 @@ class EditLessonListScreen(gtk.VBox):
         self.exportbtn.add(exportlabel)
         self.exportbtn.connect('clicked', self.export_clicked_cb)
         
+        exportlabel = gtk.Label(_('Save Lessons to Activity'))
+        self.defaultsbtn = gtk.Button()
+        self.defaultsbtn.add(exportlabel)
+        self.defaultsbtn.connect('clicked', self.set_default_clicked_cb)
+        
         self.addbtn = gtk.Button()
         self.addbtn.add(sugar.graphics.icon.Icon(icon_name='list-add'))
         self.addbtn.connect('clicked', self.add_lesson_clicked_cb)
@@ -119,6 +125,7 @@ class EditLessonListScreen(gtk.VBox):
         btnbox = gtk.HBox()
         btnbox.pack_start(self.importbtn, False, False, 10)
         btnbox.pack_start(self.exportbtn, False, False)
+        btnbox.pack_start(self.defaultsbtn, False, False, 10)
         btnbox.pack_end(self.addbtn, False, False)
         btnbox.pack_end(self.delbtn, False, False)
         btnbox.pack_end(self.moveupbtn, False, False)
@@ -176,7 +183,7 @@ class EditLessonListScreen(gtk.VBox):
         lesson['name'] = ''
         lesson['description'] = ''
         lesson['type'] = 'normal'
-        lesson['steps'] = [ { 'instructions':'', 'text':'' } ]
+        lesson['steps'] = [ { 'mode':'text', 'instructions':'', 'text':'' } ]
         lesson['medals'] = [ 
             { 'name': 'bronze', 'wpm': 15, 'accuracy': 70, 'score': 3000 },
             { 'name': 'silver', 'wpm': 20, 'accuracy': 80, 'score': 4500 },
@@ -190,12 +197,24 @@ class EditLessonListScreen(gtk.VBox):
         if len(self.lessons) > 1:
             path = self.treeview.get_cursor()[0]
             if path:
+                msg = sugar.graphics.alert.ConfirmationAlert()
+                msg.props.title = _('Delete Lesson?')
+                msg.props.msg = _('Deleting the lesson will erase the lesson content.')
+        
+                def alert_response_cb(alert, response_id, self, id):
+                    self.activity.remove_alert(alert)
+                    if response_id is gtk.RESPONSE_OK:
+                        self.lessons.pop(id)
+                        del self.liststore[id]
+                        self.treeview.get_selection().select_path(id)
+                        self.treeview.grab_focus()
+                        self.update_sensitivity()
+                
                 id = path[0]
-                self.lessons.pop(id)
-                del self.liststore[id]
-                self.treeview.get_selection().select_path(id)
-                self.treeview.grab_focus()
-                self.update_sensitivity()
+                msg.connect('response', alert_response_cb, self, id)
+                
+                self.activity.add_alert(msg)
+                msg.show_all()
 
     def move_lesson_up_clicked_cb(self, btn):
         path = self.treeview.get_cursor()[0]
@@ -297,4 +316,16 @@ class EditLessonListScreen(gtk.VBox):
         fileObject.destroy()
         del fileObject
 
-     
+    def set_default_clicked_cb(self, btn):
+        code = locale.getdefaultlocale()[0] or 'en_US'
+        path = sugar.activity.activity.get_bundle_path() + '/lessons/%s.lessons' % code
+        
+        fd = open(path, 'w')
+        
+        try:
+            data = { 'lessons': self.lessons }
+            fd.write(json.dumps(data))
+            
+        finally:
+            fd.close()
+            

@@ -108,6 +108,8 @@ def load_wordlist(path):
         # intentional since we want to teach punctuation in its natural
         # form.
         words = RE_WHITESPACE.split(text)
+
+        words = [w.split('/')[0] for w in words]
         
         return words
     
@@ -229,7 +231,7 @@ def make_random_words(words, required_keys, keys, count):
         text += random.choice(words) + ' '
     return text.strip()
 
-def make_step(instructions, mode, text):
+def make_step(instructions, mode, text, type='text'):
     step = {}
     step['instructions'] = instructions
     step['text'] = text
@@ -237,7 +239,7 @@ def make_step(instructions, mode, text):
     return step
 
 def build_game_words(
-    new_keys, base_keys, 
+    count, new_keys, base_keys, 
     words, bad_words):
 
     all_keys = new_keys + base_keys
@@ -249,7 +251,7 @@ def build_game_words(
 
     random.shuffle(good_words)
     
-    return good_words[:200]
+    return good_words[:count]
 
 def build_key_steps(
     count, new_keys, base_keys, 
@@ -305,9 +307,9 @@ def build_key_steps(
     # Attempt to load a letter map for the current locale.
     code = locale.getdefaultlocale()[0] or 'en_US'
     try:
-        kb.load_letter_map('lessons/%s/%s.key' % (code, code))
+        kb.load_letter_map('lessons/%s.key' % code)
     except:
-        kb.load_letter_map('lessons/en_US/en_US.key')
+        kb.load_letter_map('lessons/en_US.key')
 
     kb.set_layout(keyboard.OLPC_LAYOUT)
 
@@ -324,40 +326,42 @@ def build_key_steps(
             % { 'keynames': keynames },
         'key', '\n'))
 
-    for letter in new_keys:
-        key, state, group = kb.get_key_state_group_for_letter(letter)
+#    for letter in new_keys:
+#        key, state, group = kb.get_key_state_group_for_letter(letter)
+#
+#        if not key:
+#            error("There is no key combination in the current keymap for the '%s' letter. " % letter + \
+#                  "Are you sure the keymap is set correctly?\n")
+#
+#        try:
+#            finger = FINGERS[key['key-finger']]
+#        except:
+#            error("The '%s' letter (scan code %x) does not have a finger assigned." % (letter, key['key-scan']))
+#
+#        if state == gtk.gdk.SHIFT_MASK:
+#            # Choose the finger to press the SHIFT key with.
+#            if key['key-finger'][0] == 'R':
+#                shift_finger = FINGERS['LP']
+#            else:
+#                shift_finger = FINGERS['RP']
+#
+#            instructions = _('Press and hold the SHIFT key with your %(finger)s finger, ') % { 'finger': shift_finger }
+#            instructions += _('then press the %(letter)s key with your %(finger)s finger.') % { 'letter': letter, 'finger': finger }
+#
+#        elif state == gtk.gdk.MOD5_MASK:
+#            instructions = _('Press and hold the ALTGR key, ') 
+#            instructions += _('then press the %(letter)s key with your %(finger)s finger.') % { 'letter': letter, 'finger': finger }
+#
+#        elif state == gtk.gdk.SHIFT_MASK | gtk.gdk.MOD5_MASK:
+#            instructions = _('Press and hold the ALTGR and SHIFT keys, ')
+#            instructions += _('then press the %(letter)s key with your %(finger)s finger.') % { 'letter': letter, 'finger': finger }
+#
+#        else:
+#            instructions = _('Press the %(letter)s key with your %(finger)s finger.') % { 'letter': letter, 'finger': finger }
+#
+#        steps.append(make_step(instructions, 'key', letter))
 
-        if not key:
-            error("There is no key combination in the current keymap for the '%s' letter. " % letter + \
-                  "Are you sure the keymap is set correctly?\n")
-
-        try:
-            finger = FINGERS[key['key-finger']]
-        except:
-            error("The '%s' letter (scan code %x) does not have a finger assigned." % (letter, key['key-scan']))
-
-        if state == gtk.gdk.SHIFT_MASK:
-            # Choose the finger to press the SHIFT key with.
-            if key['key-finger'][0] == 'R':
-                shift_finger = FINGERS['LP']
-            else:
-                shift_finger = FINGERS['RP']
-
-            instructions = _('Press and hold the SHIFT key with your %(finger)s finger, ') % { 'finger': shift_finger }
-            instructions += _('then press the %(letter)s key with your %(finger)s finger.') % { 'letter': letter, 'finger': finger }
-
-        elif state == gtk.gdk.MOD5_MASK:
-            instructions = _('Press and hold the ALTGR key, ') 
-            instructions += _('then press the %(letter)s key with your %(finger)s finger.') % { 'letter': letter, 'finger': finger }
-
-        elif state == gtk.gdk.SHIFT_MASK | gtk.gdk.MOD5_MASK:
-            instructions = _('Press and hold the ALTGR and SHIFT keys, ')
-            instructions += _('then press the %(letter)s key with your %(finger)s finger.') % { 'letter': letter, 'finger': finger }
-
-        else:
-            instructions = _('Press the %(letter)s key with your %(finger)s finger.') % { 'letter': letter, 'finger': finger }
-
-        steps.append(make_step(instructions, 'key', letter))
+    steps.append(make_step(_("Let\'s learn the new keys."), 'key', ''.join(new_keys) * 4))
 
     steps.append(make_step(
         get_congrats() + _('Practice typing the keys you just learned.'),
@@ -552,7 +556,7 @@ def main():
         lesson['type'] = options.game
         lesson['length'] = options.length
         lesson['words'] = build_game_words(
-            new_keys=options.keys, base_keys=options.base_keys, 
+            count=options.length, new_keys=options.keys, base_keys=options.base_keys, 
             words=words, bad_words=bad_words)
 
     text = json.dumps(lesson, ensure_ascii=False, sort_keys=True, indent=4)

@@ -238,7 +238,7 @@ class KeyboardData:
         self.keys = None
         self.key_scan_map = None
         
-        self.letter_map = {} 
+        self.letter_map = {}
         
         # Access the current GTK keymap.
         self.keymap = gtk.gdk.keymap_get_default()
@@ -365,13 +365,11 @@ class KeyboardData:
         return None
 
     def get_key_state_group_for_letter(self, letter):
-        """Returns a (key, modifier_state) which when pressed will generate letter."""
-        # Special processing for the enter key.
+        # Special processing for some keys.
         if letter == '\n' or letter == PARAGRAPH_CODE:
             return self.find_key_by_label('enter'), 0, 0
 
-        # Look up the key in the letter map.
-        # Find the one with the fewest modifier keys.
+        # Try the letter map, if loaded.
         best_score = 3
         best_result = None
         
@@ -379,6 +377,7 @@ class KeyboardData:
             if unicode(l) == unicode(letter):
                 scan, state, group = self.parse_key_sig(sig)
                 
+                # Choose the key with the fewest modifiers.
                 score = 0
                 if state & gtk.gdk.SHIFT_MASK: score += 1
                 if state & gtk.gdk.MOD5_MASK: score += 1
@@ -391,7 +390,34 @@ class KeyboardData:
                 if k['key-scan'] == best_result[0]:
                     return k, best_result[1], best_result[2]
 
+        # Try the GDK keymap.
+        keyval = gtk.gdk.unicode_to_keyval(ord(letter))
+        entries = self.keymap.get_entries_for_keyval(keyval)
+        for e in entries:
+            for k in self.keys:
+                if k['key-scan'] == e[0]:
+                    # TODO: Level -> state calculations are hardcoded to what the XO keyboard does.
+                    # They were discovered through experimentation.
+                    state = 0
+                    if e[2] & 1: 
+                        state |= gtk.gdk.SHIFT_MASK
+                    if e[2] & 2: 
+                        state |= gtk.gdk.MOD5_MASK
+                    return k, state, e[1]
+
+        # Fail!
         return None, None, None
+
+    def get_letter_for_key_state_group(self, key, state, group):
+        sig = self.format_key_sig(key['key-scan'], state, group)
+        if self.letter_map.has_key(sig):
+            return self.letter_map[sig]
+        else:
+            t = self.keymap.translate_keyboard_state(key['key-scan'], self.active_state, self.active_group)
+            if t:
+                return unichr(gtk.gdk.keyval_to_unicode(t[0]))
+
+        return ''
 
 class KeyboardWidget(KeyboardData, gtk.DrawingArea):
     """A GTK widget which implements an interactive visual keyboard, with support
@@ -409,7 +435,7 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
 
         self.connect("expose-event", self._expose_cb)
         
-        self.modify_font(pango.FontDescription('Monospace 10'))
+        #self.modify_font(pango.FontDescription('Monospace 10'))
         
         # Active language group and modifier state.
         # See http://www.pygtk.org/docs/pygtk/class-gdkkeymap.html for more
@@ -494,15 +520,12 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
         text = ''
         if k['key-label']:
             text = k['key-label']
-
         else:
-            sig = self.format_key_sig(k['key-scan'], self.active_state, self.active_group)
-            if self.letter_map.has_key(sig):
-                text = self.letter_map[sig]
+            text = self.get_letter_for_key_state_group(k, self.active_state, self.active_group)
         
         try:
             layout = self.create_pango_layout(unicode(text))
-            layout.set_font_description(pango.FontDescription('Monospace 12'))
+            layout.set_font_description(pango.FontDescription('Monospace'))
             draw.draw_layout(gc, x1+8, y2-23, layout)
         except:
             pass

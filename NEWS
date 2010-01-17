@@ -1,3 +1,28 @@
+26
+
+* Updated Mongolian translations.
+
+25
+
+* Fix font size on XO.
+* Use GDK keymap as a fallback when a custom keymap is not present.
+
+24
+
+Mostly lesson editor changes.
+* Differentiate Key and Text steps.  This has some user visible effects; mostly that the instruction text has changed slightly.
+* Ability to specify a custom wordlist when generating lessons.
+* Warning dialog when deleting a lesson.
+* Removed some hardcoded fonts.
+
+23
+
+* Added an automatic lesson generator.  Uses the myspell dictionary to automatically generate lessons using a given set of keys.
+
+22
+
+* Fix exception when localized lesson data is missing.
+
 21
 
 * Added a lesson editor.

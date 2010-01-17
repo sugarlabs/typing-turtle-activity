@@ -13,7 +13,7 @@
 # 
 # You should have received a copy of the GNU General Public License
 # along with Typing Turtle.  If not, see <http://www.gnu.org/licenses/>.
-"""Typing Turtle - Interactive typing tutor for the OLPC XO."""
+"""Typing Turtle - Interactive typing tutor for Sugar."""
 
 # Import standard Python modules.
 import logging, os, math, time, copy, locale, datetime, random, re
@@ -65,6 +65,8 @@ class TypingTurtle(sugar.activity.activity.Activity):
         self.screenbox = gtk.VBox()
         
         self.owner = presenceservice.get_instance().get_owner()
+        
+        self.wordlist = []
         
         # All data which is saved in the Journal entry is placed in this dictionary.
         self.data = {
