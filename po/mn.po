@@ -40,7 +40,7 @@ msgstr "Таны оноо %(score)d."
 #: balloongame.py:221
 #, python-format
 msgid "You earned a %(type)s medal!"
-msgstr "Та  %(type) медаль авлаа. "
+msgstr "Та  %(type)s медаль авлаа. "
 
 #: balloongame.py:223
 #: medalscreen.py:99
