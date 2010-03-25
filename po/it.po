@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-01-18 13:06-0500\n"
-"PO-Revision-Date: 2010-01-24 00:29+0200\n"
-"Last-Translator: Carlo Falciola <cfalciola@yahoo.it>\n"
+"PO-Revision-Date: 2010-03-25 22:32+0200\n"
+"Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.0.1\n"
+"X-Generator: Pootle 2.0.3\n"
 
 #: activity/activity.info:2 titlescene.py:49 typingturtle.py:60
 msgid "Typing Turtle"
@@ -359,11 +359,11 @@ msgstr ""
 
 #: lessonbuilder.py:398
 msgid "Press the SPACE bar again with your thumb."
-msgstr "Premi ancora una volta la  Barra Spaziatrice col pollice."
+msgstr "Premi ancora una volta la Barra Spaziatrice col pollice."
 
 #: lessonbuilder.py:402
 msgid "Now I'll teach you the second key, ENTER.  "
-msgstr "Ed ora, impariamo un secondo tasto: \\\"Invio\\\" (Enter)."
+msgstr "Ed ora, impariamo un secondo tasto: \\\"Invio\\\" (Enter).  "
 
 #: lessonbuilder.py:403
 msgid ""
@@ -375,14 +375,14 @@ msgstr ""
 
 #: lessonbuilder.py:404
 msgid "Now, reach your little finger over and press ENTER."
-msgstr "Ora, muovi il tuo mignolo e premi Invio. "
+msgstr "Ora, muovi il tuo mignolo e premi Invio."
 
 #: lessonbuilder.py:408
 msgid ""
 "Great!  When typing, the ENTER key is used to begin a new line.\n"
 "\n"
 msgstr ""
-"Ottimo!  Quando si scrive, il tasto Invio è usato  per andare a capo.\n"
+"Ottimo!  Quando si scrive, il tasto Invio è usato per andare a capo.\n"
 "\n"
 
 #: lessonbuilder.py:409
@@ -466,7 +466,7 @@ msgstr "Uh oh!  La tua tastiera non può fare la lettera '%s'.\n"
 #: lessonscreen.py:542
 msgid "Please change your keyboard settings and try this lesson again."
 msgstr ""
-"Prova a cambiare la configurazione della tastiera e rifai questa lezione"
+"Prova a cambiare la configurazione della tastiera e rifai questa lezione."
 
 #: lessonscreen.py:614
 msgid "Good job!"
@@ -509,7 +509,7 @@ msgstr ""
 #: lessonscreen.py:635
 #, python-format
 msgid "Congratulations!  You earned a %(type)s medal!"
-msgstr "Complimenti! Hai meritato una medaglia di %(type)s !"
+msgstr "Complimenti!  Hai meritato una medaglia di %(type)s !"
 
 #: lessonscreen.py:643
 msgid "You need to practice this lesson more before moving on."
@@ -523,7 +523,7 @@ msgstr ""
 #: lessonscreen.py:649
 msgid "You almost got a medal!  Next time, try to type a little faster."
 msgstr ""
-"Hai quasi vinto una medaglia! La prossima volta cerca di scrivere un pò più "
+"Hai quasi vinto una medaglia!  La prossima volta cerca di scrivere un pò più "
 "veloce."
 
 #: mainscreen.py:56
@@ -543,7 +543,7 @@ msgid ""
 "You earned a medal in this lesson!  Advance to the next one\n"
 "by clicking the Next button."
 msgstr ""
-"Hai vinto una medaglia in questa lezione! Procedi alla prossima \n"
+"Hai vinto una medaglia in questa lezione!  Procedi alla prossima \n"
 "Premendo il pulsante \\\"Prossima\\\"."
 
 #: mainscreen.py:201
