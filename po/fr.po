@@ -2,12 +2,32 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-01-18 13:06-0500\n"
-"PO-Revision-Date: 2010-02-27 09:45+0200\n"
+"PO-Revision-Date: 2010-04-18 11:53+0200\n"
 "Last-Translator: samy boutayeb <s.boutayeb@free.fr>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fr\n"
@@ -15,7 +35,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Pootle 2.0.1\n"
+"X-Generator: Pootle 2.0.3\n"
 
 #: activity/activity.info:2 titlescene.py:49 typingturtle.py:60
 msgid "Typing Turtle"
@@ -577,12 +597,12 @@ msgstr "<span font_desc='Sans 16'><b><u><i>%(nick)s</i></u></b></span>"
 #: medalscreen.py:63
 #, python-format
 msgid "<span font_desc='Sans 16'>earned a %(type)s medal in </span>"
-msgstr "<span font_desc='Sans 16'>a obtenu une médaille %(type)s en </span>"
+msgstr "<span font_desc='Sans 16'>a obtenu une médaille %(type)s pour </span>"
 
 #: medalscreen.py:66
 #, python-format
 msgid "<span font_desc='Sans 16'>in <b><u><i>%(lesson)s</i></u></b></span>"
-msgstr "<span font_desc='Sans 16'>in <b><u><i>%(lesson)s</i></u></b></span>"
+msgstr "<span font_desc='Sans 16'>dans <b><u><i>%(lesson)s</i></u></b></span>"
 
 #: medalscreen.py:69
 #, python-format
