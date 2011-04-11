@@ -2,19 +2,53 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#, fuzzy
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-01-18 13:06-0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2010-02-13 22:13+0200\n"
+"Last-Translator: Ahmed  <atphalix@inbox.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: ar\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+"X-Generator: Pootle 2.0.1\n"
 
 #: activity/activity.info:2 titlescene.py:49 typingturtle.py:60
 msgid "Typing Turtle"
@@ -27,7 +61,7 @@ msgstr ""
 
 #: balloongame.py:210
 msgid "You finished!"
-msgstr ""
+msgstr "إنتهيت!"
 
 #: balloongame.py:219
 #, python-format
@@ -54,27 +88,27 @@ msgstr ""
 
 #: editlessonlistscreen.py:47 typingturtle.py:92
 msgid "Edit Lessons"
-msgstr ""
+msgstr "حرّر الدروس"
 
 #: editlessonlistscreen.py:74 editlessonscreen.py:271
 msgid "Name"
-msgstr ""
+msgstr "الإسم"
 
 #: editlessonlistscreen.py:79 editlessonscreen.py:302
 msgid "Description"
-msgstr ""
+msgstr "الوصف"
 
 #: editlessonlistscreen.py:85 editlessonscreen.py:283
 msgid "Type"
-msgstr ""
+msgstr "اكتب"
 
 #: editlessonlistscreen.py:94
 msgid "Import Lessons from Journal"
-msgstr ""
+msgstr "إفتح الدروس من الدفتر"
 
 #: editlessonlistscreen.py:99
 msgid "Export Lessons to Journal"
-msgstr ""
+msgstr "حفظ الدروس في الدفتر"
 
 #: editlessonlistscreen.py:104
 msgid "Save Lessons to Activity"
@@ -82,15 +116,15 @@ msgstr ""
 
 #: editlessonlistscreen.py:163 editlessonscreen.py:188
 msgid "Text"
-msgstr ""
+msgstr "نص"
 
 #: editlessonlistscreen.py:165 editlessonscreen.py:290
 msgid "Balloon Game"
-msgstr ""
+msgstr "لعبة البالونات"
 
 #: editlessonlistscreen.py:201
 msgid "Delete Lesson?"
-msgstr ""
+msgstr "احذف الدرس؟"
 
 #: editlessonlistscreen.py:202
 msgid "Deleting the lesson will erase the lesson content."
@@ -102,19 +136,19 @@ msgstr ""
 
 #: editlessonscreen.py:46
 msgid "Edit a Lesson"
-msgstr ""
+msgstr "حرّر الدرس"
 
 #: editlessonscreen.py:76
 msgid "New keys"
-msgstr ""
+msgstr "أزرار جديدة"
 
 #: editlessonscreen.py:77
 msgid "Known keys"
-msgstr ""
+msgstr "الأزرار المعروفة"
 
 #: editlessonscreen.py:78
 msgid "Length"
-msgstr ""
+msgstr "طول"
 
 #: editlessonscreen.py:89
 msgid "Generate!"
@@ -131,15 +165,15 @@ msgstr ""
 
 #: editlessonscreen.py:129
 msgid "Keys"
-msgstr ""
+msgstr "الأزرار"
 
 #: editlessonscreen.py:130 editlessonscreen.py:381
 msgid "Words"
-msgstr ""
+msgstr "الكلمات"
 
 #: editlessonscreen.py:167
 msgid "Instructions"
-msgstr ""
+msgstr "التعليمات"
 
 #: editlessonscreen.py:230
 msgid "Accuracy"
@@ -163,7 +197,7 @@ msgstr ""
 
 #: editlessonscreen.py:320
 msgid "Options"
-msgstr ""
+msgstr "الخيارات"
 
 #: editlessonscreen.py:324
 msgid "Allow Mistakes"
@@ -183,15 +217,15 @@ msgstr ""
 
 #: editlessonscreen.py:411
 msgid "Bronze"
-msgstr ""
+msgstr "نحاسي"
 
 #: editlessonscreen.py:412
 msgid "Silver"
-msgstr ""
+msgstr "فضي"
 
 #: editlessonscreen.py:413
 msgid "Gold"
-msgstr ""
+msgstr "ذهبي"
 
 #: editlessonscreen.py:580
 msgid ""
@@ -205,11 +239,11 @@ msgstr ""
 
 #: lessonbuilder.py:262
 msgid "Good job."
-msgstr ""
+msgstr "عمل جيد."
 
 #: lessonbuilder.py:263
 msgid "Awesome!"
-msgstr ""
+msgstr "رائع!"
 
 #: lessonbuilder.py:264 lessonscreen.py:617
 msgid "Way to go!"
@@ -447,8 +481,9 @@ msgid "Please change your keyboard settings and try this lesson again."
 msgstr ""
 
 #: lessonscreen.py:614
+#, fuzzy
 msgid "Good job!"
-msgstr ""
+msgstr "عمل جيد."
 
 #: lessonscreen.py:616
 msgid "Nice work!"
@@ -497,8 +532,9 @@ msgid "You almost got a medal!  Next time, try to type a little faster."
 msgstr ""
 
 #: mainscreen.py:56
+#, fuzzy
 msgid "Next"
-msgstr ""
+msgstr "نص"
 
 #: mainscreen.py:65
 msgid "Previous"

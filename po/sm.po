@@ -2,19 +2,31 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#, fuzzy
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-01-18 13:06-0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2010-07-23 10:57+0200\n"
+"Last-Translator: Tabitha <tabitha.roder@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: sm\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Pootle 2.0.3\n"
 
 #: activity/activity.info:2 titlescene.py:49 typingturtle.py:60
 msgid "Typing Turtle"
@@ -82,7 +94,7 @@ msgstr ""
 
 #: editlessonlistscreen.py:163 editlessonscreen.py:188
 msgid "Text"
-msgstr ""
+msgstr "tusitusiga"
 
 #: editlessonlistscreen.py:165 editlessonscreen.py:290
 msgid "Balloon Game"
@@ -497,8 +509,9 @@ msgid "You almost got a medal!  Next time, try to type a little faster."
 msgstr ""
 
 #: mainscreen.py:56
+#, fuzzy
 msgid "Next"
-msgstr ""
+msgstr "tusitusiga"
 
 #: mainscreen.py:65
 msgid "Previous"
