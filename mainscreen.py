@@ -78,12 +78,18 @@ class MainScreen(gtk.VBox):
         
         # Load lessons for this language.
         code = locale.getdefaultlocale()[0] or 'en_US'
-        try:
-            self.load_lessons('lessons/' + code + '.lessons')
-
-        except:
-            # Fallback to en_US lessons if none found.
-            self.load_lessons('lessons/en_US.lessons')
+        lessons_path = os.path.join(sugar.activity.activity.get_bundle_path(), 'lessons')
+        lessons_file = os.path.join(lessons_path, code + '.lessons')
+        if os.path.isfile(lessons_file):
+            self.load_lessons(lessons_file)
+        else:
+            code = code[0:2]
+            lessons_file = os.path.join(lessons_path, code + '.lessons')
+            if os.path.isfile(lessons_file):
+                self.load_lessons(lessons_file)
+            else:
+                # Fallback to en_US lessons if none found.
+                self.load_lessons('lessons/en_US.lessons')
 
         # We cannot run without lessons.
         if not len(self.lessons):
