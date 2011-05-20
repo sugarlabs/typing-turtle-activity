@@ -38,6 +38,14 @@ from sugar.graphics import toolbutton
 
 from sugar.presence import presenceservice
 
+OLD_TOOLBAR = False
+try:
+    from sugar.graphics.toolbarbox import ToolbarBox
+    from sugar.activity.widgets import StopButton
+    from sugar.activity.widgets import ActivityToolbarButton
+except ImportError:
+    OLD_TOOLBAR = True
+
 # Initialize logging.
 log = logging.getLogger('Typing Turtle')
 log.setLevel(logging.DEBUG)
@@ -58,6 +66,7 @@ class TypingTurtle(sugar.activity.activity.Activity):
     def __init__ (self, handle):
         sugar.activity.activity.Activity.__init__(self, handle)
         self.set_title(_("Typing Turtle"))
+	self.max_participants = 1
         
         self.build_toolbox()
         
@@ -84,23 +93,45 @@ class TypingTurtle(sugar.activity.activity.Activity):
         
         self.show_all()
         
-        # Hide the sharing button from the activity toolbar since we don't support sharing.
-        activity_toolbar = self.tbox.get_activity_toolbar()
-        activity_toolbar.share.props.visible = False
-
-        self.editorbtn = sugar.graphics.toolbutton.ToolButton('format-justify-left')
+        self.editorbtn = sugar.graphics.toolbutton.ToolButton('view-source')
         self.editorbtn.set_tooltip(_("Edit Lessons"))
         self.editorbtn.connect('clicked', self.editor_clicked_cb)
 
-        share_idx = activity_toolbar.get_item_index(activity_toolbar.share) 
-        activity_toolbar.insert(self.editorbtn, share_idx)
+        if OLD_TOOLBAR:
+            # Hide the sharing button from the activity toolbar since
+            # we don't support sharing.
+            activity_toolbar = self.tbox.get_activity_toolbar()
+            activity_toolbar.share.props.visible = False
+
+            share_idx = activity_toolbar.get_item_index(activity_toolbar.share)
+            activity_toolbar.insert(self.editorbtn, share_idx)
+        else:
+            activity_toolbar = self.toolbar_box.toolbar
+            activity_toolbar.insert(self.editorbtn, 1)
+
         self.editorbtn.show_all()
 
     def build_toolbox(self):
-        self.tbox = sugar.activity.activity.ActivityToolbox(self)
-        self.tbox.show_all()
-        
-        self.set_toolbox(self.tbox)
+        if OLD_TOOLBAR:
+            self.tbox = sugar.activity.activity.ActivityToolbox(self)
+            self.tbox.show_all()
+            self.set_toolbox(self.tbox)
+        else:
+            self.toolbar_box = ToolbarBox()
+
+            activity_button = ActivityToolbarButton(self)
+            self.toolbar_box.toolbar.insert(activity_button, 0)
+            activity_button.show()
+
+            separator = gtk.SeparatorToolItem()
+            separator.props.draw = False
+            separator.set_expand(True)
+            self.toolbar_box.toolbar.insert(separator, -1)
+
+            self.toolbar_box.toolbar.insert(StopButton(self), -1)
+
+            self.set_toolbar_box(self.toolbar_box)
+            self.toolbar_box.show_all()
 
     def editor_clicked_cb(self, btn):
         self.push_screen(editlessonlistscreen.EditLessonListScreen(self, self.mainscreen.lessons))
