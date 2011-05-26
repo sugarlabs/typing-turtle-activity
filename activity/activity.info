@@ -2,6 +2,6 @@
 name = Typing Turtle
 activity_version = 27
 host_version = 1
-service_name = org.laptop.community.TypingTurtle
+bundle_id = org.laptop.community.TypingTurtle
 icon = Activity-typingturtle
 exec = sugar-activity typingturtle.TypingTurtle
