@@ -27,14 +27,14 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-01-18 13:06-0500\n"
-"PO-Revision-Date: 2011-05-15 13:18+0200\n"
+"PO-Revision-Date: 2011-07-28 23:41+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hy\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.0.1\n"
 
 #: activity/activity.info:2 titlescene.py:49 typingturtle.py:60
@@ -364,7 +364,7 @@ msgstr "Այժմ ձեռքերդ դիր ստեղնաշարին, ինչպես ստ
 
 #: lessonbuilder.py:393
 msgid "When you're ready, press the SPACE bar with your thumb!"
-msgstr "Երբ պատրաստ ես, սեղմի՛ր  SPACE ստեղնը բութով:"
+msgstr "Երբ պատրաստ ես, սեղմի՛ր SPACE ստեղնը բութով:"
 
 #: lessonbuilder.py:397
 msgid ""
@@ -504,8 +504,10 @@ msgid ""
 "Your words per minute (WPM) was %(wpm)d, and your accuracy was %(accuracy)d%"
 "%.\n"
 "\n"
-msgstr "Րոպեում Ձեր բառերի քանակը (բառ/րոպե) %(wpm)d էր, իսկ ճշգրտությունը՝ %"
+msgstr ""
+"Րոպեում Ձեր բառերի քանակը (բառ/րոպե) %(wpm)d էր, իսկ ճշգրտությունը՝ %"
 "(accuracy)d%%:\n"
+"\n"
 
 #: lessonscreen.py:627
 #, python-format
