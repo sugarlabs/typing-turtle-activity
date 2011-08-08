@@ -22,20 +22,28 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-01-18 13:06-0500\n"
-"PO-Revision-Date: 2010-08-04 21:28+0200\n"
-"Last-Translator: தங்கமணி <thangam.arunx@gmail.com>\n"
+"PO-Revision-Date: 2011-08-08 15:14+0200\n"
+"Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ta\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.0.3\n"
+"X-Generator: Pootle 2.0.1\n"
 
 #: activity/activity.info:2 titlescene.py:49 typingturtle.py:60
 msgid "Typing Turtle"
@@ -52,8 +60,9 @@ msgstr "நீங்கள் முடித்து விட்டீர்�
 
 #: balloongame.py:219
 #, python-format
+#, python-format,
 msgid "Your score was %(score)d."
-msgstr "உங்களின் மொத்தப்புள்ளிகள் %"
+msgstr "உங்களின் மொத்தப்புள்ளிகள் %(score)d."
 
 #: balloongame.py:221
 #, python-format
@@ -67,7 +76,7 @@ msgstr "தொடர்வதற்கு ENTER key ஐ அழுத்தவு
 #: balloongame.py:321 balloongame.py:329
 #, python-format
 msgid "SCORE: %d"
-msgstr "இறுதிப்புள்ளி % "
+msgstr "இறுதிப்புள்ளி %d"
 
 #: balloongame.py:340
 msgid "Type the words to pop the balloons!"
@@ -119,7 +128,7 @@ msgstr "பாடங்களை அழிப்பதால் அதிலு�
 
 #: editlessonlistscreen.py:300
 msgid " (Exported Lessons)"
-msgstr "(ஏற்றுமதி செய்யப்பட்ட பாடங்கள்)"
+msgstr " (ஏற்றுமதி செய்யப்பட்ட பாடங்கள்)"
 
 #: editlessonscreen.py:46
 msgid "Edit a Lesson"
@@ -256,14 +265,14 @@ msgid ""
 "keyboard below if you need help remembering."
 msgstr ""
 "சரியான விரல்களை பாவிப்பதில் கவனமாக இருக்கவும் உதவி தேவையாயின் "
-"விசைப்பலகையைப்பார்க்கவும் "
+"விசைப்பலகையைப்பார்க்கவும்"
 
 #: lessonbuilder.py:275
 msgid ""
 "Try to type at the same speed, all the time.  As you get more comfortable "
 "you can increase the speed a little."
 msgstr ""
-"எப்போதும் ஒரே வேகத்தில் சாவிகளைத்தட்டவும் முடியுமானால் வேகத்தைக்கூட்டவும் "
+"எப்போதும் ஒரே வேகத்தில் சாவிகளைத்தட்டவும் முடியுமானால் வேகத்தைக்கூட்டவும்"
 
 #: lessonbuilder.py:282
 msgid "left little"
@@ -271,7 +280,7 @@ msgstr "சிறிதளவு இடது"
 
 #: lessonbuilder.py:283
 msgid "left ring"
-msgstr "இடது வலயம் "
+msgstr "இடது வலயம்"
 
 #: lessonbuilder.py:284
 msgid "left middle"
@@ -287,7 +296,7 @@ msgstr "இடது கைப்பெருவிரல்"
 
 #: lessonbuilder.py:287
 msgid "right little"
-msgstr "சிறியதளவு வலது "
+msgstr "சிறியதளவு வலது"
 
 #: lessonbuilder.py:288
 msgid "right ring"
@@ -308,22 +317,23 @@ msgstr "வலது கைப்பெருவிரல்"
 #: lessonbuilder.py:320
 #, python-format
 msgid " and %s keys"
-msgstr "உம் % கள் சாவிகள் "
+msgstr " உம் %s கள் சாவிகள்"
 
 #: lessonbuilder.py:322
 msgid " key"
-msgstr "சாவி"
+msgstr " சாவி"
 
 #: lessonbuilder.py:325
 #, python-format
+#, python-format,
 msgid ""
 "In this lesson, you will learn the %(keynames)s.\n"
 "\n"
 "Press the ENTER key when you are ready to begin!"
 msgstr ""
-"இந்தப்பாடத்தில், %(சாவிப்பெயர்களை)கள்.நீங்கள் கற்பீர்கள் \n"
+"இந்தப்பாடத்தில், %(keynames)s.நீங்கள் கற்பீர்கள் \n"
 "\n"
-"ஆரம்பிப்பதற்கு தயாரானால்  ENTER key ஐ அழுத்தவும்  !"
+"ஆரம்பிப்பதற்கு தயாரானால்  ENTER key ஐ அழுத்தவும்!"
 
 #: lessonbuilder.py:364
 msgid "Let's learn the new keys."
@@ -363,7 +373,7 @@ msgstr "இப்பொழுது, கீழே படத்தில் உ�
 
 #: lessonbuilder.py:393
 msgid "When you're ready, press the SPACE bar with your thumb!"
-msgstr "நீங்கள் தயாராகும் போது SPACE bar ஐ பெருவிரலால் அழுத்தவும்! "
+msgstr "நீங்கள் தயாராகும் போது SPACE bar ஐ பெருவிரலால் அழுத்தவும்!"
 
 #: lessonbuilder.py:397
 msgid ""
@@ -375,32 +385,36 @@ msgstr ""
 
 #: lessonbuilder.py:398
 msgid "Press the SPACE bar again with your thumb."
-msgstr "SPACE bar ஐ மீண்டும் பெருவிரலால் அழுத்தவும் "
+msgstr "SPACE bar ஐ மீண்டும் பெருவிரலால் அழுத்தவும்"
 
 #: lessonbuilder.py:402
 msgid "Now I'll teach you the second key, ENTER.  "
 msgstr ""
-"இப்பொழுது நான் உங்களுக்கு இரண்டாவது சாவியான ENTER ஐ கற்றுத்தரப் பொகிறேன் "
+"இப்பொழுது நான் உங்களுக்கு இரண்டாவது சாவியான ENTER ஐ கற்றுத்தரப் பொகிறேன்  "
 
 #: lessonbuilder.py:403
 msgid ""
 "That's the big square key near your right little finger.\n"
 "\n"
-msgstr "அது உங்களுடைய வலது சின்ன விரலுக்கு பக்கத்திலுள்ள பெரிய சதுரச் சாவி"
+msgstr ""
+"அது உங்களுடைய வலது சின்ன விரலுக்கு பக்கத்திலுள்ள பெரிய சதுரச் சாவி\n"
+"\n"
 
 #: lessonbuilder.py:404
 msgid "Now, reach your little finger over and press ENTER."
-msgstr "இப்பொழுது சின்ன விரலால் ENTER. சாவியில் வைத்து அழுத்தவும் "
+msgstr "இப்பொழுது சின்ன விரலால் ENTER. சாவியில் வைத்து அழுத்தவும்"
 
 #: lessonbuilder.py:408
 msgid ""
 "Great!  When typing, the ENTER key is used to begin a new line.\n"
 "\n"
-msgstr "நன்று! ENTER சாவியை அடுத்த வரிக்கிச்செல்வதற்கு பாவிக்கப்படும்"
+msgstr ""
+"நன்று! ENTER சாவியை அடுத்த வரிக்கிச்செல்வதற்கு பாவிக்கப்படும்\n"
+"\n"
 
 #: lessonbuilder.py:409
 msgid "Press the ENTER key again with your right little finger."
-msgstr "மீண்டும் ENTER key ஐ உங்கள் சின்ன விரலால் அழுத்தவும் "
+msgstr "மீண்டும் ENTER key ஐ உங்கள் சின்ன விரலால் அழுத்தவும்"
 
 #: lessonbuilder.py:417
 msgid "Copy out the following text."
@@ -408,7 +422,7 @@ msgstr "கீழ்வரும் வாசகத்தை பிரதி ப
 
 #: lessonscreen.py:39
 msgid "left little finger"
-msgstr "இடது சிறிய விரல் "
+msgstr "இடது சிறிய விரல்"
 
 #: lessonscreen.py:40
 msgid "left ring finger"
@@ -440,18 +454,20 @@ msgstr "வலது முதன்மை விரல்"
 
 #: lessonscreen.py:189
 #, python-format
+#, python-format,
 msgid "<b>WPM:</b> %(wpm)d"
 msgstr "<b>WPM:</b> %(wpm)d"
 
 #: lessonscreen.py:197 medalscreen.py:90
 #, python-format
+#, python-format,
 msgid "<b>Accuracy:</b> %(accuracy)d%%"
-msgstr "<b>துள்ளியமான:</b> %(துள்ளியமான)d%%"
+msgstr "<b>துள்ளியமான:</b> %(accuracy)d%%"
 
 #: lessonscreen.py:509
 #, python-format
 msgid "Press and hold the shift key with your %(finger)s, "
-msgstr "SHIFT விசையை உங்கள் %(finger)s விரலால் அழுத்திப்பிடிக்கவும்,"
+msgstr "SHIFT விசையை உங்கள் %(finger)s விரலால் அழுத்திப்பிடிக்கவும், "
 
 #: lessonscreen.py:510 lessonscreen.py:514 lessonscreen.py:518
 #, python-format
@@ -460,16 +476,16 @@ msgstr "பிறகு உங்களுடைய %(finger)s விரலா�
 
 #: lessonscreen.py:513
 msgid "Press and hold the altgr key, "
-msgstr "ALTGR விசையை அழுத்திப்பிடிக்கவும்,"
+msgstr "ALTGR விசையை அழுத்திப்பிடிக்கவும், "
 
 #: lessonscreen.py:517
 msgid "Press and hold the altgr and shift keys, "
-msgstr "ALTGR மற்றம் SHIFT விசைகளை அழுத்திப்பிடிக்கவும்,"
+msgstr "ALTGR மற்றம் SHIFT விசைகளை அழுத்திப்பிடிக்கவும், "
 
 #: lessonscreen.py:521
 #, python-format
 msgid "Press the %(letter)s key with your %(finger)s."
-msgstr "உங்களுடைய %(finger)s உடன் %(letter)s விசையை அழுத்தவும் "
+msgstr "உங்களுடைய %(finger)s உடன் %(letter)s விசையை அழுத்தவும்"
 
 #: lessonscreen.py:541
 #, python-format
@@ -492,50 +508,56 @@ msgstr "அழகான வேலை!"
 
 #: lessonscreen.py:622
 #, python-format
+#, python-format,
 msgid "You finished the lesson in %(time)d seconds, with %(errors)d errors.\n"
-msgstr "உங்கள் பாடத்தை %(நேரம்)  வினாடிகளில் , %(பிழைகள்) முடித்துள்ளீர்கள்.\n"
+msgstr "உங்கள் பாடத்தை %(time)d  வினாடிகளில் , %(errors)d பிழைகளில் "
+"முடித்துள்ளீர்கள்.\n"
 
 #: lessonscreen.py:624
 #, python-format
+#, python-format,
 msgid ""
 "Your words per minute (WPM) was %(wpm)d, and your accuracy was %(accuracy)d%"
 "%.\n"
 "\n"
 msgstr ""
 "உங்களின் சொற்களுக்கான நேரம் (WPM)  %(wpm)d, உங்களின் பிழையற்ற தன்மை %"
-"(பிழையற்ற தன்மை)%%.\n"
+"(accuracy)d%%.\n"
 "\n"
 
 #: lessonscreen.py:627
 #, python-format
+#, python-format,
 msgid "You finished the lesson with %(errors)d errors.\n"
-msgstr "உங்களின்பாடத்தை %(பிழைகள்)யோடு முடித்துள்ளீர்கள் பிழைகள்.\n"
+msgstr "உங்களின் பாடத்தை %(errors)d பிழைகளோடு முடித்துள்ளீர்கள்.\n"
 
 #: lessonscreen.py:629
 #, python-format
+#, python-format,
 msgid ""
 "Your accuracy was %(accuracy)d%%.\n"
 "\n"
 msgstr ""
-"உங்களின் பிழையற்ற தன்மை %(பிழையற்ற தன்மை)%%.\n"
+"உங்களின் தூல்லியத்தன்மையானு %(accuracy)d%%.\n"
 "\n"
 
 #: lessonscreen.py:635
 #, python-format
+#, python-format,
 msgid "Congratulations!  You earned a %(type)s medal!"
-msgstr "வாழ்துக்கள்!  நீங்கள் %(வகை)கள் பதக்கம் பெற்றுள்ளீா்கள் !"
+msgstr "வாழ்துக்கள்!  நீங்கள் %(type)s பதக்கம் பெற்றுள்ளீர்கள்!"
 
 #: lessonscreen.py:643
 msgid "You need to practice this lesson more before moving on."
 msgstr ""
 "அடுத்த கட்டத்திற்கு போவதற்கு நீங்கள் இந்தப்பாடத்தில் கூடுதலான பயிற்சி செய்ய "
-"வேண்டும் "
+"வேண்டும்"
 
 #: lessonscreen.py:646
 msgid "You almost got a medal!  Next time, try not to make as many errors."
 msgstr ""
 "நீங்கள் கிட்டத்தட்ட பதக்கங்களைப்பெற்று விட்டீர்கள் அடுத்த தரம் பிழை வராமல் "
-"பார்த்துக் கொள்ளவும் "
+"பார்த்துக் கொள்ளவும்"
 
 #: lessonscreen.py:649
 msgid "You almost got a medal!  Next time, try to type a little faster."
@@ -561,7 +583,7 @@ msgid ""
 "by clicking the Next button."
 msgstr ""
 "இந்தப்பாடத்தில் பதக்கம் ஒன்றை வென்றுள்ளீர்கள் அடுத்த கட்டத்திற்கு \n"
-"முன்னேற அடுத்த பொத்தானை அழுத்துங்கள் "
+"முன்னேற அடுத்த பொத்தானை அழுத்துங்கள்"
 
 #: mainscreen.py:201
 msgid "No Medal Yet"
@@ -569,15 +591,15 @@ msgstr "பதக்கம் ஒன்றை  இன்னும் வெல�
 
 #: mainscreen.py:202
 msgid "Bronze Medal"
-msgstr " வெண்கலப்பதக்கம் "
+msgstr "வெண்கலப்பதக்கம்"
 
 #: mainscreen.py:203
 msgid "Silver Medal"
-msgstr "வெள்ளிப்பதக்கம் "
+msgstr "வெள்ளிப்பதக்கம்"
 
 #: mainscreen.py:204
 msgid "Gold Medal"
-msgstr "தங்கப்பதக்கம் "
+msgstr "தங்கப்பதக்கம்"
 
 #: medalscreen.py:54
 msgid ""
@@ -590,33 +612,39 @@ msgstr "<span font_desc='Sans 16'>இது </span>ஐ உறுதிப்ப�
 
 #: medalscreen.py:60
 #, python-format
+#, python-format,
 msgid "<span font_desc='Sans 16'><b><u><i>%(nick)s</i></u></b></span>"
-msgstr "<span font_desc='Sans 16'><b><u><i>%(மாறு)கள்</i></u></b></span>"
+msgstr "<span font_desc='Sans 16'><b><u><i>%(nick)s</i></u></b></span>"
 
 #: medalscreen.py:63
 #, python-format
+#, python-format,
 msgid "<span font_desc='Sans 16'>earned a %(type)s medal in </span>"
-msgstr "<span font_desc='Sans 16'>earned a %(வகை)கள் பதக்கத்தில் </span>"
+msgstr "<span font_desc='Sans 16'>பெற்ற %(type)s பதக்கத்தில் </span>"
 
 #: medalscreen.py:66
 #, python-format
+#, python-format,
 msgid "<span font_desc='Sans 16'>in <b><u><i>%(lesson)s</i></u></b></span>"
-msgstr "<span font_desc='Sans 16'>in <b><u><i>%(பாடம்)கள்</i></u></b></span>"
+msgstr "<span font_desc='Sans 16'>in <b><u><i>%(lesson)s</i></u></b></span>"
 
 #: medalscreen.py:69
 #, python-format
+#, python-format,
 msgid "<span font_desc='Sans 16'>on <b><u><i>%(date)s</i></u></b>.</span>"
-msgstr "<span font_desc='Sans 16'>on <b><u><i>%(திகதி)கள்</i></u></b>.</span>"
+msgstr "<span font_desc='Sans 16'>on <b><u><i>%(date)s</i></u></b>.</span>"
 
 #: medalscreen.py:86
 #, python-format
+#, python-format,
 msgid "<b>Words Per Minute:</b> %(wpm)d"
-msgstr "<b>நிமிடத்திற்கான சொற்கள்:</b> %(நிகாசொ)d"
+msgstr "<b>நிமிடத்திற்கான சொற்கள்:</b> %(wpm)d"
 
 #: medalscreen.py:95
 #, python-format
+#, python-format,
 msgid "<b>SCORE:</b> %(score)d"
-msgstr "<b>பெறுபேறு:</b> %(பெறுபேறு)d"
+msgstr "<b>பெற்ற புள்ளிகள்:</b> %(score)d"
 
 #~ msgid "Game"
 #~ msgstr "ஆட்டம்"
