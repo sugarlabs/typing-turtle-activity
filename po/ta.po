@@ -34,105 +34,29 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-01-18 13:06-0500\n"
+"POT-Creation-Date: 2011-08-08 09:54-0300\n"
 "PO-Revision-Date: 2011-08-08 15:14+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: ta\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.0.1\n"
 
-#: activity/activity.info:2 titlescene.py:49 typingturtle.py:60
+#: activity/activity.info:2 typingturtle.py:68 titlescene.py:49
 msgid "Typing Turtle"
 msgstr "டைப்பிங் ஆமை"
-
-#: balloongame.py:53 editlessonlistscreen.py:50 editlessonscreen.py:49
-#: editlessonscreen.py:570 lessonscreen.py:64
-msgid "Go Back"
-msgstr "பின் செல்"
-
-#: balloongame.py:210
-msgid "You finished!"
-msgstr "நீங்கள் முடித்து விட்டீர்கள்"
-
-#: balloongame.py:219
-#, python-format
-#, python-format,
-msgid "Your score was %(score)d."
-msgstr "உங்களின் மொத்தப்புள்ளிகள் %(score)d."
-
-#: balloongame.py:221
-#, python-format
-msgid "You earned a %(type)s medal!"
-msgstr "நீங்கள் எடுத்த பதக்கம் %(type)s !"
-
-#: balloongame.py:223 medalscreen.py:99
-msgid "Press the ENTER key to continue."
-msgstr "தொடர்வதற்கு ENTER key ஐ அழுத்தவும்"
-
-#: balloongame.py:321 balloongame.py:329
-#, python-format
-msgid "SCORE: %d"
-msgstr "இறுதிப்புள்ளி %d"
-
-#: balloongame.py:340
-msgid "Type the words to pop the balloons!"
-msgstr "பலூனை வெடிக்கச் செய்ய சொலைலை டைப் செய்யவும்"
-
-#: editlessonlistscreen.py:47 typingturtle.py:92
-msgid "Edit Lessons"
-msgstr "பாடங்களைத் திருத்து"
-
-#: editlessonlistscreen.py:74 editlessonscreen.py:271
-msgid "Name"
-msgstr "பெயர்"
-
-#: editlessonlistscreen.py:79 editlessonscreen.py:302
-msgid "Description"
-msgstr "விவரம்"
-
-#: editlessonlistscreen.py:85 editlessonscreen.py:283
-msgid "Type"
-msgstr "வகை"
-
-#: editlessonlistscreen.py:94
-msgid "Import Lessons from Journal"
-msgstr "சஞ்சிகையிலிருந்து பாடங்களை இறக்கவும்"
-
-#: editlessonlistscreen.py:99
-msgid "Export Lessons to Journal"
-msgstr "சஞ்சிகைக்கு பாடங்களை ஏற்றவும்"
-
-#: editlessonlistscreen.py:104
-msgid "Save Lessons to Activity"
-msgstr "செயற்ப்பாட்டுக்கு பாடங்களை சேமிக்கவும்"
-
-#: editlessonlistscreen.py:163 editlessonscreen.py:188
-msgid "Text"
-msgstr "உரை"
-
-#: editlessonlistscreen.py:165 editlessonscreen.py:290
-msgid "Balloon Game"
-msgstr "காற்றடைத்தை பை ஆட்டம்"
-
-#: editlessonlistscreen.py:201
-msgid "Delete Lesson?"
-msgstr "பாடங்களை அழிக்கலாமா?"
-
-#: editlessonlistscreen.py:202
-msgid "Deleting the lesson will erase the lesson content."
-msgstr "பாடங்களை அழிப்பதால் அதிலுல்ல பாடங்களும் அழிந்துவிடும்."
-
-#: editlessonlistscreen.py:300
-msgid " (Exported Lessons)"
-msgstr " (ஏற்றுமதி செய்யப்பட்ட பாடங்கள்)"
 
 #: editlessonscreen.py:46
 msgid "Edit a Lesson"
 msgstr "பாடத்தை திருத்து"
+
+#: editlessonscreen.py:49 editlessonscreen.py:570 balloongame.py:53
+#: editlessonlistscreen.py:50 lessonscreen.py:64
+msgid "Go Back"
+msgstr "பின் செல்"
 
 #: editlessonscreen.py:76
 msgid "New keys"
@@ -171,6 +95,10 @@ msgstr "வார்தைகள்"
 msgid "Instructions"
 msgstr "அறிவுறுத்தல்கள்"
 
+#: editlessonscreen.py:188 editlessonlistscreen.py:163
+msgid "Text"
+msgstr "உரை"
+
 #: editlessonscreen.py:230
 msgid "Accuracy"
 msgstr "துல்லியம்"
@@ -187,9 +115,25 @@ msgstr "மதிப்பெண்"
 msgid "Lesson Details"
 msgstr "பாட விவரங்கள்"
 
+#: editlessonscreen.py:271 editlessonlistscreen.py:74
+msgid "Name"
+msgstr "பெயர்"
+
+#: editlessonscreen.py:283 editlessonlistscreen.py:85
+msgid "Type"
+msgstr "வகை"
+
 #: editlessonscreen.py:287
 msgid "Normal Lesson"
 msgstr "சாதாரண பாடம்"
+
+#: editlessonscreen.py:290 editlessonlistscreen.py:165
+msgid "Balloon Game"
+msgstr "காற்றடைத்தை பை ஆட்டம்"
+
+#: editlessonscreen.py:302 editlessonlistscreen.py:79
+msgid "Description"
+msgstr "விவரம்"
 
 #: editlessonscreen.py:320
 msgid "Options"
@@ -230,6 +174,74 @@ msgid ""
 msgstr ""
 "தட்டு (அ) வார்த்தைகளை இங்கே ஒட்டு, தானியக்க பாட உருவாக்கிக்காக. காலியாக "
 "இருந்தால் சொற்களஞ்சயம் பயன்படுத்தப்படும்."
+
+#: mainscreen.py:56
+msgid "Next"
+msgstr "அடுத்து"
+
+#: mainscreen.py:65
+msgid "Previous"
+msgstr "முன்னையது"
+
+#: mainscreen.py:72
+msgid "Start Lesson"
+msgstr "பாடம் ஆரம்பம்"
+
+#: mainscreen.py:176
+msgid ""
+"You earned a medal in this lesson!  Advance to the next one\n"
+"by clicking the Next button."
+msgstr ""
+"இந்தப்பாடத்தில் பதக்கம் ஒன்றை வென்றுள்ளீர்கள் அடுத்த கட்டத்திற்கு \n"
+"முன்னேற அடுத்த பொத்தானை அழுத்துங்கள்"
+
+#: mainscreen.py:207
+msgid "No Medal Yet"
+msgstr "பதக்கம் ஒன்றை  இன்னும் வெல்லவில்லை"
+
+#: mainscreen.py:208
+msgid "Bronze Medal"
+msgstr "வெண்கலப்பதக்கம்"
+
+#: mainscreen.py:209
+msgid "Silver Medal"
+msgstr "வெள்ளிப்பதக்கம்"
+
+#: mainscreen.py:210
+msgid "Gold Medal"
+msgstr "தங்கப்பதக்கம்"
+
+#: balloongame.py:210
+msgid "You finished!"
+msgstr "நீங்கள் முடித்து விட்டீர்கள்"
+
+#: balloongame.py:219
+#, python-format
+#, python-format,
+msgid "Your score was %(score)d."
+msgstr "உங்களின் மொத்தப்புள்ளிகள் %(score)d."
+
+#: balloongame.py:221
+#, python-format
+msgid "You earned a %(type)s medal!"
+msgstr "நீங்கள் எடுத்த பதக்கம் %(type)s !"
+
+#: balloongame.py:223 medalscreen.py:99
+msgid "Press the ENTER key to continue."
+msgstr "தொடர்வதற்கு ENTER key ஐ அழுத்தவும்"
+
+#: balloongame.py:321 balloongame.py:329
+#, python-format
+msgid "SCORE: %d"
+msgstr "இறுதிப்புள்ளி %d"
+
+#: balloongame.py:340
+msgid "Type the words to pop the balloons!"
+msgstr "பலூனை வெடிக்கச் செய்ய சொலைலை டைப் செய்யவும்"
+
+#: typingturtle.py:97 editlessonlistscreen.py:47
+msgid "Edit Lessons"
+msgstr "பாடங்களைத் திருத்து"
 
 #: lessonbuilder.py:261 lessonscreen.py:615
 msgid "Well done!"
@@ -420,6 +432,30 @@ msgstr "மீண்டும் ENTER key ஐ உங்கள் சின்�
 msgid "Copy out the following text."
 msgstr "கீழ்வரும் வாசகத்தை பிரதி பண்ணுங்கள்"
 
+#: editlessonlistscreen.py:94
+msgid "Import Lessons from Journal"
+msgstr "சஞ்சிகையிலிருந்து பாடங்களை இறக்கவும்"
+
+#: editlessonlistscreen.py:99
+msgid "Export Lessons to Journal"
+msgstr "சஞ்சிகைக்கு பாடங்களை ஏற்றவும்"
+
+#: editlessonlistscreen.py:104
+msgid "Save Lessons to Activity"
+msgstr "செயற்ப்பாட்டுக்கு பாடங்களை சேமிக்கவும்"
+
+#: editlessonlistscreen.py:201
+msgid "Delete Lesson?"
+msgstr "பாடங்களை அழிக்கலாமா?"
+
+#: editlessonlistscreen.py:202
+msgid "Deleting the lesson will erase the lesson content."
+msgstr "பாடங்களை அழிப்பதால் அதிலுல்ல பாடங்களும் அழிந்துவிடும்."
+
+#: editlessonlistscreen.py:300
+msgid " (Exported Lessons)"
+msgstr " (ஏற்றுமதி செய்யப்பட்ட பாடங்கள்)"
+
 #: lessonscreen.py:39
 msgid "left little finger"
 msgstr "இடது சிறிய விரல்"
@@ -517,8 +553,8 @@ msgstr "உங்கள் பாடத்தை %(time)d  வினாடிக
 #, python-format
 #, python-format,
 msgid ""
-"Your words per minute (WPM) was %(wpm)d, and your accuracy was %(accuracy)d%"
-"%.\n"
+"Your words per minute (WPM) was %(wpm)d, and your accuracy was %(accuracy)d"
+"%%.\n"
 "\n"
 msgstr ""
 "உங்களின் சொற்களுக்கான நேரம் (WPM)  %(wpm)d, உங்களின் பிழையற்ற தன்மை %"
@@ -564,42 +600,6 @@ msgid "You almost got a medal!  Next time, try to type a little faster."
 msgstr ""
 "நீங்கள் கிட்டத்தட்ட பதக்கங்களைப்பெற்று விட்டீர்கள் அடுத்த தரம் சிறிது "
 "விரைவாக டைப் செய்யவும்"
-
-#: mainscreen.py:56
-msgid "Next"
-msgstr "அடுத்து"
-
-#: mainscreen.py:65
-msgid "Previous"
-msgstr "முன்னையது"
-
-#: mainscreen.py:72
-msgid "Start Lesson"
-msgstr "பாடம் ஆரம்பம்"
-
-#: mainscreen.py:170
-msgid ""
-"You earned a medal in this lesson!  Advance to the next one\n"
-"by clicking the Next button."
-msgstr ""
-"இந்தப்பாடத்தில் பதக்கம் ஒன்றை வென்றுள்ளீர்கள் அடுத்த கட்டத்திற்கு \n"
-"முன்னேற அடுத்த பொத்தானை அழுத்துங்கள்"
-
-#: mainscreen.py:201
-msgid "No Medal Yet"
-msgstr "பதக்கம் ஒன்றை  இன்னும் வெல்லவில்லை"
-
-#: mainscreen.py:202
-msgid "Bronze Medal"
-msgstr "வெண்கலப்பதக்கம்"
-
-#: mainscreen.py:203
-msgid "Silver Medal"
-msgstr "வெள்ளிப்பதக்கம்"
-
-#: mainscreen.py:204
-msgid "Gold Medal"
-msgstr "தங்கப்பதக்கம்"
 
 #: medalscreen.py:54
 msgid ""
