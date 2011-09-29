@@ -1,6 +1,6 @@
 [Activity]
 name = Typing Turtle
-activity_version = 27
+activity_version = 28
 host_version = 1
 bundle_id = org.laptop.community.TypingTurtle
 icon = Activity-typingturtle
