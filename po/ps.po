@@ -34,8 +34,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-01-18 13:06-0500\n"
-"PO-Revision-Date: 2011-06-20 16:59+0200\n"
+"POT-Creation-Date: 2011-08-08 09:54-0300\n"
+"PO-Revision-Date: 2011-09-29 08:18+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ps\n"
@@ -43,97 +43,21 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.0.1\n"
+"X-Generator: Pootle 2.0.5\n"
 
-#: activity/activity.info:2 titlescene.py:49 typingturtle.py:60
+#: activity/activity.info:2 typingturtle.py:68 titlescene.py:49
 msgid "Typing Turtle"
 msgstr "شمشتۍ ټایپ کول"
-
-#: balloongame.py:53 editlessonlistscreen.py:50 editlessonscreen.py:49
-#: editlessonscreen.py:570 lessonscreen.py:64
-msgid "Go Back"
-msgstr "شاته لاړ شه"
-
-#: balloongame.py:210
-msgid "You finished!"
-msgstr "پای ته ورسېدئ!"
-
-#: balloongame.py:219
-#, python-format, fuzzy
-msgid "Your score was %(score)d."
-msgstr "ستاسې سکور و %(score)d. "
-
-#: balloongame.py:221
-#, python-format, fuzzy
-msgid "You earned a %(type)s medal!"
-msgstr "تاسې د (ډول) مډال وګاټه!"
-
-#: balloongame.py:223 medalscreen.py:99
-msgid "Press the ENTER key to continue."
-msgstr "دوام ورکولو لپاره ننوتل کېکاږه."
-
-#: balloongame.py:321 balloongame.py:329
-#, python-format, fuzzy
-msgid "SCORE: %d"
-msgstr "سکور: %d"
-
-#: balloongame.py:340
-msgid "Type the words to pop the balloons!"
-msgstr "د پوکاڼو د رادنګولو لپاره توري ټایپ کړه!"
-
-#: editlessonlistscreen.py:47 typingturtle.py:92
-msgid "Edit Lessons"
-msgstr "درسونه سمول"
-
-#: editlessonlistscreen.py:74 editlessonscreen.py:271
-msgid "Name"
-msgstr ""
-
-#: editlessonlistscreen.py:79 editlessonscreen.py:302
-msgid "Description"
-msgstr ""
-
-#: editlessonlistscreen.py:85 editlessonscreen.py:283
-msgid "Type"
-msgstr ""
-
-#: editlessonlistscreen.py:94
-msgid "Import Lessons from Journal"
-msgstr ""
-
-#: editlessonlistscreen.py:99
-msgid "Export Lessons to Journal"
-msgstr ""
-
-#: editlessonlistscreen.py:104
-msgid "Save Lessons to Activity"
-msgstr ""
-
-#: editlessonlistscreen.py:163 editlessonscreen.py:188
-#, fuzzy
-msgid "Text"
-msgstr "بل"
-
-#: editlessonlistscreen.py:165 editlessonscreen.py:290
-msgid "Balloon Game"
-msgstr ""
-
-#: editlessonlistscreen.py:201
-msgid "Delete Lesson?"
-msgstr ""
-
-#: editlessonlistscreen.py:202
-msgid "Deleting the lesson will erase the lesson content."
-msgstr ""
-
-#: editlessonlistscreen.py:300
-msgid " (Exported Lessons)"
-msgstr ""
 
 #: editlessonscreen.py:46
 #, fuzzy
 msgid "Edit a Lesson"
 msgstr "درسونه سمول"
+
+#: editlessonscreen.py:49 editlessonscreen.py:570 balloongame.py:53
+#: editlessonlistscreen.py:50 lessonscreen.py:64
+msgid "Go Back"
+msgstr "شاته لاړ شه"
 
 #: editlessonscreen.py:76
 msgid "New keys"
@@ -172,6 +96,11 @@ msgstr ""
 msgid "Instructions"
 msgstr ""
 
+#: editlessonscreen.py:188 editlessonlistscreen.py:163
+#, fuzzy
+msgid "Text"
+msgstr "بل"
+
 #: editlessonscreen.py:230
 msgid "Accuracy"
 msgstr ""
@@ -188,8 +117,24 @@ msgstr ""
 msgid "Lesson Details"
 msgstr ""
 
+#: editlessonscreen.py:271 editlessonlistscreen.py:74
+msgid "Name"
+msgstr ""
+
+#: editlessonscreen.py:283 editlessonlistscreen.py:85
+msgid "Type"
+msgstr ""
+
 #: editlessonscreen.py:287
 msgid "Normal Lesson"
+msgstr ""
+
+#: editlessonscreen.py:290 editlessonlistscreen.py:165
+msgid "Balloon Game"
+msgstr ""
+
+#: editlessonscreen.py:302 editlessonlistscreen.py:79
+msgid "Description"
 msgstr ""
 
 #: editlessonscreen.py:320
@@ -229,6 +174,74 @@ msgid ""
 "Type or paste words here, for the Automatic Lesson Generator.  If empty, the "
 "dictionary will be used."
 msgstr ""
+
+#: mainscreen.py:56
+msgid "Next"
+msgstr "بل"
+
+#: mainscreen.py:65
+msgid "Previous"
+msgstr "مخکینی"
+
+#: mainscreen.py:72
+msgid "Start Lesson"
+msgstr "درس پېلول"
+
+#: mainscreen.py:176
+msgid ""
+"You earned a medal in this lesson!  Advance to the next one\n"
+"by clicking the Next button."
+msgstr "تاسې په دې درس کې یو مډال ګټلی! د بل تڼۍ په وهلو بل ته لاړ شه."
+
+#: mainscreen.py:207
+msgid "No Medal Yet"
+msgstr "تراوسه مډال نشته"
+
+#: mainscreen.py:208
+msgid "Bronze Medal"
+msgstr "د ژیړو مډال"
+
+#: mainscreen.py:209
+msgid "Silver Medal"
+msgstr "د سپینو زرو مډال"
+
+#: mainscreen.py:210
+msgid "Gold Medal"
+msgstr "د سرو مډال"
+
+#: balloongame.py:210
+msgid "You finished!"
+msgstr "پای ته ورسېدئ!"
+
+#: balloongame.py:219
+#, python-format
+#, python-format, fuzzy
+msgid "Your score was %(score)d."
+msgstr "ستاسې سکور و %(score)d."
+
+#: balloongame.py:221
+#, python-format
+#, python-format, fuzzy
+msgid "You earned a %(type)s medal!"
+msgstr "تاسې د (ډول) مډال وګاټه!"
+
+#: balloongame.py:223 medalscreen.py:99
+msgid "Press the ENTER key to continue."
+msgstr "دوام ورکولو لپاره ننوتل کېکاږه."
+
+#: balloongame.py:321 balloongame.py:329
+#, python-format
+#, python-format, fuzzy
+msgid "SCORE: %d"
+msgstr "سکور: %d"
+
+#: balloongame.py:340
+msgid "Type the words to pop the balloons!"
+msgstr "د پوکاڼو د رادنګولو لپاره توري ټایپ کړه!"
+
+#: typingturtle.py:97 editlessonlistscreen.py:47
+msgid "Edit Lessons"
+msgstr "درسونه سمول"
 
 #: lessonbuilder.py:261 lessonscreen.py:615
 msgid "Well done!"
@@ -315,6 +328,7 @@ msgid "right thumb"
 msgstr "ښۍ ګوته"
 
 #: lessonbuilder.py:320
+#, python-format
 #, python-format, fuzzy
 msgid " and %s keys"
 msgstr "او کیلي ګانې"
@@ -324,6 +338,7 @@ msgid " key"
 msgstr "کیلي"
 
 #: lessonbuilder.py:325
+#, python-format
 #, python-format, fuzzy
 msgid ""
 "In this lesson, you will learn the %(keynames)s.\n"
@@ -343,7 +358,7 @@ msgstr "د هغو کیلي ګانو د ټایپ کولو تمرین وکړئ چ�
 
 #: lessonbuilder.py:371
 msgid "Now put the keys together into pairs."
-msgstr "اوس دا کیلي ګانې په جوړو کې یو ځای کړئ. "
+msgstr "اوس دا کیلي ګانې په جوړو کې یو ځای کړئ."
 
 #: lessonbuilder.py:376
 msgid "Time to type jumbles."
@@ -355,17 +370,19 @@ msgstr "د اصلي تورو د ټایپ کولو وخت دی."
 
 #: lessonbuilder.py:390
 msgid "Hihowahyah!  Ready to learn the secret of fast typing?\n"
-msgstr "هيهواهوایاها! د تېز ټایپ کولو د راز پر پوهېدلو لپاره چمتو یاست؟"
+msgstr "هيهواهوایاها! د تېز ټایپ کولو د راز پر پوهېدلو لپاره چمتو یاست؟\n"
 
 #: lessonbuilder.py:391
 msgid ""
 "Always use the correct finger to press each key!\n"
 "\n"
-msgstr "د هرې کیلي د وهلو لپاره تل سمه ګوته وکاروئ!"
+msgstr ""
+"د هرې کیلي د وهلو لپاره تل سمه ګوته وکاروئ!\n"
+"\n"
 
 #: lessonbuilder.py:392
 msgid "Now, place your hands on the keyboard just like the picture below.\n"
-msgstr "اوس٬ په کیليدړه لاس همدغسې کېږدئ لکه په لاندې انځور کې."
+msgstr "اوس٬ په کیليدړه لاس همدغسې کېږدئ لکه په لاندې انځور کې.\n"
 
 #: lessonbuilder.py:393
 msgid "When you're ready, press the SPACE bar with your thumb!"
@@ -375,21 +392,25 @@ msgstr "کله چې تاسې چمتو یاست. نو د واټن پټه په خ�
 msgid ""
 "Good job!  The SPACE bar is used to insert spaces between words.\n"
 "\n"
-msgstr "ډېر ښه! د واټن پټه د توریو ترمنځ واټن ورکولو لپاره کارول کېږي."
+msgstr ""
+"ډېر ښه! د واټن پټه د توریو ترمنځ واټن ورکولو لپاره کارول کېږي.\n"
+"\n"
 
 #: lessonbuilder.py:398
 msgid "Press the SPACE bar again with your thumb."
-msgstr "د واټن پټه بیا په خپله غټه ګوته کېکاږئ. "
+msgstr "د واټن پټه بیا په خپله غټه ګوته کېکاږئ."
 
 #: lessonbuilder.py:402
 msgid "Now I'll teach you the second key, ENTER.  "
-msgstr "اوس به درته زه دویمه کیلي وښیم٬ ننوتل."
+msgstr "اوس به درته زه دویمه کیلي وښیم٬ ننوتل.  "
 
 #: lessonbuilder.py:403
 msgid ""
 "That's the big square key near your right little finger.\n"
 "\n"
-msgstr "دغه ستاسې د ښي کچۍ ګوتې سره نږدې غټه څلور ګوټه کیلي ده."
+msgstr ""
+"دغه ستاسې د ښي کچۍ ګوتې سره نږدې غټه څلور ګوټه کیلي ده.\n"
+"\n"
 
 #: lessonbuilder.py:404
 msgid "Now, reach your little finger over and press ENTER."
@@ -400,7 +421,8 @@ msgid ""
 "Great!  When typing, the ENTER key is used to begin a new line.\n"
 "\n"
 msgstr ""
-"زبردست! کله چې ټایپ کوئ٬ ننوتل کیلي د نوې کرښې د پیلولو لپاره کارول کېږي."
+"زبردست! کله چې ټایپ کوئ٬ ننوتل کیلي د نوې کرښې د پیلولو لپاره کارول کېږي.\n"
+"\n"
 
 #: lessonbuilder.py:409
 msgid "Press the ENTER key again with your right little finger."
@@ -409,6 +431,30 @@ msgstr "د ننوتل کیلي یو ځل بیا په خپله ښي وړه ګوت
 #: lessonbuilder.py:417
 msgid "Copy out the following text."
 msgstr "لاندې متن نقل کړئ."
+
+#: editlessonlistscreen.py:94
+msgid "Import Lessons from Journal"
+msgstr ""
+
+#: editlessonlistscreen.py:99
+msgid "Export Lessons to Journal"
+msgstr ""
+
+#: editlessonlistscreen.py:104
+msgid "Save Lessons to Activity"
+msgstr ""
+
+#: editlessonlistscreen.py:201
+msgid "Delete Lesson?"
+msgstr ""
+
+#: editlessonlistscreen.py:202
+msgid "Deleting the lesson will erase the lesson content."
+msgstr ""
+
+#: editlessonlistscreen.py:300
+msgid " (Exported Lessons)"
+msgstr ""
 
 #: lessonscreen.py:39
 msgid "left little finger"
@@ -448,6 +494,7 @@ msgid "<b>WPM:</b> %(wpm)d"
 msgstr "<b>WPM:</b> %(wpm)d"
 
 #: lessonscreen.py:197 medalscreen.py:90
+#, python-format
 #, python-format, fuzzy
 msgid "<b>Accuracy:</b> %(accuracy)d%%"
 msgstr "<b>دقت:</b> %(دقت)d%%"
@@ -456,7 +503,7 @@ msgstr "<b>دقت:</b> %(دقت)d%%"
 #, python-format
 #, fuzzy
 msgid "Press and hold the shift key with your %(finger)s, "
-msgstr "د خپلې ګوتې په ګوته د شفټ کیلي کېکاږئ او ونیسئ."
+msgstr "د خپلې ګوتې په ګوته د شفټ کیلي کېکاږئ او ونیسئ. "
 
 #: lessonscreen.py:510 lessonscreen.py:514 lessonscreen.py:518
 #, python-format
@@ -467,7 +514,7 @@ msgstr "بیا د خپلې ګوتې په ګوته د (توري) کیلي کېک�
 #: lessonscreen.py:513
 #, fuzzy
 msgid "Press and hold the altgr key, "
-msgstr "د الټ کیلي کېکاږئ او ونیسئ."
+msgstr "د الټ کیلي کېکاږئ او ونیسئ. "
 
 #: lessonscreen.py:517
 #, fuzzy
@@ -498,31 +545,40 @@ msgid "Nice work!"
 msgstr "په زړه پورې!"
 
 #: lessonscreen.py:622
+#, python-format
 #, python-format, fuzzy
 msgid "You finished the lesson in %(time)d seconds, with %(errors)d errors.\n"
-msgstr "تا سبق په (وخت) ثانیو کې ختم کړ٬ د (تېروتنې) تېروتنو سره."
+msgstr "تا سبق په (وخت) ثانیو کې ختم کړ٬ د (تېروتنې) تېروتنو سره.\n"
 
 #: lessonscreen.py:624
+#, python-format
 #, python-format, fuzzy
 msgid ""
-"Your words per minute (WPM) was %(wpm)d, and your accuracy was %(accuracy)d%"
-"%.\n"
+"Your words per minute (WPM) was %(wpm)d, and your accuracy was %(accuracy)d"
+"%%.\n"
 "\n"
-msgstr "ستاسې په یوه دقیقه کې توري (WPM) وو %(wpm)٬ او ستاسې دقت و (دقت)"
+msgstr ""
+"ستاسې په یوه دقیقه کې توري (WPM) وو %(wpm)٬ او ستاسې دقت و (دقت)\n"
+"\n"
 
 #: lessonscreen.py:627
+#, python-format
 #, python-format, fuzzy
 msgid "You finished the lesson with %(errors)d errors.\n"
-msgstr "تاسې درس د (تېروتنو) تېروتنو سره پای ته ورساوه."
+msgstr "تاسې درس د (تېروتنو) تېروتنو سره پای ته ورساوه.\n"
 
 #: lessonscreen.py:629
+#, python-format
 #, python-format, fuzzy
 msgid ""
 "Your accuracy was %(accuracy)d%%.\n"
 "\n"
-msgstr "ستاسې دقت (دقت) و. "
+msgstr ""
+"ستاسې دقت (دقت) و.\n"
+"\n"
 
 #: lessonscreen.py:635
+#, python-format
 #, python-format, fuzzy
 msgid "Congratulations!  You earned a %(type)s medal!"
 msgstr "مبارک دې وي! تاسې یو د (ډول) مډال وګاټه!"
@@ -540,40 +596,6 @@ msgid "You almost got a medal!  Next time, try to type a little faster."
 msgstr ""
 "تا تقریباً مډال ترلاسه کړی! بل ځل٬ په یو څه تېزۍ سره د ټایپ کولو کوښښ وکړه."
 
-#: mainscreen.py:56
-msgid "Next"
-msgstr "بل"
-
-#: mainscreen.py:65
-msgid "Previous"
-msgstr "مخکینی"
-
-#: mainscreen.py:72
-msgid "Start Lesson"
-msgstr "درس پېلول"
-
-#: mainscreen.py:170
-msgid ""
-"You earned a medal in this lesson!  Advance to the next one\n"
-"by clicking the Next button."
-msgstr "تاسې په دې درس کې یو مډال ګټلی! د بل تڼۍ په وهلو بل ته لاړ شه. "
-
-#: mainscreen.py:201
-msgid "No Medal Yet"
-msgstr "تراوسه مډال نشته"
-
-#: mainscreen.py:202
-msgid "Bronze Medal"
-msgstr "د ژیړو مډال"
-
-#: mainscreen.py:203
-msgid "Silver Medal"
-msgstr "د سپینو زرو مډال"
-
-#: mainscreen.py:204
-msgid "Gold Medal"
-msgstr "د سرو مډال"
-
 #: medalscreen.py:54
 msgid ""
 "<span font_desc='Serif Bold Italic 28'>Certificate of Achievement</span>"
@@ -584,21 +606,25 @@ msgid "<span font_desc='Sans 16'>This certifies that</span>"
 msgstr "<span font_desc='Sans 16'>دا سند ورکوي چې</span>"
 
 #: medalscreen.py:60
+#, python-format
 #, python-format, fuzzy
 msgid "<span font_desc='Sans 16'><b><u><i>%(nick)s</i></u></b></span>"
 msgstr "<span font_desc='Sans 16'><b><u><i>%(مرۍ)</i></u></b></span>"
 
 #: medalscreen.py:63
+#, python-format
 #, python-format, fuzzy
 msgid "<span font_desc='Sans 16'>earned a %(type)s medal in </span>"
 msgstr "<span font_desc='Sans 16'>د (ډول) مډال وګاټه</span>"
 
 #: medalscreen.py:66
+#, python-format
 #, python-format, fuzzy
 msgid "<span font_desc='Sans 16'>in <b><u><i>%(lesson)s</i></u></b></span>"
 msgstr "<span font_desc='Sans 16'>in <b><u><i>%(درس)ونهs</i></u></b></span>"
 
 #: medalscreen.py:69
+#, python-format
 #, python-format, fuzzy
 msgid "<span font_desc='Sans 16'>on <b><u><i>%(date)s</i></u></b>.</span>"
 msgstr "<span font_desc='Sans 16'>پر <b><u><i>%(نېټه)ېs</i></u></b>.</span>"
@@ -609,6 +635,7 @@ msgid "<b>Words Per Minute:</b> %(wpm)d"
 msgstr "<b>توري په یوه دقیقه کې:</b> %(wpm)d"
 
 #: medalscreen.py:95
+#, python-format
 #, python-format, fuzzy
 msgid "<b>SCORE:</b> %(score)d"
 msgstr "<b>سکور</b> %(score)d"
