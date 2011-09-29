@@ -58,8 +58,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-01-18 13:06-0500\n"
-"PO-Revision-Date: 2011-05-09 19:53+0200\n"
+"POT-Creation-Date: 2011-08-08 09:54-0300\n"
+"PO-Revision-Date: 2011-09-29 07:41+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -67,95 +67,20 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.0.1\n"
+"X-Generator: Pootle 2.0.5\n"
 
-#: activity/activity.info:2 titlescene.py:49 typingturtle.py:60
+#: activity/activity.info:2 typingturtle.py:68 titlescene.py:49
 msgid "Typing Turtle"
 msgstr "Typing Turtle"
-
-#: balloongame.py:53 editlessonlistscreen.py:50 editlessonscreen.py:49
-#: editlessonscreen.py:570 lessonscreen.py:64
-msgid "Go Back"
-msgstr "Geh zurück"
-
-#: balloongame.py:210
-msgid "You finished!"
-msgstr "Du hast es geschafft!"
-
-#: balloongame.py:219
-#, python-format
-msgid "Your score was %(score)d."
-msgstr "Deine Punktzahl war %(score)d"
-
-#: balloongame.py:221
-#, python-format
-msgid "You earned a %(type)s medal!"
-msgstr "Du erhälst eine %(type)-Medalie!"
-
-#: balloongame.py:223 medalscreen.py:99
-msgid "Press the ENTER key to continue."
-msgstr "Drücke ENTER um fortzufahren"
-
-#: balloongame.py:321 balloongame.py:329
-#, python-format
-msgid "SCORE: %d"
-msgstr "PUNKTZAHL: %d"
-
-#: balloongame.py:340
-msgid "Type the words to pop the balloons!"
-msgstr "Schreibe die Wörter, um die Ballons zum Platzen zu bringen!"
-
-#: editlessonlistscreen.py:47 typingturtle.py:92
-msgid "Edit Lessons"
-msgstr "Bearbeite die Lektionen"
-
-#: editlessonlistscreen.py:74 editlessonscreen.py:271
-msgid "Name"
-msgstr "Name"
-
-#: editlessonlistscreen.py:79 editlessonscreen.py:302
-msgid "Description"
-msgstr "Beschreibung"
-
-#: editlessonlistscreen.py:85 editlessonscreen.py:283
-msgid "Type"
-msgstr "Art"
-
-#: editlessonlistscreen.py:94
-msgid "Import Lessons from Journal"
-msgstr "Importiere Lektionen aus Tagebuch"
-
-#: editlessonlistscreen.py:99
-msgid "Export Lessons to Journal"
-msgstr "Exporiere Lektionen aus Tagebuch"
-
-#: editlessonlistscreen.py:104
-msgid "Save Lessons to Activity"
-msgstr "Speichere Lektionen zur Aktivität"
-
-#: editlessonlistscreen.py:163 editlessonscreen.py:188
-msgid "Text"
-msgstr "Text"
-
-#: editlessonlistscreen.py:165 editlessonscreen.py:290
-msgid "Balloon Game"
-msgstr "Ballonspiel"
-
-#: editlessonlistscreen.py:201
-msgid "Delete Lesson?"
-msgstr "Lektion löschen?"
-
-#: editlessonlistscreen.py:202
-msgid "Deleting the lesson will erase the lesson content."
-msgstr "Das Löschen der Lektion löscht die Unterrichtsinhalte."
-
-#: editlessonlistscreen.py:300
-msgid " (Exported Lessons)"
-msgstr " (Exportierte Lektionen)"
 
 #: editlessonscreen.py:46
 msgid "Edit a Lesson"
 msgstr "Bearbeite eine Lektion"
+
+#: editlessonscreen.py:49 editlessonscreen.py:570 balloongame.py:53
+#: editlessonlistscreen.py:50 lessonscreen.py:64
+msgid "Go Back"
+msgstr "Geh zurück"
 
 #: editlessonscreen.py:76
 msgid "New keys"
@@ -194,6 +119,10 @@ msgstr "Worte"
 msgid "Instructions"
 msgstr "Anleitung"
 
+#: editlessonscreen.py:188 editlessonlistscreen.py:163
+msgid "Text"
+msgstr "Text"
+
 #: editlessonscreen.py:230
 msgid "Accuracy"
 msgstr "Richtigkeit"
@@ -210,9 +139,25 @@ msgstr "Ergebnis"
 msgid "Lesson Details"
 msgstr "Details der Lektion"
 
+#: editlessonscreen.py:271 editlessonlistscreen.py:74
+msgid "Name"
+msgstr "Name"
+
+#: editlessonscreen.py:283 editlessonlistscreen.py:85
+msgid "Type"
+msgstr "Art"
+
 #: editlessonscreen.py:287
 msgid "Normal Lesson"
 msgstr "Normale Lektion"
+
+#: editlessonscreen.py:290 editlessonlistscreen.py:165
+msgid "Balloon Game"
+msgstr "Ballonspiel"
+
+#: editlessonscreen.py:302 editlessonlistscreen.py:79
+msgid "Description"
+msgstr "Beschreibung"
 
 #: editlessonscreen.py:320
 msgid "Options"
@@ -253,6 +198,74 @@ msgid ""
 msgstr ""
 "Geben oder fügen Sie hier Wörter für den automatischen Lektionsenerator ein. "
 "Wenn leer, wird das Wörterbuch benutzt."
+
+#: mainscreen.py:56
+msgid "Next"
+msgstr "Weiter"
+
+#: mainscreen.py:65
+msgid "Previous"
+msgstr "Zurück"
+
+#: mainscreen.py:72
+msgid "Start Lesson"
+msgstr "Starte die Lektion"
+
+#: mainscreen.py:176
+msgid ""
+"You earned a medal in this lesson!  Advance to the next one\n"
+"by clicking the Next button."
+msgstr ""
+"Du hast in dieser Lektion eine Medallie bekommen!  Mache mit der nächsten "
+"weiter\n"
+"indem du auf den Weiter-Button klickst."
+
+#: mainscreen.py:207
+msgid "No Medal Yet"
+msgstr "Noch keine Medallie"
+
+#: mainscreen.py:208
+msgid "Bronze Medal"
+msgstr "Bronzemedallie"
+
+#: mainscreen.py:209
+msgid "Silver Medal"
+msgstr "Silbermedallie"
+
+#: mainscreen.py:210
+msgid "Gold Medal"
+msgstr "Goldmedallie"
+
+#: balloongame.py:210
+msgid "You finished!"
+msgstr "Du hast es geschafft!"
+
+#: balloongame.py:219
+#, python-format
+msgid "Your score was %(score)d."
+msgstr "Deine Punktzahl war %(score)d."
+
+#: balloongame.py:221
+#, python-format
+msgid "You earned a %(type)s medal!"
+msgstr "Du erhälst eine %(type)s-Medalie!"
+
+#: balloongame.py:223 medalscreen.py:99
+msgid "Press the ENTER key to continue."
+msgstr "Drücke ENTER um fortzufahren."
+
+#: balloongame.py:321 balloongame.py:329
+#, python-format
+msgid "SCORE: %d"
+msgstr "PUNKTZAHL: %d"
+
+#: balloongame.py:340
+msgid "Type the words to pop the balloons!"
+msgstr "Schreibe die Wörter, um die Ballons zum Platzen zu bringen!"
+
+#: typingturtle.py:97 editlessonlistscreen.py:47
+msgid "Edit Lessons"
+msgstr "Bearbeite die Lektionen"
 
 #: lessonbuilder.py:261 lessonscreen.py:615
 msgid "Well done!"
@@ -372,7 +385,7 @@ msgstr "Jetzt setze die Tasten in Paaren zusammen."
 
 #: lessonbuilder.py:376
 msgid "Time to type jumbles."
-msgstr "Jetzt ist es an der Zeit durcheinander zu Tippen"
+msgstr "Jetzt ist es an der Zeit durcheinander zu Tippen."
 
 #: lessonbuilder.py:381
 msgid "Time to type real words."
@@ -387,14 +400,12 @@ msgid ""
 "Always use the correct finger to press each key!\n"
 "\n"
 msgstr ""
-"Verwende immer den richtigen Finger für jede Taste! \n"
+"Verwende immer den richtigen Finger für jede Taste!\n"
 "\n"
 
 #: lessonbuilder.py:392
 msgid "Now, place your hands on the keyboard just like the picture below.\n"
-msgstr ""
-"Lege jetzt deine Hand auf die Tastatur, wie auf dem Bild unten gezeigt wird. "
-""
+msgstr "Lege jetzt deine Hand auf die Tastatur, wie auf dem Bild unten gezeigt wird.\n"
 
 #: lessonbuilder.py:393
 msgid "When you're ready, press the SPACE bar with your thumb!"
@@ -406,7 +417,7 @@ msgid ""
 "\n"
 msgstr ""
 "Gut gemacht! Die LEERTASTE wird verwendet um Leerzeichen, also Abstände, "
-"zwischen den Wörtern einzufügen. \n"
+"zwischen den Wörtern einzufügen.\n"
 "\n"
 
 #: lessonbuilder.py:398
@@ -422,7 +433,7 @@ msgid ""
 "That's the big square key near your right little finger.\n"
 "\n"
 msgstr ""
-"Das ist die große Taste nahe deines rechten kleinen Fingers. \n"
+"Das ist die große Taste nahe deines rechten kleinen Fingers.\n"
 "\n"
 
 #: lessonbuilder.py:404
@@ -445,6 +456,30 @@ msgstr "Drücke die ENTER-Taste erneut mit deinem rechten kleinen Finger."
 #: lessonbuilder.py:417
 msgid "Copy out the following text."
 msgstr "Schreibe den folgenden Text ab."
+
+#: editlessonlistscreen.py:94
+msgid "Import Lessons from Journal"
+msgstr "Importiere Lektionen aus Tagebuch"
+
+#: editlessonlistscreen.py:99
+msgid "Export Lessons to Journal"
+msgstr "Exporiere Lektionen aus Tagebuch"
+
+#: editlessonlistscreen.py:104
+msgid "Save Lessons to Activity"
+msgstr "Speichere Lektionen zur Aktivität"
+
+#: editlessonlistscreen.py:201
+msgid "Delete Lesson?"
+msgstr "Lektion löschen?"
+
+#: editlessonlistscreen.py:202
+msgid "Deleting the lesson will erase the lesson content."
+msgstr "Das Löschen der Lektion löscht die Unterrichtsinhalte."
+
+#: editlessonlistscreen.py:300
+msgid " (Exported Lessons)"
+msgstr " (Exportierte Lektionen)"
 
 #: lessonscreen.py:39
 msgid "left little finger"
@@ -539,8 +574,8 @@ msgstr "Du hast die Übungseinheit in %(time)d Sekunden mit %(errors)d Fehlern "
 #: lessonscreen.py:624
 #, python-format
 msgid ""
-"Your words per minute (WPM) was %(wpm)d, and your accuracy was %(accuracy)d%"
-"%.\n"
+"Your words per minute (WPM) was %(wpm)d, and your accuracy was %(accuracy)d"
+"%%.\n"
 "\n"
 msgstr ""
 "Deine Wörter pro Minute (WPM) waren %(wpm)d, und deine Genauigkeit war %"
@@ -581,43 +616,6 @@ msgid "You almost got a medal!  Next time, try to type a little faster."
 msgstr ""
 "Du hast beinahe eine Medallie bekommen! Das nächste Mal, versuche ein "
 "bisschen schneller zu tippen."
-
-#: mainscreen.py:56
-msgid "Next"
-msgstr "Weiter"
-
-#: mainscreen.py:65
-msgid "Previous"
-msgstr "Zurück"
-
-#: mainscreen.py:72
-msgid "Start Lesson"
-msgstr "Starte die Lektion"
-
-#: mainscreen.py:170
-msgid ""
-"You earned a medal in this lesson!  Advance to the next one\n"
-"by clicking the Next button."
-msgstr ""
-"Du hast in dieser Lektion eine Medallie bekommen!  Mache mit der nächsten "
-"weiter\n"
-"indem du auf den Weiter-Button klickst."
-
-#: mainscreen.py:201
-msgid "No Medal Yet"
-msgstr "Noch keine Medallie"
-
-#: mainscreen.py:202
-msgid "Bronze Medal"
-msgstr "Bronzemedallie"
-
-#: mainscreen.py:203
-msgid "Silver Medal"
-msgstr "Silbermedallie"
-
-#: mainscreen.py:204
-msgid "Gold Medal"
-msgstr "Goldmedallie"
 
 #: medalscreen.py:54
 msgid ""
