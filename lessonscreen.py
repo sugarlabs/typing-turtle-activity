@@ -137,7 +137,7 @@ class LessonScreen(gtk.VBox):
         except:
             pass
 
-        self.keyboard.set_layout(keyboard.OLPC_LAYOUT)
+        self.keyboard.set_layout(keyboard.get_layout())
 
         self.pack_start(hbox, False, False, 10)
         self.pack_start(frame, True, True)

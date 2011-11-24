@@ -35,7 +35,7 @@ try:
     k.load_letter_map(sys.argv[1])
 except:
     pass
-k.set_layout(keyboard.OLPC_LAYOUT)
+k.set_layout(keyboard.get_layout())
 
 savebtn = gtk.Button()
 savebtn.add(gtk.Label('Save Keys'))
