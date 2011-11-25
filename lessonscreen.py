@@ -574,7 +574,7 @@ class LessonScreen(gtk.VBox):
                 'lesson': lesson_name,
                 'type': got_medal,
                 'date': datetime.date.today().strftime('%B %d, %Y'),
-                'nick': self.activity.owner.props.nick,
+                'nick': self.activity.nick,
                 'time': self.total_time,
                 'wpm': report['wpm'],
                 'accuracy': report['accuracy']

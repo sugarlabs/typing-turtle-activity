@@ -253,7 +253,7 @@ class BalloonGame(gtk.VBox):
                 'lesson': self.lesson['name'],
                 'type': got_medal,
                 'date': datetime.date.today().strftime('%B %d, %Y'),
-                'nick': self.activity.owner.props.nick,
+                'nick': self.activity.nick,
                 'score': self.score
             }
             self.medal = medal
