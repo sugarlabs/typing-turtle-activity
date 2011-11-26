@@ -137,7 +137,7 @@ class LessonScreen(gtk.VBox):
         except:
             pass
 
-        self.keyboard.set_layout(keyboard.OLPC_LAYOUT)
+        self.keyboard.set_layout(keyboard.get_layout())
 
         self.pack_start(hbox, False, False, 10)
         self.pack_start(frame, True, True)
@@ -574,7 +574,7 @@ class LessonScreen(gtk.VBox):
                 'lesson': lesson_name,
                 'type': got_medal,
                 'date': datetime.date.today().strftime('%B %d, %Y'),
-                'nick': self.activity.owner.props.nick,
+                'nick': self.activity.nick,
                 'time': self.total_time,
                 'wpm': report['wpm'],
                 'accuracy': report['accuracy']

@@ -49,9 +49,6 @@ class TitleScene(gtk.DrawingArea):
         self.title_original = _('Typing Turtle')
         self.title_src = self.title_original
         self.title_text = ''
-        self.title_counter = 50
-        
-        gobject.timeout_add(10, self.timer_cb)
 
     def expose_cb(self, area, event):
         bounds = self.get_allocation()
@@ -63,30 +60,30 @@ class TitleScene(gtk.DrawingArea):
         self.window.draw_pixbuf(
             gc, self.backgroundpixbuf, 0, 0, 
             x, 0, self.backgroundpixbuf.get_width(), self.backgroundpixbuf.get_height())
-        
-        # Animated Typing Turtle title.
         pc = self.create_pango_context()
         
-        layout = self.create_pango_layout('')
-        layout.set_font_description(pango.FontDescription(TitleScene.TITLE_FONT))
+        self.layout = self.create_pango_layout('')
+        self.layout.set_font_description(pango.FontDescription(TitleScene.TITLE_FONT))
         
-        layout.set_text(self.title_original)
-        original_size = layout.get_size()
-        
-        x = (bounds.width-original_size[0]/pango.SCALE)-TitleScene.TITLE_OFFSET[0]
-        y = TitleScene.TITLE_OFFSET[1]
+        self.layout.set_text(self.title_original)
+        original_size = self.layout.get_size()
+        self.x_text = (bounds.width-original_size[0]/pango.SCALE)-TitleScene.TITLE_OFFSET[0]
+        self.y_text = TitleScene.TITLE_OFFSET[1]
+        gobject.timeout_add(50, self.timer_cb)
 
-        layout.set_text(self.title_text)        
-        self.window.draw_layout(gc, x, y, layout)
+    def draw_text(self):
+        # Animated Typing Turtle title.
+        gc = self.get_style().fg_gc[gtk.STATE_NORMAL]
+        self.layout.set_text(self.title_text)
+        self.window.draw_layout(gc, self.x_text, self.y_text, self.layout)
 
     def timer_cb(self):
-        self.title_counter -= 1
-        if self.title_counter == 0:
-            if len(self.title_src) > 0:
-                self.title_text += self.title_src[0]
-                self.title_src = self.title_src[1:]
-                self.queue_draw()
-            
-            self.title_counter = random.randint(1, 5)
-            
+        if len(self.title_src) > 0:
+            self.title_text += self.title_src[0]
+            self.title_src = self.title_src[1:]
+            self.draw_text()
+        else:
+            self.draw_text()
+            return False
+
         return True

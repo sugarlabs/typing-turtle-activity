@@ -35,8 +35,7 @@ import gobject, pygtk, gtk, pango
 import sugar.activity.activity
 from sugar.graphics import *
 from sugar.graphics import toolbutton
-
-from sugar.presence import presenceservice
+from sugar import profile
 
 OLD_TOOLBAR = False
 try:
@@ -73,7 +72,7 @@ class TypingTurtle(sugar.activity.activity.Activity):
         self.screens = []
         self.screenbox = gtk.VBox()
         
-        self.owner = presenceservice.get_instance().get_owner()
+        self.nick = profile.get_nick_name()
         
         self.wordlist = []
         

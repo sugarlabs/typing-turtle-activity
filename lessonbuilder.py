@@ -311,7 +311,7 @@ def build_key_steps(
     except:
         kb.load_letter_map('lessons/en_US.key')
 
-    kb.set_layout(keyboard.OLPC_LAYOUT)
+    kb.set_layout(keyboard.get_layout())
 
     keynames = new_keys[0]
     if len(new_keys) >= 2:
