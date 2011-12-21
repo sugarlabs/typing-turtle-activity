@@ -26,104 +26,29 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-01-18 13:06-0500\n"
-"PO-Revision-Date: 2011-07-28 23:41+0200\n"
-"Last-Translator: Chris <cjl@laptop.org>\n"
+"POT-Creation-Date: 2011-08-08 09:54-0300\n"
+"PO-Revision-Date: 2011-12-21 21:37+0200\n"
+"Last-Translator: anush.mkrtchyan <anush.mkrtchyan@ca1492.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hy\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Pootle 2.0.1\n"
+"X-Generator: Pootle 2.0.5\n"
 
-#: activity/activity.info:2 titlescene.py:49 typingturtle.py:60
+#: activity/activity.info:2 typingturtle.py:68 titlescene.py:49
 msgid "Typing Turtle"
 msgstr "Տպող կրիա"
-
-#: balloongame.py:53 editlessonlistscreen.py:50 editlessonscreen.py:49
-#: editlessonscreen.py:570 lessonscreen.py:64
-msgid "Go Back"
-msgstr "Ետ գնալ"
-
-#: balloongame.py:210
-msgid "You finished!"
-msgstr "Ավարտեցիք"
-
-#: balloongame.py:219
-#, python-format
-msgid "Your score was %(score)d."
-msgstr "Ձեր միավորը %(score)d:"
-
-#: balloongame.py:221
-#, python-format
-msgid "You earned a %(type)s medal!"
-msgstr "Դուք նվաճեցիք %(type)s մեդալ:"
-
-#: balloongame.py:223 medalscreen.py:99
-msgid "Press the ENTER key to continue."
-msgstr "Շարունակելու համար սեղմեք ENTER ստեղնը:"
-
-#: balloongame.py:321 balloongame.py:329
-#, python-format
-msgid "SCORE: %d"
-msgstr "ՄԻԱՎՈՐԸ. %d"
-
-#: balloongame.py:340
-msgid "Type the words to pop the balloons!"
-msgstr "Փուչիկները պայթեցնելու համար տպեք բառերը"
-
-#: editlessonlistscreen.py:47 typingturtle.py:92
-msgid "Edit Lessons"
-msgstr "Խմբագրել Դասերը"
-
-#: editlessonlistscreen.py:74 editlessonscreen.py:271
-msgid "Name"
-msgstr "Անունը"
-
-#: editlessonlistscreen.py:79 editlessonscreen.py:302
-msgid "Description"
-msgstr "Նկարագրությունը"
-
-#: editlessonlistscreen.py:85 editlessonscreen.py:283
-msgid "Type"
-msgstr "Տեսակը"
-
-#: editlessonlistscreen.py:94
-msgid "Import Lessons from Journal"
-msgstr "Դասերը Մատյանից ներմուծել"
-
-#: editlessonlistscreen.py:99
-msgid "Export Lessons to Journal"
-msgstr "Դասերն արտահանել Մատյան"
-
-#: editlessonlistscreen.py:104
-msgid "Save Lessons to Activity"
-msgstr "Դասերը պահել Գործողություններում"
-
-#: editlessonlistscreen.py:163 editlessonscreen.py:188
-msgid "Text"
-msgstr "Տեքստ"
-
-#: editlessonlistscreen.py:165 editlessonscreen.py:290
-msgid "Balloon Game"
-msgstr "Փուչիկով խաղ"
-
-#: editlessonlistscreen.py:201
-msgid "Delete Lesson?"
-msgstr "Ջնջե՞լ դասը"
-
-#: editlessonlistscreen.py:202
-msgid "Deleting the lesson will erase the lesson content."
-msgstr "Դասը ջնջելը կջնջի նաեւ դասի բովանդակությունը"
-
-#: editlessonlistscreen.py:300
-msgid " (Exported Lessons)"
-msgstr " (Արտահանված դասեր)"
 
 #: editlessonscreen.py:46
 msgid "Edit a Lesson"
 msgstr "Խմբագրել դասը"
+
+#: editlessonscreen.py:49 editlessonscreen.py:570 balloongame.py:53
+#: editlessonlistscreen.py:50 lessonscreen.py:64
+msgid "Go Back"
+msgstr "Ետ գնալ"
 
 #: editlessonscreen.py:76
 msgid "New keys"
@@ -162,6 +87,10 @@ msgstr "Բառեր"
 msgid "Instructions"
 msgstr "Հրահանգներ"
 
+#: editlessonscreen.py:188 editlessonlistscreen.py:163
+msgid "Text"
+msgstr "Տեքստ"
+
 #: editlessonscreen.py:230
 msgid "Accuracy"
 msgstr "Ճշգրտություն"
@@ -178,9 +107,25 @@ msgstr "Միավոր"
 msgid "Lesson Details"
 msgstr "Դասի մանրամասները"
 
+#: editlessonscreen.py:271 editlessonlistscreen.py:74
+msgid "Name"
+msgstr "Անունը"
+
+#: editlessonscreen.py:283 editlessonlistscreen.py:85
+msgid "Type"
+msgstr "Տեսակը"
+
 #: editlessonscreen.py:287
 msgid "Normal Lesson"
 msgstr "Սովորական դաս"
+
+#: editlessonscreen.py:290 editlessonlistscreen.py:165
+msgid "Balloon Game"
+msgstr "Փուչիկով խաղ"
+
+#: editlessonscreen.py:302 editlessonlistscreen.py:79
+msgid "Description"
+msgstr "Նկարագրություն"
 
 #: editlessonscreen.py:320
 msgid "Options"
@@ -219,8 +164,75 @@ msgid ""
 "Type or paste words here, for the Automatic Lesson Generator.  If empty, the "
 "dictionary will be used."
 msgstr ""
-"Բառերը տպեք կամ փակցրեք այստեղ, դասի ինքնաստեղծի համար: Դատարկ թողնելու "
+"Բառերը տպեք կամ փակցրեք այստեղ, դասի ինքնաստեղծի համար:  Դատարկ թողնելու "
 "դեպքում կօգտագործվի բառարանը:"
+
+#: mainscreen.py:56
+msgid "Next"
+msgstr "Հաջորդ"
+
+#: mainscreen.py:65
+msgid "Previous"
+msgstr "Նախորդ"
+
+#: mainscreen.py:72
+msgid "Start Lesson"
+msgstr "Սկսել դասը"
+
+#: mainscreen.py:176
+msgid ""
+"You earned a medal in this lesson!  Advance to the next one\n"
+"by clicking the Next button."
+msgstr ""
+"Այս դասից Դուք մեդալ նվաճեցիք:  Անցեք հաջորդին՝\n"
+"սեղմելով Հաջորդը կոճակը:"
+
+#: mainscreen.py:207
+msgid "No Medal Yet"
+msgstr "Մեդալ դեռ չկա"
+
+#: mainscreen.py:208
+msgid "Bronze Medal"
+msgstr "Բրոնզե մեդալ"
+
+#: mainscreen.py:209
+msgid "Silver Medal"
+msgstr "Արծաթե մեդալ"
+
+#: mainscreen.py:210
+msgid "Gold Medal"
+msgstr "Ոսկե մեդալ"
+
+#: balloongame.py:210
+msgid "You finished!"
+msgstr "Ավարտեցիք"
+
+#: balloongame.py:219
+#, python-format
+msgid "Your score was %(score)d."
+msgstr "Ձեր միավորը %(score)d:"
+
+#: balloongame.py:221
+#, python-format
+msgid "You earned a %(type)s medal!"
+msgstr "Դուք նվաճեցիք %(type)s մեդալ:"
+
+#: balloongame.py:223 medalscreen.py:99
+msgid "Press the ENTER key to continue."
+msgstr "Շարունակելու համար սեղմեք ENTER ստեղնը:"
+
+#: balloongame.py:321 balloongame.py:329
+#, python-format
+msgid "SCORE: %d"
+msgstr "ՄԻԱՎՈՐԸ. %d"
+
+#: balloongame.py:340
+msgid "Type the words to pop the balloons!"
+msgstr "Փուչիկները պայթեցնելու համար տպեք բառերը"
+
+#: typingturtle.py:97 editlessonlistscreen.py:47
+msgid "Edit Lessons"
+msgstr "Խմբագրել Դասերը"
 
 #: lessonbuilder.py:261 lessonscreen.py:615
 msgid "Well done!"
@@ -256,14 +268,14 @@ msgid ""
 "keyboard below if you need help remembering."
 msgstr ""
 "Ուշադիր եղեք, որպեսզի յուրաքանչյուր ստեղնը սեղմեք ճիշտ մատով: Եթե հիշելու "
-"համար օգնության կարիք ունեք, Նայեք ներքեւ՝ ստեղնաշարին:"
+"համար օգնության կարիք ունեք, Նայեք ներքև՝ ստեղնաշարին:"
 
 #: lessonbuilder.py:275
 msgid ""
 "Try to type at the same speed, all the time.  As you get more comfortable "
 "you can increase the speed a little."
 msgstr ""
-"Աշխատեք միշտ տպել նույն արագությամբ: Սովորելուն զուգընթաց կարող եք փոքր-ինչ "
+"Աշխատեք միշտ տպել նույն արագությամբ:  Սովորելուն զուգընթաց կարող եք փոքր-ինչ "
 "ավելացնել արագությունը:"
 
 #: lessonbuilder.py:282
@@ -324,7 +336,7 @@ msgid ""
 msgstr ""
 "Այս դասին կսովորեք %(keynames)s \n"
 "\n"
-"Սեղմե՛ք  ENTER ստեղնը, եթե պատրաստ եք սկսել:"
+"Սեղմե՛ք ENTER ստեղնը, եթե պատրաստ եք սկսել:"
 
 #: lessonbuilder.py:364
 msgid "Let's learn the new keys."
@@ -340,7 +352,7 @@ msgstr "Այժմ ստեղները դասավորեք զույգերով:"
 
 #: lessonbuilder.py:376
 msgid "Time to type jumbles."
-msgstr "ժամանակն է տպել խառն տառեր:"
+msgstr "ժամանակն է տպել խառը տառեր:"
 
 #: lessonbuilder.py:381
 msgid "Time to type real words."
@@ -348,7 +360,7 @@ msgstr "Ժամանակն է տպել իրական բառեր:"
 
 #: lessonbuilder.py:390
 msgid "Hihowahyah!  Ready to learn the secret of fast typing?\n"
-msgstr "Բարեւ, ո՞նց ես: Պատրա՞ստ ես սովորել արագ տպելու գաղտնիքը:\n"
+msgstr "Բարև, ինչպե՞ս ես:  Պատրա՞ստ ես սովորել արագ տպելու գաղտնիքը:\n"
 
 #: lessonbuilder.py:391
 msgid ""
@@ -360,23 +372,23 @@ msgstr ""
 
 #: lessonbuilder.py:392
 msgid "Now, place your hands on the keyboard just like the picture below.\n"
-msgstr "Այժմ ձեռքերդ դիր ստեղնաշարին, ինչպես ստորեւ բերվող նկարում:\n"
+msgstr "Այժմ ձեռքերդ դիր ստեղնաշարին, ինչպես ստորև բերված նկարում:\n"
 
 #: lessonbuilder.py:393
 msgid "When you're ready, press the SPACE bar with your thumb!"
-msgstr "Երբ պատրաստ ես, սեղմի՛ր SPACE ստեղնը բութով:"
+msgstr "Երբ պատրաստ ես, սեղմի՛ր SPACE ստեղնը բութ մատով:"
 
 #: lessonbuilder.py:397
 msgid ""
 "Good job!  The SPACE bar is used to insert spaces between words.\n"
 "\n"
 msgstr ""
-"Լա՛վ է: SPACE ստեղնն օգտագործվում է բառերի միջեւ տարածություն պահելու համար:\n"
+"Լա՛վ է:  SPACE ստեղնն օգտագործվում է բառերի միջև տարածություն պահելու համար:\n"
 "\n"
 
 #: lessonbuilder.py:398
 msgid "Press the SPACE bar again with your thumb."
-msgstr "Սեղմիր SPACE ստեղնը կրկին, բութով:"
+msgstr "Սեղմիր SPACE ստեղնը կրկին, բութ մտով:"
 
 #: lessonbuilder.py:402
 msgid "Now I'll teach you the second key, ENTER.  "
@@ -392,14 +404,14 @@ msgstr ""
 
 #: lessonbuilder.py:404
 msgid "Now, reach your little finger over and press ENTER."
-msgstr "Այժմ մեկնիր ճկույթդ ու սեմիր ENTER-ը:"
+msgstr "Այժմ մեկնիր ճկույթդ ու սեղմիր ENTER-ը:"
 
 #: lessonbuilder.py:408
 msgid ""
 "Great!  When typing, the ENTER key is used to begin a new line.\n"
 "\n"
 msgstr ""
-"Կեցցե՛ս: Տպելիս ENTER ստեղնն օգտագործվում է նոր տող անցնելու համար:\n"
+"Կեցցե՛ս: Սովորաբար ENTER ստեղնը հաջորդ տող անցնելու համար է:\n"
 "\n"
 
 #: lessonbuilder.py:409
@@ -408,7 +420,31 @@ msgstr "Սեղմիր ENTER ստեղնը կրկին, աջ ճկույթովդ:"
 
 #: lessonbuilder.py:417
 msgid "Copy out the following text."
-msgstr "Կրկնօրինակի՛ր հետեւյալ տեքստը:"
+msgstr "Կրկնօրինակի՛ր հետևյալ տեքստը:"
+
+#: editlessonlistscreen.py:94
+msgid "Import Lessons from Journal"
+msgstr "Դասերը ներմուծել Մատյանից "
+
+#: editlessonlistscreen.py:99
+msgid "Export Lessons to Journal"
+msgstr "Դասերն արտահանել Մատյան"
+
+#: editlessonlistscreen.py:104
+msgid "Save Lessons to Activity"
+msgstr "Դասերը պահել Գործունեության մեջ"
+
+#: editlessonlistscreen.py:201
+msgid "Delete Lesson?"
+msgstr "Ջնջե՞լ դասը"
+
+#: editlessonlistscreen.py:202
+msgid "Deleting the lesson will erase the lesson content."
+msgstr "Ջնջելով դասը` կջնջեք նաև դասի բովանդակությունը"
+
+#: editlessonlistscreen.py:300
+msgid " (Exported Lessons)"
+msgstr " (Արտահանված դասեր)"
 
 #: lessonscreen.py:39
 msgid "left little finger"
@@ -455,7 +491,7 @@ msgstr "<b>Ճշգրտությունը:</b> %(accuracy)d%%"
 #: lessonscreen.py:509
 #, python-format
 msgid "Press and hold the shift key with your %(finger)s, "
-msgstr "Սեղմեք եւ պահեք shift ստեղնը Ձեր %(finger)s, "
+msgstr "Սեղմեք և պահեք shift ստեղնը Ձեր %(finger)s, "
 
 #: lessonscreen.py:510 lessonscreen.py:514 lessonscreen.py:518
 #, python-format
@@ -464,11 +500,11 @@ msgstr "այնուհետ սեղմեք %(letter)s ստեղնը Ձեր %(finger)s:
 
 #: lessonscreen.py:513
 msgid "Press and hold the altgr key, "
-msgstr "Սեղմեք եւ պահեք altgr ստեղնը, "
+msgstr "Սեղմեք և պահեք altgr ստեղնը, "
 
 #: lessonscreen.py:517
 msgid "Press and hold the altgr and shift keys, "
-msgstr "Սեղմեք եւ պահեք altgr եւ shift ստեղները, "
+msgstr "Սեղմեք և պահեք altgr և shift ստեղները, "
 
 #: lessonscreen.py:521
 #, python-format
@@ -483,7 +519,7 @@ msgstr "Վայ... Ձեր ստեղնաշարը չի կարող տպել  '%s' տ�
 #: lessonscreen.py:542
 msgid "Please change your keyboard settings and try this lesson again."
 msgstr ""
-"Փոխեք, խնդրեմ, Ձեր ստեղնաշարի չափանիշները, եւ փորձեք այս դասը մեկ անգամ եւս:"
+"Փոխեք, խնդրեմ, Ձեր ստեղնաշարի չափանիշները, և փորձեք այս դասը մեկ անգամ ևս:"
 
 #: lessonscreen.py:614
 msgid "Good job!"
@@ -491,7 +527,7 @@ msgstr "Լա՛վ է:"
 
 #: lessonscreen.py:616
 msgid "Nice work!"
-msgstr "Ապրե՛ս:"
+msgstr "Գեղեցիկ աշխատանք է:"
 
 #: lessonscreen.py:622
 #, python-format
@@ -501,8 +537,8 @@ msgstr "Դուք դասն ավարտեցիք %(time)d վայրկյանում՝ �
 #: lessonscreen.py:624
 #, python-format
 msgid ""
-"Your words per minute (WPM) was %(wpm)d, and your accuracy was %(accuracy)d%"
-"%.\n"
+"Your words per minute (WPM) was %(wpm)d, and your accuracy was %(accuracy)d"
+"%%.\n"
 "\n"
 msgstr ""
 "Րոպեում Ձեր բառերի քանակը (բառ/րոպե) %(wpm)d էր, իսկ ճշգրտությունը՝ %"
@@ -526,7 +562,7 @@ msgstr ""
 #: lessonscreen.py:635
 #, python-format
 msgid "Congratulations!  You earned a %(type)s medal!"
-msgstr "Շնորհավո՛ր: դուք նվաճել եք %(type)s մեդալ:"
+msgstr "Շնորհավո՛ր:  դուք նվաճել եք %(type)s մեդալ:"
 
 #: lessonscreen.py:643
 msgid "You need to practice this lesson more before moving on."
@@ -534,47 +570,11 @@ msgstr "Նախքան առաջ անցելը պետք է պարապեք այս դ�
 
 #: lessonscreen.py:646
 msgid "You almost got a medal!  Next time, try not to make as many errors."
-msgstr "Գրեթե մեդալ էիք ստանում: Մյուս անգամ աշխատեք այդքան սխալ չանել:"
+msgstr "Գրեթե մեդալ էիք ստանում:  Մյուս անգամ աշխատեք այդքան սխալ չանել:"
 
 #: lessonscreen.py:649
 msgid "You almost got a medal!  Next time, try to type a little faster."
-msgstr "Գրեթե մեդալ էիք ստանում: Մյուս անգամ փորձեք փոքր-ինչ արագ տպել:"
-
-#: mainscreen.py:56
-msgid "Next"
-msgstr "Հաջորդ"
-
-#: mainscreen.py:65
-msgid "Previous"
-msgstr "Նախորդը"
-
-#: mainscreen.py:72
-msgid "Start Lesson"
-msgstr "Սկսել դասը"
-
-#: mainscreen.py:170
-msgid ""
-"You earned a medal in this lesson!  Advance to the next one\n"
-"by clicking the Next button."
-msgstr ""
-"Այս դասից Դուք մեդալ նվաճեցիք: Անցեք հաջորդին՝\n"
-"սեղմելով Հաջորդը կոճակը:"
-
-#: mainscreen.py:201
-msgid "No Medal Yet"
-msgstr "Մեդալ դեռ չկա"
-
-#: mainscreen.py:202
-msgid "Bronze Medal"
-msgstr "Բրոնզե մեդալ"
-
-#: mainscreen.py:203
-msgid "Silver Medal"
-msgstr "Արծաթե մեդալ"
-
-#: mainscreen.py:204
-msgid "Gold Medal"
-msgstr "Ոսկե մեդալ"
+msgstr "Գրեթե մեդալ էիք ստանում:  Մյուս անգամ փորձեք փոքր-ինչ արագ տպել:"
 
 #: medalscreen.py:54
 msgid ""
