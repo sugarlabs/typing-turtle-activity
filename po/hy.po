@@ -27,8 +27,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-08-08 09:54-0300\n"
-"PO-Revision-Date: 2011-12-21 21:37+0200\n"
-"Last-Translator: anush.mkrtchyan <anush.mkrtchyan@ca1492.com>\n"
+"PO-Revision-Date: 2011-12-22 01:56+0200\n"
+"Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hy\n"
 "MIME-Version: 1.0\n"
@@ -267,7 +267,7 @@ msgid ""
 "Be careful to use the correct finger to press each key.  Look at the "
 "keyboard below if you need help remembering."
 msgstr ""
-"Ուշադիր եղեք, որպեսզի յուրաքանչյուր ստեղնը սեղմեք ճիշտ մատով: Եթե հիշելու "
+"Ուշադիր եղեք, որպեսզի յուրաքանչյուր ստեղնը սեղմեք ճիշտ մատով:  Եթե հիշելու "
 "համար օգնության կարիք ունեք, Նայեք ներքև՝ ստեղնաշարին:"
 
 #: lessonbuilder.py:275
@@ -411,7 +411,7 @@ msgid ""
 "Great!  When typing, the ENTER key is used to begin a new line.\n"
 "\n"
 msgstr ""
-"Կեցցե՛ս: Սովորաբար ENTER ստեղնը հաջորդ տող անցնելու համար է:\n"
+"Կեցցե՛ս:  Սովորաբար ENTER ստեղնը հաջորդ տող անցնելու համար է:\n"
 "\n"
 
 #: lessonbuilder.py:409
@@ -424,7 +424,7 @@ msgstr "Կրկնօրինակի՛ր հետևյալ տեքստը:"
 
 #: editlessonlistscreen.py:94
 msgid "Import Lessons from Journal"
-msgstr "Դասերը ներմուծել Մատյանից "
+msgstr "Դասերը ներմուծել Մատյանից"
 
 #: editlessonlistscreen.py:99
 msgid "Export Lessons to Journal"
