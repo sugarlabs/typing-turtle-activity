@@ -27,7 +27,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-08-08 09:54-0300\n"
-"PO-Revision-Date: 2011-12-22 21:41+0200\n"
+"PO-Revision-Date: 2011-12-22 23:27+0200\n"
 "Last-Translator: Jasmine <udea_jasmine@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hy\n"
@@ -142,7 +142,7 @@ msgstr "Թույլատրել հետդարձը"
 
 #: editlessonscreen.py:347
 msgid "Automatic Lesson Generator"
-msgstr "Դասի ինքնաստեղծ"
+msgstr "Դասի ինքնաստեղծիչ"
 
 #: editlessonscreen.py:404
 msgid "Medal Requirements"
