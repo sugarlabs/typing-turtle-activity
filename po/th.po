@@ -2,376 +2,623 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#, fuzzy
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-26 00:26+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-08-08 09:54-0300\n"
+"PO-Revision-Date: 2012-03-11 16:02+0200\n"
+"Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: th\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 1.3.0\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Pootle 2.0.5\n"
 
-#: activity/activity.info:2 mainscreen.py:49 typingturtle.py:56
+#: activity/activity.info:2 typingturtle.py:68 titlescene.py:49
 msgid "Typing Turtle"
-msgstr ""
+msgstr "Program Typing Turtle"
 
-#: medalscreen.py:53
+#: editlessonscreen.py:46
+msgid "Edit a Lesson"
+msgstr "แก้ไขบทเรียน"
+
+#: editlessonscreen.py:49 editlessonscreen.py:570 balloongame.py:53
+#: editlessonlistscreen.py:50 lessonscreen.py:64
+msgid "Go Back"
+msgstr "ย้อนกลับ"
+
+#: editlessonscreen.py:76
+msgid "New keys"
+msgstr "ปุ่มใหม่"
+
+#: editlessonscreen.py:77
+msgid "Known keys"
+msgstr "ปุ่มที่รู้แล้ว"
+
+#: editlessonscreen.py:78
+msgid "Length"
+msgstr "ระยะ"
+
+#: editlessonscreen.py:89
+msgid "Generate!"
+msgstr "ก่อให้เกิด"
+
+#: editlessonscreen.py:107 editlessonscreen.py:567
+msgid "Edit Word List"
+msgstr "แก้ไขรายการคำสั่ง"
+
+#: editlessonscreen.py:123
+#, python-format
+msgid "Step #%d"
+msgstr "ขั้นตอน #%d"
+
+#: editlessonscreen.py:129
+msgid "Keys"
+msgstr "ปุ่ม"
+
+#: editlessonscreen.py:130 editlessonscreen.py:381
+msgid "Words"
+msgstr "จำนวนคำ"
+
+#: editlessonscreen.py:167
+msgid "Instructions"
+msgstr "คำแนะนำ"
+
+#: editlessonscreen.py:188 editlessonlistscreen.py:163
+msgid "Text"
+msgstr "ข้อความ"
+
+#: editlessonscreen.py:230
+msgid "Accuracy"
+msgstr "ความแม่นยำ"
+
+#: editlessonscreen.py:231
+msgid "WPM"
+msgstr "WPM"
+
+#: editlessonscreen.py:245
+msgid "Score"
+msgstr "คะแนน"
+
+#: editlessonscreen.py:266
+msgid "Lesson Details"
+msgstr "รายละเอียดของบทเรียน"
+
+#: editlessonscreen.py:271 editlessonlistscreen.py:74
+msgid "Name"
+msgstr "ชื่อ"
+
+#: editlessonscreen.py:283 editlessonlistscreen.py:85
+msgid "Type"
+msgstr "ชนิด"
+
+#: editlessonscreen.py:287
+msgid "Normal Lesson"
+msgstr "บทเรียนทั่วไป"
+
+#: editlessonscreen.py:290 editlessonlistscreen.py:165
+msgid "Balloon Game"
+msgstr "เกมส์ลูกโป่ง"
+
+#: editlessonscreen.py:302 editlessonlistscreen.py:79
+msgid "Description"
+msgstr "คำอธิบาย"
+
+#: editlessonscreen.py:320
+msgid "Options"
+msgstr "ตัวเลือก"
+
+#: editlessonscreen.py:324
+msgid "Allow Mistakes"
+msgstr "ยอมให้เกิดข้อผิดพลาด"
+
+#: editlessonscreen.py:326
+msgid "Allow Backspace"
+msgstr "อนุญาตให้ Backspace"
+
+#: editlessonscreen.py:347
+msgid "Automatic Lesson Generator"
+msgstr "สร้างบทเรียนโดยอัตโนมัติ"
+
+#: editlessonscreen.py:404
+msgid "Medal Requirements"
+msgstr "ความต้องการในการรับเหรียญ"
+
+#: editlessonscreen.py:411
+msgid "Bronze"
+msgstr "ทองแดง"
+
+#: editlessonscreen.py:412
+msgid "Silver"
+msgstr "เงิน"
+
+#: editlessonscreen.py:413
+msgid "Gold"
+msgstr "ทอง"
+
+#: editlessonscreen.py:580
 msgid ""
-"<span font_desc='Serif Bold Italic 28'>Certificate of Achievement</span>"
+"Type or paste words here, for the Automatic Lesson Generator.  If empty, the "
+"dictionary will be used."
 msgstr ""
+"พิมพ์หรือใส่คำสั่งที่นี่, สำหรับการสร้างบทเรียนอัตโนมัติ.  ถ้ามันว่างเปล่า, "
+"พจนานุกรมจะนำไปใช้"
 
-#: medalscreen.py:56
-msgid "<span font_desc='Sans 16'>This certifies that</span>"
+#: mainscreen.py:56
+msgid "Next"
+msgstr "ถัดไป"
+
+#: mainscreen.py:65
+msgid "Previous"
+msgstr "ก่อนหน้า"
+
+#: mainscreen.py:72
+msgid "Start Lesson"
+msgstr "เริ่มต้นบทเรียน"
+
+#: mainscreen.py:176
+msgid ""
+"You earned a medal in this lesson!  Advance to the next one\n"
+"by clicking the Next button."
 msgstr ""
+"คุณได้รับเหรียญรางวัลในบทเรียนนี้!   ก้่าวขึ้นสู่ระดับถัดไปโดยคลิกที่ปุ่ม "
+"Next"
 
-#: medalscreen.py:59
+#: mainscreen.py:207
+msgid "No Medal Yet"
+msgstr "ยังไม่มีเหรียญรางวัล"
+
+#: mainscreen.py:208
+msgid "Bronze Medal"
+msgstr "เหรียญทองแดง"
+
+#: mainscreen.py:209
+msgid "Silver Medal"
+msgstr "เหรียญเงิน"
+
+#: mainscreen.py:210
+msgid "Gold Medal"
+msgstr "เหรียญทอง"
+
+#: balloongame.py:210
+msgid "You finished!"
+msgstr "คุณทำเสร็จแล้ว!"
+
+#: balloongame.py:219
 #, python-format
-msgid "<span font_desc='Sans 16'><b><u><i>%(nick)s</i></u></b></span>"
-msgstr ""
+msgid "Your score was %(score)d."
+msgstr "คะแนนของคุณคือ %(score)d."
 
-#: medalscreen.py:62
+#: balloongame.py:221
 #, python-format
-msgid "<span font_desc='Sans 16'>earned a %(type)s medal in </span>"
-msgstr ""
+msgid "You earned a %(type)s medal!"
+msgstr "คุณได้รับเหรียญ %(type)s"
 
-#: medalscreen.py:65
-#, python-format
-msgid "<span font_desc='Sans 16'>in <b><u><i>%(lesson)s</i></u></b></span>"
-msgstr ""
-
-#: medalscreen.py:68
-#, python-format
-msgid "<span font_desc='Sans 16'>on <b><u><i>%(date)s</i></u></b>.</span>"
-msgstr ""
-
-#: medalscreen.py:85
-#, python-format
-msgid "<b>Words Per Minute:</b> %(wpm)d"
-msgstr ""
-
-#: medalscreen.py:89 lessonscreen.py:185
-#, python-format
-msgid "<b>Accuracy:</b> %(accuracy)d%%"
-msgstr ""
-
-#: medalscreen.py:94
-#, python-format
-msgid "<b>SCORE:</b> %(score)d"
-msgstr ""
-
-#: medalscreen.py:98 balloongame.py:223
+#: balloongame.py:223 medalscreen.py:99
 msgid "Press the ENTER key to continue."
-msgstr ""
+msgstr "กด ENTER เพื่อดำเนินการต่อ"
 
-#: lessonbuilder.py:258 lessonscreen.py:537
+#: balloongame.py:321 balloongame.py:329
+#, python-format
+#, python-format,
+msgid "SCORE: %d"
+msgstr "คะแนน: %d"
+
+#: balloongame.py:340
+msgid "Type the words to pop the balloons!"
+msgstr "พิมพ์คำศัพท์เพื่อทำลายบอลลูน"
+
+#: typingturtle.py:97 editlessonlistscreen.py:47
+msgid "Edit Lessons"
+msgstr "แก้ไขบทเรียน"
+
+#: lessonbuilder.py:261 lessonscreen.py:615
 msgid "Well done!"
-msgstr ""
-
-#: lessonbuilder.py:259
-msgid "Good job."
-msgstr ""
-
-#: lessonbuilder.py:260
-msgid "Awesome!"
-msgstr ""
-
-#: lessonbuilder.py:261 lessonscreen.py:539
-msgid "Way to go!"
-msgstr ""
+msgstr "ทำได้ดีแล้ว!"
 
 #: lessonbuilder.py:262
-msgid "Wonderful!"
-msgstr ""
+msgid "Good job."
+msgstr "คุณทำได้ดี"
 
 #: lessonbuilder.py:263
+msgid "Awesome!"
+msgstr "เยี่ยม"
+
+#: lessonbuilder.py:264 lessonscreen.py:617
+msgid "Way to go!"
+msgstr "ยอดไปเลย"
+
+#: lessonbuilder.py:265
+msgid "Wonderful!"
+msgstr "วิเศษมาก!!"
+
+#: lessonbuilder.py:266
 msgid "Nice work."
-msgstr ""
+msgstr "ทำได้ดี"
 
-#: lessonbuilder.py:264
+#: lessonbuilder.py:267
 msgid "You did it!"
-msgstr ""
+msgstr "คุณทำได้!"
 
-#: lessonbuilder.py:271
+#: lessonbuilder.py:274
 msgid ""
 "Be careful to use the correct finger to press each key.  Look at the "
 "keyboard below if you need help remembering."
 msgstr ""
+"โปรดระมัดระวังในการใช้นิ้วที่ถูกต้องในการกดแต่ละปุ่ม.   "
+"มองที่คีย์บอร์ดถ้าคุณต้องการช่วยเรื่องการจำ"
 
-#: lessonbuilder.py:272
+#: lessonbuilder.py:275
 msgid ""
 "Try to type at the same speed, all the time.  As you get more comfortable "
 "you can increase the speed a little."
 msgstr ""
-
-#: lessonbuilder.py:279
-msgid "left little"
-msgstr ""
-
-#: lessonbuilder.py:280
-msgid "left ring"
-msgstr ""
-
-#: lessonbuilder.py:281
-msgid "left middle"
-msgstr ""
+"พยายามพิมพ์ด้วยความเร็วเท่าเดิม, ตลอดเวลา  จนคุณทำได้ดีขึ้น "
+"คุณสามารถเพิ่มความเร็วได้เล็กน้อย"
 
 #: lessonbuilder.py:282
-msgid "left index"
-msgstr ""
+msgid "left little"
+msgstr "นิ้วก้อยข้างซ้าย"
 
 #: lessonbuilder.py:283
-msgid "left thumb"
-msgstr ""
+msgid "left ring"
+msgstr "นิ้วนางข้างซ้าย"
 
 #: lessonbuilder.py:284
-msgid "right little"
-msgstr ""
+msgid "left middle"
+msgstr "นิ้วกลางข้างซ้าย"
 
 #: lessonbuilder.py:285
-msgid "right ring"
-msgstr ""
+msgid "left index"
+msgstr "นิ้วชี้ข้างซ้าย"
 
-#: lessonbuilder.py:286
-msgid "right middle"
-msgstr ""
+#: lessonbuilder.py:286 lessonscreen.py:43
+msgid "left thumb"
+msgstr "นิ้วหัวแม่มือข้างซ้าย"
 
 #: lessonbuilder.py:287
-msgid "right index"
-msgstr ""
+msgid "right little"
+msgstr "นิ้วก้อยข้างขวา"
 
 #: lessonbuilder.py:288
-msgid "right thumb"
-msgstr ""
+msgid "right ring"
+msgstr "นิ้วนางข้างขวา"
 
-#: lessonbuilder.py:309
+#: lessonbuilder.py:289
+msgid "right middle"
+msgstr "นิ้วกลางข้างขวา"
+
+#: lessonbuilder.py:290
+msgid "right index"
+msgstr "นิ้วชี้ข้างขวา"
+
+#: lessonbuilder.py:291 lessonscreen.py:48
+msgid "right thumb"
+msgstr "นิ้วหัวแม่มือข้างขวา"
+
+#: lessonbuilder.py:320
 #, python-format
 msgid " and %s keys"
-msgstr ""
+msgstr " และ %s ปุ่ม"
 
-#: lessonbuilder.py:311
+#: lessonbuilder.py:322
 msgid " key"
-msgstr ""
+msgstr " ปุ่ม"
 
-#: lessonbuilder.py:314
+#: lessonbuilder.py:325
 #, python-format
 msgid ""
 "In this lesson, you will learn the %(keynames)s.\n"
 "\n"
 "Press the ENTER key when you are ready to begin!"
 msgstr ""
+"ในบทเรียนนี้, คุณจะได้เรียนรู้ %(keynames)s.\n"
+"\n"
+"กดปุ่ม ENTER เมื่อคุณพร้อมที่จะเริ่มเรียนแล้ว"
 
-#: lessonbuilder.py:337
-#, python-format
-msgid "Press and hold the SHIFT key with your %(finger)s finger, "
-msgstr ""
+#: lessonbuilder.py:364
+msgid "Let's learn the new keys."
+msgstr "ไปเรียนรู้ ปุ่มใหม่ กันเถอะ"
 
-#: lessonbuilder.py:338 lessonbuilder.py:342 lessonbuilder.py:346
-#, python-format
-msgid "then press the %(letter)s key with your %(finger)s finger."
-msgstr ""
-
-#: lessonbuilder.py:341
-msgid "Press and hold the ALTGR key, "
-msgstr ""
-
-#: lessonbuilder.py:345
-msgid "Press and hold the ALTGR and SHIFT keys, "
-msgstr ""
-
-#: lessonbuilder.py:349
-#, python-format
-msgid "Press the %(letter)s key with your %(finger)s finger."
-msgstr ""
-
-#: lessonbuilder.py:354
+#: lessonbuilder.py:367
 msgid "Practice typing the keys you just learned."
-msgstr ""
+msgstr "ฝึกพิมพ์ปุ่มที่คุณเพิ่งเรียนไป"
 
-#: lessonbuilder.py:358
+#: lessonbuilder.py:371
 msgid "Now put the keys together into pairs."
-msgstr ""
+msgstr "ใส่ปุ่มด้วยกันเป็นคู่"
 
-#: lessonbuilder.py:363
+#: lessonbuilder.py:376
 msgid "Time to type jumbles."
-msgstr ""
-
-#: lessonbuilder.py:368
-msgid "Time to type real words."
-msgstr ""
-
-#: lessonbuilder.py:380
-msgid "Hihowahyah!  Ready to learn the secret of fast typing?\n"
-msgstr ""
+msgstr "ได้เวลาพิมพ์แบบjumbles"
 
 #: lessonbuilder.py:381
+msgid "Time to type real words."
+msgstr "ได้เวลาพิมพ์คำสั่งของจริงแล้ว"
+
+#: lessonbuilder.py:390
+msgid "Hihowahyah!  Ready to learn the secret of fast typing?\n"
+msgstr "Hihowahyah!  พร้อมแล้วที่จะเรียนรู้ความลับของการพิมพ์ให้เร็ว\n"
+
+#: lessonbuilder.py:391
 msgid ""
 "Always use the correct finger to press each key!\n"
 "\n"
 msgstr ""
+"จงใช้นิ้วให้ถูกต้องเสมอในการกดแต่ละปุ่ม!\n"
+"\n"
 
-#: lessonbuilder.py:382
+#: lessonbuilder.py:392
 msgid "Now, place your hands on the keyboard just like the picture below.\n"
-msgstr ""
+msgstr "ตอนนี้, วางมือลงบนแป้นพิมพ์เช่นเดียวกับภาพด้านล่าง.\n"
 
-#: lessonbuilder.py:383
+#: lessonbuilder.py:393
 msgid "When you're ready, press the SPACE bar with your thumb!"
-msgstr ""
+msgstr "เมื่อคุณพร้อมแล้ว, กดแถบ SPACE bar ด้วยนิ้วหัวแม่มือของคุณ"
 
-#: lessonbuilder.py:387
+#: lessonbuilder.py:397
 msgid ""
 "Good job!  The SPACE bar is used to insert spaces between words.\n"
 "\n"
 msgstr ""
+"คุณทำได้ดี!  แถบ SPACE bar ใช้ในการใส่ช่องว่างระหว่างคำ.\n"
+"\n"
 
-#: lessonbuilder.py:388
+#: lessonbuilder.py:398
 msgid "Press the SPACE bar again with your thumb."
-msgstr ""
+msgstr "กดแถบ SPACE bar อีกครั้ง ด้วยนิ้วหัวแม่มือของคุณ"
 
-#: lessonbuilder.py:392
+#: lessonbuilder.py:402
 msgid "Now I'll teach you the second key, ENTER.  "
-msgstr ""
+msgstr "ฉันจะสอนคุณในปุ่มถัดไป ตกลง  "
 
-#: lessonbuilder.py:393
+#: lessonbuilder.py:403
 msgid ""
 "That's the big square key near your right little finger.\n"
 "\n"
 msgstr ""
+"นั่นเป็นปุ่มสีเหลี่ยมใหญ่ที่อยู่ใกล้กับนิ้วก้อยข้างขวาของคุณ.\n"
+"\n"
 
-#: lessonbuilder.py:394
+#: lessonbuilder.py:404
 msgid "Now, reach your little finger over and press ENTER."
-msgstr ""
+msgstr "ตอนนี้ ใช้นิ้วก้อยของคุณกดปุ่ม ENTER"
 
-#: lessonbuilder.py:398
+#: lessonbuilder.py:408
 msgid ""
 "Great!  When typing, the ENTER key is used to begin a new line.\n"
 "\n"
 msgstr ""
+"ยอดเยี่ยม!  เมื่อคุณกำลังพิมพ์, ปุ่ม ENTER จะใช้ในการเริ่มบรรทัดใหม่.\n"
+"\n"
 
-#: lessonbuilder.py:399
+#: lessonbuilder.py:409
 msgid "Press the ENTER key again with your right little finger."
-msgstr ""
+msgstr "กดปุ่ม ENTER อีกครั้ง ด้วยนิ้วก้อยข้างขวาของคุณ"
 
-#: lessonbuilder.py:411
+#: lessonbuilder.py:417
 msgid "Copy out the following text."
-msgstr ""
+msgstr "คัดลอกข้อความตามนี้"
 
-#: mainscreen.py:108
-msgid "Next"
-msgstr ""
+#: editlessonlistscreen.py:94
+msgid "Import Lessons from Journal"
+msgstr "นำบทเรียนเข้ามา"
 
-#: mainscreen.py:117
-msgid "Previous"
-msgstr ""
+#: editlessonlistscreen.py:99
+msgid "Export Lessons to Journal"
+msgstr "นำบทเรียนออกไป"
 
-#: mainscreen.py:124
-msgid "Start Lesson"
-msgstr ""
+#: editlessonlistscreen.py:104
+msgid "Save Lessons to Activity"
+msgstr "บันทึกบทเรียนสู่กิจกรรม"
 
-#: mainscreen.py:218
-msgid ""
-"You earned a medal in this lesson!  Advance to the next one\n"
-"by clicking the Next button."
-msgstr ""
+#: editlessonlistscreen.py:201
+msgid "Delete Lesson?"
+msgstr "ลบบทเรียน"
 
-#: mainscreen.py:248
-msgid "No Medal Yet"
-msgstr ""
+#: editlessonlistscreen.py:202
+msgid "Deleting the lesson will erase the lesson content."
+msgstr "ลบบทเรียนจะทำให้ลบเนื้อหาของบทเรียนไปด้วย"
 
-#: mainscreen.py:249
-msgid "Bronze Medal"
-msgstr ""
+#: editlessonlistscreen.py:300
+msgid " (Exported Lessons)"
+msgstr " (บทเรียนที่ถูกส่งออก)"
 
-#: mainscreen.py:250
-msgid "Silver Medal"
-msgstr ""
+#: lessonscreen.py:39
+msgid "left little finger"
+msgstr "นิ้วก้อยข้างซ้ายมือ"
 
-#: mainscreen.py:251
-msgid "Gold Medal"
-msgstr ""
+#: lessonscreen.py:40
+msgid "left ring finger"
+msgstr "นิ้วนางข้างซ้ายมือ"
 
-#: balloongame.py:53 lessonscreen.py:59
-msgid "Go Back"
-msgstr ""
+#: lessonscreen.py:41
+msgid "left middle finger"
+msgstr "นิ้วกลางข้างซ้ายมือ"
 
-#: balloongame.py:210
-msgid "You finished!"
-msgstr ""
+#: lessonscreen.py:42
+msgid "left index finger"
+msgstr "นิ้วชี้ข้างซ้าย"
 
-#: balloongame.py:219
+#: lessonscreen.py:44
+msgid "right little finger"
+msgstr "นิ้วก้อยข้างขวา"
+
+#: lessonscreen.py:45
+msgid "right ring finger"
+msgstr "นิ้วนางข้างขวา"
+
+#: lessonscreen.py:46
+msgid "right middle finger"
+msgstr "นิ้วกลางข้างขวา"
+
+#: lessonscreen.py:47
+msgid "right index finger"
+msgstr "นิ้วชี้ข้างขวา"
+
+#: lessonscreen.py:189
 #, python-format
-msgid "Your score was %(score)d."
-msgstr ""
-
-#: balloongame.py:221
-#, python-format
-msgid "You earned a %(type)s medal!"
-msgstr ""
-
-#: balloongame.py:321 balloongame.py:329
-#, python-format
-msgid "SCORE: %d"
-msgstr ""
-
-#: balloongame.py:340
-msgid "Type the words to pop the balloons!"
-msgstr ""
-
-#: lessonscreen.py:177
-#, python-format
+#, python-format, fuzzy
 msgid "<b>WPM:</b> %(wpm)d"
-msgstr ""
+msgstr "<b>WPM:</b> %(wpm)d"
 
-#: lessonscreen.py:536
+#: lessonscreen.py:197 medalscreen.py:90
+#, python-format
+msgid "<b>Accuracy:</b> %(accuracy)d%%"
+msgstr "<b>ความแม่นยำ:</b> %(accuracy)d%%"
+
+#: lessonscreen.py:509
+#, python-format
+msgid "Press and hold the shift key with your %(finger)s, "
+msgstr "กดปุ่ม Shift ค้างไว้ด้วย %(finger)s, "
+
+#: lessonscreen.py:510 lessonscreen.py:514 lessonscreen.py:518
+#, python-format
+msgid "then press the %(letter)s key with your %(finger)s."
+msgstr "จากนั้นกดปุ่ม%(letter)s ด้วย %(finger)s ของคุณ"
+
+#: lessonscreen.py:513
+msgid "Press and hold the altgr key, "
+msgstr "กดปุ่ม altgr ค้างไว้ "
+
+#: lessonscreen.py:517
+msgid "Press and hold the altgr and shift keys, "
+msgstr "กดปุ่ม altgr และ shift ค้างไว้ "
+
+#: lessonscreen.py:521
+#, python-format
+msgid "Press the %(letter)s key with your %(finger)s."
+msgstr "กดปุ่ม%(letter)s ด้วย %(finger)s ของคุณ"
+
+#: lessonscreen.py:541
+#, python-format
+msgid "Uh oh!  Your keyboard cannot type the letter '%s'.\n"
+msgstr "โอ้!  แป้นพิมพ์ของคุณไม่สามารถพิมพ์ตัวอักษรนี้ได้ '%s'.\n"
+
+#: lessonscreen.py:542
+msgid "Please change your keyboard settings and try this lesson again."
+msgstr "กรุณาเปลี่ยนการตั้งค่าแป้นพิมพ์ของคุณและลองบทเรียนนี้ใหม่อีกครั้ง"
+
+#: lessonscreen.py:614
 msgid "Good job!"
-msgstr ""
+msgstr "ทำได้ดี!"
 
-#: lessonscreen.py:538
+#: lessonscreen.py:616
 msgid "Nice work!"
-msgstr ""
+msgstr "ดีมาก!"
 
-#: lessonscreen.py:544
+#: lessonscreen.py:622
 #, python-format
 msgid "You finished the lesson in %(time)d seconds, with %(errors)d errors.\n"
-msgstr ""
+msgstr "คุณเสร็จสิ้นบทเรียนในเวลา %(time)d วินาที, ด้วย %(errors)d ความผิดพลาด.\n"
 
-#: lessonscreen.py:546
+#: lessonscreen.py:624
 #, python-format
 msgid ""
-"Your words per minute (WPM) was %(wpm)d, and your accuracy was %(accuracy)d%"
-"%.\n"
+"Your words per minute (WPM) was %(wpm)d, and your accuracy was %(accuracy)d"
+"%%.\n"
 "\n"
 msgstr ""
+"คำต่อนาที %(wpm)d, และความแม่นยำของคุณ %(accuracy)d%%.\n"
+"\n"
 
-#: lessonscreen.py:549
+#: lessonscreen.py:627
 #, python-format
 msgid "You finished the lesson with %(errors)d errors.\n"
-msgstr ""
+msgstr "คุณเสร็จสิ้นบทเรียนด้วย %(errors)d ความผิดพลาด.\n"
 
-#: lessonscreen.py:551
+#: lessonscreen.py:629
 #, python-format
 msgid ""
 "Your accuracy was %(accuracy)d%%.\n"
 "\n"
 msgstr ""
+"ความแม่นยำของคุณ %(accuracy)d%%.\n"
+"\n"
 
-#: lessonscreen.py:557
+#: lessonscreen.py:635
 #, python-format
 msgid "Congratulations!  You earned a %(type)s medal!"
-msgstr ""
+msgstr "ยินดีด้วย!  คุณได้รับเหรียญ %(type)s"
 
-#: lessonscreen.py:565
+#: lessonscreen.py:643
 msgid "You need to practice this lesson more before moving on."
-msgstr ""
+msgstr "คุณควรจะฝึกทำบทเรียนนี้อีกครั้ง ก่อนที่จะไปยังบทเรียนถัดไป"
 
-#: lessonscreen.py:568
+#: lessonscreen.py:646
 msgid "You almost got a medal!  Next time, try not to make as many errors."
-msgstr ""
+msgstr "คุณได้รับเหรียญ!  ครั้งหน้าอย่าพยายามพิมพ์พลาดอีกล่ะ"
 
-#: lessonscreen.py:571
+#: lessonscreen.py:649
 msgid "You almost got a medal!  Next time, try to type a little faster."
-msgstr ""
+msgstr "คุณได้รับเหรียญ!  ครั้งหน้า พยามพิมพ์ให้เร็วกว่าเดิม"
+
+#: medalscreen.py:54
+msgid ""
+"<span font_desc='Serif Bold Italic 28'>Certificate of Achievement</span>"
+msgstr "<span font_desc='Serif Bold Italic 28'>ใบรับรองการบรรลุเป้าหมาย</span>"
+
+#: medalscreen.py:57
+msgid "<span font_desc='Sans 16'>This certifies that</span>"
+msgstr "<span font_desc='Sans 16'>นี่เป็นการรับรองว่า</span>"
+
+#: medalscreen.py:60
+#, python-format
+msgid "<span font_desc='Sans 16'><b><u><i>%(nick)s</i></u></b></span>"
+msgstr "<span font_desc='Sans 16'><b><u><i>%(nick)s</i></u></b></span>"
+
+#: medalscreen.py:63
+#, python-format
+msgid "<span font_desc='Sans 16'>earned a %(type)s medal in </span>"
+msgstr "<span font_desc='Sans 16'>ได้รับเหรียญ %(type)s</span>"
+
+#: medalscreen.py:66
+#, python-format
+msgid "<span font_desc='Sans 16'>in <b><u><i>%(lesson)s</i></u></b></span>"
+msgstr "<span font_desc='Sans 16'>in <b><u><i>%(lesson)s</i></u></b></span>"
+
+#: medalscreen.py:69
+#, python-format
+msgid "<span font_desc='Sans 16'>on <b><u><i>%(date)s</i></u></b>.</span>"
+msgstr "<span font_desc='Sans 16'>on <b><u><i>%(date)s</i></u></b>.</span>"
+
+#: medalscreen.py:86
+#, python-format
+msgid "<b>Words Per Minute:</b> %(wpm)d"
+msgstr "<b>จำนวนคำ ต่อ นาที:</b> %(wpm)d"
+
+#: medalscreen.py:95
+#, python-format
+msgid "<b>SCORE:</b> %(score)d"
+msgstr "<b>คะแนนที่ได้:</b> %(score)d"
