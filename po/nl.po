@@ -26,108 +26,41 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-01-18 13:06-0500\n"
-"PO-Revision-Date: 2010-07-01 21:44+0200\n"
+"POT-Creation-Date: 2011-08-08 09:54-0300\n"
+"PO-Revision-Date: 2011-10-26 22:09+0200\n"
 "Last-Translator: whe <heppew@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: nl\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.0.3\n"
+"X-Generator: Pootle 2.0.5\n"
 
-#: activity/activity.info:2 titlescene.py:49 typingturtle.py:60
+#: activity/activity.info:2 typingturtle.py:68 titlescene.py:49
 msgid "Typing Turtle"
 msgstr "Typende schildpad"
-
-#: balloongame.py:53 editlessonlistscreen.py:50 editlessonscreen.py:49
-#: editlessonscreen.py:570 lessonscreen.py:64
-msgid "Go Back"
-msgstr "Ga terug"
-
-#: balloongame.py:210
-msgid "You finished!"
-msgstr "Je bent klaar!"
-
-#: balloongame.py:219
-#, python-format
-msgid "Your score was %(score)d."
-msgstr "Je score was %(score)d."
-
-#: balloongame.py:221
-#, python-format
-msgid "You earned a %(type)s medal!"
-msgstr "Je hebt een %(type)s medaille verdiend!"
-
-#: balloongame.py:223 medalscreen.py:99
-msgid "Press the ENTER key to continue."
-msgstr "Druk op ENTER om door te gaan."
-
-#: balloongame.py:321 balloongame.py:329
-#, python-format
-msgid "SCORE: %d"
-msgstr "SCORE: %d"
-
-#: balloongame.py:340
-msgid "Type the words to pop the balloons!"
-msgstr "Typ de woorden om de ballonnen stuk te maken!"
-
-#: editlessonlistscreen.py:47 typingturtle.py:92
-msgid "Edit Lessons"
-msgstr "Lessen Bewerken"
-
-#: editlessonlistscreen.py:74 editlessonscreen.py:271
-msgid "Name"
-msgstr "Naam"
-
-#: editlessonlistscreen.py:79 editlessonscreen.py:302
-msgid "Description"
-msgstr "Beschrijving"
-
-#: editlessonlistscreen.py:85 editlessonscreen.py:283
-msgid "Type"
-msgstr "Type"
-
-#: editlessonlistscreen.py:94
-msgid "Import Lessons from Journal"
-msgstr "Importeer Lessen van Dagboek"
-
-#: editlessonlistscreen.py:99
-msgid "Export Lessons to Journal"
-msgstr "Exporteer Lessen naar Dagboek"
-
-#: editlessonlistscreen.py:104
-msgid "Save Lessons to Activity"
-msgstr "Bewaar Lessen bij Activiteit"
-
-#: editlessonlistscreen.py:163 editlessonscreen.py:188
-msgid "Text"
-msgstr "Tekst"
-
-#: editlessonlistscreen.py:165 editlessonscreen.py:290
-msgid "Balloon Game"
-msgstr "Ballon Spel"
-
-#: editlessonlistscreen.py:201
-msgid "Delete Lesson?"
-msgstr "Verwijder Les?"
-
-#: editlessonlistscreen.py:202
-msgid "Deleting the lesson will erase the lesson content."
-msgstr "Verwijderen van de les zal de lesinhoud wissen."
-
-#: editlessonlistscreen.py:300
-msgid " (Exported Lessons)"
-msgstr " (Geëxporteerde Lessen)"
 
 #: editlessonscreen.py:46
 msgid "Edit a Lesson"
 msgstr "Bewerk een Les"
+
+#: editlessonscreen.py:49 editlessonscreen.py:570 balloongame.py:53
+#: editlessonlistscreen.py:50 lessonscreen.py:64
+msgid "Go Back"
+msgstr "Ga terug"
 
 #: editlessonscreen.py:76
 msgid "New keys"
@@ -166,6 +99,10 @@ msgstr "Woorden"
 msgid "Instructions"
 msgstr "Instructies"
 
+#: editlessonscreen.py:188 editlessonlistscreen.py:163
+msgid "Text"
+msgstr "Tekst"
+
 #: editlessonscreen.py:230
 msgid "Accuracy"
 msgstr "Zorgvuldigheid"
@@ -182,9 +119,25 @@ msgstr "Score"
 msgid "Lesson Details"
 msgstr "Les Details"
 
+#: editlessonscreen.py:271 editlessonlistscreen.py:74
+msgid "Name"
+msgstr "Naam"
+
+#: editlessonscreen.py:283 editlessonlistscreen.py:85
+msgid "Type"
+msgstr "Type"
+
 #: editlessonscreen.py:287
 msgid "Normal Lesson"
 msgstr "Normale Les"
+
+#: editlessonscreen.py:290 editlessonlistscreen.py:165
+msgid "Balloon Game"
+msgstr "Ballon Spel"
+
+#: editlessonscreen.py:302 editlessonlistscreen.py:79
+msgid "Description"
+msgstr "Beschrijving"
 
 #: editlessonscreen.py:320
 msgid "Options"
@@ -225,6 +178,74 @@ msgid ""
 msgstr ""
 "Type of plak woorden hier, voor Automatische Les Generator.  Als leeg, wordt "
 "het woordenboek gebruikt."
+
+#: mainscreen.py:56
+msgid "Next"
+msgstr "Volgende"
+
+#: mainscreen.py:65
+msgid "Previous"
+msgstr "Vorige"
+
+#: mainscreen.py:72
+msgid "Start Lesson"
+msgstr "Begin met de les"
+
+#: mainscreen.py:176
+msgid ""
+"You earned a medal in this lesson!  Advance to the next one\n"
+"by clicking the Next button."
+msgstr ""
+"Je hebt met deze les een medaille verdiend!  Ga door naar de volgende les\n"
+"door op de Volgende knop te drukken."
+
+#: mainscreen.py:207
+msgid "No Medal Yet"
+msgstr "Nog geen medaille"
+
+#: mainscreen.py:208
+msgid "Bronze Medal"
+msgstr "Bronzen medaille"
+
+#: mainscreen.py:209
+msgid "Silver Medal"
+msgstr "Zilveren medaille"
+
+#: mainscreen.py:210
+msgid "Gold Medal"
+msgstr "Gouden medaille"
+
+#: balloongame.py:210
+msgid "You finished!"
+msgstr "Je bent klaar!"
+
+#: balloongame.py:219
+#, python-format
+msgid "Your score was %(score)d."
+msgstr "Je score was %(score)d."
+
+#: balloongame.py:221
+#, python-format
+msgid "You earned a %(type)s medal!"
+msgstr "Je hebt een %(type)s medaille verdiend!"
+
+#: balloongame.py:223 medalscreen.py:99
+msgid "Press the ENTER key to continue."
+msgstr "Druk op ENTER om door te gaan."
+
+#: balloongame.py:321 balloongame.py:329
+#, python-format
+#, python-format,
+msgid "SCORE: %d"
+msgstr "SCORE: %d"
+
+#: balloongame.py:340
+msgid "Type the words to pop the balloons!"
+msgstr "Typ de woorden om de ballonnen stuk te maken!"
+
+#: typingturtle.py:97 editlessonlistscreen.py:47
+msgid "Edit Lessons"
+msgstr "Lessen Bewerken"
 
 #: lessonbuilder.py:261 lessonscreen.py:615
 msgid "Well done!"
@@ -414,6 +435,30 @@ msgstr "Druk nu opnieuw op ENTER met je rechterpink."
 msgid "Copy out the following text."
 msgstr "Typ de volgende tekst in."
 
+#: editlessonlistscreen.py:94
+msgid "Import Lessons from Journal"
+msgstr "Importeer Lessen van Dagboek"
+
+#: editlessonlistscreen.py:99
+msgid "Export Lessons to Journal"
+msgstr "Exporteer Lessen naar Dagboek"
+
+#: editlessonlistscreen.py:104
+msgid "Save Lessons to Activity"
+msgstr "Bewaar Lessen bij Activiteit"
+
+#: editlessonlistscreen.py:201
+msgid "Delete Lesson?"
+msgstr "Verwijder Les?"
+
+#: editlessonlistscreen.py:202
+msgid "Deleting the lesson will erase the lesson content."
+msgstr "Verwijderen van de les zal de lesinhoud wissen."
+
+#: editlessonlistscreen.py:300
+msgid " (Exported Lessons)"
+msgstr " (Geëxporteerde Lessen)"
+
 #: lessonscreen.py:39
 msgid "left little finger"
 msgstr "linker kleine vinger"
@@ -504,8 +549,8 @@ msgstr "Je hebt de les voltooid in %(time)d seconden, met %(errors)d fouten.\n"
 #: lessonscreen.py:624
 #, python-format
 msgid ""
-"Your words per minute (WPM) was %(wpm)d, and your accuracy was %(accuracy)d%"
-"%.\n"
+"Your words per minute (WPM) was %(wpm)d, and your accuracy was %(accuracy)d"
+"%%.\n"
 "\n"
 msgstr ""
 "Jouw aantal woorden per minuut (WPM) was %(wpm)d, en je nauwkeurigheid was %"
@@ -544,42 +589,6 @@ msgstr ""
 msgid "You almost got a medal!  Next time, try to type a little faster."
 msgstr ""
 "Je hebt bijna een medaille!  Probeer volgende keer iets sneller te typen."
-
-#: mainscreen.py:56
-msgid "Next"
-msgstr "Volgende"
-
-#: mainscreen.py:65
-msgid "Previous"
-msgstr "Vorige"
-
-#: mainscreen.py:72
-msgid "Start Lesson"
-msgstr "Begin met de les"
-
-#: mainscreen.py:170
-msgid ""
-"You earned a medal in this lesson!  Advance to the next one\n"
-"by clicking the Next button."
-msgstr ""
-"Je hebt met deze les een medaille verdiend!  Ga door naar de volgende les\n"
-"door op de Volgende knop te drukken."
-
-#: mainscreen.py:201
-msgid "No Medal Yet"
-msgstr "Nog geen medaille"
-
-#: mainscreen.py:202
-msgid "Bronze Medal"
-msgstr "Bronzen medaille"
-
-#: mainscreen.py:203
-msgid "Silver Medal"
-msgstr "Zilveren medaille"
-
-#: mainscreen.py:204
-msgid "Gold Medal"
-msgstr "Gouden medaille"
 
 #: medalscreen.py:54
 msgid ""
