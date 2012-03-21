@@ -39,10 +39,10 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-08-08 09:54-0300\n"
-"PO-Revision-Date: 2012-02-23 02:11+0200\n"
+"PO-Revision-Date: 2012-03-22 01:32+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -515,7 +515,7 @@ msgstr "按住 Alt 键和 Shift 键， "
 #: lessonscreen.py:521
 #, python-format
 msgid "Press the %(letter)s key with your %(finger)s."
-msgstr "用 %(finger)s 按下  %(letter)s 键。"
+msgstr "用 %(finger)s 按下 %(letter)s 键。"
 
 #: lessonscreen.py:541
 #, python-format
