@@ -34,10 +34,10 @@ msgstr ""
 "Project-Id-Version: typingturtle\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-08-08 09:54-0300\n"
-"PO-Revision-Date: 2011-09-28 08:28+0200\n"
+"PO-Revision-Date: 2012-02-03 22:53+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: Sinhalese <sulochani@gmail.com>\n"
-"Language: si\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -388,7 +388,7 @@ msgid ""
 "Good job!  The SPACE bar is used to insert spaces between words.\n"
 "\n"
 msgstr ""
-"හොඳ රැකියාව! වචන අතර ඉඩ තැබීමට SPACE තීරුව භාවිත කරන්න. \n"
+"හොඳ රැකියාව! වචන අතර ඉඩ තැබීමට SPACE තීරුව භාවිත කරන්න.\n"
 "\n"
 
 #: lessonbuilder.py:398
@@ -509,7 +509,7 @@ msgstr "altgr යතුර ඔබාගෙන සිටින්න, "
 
 #: lessonscreen.py:517
 msgid "Press and hold the altgr and shift keys, "
-msgstr "altgr සහ shift යතුරු ඔබාගෙන සිටින්න,"
+msgstr "altgr සහ shift යතුරු ඔබාගෙන සිටින්න, "
 
 #: lessonscreen.py:521
 #, python-format

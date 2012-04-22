@@ -35,10 +35,10 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-08-08 09:54-0300\n"
-"PO-Revision-Date: 2011-09-29 08:18+0200\n"
+"PO-Revision-Date: 2012-04-05 22:58+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: ps\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -223,7 +223,7 @@ msgstr "ستاسې سکور و %(score)d."
 #, python-format
 #, python-format, fuzzy
 msgid "You earned a %(type)s medal!"
-msgstr "تاسې د (ډول) مډال وګاټه!"
+msgstr "تاسې د %(type)s مډال وګاټه!"
 
 #: balloongame.py:223 medalscreen.py:99
 msgid "Press the ENTER key to continue."
@@ -331,11 +331,11 @@ msgstr "ښۍ ګوته"
 #, python-format
 #, python-format, fuzzy
 msgid " and %s keys"
-msgstr "او کیلي ګانې"
+msgstr " او کیلي ګانې"
 
 #: lessonbuilder.py:322
 msgid " key"
-msgstr "کیلي"
+msgstr " کیلي"
 
 #: lessonbuilder.py:325
 #, python-format
@@ -345,7 +345,7 @@ msgid ""
 "\n"
 "Press the ENTER key when you are ready to begin!"
 msgstr ""
-"په دې درس کې. تاسې به د (کیلي نومونه) وپېژنئ. کله چې تاسې د پېل کولو لپاره "
+"په دې درس کې. تاسې به د %(keynames)s وپېژنئ. کله چې تاسې د پېل کولو لپاره "
 "چمتو یاست نو د ننوتلو کیلي کېکاږئ!"
 
 #: lessonbuilder.py:364
@@ -497,7 +497,7 @@ msgstr "<b>WPM:</b> %(wpm)d"
 #, python-format
 #, python-format, fuzzy
 msgid "<b>Accuracy:</b> %(accuracy)d%%"
-msgstr "<b>دقت:</b> %(دقت)d%%"
+msgstr "<b>دقت:</b> %(accuracy)d%%"
 
 #: lessonscreen.py:509
 #, python-format
@@ -574,14 +574,14 @@ msgid ""
 "Your accuracy was %(accuracy)d%%.\n"
 "\n"
 msgstr ""
-"ستاسې دقت (دقت) و.\n"
+"ستاسې دقت %(accuracy)d%% و.\n"
 "\n"
 
 #: lessonscreen.py:635
 #, python-format
 #, python-format, fuzzy
 msgid "Congratulations!  You earned a %(type)s medal!"
-msgstr "مبارک دې وي! تاسې یو د (ډول) مډال وګاټه!"
+msgstr "مبارک دې وي! تاسې یو د %(type)s مډال وګاټه!"
 
 #: lessonscreen.py:643
 msgid "You need to practice this lesson more before moving on."

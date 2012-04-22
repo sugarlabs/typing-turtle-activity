@@ -35,8 +35,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-08-08 09:54-0300\n"
-"PO-Revision-Date: 2011-10-30 04:09+0200\n"
-"Last-Translator: Chris <cjl@laptop.org>\n"
+"PO-Revision-Date: 2012-01-27 12:14+0200\n"
+"Last-Translator: Eduardo H. <hoboprimate@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -47,196 +47,200 @@ msgstr ""
 
 #: activity/activity.info:2 typingturtle.py:68 titlescene.py:49
 msgid "Typing Turtle"
-msgstr ""
+msgstr "Tartaruga Teclante"
 
 #: editlessonscreen.py:46
 msgid "Edit a Lesson"
-msgstr ""
+msgstr "Editar uma Lição"
 
 #: editlessonscreen.py:49 editlessonscreen.py:570 balloongame.py:53
 #: editlessonlistscreen.py:50 lessonscreen.py:64
 msgid "Go Back"
-msgstr ""
+msgstr "Voltar atrás"
 
 #: editlessonscreen.py:76
 msgid "New keys"
-msgstr ""
+msgstr "Teclas novas"
 
 #: editlessonscreen.py:77
 msgid "Known keys"
-msgstr ""
+msgstr "Teclas conhecidas"
 
 #: editlessonscreen.py:78
 msgid "Length"
-msgstr ""
+msgstr "Comprimento"
 
 #: editlessonscreen.py:89
 msgid "Generate!"
-msgstr ""
+msgstr "Gerar!"
 
 #: editlessonscreen.py:107 editlessonscreen.py:567
 msgid "Edit Word List"
-msgstr ""
+msgstr "Editar lista de palavras"
 
 #: editlessonscreen.py:123
 #, python-format
 msgid "Step #%d"
-msgstr ""
+msgstr "Passo #%d"
 
 #: editlessonscreen.py:129
 msgid "Keys"
-msgstr ""
+msgstr "Teclas"
 
 #: editlessonscreen.py:130 editlessonscreen.py:381
 msgid "Words"
-msgstr ""
+msgstr "Palavras"
 
 #: editlessonscreen.py:167
 msgid "Instructions"
-msgstr ""
+msgstr "Instruções"
 
 #: editlessonscreen.py:188 editlessonlistscreen.py:163
 msgid "Text"
-msgstr ""
+msgstr "Texto"
 
 #: editlessonscreen.py:230
 msgid "Accuracy"
-msgstr ""
+msgstr "Precisão"
 
 #: editlessonscreen.py:231
 msgid "WPM"
-msgstr ""
+msgstr "PPM"
 
 #: editlessonscreen.py:245
 msgid "Score"
-msgstr ""
+msgstr "Pontuação"
 
 #: editlessonscreen.py:266
 msgid "Lesson Details"
-msgstr ""
+msgstr "Detalhes da Lição"
 
 #: editlessonscreen.py:271 editlessonlistscreen.py:74
 msgid "Name"
-msgstr ""
+msgstr "Nome"
 
 #: editlessonscreen.py:283 editlessonlistscreen.py:85
 msgid "Type"
-msgstr ""
+msgstr "Tipo"
 
 #: editlessonscreen.py:287
 msgid "Normal Lesson"
-msgstr ""
+msgstr "Lição Normal"
 
 #: editlessonscreen.py:290 editlessonlistscreen.py:165
 msgid "Balloon Game"
-msgstr ""
+msgstr "Jogo dos Balões"
 
 #: editlessonscreen.py:302 editlessonlistscreen.py:79
 msgid "Description"
-msgstr ""
+msgstr "Descrição"
 
 #: editlessonscreen.py:320
 msgid "Options"
-msgstr ""
+msgstr "Opções"
 
 #: editlessonscreen.py:324
 msgid "Allow Mistakes"
-msgstr ""
+msgstr "Permitir Enganos"
 
 #: editlessonscreen.py:326
 msgid "Allow Backspace"
-msgstr ""
+msgstr "Permitir Backspace"
 
 #: editlessonscreen.py:347
 msgid "Automatic Lesson Generator"
-msgstr ""
+msgstr "Gerador Automático de Lições"
 
 #: editlessonscreen.py:404
 msgid "Medal Requirements"
-msgstr ""
+msgstr "Requisitos das Medalhas"
 
 #: editlessonscreen.py:411
 msgid "Bronze"
-msgstr ""
+msgstr "Bronze"
 
 #: editlessonscreen.py:412
 msgid "Silver"
-msgstr ""
+msgstr "Prata"
 
 #: editlessonscreen.py:413
 msgid "Gold"
-msgstr ""
+msgstr "Ouro"
 
 #: editlessonscreen.py:580
 msgid ""
 "Type or paste words here, for the Automatic Lesson Generator.  If empty, the "
 "dictionary will be used."
 msgstr ""
+"Escreve ou cola palavras aqui para o Gerador Automático de Lições.  Se ficar "
+"vazio, será utilizado o dicionário."
 
 #: mainscreen.py:56
 msgid "Next"
-msgstr ""
+msgstr "Seguinte"
 
 #: mainscreen.py:65
 msgid "Previous"
-msgstr ""
+msgstr "Anterior"
 
 #: mainscreen.py:72
 msgid "Start Lesson"
-msgstr ""
+msgstr "Começar Lição"
 
 #: mainscreen.py:176
 msgid ""
 "You earned a medal in this lesson!  Advance to the next one\n"
 "by clicking the Next button."
 msgstr ""
+"Ganhaste uma medalha nesta lição! Avança para a próxima\n"
+"clicando no botão Seguinte."
 
 #: mainscreen.py:207
 msgid "No Medal Yet"
-msgstr ""
+msgstr "Nenhuma medalha ainda"
 
 #: mainscreen.py:208
 msgid "Bronze Medal"
-msgstr ""
+msgstr "Medalha de Bronze"
 
 #: mainscreen.py:209
 msgid "Silver Medal"
-msgstr ""
+msgstr "Medalha de Prata"
 
 #: mainscreen.py:210
 msgid "Gold Medal"
-msgstr ""
+msgstr "Medalha de Ouro"
 
 #: balloongame.py:210
 msgid "You finished!"
-msgstr ""
+msgstr "Terminaste!"
 
 #: balloongame.py:219
 #, python-format
 msgid "Your score was %(score)d."
-msgstr ""
+msgstr "A tua pontuação foi %(score)d."
 
 #: balloongame.py:221
 #, python-format
 msgid "You earned a %(type)s medal!"
-msgstr ""
+msgstr "Ganhaste uma medalha de %(type)s!"
 
 #: balloongame.py:223 medalscreen.py:99
 msgid "Press the ENTER key to continue."
-msgstr ""
+msgstr "Prime o botão ENTER para continuar."
 
 #: balloongame.py:321 balloongame.py:329
 #, python-format
 msgid "SCORE: %d"
-msgstr ""
+msgstr "PONTUAÇÃO: %d"
 
 #: balloongame.py:340
 msgid "Type the words to pop the balloons!"
-msgstr ""
+msgstr "Escreve as palavras para rebentar os balões!"
 
 #: typingturtle.py:97 editlessonlistscreen.py:47
 msgid "Edit Lessons"
-msgstr ""
+msgstr "Editar Lições"
 
 #: lessonbuilder.py:261 lessonscreen.py:615
 msgid "Well done!"

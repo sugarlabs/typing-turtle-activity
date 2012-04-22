@@ -10,108 +10,53 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-01-18 13:06-0500\n"
+"POT-Creation-Date: 2011-08-08 09:54-0300\n"
 "PO-Revision-Date: 2010-03-08 08:03+0200\n"
 "Last-Translator: Clytie Siddall <clytie@riverland.net.au>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: vi\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.0.1\n"
 
-#: activity/activity.info:2 titlescene.py:49 typingturtle.py:60
+#: activity/activity.info:2 typingturtle.py:68 titlescene.py:49
 msgid "Typing Turtle"
 msgstr "Rùa Đánh Máy"
-
-#: balloongame.py:53 editlessonlistscreen.py:50 editlessonscreen.py:49
-#: editlessonscreen.py:570 lessonscreen.py:64
-msgid "Go Back"
-msgstr "Đi lùi"
-
-#: balloongame.py:210
-msgid "You finished!"
-msgstr "Bạn đã kết thúc !"
-
-#: balloongame.py:219
-#, python-format
-msgid "Your score was %(score)d."
-msgstr "Điểm của bạn là %(score)d."
-
-#: balloongame.py:221
-#, python-format
-msgid "You earned a %(type)s medal!"
-msgstr "Bạn đã đoạt một huy chương %(type)s !"
-
-#: balloongame.py:223 medalscreen.py:99
-msgid "Press the ENTER key to continue."
-msgstr "Bấm phím Enter để tiếp tục."
-
-#: balloongame.py:321 balloongame.py:329
-#, python-format
-msgid "SCORE: %d"
-msgstr "ĐIỂM: %d"
-
-#: balloongame.py:340
-msgid "Type the words to pop the balloons!"
-msgstr "Gõ mỗi từ để vỡ bong bóng !"
-
-#: editlessonlistscreen.py:47 typingturtle.py:92
-msgid "Edit Lessons"
-msgstr "Sửa bài học"
-
-#: editlessonlistscreen.py:74 editlessonscreen.py:271
-msgid "Name"
-msgstr "Tên"
-
-#: editlessonlistscreen.py:79 editlessonscreen.py:302
-msgid "Description"
-msgstr "Mô tả"
-
-#: editlessonlistscreen.py:85 editlessonscreen.py:283
-msgid "Type"
-msgstr "Kiểu"
-
-#: editlessonlistscreen.py:94
-msgid "Import Lessons from Journal"
-msgstr "Nhập bài học từ Nhật ký"
-
-#: editlessonlistscreen.py:99
-msgid "Export Lessons to Journal"
-msgstr "Xuất bài học tới Nhật ký"
-
-#: editlessonlistscreen.py:104
-msgid "Save Lessons to Activity"
-msgstr "Lưu bài học vào Hoạt động"
-
-#: editlessonlistscreen.py:163 editlessonscreen.py:188
-msgid "Text"
-msgstr "Văn bản"
-
-#: editlessonlistscreen.py:165 editlessonscreen.py:290
-msgid "Balloon Game"
-msgstr "Trò chơi Bóng"
-
-#: editlessonlistscreen.py:201
-msgid "Delete Lesson?"
-msgstr "Xoá bài học ?"
-
-#: editlessonlistscreen.py:202
-msgid "Deleting the lesson will erase the lesson content."
-msgstr "Xoá bài học thì cũng xoá nội dung của bài học."
-
-#: editlessonlistscreen.py:300
-msgid " (Exported Lessons)"
-msgstr " (Bài học đã xuất)"
 
 #: editlessonscreen.py:46
 msgid "Edit a Lesson"
 msgstr "Sửa một bài học"
+
+#: editlessonscreen.py:49 editlessonscreen.py:570 balloongame.py:53
+#: editlessonlistscreen.py:50 lessonscreen.py:64
+msgid "Go Back"
+msgstr "Đi lùi"
 
 #: editlessonscreen.py:76
 msgid "New keys"
@@ -150,6 +95,10 @@ msgstr "Từ"
 msgid "Instructions"
 msgstr "Hướng dẫn"
 
+#: editlessonscreen.py:188 editlessonlistscreen.py:163
+msgid "Text"
+msgstr "Văn bản"
+
 #: editlessonscreen.py:230
 msgid "Accuracy"
 msgstr "Độ chính xác"
@@ -166,9 +115,25 @@ msgstr "Điểm"
 msgid "Lesson Details"
 msgstr "Chi tiết về bài học"
 
+#: editlessonscreen.py:271 editlessonlistscreen.py:74
+msgid "Name"
+msgstr "Tên"
+
+#: editlessonscreen.py:283 editlessonlistscreen.py:85
+msgid "Type"
+msgstr "Kiểu"
+
 #: editlessonscreen.py:287
 msgid "Normal Lesson"
 msgstr "Bài học bình thường"
+
+#: editlessonscreen.py:290 editlessonlistscreen.py:165
+msgid "Balloon Game"
+msgstr "Trò chơi Bóng"
+
+#: editlessonscreen.py:302 editlessonlistscreen.py:79
+msgid "Description"
+msgstr "Mô tả"
 
 #: editlessonscreen.py:320
 msgid "Options"
@@ -209,6 +174,73 @@ msgid ""
 msgstr ""
 "Hãy gõ hay dán các từ vào đây, cho hàm Tự động Tạo Bài học.  Bỏ trống trường "
 "này thì dùng từ điển."
+
+#: mainscreen.py:56
+msgid "Next"
+msgstr "Tiếp"
+
+#: mainscreen.py:65
+msgid "Previous"
+msgstr "Lùi"
+
+#: mainscreen.py:72
+msgid "Start Lesson"
+msgstr "Học đi"
+
+#: mainscreen.py:176
+msgid ""
+"You earned a medal in this lesson!  Advance to the next one\n"
+"by clicking the Next button."
+msgstr ""
+"Bạn đã đoạt một huy chương trong bài học này !  Hãy tiếp tới bài học sau "
+"bằng cách nhấn vào cái nút Tiếp."
+
+#: mainscreen.py:207
+msgid "No Medal Yet"
+msgstr "Chưa đoạt huy chương"
+
+#: mainscreen.py:208
+msgid "Bronze Medal"
+msgstr "Huy chương Đồng thiếc"
+
+#: mainscreen.py:209
+msgid "Silver Medal"
+msgstr "Huy chương Bạc"
+
+#: mainscreen.py:210
+msgid "Gold Medal"
+msgstr "Huy chương Vàng"
+
+#: balloongame.py:210
+msgid "You finished!"
+msgstr "Bạn đã kết thúc !"
+
+#: balloongame.py:219
+#, python-format
+msgid "Your score was %(score)d."
+msgstr "Điểm của bạn là %(score)d."
+
+#: balloongame.py:221
+#, python-format
+msgid "You earned a %(type)s medal!"
+msgstr "Bạn đã đoạt một huy chương %(type)s !"
+
+#: balloongame.py:223 medalscreen.py:99
+msgid "Press the ENTER key to continue."
+msgstr "Bấm phím Enter để tiếp tục."
+
+#: balloongame.py:321 balloongame.py:329
+#, python-format
+msgid "SCORE: %d"
+msgstr "ĐIỂM: %d"
+
+#: balloongame.py:340
+msgid "Type the words to pop the balloons!"
+msgstr "Gõ mỗi từ để vỡ bong bóng !"
+
+#: typingturtle.py:97 editlessonlistscreen.py:47
+msgid "Edit Lessons"
+msgstr "Sửa bài học"
 
 #: lessonbuilder.py:261 lessonscreen.py:615
 msgid "Well done!"
@@ -401,6 +433,30 @@ msgstr "Bấm phím Enter lần nữa, dùng ngón tay út bên phải."
 msgid "Copy out the following text."
 msgstr "Hãy sao chép chuỗi chữ theo đây."
 
+#: editlessonlistscreen.py:94
+msgid "Import Lessons from Journal"
+msgstr "Nhập bài học từ Nhật ký"
+
+#: editlessonlistscreen.py:99
+msgid "Export Lessons to Journal"
+msgstr "Xuất bài học tới Nhật ký"
+
+#: editlessonlistscreen.py:104
+msgid "Save Lessons to Activity"
+msgstr "Lưu bài học vào Hoạt động"
+
+#: editlessonlistscreen.py:201
+msgid "Delete Lesson?"
+msgstr "Xoá bài học ?"
+
+#: editlessonlistscreen.py:202
+msgid "Deleting the lesson will erase the lesson content."
+msgstr "Xoá bài học thì cũng xoá nội dung của bài học."
+
+#: editlessonlistscreen.py:300
+msgid " (Exported Lessons)"
+msgstr " (Bài học đã xuất)"
+
 #: lessonscreen.py:39
 msgid "left little finger"
 msgstr "ngón tay út bên trái"
@@ -491,8 +547,8 @@ msgstr "Bạn đã hoàn thành bài học này trong %(time)d giây, với %(er
 #: lessonscreen.py:624
 #, python-format
 msgid ""
-"Your words per minute (WPM) was %(wpm)d, and your accuracy was %(accuracy)d%"
-"%.\n"
+"Your words per minute (WPM) was %(wpm)d, and your accuracy was %(accuracy)d"
+"%%.\n"
 "\n"
 msgstr ""
 "Bạn đã gõ %(wpm)d từ mỗi phút, với độ chính xác %(accuracy)d%%.\n"
@@ -532,42 +588,6 @@ msgid "You almost got a medal!  Next time, try to type a little faster."
 msgstr ""
 "Bạn đã gần đến đoạt một huy chương !  Lần kế tiếp, hãy cố gắng gõ nhanh hơn "
 "một ít."
-
-#: mainscreen.py:56
-msgid "Next"
-msgstr "Tiếp"
-
-#: mainscreen.py:65
-msgid "Previous"
-msgstr "Lùi"
-
-#: mainscreen.py:72
-msgid "Start Lesson"
-msgstr "Học đi"
-
-#: mainscreen.py:170
-msgid ""
-"You earned a medal in this lesson!  Advance to the next one\n"
-"by clicking the Next button."
-msgstr ""
-"Bạn đã đoạt một huy chương trong bài học này !  Hãy tiếp tới bài học sau "
-"bằng cách nhấn vào cái nút Tiếp."
-
-#: mainscreen.py:201
-msgid "No Medal Yet"
-msgstr "Chưa đoạt huy chương"
-
-#: mainscreen.py:202
-msgid "Bronze Medal"
-msgstr "Huy chương Đồng thiếc"
-
-#: mainscreen.py:203
-msgid "Silver Medal"
-msgstr "Huy chương Bạc"
-
-#: mainscreen.py:204
-msgid "Gold Medal"
-msgstr "Huy chương Vàng"
 
 #: medalscreen.py:54
 msgid ""

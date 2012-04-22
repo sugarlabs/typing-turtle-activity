@@ -6,102 +6,29 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-01-18 13:06-0500\n"
-"PO-Revision-Date: 2009-11-25 18:33-0800\n"
-"Last-Translator: Батнасан <batnasan_bagsh@yahoo.com>\n"
+"POT-Creation-Date: 2011-08-08 09:54-0300\n"
+"PO-Revision-Date: 2012-03-09 04:20+0200\n"
+"Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 1.3.0\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 2.0.5\n"
 
-#: activity/activity.info:2 titlescene.py:49 typingturtle.py:60
+#: activity/activity.info:2 typingturtle.py:68 titlescene.py:49
 msgid "Typing Turtle"
-msgstr "  Бичээч яст мэлхий"
-
-#: balloongame.py:53 editlessonlistscreen.py:50 editlessonscreen.py:49
-#: editlessonscreen.py:570 lessonscreen.py:64
-msgid "Go Back"
-msgstr "Буцаад"
-
-#: balloongame.py:210
-msgid "You finished!"
-msgstr "Та дуусчихлаа"
-
-#: balloongame.py:219
-#, python-format
-msgid "Your score was %(score)d."
-msgstr "Таны оноо %(score)d."
-
-#: balloongame.py:221
-#, python-format
-msgid "You earned a %(type)s medal!"
-msgstr "Та  %(type)s медаль авлаа. "
-
-#: balloongame.py:223 medalscreen.py:99
-msgid "Press the ENTER key to continue."
-msgstr "Та  ENTER товч дарж үргэлжлүүлнэ үү!"
-
-#: balloongame.py:321 balloongame.py:329
-#, python-format
-msgid "SCORE: %d"
-msgstr "Оноо: %d"
-
-#: balloongame.py:340
-msgid "Type the words to pop the balloons!"
-msgstr "Бөмбөлөг дээрх үгнүүдийг бичээрэй!"
-
-#: editlessonlistscreen.py:47 typingturtle.py:92
-msgid "Edit Lessons"
-msgstr "Хичээлүүд засварлах"
-
-#: editlessonlistscreen.py:74 editlessonscreen.py:271
-msgid "Name"
-msgstr "Нэр"
-
-#: editlessonlistscreen.py:79 editlessonscreen.py:302
-msgid "Description"
-msgstr "Тайлбар"
-
-#: editlessonlistscreen.py:85 editlessonscreen.py:283
-msgid "Type"
-msgstr "Төрөл"
-
-#: editlessonlistscreen.py:94
-msgid "Import Lessons from Journal"
-msgstr "Журналаас хичээлүүд оруулах"
-
-#: editlessonlistscreen.py:99
-msgid "Export Lessons to Journal"
-msgstr "Журнал руу хичээлүүд гаргах"
-
-#: editlessonlistscreen.py:104
-msgid "Save Lessons to Activity"
-msgstr ""
-
-#: editlessonlistscreen.py:163 editlessonscreen.py:188
-msgid "Text"
-msgstr "Бичвэр"
-
-#: editlessonlistscreen.py:165 editlessonscreen.py:290
-msgid "Balloon Game"
-msgstr "Бөмбөлөгөн тоглоом"
-
-#: editlessonlistscreen.py:201
-msgid "Delete Lesson?"
-msgstr ""
-
-#: editlessonlistscreen.py:202
-msgid "Deleting the lesson will erase the lesson content."
-msgstr ""
-
-#: editlessonlistscreen.py:300
-msgid " (Exported Lessons)"
-msgstr " (Экспортлосон хичээлүүд)"
+msgstr "Бичээч яст мэлхий"
 
 #: editlessonscreen.py:46
 msgid "Edit a Lesson"
 msgstr "Хичээл засварлах"
+
+#: editlessonscreen.py:49 editlessonscreen.py:570 balloongame.py:53
+#: editlessonlistscreen.py:50 lessonscreen.py:64
+msgid "Go Back"
+msgstr "Буцаад"
 
 #: editlessonscreen.py:76
 msgid "New keys"
@@ -140,6 +67,10 @@ msgstr "Үгнүүд"
 msgid "Instructions"
 msgstr "Зааварчилгаанууд"
 
+#: editlessonscreen.py:188 editlessonlistscreen.py:163
+msgid "Text"
+msgstr "Бичвэр"
+
 #: editlessonscreen.py:230
 msgid "Accuracy"
 msgstr "Амжилт"
@@ -156,9 +87,25 @@ msgstr "Оноо"
 msgid "Lesson Details"
 msgstr "Хичээлний задаргаа"
 
+#: editlessonscreen.py:271 editlessonlistscreen.py:74
+msgid "Name"
+msgstr "Нэр"
+
+#: editlessonscreen.py:283 editlessonlistscreen.py:85
+msgid "Type"
+msgstr "Төрөл"
+
 #: editlessonscreen.py:287
 msgid "Normal Lesson"
 msgstr "Энгийн хичээл"
+
+#: editlessonscreen.py:290 editlessonlistscreen.py:165
+msgid "Balloon Game"
+msgstr "Бөмбөлөгөн тоглоом"
+
+#: editlessonscreen.py:302 editlessonlistscreen.py:79
+msgid "Description"
+msgstr "Тайлбар"
 
 #: editlessonscreen.py:320
 msgid "Options"
@@ -197,6 +144,73 @@ msgid ""
 "Type or paste words here, for the Automatic Lesson Generator.  If empty, the "
 "dictionary will be used."
 msgstr ""
+
+#: mainscreen.py:56
+msgid "Next"
+msgstr "Дараагийнх"
+
+#: mainscreen.py:65
+msgid "Previous"
+msgstr "Өмнөх"
+
+#: mainscreen.py:72
+msgid "Start Lesson"
+msgstr "Хичээлээ эхлэе"
+
+#: mainscreen.py:176
+msgid ""
+"You earned a medal in this lesson!  Advance to the next one\n"
+"by clicking the Next button."
+msgstr ""
+"Та энэ хичээлээр медаль авлаа. Дараагийн хичээлдээ \n"
+"орохдоо Дараагийнх товчлуур дээр дарна уу."
+
+#: mainscreen.py:207
+msgid "No Medal Yet"
+msgstr "Медальгүй"
+
+#: mainscreen.py:208
+msgid "Bronze Medal"
+msgstr "Хүрэл медаль"
+
+#: mainscreen.py:209
+msgid "Silver Medal"
+msgstr "Мөнгөн медаль"
+
+#: mainscreen.py:210
+msgid "Gold Medal"
+msgstr "Алтан медаль"
+
+#: balloongame.py:210
+msgid "You finished!"
+msgstr "Та дуусчихлаа"
+
+#: balloongame.py:219
+#, python-format
+msgid "Your score was %(score)d."
+msgstr "Таны оноо %(score)d."
+
+#: balloongame.py:221
+#, python-format
+msgid "You earned a %(type)s medal!"
+msgstr "Та %(type)s медаль авлаа."
+
+#: balloongame.py:223 medalscreen.py:99
+msgid "Press the ENTER key to continue."
+msgstr "Та ENTER товч дарж үргэлжлүүлнэ үү!"
+
+#: balloongame.py:321 balloongame.py:329
+#, python-format
+msgid "SCORE: %d"
+msgstr "Оноо: %d"
+
+#: balloongame.py:340
+msgid "Type the words to pop the balloons!"
+msgstr "Бөмбөлөг дээрх үгнүүдийг бичээрэй!"
+
+#: typingturtle.py:97 editlessonlistscreen.py:47
+msgid "Edit Lessons"
+msgstr "Хичээлүүд засварлах"
 
 #: lessonbuilder.py:261 lessonscreen.py:615
 msgid "Well done!"
@@ -285,11 +299,11 @@ msgstr "баруун эрхий"
 #: lessonbuilder.py:320
 #, python-format
 msgid " and %s keys"
-msgstr "ба  %s товчлуурууд"
+msgstr " ба %s товчлуурууд"
 
 #: lessonbuilder.py:322
 msgid " key"
-msgstr "товчлуур"
+msgstr " товчлуур"
 
 #: lessonbuilder.py:325
 #, python-format
@@ -312,7 +326,7 @@ msgstr "Дадлага бичиж точвлуураа нүдлэнэ үү."
 
 #: lessonbuilder.py:371
 msgid "Now put the keys together into pairs."
-msgstr "Одоо хоёуланг нь хамтад нь дарна уу"
+msgstr "Одоо хоёуланг нь хамтад нь дарна уу."
 
 #: lessonbuilder.py:376
 msgid "Time to type jumbles."
@@ -324,14 +338,14 @@ msgstr "Жинхэнэ үг бичих цаг."
 
 #: lessonbuilder.py:390
 msgid "Hihowahyah!  Ready to learn the secret of fast typing?\n"
-msgstr "Сайн байна уу? Хурдан бичихийн нууцад нэвтэрмээр байна уу? \n"
+msgstr "Сайн байна уу?  Хурдан бичихийн нууцад нэвтэрмээр байна уу?\n"
 
 #: lessonbuilder.py:391
 msgid ""
 "Always use the correct finger to press each key!\n"
 "\n"
 msgstr ""
-"Товчлуур бүрийг дандаа зөв хуруугаар дараарай. \n"
+"Товчлуур бүрийг дандаа зөв хуруугаар дараарай.\n"
 "\n"
 
 #: lessonbuilder.py:392
@@ -352,18 +366,18 @@ msgstr ""
 
 #: lessonbuilder.py:398
 msgid "Press the SPACE bar again with your thumb."
-msgstr "ЗАЙ товчлуурыг дахиад эрхий хуруугаарай дараарай. "
+msgstr "ЗАЙ товчлуурыг дахиад эрхий хуруугаарай дараарай."
 
 #: lessonbuilder.py:402
 msgid "Now I'll teach you the second key, ENTER.  "
-msgstr "Одоо би танд дараагийн товчлуур ENTER -г зааж өгье..  "
+msgstr "Одоо би танд дараагийн товчлуур ENTER -г зааж өгье.  "
 
 #: lessonbuilder.py:403
 msgid ""
 "That's the big square key near your right little finger.\n"
 "\n"
 msgstr ""
-"Таны баруун гарын чинь эрхий хурууны дэргэд том дөрвөлжин товч байгаа. \n"
+"Таны баруун гарын чинь эрхий хурууны дэргэд том дөрвөлжин товч байгаа.\n"
 "\n"
 
 #: lessonbuilder.py:404
@@ -375,7 +389,7 @@ msgid ""
 "Great!  When typing, the ENTER key is used to begin a new line.\n"
 "\n"
 msgstr ""
-"Зүйтэй. Та бичих явцдаа ENTER дарж шинэ мөр эхлүүлж болно.\n"
+"Зүйтэй.  Та бичих явцдаа ENTER дарж шинэ мөр эхлүүлж болно.\n"
 "\n"
 
 #: lessonbuilder.py:409
@@ -385,6 +399,30 @@ msgstr "Баруун гарын чигчий хуруугаараа ENTER тов
 #: lessonbuilder.py:417
 msgid "Copy out the following text."
 msgstr "Дараах бичвэрийг хувилж бичээрэй."
+
+#: editlessonlistscreen.py:94
+msgid "Import Lessons from Journal"
+msgstr "Журналаас хичээлүүд оруулах"
+
+#: editlessonlistscreen.py:99
+msgid "Export Lessons to Journal"
+msgstr "Журнал руу хичээлүүд гаргах"
+
+#: editlessonlistscreen.py:104
+msgid "Save Lessons to Activity"
+msgstr ""
+
+#: editlessonlistscreen.py:201
+msgid "Delete Lesson?"
+msgstr ""
+
+#: editlessonlistscreen.py:202
+msgid "Deleting the lesson will erase the lesson content."
+msgstr ""
+
+#: editlessonlistscreen.py:300
+msgid " (Exported Lessons)"
+msgstr " (Экспортлосон хичээлүүд)"
 
 #: lessonscreen.py:39
 msgid "left little finger"
@@ -432,29 +470,29 @@ msgstr "<b>Амжилт:</b> %(accuracy)d%%"
 #, python-format
 #, fuzzy
 msgid "Press and hold the shift key with your %(finger)s, "
-msgstr "SHIFT точвлууртай хамт  %(finger)s -гаа хамтатган дараарай, "
+msgstr "SHIFT точвлууртай хамт %(finger)s -гаа хамтатган дараарай, "
 
 #: lessonscreen.py:510 lessonscreen.py:514 lessonscreen.py:518
 #, python-format
 #, fuzzy
 msgid "then press the %(letter)s key with your %(finger)s."
-msgstr "Ингэвэл  %(letter)s үсгийг таны  %(finger)s хуруу дарна r."
+msgstr "Ингэвэл  %(letter)s үсгийг таны %(finger)s хуруу дарна r."
 
 #: lessonscreen.py:513
 #, fuzzy
 msgid "Press and hold the altgr key, "
-msgstr " ALTGR товчийг дар, "
+msgstr "ALTGR товчийг дар, "
 
 #: lessonscreen.py:517
 #, fuzzy
 msgid "Press and hold the altgr and shift keys, "
-msgstr " ALTGR болон SHIFT товчнуудыг хамт дар, "
+msgstr "ALTGR болон SHIFT товчнуудыг хамт дар, "
 
 #: lessonscreen.py:521
 #, python-format
 #, fuzzy
 msgid "Press the %(letter)s key with your %(finger)s."
-msgstr " %(letter)s -г таны %(finger)s хуруу дарна."
+msgstr "%(letter)s -г таны %(finger)s хуруу дарна."
 
 #: lessonscreen.py:541
 #, python-format
@@ -476,17 +514,17 @@ msgstr "Сайхаан!"
 #: lessonscreen.py:622
 #, python-format
 msgid "You finished the lesson in %(time)d seconds, with %(errors)d errors.\n"
-msgstr "Та хичээлээ %(time)d  секундэд, %(errors)d алдаатай гүйцэтгэсэн байна.\n"
+msgstr "Та хичээлээ %(time)d секундэд, %(errors)d алдаатай гүйцэтгэсэн байна.\n"
 
 #: lessonscreen.py:624
 #, python-format
 msgid ""
-"Your words per minute (WPM) was %(wpm)d, and your accuracy was %(accuracy)d%"
-"%.\n"
+"Your words per minute (WPM) was %(wpm)d, and your accuracy was %(accuracy)d"
+"%%.\n"
 "\n"
 msgstr ""
-"Таны нэг минутанд бичсэн үгийн тоо  (Үг / Мин )  %(wpm)d, болон таны амжилт "
-" %(accuracy)d%% байна..\n"
+"Таны нэг минутанд бичсэн үгийн тоо  (Үг / Мин ) %(wpm)d, болон таны амжилт  "
+"%(accuracy)d%% байна.\n"
 "\n"
 
 #: lessonscreen.py:627
@@ -510,7 +548,7 @@ msgstr "Баяр хүргэе. Та  %(type)s медаль хүртлээ!"
 
 #: lessonscreen.py:643
 msgid "You need to practice this lesson more before moving on."
-msgstr "Дараагийн хичээлд орохоосоо өмнөө жаахан дадлага хийгээрэй. "
+msgstr "Дараагийн хичээлд орохоосоо өмнөө жаахан дадлага хийгээрэй."
 
 #: lessonscreen.py:646
 msgid "You almost got a medal!  Next time, try not to make as many errors."
@@ -518,43 +556,7 @@ msgstr "Та бараг л медаль авах дөхлөө: Дараагий�
 
 #: lessonscreen.py:649
 msgid "You almost got a medal!  Next time, try to type a little faster."
-msgstr "Та бараг л медаль авах дөхлөө. Дараагийн удаа жаахан хурдан бичээрэй."
-
-#: mainscreen.py:56
-msgid "Next"
-msgstr "Дараагийнх"
-
-#: mainscreen.py:65
-msgid "Previous"
-msgstr "Өмнөх"
-
-#: mainscreen.py:72
-msgid "Start Lesson"
-msgstr "Хичээлээ эхлэе"
-
-#: mainscreen.py:170
-msgid ""
-"You earned a medal in this lesson!  Advance to the next one\n"
-"by clicking the Next button."
-msgstr ""
-"Та энэ хичээлээр медаль авлаа. Дараагийн хичээлдээ \n"
-"орохдоо Дараагийнх товчлуур дээр дарна уу"
-
-#: mainscreen.py:201
-msgid "No Medal Yet"
-msgstr "Медальгүй"
-
-#: mainscreen.py:202
-msgid "Bronze Medal"
-msgstr "Хүрэл медаль"
-
-#: mainscreen.py:203
-msgid "Silver Medal"
-msgstr "Мөнгөн медаль"
-
-#: mainscreen.py:204
-msgid "Gold Medal"
-msgstr "Алтан медаль"
+msgstr "Та бараг л медаль авах дөхлөө.  Дараагийн удаа жаахан хурдан бичээрэй."
 
 #: medalscreen.py:54
 msgid ""
@@ -573,7 +575,7 @@ msgstr "<span font_desc='Sans 16'><b><u><i>%(nick)s</i></u></b></span>"
 #: medalscreen.py:63
 #, python-format
 msgid "<span font_desc='Sans 16'>earned a %(type)s medal in </span>"
-msgstr "<span font_desc='Sans 16'>танд  %(type)s медалийг </span>"
+msgstr "<span font_desc='Sans 16'>танд %(type)s медалийг </span>"
 
 #: medalscreen.py:66
 #, python-format
@@ -586,7 +588,7 @@ msgstr ""
 #, python-format
 msgid "<span font_desc='Sans 16'>on <b><u><i>%(date)s</i></u></b>.</span>"
 msgstr ""
-"<span font_desc='Sans 16'>on <b><u><i>Огноо: %(date)s  </i></u></b>.</span>"
+"<span font_desc='Sans 16'>on <b><u><i>Огноо: %(date)s</i></u></b>.</span>"
 
 #: medalscreen.py:86
 #, python-format

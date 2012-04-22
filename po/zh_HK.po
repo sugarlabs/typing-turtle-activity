@@ -15,101 +15,27 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-01-18 13:06-0500\n"
+"POT-Creation-Date: 2011-08-08 09:54-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Translate Toolkit 1.6.0\n"
 
-#: activity/activity.info:2 titlescene.py:49 typingturtle.py:60
+#: activity/activity.info:2 typingturtle.py:68 titlescene.py:49
 msgid "Typing Turtle"
-msgstr ""
-
-#: balloongame.py:53 editlessonlistscreen.py:50 editlessonscreen.py:49
-#: editlessonscreen.py:570 lessonscreen.py:64
-msgid "Go Back"
-msgstr ""
-
-#: balloongame.py:210
-msgid "You finished!"
-msgstr ""
-
-#: balloongame.py:219
-#, python-format
-msgid "Your score was %(score)d."
-msgstr ""
-
-#: balloongame.py:221
-#, python-format
-msgid "You earned a %(type)s medal!"
-msgstr ""
-
-#: balloongame.py:223 medalscreen.py:99
-msgid "Press the ENTER key to continue."
-msgstr ""
-
-#: balloongame.py:321 balloongame.py:329
-#, python-format
-msgid "SCORE: %d"
-msgstr ""
-
-#: balloongame.py:340
-msgid "Type the words to pop the balloons!"
-msgstr ""
-
-#: editlessonlistscreen.py:47 typingturtle.py:92
-msgid "Edit Lessons"
-msgstr ""
-
-#: editlessonlistscreen.py:74 editlessonscreen.py:271
-msgid "Name"
-msgstr ""
-
-#: editlessonlistscreen.py:79 editlessonscreen.py:302
-msgid "Description"
-msgstr ""
-
-#: editlessonlistscreen.py:85 editlessonscreen.py:283
-msgid "Type"
-msgstr ""
-
-#: editlessonlistscreen.py:94
-msgid "Import Lessons from Journal"
-msgstr ""
-
-#: editlessonlistscreen.py:99
-msgid "Export Lessons to Journal"
-msgstr ""
-
-#: editlessonlistscreen.py:104
-msgid "Save Lessons to Activity"
-msgstr ""
-
-#: editlessonlistscreen.py:163 editlessonscreen.py:188
-msgid "Text"
-msgstr ""
-
-#: editlessonlistscreen.py:165 editlessonscreen.py:290
-msgid "Balloon Game"
-msgstr ""
-
-#: editlessonlistscreen.py:201
-msgid "Delete Lesson?"
-msgstr ""
-
-#: editlessonlistscreen.py:202
-msgid "Deleting the lesson will erase the lesson content."
-msgstr ""
-
-#: editlessonlistscreen.py:300
-msgid " (Exported Lessons)"
 msgstr ""
 
 #: editlessonscreen.py:46
 msgid "Edit a Lesson"
+msgstr ""
+
+#: editlessonscreen.py:49 editlessonscreen.py:570 balloongame.py:53
+#: editlessonlistscreen.py:50 lessonscreen.py:64
+msgid "Go Back"
 msgstr ""
 
 #: editlessonscreen.py:76
@@ -149,6 +75,10 @@ msgstr ""
 msgid "Instructions"
 msgstr ""
 
+#: editlessonscreen.py:188 editlessonlistscreen.py:163
+msgid "Text"
+msgstr ""
+
 #: editlessonscreen.py:230
 msgid "Accuracy"
 msgstr ""
@@ -165,8 +95,24 @@ msgstr ""
 msgid "Lesson Details"
 msgstr ""
 
+#: editlessonscreen.py:271 editlessonlistscreen.py:74
+msgid "Name"
+msgstr ""
+
+#: editlessonscreen.py:283 editlessonlistscreen.py:85
+msgid "Type"
+msgstr ""
+
 #: editlessonscreen.py:287
 msgid "Normal Lesson"
+msgstr ""
+
+#: editlessonscreen.py:290 editlessonlistscreen.py:165
+msgid "Balloon Game"
+msgstr ""
+
+#: editlessonscreen.py:302 editlessonlistscreen.py:79
+msgid "Description"
 msgstr ""
 
 #: editlessonscreen.py:320
@@ -205,6 +151,71 @@ msgstr ""
 msgid ""
 "Type or paste words here, for the Automatic Lesson Generator.  If empty, the "
 "dictionary will be used."
+msgstr ""
+
+#: mainscreen.py:56
+msgid "Next"
+msgstr ""
+
+#: mainscreen.py:65
+msgid "Previous"
+msgstr ""
+
+#: mainscreen.py:72
+msgid "Start Lesson"
+msgstr ""
+
+#: mainscreen.py:176
+msgid ""
+"You earned a medal in this lesson!  Advance to the next one\n"
+"by clicking the Next button."
+msgstr ""
+
+#: mainscreen.py:207
+msgid "No Medal Yet"
+msgstr ""
+
+#: mainscreen.py:208
+msgid "Bronze Medal"
+msgstr ""
+
+#: mainscreen.py:209
+msgid "Silver Medal"
+msgstr ""
+
+#: mainscreen.py:210
+msgid "Gold Medal"
+msgstr ""
+
+#: balloongame.py:210
+msgid "You finished!"
+msgstr ""
+
+#: balloongame.py:219
+#, python-format
+msgid "Your score was %(score)d."
+msgstr ""
+
+#: balloongame.py:221
+#, python-format
+msgid "You earned a %(type)s medal!"
+msgstr ""
+
+#: balloongame.py:223 medalscreen.py:99
+msgid "Press the ENTER key to continue."
+msgstr ""
+
+#: balloongame.py:321 balloongame.py:329
+#, python-format
+msgid "SCORE: %d"
+msgstr ""
+
+#: balloongame.py:340
+msgid "Type the words to pop the balloons!"
+msgstr ""
+
+#: typingturtle.py:97 editlessonlistscreen.py:47
+msgid "Edit Lessons"
 msgstr ""
 
 #: lessonbuilder.py:261 lessonscreen.py:615
@@ -380,6 +391,30 @@ msgstr ""
 msgid "Copy out the following text."
 msgstr ""
 
+#: editlessonlistscreen.py:94
+msgid "Import Lessons from Journal"
+msgstr ""
+
+#: editlessonlistscreen.py:99
+msgid "Export Lessons to Journal"
+msgstr ""
+
+#: editlessonlistscreen.py:104
+msgid "Save Lessons to Activity"
+msgstr ""
+
+#: editlessonlistscreen.py:201
+msgid "Delete Lesson?"
+msgstr ""
+
+#: editlessonlistscreen.py:202
+msgid "Deleting the lesson will erase the lesson content."
+msgstr ""
+
+#: editlessonlistscreen.py:300
+msgid " (Exported Lessons)"
+msgstr ""
+
 #: lessonscreen.py:39
 msgid "left little finger"
 msgstr ""
@@ -470,8 +505,8 @@ msgstr ""
 #: lessonscreen.py:624
 #, python-format
 msgid ""
-"Your words per minute (WPM) was %(wpm)d, and your accuracy was %(accuracy)d%"
-"%.\n"
+"Your words per minute (WPM) was %(wpm)d, and your accuracy was %(accuracy)d"
+"%%.\n"
 "\n"
 msgstr ""
 
@@ -502,40 +537,6 @@ msgstr ""
 
 #: lessonscreen.py:649
 msgid "You almost got a medal!  Next time, try to type a little faster."
-msgstr ""
-
-#: mainscreen.py:56
-msgid "Next"
-msgstr ""
-
-#: mainscreen.py:65
-msgid "Previous"
-msgstr ""
-
-#: mainscreen.py:72
-msgid "Start Lesson"
-msgstr ""
-
-#: mainscreen.py:170
-msgid ""
-"You earned a medal in this lesson!  Advance to the next one\n"
-"by clicking the Next button."
-msgstr ""
-
-#: mainscreen.py:201
-msgid "No Medal Yet"
-msgstr ""
-
-#: mainscreen.py:202
-msgid "Bronze Medal"
-msgstr ""
-
-#: mainscreen.py:203
-msgid "Silver Medal"
-msgstr ""
-
-#: mainscreen.py:204
-msgid "Gold Medal"
 msgstr ""
 
 #: medalscreen.py:54
