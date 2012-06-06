@@ -30,20 +30,20 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-08-08 09:54-0300\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2012-05-22 03:03+0200\n"
+"Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 1.5.2\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Pootle 2.0.5\n"
 
 #: activity/activity.info:2 typingturtle.py:68 titlescene.py:49
 msgid "Typing Turtle"
@@ -55,8 +55,9 @@ msgstr ""
 
 #: editlessonscreen.py:49 editlessonscreen.py:570 balloongame.py:53
 #: editlessonlistscreen.py:50 lessonscreen.py:64
+#, fuzzy
 msgid "Go Back"
-msgstr ""
+msgstr "Mundur"
 
 #: editlessonscreen.py:76
 msgid "New keys"
@@ -67,12 +68,14 @@ msgid "Known keys"
 msgstr ""
 
 #: editlessonscreen.py:78
+#, fuzzy
 msgid "Length"
-msgstr ""
+msgstr "Panjang"
 
 #: editlessonscreen.py:89
+#, fuzzy
 msgid "Generate!"
-msgstr ""
+msgstr "Hasilkan!"
 
 #: editlessonscreen.py:107 editlessonscreen.py:567
 msgid "Edit Word List"
@@ -80,24 +83,29 @@ msgstr ""
 
 #: editlessonscreen.py:123
 #, python-format
+#, python-format, fuzzy
 msgid "Step #%d"
-msgstr ""
+msgstr "Langkah #%d"
 
 #: editlessonscreen.py:129
+#, fuzzy
 msgid "Keys"
-msgstr ""
+msgstr "Kunci"
 
 #: editlessonscreen.py:130 editlessonscreen.py:381
+#, fuzzy
 msgid "Words"
-msgstr ""
+msgstr "Kata"
 
 #: editlessonscreen.py:167
+#, fuzzy
 msgid "Instructions"
-msgstr ""
+msgstr "Instruksi"
 
 #: editlessonscreen.py:188 editlessonlistscreen.py:163
+#, fuzzy
 msgid "Text"
-msgstr ""
+msgstr "Teks"
 
 #: editlessonscreen.py:230
 msgid "Accuracy"
@@ -108,20 +116,23 @@ msgid "WPM"
 msgstr ""
 
 #: editlessonscreen.py:245
+#, fuzzy
 msgid "Score"
-msgstr ""
+msgstr "Nilai"
 
 #: editlessonscreen.py:266
 msgid "Lesson Details"
 msgstr ""
 
 #: editlessonscreen.py:271 editlessonlistscreen.py:74
+#, fuzzy
 msgid "Name"
-msgstr ""
+msgstr "Nama"
 
 #: editlessonscreen.py:283 editlessonlistscreen.py:85
+#, fuzzy
 msgid "Type"
-msgstr ""
+msgstr "Jenis"
 
 #: editlessonscreen.py:287
 msgid "Normal Lesson"
@@ -132,12 +143,14 @@ msgid "Balloon Game"
 msgstr ""
 
 #: editlessonscreen.py:302 editlessonlistscreen.py:79
+#, fuzzy
 msgid "Description"
-msgstr ""
+msgstr "Keterangan"
 
 #: editlessonscreen.py:320
+#, fuzzy
 msgid "Options"
-msgstr ""
+msgstr "Pilihan"
 
 #: editlessonscreen.py:324
 msgid "Allow Mistakes"
@@ -174,12 +187,14 @@ msgid ""
 msgstr ""
 
 #: mainscreen.py:56
+#, fuzzy
 msgid "Next"
-msgstr ""
+msgstr "Selanjutnya"
 
 #: mainscreen.py:65
+#, fuzzy
 msgid "Previous"
-msgstr ""
+msgstr "Sebelumnya"
 
 #: mainscreen.py:72
 msgid "Start Lesson"
@@ -227,8 +242,9 @@ msgstr ""
 
 #: balloongame.py:321 balloongame.py:329
 #, python-format
+#, python-format, fuzzy
 msgid "SCORE: %d"
-msgstr ""
+msgstr "Nilai: %d"
 
 #: balloongame.py:340
 msgid "Type the words to pop the balloons!"
@@ -324,8 +340,9 @@ msgid " and %s keys"
 msgstr ""
 
 #: lessonbuilder.py:322
+#, fuzzy
 msgid " key"
-msgstr ""
+msgstr " kunci"
 
 #: lessonbuilder.py:325
 #, python-format
@@ -596,4 +613,4 @@ msgstr ""
 #: medalscreen.py:95
 #, python-format
 msgid "<b>SCORE:</b> %(score)d"
-msgstr ""
+msgstr "<b>Nilai:</b> %(score)d"
