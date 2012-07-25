@@ -14,7 +14,10 @@
 # You should have received a copy of the GNU General Public License
 # along with Typing Turtle.  If not, see <http://www.gnu.org/licenses/>.
 
+import math
 import random, datetime
+import pangocairo
+
 from gettext import gettext as _
 
 import gobject, pygtk, gtk, pango
@@ -192,28 +195,35 @@ class BalloonGame(gtk.VBox):
  
         return True
 
-    def draw_results(self, gc):
+    def draw_results(self, cr):
         # Draw background.
         w = self.bounds.width - 400
         h = self.bounds.height - 200
         x = self.bounds.width/2 - w/2
         y = self.bounds.height/2 - h/2
 
-        gc.foreground = self.area.get_colormap().alloc_color(50000,50000,50000)
-        self.area.window.draw_rectangle(gc, True, x, y, w, h)
-        gc.foreground = self.area.get_colormap().alloc_color(0,0,0)
-        self.area.window.draw_rectangle(gc, False, x, y, w, h)
+        cr.set_source_rgb(0.762, 0.762, 0.762)
+        cr.rectangle(x, y, w, h)
+        cr.fill()
+
+        cr.set_source_rgb(0, 0, 0)
+        cr.rectangle(x, y, w, h)
+        cr.stroke()
 
         # Draw text
-        gc.foreground = self.area.get_colormap().alloc_color(0,0,0)
-
         title = _('You finished!') + '\n'
-        layout = self.area.create_pango_layout(title)
-        layout.set_font_description(pango.FontDescription('Serif Bold 16'))    
-        size = layout.get_size()
-        tx = x+w/2-(size[0]/pango.SCALE)/2
+
+        pango_cr = pangocairo.CairoContext(cr)
+        pango_cr.set_source_rgb(0, 0, 0)
+        pango_layout = cr.create_layout()
+        pango_layout.set_font_description(pango.FontDescription('Serif Bold 16'))
+        pango_layout.set_text(title)
+        size = pango_layout.get_size()
+        tx = x + (w / 2) - (size[0] / pango.SCALE) / 2
         ty = y + 100
-        self.area.window.draw_layout(gc, tx, ty, layout)
+        pango_cr.move_to(tx, ty)
+        pango_cr.show_layout(pango_layout)
+        pango_cr.stroke()
 
         report = ''
         report += _('Your score was %(score)d.') % { 'score': self.score } + '\n'
@@ -222,12 +232,18 @@ class BalloonGame(gtk.VBox):
         report += '\n'
         report += _('Press the ENTER key to continue.')
     
-        layout = self.area.create_pango_layout(report)
-        layout.set_font_description(pango.FontDescription('Times 12'))    
-        size = layout.get_size()
-        tx = x+w/2-(size[0]/pango.SCALE)/2
-        ty = y + 200
-        self.area.window.draw_layout(gc, tx, ty, layout)
+        pango_cr = pangocairo.CairoContext(cr)
+        pango_cr.set_source_rgb(0, 0, 0)
+        pango_layout = cr.create_layout()
+        pango_layout.set_font_description(pango.FontDescription('Times 12'))
+        pango_layout.set_text(report)
+        size = pango_layout.get_size()
+        sx = x + w / 2 - (size[0] / pango.SCALE) / 2
+        sy = y + 200
+        pango_cr.move_to(sx, sy)
+        pango_cr.show_layout(pango_layout)
+        pango_cr.stroke()
+
 
     def finish_game(self):
         self.finished = True
@@ -290,29 +306,35 @@ class BalloonGame(gtk.VBox):
         h = int(b.size*1.5 + 10)
         self.area.queue_draw_area(x, y, w, h)
 
-    def draw_balloon(self, gc, b):
+    def draw_balloon(self, cr, b):
         x = int(b.x)
         y = int(b.y)
-        
+
         # Draw the string.
-        gc.foreground = self.area.get_colormap().alloc_color(0,0,0)
-        self.area.window.draw_line(gc, 
-            int(b.x), int(b.y+b.size/2), 
-            int(b.x), int(b.y+b.size))
-        
+        cr.set_source_rgb(0, 0, 0)
+        cr.move_to(int(b.x), int(b.y + b.size / 2))
+        cr.line_to(int(b.x), int(b.y + b.size))
+        cr.stroke()
+
         # Draw the balloon.
-        gc.foreground = self.area.get_colormap().alloc_color(b.color[0],b.color[1],b.color[2])
-        self.area.window.draw_arc(gc, True, x-b.size/2, y-b.size/2, b.size, b.size, 0, 360*64)
-    
-        # Draw the text.
-        gc.foreground = self.area.get_colormap().alloc_color(0,0,0)
-        layout = self.area.create_pango_layout(b.word)
-        layout.set_font_description(pango.FontDescription('Sans 12'))    
-        size = layout.get_size()
-        tx = x-(size[0]/pango.SCALE)/2
-        ty = y-(size[1]/pango.SCALE)/2
-        self.area.window.draw_layout(gc, tx, ty, layout)
-    
+        cr.save()
+        cr.set_source_rgb(b.color[0], b.color[1], b.color[2])
+        cr.arc(b.x, b.y, b.size / 2, 0, 2 * math.pi)
+        cr.fill()
+        cr.restore()
+
+        pango_cr = pangocairo.CairoContext(cr)
+        pango_cr.set_source_rgb(0, 0, 0)
+        pango_layout = cr.create_layout()
+        pango_layout.set_font_description(pango.FontDescription('Sans 12'))
+        pango_layout.set_text(unicode(b.word))
+        size = pango_layout.get_size()
+        x = x - (size[0] / pango.SCALE) / 2
+        y = y - (size[1] / pango.SCALE) / 2
+        pango_cr.move_to(x, y)
+        pango_cr.show_layout(pango_layout)
+        pango_cr.stroke()
+
     def add_score(self, num):
         self.score += num
         self.queue_draw_score()
@@ -325,45 +347,54 @@ class BalloonGame(gtk.VBox):
         y = 20
         self.queue_draw_area(x, y, x+size[0], y+size[1])
 
-    def draw_score(self, gc):
-        layout = self.area.create_pango_layout(_('SCORE: %d') % self.score)
-        layout.set_font_description(pango.FontDescription('Times 14'))    
-        size = layout.get_size()
-        x = self.bounds.width-20-size[0]/pango.SCALE
+    def draw_score(self, cr):
+        pango_cr = pangocairo.CairoContext(cr)
+        pango_cr.set_source_rgb(0, 0, 0)
+        pango_layout = cr.create_layout()
+        pango_layout.set_font_description(pango.FontDescription('Times 14'))
+        pango_layout.set_text(_('SCORE: %d') % self.score)
+        size = pango_layout.get_size()
+        x = self.bounds.width - 20 - size[0] / pango.SCALE
         y = 20
-        self.area.window.draw_layout(gc, x, y, layout)
+        pango_cr.move_to(x, y)
+        pango_cr.show_layout(pango_layout)
+        pango_cr.stroke()
 
-    def draw_instructions(self, gc):
+    def draw_instructions(self, cr):
         # Draw instructions.
-        gc.foreground = self.area.get_colormap().alloc_color(0,0,0)
-
-        layout = self.area.create_pango_layout(_('Type the words to pop the balloons!'))
-        layout.set_font_description(pango.FontDescription('Times 14'))    
-        size = layout.get_size()
-        x = (self.bounds.width - size[0]/pango.SCALE)/2
-        y = self.bounds.height-20 - size[1]/pango.SCALE 
-        self.area.window.draw_layout(gc, x, y, layout)
+        pango_cr = pangocairo.CairoContext(cr)
+        pango_cr.set_source_rgb(0, 0, 0)
+        pango_layout = cr.create_layout()
+        pango_layout.set_font_description(pango.FontDescription('Times 14'))
+        pango_layout.set_text(_('Type the words to pop the balloons!'))
+        size = pango_layout.get_size()
+        x = (self.bounds.width - size[0] / pango.SCALE) / 2
+        y = self.bounds.height - 20 - size[1] / pango.SCALE
+        pango_cr.move_to(x, y)
+        pango_cr.show_layout(pango_layout)
+        pango_cr.stroke()
 
     def draw(self):
         self.bounds = self.area.get_allocation()
 
-        gc = self.area.window.new_gc()
-        
+        cr = self.area.window.cairo_create()
+
         # Draw background.
-        gc.foreground = self.area.get_colormap().alloc_color(60000,60000,65535)
-        self.area.window.draw_rectangle(gc, True, 0, 0, self.bounds.width, self.bounds.height)
+        cr.set_source_rgb(0.915, 0.915, 1)
+        cr.rectangle(0, 0, self.bounds.width, self.bounds.height)
+        cr.fill()
 
         # Draw the balloons.
         for b in self.balloons:
-            self.draw_balloon(gc, b)
+            self.draw_balloon(cr, b)
 
         if self.finished:
-            self.draw_results(gc)
+            self.draw_results(cr)
 
         else:
-            self.draw_instructions(gc)
+            self.draw_instructions(cr)
 
-            self.draw_score(gc)
+            self.draw_score(cr)
 
     def expose_cb(self, area, event):
         self.draw()

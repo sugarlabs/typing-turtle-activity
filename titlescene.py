@@ -20,13 +20,15 @@ from gettext import gettext as _
 
 # Import PyGTK.
 import gobject, pygtk, gtk, pango
+import pangocairo
+
 
 class TitleScene(gtk.DrawingArea):
     # Maximum portion of the screen the background can fill vertically.
     BACKGROUND_HEIGHT_RATIO = 0.6
 
     # Border from top right of screen to draw title at.
-    TITLE_OFFSET = (20, 30)
+    TITLE_OFFSET = (20, 50)
 
     # Font used to display the title.
     TITLE_FONT = 'Times 45'
@@ -52,30 +54,38 @@ class TitleScene(gtk.DrawingArea):
 
     def expose_cb(self, area, event):
         bounds = self.get_allocation()
-        
-        gc = self.get_style().fg_gc[gtk.STATE_NORMAL]
+
+        cr = self.window.cairo_create()
 
         # Background picture.
         x = (bounds.width - self.backgroundpixbuf.get_width())/2
-        self.window.draw_pixbuf(
-            gc, self.backgroundpixbuf, 0, 0, 
-            x, 0, self.backgroundpixbuf.get_width(), self.backgroundpixbuf.get_height())
-        pc = self.create_pango_context()
-        
-        self.layout = self.create_pango_layout('')
-        self.layout.set_font_description(pango.FontDescription(TitleScene.TITLE_FONT))
-        
-        self.layout.set_text(self.title_original)
-        original_size = self.layout.get_size()
-        self.x_text = (bounds.width-original_size[0]/pango.SCALE)-TitleScene.TITLE_OFFSET[0]
+        cr.set_source_pixbuf(self.backgroundpixbuf, 0, 0)
+        cr.rectangle(x, 0, self.backgroundpixbuf.get_width(),
+                     self.backgroundpixbuf.get_height())
+        cr.paint()
+
+        cr = pangocairo.CairoContext(cr)
+        cr.set_source_rgb(0, 0, 0)
+        self.pango_layout = cr.create_layout()
+        self.pango_layout.set_font_description(
+            pango.FontDescription(TitleScene.TITLE_FONT))
+        self.pango_layout.set_text(unicode(self.title_original))
+
+        original_size = self.pango_layout.get_size()
+        self.x_text = (bounds.width - original_size[0] / pango.SCALE) - \
+            TitleScene.TITLE_OFFSET[0]
         self.y_text = TitleScene.TITLE_OFFSET[1]
+
         gobject.timeout_add(50, self.timer_cb)
 
     def draw_text(self):
         # Animated Typing Turtle title.
-        gc = self.get_style().fg_gc[gtk.STATE_NORMAL]
-        self.layout.set_text(self.title_text)
-        self.window.draw_layout(gc, self.x_text, self.y_text, self.layout)
+        cr = self.window.cairo_create()
+
+        cr.move_to(self.x_text, self.y_text)
+        self.pango_layout.set_text(unicode(self.title_text))
+        cr.show_layout(self.pango_layout)
+        cr.stroke()
 
     def timer_cb(self):
         if len(self.title_src) > 0:

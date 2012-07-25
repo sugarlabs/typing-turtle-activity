@@ -16,12 +16,14 @@
 #!/usr/bin/env python
 # vi:sw=4 et 
 
-import pygtk
-pygtk.require('2.0')
 import gtk
+import cairo
+import copy
 import rsvg
 import os, glob, re
 import pango
+import pangocairo
+import StringIO
 from port import json
 import subprocess
 from layouts.olpc import OLPC_LAYOUT
@@ -130,8 +132,7 @@ class KeyboardImages:
             scale_width = int(scale_width * 1.1625)
 
         for filename in glob.iglob('images/OLPC*.svg'):
-            image = gtk.gdk.pixbuf_new_from_file_at_scale(filename, scale_width,
-                                                          self.height, False)
+            image = rsvg.Handle(file=filename)
             name = os.path.basename(filename)
             self.images[name] = image
 
@@ -383,30 +384,27 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
             k['key-width'] = int(k['key-width'] * width_scale)
             k['key-height'] = int(k['key-height'] * height_scale)
 
-        self._make_all_key_images()
+    def _draw_key(self, k, cr):
+        bounds = self.get_allocation()
 
-    def _make_key_images(self, key):
-        key['key-images'] = {}
-        for group in [0, 1]:
-            for state in [0, gtk.gdk.SHIFT_MASK, gtk.gdk.MOD5_MASK, gtk.gdk.SHIFT_MASK|gtk.gdk.MOD5_MASK]:
-                key['key-images'][(state, group)] = self.get_key_image(key, state, group)
+        # HACK: this is a hack used when the widget is not shown yet,
+        # in that case bounds will be gtk.gdk.Rectangle(-1, -1, 1, 1)
+        # and the key will be outside the canvas. This is used only
+        # for the first key that appears below the instructions
+        if bounds.x == -1:
+            screen_x = screen_y = 0
+        else:
+            screen_x = int(bounds.width - self.image.width) / 2
+            screen_y = int(bounds.height - self.image.height) / 2
 
-    def _make_all_key_images(self):
-        for key in self.keys:
-            self._make_key_images(key)
+        x1 = k['key-x'] + screen_x
+        y1 = k['key-y'] + screen_y
+        x2 = x1 + k['key-width']
+        y2 = y1 + k['key-height']
 
-    def _draw_key(self, k, draw, gc, for_pixmap, w=0, h=0):
-        x1 = 0 
-        y1 = 0
-        x2 = w
-        y2 = h
-
-        # Outline rounded box.
-        gc.foreground = self.get_colormap().alloc_color(int(0.4*65536),int(0.7*65536),int(0.4*65536))
-        
         corner = 5
         points = [
-            (x1 + corner, y1), 
+            (x1 + corner, y1),
             (x2 - corner, y1),
             (x2, y1 + corner),
             (x2, y2 - corner),
@@ -414,26 +412,40 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
             (x1 + corner, y2),
             (x1, y2 - corner),
             (x1, y1 + corner)
-        ]
-        draw.draw_polygon(gc, True, points)
-        
-        # Inner text.
-        gc.foreground = self.get_colormap().alloc_color(int(1.0*65536),int(1.0*65536),int(1.0*65536))
+            ]
+
+        cr.save()
+        cr.new_path()
+        cr.set_source_rgb(0.396, 0.698, 0.392)
+        cr.set_line_width(2)
+        cr.move_to(*points[0])
+        for point in points:
+            cr.line_to(*point)
+        cr.line_to(*points[0])
+        cr.close_path()
+        cr.fill_preserve()
+        cr.stroke()
+        cr.restore()
 
         text = ''
         if k['key-label']:
             text = k['key-label']
         else:
-            text = self.get_letter_for_key_state_group(k, self.active_state, self.active_group)
-        
-        try:
-            layout = self.create_pango_layout(unicode(text))
-            layout.set_font_description(pango.FontDescription('Monospace'))
-            draw.draw_layout(gc, x1+8, y2-23, layout)
-        except:
-            pass
+            text = self.get_letter_for_key_state_group(
+                k, self.active_state, self.active_group)
 
-    def _expose_hands(self, gc):
+        pango_context = pangocairo.CairoContext(cr)
+        pango_context.set_source_rgb(0, 0, 0)
+
+        pango_layout = pango_context.create_layout()
+        pango_layout.set_font_description(pango.FontDescription('Monospace'))
+        pango_layout.set_text(unicode(text))
+
+        pango_context.move_to(x1 + 8, y2 - 23)
+        pango_context.show_layout(pango_layout)
+        cr.stroke()
+
+    def _expose_hands(self, cr):
         lhand_image = self.image.images['OLPC_Lhand_HOMEROW.svg']
         rhand_image = self.image.images['OLPC_Rhand_HOMEROW.svg']
 
@@ -459,39 +471,32 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
 
                 # TODO: Do something about ALTGR.
 
-        bounds = self.get_allocation()
-        screen_x = int(bounds.width-self.image.width)/2
-        screen_y = int(bounds.height-self.image.height)/2
+        # bounds = self.get_allocation()
+        # screen_x = int(bounds.width-self.image.width)/2
+        # screen_y = int(bounds.height-self.image.height)/2
 
-        self.window.draw_pixbuf(gc, lhand_image, 0, 0, screen_x, screen_y + HAND_YOFFSET)
-        self.window.draw_pixbuf(gc, rhand_image, 0, 0, screen_x, screen_y + HAND_YOFFSET)
+        # README: these values (cairo.Matrix) are taken seeing the image on the
+        # screen, I think we should find a way to calculate them
+        cr.save()
+        matrix = cairo.Matrix(xx=0.3, yy=0.2, x0=10, y0=-20)
+        cr.transform(matrix)
+        lhand_image.render_cairo(cr)
+
+        cr.restore()
+        matrix = cairo.Matrix(xx=0.325, yy=0.2, x0=-5, y0=-20)
+        cr.transform(matrix)
+        rhand_image.render_cairo(cr)
 
     def _expose_cb(self, area, event):
-        gc = self.window.new_gc()
-        
-        bounds = self.get_allocation()
-        screen_x = int(bounds.width-self.image.width)/2
-        screen_y = int(bounds.height-self.image.height)/2
+        cr = self.window.cairo_create()
 
         # Draw the keys.
         for k in self.keys:
-            x1 = k['key-x'] + screen_x
-            y1 = k['key-y'] + screen_y
-            x2 = x1 + k['key-width']
-            y2 = y1 + k['key-height']
+            self._draw_key(k, cr)
 
-            # Index cached key images by state and group.
-            state = self.active_state & (gtk.gdk.SHIFT_MASK|gtk.gdk.MOD5_MASK)
-            index = (state, self.active_group)
-            image = k['key-images'].get(index)
-
-            if image:
-                self.window.draw_image(gc, image, 0, 0, x1, y1, x2-x1, y2-y1) 
-        
         # Draw overlay images.
         if self.draw_hands:
-            self._expose_hands(gc)
-        
+            self._expose_hands(cr)
         return True
 
     def key_press_release_cb(self, widget, event):
@@ -512,13 +517,9 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
             sig = self.format_key_sig(event.hardware_keycode, event.state, event.group)
             if not self.letter_map.has_key(sig):
                 self.letter_map[sig] = event.string
-                self._make_key_images(key)
                 self.queue_draw()
 
         return False
-
-    def _keys_changed_cb(self, keymap):
-        self._make_key_images()
 
     def clear_hilite(self):
         self.hilite_letter = None
@@ -535,43 +536,31 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
     def get_key_pixbuf(self, key, state=0, group=0, scale=1):
         w = int(key['key-width'] * scale)
         h = int(key['key-height'] * scale)
-        
+
         old_state, old_group = self.active_state, self.active_group
         self.active_state, self.active_group = state, group
-        
-        pixmap = gtk.gdk.Pixmap(self.root_window.window, w, h)
-        gc = pixmap.new_gc()
-        
-        gc.foreground = self.get_colormap().alloc_color('#d0d0d0')
-        pixmap.draw_rectangle(gc, True, 0, 0, w, h)
 
-        self._draw_key(key, pixmap, gc, True, w, h)
-        
-        pb = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, False, 8, w, h)
-        pb.get_from_drawable(pixmap, self.root_window.window.get_colormap(), 0, 0, 0, 0,w, h)
-        
+        surface = cairo.ImageSurface(cairo.FORMAT_RGB24, w, h)
+        cr = cairo.Context(surface)
+        cr.set_source_rgb(1, 1, 1)
+        cr.rectangle(0, 0, w, h)
+        cr.fill()
+
+        # Duplicate the Key to be able to change its position values
+        key = copy.deepcopy(key)
+        key['key-x'] = 0
+        key['key-y'] = 0
+
+        self._draw_key(key, cr)
+
+        # Convert cairo.Surface to Pixbuf
+        pixbuf_data = StringIO.StringIO()
+        surface.write_to_png(pixbuf_data)
+        pxb_loader = gtk.gdk.PixbufLoader(image_type='png')
+        pxb_loader.write(pixbuf_data.getvalue())
+        temp_pix = pxb_loader.get_pixbuf()
+        pxb_loader.close()
+
         self.active_state, self.active_group = old_state, old_group
 
-        return pb
-
-    def get_key_image(self, key, state=0, group=0, scale=1):
-        w = int(key['key-width'] * scale)
-        h = int(key['key-height'] * scale)
-        
-        old_state, old_group = self.active_state, self.active_group
-        self.active_state, self.active_group = state, group
-        
-        pixmap = gtk.gdk.Pixmap(self.root_window.window, w, h)
-        gc = pixmap.new_gc()
-        
-        gc.foreground = self.get_colormap().alloc_color('#d0d0d0')
-        pixmap.draw_rectangle(gc, True, 0, 0, w, h)
-
-        self._draw_key(key, pixmap, gc, True, w, h)
-        
-        image = pixmap.get_image(0, 0, w, h)
-        
-        self.active_state, self.active_group = old_state, old_group
-
-        return image
-    
+        return temp_pix
