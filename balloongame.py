@@ -16,11 +16,14 @@
 
 import math
 import random, datetime
-import pangocairo
 
 from gettext import gettext as _
 
-import gobject, pygtk, gtk, pango
+from gi.repository import Gtk
+from gi.repository import Gdk
+from gi.repository import GObject
+from gi.repository import Pango
+from gi.repository import PangoCairo
 
 import medalscreen
 
@@ -41,37 +44,37 @@ class Balloon:
         self.size = max(100, 50 + len(word) * 20) 
         self.color = random.choice(BALLOON_COLORS)
 
-class BalloonGame(gtk.VBox):
+class BalloonGame(Gtk.VBox):
     def __init__(self, lesson, activity):
-        gtk.VBox.__init__(self)
+        GObject.GObject.__init__(self)
         
         self.lesson = lesson
         self.activity = activity
         
         # Build title bar.
-        title = gtk.Label()
+        title = Gtk.Label()
         title.set_markup("<span size='20000'><b>" + lesson['name'] + "</b></span>")
         title.set_alignment(1.0, 0.0)
         
-        stoplabel = gtk.Label(_('Go Back'))
-        stopbtn =  gtk.Button()
+        stoplabel = Gtk.Label(label=_('Go Back'))
+        stopbtn =  Gtk.Button()
         stopbtn.add(stoplabel)
         stopbtn.connect('clicked', self.stop_cb)
         
-        hbox = gtk.HBox()
+        hbox = Gtk.HBox()
         hbox.pack_start(stopbtn, False, False, 10)
         hbox.pack_end(title, False, False, 10)
         
         # Build the game drawing area.
-        self.area = gtk.DrawingArea()
-        self.area.connect("expose-event", self.expose_cb)
+        self.area = Gtk.DrawingArea()
+        self.draw_cb_id = self.area.connect("draw", self.draw_cb)
 
         # Connect keyboard grabbing and releasing callbacks.        
         self.area.connect('realize', self.realize_cb)
         self.area.connect('unrealize', self.unrealize_cb)
 
         self.pack_start(hbox, False, False, 10)
-        self.pack_start(self.area, True, True)
+        self.pack_start(self.area, True, True, 0)
         
         self.show_all()
         
@@ -88,16 +91,16 @@ class BalloonGame(gtk.VBox):
         self.finished = False
 
         # Start the animation loop running.        
-        self.update_timer = gobject.timeout_add(20, self.tick, priority=gobject.PRIORITY_HIGH_IDLE+30)
+        self.update_timer = GObject.timeout_add(20, self.tick, priority=GObject.PRIORITY_HIGH_IDLE+30)
     
     def realize_cb(self, widget):
-        self.activity.add_events(gtk.gdk.KEY_PRESS_MASK)
+        self.activity.add_events(Gdk.EventMask.KEY_PRESS_MASK)
         self.key_press_cb_id = self.activity.connect('key-press-event', self.key_cb)
 
         # Clear the mouse cursor. 
-        #pixmap = gtk.gdk.Pixmap(widget.window, 10, 10)
-        #color = gtk.gdk.Color()
-        #cursor = gtk.gdk.Cursor(pixmap, pixmap, color, color, 5, 5)
+        #pixmap = Gdk.Pixmap(widget.window, 10, 10)
+        #color = Gdk.Color()
+        #cursor = Gdk.Cursor.new(pixmap, pixmap, color, color, 5, 5)
         #widget.window.set_cursor(cursor)
         
     def unrealize_cb(self, widget):
@@ -106,21 +109,21 @@ class BalloonGame(gtk.VBox):
     def stop_cb(self, widget):
         # Stop the animation loop.
         if self.update_timer:
-            gobject.source_remove(self.update_timer)
+            GObject.source_remove(self.update_timer)
         
         self.activity.pop_screen()
 
     def key_cb(self, widget, event):
         # Ignore hotkeys.
-        if event.state & (gtk.gdk.CONTROL_MASK | gtk.gdk.MOD1_MASK):
+        if event.get_state() & (Gdk.ModifierType.CONTROL_MASK | Gdk.ModifierType.MOD1_MASK):
             return False
 
         # Extract information about the key pressed.
-        key = gtk.gdk.keyval_to_unicode(event.keyval)
+        key = Gdk.keyval_to_unicode(event.keyval)
         if key != 0: key = unichr(key)
 
         if self.finished:
-            key_name = gtk.gdk.keyval_name(event.keyval)
+            key_name = Gdk.keyval_name(event.keyval)
             if key_name == 'Return':
                 self.activity.pop_screen()
 
@@ -159,7 +162,7 @@ class BalloonGame(gtk.VBox):
     
     def tick(self):
         if self.finished:
-            return
+            return False
 
         self.bounds = self.area.get_allocation()
             
@@ -213,17 +216,19 @@ class BalloonGame(gtk.VBox):
         # Draw text
         title = _('You finished!') + '\n'
 
-        pango_cr = pangocairo.CairoContext(cr)
-        pango_cr.set_source_rgb(0, 0, 0)
-        pango_layout = cr.create_layout()
-        pango_layout.set_font_description(pango.FontDescription('Serif Bold 16'))
-        pango_layout.set_text(title)
+        cr.set_source_rgb(0, 0, 0)
+        pango_layout = PangoCairo.create_layout(cr)
+        fd = Pango.FontDescription('Serif Bold')
+        fd.set_size(16 * Pango.SCALE)
+        pango_layout.set_font_description(fd)
+        pango_layout.set_text(title.encode('utf-8'),
+                              len(title.encode('utf-8')))
         size = pango_layout.get_size()
-        tx = x + (w / 2) - (size[0] / pango.SCALE) / 2
+        tx = x + (w / 2) - (size[0] / Pango.SCALE) / 2
         ty = y + 100
-        pango_cr.move_to(tx, ty)
-        pango_cr.show_layout(pango_layout)
-        pango_cr.stroke()
+        cr.move_to(tx, ty)
+        PangoCairo.update_layout(cr, pango_layout)
+        PangoCairo.show_layout(cr, pango_layout)
 
         report = ''
         report += _('Your score was %(score)d.') % { 'score': self.score } + '\n'
@@ -232,18 +237,18 @@ class BalloonGame(gtk.VBox):
         report += '\n'
         report += _('Press the ENTER key to continue.')
     
-        pango_cr = pangocairo.CairoContext(cr)
-        pango_cr.set_source_rgb(0, 0, 0)
-        pango_layout = cr.create_layout()
-        pango_layout.set_font_description(pango.FontDescription('Times 12'))
-        pango_layout.set_text(report)
+        cr.set_source_rgb(0, 0, 0)
+        pango_layout = PangoCairo.create_layout(cr)
+        fd = Pango.FontDescription('Times')
+        fd.set_size(12 * Pango.SCALE)
+        pango_layout.set_font_description(fd)
+        pango_layout.set_text(report, len(report))
         size = pango_layout.get_size()
-        sx = x + w / 2 - (size[0] / pango.SCALE) / 2
+        sx = x + w / 2 - (size[0] / Pango.SCALE) / 2
         sy = y + 200
-        pango_cr.move_to(sx, sy)
-        pango_cr.show_layout(pango_layout)
-        pango_cr.stroke()
-
+        cr.move_to(sx, sy)
+        PangoCairo.update_layout(cr, pango_layout)
+        PangoCairo.show_layout(cr, pango_layout)
 
     def finish_game(self):
         self.finished = True
@@ -323,17 +328,19 @@ class BalloonGame(gtk.VBox):
         cr.fill()
         cr.restore()
 
-        pango_cr = pangocairo.CairoContext(cr)
-        pango_cr.set_source_rgb(0, 0, 0)
-        pango_layout = cr.create_layout()
-        pango_layout.set_font_description(pango.FontDescription('Sans 12'))
-        pango_layout.set_text(unicode(b.word))
+        cr.set_source_rgb(0, 0, 0)
+
+        pango_layout = PangoCairo.create_layout(cr)
+        fd = Pango.FontDescription('Sans')
+        fd.set_size(12 * Pango.SCALE)
+        pango_layout.set_font_description(fd)
+        pango_layout.set_text(b.word, len(b.word))
         size = pango_layout.get_size()
-        x = x - (size[0] / pango.SCALE) / 2
-        y = y - (size[1] / pango.SCALE) / 2
-        pango_cr.move_to(x, y)
-        pango_cr.show_layout(pango_layout)
-        pango_cr.stroke()
+        x = x - (size[0] / Pango.SCALE) / 2
+        y = y - (size[1] / Pango.SCALE) / 2
+        cr.move_to(x, y)
+        PangoCairo.update_layout(cr, pango_layout)
+        PangoCairo.show_layout(cr, pango_layout)
 
     def add_score(self, num):
         self.score += num
@@ -341,43 +348,44 @@ class BalloonGame(gtk.VBox):
 
     def queue_draw_score(self):
         layout = self.area.create_pango_layout(_('SCORE: %d') % self.score)
-        layout.set_font_description(pango.FontDescription('Times 14'))    
+        layout.set_font_description(Pango.FontDescription('Times 14'))
         size = layout.get_size()
-        x = self.bounds.width-20-size[0]/pango.SCALE
+        x = self.bounds.width-20-size[0]/Pango.SCALE
         y = 20
         self.queue_draw_area(x, y, x+size[0], y+size[1])
 
     def draw_score(self, cr):
-        pango_cr = pangocairo.CairoContext(cr)
-        pango_cr.set_source_rgb(0, 0, 0)
-        pango_layout = cr.create_layout()
-        pango_layout.set_font_description(pango.FontDescription('Times 14'))
-        pango_layout.set_text(_('SCORE: %d') % self.score)
+        cr.set_source_rgb(0, 0, 0)
+        pango_layout = PangoCairo.create_layout(cr)
+        fd = Pango.FontDescription('Times')
+        fd.set_size(14 * Pango.SCALE)
+        pango_layout.set_font_description(fd)
+        text = _('SCORE: %d') % self.score
+        pango_layout.set_text(text, len(text))
+
         size = pango_layout.get_size()
-        x = self.bounds.width - 20 - size[0] / pango.SCALE
+        x = self.bounds.width - 20 - size[0] / Pango.SCALE
         y = 20
-        pango_cr.move_to(x, y)
-        pango_cr.show_layout(pango_layout)
-        pango_cr.stroke()
+        cr.move_to(x, y)
+        PangoCairo.update_layout(cr, pango_layout)
+        PangoCairo.show_layout(cr, pango_layout)
 
     def draw_instructions(self, cr):
         # Draw instructions.
-        pango_cr = pangocairo.CairoContext(cr)
-        pango_cr.set_source_rgb(0, 0, 0)
-        pango_layout = cr.create_layout()
-        pango_layout.set_font_description(pango.FontDescription('Times 14'))
-        pango_layout.set_text(_('Type the words to pop the balloons!'))
+        cr.set_source_rgb(0, 0, 0)
+        pango_layout = PangoCairo.create_layout(cr)
+        pango_layout.set_font_description(Pango.FontDescription('Times 14'))
+        text = _('Type the words to pop the balloons!')
+        pango_layout.set_text(text, len(text))
         size = pango_layout.get_size()
-        x = (self.bounds.width - size[0] / pango.SCALE) / 2
-        y = self.bounds.height - 20 - size[1] / pango.SCALE
-        pango_cr.move_to(x, y)
-        pango_cr.show_layout(pango_layout)
-        pango_cr.stroke()
+        x = (self.bounds.width - size[0] / Pango.SCALE) / 2
+        y = self.bounds.height - 20 - size[1] / Pango.SCALE
+        cr.move_to(x, y)
+        PangoCairo.update_layout(cr, pango_layout)
+        PangoCairo.show_layout(cr, pango_layout)
 
-    def draw(self):
+    def draw(self, cr):
         self.bounds = self.area.get_allocation()
-
-        cr = self.area.window.cairo_create()
 
         # Draw background.
         cr.set_source_rgb(0.915, 0.915, 1)
@@ -390,11 +398,10 @@ class BalloonGame(gtk.VBox):
 
         if self.finished:
             self.draw_results(cr)
-
         else:
             self.draw_instructions(cr)
 
             self.draw_score(cr)
 
-    def expose_cb(self, area, event):
-        self.draw()
+    def draw_cb(self, area, cr):
+        self.draw(cr)

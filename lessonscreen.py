@@ -19,12 +19,13 @@
 import logging, os, math, time, copy, locale, datetime, random, re
 from gettext import gettext as _
 
-# Import PyGTK.
-import gobject, pygtk, gtk, pango
+from gi.repository import Gtk
+from gi.repository import Gdk
+from gi.repository import GObject
 
 # Import Sugar UI modules.
-import sugar.activity.activity
-from sugar.graphics import *
+import sugar3.activity.activity
+from sugar3.graphics import *
 
 # Import activity modules.
 import keyboard, medalscreen
@@ -48,84 +49,84 @@ FINGERS = {
     'RT': _('right thumb'),
 }
 
-class LessonScreen(gtk.VBox):
+class LessonScreen(Gtk.VBox):
     def __init__(self, lesson, keyboard_images, activity):
-        gtk.VBox.__init__(self)
+        GObject.GObject.__init__(self)
         
         self.lesson = lesson
         self.keyboard_images = keyboard_images
         self.activity = activity
         
         # Build the user interface.
-        title = gtk.Label()
+        title = Gtk.Label()
         title.set_markup("<span size='x-large' weight='bold'>" + lesson['name'] + "</span>")
         title.set_alignment(1.0, 0.0)
         
-        stoplabel = gtk.Label(_('Go Back'))
-        stopbtn =  gtk.Button()
+        stoplabel = Gtk.Label(label=_('Go Back'))
+        stopbtn =  Gtk.Button()
         stopbtn.add(stoplabel)
         stopbtn.connect('clicked', self.stop_cb)
         
-        # TODO- These will be replaced by graphical displays using gtk.DrawingArea.
+        # TODO- These will be replaced by graphical displays using Gtk.DrawingArea.
         self.wpm = 0
         self.accuracy = 0
         
-        self.wpmlabel = gtk.Label()
-        self.accuracylabel = gtk.Label()
+        self.wpmlabel = Gtk.Label()
+        self.accuracylabel = Gtk.Label()
         
-        #self.wpmarea = gtk.DrawingArea()
+        #self.wpmarea = Gtk.DrawingArea()
         #self.wpmarea.connect('expose-event', self.wpm_expose_cb)
-        #self.accuracyarea = gtk.DrawingArea()
+        #self.accuracyarea = Gtk.DrawingArea()
         #self.accuracyarea.connect('expose-event', self.accuracy_expose_cb)
         
-        hbox = gtk.HBox()
+        hbox = Gtk.HBox()
         hbox.pack_start(stopbtn, False, False, 10)
         hbox.pack_start(self.wpmlabel, True, False, 10)
         hbox.pack_start(self.accuracylabel, True, False, 10)
         hbox.pack_end(title, False, False, 10)
         
         # Set up font styles.
-        self.tagtable = gtk.TextTagTable()
-        instructions_tag = gtk.TextTag('instructions')
-        instructions_tag.props.justification = gtk.JUSTIFY_CENTER
+        self.tagtable = Gtk.TextTagTable()
+        instructions_tag = Gtk.TextTag.new('instructions')
+        instructions_tag.props.justification = Gtk.Justification.CENTER
         self.tagtable.add(instructions_tag)
 
-        text_tag = gtk.TextTag('text')
+        text_tag = Gtk.TextTag.new('text')
         text_tag.props.family = 'Monospace'
         self.tagtable.add(text_tag)
         
-        spacer_tag = gtk.TextTag('spacer')
+        spacer_tag = Gtk.TextTag.new('spacer')
         spacer_tag.props.size = 3000
         self.tagtable.add(spacer_tag)
         
-        image_tag = gtk.TextTag('image')
-        image_tag.props.justification = gtk.JUSTIFY_CENTER
+        image_tag = Gtk.TextTag.new('image')
+        image_tag.props.justification = Gtk.Justification.CENTER
         self.tagtable.add(image_tag)
         
-        correct_copy_tag = gtk.TextTag('correct-copy')
+        correct_copy_tag = Gtk.TextTag.new('correct-copy')
         correct_copy_tag.props.family = 'Monospace'
         correct_copy_tag.props.foreground = '#0000ff'
         self.tagtable.add(correct_copy_tag)
         
-        incorrect_copy_tag = gtk.TextTag('incorrect-copy')
+        incorrect_copy_tag = Gtk.TextTag.new('incorrect-copy')
         incorrect_copy_tag.props.family = 'Monospace'
         incorrect_copy_tag.props.foreground = '#ff0000'
         self.tagtable.add(incorrect_copy_tag)
         
         # Set up the scrolling lesson text view.
-        self.lessonbuffer = gtk.TextBuffer(self.tagtable)
-        self.lessontext = gtk.TextView(self.lessonbuffer)
+        self.lessonbuffer = Gtk.TextBuffer.new(self.tagtable)
+        self.lessontext = Gtk.TextView.new_with_buffer(self.lessonbuffer)
         self.lessontext.set_editable(False)
         self.lessontext.set_left_margin(20)
         self.lessontext.set_right_margin(20)
-        self.lessontext.set_wrap_mode(gtk.WRAP_WORD)
-        self.lessontext.modify_base(gtk.STATE_NORMAL, self.get_colormap().alloc_color('#ffffcc'))
+        self.lessontext.set_wrap_mode(Gtk.WrapMode.WORD)
+        self.lessontext.modify_base(Gtk.StateType.NORMAL, Gdk.Color.parse('#ffffcc')[1])
         
-        self.lessonscroll = gtk.ScrolledWindow()
-        self.lessonscroll.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_ALWAYS)
+        self.lessonscroll = Gtk.ScrolledWindow()
+        self.lessonscroll.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.ALWAYS)
         self.lessonscroll.add(self.lessontext)
         
-        frame = gtk.Frame()
+        frame = Gtk.Frame()
         frame.add(self.lessonscroll)
         
         self.keyboard = keyboard.KeyboardWidget(self.keyboard_images, self.activity)
@@ -140,8 +141,8 @@ class LessonScreen(gtk.VBox):
         self.keyboard.set_layout(keyboard.get_layout())
 
         self.pack_start(hbox, False, False, 10)
-        self.pack_start(frame, True, True)
-        self.pack_start(self.keyboard, False)
+        self.pack_start(frame, True, True, 0)
+        self.pack_start(self.keyboard, False, True, 0)
         
         # Connect keyboard grabbing and releasing callbacks.        
         self.connect('realize', self.realize_cb)
@@ -154,7 +155,7 @@ class LessonScreen(gtk.VBox):
         self.begin_lesson()
         
     def realize_cb(self, widget):
-        self.activity.add_events(gtk.gdk.KEY_PRESS_MASK|gtk.gdk.KEY_RELEASE_MASK)
+        self.activity.add_events(Gdk.EventMask.KEY_PRESS_MASK|Gdk.EventMask.KEY_RELEASE_MASK)
         self.key_press_cb_id = self.activity.connect('key-press-event', self.key_cb)
         self.key_release_cb_id = self.activity.connect('key-release-event', self.key_cb)
         
@@ -164,11 +165,11 @@ class LessonScreen(gtk.VBox):
 
     def start_timer(self):
         self.start_time = time.time()
-        self.timer_id = gobject.timeout_add(1000, self.timer_cb)
+        self.timer_id = GObject.timeout_add(1000, self.timer_cb)
 
     def stop_timer(self):
         if self.timer_id:
-            gobject.source_remove(self.timer_id)
+            GObject.source_remove(self.timer_id)
         self.start_time = None
         self.timer_id = None
 
@@ -349,20 +350,20 @@ class LessonScreen(gtk.VBox):
 
         # Extract information about the key pressed.
         key = event.string
-        key_name = gtk.gdk.keyval_name(event.keyval)
+        key_name = Gdk.keyval_name(event.keyval)
         
         # Ignore events which don't produce a character, except backspace.
         if not (key_name == 'BackSpace' or key):
             return True
 
         # Ignore either press or release events, depending on mode.
-        if self.mode == 'key' and event.type == gtk.gdk.KEY_PRESS:
+        if self.mode == 'key' and event.type == Gdk.EventType.KEY_PRESS:
             return True 
-        if self.mode != 'key' and event.type == gtk.gdk.KEY_RELEASE:
+        if self.mode != 'key' and event.type == Gdk.EventType.KEY_RELEASE:
             return True
         
         # Ignore hotkeys.
-        if event.state & (gtk.gdk.CONTROL_MASK | gtk.gdk.MOD1_MASK):
+        if event.get_state() & (Gdk.ModifierType.CONTROL_MASK | Gdk.ModifierType.MOD1_MASK):
             return True
         
         # Convert Return keys to paragraph symbols.
@@ -474,7 +475,8 @@ class LessonScreen(gtk.VBox):
             self.lessontext.grab_focus()
             
             # Scroll the TextView so the cursor is on screen.
-            self.lessontext.scroll_to_mark(self.lessonbuffer.get_insert(), 0)
+            self.lessontext.scroll_to_mark(self.lessonbuffer.get_insert(), 0,
+                                           use_align=False, xalign=0.5, yalign=0.5)
 
         # In Key mode, display the finger hint and the key image.
         if self.mode == 'key':
@@ -499,7 +501,7 @@ class LessonScreen(gtk.VBox):
                 except:
                     finger = ''
         
-                if state == gtk.gdk.SHIFT_MASK:
+                if state == Gdk.ModifierType.SHIFT_MASK:
                     # Choose the finger to press the SHIFT key with.
                     if key['key-finger'][0] == 'R':
                         shift_finger = FINGERS['LP']
@@ -509,11 +511,11 @@ class LessonScreen(gtk.VBox):
                     instructions = _('Press and hold the shift key with your %(finger)s, ') % { 'finger': shift_finger }
                     instructions += _('then press the %(letter)s key with your %(finger)s.') % { 'letter': letter, 'finger': finger }
         
-                elif state == gtk.gdk.MOD5_MASK:
+                elif state == Gdk.ModifierType.MOD5_MASK:
                     instructions = _('Press and hold the altgr key, ') 
                     instructions += _('then press the %(letter)s key with your %(finger)s.') % { 'letter': letter, 'finger': finger }
         
-                elif state == gtk.gdk.SHIFT_MASK | gtk.gdk.MOD5_MASK:
+                elif state == Gdk.ModifierType.SHIFT_MASK | Gdk.ModifierType.MOD5_MASK:
                     instructions = _('Press and hold the altgr and shift keys, ')
                     instructions += _('then press the %(letter)s key with your %(finger)s.') % { 'letter': letter, 'finger': finger }
         
@@ -522,13 +524,13 @@ class LessonScreen(gtk.VBox):
 
                 self.lessonbuffer.insert(self.lessonbuffer.get_end_iter(), instructions + '\n\n')
 
-                if state & gtk.gdk.SHIFT_MASK:
+                if state & Gdk.ModifierType.SHIFT_MASK:
                     shift_key = self.keyboard.find_key_by_label('shift')
                     pixbuf = self.keyboard.get_key_pixbuf(shift_key, scale=1)
                     self.lessonbuffer.insert_pixbuf(self.lessonbuffer.get_end_iter(), pixbuf)
                     self.lessonbuffer.insert(self.lessonbuffer.get_end_iter(), ' ')
                 
-                if state & gtk.gdk.MOD5_MASK:
+                if state & Gdk.ModifierType.MOD5_MASK:
                     altgr_key = self.keyboard.find_key_by_label('altgr')
                     pixbuf = self.keyboard.get_key_pixbuf(altgr_key, scale=1)
                     self.lessonbuffer.insert_pixbuf(self.lessonbuffer.get_end_iter(), pixbuf)

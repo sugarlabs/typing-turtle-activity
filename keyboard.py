@@ -16,13 +16,17 @@
 #!/usr/bin/env python
 # vi:sw=4 et 
 
-import gtk
 import cairo
 import copy
-import rsvg
 import os, glob, re
-import pango
-import pangocairo
+
+from gi.repository import Gtk
+from gi.repository import Pango
+from gi.repository import PangoCairo
+from gi.repository import Gdk
+from gi.repository import GObject
+from gi.repository import GdkPixbuf
+
 import StringIO
 from port import json
 import subprocess
@@ -132,7 +136,8 @@ class KeyboardImages:
             scale_width = int(scale_width * 1.1625)
 
         for filename in glob.iglob('images/OLPC*.svg'):
-            image = rsvg.Handle(file=filename)
+            image = GdkPixbuf.Pixbuf.new_from_file_at_scale(
+                filename, scale_width, self.height, False)
             name = os.path.basename(filename)
             self.images[name] = image
 
@@ -145,7 +150,7 @@ class KeyboardData:
         self.letter_map = {}
         
         # Access the current GTK keymap.
-        self.keymap = gtk.gdk.keymap_get_default()
+        self.keymap = Gdk.Keymap.get_default()
 
     def set_layout(self, layout): 
         self._build_key_list(layout)
@@ -235,9 +240,9 @@ class KeyboardData:
 
     def format_key_sig(self, scan, state, group):
         sig = 'scan%d' % scan
-        if state & gtk.gdk.SHIFT_MASK:
+        if state & Gdk.ModifierType.SHIFT_MASK:
             sig += ' shift'
-        if state & gtk.gdk.MOD5_MASK:
+        if state & Gdk.ModifierType.MOD5_MASK:
             sig += ' altgr'
         if group != 0:
             sig += ' group%d' % group
@@ -250,9 +255,9 @@ class KeyboardData:
 
         state = 0
         if m.group('shift'):
-            state |= gtk.gdk.SHIFT_MASK
+            state |= Gdk.ModifierType.SHIFT_MASK
         if m.group('altgr'):
-            state |= gtk.gdk.MOD5_MASK
+            state |= Gdk.ModifierType.MOD5_MASK
 
         scan = int(m.group('scan'))
 
@@ -278,13 +283,13 @@ class KeyboardData:
         best_result = None
         
         for sig, l in self.letter_map.items():
-            if unicode(l) == unicode(letter):
+            if l == letter:
                 scan, state, group = self.parse_key_sig(sig)
                 
                 # Choose the key with the fewest modifiers.
                 score = 0
-                if state & gtk.gdk.SHIFT_MASK: score += 1
-                if state & gtk.gdk.MOD5_MASK: score += 1
+                if state & Gdk.ModifierType.SHIFT_MASK: score += 1
+                if state & Gdk.ModifierType.MOD5_MASK: score += 1
                 if score < best_score:
                     best_score = score
                     best_result = scan, state, group
@@ -295,19 +300,19 @@ class KeyboardData:
                     return k, best_result[1], best_result[2]
 
         # Try the GDK keymap.
-        keyval = gtk.gdk.unicode_to_keyval(ord(letter))
-        entries = self.keymap.get_entries_for_keyval(keyval)
+        keyval = Gdk.unicode_to_keyval(ord(letter))
+        valid, entries = self.keymap.get_entries_for_keyval(keyval)
         for e in entries:
             for k in self.keys:
-                if k['key-scan'] == e[0]:
+                if k['key-scan'] == e.keycode:
                     # TODO: Level -> state calculations are hardcoded to what the XO keyboard does.
                     # They were discovered through experimentation.
                     state = 0
-                    if e[2] & 1: 
-                        state |= gtk.gdk.SHIFT_MASK
-                    if e[2] & 2: 
-                        state |= gtk.gdk.MOD5_MASK
-                    return k, state, e[1]
+                    if e.level & 1:
+                        state |= Gdk.ModifierType.SHIFT_MASK
+                    if e.level & 2:
+                        state |= Gdk.ModifierType.MOD5_MASK
+                    return k, state, e.group
 
         # Fail!
         return None, None, None
@@ -317,19 +322,21 @@ class KeyboardData:
         if self.letter_map.has_key(sig):
             return self.letter_map[sig]
         else:
-            t = self.keymap.translate_keyboard_state(key['key-scan'], self.active_state, self.active_group)
-            if t:
-                return unichr(gtk.gdk.keyval_to_unicode(t[0]))
+            success, keyval, effective_group, level, consumed_modifiers = \
+                self.keymap.translate_keyboard_state(
+                    key['key-scan'], self.active_state, self.active_group)
+            if success:
+                return unichr(Gdk.keyval_to_unicode(keyval)).encode('utf-8')
 
         return ''
 
-class KeyboardWidget(KeyboardData, gtk.DrawingArea):
+class KeyboardWidget(KeyboardData, Gtk.DrawingArea):
     """A GTK widget which implements an interactive visual keyboard, with support
        for custom data driven layouts."""
 
     def __init__(self, image, root_window, poll_keys=False):
         KeyboardData.__init__(self)
-        gtk.DrawingArea.__init__(self)
+        GObject.GObject.__init__(self)
         
         self.image = image
         self.root_window = root_window
@@ -337,9 +344,9 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
         # Match the image cache in dimensions.
         self.set_size_request(image.width, image.height)
 
-        self.connect("expose-event", self._expose_cb)
+        self.connect("draw", self._draw_cb)
         
-        #self.modify_font(pango.FontDescription('Monospace 10'))
+        #self.modify_font(Pango.FontDescription('Monospace 10'))
         
         # Active language group and modifier state.
         # See http://www.pygtk.org/docs/pygtk/class-gdkkeymap.html for more
@@ -354,7 +361,7 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
         
         self.draw_hands = False
         
-        self.modify_bg(gtk.STATE_NORMAL, self.get_colormap().alloc_color('#d0d0d0'))
+        self.modify_bg(Gtk.StateType.NORMAL, Gdk.Color.parse('#d0d0d0')[1])
 
         # Connect keyboard grabbing and releasing callbacks.        
         if poll_keys:
@@ -363,7 +370,7 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
 
     def _realize_cb(self, widget):
         # Setup keyboard event snooping in the root window.
-        self.root_window.add_events(gtk.gdk.KEY_PRESS_MASK | gtk.gdk.KEY_RELEASE_MASK)
+        self.root_window.add_events(Gdk.EventMask.KEY_PRESS_MASK | Gdk.EventMask.KEY_RELEASE_MASK)
         self.key_press_cb_id = self.root_window.connect('key-press-event', self.key_press_release_cb)
         self.key_release_cb_id = self.root_window.connect('key-release-event', self.key_press_release_cb)
 
@@ -412,20 +419,16 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
             (x1 + corner, y2),
             (x1, y2 - corner),
             (x1, y1 + corner)
-            ]
+        ]
 
-        cr.save()
         cr.new_path()
         cr.set_source_rgb(0.396, 0.698, 0.392)
         cr.set_line_width(2)
-        cr.move_to(*points[0])
         for point in points:
             cr.line_to(*point)
-        cr.line_to(*points[0])
         cr.close_path()
         cr.fill_preserve()
         cr.stroke()
-        cr.restore()
 
         text = ''
         if k['key-label']:
@@ -434,16 +437,16 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
             text = self.get_letter_for_key_state_group(
                 k, self.active_state, self.active_group)
 
-        pango_context = pangocairo.CairoContext(cr)
-        pango_context.set_source_rgb(0, 0, 0)
+        cr.set_source_rgb(0, 0, 0)
+        pango_layout = PangoCairo.create_layout(cr)
+        fd = Pango.FontDescription('Monospace')
+        fd.set_size(10 * Pango.SCALE)
+        pango_layout.set_font_description(fd)
+        pango_layout.set_text(text, len(text))
 
-        pango_layout = pango_context.create_layout()
-        pango_layout.set_font_description(pango.FontDescription('Monospace'))
-        pango_layout.set_text(unicode(text))
-
-        pango_context.move_to(x1 + 8, y2 - 23)
-        pango_context.show_layout(pango_layout)
-        cr.stroke()
+        cr.move_to(x1 + 8, y2 - 23)
+        PangoCairo.update_layout(cr, pango_layout)
+        PangoCairo.show_layout(cr, pango_layout)
 
     def _expose_hands(self, cr):
         lhand_image = self.image.images['OLPC_Lhand_HOMEROW.svg']
@@ -463,7 +466,7 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
                         rhand_image = handle
 
                 # Put the other hand on the SHIFT key if needed.
-                if state & gtk.gdk.SHIFT_MASK:
+                if state & Gdk.ModifierType.SHIFT_MASK:
                     if finger[0] == 'L':
                         rhand_image = self.image.images['OLPC_Rhand_SHIFT.svg']
                     else:
@@ -471,25 +474,21 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
 
                 # TODO: Do something about ALTGR.
 
-        # bounds = self.get_allocation()
-        # screen_x = int(bounds.width-self.image.width)/2
-        # screen_y = int(bounds.height-self.image.height)/2
+        bounds = self.get_allocation()
 
-        # README: these values (cairo.Matrix) are taken seeing the image on the
-        # screen, I think we should find a way to calculate them
         cr.save()
-        matrix = cairo.Matrix(xx=0.3, yy=0.2, x0=10, y0=-20)
-        cr.transform(matrix)
-        lhand_image.render_cairo(cr)
+        Gdk.cairo_set_source_pixbuf(cr, lhand_image, 0, 0)
+        cr.rectangle(0, 0, lhand_image.get_width(),
+                     lhand_image.get_height())
+        cr.paint()
 
         cr.restore()
-        matrix = cairo.Matrix(xx=0.325, yy=0.2, x0=-5, y0=-20)
-        cr.transform(matrix)
-        rhand_image.render_cairo(cr)
+        Gdk.cairo_set_source_pixbuf(cr, rhand_image, 0, 0)
+        cr.rectangle(0, 0, rhand_image.get_width(),
+                     rhand_image.get_height())
+        cr.paint()
 
-    def _expose_cb(self, area, event):
-        cr = self.window.cairo_create()
-
+    def _draw_cb(self, area, cr):
         # Draw the keys.
         for k in self.keys:
             self._draw_key(k, cr)
@@ -502,14 +501,14 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
     def key_press_release_cb(self, widget, event):
         key = self.key_scan_map.get(event.hardware_keycode)
         if key:
-            key['key-pressed'] = event.type == gtk.gdk.KEY_PRESS
+            key['key-pressed'] = event.type == Gdk.EventType.KEY_PRESS
 
         # Hack to get the current modifier state - which will not be represented by the event.
-        state = gtk.gdk.device_get_core_pointer().get_state(self.window)[1]
+        # state = Gdk.device_get_core_pointer().get_state(self.get_window())[1]
 
-        if self.active_group != event.group or self.active_state != state:
+        if self.active_group != event.group or self.active_state != event.state:
             self.active_group = event.group
-            self.active_state = state
+            self.active_state = event.state
 
             self.queue_draw()
 
@@ -556,7 +555,7 @@ class KeyboardWidget(KeyboardData, gtk.DrawingArea):
         # Convert cairo.Surface to Pixbuf
         pixbuf_data = StringIO.StringIO()
         surface.write_to_png(pixbuf_data)
-        pxb_loader = gtk.gdk.PixbufLoader(image_type='png')
+        pxb_loader = GdkPixbuf.PixbufLoader.new_with_type('png')
         pxb_loader.write(pixbuf_data.getvalue())
         temp_pix = pxb_loader.get_pixbuf()
         pxb_loader.close()

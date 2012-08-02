@@ -18,20 +18,22 @@
 import logging, os, math, time, copy, locale, datetime, random, re
 from gettext import gettext as _
 
-# Import PyGTK.
-import gobject, pygtk, gtk, pango
+from gi.repository import Gtk
+from gi.repository import Gdk
+from gi.repository import GdkPixbuf
+from gi.repository import GObject
 
 # Import Sugar UI modules.
-import sugar.activity.activity
-import sugar.graphics.style
+import sugar3.activity.activity
+import sugar3.graphics.style
 
-class MedalScreen(gtk.EventBox):
-    MEDAL_SIZE = int(4.5 * sugar.graphics.style.GRID_CELL_SIZE)
+class MedalScreen(Gtk.EventBox):
+    MEDAL_SIZE = int(4.5 * sugar3.graphics.style.GRID_CELL_SIZE)
 
     def __init__(self, medal, activity):
-        gtk.EventBox.__init__(self)
+        GObject.GObject.__init__(self)
         
-        self.modify_bg(gtk.STATE_NORMAL, self.get_colormap().alloc_color('#ffffff'))
+        self.modify_bg(Gtk.StateType.NORMAL, Gdk.Color.parse('#ffffff')[1])
         
         self.medal = medal
         self.activity = activity
@@ -43,80 +45,80 @@ class MedalScreen(gtk.EventBox):
             'silver': 'images/silver-medal.svg',
             'gold':   'images/gold-medal.svg'
         }
-        medalpixbuf = gtk.gdk.pixbuf_new_from_file(images[medal_type])
-        medalpixbuf = medalpixbuf.scale_simple(MedalScreen.MEDAL_SIZE, MedalScreen.MEDAL_SIZE, gtk.gdk.INTERP_BILINEAR)
+        medalpixbuf = GdkPixbuf.Pixbuf.new_from_file(images[medal_type])
+        medalpixbuf = medalpixbuf.scale_simple(MedalScreen.MEDAL_SIZE, MedalScreen.MEDAL_SIZE, GdkPixbuf.InterpType.BILINEAR)
         
-        medalimage = gtk.Image()
+        medalimage = Gtk.Image()
         medalimage.set_from_pixbuf(medalpixbuf)
 
         # Certifications section.
-        title = gtk.Label()
+        title = Gtk.Label()
         title.set_markup(_("<span font_desc='Serif Bold Italic 28'>Certificate of Achievement</span>"))
         
-        text0 = gtk.Label()
+        text0 = Gtk.Label()
         text0.set_markup(_("<span font_desc='Sans 16'>This certifies that</span>"))
 
-        text1 = gtk.Label()
+        text1 = Gtk.Label()
         text1.set_markup(_("<span font_desc='Sans 16'><b><u><i>%(nick)s</i></u></b></span>") % medal)
 
-        text2 = gtk.Label()
+        text2 = Gtk.Label()
         text2.set_markup(_("<span font_desc='Sans 16'>earned a %(type)s medal in </span>") % medal)
 
-        text3 = gtk.Label()
+        text3 = Gtk.Label()
         text3.set_markup(_("<span font_desc='Sans 16'>in <b><u><i>%(lesson)s</i></u></b></span>") % medal)
 
-        text4 = gtk.Label()
+        text4 = Gtk.Label()
         text4.set_markup(_("<span font_desc='Sans 16'>on <b><u><i>%(date)s</i></u></b>.</span>") % medal)
 
-        textbox = gtk.VBox()
-        textbox.pack_start(text0)
-        textbox.pack_start(text1)
-        textbox.pack_start(text2)
-        textbox.pack_start(text3)
-        textbox.pack_start(text4)
+        textbox = Gtk.VBox()
+        textbox.pack_start(text0, True, True, 0)
+        textbox.pack_start(text1, True, True, 0)
+        textbox.pack_start(text2, True, True, 0)
+        textbox.pack_start(text3, True, True, 0)
+        textbox.pack_start(text4, True, True, 0)
 
-        medalbox = gtk.HBox()
-        medalbox.pack_start(textbox)
-        medalbox.pack_end(medalimage)
+        medalbox = Gtk.HBox()
+        medalbox.pack_start(textbox, True, True, 0)
+        medalbox.pack_end(medalimage, True, True, 0)
 
         # Stats section.
-        statbox = gtk.HBox()
+        statbox = Gtk.HBox()
         if medal.has_key('wpm'):
-            stat1 = gtk.Label()
+            stat1 = Gtk.Label()
             stat1.set_markup("<span size='18000'>" + (_('<b>Words Per Minute:</b> %(wpm)d') % medal) + "</span>" )
-            statbox.pack_start(stat1, True)
+            statbox.pack_start(stat1, True, True, 0)
         
-            stat2 = gtk.Label()
+            stat2 = Gtk.Label()
             stat2.set_markup("<span size='18000'>" + (_('<b>Accuracy:</b> %(accuracy)d%%') % medal) + "</span>" )
-            statbox.pack_start(stat2, True)
+            statbox.pack_start(stat2, True, True, 0)
 
         elif medal.has_key('score'):
-            stat1 = gtk.Label()
+            stat1 = Gtk.Label()
             stat1.set_markup("<span size='18000'>" + (_('<b>SCORE:</b> %(score)d') % medal) + "</span>" )
-            statbox.pack_start(stat1, True)
+            statbox.pack_start(stat1, True, True, 0)
         
-        oklabel = gtk.Label()
+        oklabel = Gtk.Label()
         oklabel.set_markup("<span size='10000'>" + _('Press the ENTER key to continue.') + '</span>')
-        self.okbtn = gtk.Button()
+        self.okbtn = Gtk.Button()
         self.okbtn.add(oklabel)
         self.okbtn.connect('clicked', self.ok_cb)
 
-        btnbox = gtk.HBox()
+        btnbox = Gtk.HBox()
         btnbox.pack_start(self.okbtn, True, True, 100)
         
-        vbox = gtk.VBox()
+        vbox = Gtk.VBox()
         
         vbox.pack_start(title, False, False, 0)
         vbox.pack_start(medalbox, True, False, 0)
-        vbox.pack_start(gtk.HSeparator(), False, False, 20)
+        vbox.pack_start(Gtk.Separator(orientation=Gtk.Orientation.HORIZONTAL), False, False, 20)
         vbox.pack_start(statbox, False, False, 0)
         
-        frame = gtk.Frame()
+        frame = Gtk.Frame()
         frame.add(vbox)
         frame.set_border_width(10)
 
-        box = gtk.VBox() 
-        box.pack_start(frame, True, True)
+        box = Gtk.VBox()
+        box.pack_start(frame, True, True, 0)
         box.pack_start(btnbox, False, False, 40)
 
         self.add(box)
@@ -127,7 +129,7 @@ class MedalScreen(gtk.EventBox):
 
     def realize_cb(self, widget):
         # For some odd reason, if I do this in the constructor, nothing happens.
-        self.okbtn.set_flags(gtk.CAN_DEFAULT)
+        self.okbtn.set_can_default(True)
         self.okbtn.grab_default()
 
     def ok_cb(self, widget):

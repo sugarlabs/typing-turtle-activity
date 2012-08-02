@@ -20,20 +20,21 @@
 import logging, os, math, time, copy, locale, datetime, random, re
 from gettext import gettext as _
 
-# Import PyGTK.
-import gobject, pygtk, gtk, pango
+from gi.repository import Gtk
+from gi.repository import GObject
+from gi.repository import Pango
 
 # Import Sugar UI modules.
-import sugar.activity.activity
-import sugar.graphics.style
-import sugar.graphics.icon
+import sugar3.activity.activity
+import sugar3.graphics.style
+import sugar3.graphics.icon
 
 # Import lessonbuilder functions.
 import lessonbuilder
 
-class EditLessonScreen(gtk.VBox):
+class EditLessonScreen(Gtk.VBox):
     def __init__(self, activity, lesson):
-        gtk.VBox.__init__(self)
+        GObject.GObject.__init__(self)
         self.set_border_width(10)
 
         self.activity = activity
@@ -42,27 +43,27 @@ class EditLessonScreen(gtk.VBox):
         self.in_build = False
         
         # Add the header.
-        title = gtk.Label()
+        title = Gtk.Label()
         title.set_markup("<span size='20000'><b>" + _("Edit a Lesson") + "</b></span>")
         title.set_alignment(1.0, 0.0)
         
-        stoplabel = gtk.Label(_('Go Back'))
-        stopbtn = gtk.Button()
+        stoplabel = Gtk.Label(label=_('Go Back'))
+        stopbtn = Gtk.Button()
         stopbtn.add(stoplabel)
         stopbtn.connect('clicked', self.stop_clicked_cb)
                
-        titlebox = gtk.HBox()
+        titlebox = Gtk.HBox()
         titlebox.pack_start(stopbtn, False, False, 10)
         titlebox.pack_end(title, False, False, 10)
 
-        self.vp = gtk.Viewport()
+        self.vp = Gtk.Viewport()
 
-        self.scroll = gtk.ScrolledWindow()
-        self.scroll.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        self.scroll = Gtk.ScrolledWindow()
+        self.scroll.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
         self.scroll.add(self.vp)
 
         self.pack_start(titlebox, False, False, 10)
-        self.pack_start(gtk.HSeparator(), False, False, 0)
+        self.pack_start(Gtk.Separator(orientation=Gtk.Orientation.HORIZONTAL), False, False, 0)
         self.pack_start(self.scroll, True, True, 0)
 
         self.build()
@@ -70,62 +71,62 @@ class EditLessonScreen(gtk.VBox):
         self.show_all()
 
     def build_generate(self):
-        generatebox = gtk.VBox()
+        generatebox = Gtk.VBox()
         generatebox.set_spacing(5)
 
-        newlabel = gtk.Label(_('New keys'))       
-        knownlabel = gtk.Label(_('Known keys'))
-        lengthlabel = gtk.Label(_('Length'))       
+        newlabel = Gtk.Label(label=_('New keys'))
+        knownlabel = Gtk.Label(label=_('Known keys'))
+        lengthlabel = Gtk.Label(label=_('Length'))
         
-        generatebox.newkeysent = gtk.Entry()
+        generatebox.newkeysent = Gtk.Entry()
         generatebox.newkeysent.set_width_chars(8)
-        generatebox.knownkeysent = gtk.Entry()
+        generatebox.knownkeysent = Gtk.Entry()
         generatebox.knownkeysent.set_width_chars(15)
-        generatebox.lengthent = gtk.Entry()
+        generatebox.lengthent = Gtk.Entry()
         generatebox.lengthent.set_width_chars(5)
         generatebox.lengthent.set_text('60')
         
-        oklabel = gtk.Label()
+        oklabel = Gtk.Label()
         oklabel.set_markup(_('Generate!'))
-        okbtn = gtk.Button()
+        okbtn = Gtk.Button()
         okbtn.add(oklabel)
         okbtn.connect('clicked', self.generate_ok_clicked_cb, generatebox)
         okbtn.set_alignment(0.5, 0.5)
 
-        box = gtk.HBox()
+        box = Gtk.HBox()
         box.set_spacing(10)
-        box.pack_start(newlabel, expand=False)
-        box.pack_start(generatebox.newkeysent, expand=False)
-        box.pack_start(knownlabel, expand=False)
-        box.pack_start(generatebox.knownkeysent, expand=False)
-        box.pack_start(lengthlabel, expand=False)
-        box.pack_start(generatebox.lengthent, expand=False)
-        box.pack_end(okbtn, expand=False)
+        box.pack_start(newlabel, False, True, 0)
+        box.pack_start(generatebox.newkeysent, False, True, 0)
+        box.pack_start(knownlabel, False, True, 0)
+        box.pack_start(generatebox.knownkeysent, False, True, 0)
+        box.pack_start(lengthlabel, False, True, 0)
+        box.pack_start(generatebox.lengthent, False, True, 0)
+        box.pack_end(okbtn, False, True, 0)
         box.show_all()
         
-        wordslabel = gtk.Label()
+        wordslabel = Gtk.Label()
         wordslabel.set_markup(_('Edit Word List'))
-        wordsbtn = gtk.Button()
+        wordsbtn = Gtk.Button()
         wordsbtn.add(wordslabel)
         wordsbtn.connect('clicked', self.generate_words_clicked_cb)
         wordsbtn.set_alignment(0.5, 0.5)
 
-        generatebox.pack_start(box)
-        generatebox.pack_start(wordsbtn, expand=False, fill=False)               
+        generatebox.pack_start(box, True, True, 0)
+        generatebox.pack_start(wordsbtn, expand=False, fill=False, padding=0)
         
         return generatebox
 
     def build_step(self, step, idx):
-        stepbox = gtk.VBox()
+        stepbox = Gtk.VBox()
         stepbox.set_spacing(5)
 
-        steplabel = gtk.Label()
+        steplabel = Gtk.Label()
         steplabel.set_markup("<span size='x-large' weight='bold'>" + (_('Step #%d') % (idx+1)) + "</span>")
         steplabel.set_alignment(0.0, 0.5)
         steplabel.set_padding(10, 0)
 
         # Build the step type combo box.
-        stepbox.typecombo = gtk.combo_box_new_text()
+        stepbox.typecombo = Gtk.ComboBoxText()
         stepbox.typecombo.append_text(_('Keys'))
         stepbox.typecombo.append_text(_('Words'))
 
@@ -136,17 +137,17 @@ class EditLessonScreen(gtk.VBox):
             stepbox.typecombo.set_active(1)
         
         # Build the tool buttons.
-        delstepbtn = gtk.Button()
-        delstepbtn.add(sugar.graphics.icon.Icon(icon_name='list-remove'))
+        delstepbtn = Gtk.Button()
+        delstepbtn.add(sugar3.graphics.icon.Icon(icon_name='list-remove'))
         delstepbtn.connect('clicked', self.del_step_clicked_cb, idx)
-        addstepbtn = gtk.Button()
-        addstepbtn.add(sugar.graphics.icon.Icon(icon_name='list-add'))
+        addstepbtn = Gtk.Button()
+        addstepbtn.add(sugar3.graphics.icon.Icon(icon_name='list-add'))
         addstepbtn.connect('clicked', self.add_step_clicked_cb, idx)
-        moveupbtn = gtk.Button()
-        moveupbtn.add(sugar.graphics.icon.Icon(icon_name='go-up'))
+        moveupbtn = Gtk.Button()
+        moveupbtn.add(sugar3.graphics.icon.Icon(icon_name='go-up'))
         moveupbtn.connect('clicked', self.move_step_up_clicked_cb, idx)
-        movedownbtn = gtk.Button()
-        movedownbtn.add(sugar.graphics.icon.Icon(icon_name='go-down'))
+        movedownbtn = Gtk.Button()
+        movedownbtn.add(sugar3.graphics.icon.Icon(icon_name='go-down'))
         movedownbtn.connect('clicked', self.move_step_down_clicked_cb, idx)
 
         if idx == 0:
@@ -154,203 +155,203 @@ class EditLessonScreen(gtk.VBox):
         if idx == len(self.lesson['steps']) - 1:
             movedownbtn.set_sensitive(False)
 
-        btnbox = gtk.HBox()
-        btnbox.pack_start(steplabel, False, False)
+        btnbox = Gtk.HBox()
+        btnbox.pack_start(steplabel, False, False, 0)
         btnbox.pack_start(stepbox.typecombo, expand=False, padding=10)
-        btnbox.pack_end(addstepbtn, False, False)
-        btnbox.pack_end(delstepbtn, False, False)
-        btnbox.pack_end(moveupbtn, False, False)
-        btnbox.pack_end(movedownbtn, False, False)
+        btnbox.pack_end(addstepbtn, False, False, 0)
+        btnbox.pack_end(delstepbtn, False, False, 0)
+        btnbox.pack_end(moveupbtn, False, False, 0)
+        btnbox.pack_end(movedownbtn, False, False, 0)
 
         # Build the instructions entry.
-        instlabel = gtk.Label()
+        instlabel = Gtk.Label()
         instlabel.set_markup("<span size='large' weight='bold'>" + _('Instructions') + "</span>")
         instlabel.set_alignment(0.0, 0.5)
         instlabel.set_padding(20, 0)
 
         self.labelsizegroup.add_widget(instlabel)
 
-        stepbox.insttext = gtk.TextView(gtk.TextBuffer())
-        stepbox.insttext.props.wrap_mode = gtk.WRAP_WORD
-        stepbox.insttext.modify_font(pango.FontDescription('Monospace'))
-        instscroll = gtk.ScrolledWindow()
-        instscroll.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        stepbox.insttext = Gtk.TextView(Gtk.TextBuffer())
+        stepbox.insttext.props.wrap_mode = Gtk.WrapMode.WORD
+        stepbox.insttext.modify_font(Pango.FontDescription('Monospace'))
+        instscroll = Gtk.ScrolledWindow()
+        instscroll.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
         instscroll.add(stepbox.insttext)
         instscroll.set_size_request(-1, 75)
         stepbox.insttext.get_buffer().set_text(step['instructions'])
 
-        instbox = gtk.HBox()
-        instbox.pack_start(instlabel, False, False)
-        instbox.pack_start(instscroll, True, True)
+        instbox = Gtk.HBox()
+        instbox.pack_start(instlabel, False, False, 0)
+        instbox.pack_start(instscroll, True, True, 0)
 
         # Build the text entry.
-        textlabel = gtk.Label()
+        textlabel = Gtk.Label()
         textlabel.set_markup("<span size='large' weight='bold'>" + _('Text') + "</span>")
         textlabel.set_alignment(0.0, 0.5)
         textlabel.set_padding(20, 0)
 
         self.labelsizegroup.add_widget(textlabel)
 
-        stepbox.texttext = gtk.TextView(gtk.TextBuffer())
-        stepbox.texttext.props.wrap_mode = gtk.WRAP_WORD
-        stepbox.texttext.modify_font(pango.FontDescription('monospace'))
-        textscroll = gtk.ScrolledWindow()
-        textscroll.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        stepbox.texttext = Gtk.TextView(Gtk.TextBuffer())
+        stepbox.texttext.props.wrap_mode = Gtk.WrapMode.WORD
+        stepbox.texttext.modify_font(Pango.FontDescription('monospace'))
+        textscroll = Gtk.ScrolledWindow()
+        textscroll.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
         textscroll.add(stepbox.texttext)
         textscroll.set_size_request(-1, 100)
         stepbox.texttext.get_buffer().set_text(step['text'])
 
-        textbox = gtk.HBox()
-        textbox.pack_start(textlabel, expand=False)
-        textbox.pack_start(textscroll)
+        textbox = Gtk.HBox()
+        textbox.pack_start(textlabel, False, True, 0)
+        textbox.pack_start(textscroll, True, True, 0)
 
-        sizegroup = gtk.SizeGroup(gtk.SIZE_GROUP_HORIZONTAL)   
+        sizegroup = Gtk.SizeGroup(Gtk.SizeGroupMode.HORIZONTAL)
         sizegroup.add_widget(instlabel)
         sizegroup.add_widget(textlabel)    
 
-        stepbox.pack_start(btnbox, expand=False)
-        stepbox.pack_start(instbox, expand=False)
-        stepbox.pack_start(textbox, expand=False)
+        stepbox.pack_start(btnbox, False, True, 0)
+        stepbox.pack_start(instbox, False, True, 0)
+        stepbox.pack_start(textbox, False, True, 0)
         
         return stepbox
 
     def build_medal(self, medal, name):
-        box = gtk.HBox()
+        box = Gtk.HBox()
 
-        label = gtk.Label()
+        label = Gtk.Label()
         label.set_markup("<span size='large' weight='bold'>" + name + "</span>")
         label.set_alignment(0.0, 0.5)
         label.set_padding(20, 0)
 
         self.labelsizegroup.add_widget(label)
         
-        box.pack_start(label, False, False)
+        box.pack_start(label, False, False, 0)
 
         if self.lesson['type'] == 'normal':
-            acclabel = gtk.Label(_('Accuracy'))       
-            wpmlabel = gtk.Label(_('WPM'))
+            acclabel = Gtk.Label(label=_('Accuracy'))
+            wpmlabel = Gtk.Label(label=_('WPM'))
             
-            box.accent = gtk.Entry()
-            box.wpment = gtk.Entry()
+            box.accent = Gtk.Entry()
+            box.wpment = Gtk.Entry()
 
             box.accent.set_text(str(medal['accuracy']))
             box.wpment.set_text(str(medal['wpm']))
         
             box.pack_start(acclabel, False, False, 10)
-            box.pack_start(box.accent, False, False)
+            box.pack_start(box.accent, False, False, 0)
             box.pack_start(wpmlabel, False, False, 10)
-            box.pack_start(box.wpment, False, False)
+            box.pack_start(box.wpment, False, False, 0)
         
         elif self.lesson['type'] == 'balloon':
-            scorelabel = gtk.Label(_('Score'))
+            scorelabel = Gtk.Label(label=_('Score'))
             
-            box.scoreent = gtk.Entry()
+            box.scoreent = Gtk.Entry()
             box.scoreent.set_text(str(medal['score']))
         
             box.pack_start(scorelabel, False, False, 10)
-            box.pack_start(box.scoreent, False, False)
+            box.pack_start(box.scoreent, False, False, 0)
             
         return box
       
     def build(self):
         self.in_build = True
         
-        self.vbox = gtk.VBox()
+        self.vbox = Gtk.VBox()
         self.vbox.set_border_width(20)
         self.vbox.set_spacing(5)
         
-        self.labelsizegroup = gtk.SizeGroup(gtk.SIZE_GROUP_HORIZONTAL)   
+        self.labelsizegroup = Gtk.SizeGroup(Gtk.SizeGroupMode.HORIZONTAL)
 
         # Lesson details widgets.
-        detailslabel = gtk.Label()
+        detailslabel = Gtk.Label()
         detailslabel.set_markup("<span size='x-large'><b>" + _('Lesson Details') + "</b></span>")
         detailslabel.set_alignment(0.0, 0.5)
         detailslabel.set_padding(10, 0)
 
-        namelabel = gtk.Label()
+        namelabel = Gtk.Label()
         namelabel.set_markup("<span size='large' weight='bold'>" + _('Name') + "</span>")
         namelabel.set_alignment(0.0, 0.5)
         namelabel.set_padding(20, 0)
 
-        self.nameent = gtk.Entry()
+        self.nameent = Gtk.Entry()
         self.nameent.set_text(self.lesson['name'])
 
-        namebox = gtk.HBox()
-        namebox.pack_start(namelabel, expand=False)
-        namebox.pack_start(self.nameent)
+        namebox = Gtk.HBox()
+        namebox.pack_start(namelabel, False, True, 0)
+        namebox.pack_start(self.nameent, True, True, 0)
         
-        typelabel = gtk.Label()
+        typelabel = Gtk.Label()
         typelabel.set_markup("<span size='large' weight='bold'>" + _('Type') + "</span>")
         typelabel.set_alignment(0.0, 0.5)
         typelabel.set_padding(20, 0)
 
-        self.textradio = gtk.RadioButton(None, _('Normal Lesson'))
+        self.textradio = Gtk.RadioButton(None, _('Normal Lesson'))
         self.textradio.connect('toggled', self.type_toggled_cb)
         
-        self.balloonradio = gtk.RadioButton(self.textradio, _('Balloon Game'))
+        self.balloonradio = Gtk.RadioButton(self.textradio, _('Balloon Game'))
         self.balloonradio.connect('toggled', self.type_toggled_cb)
         
         self.textradio.set_active(self.lesson['type'] == 'normal')
         self.balloonradio.set_active(self.lesson['type'] == 'balloon')        
 
-        typebox = gtk.HBox()
-        typebox.pack_start(typelabel, expand=False)
-        typebox.pack_start(self.textradio, expand=False)
-        typebox.pack_start(self.balloonradio, expand=False)
+        typebox = Gtk.HBox()
+        typebox.pack_start(typelabel, False, True, 0)
+        typebox.pack_start(self.textradio, False, True, 0)
+        typebox.pack_start(self.balloonradio, False, True, 0)
         
-        desclabel = gtk.Label()
+        desclabel = Gtk.Label()
         desclabel.set_markup("<span size='large' weight='bold'>" + _('Description') + "</span>")
         desclabel.set_alignment(0.0, 0.5)
         desclabel.set_padding(20, 0)
 
-        self.desctext = gtk.TextView(gtk.TextBuffer())
-        self.desctext.props.wrap_mode = gtk.WRAP_WORD
-        descscroll = gtk.ScrolledWindow()
-        descscroll.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        self.desctext = Gtk.TextView(Gtk.TextBuffer())
+        self.desctext.props.wrap_mode = Gtk.WrapMode.WORD
+        descscroll = Gtk.ScrolledWindow()
+        descscroll.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
         descscroll.add(self.desctext)
         descscroll.set_size_request(-1, 75)
         self.desctext.get_buffer().set_text(self.lesson['description'])
 
-        descbox = gtk.HBox()
-        descbox.pack_start(desclabel, expand=False)
-        descbox.pack_start(descscroll)
+        descbox = Gtk.HBox()
+        descbox.pack_start(desclabel, False, True, 0)
+        descbox.pack_start(descscroll, True, True, 0)
 
         # Build the options.
-        optslabel = gtk.Label()
+        optslabel = Gtk.Label()
         optslabel.set_markup("<span size='large' weight='bold'>" + _('Options') + "</span>")
         optslabel.set_alignment(0.0, 0.5)
         optslabel.set_padding(20, 0)
 
-        self.mistakescheck = gtk.CheckButton(_('Allow Mistakes'))
+        self.mistakescheck = Gtk.CheckButton(_('Allow Mistakes'))
         self.mistakescheck.set_active(self.lesson.get('options', {}).get('mistakes', True))
-        self.backspacecheck = gtk.CheckButton(_('Allow Backspace'))
+        self.backspacecheck = Gtk.CheckButton(_('Allow Backspace'))
         self.backspacecheck.set_active(self.lesson.get('options', {}).get('backspace', True))
 
-        optsbox = gtk.HBox()
-        optsbox.pack_start(optslabel, expand=False)
-        optsbox.pack_start(self.backspacecheck, expand=False)
-        optsbox.pack_start(self.mistakescheck, expand=False)
+        optsbox = Gtk.HBox()
+        optsbox.pack_start(optslabel, False, True, 0)
+        optsbox.pack_start(self.backspacecheck, False, True, 0)
+        optsbox.pack_start(self.mistakescheck, False, True, 0)
             
         self.labelsizegroup.add_widget(namelabel)
         self.labelsizegroup.add_widget(typelabel)    
         self.labelsizegroup.add_widget(desclabel)    
         self.labelsizegroup.add_widget(optslabel)    
   
-        self.vbox.pack_start(detailslabel, expand=False)        
-        self.vbox.pack_start(namebox, expand=False)
-        self.vbox.pack_start(typebox, expand=False)
-        self.vbox.pack_start(descbox, expand=False)
-        self.vbox.pack_start(optsbox, expand=False)
+        self.vbox.pack_start(detailslabel, False, True, 0)
+        self.vbox.pack_start(namebox, False, True, 0)
+        self.vbox.pack_start(typebox, False, True, 0)
+        self.vbox.pack_start(descbox, False, True, 0)
+        self.vbox.pack_start(optsbox, False, True, 0)
 
         # Build the generator.
-        generatelabel = gtk.Label()
+        generatelabel = Gtk.Label()
         generatelabel.set_markup("<span size='x-large'><b>" + _('Automatic Lesson Generator') + "</b></span>")
         generatelabel.set_alignment(0.0, 0.5)
         generatelabel.set_padding(10, 0)
 
         generatebox = self.build_generate()
         self.vbox.pack_start(generatelabel, expand=False, padding=10)      
-        self.vbox.pack_start(generatebox, expand=False)       
+        self.vbox.pack_start(generatebox, False, True, 0)
         
         self.has_normal_widgets = False
         self.has_balloon_widgets = False
@@ -369,7 +370,7 @@ class EditLessonScreen(gtk.VBox):
                 stepbox = self.build_step(step, len(self.stepboxes))
                 self.stepboxes.append(stepbox)
                 
-                self.vbox.pack_start(stepbox, expand=False)
+                self.vbox.pack_start(stepbox, False, True, 0)
                 
         if self.lesson['type'] == 'balloon':
             self.has_balloon_widgets = True
@@ -377,30 +378,30 @@ class EditLessonScreen(gtk.VBox):
             if not self.lesson.has_key('words') or len(self.lesson['words']) == 0:
                 self.lesson['words'] = []
             
-            textlabel = gtk.Label()
+            textlabel = Gtk.Label()
             textlabel.set_markup("<span size='large' weight='bold'>" + _('Words') + "</span>")
             textlabel.set_alignment(0.0, 0.5)
             textlabel.set_padding(20, 0)
 
             self.labelsizegroup.add_widget(textlabel)
 
-            self.wordstext = gtk.TextView(gtk.TextBuffer())
-            self.wordstext.props.wrap_mode = gtk.WRAP_WORD
-            self.wordstext.modify_font(pango.FontDescription('Monospace'))
-            textscroll = gtk.ScrolledWindow()
-            textscroll.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+            self.wordstext = Gtk.TextView(Gtk.TextBuffer())
+            self.wordstext.props.wrap_mode = Gtk.WrapMode.WORD
+            self.wordstext.modify_font(Pango.FontDescription('Monospace'))
+            textscroll = Gtk.ScrolledWindow()
+            textscroll.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
             textscroll.add(self.wordstext)
             textscroll.set_size_request(-1, 200)
             self.wordstext.get_buffer().set_text(' '.join(self.lesson['words']))
     
-            textbox = gtk.HBox()
-            textbox.pack_start(textlabel, expand=False)
-            textbox.pack_start(textscroll)
+            textbox = Gtk.HBox()
+            textbox.pack_start(textlabel, False, True, 0)
+            textbox.pack_start(textscroll, True, True, 0)
             
-            self.vbox.pack_start(textbox, expand=False)
+            self.vbox.pack_start(textbox, False, True, 0)
 
         # Medal requirements widgets.
-        medalslabel = gtk.Label()
+        medalslabel = Gtk.Label()
         medalslabel.set_markup("<span size='x-large'><b>" + _('Medal Requirements') + "</b></span>")
         medalslabel.set_alignment(0.0, 0.5)
         medalslabel.set_padding(10, 0)
@@ -412,9 +413,9 @@ class EditLessonScreen(gtk.VBox):
         self.medalboxes.append(self.build_medal(self.lesson['medals'][1], _('Silver')))
         self.medalboxes.append(self.build_medal(self.lesson['medals'][2], _('Gold')))
         
-        self.vbox.pack_start(self.medalboxes[0], expand=False)
-        self.vbox.pack_start(self.medalboxes[1], expand=False)
-        self.vbox.pack_start(self.medalboxes[2], expand=False)
+        self.vbox.pack_start(self.medalboxes[0], False, True, 0)
+        self.vbox.pack_start(self.medalboxes[1], False, True, 0)
+        self.vbox.pack_start(self.medalboxes[2], False, True, 0)
 
         self.vbox.show_all()
         
@@ -555,43 +556,43 @@ class EditLessonScreen(gtk.VBox):
     def generate_words_clicked_cb(self, btn):
         self.activity.push_screen(WordListScreen(self.activity))
 
-class WordListScreen(gtk.VBox):
+class WordListScreen(Gtk.VBox):
     def __init__(self, activity):
-        gtk.VBox.__init__(self)
+        GObject.GObject.__init__(self)
         self.set_border_width(10)
 
         self.activity = activity
         
         # Add the header.
-        title = gtk.Label()
+        title = Gtk.Label()
         title.set_markup("<span size='20000'><b>" + _("Edit Word List") + "</b></span>")
         title.set_alignment(1.0, 0.0)
         
-        stoplabel = gtk.Label(_('Go Back'))
-        stopbtn = gtk.Button()
+        stoplabel = Gtk.Label(label=_('Go Back'))
+        stopbtn = Gtk.Button()
         stopbtn.add(stoplabel)
         stopbtn.connect('clicked', self.stop_clicked_cb)
        
-        titlebox = gtk.HBox()
+        titlebox = Gtk.HBox()
         titlebox.pack_start(stopbtn, False, False, 10)
         titlebox.pack_end(title, False, False, 10)
 
-        subtitle = gtk.Label()
+        subtitle = Gtk.Label()
         subtitle.set_markup("<span size='10000'>" + _("Type or paste words here, for the Automatic Lesson Generator.  If empty, the dictionary will be used.") + "</span>")
         subtitle.set_alignment(1.0, 0.0)
 
-        self.wordlisttext = gtk.TextView(gtk.TextBuffer())
-        self.wordlisttext.props.wrap_mode = gtk.WRAP_WORD
-        wordlistscroll = gtk.ScrolledWindow()
-        wordlistscroll.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        self.wordlisttext = Gtk.TextView(Gtk.TextBuffer())
+        self.wordlisttext.props.wrap_mode = Gtk.WrapMode.WORD
+        wordlistscroll = Gtk.ScrolledWindow()
+        wordlistscroll.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
         wordlistscroll.add(self.wordlisttext)
         wordlistscroll.set_size_request(-1, 75)
         self.wordlisttext.get_buffer().set_text(' '.join(self.activity.wordlist))
 
-        self.pack_start(titlebox, expand=False)
-        self.pack_start(subtitle, expand=False)
-        self.pack_start(gtk.HSeparator(), expand=False)
-        self.pack_start(wordlistscroll)
+        self.pack_start(titlebox, False, True, 0)
+        self.pack_start(subtitle, False, True, 0)
+        self.pack_start(Gtk.Separator(orientation=Gtk.Orientation.HORIZONTAL), expand=False, padding=0)
+        self.pack_start(wordlistscroll, True, True, 0)
         
         self.show_all()
 

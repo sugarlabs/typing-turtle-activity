@@ -25,25 +25,21 @@ from port import json
 #dbgp.client.brkOnExcept(host='192.168.1.104', port=12900)
 
 # there is need to set up localization.
-# since sugar.activity.main already seted up gettext envronment
+# since sugar3.activity.main already seted up gettext envronment
 #locale.setlocale(locale.LC_ALL, '')
 
-# Import PyGTK.
-import gobject, pygtk, gtk, pango
+
+from gi.repository import Gtk
 
 # Import Sugar UI modules.
-import sugar.activity.activity
-from sugar.graphics import *
-from sugar.graphics import toolbutton
-from sugar import profile
+import sugar3.activity.activity
+from sugar3.graphics import *
+from sugar3.graphics import toolbutton
+from sugar3 import profile
 
-OLD_TOOLBAR = False
-try:
-    from sugar.graphics.toolbarbox import ToolbarBox
-    from sugar.activity.widgets import StopButton
-    from sugar.activity.widgets import ActivityToolbarButton
-except ImportError:
-    OLD_TOOLBAR = True
+from sugar3.graphics.toolbarbox import ToolbarBox
+from sugar3.activity.widgets import StopButton
+from sugar3.activity.widgets import ActivityToolbarButton
 
 # Initialize logging.
 log = logging.getLogger('Typing Turtle')
@@ -51,8 +47,27 @@ log.setLevel(logging.DEBUG)
 logging.basicConfig()
 
 # Change to bundle directory.
-bundle_path = sugar.activity.activity.get_bundle_path() 
+bundle_path = sugar3.activity.activity.get_bundle_path() 
 os.chdir(bundle_path)
+
+# Set correct DPI for Rsvg and Screen
+from gi.repository import PangoCairo
+
+def _get_screen_dpi():
+    xft_dpi = Gtk.Settings.get_default().get_property('gtk-xft-dpi')
+    dpi = float(xft_dpi / 1024)
+    logging.debug('Setting dpi to: %f', dpi)
+    # HACK: if the DPI detected is 200.0 it seems we are on an XO, so
+    # we return 133 because the XO manage its resolution in a complex
+    # way. More information here:
+    #     http://wiki.laptop.org/go/Display
+    if 200 == int(dpi):
+        return 133
+    return dpi
+
+dpi = _get_screen_dpi()
+font_map_default = PangoCairo.font_map_get_default()
+font_map_default.set_resolution(dpi)
 
 # Import activity modules.
 import mainscreen, editlessonlistscreen
@@ -61,16 +76,16 @@ import mainscreen, editlessonlistscreen
 # 
 # It owns the main application window, and all the various toolbars and options.
 # Activity Screens are stored in a stack, with the currently active screen on top.
-class TypingTurtle(sugar.activity.activity.Activity):
+class TypingTurtle(sugar3.activity.activity.Activity):
     def __init__ (self, handle):
-        sugar.activity.activity.Activity.__init__(self, handle)
+        sugar3.activity.activity.Activity.__init__(self, handle)
         self.set_title(_("Typing Turtle"))
 	self.max_participants = 1
         
         self.build_toolbox()
         
         self.screens = []
-        self.screenbox = gtk.VBox()
+        self.screenbox = Gtk.VBox()
         
         self.nick = profile.get_nick_name()
         
@@ -92,45 +107,31 @@ class TypingTurtle(sugar.activity.activity.Activity):
         
         self.show_all()
         
-        self.editorbtn = sugar.graphics.toolbutton.ToolButton('view-source')
+        self.editorbtn = sugar3.graphics.toolbutton.ToolButton('view-source')
         self.editorbtn.set_tooltip(_("Edit Lessons"))
         self.editorbtn.connect('clicked', self.editor_clicked_cb)
 
-        if OLD_TOOLBAR:
-            # Hide the sharing button from the activity toolbar since
-            # we don't support sharing.
-            activity_toolbar = self.tbox.get_activity_toolbar()
-            activity_toolbar.share.props.visible = False
-
-            share_idx = activity_toolbar.get_item_index(activity_toolbar.share)
-            activity_toolbar.insert(self.editorbtn, share_idx)
-        else:
-            activity_toolbar = self.toolbar_box.toolbar
-            activity_toolbar.insert(self.editorbtn, 1)
+        activity_toolbar = self.toolbar_box.toolbar
+        activity_toolbar.insert(self.editorbtn, 1)
 
         self.editorbtn.show_all()
 
     def build_toolbox(self):
-        if OLD_TOOLBAR:
-            self.tbox = sugar.activity.activity.ActivityToolbox(self)
-            self.tbox.show_all()
-            self.set_toolbox(self.tbox)
-        else:
-            self.toolbar_box = ToolbarBox()
+        self.toolbar_box = ToolbarBox()
 
-            activity_button = ActivityToolbarButton(self)
-            self.toolbar_box.toolbar.insert(activity_button, 0)
-            activity_button.show()
+        activity_button = ActivityToolbarButton(self)
+        self.toolbar_box.toolbar.insert(activity_button, 0)
+        activity_button.show()
 
-            separator = gtk.SeparatorToolItem()
-            separator.props.draw = False
-            separator.set_expand(True)
-            self.toolbar_box.toolbar.insert(separator, -1)
+        separator = Gtk.SeparatorToolItem()
+        separator.props.draw = False
+        separator.set_expand(True)
+        self.toolbar_box.toolbar.insert(separator, -1)
 
-            self.toolbar_box.toolbar.insert(StopButton(self), -1)
+        self.toolbar_box.toolbar.insert(StopButton(self), -1)
 
-            self.set_toolbar_box(self.toolbar_box)
-            self.toolbar_box.show_all()
+        self.set_toolbar_box(self.toolbar_box)
+        self.toolbar_box.show_all()
 
     def editor_clicked_cb(self, btn):
         self.push_screen(editlessonlistscreen.EditLessonListScreen(self, self.mainscreen.lessons))
@@ -146,7 +147,7 @@ class TypingTurtle(sugar.activity.activity.Activity):
             
             self.screenbox.remove(oldscreen)
         
-        self.screenbox.pack_start(screen, True, True)
+        self.screenbox.pack_start(screen, True, True, 0)
         self.screens.append(screen)
         
         try:
@@ -172,7 +173,7 @@ class TypingTurtle(sugar.activity.activity.Activity):
             except:
                 pass
             
-            self.screenbox.pack_start(screen)
+            self.screenbox.pack_start(screen, True, True, 0)
             
     def add_history(self, entry):
         self.data['history'].append(entry)

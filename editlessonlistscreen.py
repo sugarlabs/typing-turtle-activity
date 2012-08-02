@@ -22,42 +22,42 @@ from gettext import gettext as _
 from port import json
 from port import chooser
 
-# Import PyGTK.
-import gobject, pygtk, gtk, pango
+from gi.repository import Gtk
+from gi.repository import GObject
 
 # Import Sugar UI modules.
-import sugar.activity.activity
-import sugar.graphics.style
-import sugar.graphics.alert
-import sugar.mime
-import sugar.datastore.datastore
+import sugar3.activity.activity
+import sugar3.graphics.style
+import sugar3.graphics.alert
+import sugar3.mime
+import sugar3.datastore.datastore
 
 # Import activity modules.
 import editlessonscreen
 
-class EditLessonListScreen(gtk.VBox):
+class EditLessonListScreen(Gtk.VBox):
     def __init__(self, activity, lessons):
-        gtk.VBox.__init__(self)
+        GObject.GObject.__init__(self)
 
         self.activity = activity
         self.lessons = lessons
 
         # Add the header.
-        title = gtk.Label()
+        title = Gtk.Label()
         title.set_markup("<span size='20000'><b>" + _("Edit Lessons") + "</b></span>")
         title.set_alignment(1.0, 0.0)
         
-        stoplabel = gtk.Label(_('Go Back'))
-        stopbtn = gtk.Button()
+        stoplabel = Gtk.Label(label=_('Go Back'))
+        stopbtn = Gtk.Button()
         stopbtn.add(stoplabel)
         stopbtn.connect('clicked', self.stop_clicked_cb)
        
-        titlebox = gtk.HBox()
+        titlebox = Gtk.HBox()
         titlebox.pack_start(stopbtn, False, False, 10)
         titlebox.pack_end(title, False, False, 10)
 
         # Add the lesson list.
-        self.treeview = gtk.TreeView()
+        self.treeview = Gtk.TreeView()
         self.treeview.set_rules_hint(True)
         self.treeview.set_enable_search(False)
 
@@ -66,73 +66,73 @@ class EditLessonListScreen(gtk.VBox):
 
         # Note that the only thing we store in our liststore is the lesson id.
         # All the actual data is in the lessons list.
-        self.liststore = gtk.ListStore(gobject.TYPE_INT)
+        self.liststore = Gtk.ListStore(GObject.TYPE_INT)
         self.treeview.set_model(self.liststore)
 
         # Construct the columns.
-        renderer = gtk.CellRendererText()
-        col = gtk.TreeViewColumn(_('Name'), renderer)
+        renderer = Gtk.CellRendererText()
+        col = Gtk.TreeViewColumn(_('Name'), renderer)
         col.set_cell_data_func(renderer, self.name_render_cb) 
         self.treeview.append_column(col)
 
-        renderer = gtk.CellRendererText()
-        col = gtk.TreeViewColumn(_('Description'), renderer)
+        renderer = Gtk.CellRendererText()
+        col = Gtk.TreeViewColumn(_('Description'), renderer)
         col.set_cell_data_func(renderer, self.description_render_cb) 
         col.set_expand(True)
         self.treeview.append_column(col)
 
-        renderer = gtk.CellRendererText()
-        col = gtk.TreeViewColumn(_('Type'), renderer)
+        renderer = Gtk.CellRendererText()
+        col = Gtk.TreeViewColumn(_('Type'), renderer)
         col.set_cell_data_func(renderer, self.type_render_cb) 
         col.set_expand(False)
         self.treeview.append_column(col)
 
-        scroll = gtk.ScrolledWindow()
-        scroll.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        scroll = Gtk.ScrolledWindow()
+        scroll.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
         scroll.add(self.treeview)
 
-        importlabel = gtk.Label(_('Import Lessons from Journal'))
-        self.importbtn = gtk.Button()
+        importlabel = Gtk.Label(label=_('Import Lessons from Journal'))
+        self.importbtn = Gtk.Button()
         self.importbtn.add(importlabel)
         self.importbtn.connect('clicked', self.import_clicked_cb)
         
-        exportlabel = gtk.Label(_('Export Lessons to Journal'))
-        self.exportbtn = gtk.Button()
+        exportlabel = Gtk.Label(label=_('Export Lessons to Journal'))
+        self.exportbtn = Gtk.Button()
         self.exportbtn.add(exportlabel)
         self.exportbtn.connect('clicked', self.export_clicked_cb)
         
-        exportlabel = gtk.Label(_('Save Lessons to Activity'))
-        self.defaultsbtn = gtk.Button()
+        exportlabel = Gtk.Label(label=_('Save Lessons to Activity'))
+        self.defaultsbtn = Gtk.Button()
         self.defaultsbtn.add(exportlabel)
         self.defaultsbtn.connect('clicked', self.set_default_clicked_cb)
         
-        self.addbtn = gtk.Button()
-        self.addbtn.add(sugar.graphics.icon.Icon(icon_name='list-add'))
+        self.addbtn = Gtk.Button()
+        self.addbtn.add(sugar3.graphics.icon.Icon(icon_name='list-add'))
         self.addbtn.connect('clicked', self.add_lesson_clicked_cb)
-        self.delbtn = gtk.Button()
-        self.delbtn.add(sugar.graphics.icon.Icon(icon_name='list-remove'))
+        self.delbtn = Gtk.Button()
+        self.delbtn.add(sugar3.graphics.icon.Icon(icon_name='list-remove'))
         self.delbtn.connect('clicked', self.del_lesson_clicked_cb)
         self.delbtn.set_sensitive(False)
-        self.moveupbtn = gtk.Button()
-        self.moveupbtn.add(sugar.graphics.icon.Icon(icon_name='go-up'))
+        self.moveupbtn = Gtk.Button()
+        self.moveupbtn.add(sugar3.graphics.icon.Icon(icon_name='go-up'))
         self.moveupbtn.connect('clicked', self.move_lesson_up_clicked_cb)
         self.moveupbtn.set_sensitive(False)
-        self.movedownbtn = gtk.Button()
-        self.movedownbtn.add(sugar.graphics.icon.Icon(icon_name='go-down'))
+        self.movedownbtn = Gtk.Button()
+        self.movedownbtn.add(sugar3.graphics.icon.Icon(icon_name='go-down'))
         self.movedownbtn.connect('clicked', self.move_lesson_down_clicked_cb)
         self.movedownbtn.set_sensitive(False)
 
-        btnbox = gtk.HBox()
+        btnbox = Gtk.HBox()
         btnbox.pack_start(self.importbtn, False, False, 10)
-        btnbox.pack_start(self.exportbtn, False, False)
+        btnbox.pack_start(self.exportbtn, False, False, 0)
         btnbox.pack_start(self.defaultsbtn, False, False, 10)
-        btnbox.pack_end(self.addbtn, False, False)
-        btnbox.pack_end(self.delbtn, False, False)
-        btnbox.pack_end(self.moveupbtn, False, False)
-        btnbox.pack_end(self.movedownbtn, False, False)
+        btnbox.pack_end(self.addbtn, False, False, 0)
+        btnbox.pack_end(self.delbtn, False, False, 0)
+        btnbox.pack_end(self.moveupbtn, False, False, 0)
+        btnbox.pack_end(self.movedownbtn, False, False, 0)
 
         self.pack_start(titlebox, False, False, 10)
-        self.pack_start(gtk.HSeparator(), False, False, 0)
+        self.pack_start(Gtk.Separator(orientation=Gtk.Orientation.HORIZONTAL), False, False, 0)
         self.pack_start(scroll, True, True, 10)
         self.pack_start(btnbox, False, False, 10)
 
@@ -197,13 +197,13 @@ class EditLessonListScreen(gtk.VBox):
         if len(self.lessons) > 1:
             path = self.treeview.get_cursor()[0]
             if path:
-                msg = sugar.graphics.alert.ConfirmationAlert()
+                msg = sugar3.graphics.alert.ConfirmationAlert()
                 msg.props.title = _('Delete Lesson?')
                 msg.props.msg = _('Deleting the lesson will erase the lesson content.')
         
                 def alert_response_cb(alert, response_id, self, id):
                     self.activity.remove_alert(alert)
-                    if response_id is gtk.RESPONSE_OK:
+                    if response_id is Gtk.ResponseType.OK:
                         self.lessons.pop(id)
                         del self.liststore[id]
                         self.treeview.get_selection().select_path(id)
@@ -294,7 +294,7 @@ class EditLessonListScreen(gtk.VBox):
     
     def export_clicked_cb(self, btn):
         # Create the new journal entry
-        fileObject = sugar.datastore.datastore.create()
+        fileObject = sugar3.datastore.datastore.create()
 
         meta = self.activity.metadata
         fileObject.metadata['title'] = meta['title'] + _(' (Exported Lessons)')
@@ -312,13 +312,13 @@ class EditLessonListScreen(gtk.VBox):
         finally:
             fd.close()
         
-        sugar.datastore.datastore.write(fileObject, transfer_ownership=True)
+        sugar3.datastore.datastore.write(fileObject, transfer_ownership=True)
         fileObject.destroy()
         del fileObject
 
     def set_default_clicked_cb(self, btn):
         code = locale.getdefaultlocale()[0] or 'en_US'
-        path = sugar.activity.activity.get_bundle_path() + '/lessons/%s.lessons' % code
+        path = sugar3.activity.activity.get_bundle_path() + '/lessons/%s.lessons' % code
         
         fd = open(path, 'w')
         

@@ -19,11 +19,11 @@
 import sys
 import keyboard
 
-import gtk
+from gi.repository import Gtk
 
-window = gtk.Window(gtk.WINDOW_TOPLEVEL)
+window = Gtk.Window(Gtk.WindowType.TOPLEVEL)
 window.set_title("keyboard widget")
-window.connect("destroy", lambda w: gtk.main_quit())
+window.connect("destroy", lambda w: Gtk.main_quit())
 window.show_all()
 window.realize()
 
@@ -37,24 +37,24 @@ except:
     pass
 k.set_layout(keyboard.get_layout())
 
-savebtn = gtk.Button()
-savebtn.add(gtk.Label('Save Keys'))
+savebtn = Gtk.Button()
+savebtn.add(Gtk.Label(label='Save Keys'))
 savebtn.connect('clicked', lambda w: k.save_letter_map(sys.argv[1]))
 
-quitbtn = gtk.Button()
-quitbtn.add(gtk.Label('Quit'))
-quitbtn.connect('clicked', lambda w: gtk.main_quit())
+quitbtn = Gtk.Button()
+quitbtn.add(Gtk.Label(label='Quit'))
+quitbtn.connect('clicked', lambda w: Gtk.main_quit())
 
-hbox = gtk.HBox()
-hbox.pack_start(savebtn)
-hbox.pack_start(quitbtn)
+hbox = Gtk.HBox()
+hbox.pack_start(savebtn, True, True, 0)
+hbox.pack_start(quitbtn, True, True, 0)
 
-vbox = gtk.VBox()
-vbox.pack_start(k)
-vbox.pack_start(hbox)
+vbox = Gtk.VBox()
+vbox.pack_start(k, True, True, 0)
+vbox.pack_start(hbox, True, True, 0)
 
 window.add(vbox)
 window.show_all()
 
-gtk.main()
+Gtk.main()
 
