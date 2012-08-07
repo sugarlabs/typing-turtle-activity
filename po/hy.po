@@ -27,8 +27,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-08-08 09:54-0300\n"
-"PO-Revision-Date: 2012-02-06 16:24+0200\n"
-"Last-Translator: anush.mkrtchyan <anush.mkrtchyan@ca1492.com>\n"
+"PO-Revision-Date: 2012-08-03 07:38+0200\n"
+"Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -52,7 +52,7 @@ msgstr "Ետ գնալ"
 
 #: editlessonscreen.py:76
 msgid "New keys"
-msgstr "նոր ստեղներ"
+msgstr "Նոր ստեղներ"
 
 #: editlessonscreen.py:77
 msgid "Known keys"
@@ -150,15 +150,15 @@ msgstr "Մեդալի պահանջները"
 
 #: editlessonscreen.py:411
 msgid "Bronze"
-msgstr "Բրոնզ"
+msgstr "Բրոնզե"
 
 #: editlessonscreen.py:412
 msgid "Silver"
-msgstr "Արծաթ"
+msgstr "Արծաթե"
 
 #: editlessonscreen.py:413
 msgid "Gold"
-msgstr "Ոսկի"
+msgstr "Ոսկե"
 
 #: editlessonscreen.py:580
 msgid ""
@@ -185,7 +185,7 @@ msgid ""
 "You earned a medal in this lesson!  Advance to the next one\n"
 "by clicking the Next button."
 msgstr ""
-"Այս դասից Դուք մեդալ նվաճեցիք:  Անցեք հաջորդին՝\n"
+"Այս դասից Դուք մեդալ նվաճեցիք: Անցեք հաջորդին՝\n"
 "սեղմելով Հաջորդը կոճակը:"
 
 #: mainscreen.py:207
@@ -268,7 +268,7 @@ msgid ""
 "Be careful to use the correct finger to press each key.  Look at the "
 "keyboard below if you need help remembering."
 msgstr ""
-"Ուշադիր եղեք, որպեսզի յուրաքանչյուր ստեղնը սեղմեք ճիշտ մատով:  Եթե հիշելու "
+"Ուշադիր եղեք, որպեսզի յուրաքանչյուր ստեղնը սեղմեք ճիշտ մատով: Եթե հիշելու "
 "համար օգնության կարիք ունեք, Նայեք ներքև՝ ստեղնաշարին:"
 
 #: lessonbuilder.py:275
@@ -276,48 +276,48 @@ msgid ""
 "Try to type at the same speed, all the time.  As you get more comfortable "
 "you can increase the speed a little."
 msgstr ""
-"Աշխատեք միշտ տպել նույն արագությամբ:  Սովորելուն զուգընթաց կարող եք փոքր-ինչ "
+"Աշխատեք միշտ տպել նույն արագությամբ: Սովորելուն զուգընթաց կարող եք փոքր-ինչ "
 "ավելացնել արագությունը:"
 
 #: lessonbuilder.py:282
 msgid "left little"
-msgstr "ձախ ճկույթը"
+msgstr "Ձախ ճկույթը"
 
 #: lessonbuilder.py:283
 msgid "left ring"
-msgstr "ձախ մատնեմատը"
+msgstr "Ձախ մատնեմատը"
 
 #: lessonbuilder.py:284
 msgid "left middle"
-msgstr "ձախ միջնամատը"
+msgstr "Ձախ միջնամատը"
 
 #: lessonbuilder.py:285
 msgid "left index"
-msgstr "ձախ ցուցամատը"
+msgstr "Ձախ ցուցամատը"
 
 #: lessonbuilder.py:286 lessonscreen.py:43
 msgid "left thumb"
-msgstr "ձախ բութը"
+msgstr "Ձախ բութը"
 
 #: lessonbuilder.py:287
 msgid "right little"
-msgstr "աջ ճկույթը"
+msgstr "Աջ ճկույթը"
 
 #: lessonbuilder.py:288
 msgid "right ring"
-msgstr "աջ մատնեմատը"
+msgstr "Աջ մատնեմատը"
 
 #: lessonbuilder.py:289
 msgid "right middle"
-msgstr "աջ միջնամատը"
+msgstr "Աջ միջնամատը"
 
 #: lessonbuilder.py:290
 msgid "right index"
-msgstr "աջ ցուցամատը"
+msgstr "Աջ ցուցամատը"
 
 #: lessonbuilder.py:291 lessonscreen.py:48
 msgid "right thumb"
-msgstr "աջ բութը"
+msgstr "Աջ բութը"
 
 #: lessonbuilder.py:320
 #, python-format
@@ -449,35 +449,35 @@ msgstr " (Արտահանված դասեր)"
 
 #: lessonscreen.py:39
 msgid "left little finger"
-msgstr "ձախ ճկույթ"
+msgstr "Ձախ ճկույթ"
 
 #: lessonscreen.py:40
 msgid "left ring finger"
-msgstr "ձախ մատնեմատ"
+msgstr "Ձախ մատնեմատ"
 
 #: lessonscreen.py:41
 msgid "left middle finger"
-msgstr "ձախ միջնամատ"
+msgstr "Ձախ միջնամատ"
 
 #: lessonscreen.py:42
 msgid "left index finger"
-msgstr "ձախ ցուցամատ"
+msgstr "Ձախ ցուցամատ"
 
 #: lessonscreen.py:44
 msgid "right little finger"
-msgstr "աջ ճկույթ"
+msgstr "Աջ ճկույթ"
 
 #: lessonscreen.py:45
 msgid "right ring finger"
-msgstr "աջ մատնեմատ"
+msgstr "Աջ մատնեմատ"
 
 #: lessonscreen.py:46
 msgid "right middle finger"
-msgstr "աջ միջնամատ"
+msgstr "Աջ միջնամատ"
 
 #: lessonscreen.py:47
 msgid "right index finger"
-msgstr "աջ ցուցամատ"
+msgstr "Աջ ցուցամատ"
 
 #: lessonscreen.py:189
 #, python-format
@@ -497,7 +497,7 @@ msgstr "Սեղմեք և պահեք shift ստեղնը Ձեր %(finger)s, "
 #: lessonscreen.py:510 lessonscreen.py:514 lessonscreen.py:518
 #, python-format
 msgid "then press the %(letter)s key with your %(finger)s."
-msgstr "այնուհետ սեղմեք %(letter)s ստեղնը Ձեր %(finger)s:"
+msgstr "Այնուհետ սեղմեք %(letter)s ստեղնը Ձեր %(finger)s:"
 
 #: lessonscreen.py:513
 msgid "Press and hold the altgr key, "
