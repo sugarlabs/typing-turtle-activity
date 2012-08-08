@@ -506,14 +506,28 @@ class KeyboardWidget(KeyboardData, Gtk.DrawingArea):
         # Hack to get the current modifier state - which will not be represented by the event.
         # state = Gdk.device_get_core_pointer().get_state(self.get_window())[1]
 
-        if self.active_group != event.group or self.active_state != event.state:
+        # This is a NEW HACK for the Gtk3 version of Typing Turtle. I
+        # didn't find the way to translate the old hack into a new one
+        state = event.state
+        if event.hardware_keycode in (50, 62):
+            if event.type == Gdk.EventType.KEY_PRESS:
+                state |= Gdk.ModifierType.SHIFT_MASK
+            else:
+                state ^= Gdk.ModifierType.SHIFT_MASK
+        if event.hardware_keycode == 92:
+            if event.type == Gdk.EventType.KEY_PRESS:
+                state |= Gdk.ModifierType.MOD5_MASK
+            else:
+                state ^= Gdk.ModifierType.MOD5_MASK
+
+        if self.active_group != event.group or self.active_state != state:
             self.active_group = event.group
-            self.active_state = event.state
+            self.active_state = state
 
             self.queue_draw()
 
         if event.string:
-            sig = self.format_key_sig(event.hardware_keycode, event.state, event.group)
+            sig = self.format_key_sig(event.hardware_keycode, state, event.group)
             if not self.letter_map.has_key(sig):
                 self.letter_map[sig] = event.string
                 self.queue_draw()
