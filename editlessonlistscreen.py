@@ -61,9 +61,6 @@ class EditLessonListScreen(Gtk.VBox):
         self.treeview.set_rules_hint(True)
         self.treeview.set_enable_search(False)
 
-        self.treeview.connect('cursor-changed', self.lesson_selected_cb)
-        self.treeview.connect('row-activated', self.lesson_activated_cb)
-
         # Note that the only thing we store in our liststore is the lesson id.
         # All the actual data is in the lessons list.
         self.liststore = Gtk.ListStore(GObject.TYPE_INT)
@@ -136,6 +133,11 @@ class EditLessonListScreen(Gtk.VBox):
         self.pack_start(scroll, True, True, 10)
         self.pack_start(btnbox, False, False, 10)
 
+        # README: I had to move these two lines here because the
+        # signal was emitted before all the widget are created
+        self.treeview.connect('cursor-changed', self.lesson_selected_cb)
+        self.treeview.connect('row-activated', self.lesson_activated_cb)
+
         self.build()
 
         self.show_all()
@@ -146,18 +148,18 @@ class EditLessonListScreen(Gtk.VBox):
         for t in range(0, len(self.lessons)):
             self.liststore.append((0,))
     
-    def name_render_cb(self, column, cell_renderer, model, iter):
-        id = model.get_path(iter)[0]
+    def name_render_cb(self, column, cell_renderer, model, iter, data):
+        id = model.get_path(iter).get_indices()[0]
         t = self.lessons[id]
         cell_renderer.set_property('text', t['name'])
     
-    def description_render_cb(self, column, cell_renderer, model, iter):
-        id = model.get_path(iter)[0]
+    def description_render_cb(self, column, cell_renderer, model, iter, data):
+        id = model.get_path(iter).get_indices()[0]
         t = self.lessons[id]
         cell_renderer.set_property('text', t['description'])
 
-    def type_render_cb(self, column, cell_renderer, model, iter):
-        id = model.get_path(iter)[0]
+    def type_render_cb(self, column, cell_renderer, model, iter, data):
+        id = model.get_path(iter).get_indices()[0]
         t = self.lessons[id]
         if t['type'] == 'normal':
             cell_renderer.set_property('text', _('Text'))
@@ -195,31 +197,32 @@ class EditLessonListScreen(Gtk.VBox):
 
     def del_lesson_clicked_cb(self, btn):
         if len(self.lessons) > 1:
-            path = self.treeview.get_cursor()[0]
+            path, focus_column = self.treeview.get_cursor()
+
             if path:
                 msg = sugar3.graphics.alert.ConfirmationAlert()
                 msg.props.title = _('Delete Lesson?')
                 msg.props.msg = _('Deleting the lesson will erase the lesson content.')
         
-                def alert_response_cb(alert, response_id, self, id):
+                def alert_response_cb(alert, response_id, self, path):
                     self.activity.remove_alert(alert)
                     if response_id is Gtk.ResponseType.OK:
+                        id = path.get_indices()[0]
                         self.lessons.pop(id)
-                        del self.liststore[id]
+                        del self.liststore[path]
                         self.treeview.get_selection().select_path(id)
                         self.treeview.grab_focus()
                         self.update_sensitivity()
-                
-                id = path[0]
-                msg.connect('response', alert_response_cb, self, id)
+
+                msg.connect('response', alert_response_cb, self, path)
                 
                 self.activity.add_alert(msg)
                 msg.show_all()
 
     def move_lesson_up_clicked_cb(self, btn):
-        path = self.treeview.get_cursor()[0]
+        path, focus_column = self.treeview.get_cursor()
         if path:
-            id = path[0]
+            id = path.get_indices()[0]
             if id > 0:
                 lesson = self.lessons.pop(id)
                 self.lessons.insert(id - 1, lesson)
@@ -229,9 +232,9 @@ class EditLessonListScreen(Gtk.VBox):
                 self.update_sensitivity()
 
     def move_lesson_down_clicked_cb(self, btn):
-        path = self.treeview.get_cursor()[0]
+        path, focus_column = self.treeview.get_cursor()
         if path:
-            id = path[0]
+            id = path.get_indices()[0]
             if id < len(self.lessons) - 1:
                 lesson = self.lessons.pop(id)
                 self.lessons.insert(id + 1, lesson)
@@ -244,7 +247,8 @@ class EditLessonListScreen(Gtk.VBox):
         self.update_sensitivity()
 
     def lesson_activated_cb(self, treeview, path, column):
-        id = path[0]
+        path, focus_column = self.treeview.get_cursor()
+        id = path.get_indices()[0]
         lesson = self.lessons[id]
         self.activity.push_screen(editlessonscreen.EditLessonScreen(self.activity, lesson))
 
@@ -252,21 +256,20 @@ class EditLessonListScreen(Gtk.VBox):
         self.update_sensitivity()
 
     def update_sensitivity(self):
-        path = self.treeview.get_cursor()[0]
-        
+        path, focus_column = self.treeview.get_cursor()
         if path:
             self.delbtn.set_sensitive(True)
-            
-            if path[0] > 0:
+
+            id = path.get_indices()[0]
+            if id > 0:
                 self.moveupbtn.set_sensitive(True)
             else:
                 self.moveupbtn.set_sensitive(False)
-                
-            if path[0] < len(self.lessons) - 1:
+
+            if id < len(self.lessons) - 1:
                 self.movedownbtn.set_sensitive(True)
             else:
                 self.movedownbtn.set_sensitive(False)
-                
         else:
             self.delbtn.set_sensitive(False)
             self.moveupbtn.set_sensitive(False)
