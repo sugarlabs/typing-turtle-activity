@@ -157,7 +157,8 @@ class EditLessonScreen(Gtk.VBox):
 
         btnbox = Gtk.HBox()
         btnbox.pack_start(steplabel, False, False, 0)
-        btnbox.pack_start(stepbox.typecombo, expand=False, padding=10)
+        btnbox.pack_start(stepbox.typecombo, expand=False,
+                          fill=False, padding=10)
         btnbox.pack_end(addstepbtn, False, False, 0)
         btnbox.pack_end(delstepbtn, False, False, 0)
         btnbox.pack_end(moveupbtn, False, False, 0)
@@ -171,7 +172,8 @@ class EditLessonScreen(Gtk.VBox):
 
         self.labelsizegroup.add_widget(instlabel)
 
-        stepbox.insttext = Gtk.TextView(Gtk.TextBuffer())
+        stepbox.insttext = Gtk.TextView()
+        stepbox.insttext.set_buffer(Gtk.TextBuffer())
         stepbox.insttext.props.wrap_mode = Gtk.WrapMode.WORD
         stepbox.insttext.modify_font(Pango.FontDescription('Monospace'))
         instscroll = Gtk.ScrolledWindow()
@@ -192,7 +194,8 @@ class EditLessonScreen(Gtk.VBox):
 
         self.labelsizegroup.add_widget(textlabel)
 
-        stepbox.texttext = Gtk.TextView(Gtk.TextBuffer())
+        stepbox.texttext = Gtk.TextView()
+        stepbox.texttext.set_buffer(Gtk.TextBuffer())
         stepbox.texttext.props.wrap_mode = Gtk.WrapMode.WORD
         stepbox.texttext.modify_font(Pango.FontDescription('monospace'))
         textscroll = Gtk.ScrolledWindow()
@@ -304,7 +307,8 @@ class EditLessonScreen(Gtk.VBox):
         desclabel.set_alignment(0.0, 0.5)
         desclabel.set_padding(20, 0)
 
-        self.desctext = Gtk.TextView(Gtk.TextBuffer())
+        self.desctext = Gtk.TextView()
+        self.desctext.set_buffer(Gtk.TextBuffer())
         self.desctext.props.wrap_mode = Gtk.WrapMode.WORD
         descscroll = Gtk.ScrolledWindow()
         descscroll.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
@@ -350,7 +354,8 @@ class EditLessonScreen(Gtk.VBox):
         generatelabel.set_padding(10, 0)
 
         generatebox = self.build_generate()
-        self.vbox.pack_start(generatelabel, expand=False, padding=10)      
+        self.vbox.pack_start(generatelabel, expand=False,
+                             fill=False, padding=10)
         self.vbox.pack_start(generatebox, False, True, 0)
         
         self.has_normal_widgets = False
@@ -385,7 +390,8 @@ class EditLessonScreen(Gtk.VBox):
 
             self.labelsizegroup.add_widget(textlabel)
 
-            self.wordstext = Gtk.TextView(Gtk.TextBuffer())
+            self.wordstext = Gtk.TextView()
+            self.wordstext.set_buffer(Gtk.TextBuffer())
             self.wordstext.props.wrap_mode = Gtk.WrapMode.WORD
             self.wordstext.modify_font(Pango.FontDescription('Monospace'))
             textscroll = Gtk.ScrolledWindow()
@@ -406,7 +412,8 @@ class EditLessonScreen(Gtk.VBox):
         medalslabel.set_alignment(0.0, 0.5)
         medalslabel.set_padding(10, 0)
 
-        self.vbox.pack_start(medalslabel, expand=False, padding=10)
+        self.vbox.pack_start(medalslabel, expand=False,
+                             fill=False, padding=10)
         
         self.medalboxes = []
         self.medalboxes.append(self.build_medal(self.lesson['medals'][0], _('Bronze')))
@@ -436,7 +443,8 @@ class EditLessonScreen(Gtk.VBox):
         self.lesson['name'] = self.nameent.get_text()
         
         buf = self.desctext.get_buffer()
-        self.lesson['description'] = buf.get_text(buf.get_start_iter(), buf.get_end_iter())
+        self.lesson['description'] = buf.get_text(buf.get_start_iter(),
+                                                  buf.get_end_iter(), False)
         
         if not self.lesson.has_key('options'):
             self.lesson['options'] = {}
@@ -453,10 +461,13 @@ class EditLessonScreen(Gtk.VBox):
                     step = {}
                     
                     buf = sb.insttext.get_buffer()
-                    step['instructions'] = buf.get_text(buf.get_start_iter(), buf.get_end_iter())
+                    step['instructions'] = buf.get_text(buf.get_start_iter(),
+                                                        buf.get_end_iter(),
+                                                        False)
                     
                     buf = sb.texttext.get_buffer()
-                    step['text'] = buf.get_text(buf.get_start_iter(), buf.get_end_iter())
+                    step['text'] = buf.get_text(buf.get_start_iter(),
+                                                buf.get_end_iter(), False)
                     
                     if sb.typecombo.get_active() == 0:
                         step['mode'] = 'key'
@@ -476,7 +487,8 @@ class EditLessonScreen(Gtk.VBox):
 
             if self.has_balloon_widgets:
                 buf = self.wordstext.get_buffer()
-                text = buf.get_text(buf.get_start_iter(), buf.get_end_iter())
+                text = buf.get_text(buf.get_start_iter(),
+                                    buf.get_end_iter(), False)
                 self.lesson['words'] = text.split(' ')
                 
                 for i in range(0, 3):
@@ -581,7 +593,8 @@ class WordListScreen(Gtk.VBox):
         subtitle.set_markup("<span size='10000'>" + _("Type or paste words here, for the Automatic Lesson Generator.  If empty, the dictionary will be used.") + "</span>")
         subtitle.set_alignment(1.0, 0.0)
 
-        self.wordlisttext = Gtk.TextView(Gtk.TextBuffer())
+        self.wordlisttext = Gtk.TextView()
+        self.wordlisttext.set_buffer(Gtk.TextBuffer())
         self.wordlisttext.props.wrap_mode = Gtk.WrapMode.WORD
         wordlistscroll = Gtk.ScrolledWindow()
         wordlistscroll.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
@@ -591,14 +604,16 @@ class WordListScreen(Gtk.VBox):
 
         self.pack_start(titlebox, False, True, 0)
         self.pack_start(subtitle, False, True, 0)
-        self.pack_start(Gtk.Separator(orientation=Gtk.Orientation.HORIZONTAL), expand=False, padding=0)
+        separator = Gtk.Separator(orientation=Gtk.Orientation.HORIZONTAL)
+        self.pack_start(separator, expand=False, fill=False, padding=0)
         self.pack_start(wordlistscroll, True, True, 0)
         
         self.show_all()
 
     def stop_clicked_cb(self, btn):
         buf = self.wordlisttext.get_buffer()
-        wordstext = buf.get_text(buf.get_start_iter(), buf.get_end_iter())
+        wordstext = buf.get_text(buf.get_start_iter(),
+                                 buf.get_end_iter(), False)
         self.activity.wordlist = wordstext.split()
         
         self.activity.pop_screen()
