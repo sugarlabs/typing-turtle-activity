@@ -288,10 +288,11 @@ class EditLessonScreen(Gtk.VBox):
         typelabel.set_alignment(0.0, 0.5)
         typelabel.set_padding(20, 0)
 
-        self.textradio = Gtk.RadioButton(None, _('Normal Lesson'))
+        self.textradio = Gtk.RadioButton(_('Normal Lesson'))
         self.textradio.connect('toggled', self.type_toggled_cb)
         
-        self.balloonradio = Gtk.RadioButton(self.textradio, _('Balloon Game'))
+        self.balloonradio = Gtk.RadioButton.new_with_label_from_widget(
+            self.textradio, _('Balloon Game'))
         self.balloonradio.connect('toggled', self.type_toggled_cb)
         
         self.textradio.set_active(self.lesson['type'] == 'normal')
