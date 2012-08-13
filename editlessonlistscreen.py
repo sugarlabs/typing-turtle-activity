@@ -19,8 +19,7 @@
 # Import standard Python modules.
 import logging, os, math, time, copy, locale, datetime, random, re
 from gettext import gettext as _
-from port import json
-from port import chooser
+import json
 
 from gi.repository import Gtk
 from gi.repository import GObject
@@ -31,6 +30,7 @@ import sugar3.graphics.style
 import sugar3.graphics.alert
 import sugar3.mime
 import sugar3.datastore.datastore
+from sugar3.graphics.objectchooser import ObjectChooser
 
 # Import activity modules.
 import editlessonscreen
@@ -274,11 +274,19 @@ class EditLessonListScreen(Gtk.VBox):
             self.delbtn.set_sensitive(False)
             self.moveupbtn.set_sensitive(False)
             self.movedownbtn.set_sensitive(False)
-            
+
+        # Don't allow to remove the last one
+        if len(self.lessons) == 1:
+            self.delbtn.set_sensitive(False)
         
     def import_clicked_cb(self, btn):
-        jobject = chooser.pick(None, None, self, 'text/x-typing-turtle-lessons')
-        
+        chooser = ObjectChooser(parent=self,
+                                what_filter='text/x-typing-turtle-lessons')
+
+        jobject = None
+        if chooser.run() == Gtk.ResponseType.ACCEPT:
+            jobject = chooser.get_selected_object()
+
         if jobject and jobject.file_path:
             fd = open(jobject.file_path, 'r')
             

@@ -28,7 +28,7 @@ from gi.repository import GObject
 from gi.repository import GdkPixbuf
 
 import StringIO
-from port import json
+import json
 import subprocess
 from layouts.olpc import OLPC_LAYOUT
 from layouts.olpcm import OLPCM_LAYOUT

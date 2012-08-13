@@ -17,7 +17,8 @@
 # Import standard Python modules.
 import logging, os, math, time, copy, locale, datetime, random, re, glob
 from gettext import gettext as _
-from port import json
+import sys
+import json
 
 from gi.repository import Gtk
 from gi.repository import Gdk
@@ -95,6 +96,8 @@ class MainScreen(Gtk.VBox):
 
         # We cannot run without lessons.
         if not len(self.lessons):
+            logging.error('There is no lessons and we '
+                          'cannot run without them.')
             sys.exit(1)
 
         # Sort by the 'order' field.
@@ -140,6 +143,9 @@ class MainScreen(Gtk.VBox):
     def get_next_lesson(self):
         """Returns the index of the first lesson without a medal."""
         index = len(self.lessons)-1
+        # FIXME: lesson doesn't have the 'order' key if the user
+        # didn't press Go Back in the Edit Lessons Screen after
+        # creating one
         for i in xrange(0, len(self.lessons)):
             if self.lessons[i]['order'] >= 0 and \
                not self.activity.data['medals'].has_key(self.lessons[i]['name']):

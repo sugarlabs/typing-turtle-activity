@@ -18,7 +18,7 @@
 # Import standard Python modules.
 import logging, os, math, time, copy, locale, datetime, random, re
 from gettext import gettext as _
-from port import json
+import json
 
 # Set up remote debugging.
 #import dbgp.client

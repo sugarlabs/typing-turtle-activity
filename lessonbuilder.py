@@ -18,7 +18,7 @@
 
 import os, sys, random, locale, re, optparse
 from gettext import gettext as _
-from port import json
+import json
 
 # For modifier constants.
 from gi.repository import Gtk
