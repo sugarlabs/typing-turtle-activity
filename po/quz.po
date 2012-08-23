@@ -7,10 +7,10 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-08-08 09:54-0300\n"
-"PO-Revision-Date: 2011-11-26 09:22+0200\n"
+"PO-Revision-Date: 2012-08-23 03:23+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: quz\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -559,16 +559,16 @@ msgstr ""
 # "<span font_desc='Sans 16'><b><u><i>%(nick)s</i></u></b></span>"
 #: medalscreen.py:66
 #, python-format
-#, python-format, fuzzy
+#, python-format, 
 msgid "<span font_desc='Sans 16'>in <b><u><i>%(lesson)s</i></u></b></span>"
-msgstr "<span font_desc='Sans 16'><b><u><i>%(nick)s</i></u></b></span>"
+msgstr ""
 
 # "<span font_desc='Sans 16'><b><u><i>%(nick)s</i></u></b></span>"
 #: medalscreen.py:69
 #, python-format
-#, python-format, fuzzy
+#, python-format, 
 msgid "<span font_desc='Sans 16'>on <b><u><i>%(date)s</i></u></b>.</span>"
-msgstr "<span font_desc='Sans 16'><b><u><i>%(nick)s</i></u></b></span>"
+msgstr ""
 
 #: medalscreen.py:86
 #, python-format
