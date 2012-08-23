@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-08-08 09:54-0300\n"
-"PO-Revision-Date: 2012-03-09 04:20+0200\n"
+"PO-Revision-Date: 2012-04-27 06:55+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -105,7 +105,7 @@ msgstr "Бөмбөлөгөн тоглоом"
 
 #: editlessonscreen.py:302 editlessonlistscreen.py:79
 msgid "Description"
-msgstr "Тайлбар"
+msgstr "Тодорхойлолт"
 
 #: editlessonscreen.py:320
 msgid "Options"
