@@ -509,18 +509,18 @@ class LessonScreen(Gtk.VBox):
                         shift_finger = FINGERS['RP']
 
                     instructions = _('Press and hold the shift key with your %(finger)s, ') % { 'finger': shift_finger }
-                    instructions += _('then press the %(letter)s key with your %(finger)s.') % { 'letter': str(letter), 'finger': finger }
+                    instructions += _('then press the %(letter)s key with your %(finger)s.') % { 'letter': letter, 'finger': finger }
         
                 elif state == Gdk.ModifierType.MOD5_MASK:
                     instructions = _('Press and hold the altgr key, ') 
-                    instructions += _('then press the %(letter)s key with your %(finger)s.') % { 'letter': str(letter), 'finger': finger }
+                    instructions += _('then press the %(letter)s key with your %(finger)s.') % { 'letter': letter, 'finger': finger }
         
                 elif state == Gdk.ModifierType.SHIFT_MASK | Gdk.ModifierType.MOD5_MASK:
                     instructions = _('Press and hold the altgr and shift keys, ')
-                    instructions += _('then press the %(letter)s key with your %(finger)s.') % { 'letter': str(letter), 'finger': finger }
+                    instructions += _('then press the %(letter)s key with your %(finger)s.') % { 'letter': letter, 'finger': finger }
         
                 else:
-                    instructions = _('Press the %(letter)s key with your %(finger)s.') % { 'letter': str(letter), 'finger': finger }
+                    instructions = _('Press the %(letter)s key with your %(finger)s.') % { 'letter': letter, 'finger': finger }
 
                 self.lessonbuffer.insert(self.lessonbuffer.get_end_iter(), instructions + '\n\n')
 
