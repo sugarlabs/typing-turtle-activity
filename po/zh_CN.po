@@ -38,213 +38,209 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-08 09:54-0300\n"
-"PO-Revision-Date: 2012-03-22 01:32+0200\n"
-"Last-Translator: Chris <cjl@laptop.org>\n"
+"POT-Creation-Date: 2012-09-27 14:55-0400\n"
+"PO-Revision-Date: 2012-10-02 19:01+0200\n"
+"Last-Translator: lite <litekok@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.0.5\n"
 
-#: activity/activity.info:2 typingturtle.py:68 titlescene.py:49
+#. TRANS: "name" option from activity.info file
+#: titlescene.py:54 typingturtle.py:82
 msgid "Typing Turtle"
 msgstr "打字小乌龟"
 
-#: editlessonscreen.py:46
-msgid "Edit a Lesson"
-msgstr "编辑课程"
+#. TRANS: "summary" option from activity.info file
+#. TRANS: "description" option from activity.info file
+msgid ""
+"Need some help typing? Here you will learn the best way to hold your hands "
+"in order for you to become a faster typist!"
+msgstr "打字需要一些帮助吗？这里是让你成为一个更快的打字高手的最佳途径！"
 
-#: editlessonscreen.py:49 editlessonscreen.py:570 balloongame.py:53
-#: editlessonlistscreen.py:50 lessonscreen.py:64
+#: balloongame.py:59 editlessonlistscreen.py:50 editlessonscreen.py:50
+#: editlessonscreen.py:584 lessonscreen.py:65
 msgid "Go Back"
 msgstr "回退"
 
-#: editlessonscreen.py:76
+#: balloongame.py:217
+msgid "You finished!"
+msgstr "已完成！"
+
+#: balloongame.py:234
+#, python-format
+msgid "Your score was %(score)d."
+msgstr "你的分数是 %(score)d。"
+
+#: balloongame.py:236
+#, python-format
+msgid "You earned a %(type)s medal!"
+msgstr "你获得了 %(type)s 牌!"
+
+#: balloongame.py:238 medalscreen.py:101
+msgid "Press the ENTER key to continue."
+msgstr "继续请按“回车”键。"
+
+#: balloongame.py:350 balloongame.py:363
+#, python-format
+msgid "SCORE: %d"
+msgstr "分数：%d"
+
+#: balloongame.py:378
+msgid "Type the words to pop the balloons!"
+msgstr "弹出气球请键入下面的单词！"
+
+#: editlessonlistscreen.py:47 typingturtle.py:111
+msgid "Edit Lessons"
+msgstr "编辑课程"
+
+#: editlessonlistscreen.py:71 editlessonscreen.py:275
+msgid "Name"
+msgstr "名称"
+
+#: editlessonlistscreen.py:76 editlessonscreen.py:307
+msgid "Description"
+msgstr "描述"
+
+#: editlessonlistscreen.py:82 editlessonscreen.py:287
+msgid "Type"
+msgstr "类型"
+
+#: editlessonlistscreen.py:91
+msgid "Import Lessons from Journal"
+msgstr "从日志导入课程"
+
+#: editlessonlistscreen.py:96
+msgid "Export Lessons to Journal"
+msgstr "导出课程到日志"
+
+#: editlessonlistscreen.py:101
+msgid "Save Lessons to Activity"
+msgstr "保存课程到活动"
+
+#: editlessonlistscreen.py:165 editlessonscreen.py:191
+msgid "Text"
+msgstr "文本"
+
+#: editlessonlistscreen.py:167 editlessonscreen.py:295
+msgid "Balloon Game"
+msgstr "气球游戏"
+
+#: editlessonlistscreen.py:204
+msgid "Delete Lesson?"
+msgstr "删除课程？"
+
+#: editlessonlistscreen.py:205
+msgid "Deleting the lesson will erase the lesson content."
+msgstr "删除课程，将擦除课程的内容。"
+
+#: editlessonlistscreen.py:311
+msgid " (Exported Lessons)"
+msgstr " （已导出的课程）"
+
+#: editlessonscreen.py:47
+msgid "Edit a Lesson"
+msgstr "编辑课程"
+
+#: editlessonscreen.py:77
 msgid "New keys"
 msgstr "新增按键"
 
-#: editlessonscreen.py:77
+#: editlessonscreen.py:78
 msgid "Known keys"
 msgstr "已知按键"
 
-#: editlessonscreen.py:78
+#: editlessonscreen.py:79
 msgid "Length"
 msgstr "长度"
 
-#: editlessonscreen.py:89
+#: editlessonscreen.py:90
 msgid "Generate!"
 msgstr "生成！"
 
-#: editlessonscreen.py:107 editlessonscreen.py:567
+#: editlessonscreen.py:108 editlessonscreen.py:581
 msgid "Edit Word List"
 msgstr "编辑单词列表"
 
-#: editlessonscreen.py:123
+#: editlessonscreen.py:124
 #, python-format
 msgid "Step #%d"
 msgstr "步骤 #%d"
 
-#: editlessonscreen.py:129
+#: editlessonscreen.py:130
 msgid "Keys"
 msgstr "按键"
 
-#: editlessonscreen.py:130 editlessonscreen.py:381
+#: editlessonscreen.py:131 editlessonscreen.py:388
 msgid "Words"
 msgstr "单词"
 
-#: editlessonscreen.py:167
+#: editlessonscreen.py:169
 msgid "Instructions"
 msgstr "说明"
 
-#: editlessonscreen.py:188 editlessonlistscreen.py:163
-msgid "Text"
-msgstr "文本"
-
-#: editlessonscreen.py:230
+#: editlessonscreen.py:234
 msgid "Accuracy"
 msgstr "准确性"
 
-#: editlessonscreen.py:231
+#: editlessonscreen.py:235
 msgid "WPM"
 msgstr "每分钟字数"
 
-#: editlessonscreen.py:245
+#: editlessonscreen.py:249
 msgid "Score"
 msgstr "分数"
 
-#: editlessonscreen.py:266
+#: editlessonscreen.py:270
 msgid "Lesson Details"
 msgstr "课程详情"
 
-#: editlessonscreen.py:271 editlessonlistscreen.py:74
-msgid "Name"
-msgstr "名称"
-
-#: editlessonscreen.py:283 editlessonlistscreen.py:85
-msgid "Type"
-msgstr "类型"
-
-#: editlessonscreen.py:287
+#: editlessonscreen.py:291
 msgid "Normal Lesson"
 msgstr "常规课程"
 
-#: editlessonscreen.py:290 editlessonlistscreen.py:165
-msgid "Balloon Game"
-msgstr "气球游戏"
-
-#: editlessonscreen.py:302 editlessonlistscreen.py:79
-msgid "Description"
-msgstr "描述"
-
-#: editlessonscreen.py:320
+#: editlessonscreen.py:326
 msgid "Options"
 msgstr "选项"
 
-#: editlessonscreen.py:324
+#: editlessonscreen.py:330
 msgid "Allow Mistakes"
 msgstr "允许按键错误"
 
-#: editlessonscreen.py:326
+#: editlessonscreen.py:332
 msgid "Allow Backspace"
 msgstr "允许退格"
 
-#: editlessonscreen.py:347
+#: editlessonscreen.py:353
 msgid "Automatic Lesson Generator"
 msgstr "课程自动生成器"
 
-#: editlessonscreen.py:404
+#: editlessonscreen.py:412
 msgid "Medal Requirements"
 msgstr "奖牌需求"
 
-#: editlessonscreen.py:411
+#: editlessonscreen.py:420
 msgid "Bronze"
 msgstr "铜"
 
-#: editlessonscreen.py:412
+#: editlessonscreen.py:421
 msgid "Silver"
 msgstr "银"
 
-#: editlessonscreen.py:413
+#: editlessonscreen.py:422
 msgid "Gold"
 msgstr "金"
 
-#: editlessonscreen.py:580
+#: editlessonscreen.py:594
 msgid ""
 "Type or paste words here, for the Automatic Lesson Generator.  If empty, the "
 "dictionary will be used."
 msgstr "在这里为课程自动生成器键入或粘贴单词。如果为空，将使用字典。"
 
-#: mainscreen.py:56
-msgid "Next"
-msgstr "下一步"
-
-#: mainscreen.py:65
-msgid "Previous"
-msgstr "上一步"
-
-#: mainscreen.py:72
-msgid "Start Lesson"
-msgstr "开始课程"
-
-#: mainscreen.py:176
-msgid ""
-"You earned a medal in this lesson!  Advance to the next one\n"
-"by clicking the Next button."
-msgstr ""
-"在本课程中您获得了金牌！点击“下一步”按钮\n"
-"前进到下一课。"
-
-#: mainscreen.py:207
-msgid "No Medal Yet"
-msgstr "还没有奖牌"
-
-#: mainscreen.py:208
-msgid "Bronze Medal"
-msgstr "铜牌"
-
-#: mainscreen.py:209
-msgid "Silver Medal"
-msgstr "银牌"
-
-#: mainscreen.py:210
-msgid "Gold Medal"
-msgstr "金牌"
-
-#: balloongame.py:210
-msgid "You finished!"
-msgstr "已完成！"
-
-#: balloongame.py:219
-#, python-format
-msgid "Your score was %(score)d."
-msgstr "你的分数是 %(score)d。"
-
-#: balloongame.py:221
-#, python-format
-msgid "You earned a %(type)s medal!"
-msgstr "你获得了 %(type)s 牌!"
-
-#: balloongame.py:223 medalscreen.py:99
-msgid "Press the ENTER key to continue."
-msgstr "继续请按“回车”键。"
-
-#: balloongame.py:321 balloongame.py:329
-#, python-format
-msgid "SCORE: %d"
-msgstr "分数：%d"
-
-#: balloongame.py:340
-msgid "Type the words to pop the balloons!"
-msgstr "弹出气球请键入下面的单词！"
-
-#: typingturtle.py:97 editlessonlistscreen.py:47
-msgid "Edit Lessons"
-msgstr "编辑课程"
-
-#: lessonbuilder.py:261 lessonscreen.py:615
+#: lessonbuilder.py:261 lessonscreen.py:617
 msgid "Well done!"
 msgstr "做得好！"
 
@@ -256,7 +252,7 @@ msgstr "做得棒。"
 msgid "Awesome!"
 msgstr "真棒！"
 
-#: lessonbuilder.py:264 lessonscreen.py:617
+#: lessonbuilder.py:264 lessonscreen.py:619
 msgid "Way to go!"
 msgstr "非常的好！"
 
@@ -300,7 +296,7 @@ msgstr "左手中指"
 msgid "left index"
 msgstr "左手食指"
 
-#: lessonbuilder.py:286 lessonscreen.py:43
+#: lessonbuilder.py:286 lessonscreen.py:44
 msgid "left thumb"
 msgstr "左手拇指"
 
@@ -320,7 +316,7 @@ msgstr "右手中指"
 msgid "right index"
 msgstr "右手食指"
 
-#: lessonbuilder.py:291 lessonscreen.py:48
+#: lessonbuilder.py:291 lessonscreen.py:49
 msgid "right thumb"
 msgstr "右手拇指"
 
@@ -428,133 +424,109 @@ msgstr "请用你的右手小指再次按回车键。"
 msgid "Copy out the following text."
 msgstr "复制以下文本。"
 
-#: editlessonlistscreen.py:94
-msgid "Import Lessons from Journal"
-msgstr "从日志导入课程"
-
-#: editlessonlistscreen.py:99
-msgid "Export Lessons to Journal"
-msgstr "导出课程到日志"
-
-#: editlessonlistscreen.py:104
-msgid "Save Lessons to Activity"
-msgstr "保存课程到活动"
-
-#: editlessonlistscreen.py:201
-msgid "Delete Lesson?"
-msgstr "删除课程？"
-
-#: editlessonlistscreen.py:202
-msgid "Deleting the lesson will erase the lesson content."
-msgstr "删除课程，将擦除课程的内容。"
-
-#: editlessonlistscreen.py:300
-msgid " (Exported Lessons)"
-msgstr " （已导出的课程）"
-
-#: lessonscreen.py:39
+#: lessonscreen.py:40
 msgid "left little finger"
 msgstr "左手小指"
 
-#: lessonscreen.py:40
+#: lessonscreen.py:41
 msgid "left ring finger"
 msgstr "左手无名指"
 
-#: lessonscreen.py:41
+#: lessonscreen.py:42
 msgid "left middle finger"
 msgstr "左手中指"
 
-#: lessonscreen.py:42
+#: lessonscreen.py:43
 msgid "left index finger"
 msgstr "左手食指"
 
-#: lessonscreen.py:44
+#: lessonscreen.py:45
 msgid "right little finger"
 msgstr "右手小指"
 
-#: lessonscreen.py:45
+#: lessonscreen.py:46
 msgid "right ring finger"
 msgstr "右手无名指"
 
-#: lessonscreen.py:46
+#: lessonscreen.py:47
 msgid "right middle finger"
 msgstr "右手中指"
 
-#: lessonscreen.py:47
+#: lessonscreen.py:48
 msgid "right index finger"
 msgstr "右手食指"
 
-#: lessonscreen.py:189
+#: lessonscreen.py:190
 #, python-format
 msgid "<b>WPM:</b> %(wpm)d"
 msgstr "<b>每分钟字数：</b> %(wpm)d"
 
-#: lessonscreen.py:197 medalscreen.py:90
+#: lessonscreen.py:198 medalscreen.py:92
 #, python-format
 msgid "<b>Accuracy:</b> %(accuracy)d%%"
 msgstr "<b>准确性：</b> %(accuracy)d%%"
 
-#: lessonscreen.py:509
+#: lessonscreen.py:511
 #, python-format
 msgid "Press and hold the shift key with your %(finger)s, "
 msgstr "用 %(finger)s 按住 Shift 键， "
 
-#: lessonscreen.py:510 lessonscreen.py:514 lessonscreen.py:518
+#: lessonscreen.py:512 lessonscreen.py:516 lessonscreen.py:520
 #, python-format
 msgid "then press the %(letter)s key with your %(finger)s."
 msgstr "然后用 %(finger)s 按下 %(letter)s 按键。"
 
-#: lessonscreen.py:513
+#: lessonscreen.py:515
 msgid "Press and hold the altgr key, "
 msgstr "按住 Alt 键， "
 
-#: lessonscreen.py:517
+#: lessonscreen.py:519
 msgid "Press and hold the altgr and shift keys, "
 msgstr "按住 Alt 键和 Shift 键， "
 
-#: lessonscreen.py:521
+#: lessonscreen.py:523
 #, python-format
 msgid "Press the %(letter)s key with your %(finger)s."
 msgstr "用 %(finger)s 按下 %(letter)s 键。"
 
-#: lessonscreen.py:541
+#: lessonscreen.py:543
 #, python-format
 msgid "Uh oh!  Your keyboard cannot type the letter '%s'.\n"
 msgstr "喔哦！您的键盘不能输入字母  '%s'。\n"
 
-#: lessonscreen.py:542
+#: lessonscreen.py:544
 msgid "Please change your keyboard settings and try this lesson again."
 msgstr "请更改您的键盘设置，并再次尝试本课程。"
 
-#: lessonscreen.py:614
+#: lessonscreen.py:616
 msgid "Good job!"
 msgstr "好样的！"
 
-#: lessonscreen.py:616
+#: lessonscreen.py:618
 msgid "Nice work!"
 msgstr "做得好！"
 
-#: lessonscreen.py:622
+#: lessonscreen.py:624
 #, python-format
 msgid "You finished the lesson in %(time)d seconds, with %(errors)d errors.\n"
 msgstr "你完成了本课程，总共花了 %(time)d 秒，有 %(errors)d 个错误。\n"
 
-#: lessonscreen.py:624
+#: lessonscreen.py:626
 #, python-format
 msgid ""
-"Your words per minute (WPM) was %(wpm)d, and your accuracy was %(accuracy)d"
-"%%.\n"
+"Your words per minute (WPM) was %(wpm)d, and your accuracy was %(accuracy)d%"
+"%.\n"
 "\n"
 msgstr ""
 "你每分钟的字数是 %(wpm)d，准确性是 %(accuracy)d%%。\n"
 "\n"
 
-#: lessonscreen.py:627
+#: lessonscreen.py:629
 #, python-format
 msgid "You finished the lesson with %(errors)d errors.\n"
 msgstr "你完成了本课程，总共有 %(errors)d 个错误。\n"
 
-#: lessonscreen.py:629
+#: lessonscreen.py:631
 #, python-format
 msgid ""
 "Your accuracy was %(accuracy)d%%.\n"
@@ -563,58 +535,94 @@ msgstr ""
 "你的准确性是 %(accuracy)d%%。\n"
 "\n"
 
-#: lessonscreen.py:635
+#: lessonscreen.py:637
 #, python-format
 msgid "Congratulations!  You earned a %(type)s medal!"
 msgstr "恭喜你！你获得了 %(type)s 牌！"
 
-#: lessonscreen.py:643
+#: lessonscreen.py:645
 msgid "You need to practice this lesson more before moving on."
 msgstr "需要多练习本课程才能继续。"
 
-#: lessonscreen.py:646
+#: lessonscreen.py:648
 msgid "You almost got a medal!  Next time, try not to make as many errors."
 msgstr "你快拿到奖牌了！下一次尽量犯更少的错误。"
 
-#: lessonscreen.py:649
+#: lessonscreen.py:651
 msgid "You almost got a medal!  Next time, try to type a little faster."
 msgstr "你快拿到奖牌了！下一次尽量加快按键速度。"
 
-#: medalscreen.py:54
+#: mainscreen.py:59
+msgid "Next"
+msgstr "下一步"
+
+#: mainscreen.py:68
+msgid "Previous"
+msgstr "上一步"
+
+#: mainscreen.py:75
+msgid "Start Lesson"
+msgstr "开始课程"
+
+#: mainscreen.py:185
+msgid ""
+"You earned a medal in this lesson!  Advance to the next one\n"
+"by clicking the Next button."
+msgstr ""
+"在本课程中您获得了金牌！点击“下一步”按钮\n"
+"前进到下一课。"
+
+#: mainscreen.py:216
+msgid "No Medal Yet"
+msgstr "还没有奖牌"
+
+#: mainscreen.py:217
+msgid "Bronze Medal"
+msgstr "铜牌"
+
+#: mainscreen.py:218
+msgid "Silver Medal"
+msgstr "银牌"
+
+#: mainscreen.py:219
+msgid "Gold Medal"
+msgstr "金牌"
+
+#: medalscreen.py:56
 msgid ""
 "<span font_desc='Serif Bold Italic 28'>Certificate of Achievement</span>"
 msgstr "<span font_desc='Serif Bold Italic 28'>成就证书</span>"
 
-#: medalscreen.py:57
+#: medalscreen.py:59
 msgid "<span font_desc='Sans 16'>This certifies that</span>"
 msgstr "<span font_desc='Sans 16'>证书</span>"
 
-#: medalscreen.py:60
+#: medalscreen.py:62
 #, python-format
 msgid "<span font_desc='Sans 16'><b><u><i>%(nick)s</i></u></b></span>"
 msgstr "<span font_desc='Sans 16'><b><u><i>%(nick)s</i></u></b></span>"
 
-#: medalscreen.py:63
+#: medalscreen.py:65
 #, python-format
 msgid "<span font_desc='Sans 16'>earned a %(type)s medal in </span>"
 msgstr "<span font_desc='Sans 16'>获得了 %(type)s 牌</span>"
 
-#: medalscreen.py:66
+#: medalscreen.py:68
 #, python-format
 msgid "<span font_desc='Sans 16'>in <b><u><i>%(lesson)s</i></u></b></span>"
 msgstr "<span font_desc='Sans 16'><b><u><i>%(lesson)s</i></u></b>中</span>"
 
-#: medalscreen.py:69
+#: medalscreen.py:71
 #, python-format
 msgid "<span font_desc='Sans 16'>on <b><u><i>%(date)s</i></u></b>.</span>"
 msgstr "<span font_desc='Sans 16'>于<b><u><i>%(date)s</i></u></b>。</span>"
 
-#: medalscreen.py:86
+#: medalscreen.py:88
 #, python-format
 msgid "<b>Words Per Minute:</b> %(wpm)d"
 msgstr "<b>每分钟字数：</b> %(wpm)d"
 
-#: medalscreen.py:95
+#: medalscreen.py:97
 #, python-format
 msgid "<b>SCORE:</b> %(score)d"
 msgstr "<b>分数：</b> %(score)d"
