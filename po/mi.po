@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-08 09:54-0300\n"
+"POT-Creation-Date: 2012-09-27 14:55-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,129 +17,192 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Translate Toolkit 1.7.0\n"
 
-#: activity/activity.info:2 typingturtle.py:68 titlescene.py:49
+#. TRANS: "name" option from activity.info file
+#: titlescene.py:54 typingturtle.py:82
 msgid "Typing Turtle"
 msgstr "Pato Honu"
 
-#: editlessonscreen.py:46
-msgid "Edit a Lesson"
-msgstr "Whakatika i tētahi Akoranga"
+#. TRANS: "summary" option from activity.info file
+#. TRANS: "description" option from activity.info file
+msgid ""
+"Need some help typing? Here you will learn the best way to hold your hands "
+"in order for you to become a faster typist!"
+msgstr ""
 
-#: editlessonscreen.py:49 editlessonscreen.py:570 balloongame.py:53
-#: editlessonlistscreen.py:50 lessonscreen.py:64
+#: balloongame.py:59 editlessonlistscreen.py:50 editlessonscreen.py:50
+#: editlessonscreen.py:584 lessonscreen.py:65
 msgid "Go Back"
 msgstr "E Hoki"
 
-#: editlessonscreen.py:76
+#: balloongame.py:217
+msgid "You finished!"
+msgstr "Kua mutu!"
+
+#: balloongame.py:234
+#, python-format
+msgid "Your score was %(score)d."
+msgstr "Tō tataunga %(score)d."
+
+#: balloongame.py:236
+#, python-format
+msgid "You earned a %(type)s medal!"
+msgstr "I whiwhi koe i te mētara %(type)s!"
+
+#: balloongame.py:238 medalscreen.py:101
+msgid "Press the ENTER key to continue."
+msgstr "Pēhia te pātuhi TĀURU kia haere tonu."
+
+#: balloongame.py:350 balloongame.py:363
+#, python-format
+msgid "SCORE: %d"
+msgstr "TATAUNGA: %d"
+
+#: balloongame.py:378
+msgid "Type the words to pop the balloons!"
+msgstr "Patohia ngā kupu kia pahū i ngā poihau!"
+
+#: editlessonlistscreen.py:47 typingturtle.py:111
+msgid "Edit Lessons"
+msgstr "Whakatika Akoranga"
+
+#: editlessonlistscreen.py:71 editlessonscreen.py:275
+msgid "Name"
+msgstr "Ingoa"
+
+#: editlessonlistscreen.py:76 editlessonscreen.py:307
+msgid "Description"
+msgstr "Whakaaturanga"
+
+#: editlessonlistscreen.py:82 editlessonscreen.py:287
+msgid "Type"
+msgstr "Momo"
+
+#: editlessonlistscreen.py:91
+msgid "Import Lessons from Journal"
+msgstr "Kawemai Akoranga mai i te Tuhitaka"
+
+#: editlessonlistscreen.py:96
+msgid "Export Lessons to Journal"
+msgstr "Kaweake Akoranga ki te Tuhitaka"
+
+#: editlessonlistscreen.py:101
+msgid "Save Lessons to Activity"
+msgstr "Tiaki Akoranga ki te Hohe"
+
+#: editlessonlistscreen.py:165 editlessonscreen.py:191
+msgid "Text"
+msgstr "Kupu"
+
+#: editlessonlistscreen.py:167 editlessonscreen.py:295
+msgid "Balloon Game"
+msgstr "Tākaro Poihau"
+
+#: editlessonlistscreen.py:204
+msgid "Delete Lesson?"
+msgstr "Muku Akoranga?"
+
+#: editlessonlistscreen.py:205
+msgid "Deleting the lesson will erase the lesson content."
+msgstr "Ki te muku i te akoranga ka mukua te ihirangi akoranga."
+
+#: editlessonlistscreen.py:311
+msgid " (Exported Lessons)"
+msgstr " (Kaweake Akoranga)"
+
+#: editlessonscreen.py:47
+msgid "Edit a Lesson"
+msgstr "Whakatika i tētahi Akoranga"
+
+#: editlessonscreen.py:77
 msgid "New keys"
 msgstr "Ngā pātuhi hōu"
 
-#: editlessonscreen.py:77
+#: editlessonscreen.py:78
 msgid "Known keys"
 msgstr "Ngā pātuhi e mōhiotia ana"
 
-#: editlessonscreen.py:78
+#: editlessonscreen.py:79
 msgid "Length"
 msgstr "Roa"
 
-#: editlessonscreen.py:89
+#: editlessonscreen.py:90
 msgid "Generate!"
 msgstr "Hanga!"
 
-#: editlessonscreen.py:107 editlessonscreen.py:567
+#: editlessonscreen.py:108 editlessonscreen.py:581
 msgid "Edit Word List"
 msgstr "Whakatika Rārangi Kupu"
 
-#: editlessonscreen.py:123
+#: editlessonscreen.py:124
 #, python-format
 msgid "Step #%d"
 msgstr "Hipanga #%d"
 
-#: editlessonscreen.py:129
+#: editlessonscreen.py:130
 msgid "Keys"
 msgstr "Ngā Pātuhi"
 
-#: editlessonscreen.py:130 editlessonscreen.py:381
+#: editlessonscreen.py:131 editlessonscreen.py:388
 msgid "Words"
 msgstr "Ngā Kupu"
 
-#: editlessonscreen.py:167
+#: editlessonscreen.py:169
 msgid "Instructions"
 msgstr "Ngā Tohutohu"
 
-#: editlessonscreen.py:188 editlessonlistscreen.py:163
-msgid "Text"
-msgstr "Kupu"
-
-#: editlessonscreen.py:230
+#: editlessonscreen.py:234
 msgid "Accuracy"
 msgstr "Tikapūtanga"
 
-#: editlessonscreen.py:231
+#: editlessonscreen.py:235
 msgid "WPM"
 msgstr "WPM"
 
-#: editlessonscreen.py:245
+#: editlessonscreen.py:249
 msgid "Score"
 msgstr "Tatauranga"
 
-#: editlessonscreen.py:266
+#: editlessonscreen.py:270
 msgid "Lesson Details"
 msgstr "Ngā Taipitopito Akoranga"
 
-#: editlessonscreen.py:271 editlessonlistscreen.py:74
-msgid "Name"
-msgstr "Ingoa"
-
-#: editlessonscreen.py:283 editlessonlistscreen.py:85
-msgid "Type"
-msgstr "Momo"
-
-#: editlessonscreen.py:287
+#: editlessonscreen.py:291
 msgid "Normal Lesson"
 msgstr "Akoranga Pūnoa"
 
-#: editlessonscreen.py:290 editlessonlistscreen.py:165
-msgid "Balloon Game"
-msgstr "Tākaro Poihau"
-
-#: editlessonscreen.py:302 editlessonlistscreen.py:79
-msgid "Description"
-msgstr "Whakaaturanga"
-
-#: editlessonscreen.py:320
+#: editlessonscreen.py:326
 msgid "Options"
 msgstr "Ngā Kōwhiringa"
 
-#: editlessonscreen.py:324
+#: editlessonscreen.py:330
 msgid "Allow Mistakes"
 msgstr "Tukua Ngā Hapa"
 
-#: editlessonscreen.py:326
+#: editlessonscreen.py:332
 msgid "Allow Backspace"
 msgstr "Tukua Te Whakamuri"
 
-#: editlessonscreen.py:347
+#: editlessonscreen.py:353
 msgid "Automatic Lesson Generator"
 msgstr "Kaihanga Akoranga Aunoa"
 
-#: editlessonscreen.py:404
+#: editlessonscreen.py:412
 msgid "Medal Requirements"
 msgstr "Ngā Hiahiatanga Mētara"
 
-#: editlessonscreen.py:411
+#: editlessonscreen.py:420
 msgid "Bronze"
 msgstr "Parāhe"
 
-#: editlessonscreen.py:412
+#: editlessonscreen.py:421
 msgid "Silver"
 msgstr "Hiriwa"
 
-#: editlessonscreen.py:413
+#: editlessonscreen.py:422
 msgid "Gold"
 msgstr "Koura"
 
-#: editlessonscreen.py:580
+#: editlessonscreen.py:594
 msgid ""
 "Type or paste words here, for the Automatic Lesson Generator.  If empty, the "
 "dictionary will be used."
@@ -147,74 +210,7 @@ msgstr ""
 "Pato, whakapiri rānei i ngā kupu ki konei, mō te Kaihanga Akoranga Aunoa.  "
 "Ki te putu, ka whakamahia te papakupu."
 
-#: mainscreen.py:56
-msgid "Next"
-msgstr "Panuku"
-
-#: mainscreen.py:65
-msgid "Previous"
-msgstr "Tōmua"
-
-#: mainscreen.py:72
-msgid "Start Lesson"
-msgstr "Tīmata Akoranga"
-
-#: mainscreen.py:176
-msgid ""
-"You earned a medal in this lesson!  Advance to the next one\n"
-"by clicking the Next button."
-msgstr ""
-"I whiwhi mētara koe i tēnei akoranga!  Kōkiri atu ki te mea panuku\n"
-"mā te pāwhiri i te pātene Panuku."
-
-#: mainscreen.py:207
-msgid "No Medal Yet"
-msgstr "Kāore Anō Kia Whiwhi Mētara"
-
-#: mainscreen.py:208
-msgid "Bronze Medal"
-msgstr "Mētara Parāhe"
-
-#: mainscreen.py:209
-msgid "Silver Medal"
-msgstr "Mētara Hiriwa"
-
-#: mainscreen.py:210
-msgid "Gold Medal"
-msgstr "Mētara Koura"
-
-#: balloongame.py:210
-msgid "You finished!"
-msgstr "Kua mutu!"
-
-#: balloongame.py:219
-#, python-format
-msgid "Your score was %(score)d."
-msgstr "Tō tataunga %(score)d."
-
-#: balloongame.py:221
-#, python-format
-msgid "You earned a %(type)s medal!"
-msgstr "I whiwhi koe i te mētara %(type)s!"
-
-#: balloongame.py:223 medalscreen.py:99
-msgid "Press the ENTER key to continue."
-msgstr "Pēhia te pātuhi TĀURU kia haere tonu."
-
-#: balloongame.py:321 balloongame.py:329
-#, python-format
-msgid "SCORE: %d"
-msgstr "TATAUNGA: %d"
-
-#: balloongame.py:340
-msgid "Type the words to pop the balloons!"
-msgstr "Patohia ngā kupu kia pahū i ngā poihau!"
-
-#: typingturtle.py:97 editlessonlistscreen.py:47
-msgid "Edit Lessons"
-msgstr "Whakatika Akoranga"
-
-#: lessonbuilder.py:261 lessonscreen.py:615
+#: lessonbuilder.py:261 lessonscreen.py:617
 msgid "Well done!"
 msgstr "Ka rawe hoki!"
 
@@ -226,7 +222,7 @@ msgstr "Ka pai."
 msgid "Awesome!"
 msgstr "Kātahi nei!"
 
-#: lessonbuilder.py:264 lessonscreen.py:617
+#: lessonbuilder.py:264 lessonscreen.py:619
 msgid "Way to go!"
 msgstr "Ka mau te wehi!"
 
@@ -274,7 +270,7 @@ msgstr "māpere mauī"
 msgid "left index"
 msgstr "kōroa mauī"
 
-#: lessonbuilder.py:286 lessonscreen.py:43
+#: lessonbuilder.py:286 lessonscreen.py:44
 msgid "left thumb"
 msgstr "kōnui mauī"
 
@@ -294,7 +290,7 @@ msgstr "māpere matau"
 msgid "right index"
 msgstr "kōroa matau"
 
-#: lessonbuilder.py:291 lessonscreen.py:48
+#: lessonbuilder.py:291 lessonscreen.py:49
 msgid "right thumb"
 msgstr "kōnui matau"
 
@@ -404,134 +400,110 @@ msgstr "Pēhia te pātuhi TĀURU anō ki tō kōiti matau."
 msgid "Copy out the following text."
 msgstr "Tāruatia ngā kupu e whai ake."
 
-#: editlessonlistscreen.py:94
-msgid "Import Lessons from Journal"
-msgstr "Kawemai Akoranga mai i te Tuhitaka"
-
-#: editlessonlistscreen.py:99
-msgid "Export Lessons to Journal"
-msgstr "Kaweake Akoranga ki te Tuhitaka"
-
-#: editlessonlistscreen.py:104
-msgid "Save Lessons to Activity"
-msgstr "Tiaki Akoranga ki te Hohe"
-
-#: editlessonlistscreen.py:201
-msgid "Delete Lesson?"
-msgstr "Muku Akoranga?"
-
-#: editlessonlistscreen.py:202
-msgid "Deleting the lesson will erase the lesson content."
-msgstr "Ki te muku i te akoranga ka mukua te ihirangi akoranga."
-
-#: editlessonlistscreen.py:300
-msgid " (Exported Lessons)"
-msgstr " (Kaweake Akoranga)"
-
-#: lessonscreen.py:39
+#: lessonscreen.py:40
 msgid "left little finger"
 msgstr "kōiti mauī"
 
-#: lessonscreen.py:40
+#: lessonscreen.py:41
 msgid "left ring finger"
 msgstr "manawa mauī"
 
-#: lessonscreen.py:41
+#: lessonscreen.py:42
 msgid "left middle finger"
 msgstr "māpere mauīmāpere mauī"
 
-#: lessonscreen.py:42
+#: lessonscreen.py:43
 msgid "left index finger"
 msgstr "kōroa mauī"
 
-#: lessonscreen.py:44
+#: lessonscreen.py:45
 msgid "right little finger"
 msgstr "kōiti matau"
 
-#: lessonscreen.py:45
+#: lessonscreen.py:46
 msgid "right ring finger"
 msgstr "manawa matau"
 
-#: lessonscreen.py:46
+#: lessonscreen.py:47
 msgid "right middle finger"
 msgstr "māpere matau"
 
-#: lessonscreen.py:47
+#: lessonscreen.py:48
 msgid "right index finger"
 msgstr "kōroa matau"
 
-#: lessonscreen.py:189
+#: lessonscreen.py:190
 #, python-format
 msgid "<b>WPM:</b> %(wpm)d"
 msgstr "<b>WPM:</b> %(wpm)d"
 
-#: lessonscreen.py:197 medalscreen.py:90
+#: lessonscreen.py:198 medalscreen.py:92
 #, python-format
 msgid "<b>Accuracy:</b> %(accuracy)d%%"
 msgstr "<b>Tikapūtanga:</b> %(accuracy)d%%"
 
-#: lessonscreen.py:509
+#: lessonscreen.py:511
 #, python-format
 msgid "Press and hold the shift key with your %(finger)s, "
 msgstr "Pēhi ka pupuri i te pātuhi neke ki tō mati %(finger)s, "
 
-#: lessonscreen.py:510 lessonscreen.py:514 lessonscreen.py:518
+#: lessonscreen.py:512 lessonscreen.py:516 lessonscreen.py:520
 #, python-format
 msgid "then press the %(letter)s key with your %(finger)s."
 msgstr "ka pēhia te pātuhi %(letter)s ki tō %(finger)s."
 
-#: lessonscreen.py:513
+#: lessonscreen.py:515
 msgid "Press and hold the altgr key, "
 msgstr "Pēhi ka pupuri i te pātuhi altgr, "
 
-#: lessonscreen.py:517
+#: lessonscreen.py:519
 msgid "Press and hold the altgr and shift keys, "
 msgstr "Pēhi ka pupuri te altgr me ngā pātuhi neke, "
 
-#: lessonscreen.py:521
+#: lessonscreen.py:523
 #, python-format
 msgid "Press the %(letter)s key with your %(finger)s."
 msgstr "Pēhia te pātuhi %(letter)s ki tō %(finger)s."
 
-#: lessonscreen.py:541
+#: lessonscreen.py:543
 #, python-format
 msgid "Uh oh!  Your keyboard cannot type the letter '%s'.\n"
 msgstr "Auē!  Kāoere e taea e tō papapātuhi te pato i te reta '%s'.\n"
 
-#: lessonscreen.py:542
+#: lessonscreen.py:544
 msgid "Please change your keyboard settings and try this lesson again."
 msgstr "Tēnā hurihia ō tautuhinga papapātuhi ka ngana anō i tēnei akoranga."
 
-#: lessonscreen.py:614
+#: lessonscreen.py:616
 msgid "Good job!"
 msgstr "Ka pai!"
 
-#: lessonscreen.py:616
+#: lessonscreen.py:618
 msgid "Nice work!"
 msgstr "Mahi pai!"
 
-#: lessonscreen.py:622
+#: lessonscreen.py:624
 #, python-format
 msgid "You finished the lesson in %(time)d seconds, with %(errors)d errors.\n"
 msgstr "I oti i a koe te akoranga i roto i te %(time)d hēkona, me ngā hapa %"
 "(errors)d.\n"
 
-#: lessonscreen.py:624
+#: lessonscreen.py:626
 #, python-format
 msgid ""
-"Your words per minute (WPM) was %(wpm)d, and your accuracy was %(accuracy)d"
-"%%.\n"
+"Your words per minute (WPM) was %(wpm)d, and your accuracy was %(accuracy)d%"
+"%.\n"
 "\n"
 msgstr ""
 "Ō kupu ia meneti (WPM), %(wpm)d, he %(accuracy)d%% te tikapūtanga.\n"
 "\n"
 
-#: lessonscreen.py:627
+#: lessonscreen.py:629
 #, python-format
 msgid "You finished the lesson with %(errors)d errors.\n"
 msgstr "I oti i a koe te akoranga me ngā hapa %(errors)d.\n"
 
-#: lessonscreen.py:629
+#: lessonscreen.py:631
 #, python-format
 msgid ""
 "Your accuracy was %(accuracy)d%%.\n"
@@ -540,62 +512,98 @@ msgstr ""
 "He %(accuracy)d%% tō tikapūtanga.\n"
 "\n"
 
-#: lessonscreen.py:635
+#: lessonscreen.py:637
 #, python-format
 msgid "Congratulations!  You earned a %(type)s medal!"
 msgstr "Ngā mihi!  Kua whiwhi koe i te mētara %(type)s!"
 
-#: lessonscreen.py:643
+#: lessonscreen.py:645
 msgid "You need to practice this lesson more before moving on."
 msgstr "Me parakatihi i tēnei akoranga i mua i tō haerenga whakamua."
 
-#: lessonscreen.py:646
+#: lessonscreen.py:648
 msgid "You almost got a medal!  Next time, try not to make as many errors."
 msgstr ""
 "I tata riro i a koe te mētara!  Hei haere whakamua, kia ngana ki te "
 "whakaheke i ngā hapa."
 
-#: lessonscreen.py:649
+#: lessonscreen.py:651
 msgid "You almost got a medal!  Next time, try to type a little faster."
 msgstr ""
 "I tata riro i a koe te mētara!  Hei haere whakamua, kia ngana ki te "
 "whakatere i te pato."
 
-#: medalscreen.py:54
+#: mainscreen.py:59
+msgid "Next"
+msgstr "Panuku"
+
+#: mainscreen.py:68
+msgid "Previous"
+msgstr "Tōmua"
+
+#: mainscreen.py:75
+msgid "Start Lesson"
+msgstr "Tīmata Akoranga"
+
+#: mainscreen.py:185
+msgid ""
+"You earned a medal in this lesson!  Advance to the next one\n"
+"by clicking the Next button."
+msgstr ""
+"I whiwhi mētara koe i tēnei akoranga!  Kōkiri atu ki te mea panuku\n"
+"mā te pāwhiri i te pātene Panuku."
+
+#: mainscreen.py:216
+msgid "No Medal Yet"
+msgstr "Kāore Anō Kia Whiwhi Mētara"
+
+#: mainscreen.py:217
+msgid "Bronze Medal"
+msgstr "Mētara Parāhe"
+
+#: mainscreen.py:218
+msgid "Silver Medal"
+msgstr "Mētara Hiriwa"
+
+#: mainscreen.py:219
+msgid "Gold Medal"
+msgstr "Mētara Koura"
+
+#: medalscreen.py:56
 msgid ""
 "<span font_desc='Serif Bold Italic 28'>Certificate of Achievement</span>"
 msgstr "<span font_desc='Serif Bold Italic 28'>Tohu</span>"
 
-#: medalscreen.py:57
+#: medalscreen.py:59
 msgid "<span font_desc='Sans 16'>This certifies that</span>"
 msgstr "<span font_desc='Sans 16'>He tohu tēnei kua riro i a</span>"
 
-#: medalscreen.py:60
+#: medalscreen.py:62
 #, python-format
 msgid "<span font_desc='Sans 16'><b><u><i>%(nick)s</i></u></b></span>"
 msgstr "<span font_desc='Sans 16'><b><u><i>%(nick)s</i></u></b></span>"
 
-#: medalscreen.py:63
+#: medalscreen.py:65
 #, python-format
 msgid "<span font_desc='Sans 16'>earned a %(type)s medal in </span>"
 msgstr "<span font_desc='Sans 16'>te mētara %(type)s i roto i te </span>"
 
-#: medalscreen.py:66
+#: medalscreen.py:68
 #, python-format
 msgid "<span font_desc='Sans 16'>in <b><u><i>%(lesson)s</i></u></b></span>"
 msgstr "<span font_desc='Sans 16'>in <b><u><i>%(lesson)s</i></u></b></span>"
 
-#: medalscreen.py:69
+#: medalscreen.py:71
 #, python-format
 msgid "<span font_desc='Sans 16'>on <b><u><i>%(date)s</i></u></b>.</span>"
 msgstr "<span font_desc='Sans 16'>on <b><u><i>%(date)s</i></u></b>.</span>"
 
-#: medalscreen.py:86
+#: medalscreen.py:88
 #, python-format
 msgid "<b>Words Per Minute:</b> %(wpm)d"
 msgstr "<b>Kupu Ia Meneti:</b> %(wpm)d"
 
-#: medalscreen.py:95
+#: medalscreen.py:97
 #, python-format
 msgid "<b>SCORE:</b> %(score)d"
 msgstr "<b>TATAUNGA:</b> %(score)d"
