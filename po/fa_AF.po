@@ -34,7 +34,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-08 09:54-0300\n"
+"POT-Creation-Date: 2012-09-27 14:55-0400\n"
 "PO-Revision-Date: 2011-09-29 07:52+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -45,207 +45,203 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.0.5\n"
 
-#: activity/activity.info:2 typingturtle.py:68 titlescene.py:49
+#. TRANS: "name" option from activity.info file
+#: titlescene.py:54 typingturtle.py:82
 msgid "Typing Turtle"
 msgstr "رو نوشت سنگ پشت"
 
-#: editlessonscreen.py:46
-#, fuzzy
-msgid "Edit a Lesson"
-msgstr "دروس را تنظیم کن"
+#. TRANS: "summary" option from activity.info file
+#. TRANS: "description" option from activity.info file
+msgid ""
+"Need some help typing? Here you will learn the best way to hold your hands "
+"in order for you to become a faster typist!"
+msgstr ""
 
-#: editlessonscreen.py:49 editlessonscreen.py:570 balloongame.py:53
-#: editlessonlistscreen.py:50 lessonscreen.py:64
+#: balloongame.py:59 editlessonlistscreen.py:50 editlessonscreen.py:50
+#: editlessonscreen.py:584 lessonscreen.py:65
 msgid "Go Back"
 msgstr "‌عقب برو"
 
-#: editlessonscreen.py:76
-msgid "New keys"
-msgstr ""
-
-#: editlessonscreen.py:77
-msgid "Known keys"
-msgstr ""
-
-#: editlessonscreen.py:78
-msgid "Length"
-msgstr ""
-
-#: editlessonscreen.py:89
-msgid "Generate!"
-msgstr ""
-
-#: editlessonscreen.py:107 editlessonscreen.py:567
-msgid "Edit Word List"
-msgstr ""
-
-#: editlessonscreen.py:123
-#, python-format
-msgid "Step #%d"
-msgstr ""
-
-#: editlessonscreen.py:129
-msgid "Keys"
-msgstr ""
-
-#: editlessonscreen.py:130 editlessonscreen.py:381
-msgid "Words"
-msgstr ""
-
-#: editlessonscreen.py:167
-msgid "Instructions"
-msgstr ""
-
-#: editlessonscreen.py:188 editlessonlistscreen.py:163
-#, fuzzy
-msgid "Text"
-msgstr "بعدی"
-
-#: editlessonscreen.py:230
-msgid "Accuracy"
-msgstr ""
-
-#: editlessonscreen.py:231
-msgid "WPM"
-msgstr ""
-
-#: editlessonscreen.py:245
-msgid "Score"
-msgstr ""
-
-#: editlessonscreen.py:266
-msgid "Lesson Details"
-msgstr ""
-
-#: editlessonscreen.py:271 editlessonlistscreen.py:74
-msgid "Name"
-msgstr ""
-
-#: editlessonscreen.py:283 editlessonlistscreen.py:85
-msgid "Type"
-msgstr ""
-
-#: editlessonscreen.py:287
-msgid "Normal Lesson"
-msgstr ""
-
-#: editlessonscreen.py:290 editlessonlistscreen.py:165
-msgid "Balloon Game"
-msgstr ""
-
-#: editlessonscreen.py:302 editlessonlistscreen.py:79
-msgid "Description"
-msgstr ""
-
-#: editlessonscreen.py:320
-msgid "Options"
-msgstr ""
-
-#: editlessonscreen.py:324
-msgid "Allow Mistakes"
-msgstr ""
-
-#: editlessonscreen.py:326
-msgid "Allow Backspace"
-msgstr ""
-
-#: editlessonscreen.py:347
-msgid "Automatic Lesson Generator"
-msgstr ""
-
-#: editlessonscreen.py:404
-msgid "Medal Requirements"
-msgstr ""
-
-#: editlessonscreen.py:411
-msgid "Bronze"
-msgstr ""
-
-#: editlessonscreen.py:412
-msgid "Silver"
-msgstr ""
-
-#: editlessonscreen.py:413
-msgid "Gold"
-msgstr ""
-
-#: editlessonscreen.py:580
-msgid ""
-"Type or paste words here, for the Automatic Lesson Generator.  If empty, the "
-"dictionary will be used."
-msgstr ""
-
-#: mainscreen.py:56
-msgid "Next"
-msgstr "بعدی"
-
-#: mainscreen.py:65
-msgid "Previous"
-msgstr "قبلی"
-
-#: mainscreen.py:72
-msgid "Start Lesson"
-msgstr "درس را شروع کن"
-
-#: mainscreen.py:176
-msgid ""
-"You earned a medal in this lesson!  Advance to the next one\n"
-"by clicking the Next button."
-msgstr ""
-"شما یک نشان دراین درس به دست آوردید، پیشرفت به درس بعدی توسط کلیک کردن دکمه "
-"بعدی"
-
-#: mainscreen.py:207
-msgid "No Medal Yet"
-msgstr "کدام نشان تا کنون نیست"
-
-#: mainscreen.py:208
-msgid "Bronze Medal"
-msgstr "مدال برنز"
-
-#: mainscreen.py:209
-msgid "Silver Medal"
-msgstr "مدال نقره"
-
-#: mainscreen.py:210
-msgid "Gold Medal"
-msgstr "مدال طلا"
-
-#: balloongame.py:210
+#: balloongame.py:217
 msgid "You finished!"
 msgstr "شما ختم شدید"
 
-#: balloongame.py:219
+#: balloongame.py:234
 #, python-format
 #, python-format, fuzzy
 msgid "Your score was %(score)d."
 msgstr "نمره شما بود"
 
-#: balloongame.py:221
+#: balloongame.py:236
 #, python-format
 #, python-format, fuzzy
 msgid "You earned a %(type)s medal!"
 msgstr "شما یک نشان به دست آوردید"
 
-#: balloongame.py:223 medalscreen.py:99
+#: balloongame.py:238 medalscreen.py:101
 msgid "Press the ENTER key to continue."
 msgstr "برای ادامه کلید انتر را فشار دهید"
 
-#: balloongame.py:321 balloongame.py:329
+#: balloongame.py:350 balloongame.py:363
 #, python-format
 #, python-format, fuzzy
 msgid "SCORE: %d"
 msgstr "نمره"
 
-#: balloongame.py:340
+#: balloongame.py:378
 msgid "Type the words to pop the balloons!"
 msgstr "کلمات را تایپ کنید که بالون را بترکاند"
 
-#: typingturtle.py:97 editlessonlistscreen.py:47
+#: editlessonlistscreen.py:47 typingturtle.py:111
 msgid "Edit Lessons"
 msgstr "دروس را تنظیم کن"
 
-#: lessonbuilder.py:261 lessonscreen.py:615
+#: editlessonlistscreen.py:71 editlessonscreen.py:275
+msgid "Name"
+msgstr ""
+
+#: editlessonlistscreen.py:76 editlessonscreen.py:307
+msgid "Description"
+msgstr ""
+
+#: editlessonlistscreen.py:82 editlessonscreen.py:287
+msgid "Type"
+msgstr ""
+
+#: editlessonlistscreen.py:91
+msgid "Import Lessons from Journal"
+msgstr ""
+
+#: editlessonlistscreen.py:96
+msgid "Export Lessons to Journal"
+msgstr ""
+
+#: editlessonlistscreen.py:101
+msgid "Save Lessons to Activity"
+msgstr ""
+
+#: editlessonlistscreen.py:165 editlessonscreen.py:191
+#, fuzzy
+msgid "Text"
+msgstr "بعدی"
+
+#: editlessonlistscreen.py:167 editlessonscreen.py:295
+msgid "Balloon Game"
+msgstr ""
+
+#: editlessonlistscreen.py:204
+msgid "Delete Lesson?"
+msgstr ""
+
+#: editlessonlistscreen.py:205
+msgid "Deleting the lesson will erase the lesson content."
+msgstr ""
+
+#: editlessonlistscreen.py:311
+msgid " (Exported Lessons)"
+msgstr ""
+
+#: editlessonscreen.py:47
+#, fuzzy
+msgid "Edit a Lesson"
+msgstr "دروس را تنظیم کن"
+
+#: editlessonscreen.py:77
+msgid "New keys"
+msgstr ""
+
+#: editlessonscreen.py:78
+msgid "Known keys"
+msgstr ""
+
+#: editlessonscreen.py:79
+msgid "Length"
+msgstr ""
+
+#: editlessonscreen.py:90
+msgid "Generate!"
+msgstr ""
+
+#: editlessonscreen.py:108 editlessonscreen.py:581
+msgid "Edit Word List"
+msgstr ""
+
+#: editlessonscreen.py:124
+#, python-format
+msgid "Step #%d"
+msgstr ""
+
+#: editlessonscreen.py:130
+msgid "Keys"
+msgstr ""
+
+#: editlessonscreen.py:131 editlessonscreen.py:388
+msgid "Words"
+msgstr ""
+
+#: editlessonscreen.py:169
+msgid "Instructions"
+msgstr ""
+
+#: editlessonscreen.py:234
+msgid "Accuracy"
+msgstr ""
+
+#: editlessonscreen.py:235
+msgid "WPM"
+msgstr ""
+
+#: editlessonscreen.py:249
+msgid "Score"
+msgstr ""
+
+#: editlessonscreen.py:270
+msgid "Lesson Details"
+msgstr ""
+
+#: editlessonscreen.py:291
+msgid "Normal Lesson"
+msgstr ""
+
+#: editlessonscreen.py:326
+msgid "Options"
+msgstr ""
+
+#: editlessonscreen.py:330
+msgid "Allow Mistakes"
+msgstr ""
+
+#: editlessonscreen.py:332
+msgid "Allow Backspace"
+msgstr ""
+
+#: editlessonscreen.py:353
+msgid "Automatic Lesson Generator"
+msgstr ""
+
+#: editlessonscreen.py:412
+msgid "Medal Requirements"
+msgstr ""
+
+#: editlessonscreen.py:420
+msgid "Bronze"
+msgstr ""
+
+#: editlessonscreen.py:421
+msgid "Silver"
+msgstr ""
+
+#: editlessonscreen.py:422
+msgid "Gold"
+msgstr ""
+
+#: editlessonscreen.py:594
+msgid ""
+"Type or paste words here, for the Automatic Lesson Generator.  If empty, the "
+"dictionary will be used."
+msgstr ""
+
+#: lessonbuilder.py:261 lessonscreen.py:617
 msgid "Well done!"
 msgstr "عالی"
 
@@ -257,7 +253,7 @@ msgstr "کارخوب"
 msgid "Awesome!"
 msgstr "ترس آور"
 
-#: lessonbuilder.py:264 lessonscreen.py:617
+#: lessonbuilder.py:264 lessonscreen.py:619
 msgid "Way to go!"
 msgstr "راه برای رفتن"
 
@@ -305,7 +301,7 @@ msgstr "وسط چپ"
 msgid "left index"
 msgstr "شاخص چپ"
 
-#: lessonbuilder.py:286 lessonscreen.py:43
+#: lessonbuilder.py:286 lessonscreen.py:44
 msgid "left thumb"
 msgstr "شصت چپ"
 
@@ -325,7 +321,7 @@ msgstr "وسط راست"
 msgid "right index"
 msgstr "شاخص راست"
 
-#: lessonbuilder.py:291 lessonscreen.py:48
+#: lessonbuilder.py:291 lessonscreen.py:49
 msgid "right thumb"
 msgstr "شصت راست"
 
@@ -435,145 +431,121 @@ msgstr "کلید انتر را با ناخن کوچک راست تان دو با�
 msgid "Copy out the following text."
 msgstr "متن زیرین را کاپی نمایید"
 
-#: editlessonlistscreen.py:94
-msgid "Import Lessons from Journal"
-msgstr ""
-
-#: editlessonlistscreen.py:99
-msgid "Export Lessons to Journal"
-msgstr ""
-
-#: editlessonlistscreen.py:104
-msgid "Save Lessons to Activity"
-msgstr ""
-
-#: editlessonlistscreen.py:201
-msgid "Delete Lesson?"
-msgstr ""
-
-#: editlessonlistscreen.py:202
-msgid "Deleting the lesson will erase the lesson content."
-msgstr ""
-
-#: editlessonlistscreen.py:300
-msgid " (Exported Lessons)"
-msgstr ""
-
-#: lessonscreen.py:39
+#: lessonscreen.py:40
 msgid "left little finger"
 msgstr ""
 
-#: lessonscreen.py:40
+#: lessonscreen.py:41
 msgid "left ring finger"
 msgstr ""
 
-#: lessonscreen.py:41
+#: lessonscreen.py:42
 msgid "left middle finger"
 msgstr ""
 
-#: lessonscreen.py:42
+#: lessonscreen.py:43
 msgid "left index finger"
 msgstr ""
 
-#: lessonscreen.py:44
+#: lessonscreen.py:45
 msgid "right little finger"
 msgstr ""
 
-#: lessonscreen.py:45
+#: lessonscreen.py:46
 msgid "right ring finger"
 msgstr ""
 
-#: lessonscreen.py:46
+#: lessonscreen.py:47
 msgid "right middle finger"
 msgstr ""
 
-#: lessonscreen.py:47
+#: lessonscreen.py:48
 msgid "right index finger"
 msgstr ""
 
-#: lessonscreen.py:189
+#: lessonscreen.py:190
 #, python-format
 #, python-format, fuzzy
 msgid "<b>WPM:</b> %(wpm)d"
 msgstr "wpm"
 
-#: lessonscreen.py:197 medalscreen.py:90
+#: lessonscreen.py:198 medalscreen.py:92
 #, python-format
 #, python-format, fuzzy
 msgid "<b>Accuracy:</b> %(accuracy)d%%"
 msgstr "دقت"
 
-#: lessonscreen.py:509
+#: lessonscreen.py:511
 #, python-format
 #, fuzzy
 msgid "Press and hold the shift key with your %(finger)s, "
 msgstr "فشار دهید و نگهدارید کلید شیفت را همراه ناخن تان"
 
-#: lessonscreen.py:510 lessonscreen.py:514 lessonscreen.py:518
+#: lessonscreen.py:512 lessonscreen.py:516 lessonscreen.py:520
 #, python-format
 #, fuzzy
 msgid "then press the %(letter)s key with your %(finger)s."
 msgstr "سپس حرف کلید را با ناخن تان فشار دهید"
 
-#: lessonscreen.py:513
+#: lessonscreen.py:515
 #, fuzzy
 msgid "Press and hold the altgr key, "
 msgstr "کلید ALTGR را فشار دهید و محکم بگیرید"
 
-#: lessonscreen.py:517
+#: lessonscreen.py:519
 #, fuzzy
 msgid "Press and hold the altgr and shift keys, "
 msgstr "کلید altgr و کلید شیفت را فشار دهید و محکم بگیرید"
 
-#: lessonscreen.py:521
+#: lessonscreen.py:523
 #, python-format
 #, fuzzy
 msgid "Press the %(letter)s key with your %(finger)s."
 msgstr "حرف کلید را با ناخن تان فشار دهید"
 
-#: lessonscreen.py:541
+#: lessonscreen.py:543
 #, python-format
 msgid "Uh oh!  Your keyboard cannot type the letter '%s'.\n"
 msgstr ""
 
-#: lessonscreen.py:542
+#: lessonscreen.py:544
 msgid "Please change your keyboard settings and try this lesson again."
 msgstr ""
 
-#: lessonscreen.py:614
+#: lessonscreen.py:616
 #, fuzzy
 msgid "Good job!"
 msgstr "کارخوب"
 
-#: lessonscreen.py:616
+#: lessonscreen.py:618
 #, fuzzy
 msgid "Nice work!"
 msgstr "کار عالی"
 
-#: lessonscreen.py:622
+#: lessonscreen.py:624
 #, python-format
 #, python-format, fuzzy
 msgid "You finished the lesson in %(time)d seconds, with %(errors)d errors.\n"
 msgstr "شما درس را در ثانیه ها ختم کردید، همراه با اشتباهات\n"
 
-#: lessonscreen.py:624
+#: lessonscreen.py:626
 #, python-format
 #, python-format, fuzzy
 msgid ""
-"Your words per minute (WPM) was %(wpm)d, and your accuracy was %(accuracy)d"
-"%%.\n"
+"Your words per minute (WPM) was %(wpm)d, and your accuracy was %(accuracy)d%"
+"%.\n"
 "\n"
 msgstr ""
 "کلمات شما در هر دقیقه بود، و دقت شما بود\n"
 "\n"
 
-#: lessonscreen.py:627
+#: lessonscreen.py:629
 #, python-format
 #, python-format, fuzzy
 msgid "You finished the lesson with %(errors)d errors.\n"
 msgstr "شما درس را با اشتباهات ختم کردید\n"
 
-#: lessonscreen.py:629
+#: lessonscreen.py:631
 #, python-format
 #, python-format, fuzzy
 msgid ""
@@ -583,68 +555,104 @@ msgstr ""
 "دقت شما بود /دقت/\n"
 "\n"
 
-#: lessonscreen.py:635
+#: lessonscreen.py:637
 #, python-format
 #, python-format, fuzzy
 msgid "Congratulations!  You earned a %(type)s medal!"
 msgstr "تبریکات! شما یک نشان به دست آوردید"
 
-#: lessonscreen.py:643
+#: lessonscreen.py:645
 msgid "You need to practice this lesson more before moving on."
 msgstr "برای شما لازم است که این درس را قبل از حرکت آن زیاد بخوانید"
 
-#: lessonscreen.py:646
+#: lessonscreen.py:648
 msgid "You almost got a medal!  Next time, try not to make as many errors."
 msgstr ""
 "شما تقریبا یک نشان بدست آوردید! دفعه بعدی تلاش کنید تا اشتباهات زیادی را "
 "مرتکب نشوید"
 
-#: lessonscreen.py:649
+#: lessonscreen.py:651
 msgid "You almost got a medal!  Next time, try to type a little faster."
 msgstr ""
 "شما تقریبا یک نشان به دست آوردید! دفعه بعدی تلاش کنید تا یک مقدار سریع تر "
 "تایپ کنید"
 
-#: medalscreen.py:54
+#: mainscreen.py:59
+msgid "Next"
+msgstr "بعدی"
+
+#: mainscreen.py:68
+msgid "Previous"
+msgstr "قبلی"
+
+#: mainscreen.py:75
+msgid "Start Lesson"
+msgstr "درس را شروع کن"
+
+#: mainscreen.py:185
+msgid ""
+"You earned a medal in this lesson!  Advance to the next one\n"
+"by clicking the Next button."
+msgstr ""
+"شما یک نشان دراین درس به دست آوردید، پیشرفت به درس بعدی توسط کلیک کردن دکمه "
+"بعدی"
+
+#: mainscreen.py:216
+msgid "No Medal Yet"
+msgstr "کدام نشان تا کنون نیست"
+
+#: mainscreen.py:217
+msgid "Bronze Medal"
+msgstr "مدال برنز"
+
+#: mainscreen.py:218
+msgid "Silver Medal"
+msgstr "مدال نقره"
+
+#: mainscreen.py:219
+msgid "Gold Medal"
+msgstr "مدال طلا"
+
+#: medalscreen.py:56
 msgid ""
 "<span font_desc='Serif Bold Italic 28'>Certificate of Achievement</span>"
 msgstr "شهادتنامه دستیابی"
 
-#: medalscreen.py:57
+#: medalscreen.py:59
 msgid "<span font_desc='Sans 16'>This certifies that</span>"
 msgstr "این تصدیق میکند که"
 
-#: medalscreen.py:60
+#: medalscreen.py:62
 #, python-format
 #, python-format, fuzzy
 msgid "<span font_desc='Sans 16'><b><u><i>%(nick)s</i></u></b></span>"
 msgstr "شکاف"
 
-#: medalscreen.py:63
+#: medalscreen.py:65
 #, python-format
 #, python-format, fuzzy
 msgid "<span font_desc='Sans 16'>earned a %(type)s medal in </span>"
 msgstr "یک نوع نشان را بدست آورد"
 
-#: medalscreen.py:66
+#: medalscreen.py:68
 #, python-format
 #, python-format, fuzzy
 msgid "<span font_desc='Sans 16'>in <b><u><i>%(lesson)s</i></u></b></span>"
 msgstr "درس"
 
-#: medalscreen.py:69
+#: medalscreen.py:71
 #, python-format
 #, python-format, fuzzy
 msgid "<span font_desc='Sans 16'>on <b><u><i>%(date)s</i></u></b>.</span>"
 msgstr "تاریخ"
 
-#: medalscreen.py:86
+#: medalscreen.py:88
 #, python-format
 #, python-format, fuzzy
 msgid "<b>Words Per Minute:</b> %(wpm)d"
 msgstr "کلمات در هر دقیقه"
 
-#: medalscreen.py:95
+#: medalscreen.py:97
 #, python-format
 #, python-format, fuzzy
 msgid "<b>SCORE:</b> %(score)d"

@@ -42,7 +42,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-08 09:54-0300\n"
+"POT-Creation-Date: 2012-09-27 14:55-0400\n"
 "PO-Revision-Date: 2011-08-08 02:41+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -53,200 +53,198 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.0.1\n"
 
-#: activity/activity.info:2 typingturtle.py:68 titlescene.py:49
+#. TRANS: "name" option from activity.info file
+#: titlescene.py:54 typingturtle.py:82
 msgid "Typing Turtle"
 msgstr "Typing Turtle"
 
-#: editlessonscreen.py:46
-msgid "Edit a Lesson"
-msgstr "Edita una Lliçó"
+#. TRANS: "summary" option from activity.info file
+#. TRANS: "description" option from activity.info file
+msgid ""
+"Need some help typing? Here you will learn the best way to hold your hands "
+"in order for you to become a faster typist!"
+msgstr ""
 
-#: editlessonscreen.py:49 editlessonscreen.py:570 balloongame.py:53
-#: editlessonlistscreen.py:50 lessonscreen.py:64
+#: balloongame.py:59 editlessonlistscreen.py:50 editlessonscreen.py:50
+#: editlessonscreen.py:584 lessonscreen.py:65
 msgid "Go Back"
 msgstr "Vés enrere"
 
-#: editlessonscreen.py:76
+#: balloongame.py:217
+msgid "You finished!"
+msgstr "Has acabat!"
+
+#: balloongame.py:234
+#, python-format
+msgid "Your score was %(score)d."
+msgstr ""
+
+#: balloongame.py:236
+#, python-format
+msgid "You earned a %(type)s medal!"
+msgstr ""
+
+#: balloongame.py:238 medalscreen.py:101
+msgid "Press the ENTER key to continue."
+msgstr ""
+
+#: balloongame.py:350 balloongame.py:363
+#, python-format
+msgid "SCORE: %d"
+msgstr ""
+
+#: balloongame.py:378
+msgid "Type the words to pop the balloons!"
+msgstr ""
+
+#: editlessonlistscreen.py:47 typingturtle.py:111
+msgid "Edit Lessons"
+msgstr "Edita Lliçons"
+
+#: editlessonlistscreen.py:71 editlessonscreen.py:275
+msgid "Name"
+msgstr "Nom"
+
+#: editlessonlistscreen.py:76 editlessonscreen.py:307
+msgid "Description"
+msgstr "Descripció"
+
+#: editlessonlistscreen.py:82 editlessonscreen.py:287
+msgid "Type"
+msgstr "Tipus"
+
+#: editlessonlistscreen.py:91
+msgid "Import Lessons from Journal"
+msgstr ""
+
+#: editlessonlistscreen.py:96
+msgid "Export Lessons to Journal"
+msgstr ""
+
+#: editlessonlistscreen.py:101
+msgid "Save Lessons to Activity"
+msgstr ""
+
+#: editlessonlistscreen.py:165 editlessonscreen.py:191
+msgid "Text"
+msgstr "Text"
+
+#: editlessonlistscreen.py:167 editlessonscreen.py:295
+msgid "Balloon Game"
+msgstr ""
+
+#: editlessonlistscreen.py:204
+msgid "Delete Lesson?"
+msgstr "Esborra Lliçó?"
+
+#: editlessonlistscreen.py:205
+msgid "Deleting the lesson will erase the lesson content."
+msgstr ""
+
+#: editlessonlistscreen.py:311
+msgid " (Exported Lessons)"
+msgstr " (Lliçons Exportades)"
+
+#: editlessonscreen.py:47
+msgid "Edit a Lesson"
+msgstr "Edita una Lliçó"
+
+#: editlessonscreen.py:77
 msgid "New keys"
 msgstr "Noves tecles"
 
-#: editlessonscreen.py:77
+#: editlessonscreen.py:78
 msgid "Known keys"
 msgstr "Tecles conegudes"
 
-#: editlessonscreen.py:78
+#: editlessonscreen.py:79
 msgid "Length"
 msgstr "Longitud"
 
-#: editlessonscreen.py:89
+#: editlessonscreen.py:90
 msgid "Generate!"
 msgstr "Genera"
 
-#: editlessonscreen.py:107 editlessonscreen.py:567
+#: editlessonscreen.py:108 editlessonscreen.py:581
 msgid "Edit Word List"
 msgstr "Edita Llista de Paraules"
 
-#: editlessonscreen.py:123
+#: editlessonscreen.py:124
 #, python-format
 msgid "Step #%d"
 msgstr "Pas #%d"
 
-#: editlessonscreen.py:129
+#: editlessonscreen.py:130
 msgid "Keys"
 msgstr "Tecles"
 
-#: editlessonscreen.py:130 editlessonscreen.py:381
+#: editlessonscreen.py:131 editlessonscreen.py:388
 msgid "Words"
 msgstr "Paraules"
 
-#: editlessonscreen.py:167
+#: editlessonscreen.py:169
 msgid "Instructions"
 msgstr "Instruccions"
 
-#: editlessonscreen.py:188 editlessonlistscreen.py:163
-msgid "Text"
-msgstr "Text"
-
-#: editlessonscreen.py:230
+#: editlessonscreen.py:234
 msgid "Accuracy"
 msgstr "Acurat"
 
-#: editlessonscreen.py:231
+#: editlessonscreen.py:235
 msgid "WPM"
 msgstr "PPM"
 
-#: editlessonscreen.py:245
+#: editlessonscreen.py:249
 msgid "Score"
 msgstr "Resultat"
 
-#: editlessonscreen.py:266
+#: editlessonscreen.py:270
 msgid "Lesson Details"
 msgstr "Detalls de la Lliçó"
 
-#: editlessonscreen.py:271 editlessonlistscreen.py:74
-msgid "Name"
-msgstr "Nom"
-
-#: editlessonscreen.py:283 editlessonlistscreen.py:85
-msgid "Type"
-msgstr "Tipus"
-
-#: editlessonscreen.py:287
+#: editlessonscreen.py:291
 msgid "Normal Lesson"
 msgstr "Lliçó Normal"
 
-#: editlessonscreen.py:290 editlessonlistscreen.py:165
-msgid "Balloon Game"
-msgstr ""
-
-#: editlessonscreen.py:302 editlessonlistscreen.py:79
-msgid "Description"
-msgstr "Descripció"
-
-#: editlessonscreen.py:320
+#: editlessonscreen.py:326
 msgid "Options"
 msgstr "Opcions"
 
-#: editlessonscreen.py:324
+#: editlessonscreen.py:330
 msgid "Allow Mistakes"
 msgstr "Permet Errors"
 
-#: editlessonscreen.py:326
+#: editlessonscreen.py:332
 msgid "Allow Backspace"
 msgstr "Permet Tornar Enrera"
 
-#: editlessonscreen.py:347
+#: editlessonscreen.py:353
 msgid "Automatic Lesson Generator"
 msgstr "Generador Automàtic de les Lliçons"
 
-#: editlessonscreen.py:404
+#: editlessonscreen.py:412
 msgid "Medal Requirements"
 msgstr "Requeriments per a la medall"
 
-#: editlessonscreen.py:411
+#: editlessonscreen.py:420
 msgid "Bronze"
 msgstr "Bronze"
 
-#: editlessonscreen.py:412
+#: editlessonscreen.py:421
 msgid "Silver"
 msgstr "Argent"
 
-#: editlessonscreen.py:413
+#: editlessonscreen.py:422
 msgid "Gold"
 msgstr "Or"
 
-#: editlessonscreen.py:580
+#: editlessonscreen.py:594
 msgid ""
 "Type or paste words here, for the Automatic Lesson Generator.  If empty, the "
 "dictionary will be used."
 msgstr ""
 
-#: mainscreen.py:56
-msgid "Next"
-msgstr "Següent"
-
-#: mainscreen.py:65
-msgid "Previous"
-msgstr "Anterior"
-
-#: mainscreen.py:72
-msgid "Start Lesson"
-msgstr "Inicia Lliçó"
-
-#: mainscreen.py:176
-msgid ""
-"You earned a medal in this lesson!  Advance to the next one\n"
-"by clicking the Next button."
-msgstr ""
-
-#: mainscreen.py:207
-msgid "No Medal Yet"
-msgstr "Sense Medalla Encara"
-
-#: mainscreen.py:208
-msgid "Bronze Medal"
-msgstr "Medalla de Bronze"
-
-#: mainscreen.py:209
-msgid "Silver Medal"
-msgstr "Medalla de Plata"
-
-#: mainscreen.py:210
-msgid "Gold Medal"
-msgstr "Medalla d'Or"
-
-#: balloongame.py:210
-msgid "You finished!"
-msgstr "Has acabat!"
-
-#: balloongame.py:219
-#, python-format
-msgid "Your score was %(score)d."
-msgstr ""
-
-#: balloongame.py:221
-#, python-format
-msgid "You earned a %(type)s medal!"
-msgstr ""
-
-#: balloongame.py:223 medalscreen.py:99
-msgid "Press the ENTER key to continue."
-msgstr ""
-
-#: balloongame.py:321 balloongame.py:329
-#, python-format
-msgid "SCORE: %d"
-msgstr ""
-
-#: balloongame.py:340
-msgid "Type the words to pop the balloons!"
-msgstr ""
-
-#: typingturtle.py:97 editlessonlistscreen.py:47
-msgid "Edit Lessons"
-msgstr "Edita Lliçons"
-
-#: lessonbuilder.py:261 lessonscreen.py:615
+#: lessonbuilder.py:261 lessonscreen.py:617
 msgid "Well done!"
 msgstr "Ben fet ;)"
 
@@ -258,7 +256,7 @@ msgstr "Bona feina."
 msgid "Awesome!"
 msgstr "Meravellós!"
 
-#: lessonbuilder.py:264 lessonscreen.py:617
+#: lessonbuilder.py:264 lessonscreen.py:619
 msgid "Way to go!"
 msgstr "Així es fa!"
 
@@ -302,7 +300,7 @@ msgstr ""
 msgid "left index"
 msgstr "índex esquerre"
 
-#: lessonbuilder.py:286 lessonscreen.py:43
+#: lessonbuilder.py:286 lessonscreen.py:44
 msgid "left thumb"
 msgstr ""
 
@@ -322,7 +320,7 @@ msgstr ""
 msgid "right index"
 msgstr "índex dret"
 
-#: lessonbuilder.py:291 lessonscreen.py:48
+#: lessonbuilder.py:291 lessonscreen.py:49
 msgid "right thumb"
 msgstr ""
 
@@ -419,195 +417,205 @@ msgstr ""
 msgid "Copy out the following text."
 msgstr ""
 
-#: editlessonlistscreen.py:94
-msgid "Import Lessons from Journal"
-msgstr ""
-
-#: editlessonlistscreen.py:99
-msgid "Export Lessons to Journal"
-msgstr ""
-
-#: editlessonlistscreen.py:104
-msgid "Save Lessons to Activity"
-msgstr ""
-
-#: editlessonlistscreen.py:201
-msgid "Delete Lesson?"
-msgstr "Esborra Lliçó?"
-
-#: editlessonlistscreen.py:202
-msgid "Deleting the lesson will erase the lesson content."
-msgstr ""
-
-#: editlessonlistscreen.py:300
-msgid " (Exported Lessons)"
-msgstr " (Lliçons Exportades)"
-
-#: lessonscreen.py:39
+#: lessonscreen.py:40
 #, fuzzy
 msgid "left little finger"
 msgstr "dit índex esquerre"
 
-#: lessonscreen.py:40
+#: lessonscreen.py:41
 #, fuzzy
 msgid "left ring finger"
 msgstr "dit índex esquerre"
 
-#: lessonscreen.py:41
+#: lessonscreen.py:42
 #, fuzzy
 msgid "left middle finger"
 msgstr "dit índex esquerre"
 
-#: lessonscreen.py:42
+#: lessonscreen.py:43
 msgid "left index finger"
 msgstr "dit índex esquerre"
 
-#: lessonscreen.py:44
+#: lessonscreen.py:45
 #, fuzzy
 msgid "right little finger"
 msgstr "dit índex dret"
 
-#: lessonscreen.py:45
+#: lessonscreen.py:46
 #, fuzzy
 msgid "right ring finger"
 msgstr "dit índex dret"
 
-#: lessonscreen.py:46
+#: lessonscreen.py:47
 #, fuzzy
 msgid "right middle finger"
 msgstr "dit índex dret"
 
-#: lessonscreen.py:47
+#: lessonscreen.py:48
 msgid "right index finger"
 msgstr "dit índex dret"
 
-#: lessonscreen.py:189
+#: lessonscreen.py:190
 #, python-format
 msgid "<b>WPM:</b> %(wpm)d"
 msgstr ""
 
-#: lessonscreen.py:197 medalscreen.py:90
+#: lessonscreen.py:198 medalscreen.py:92
 #, python-format
 msgid "<b>Accuracy:</b> %(accuracy)d%%"
 msgstr ""
 
-#: lessonscreen.py:509
+#: lessonscreen.py:511
 #, python-format
 msgid "Press and hold the shift key with your %(finger)s, "
 msgstr ""
 
-#: lessonscreen.py:510 lessonscreen.py:514 lessonscreen.py:518
+#: lessonscreen.py:512 lessonscreen.py:516 lessonscreen.py:520
 #, python-format
 msgid "then press the %(letter)s key with your %(finger)s."
 msgstr ""
 
-#: lessonscreen.py:513
+#: lessonscreen.py:515
 msgid "Press and hold the altgr key, "
 msgstr ""
 
-#: lessonscreen.py:517
+#: lessonscreen.py:519
 msgid "Press and hold the altgr and shift keys, "
 msgstr ""
 
-#: lessonscreen.py:521
+#: lessonscreen.py:523
 #, python-format
 msgid "Press the %(letter)s key with your %(finger)s."
 msgstr ""
 
-#: lessonscreen.py:541
+#: lessonscreen.py:543
 #, python-format
 msgid "Uh oh!  Your keyboard cannot type the letter '%s'.\n"
 msgstr ""
 
-#: lessonscreen.py:542
+#: lessonscreen.py:544
 msgid "Please change your keyboard settings and try this lesson again."
 msgstr ""
 
-#: lessonscreen.py:614
+#: lessonscreen.py:616
 msgid "Good job!"
 msgstr "Molt bona feina!"
 
-#: lessonscreen.py:616
+#: lessonscreen.py:618
 msgid "Nice work!"
 msgstr "Molt bé!"
 
-#: lessonscreen.py:622
+#: lessonscreen.py:624
 #, python-format
 msgid "You finished the lesson in %(time)d seconds, with %(errors)d errors.\n"
 msgstr ""
 
-#: lessonscreen.py:624
+#: lessonscreen.py:626
 #, python-format
 msgid ""
-"Your words per minute (WPM) was %(wpm)d, and your accuracy was %(accuracy)d"
-"%%.\n"
+"Your words per minute (WPM) was %(wpm)d, and your accuracy was %(accuracy)d%"
+"%.\n"
 "\n"
 msgstr ""
 
-#: lessonscreen.py:627
+#: lessonscreen.py:629
 #, python-format
 msgid "You finished the lesson with %(errors)d errors.\n"
 msgstr ""
 
-#: lessonscreen.py:629
+#: lessonscreen.py:631
 #, python-format
 msgid ""
 "Your accuracy was %(accuracy)d%%.\n"
 "\n"
 msgstr ""
 
-#: lessonscreen.py:635
+#: lessonscreen.py:637
 #, python-format
 msgid "Congratulations!  You earned a %(type)s medal!"
 msgstr ""
 
-#: lessonscreen.py:643
+#: lessonscreen.py:645
 msgid "You need to practice this lesson more before moving on."
 msgstr ""
 
-#: lessonscreen.py:646
+#: lessonscreen.py:648
 msgid "You almost got a medal!  Next time, try not to make as many errors."
 msgstr ""
 
-#: lessonscreen.py:649
+#: lessonscreen.py:651
 msgid "You almost got a medal!  Next time, try to type a little faster."
 msgstr ""
 
-#: medalscreen.py:54
+#: mainscreen.py:59
+msgid "Next"
+msgstr "Següent"
+
+#: mainscreen.py:68
+msgid "Previous"
+msgstr "Anterior"
+
+#: mainscreen.py:75
+msgid "Start Lesson"
+msgstr "Inicia Lliçó"
+
+#: mainscreen.py:185
+msgid ""
+"You earned a medal in this lesson!  Advance to the next one\n"
+"by clicking the Next button."
+msgstr ""
+
+#: mainscreen.py:216
+msgid "No Medal Yet"
+msgstr "Sense Medalla Encara"
+
+#: mainscreen.py:217
+msgid "Bronze Medal"
+msgstr "Medalla de Bronze"
+
+#: mainscreen.py:218
+msgid "Silver Medal"
+msgstr "Medalla de Plata"
+
+#: mainscreen.py:219
+msgid "Gold Medal"
+msgstr "Medalla d'Or"
+
+#: medalscreen.py:56
 msgid ""
 "<span font_desc='Serif Bold Italic 28'>Certificate of Achievement</span>"
 msgstr ""
 
-#: medalscreen.py:57
+#: medalscreen.py:59
 msgid "<span font_desc='Sans 16'>This certifies that</span>"
 msgstr ""
 
-#: medalscreen.py:60
+#: medalscreen.py:62
 #, python-format
 msgid "<span font_desc='Sans 16'><b><u><i>%(nick)s</i></u></b></span>"
 msgstr ""
 
-#: medalscreen.py:63
+#: medalscreen.py:65
 #, python-format
 msgid "<span font_desc='Sans 16'>earned a %(type)s medal in </span>"
 msgstr ""
 
-#: medalscreen.py:66
+#: medalscreen.py:68
 #, python-format
 msgid "<span font_desc='Sans 16'>in <b><u><i>%(lesson)s</i></u></b></span>"
 msgstr ""
 
-#: medalscreen.py:69
+#: medalscreen.py:71
 #, python-format
 msgid "<span font_desc='Sans 16'>on <b><u><i>%(date)s</i></u></b>.</span>"
 msgstr ""
 
-#: medalscreen.py:86
+#: medalscreen.py:88
 #, python-format
 msgid "<b>Words Per Minute:</b> %(wpm)d"
 msgstr ""
 
-#: medalscreen.py:95
+#: medalscreen.py:97
 #, python-format
 msgid "<b>SCORE:</b> %(score)d"
 msgstr ""
