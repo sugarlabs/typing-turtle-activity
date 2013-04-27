@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-09-27 14:55-0400\n"
-"PO-Revision-Date: 2013-03-12 22:57+0200\n"
-"Last-Translator: Chris <cjl@laptop.org>\n"
+"PO-Revision-Date: 2013-04-16 13:49+0200\n"
+"Last-Translator: EdgarQuispeChambi <quispedgar@yahoo.es>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ayc\n"
 "MIME-Version: 1.0\n"
@@ -600,17 +600,20 @@ msgstr "<span font_desc='Sans 16'>maya añuña atipsuwtaxa %(type)s </span>"
 
 # "<span font_desc='Sans 16'><b><u><i>%(nick)s</i></u></b></span>"
 #: medalscreen.py:68
-#, python-format, , fuzzy
+#, python-format
+#, python-format, , 
 msgid "<span font_desc='Sans 16'>in <b><u><i>%(lesson)s</i></u></b></span>"
 msgstr ""
-"<span font_desc='Sans 16'><b><u><i>%(nick)s</i></u></b></span> wakichata"
+"<span font_desc='Sans 16'>en <b><u><i>%(lesson)s</i></u></b></span> "
+"wakichata"
 
 # "<span font_desc='Sans 16'><b><u><i>%(nick)s</i></u></b></span>"
 #: medalscreen.py:71
-#, python-format, , fuzzy
+#, python-format
+#, python-format, , 
 msgid "<span font_desc='Sans 16'>on <b><u><i>%(date)s</i></u></b>.</span>"
 msgstr ""
-"<span font_desc='Sans 16'><b><u><i>%(nick)s</i></u></b></span> wakichata"
+"<span font_desc='Sans 16'>en <b><u><i>%(date)s</i></u></b>.</span> wakichata"
 
 #: medalscreen.py:88
 #, python-format
