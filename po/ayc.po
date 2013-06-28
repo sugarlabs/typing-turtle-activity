@@ -601,7 +601,7 @@ msgstr "<span font_desc='Sans 16'>maya añuña atipsuwtaxa %(type)s </span>"
 # "<span font_desc='Sans 16'><b><u><i>%(nick)s</i></u></b></span>"
 #: medalscreen.py:68
 #, python-format
-#, python-format, , 
+#, python-format, ,
 msgid "<span font_desc='Sans 16'>in <b><u><i>%(lesson)s</i></u></b></span>"
 msgstr ""
 "<span font_desc='Sans 16'>en <b><u><i>%(lesson)s</i></u></b></span> "
@@ -610,7 +610,7 @@ msgstr ""
 # "<span font_desc='Sans 16'><b><u><i>%(nick)s</i></u></b></span>"
 #: medalscreen.py:71
 #, python-format
-#, python-format, , 
+#, python-format, ,
 msgid "<span font_desc='Sans 16'>on <b><u><i>%(date)s</i></u></b>.</span>"
 msgstr ""
 "<span font_desc='Sans 16'>en <b><u><i>%(date)s</i></u></b>.</span> wakichata"
