@@ -35,10 +35,10 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-09-27 14:55-0400\n"
-"PO-Revision-Date: 2011-09-29 07:52+0200\n"
+"PO-Revision-Date: 2013-06-28 20:01+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: fa_AF\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -329,11 +329,11 @@ msgstr "شصت راست"
 #, python-format
 #, python-format, fuzzy
 msgid " and %s keys"
-msgstr "و کلید ها"
+msgstr " و کلید ها"
 
 #: lessonbuilder.py:322
 msgid " key"
-msgstr "کلید"
+msgstr " کلید"
 
 #: lessonbuilder.py:325
 #, python-format
@@ -400,7 +400,7 @@ msgstr "میله فضا را دو باره توسط شصت تان فشار ده�
 
 #: lessonbuilder.py:402
 msgid "Now I'll teach you the second key, ENTER.  "
-msgstr "حالا من به شما کلید دوم را تدریس خواهم کرد، کلید انتر"
+msgstr "حالا من به شما کلید دوم را تدریس خواهم کرد، کلید انتر  "
 
 #: lessonbuilder.py:403
 msgid ""
@@ -479,7 +479,7 @@ msgstr "دقت"
 #, python-format
 #, fuzzy
 msgid "Press and hold the shift key with your %(finger)s, "
-msgstr "فشار دهید و نگهدارید کلید شیفت را همراه ناخن تان"
+msgstr "فشار دهید و نگهدارید کلید شیفت را همراه ناخن تان "
 
 #: lessonscreen.py:512 lessonscreen.py:516 lessonscreen.py:520
 #, python-format
@@ -495,7 +495,7 @@ msgstr "کلید ALTGR را فشار دهید و محکم بگیرید"
 #: lessonscreen.py:519
 #, fuzzy
 msgid "Press and hold the altgr and shift keys, "
-msgstr "کلید altgr و کلید شیفت را فشار دهید و محکم بگیرید"
+msgstr "کلید altgr و کلید شیفت را فشار دهید و محکم بگیرید "
 
 #: lessonscreen.py:523
 #, python-format
