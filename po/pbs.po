@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-09-27 14:55-0400\n"
-"PO-Revision-Date: 2014-05-20 19:29+0200\n"
+"PO-Revision-Date: 2014-05-20 19:40+0200\n"
 "Last-Translator: xavier <proyecto.olpc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pbs\n"
@@ -568,43 +568,43 @@ msgstr "Nguljung chipia vanjial'"
 
 #: mainscreen.py:219
 msgid "Gold Medal"
-msgstr ""
+msgstr "Nguljung chipia nijan'"
 
 #: medalscreen.py:56
 msgid ""
 "<span font_desc='Serif Bold Italic 28'>Certificate of Achievement</span>"
-msgstr ""
+msgstr "<span font_desc='Serif Bold Italic 28'>Nik'ix ndukua'at</span>"
 
 #: medalscreen.py:59
 msgid "<span font_desc='Sans 16'>This certifies that</span>"
-msgstr ""
+msgstr "<span font_desc='Sans 16'>Ranji lustjau k'ua laga'at nik'ix</span>"
 
 #: medalscreen.py:62
 #, python-format
 msgid "<span font_desc='Sans 16'><b><u><i>%(nick)s</i></u></b></span>"
-msgstr ""
+msgstr "<span font_desc='Sans 16'><b><u><i>%(nick)s</i></u></b></span>"
 
 #: medalscreen.py:65
 #, python-format
 msgid "<span font_desc='Sans 16'>earned a %(type)s medal in </span>"
-msgstr ""
+msgstr "<span font_desc='Sans 16'>Nduteje' nda nguljung ne %(type)s </span>"
 
 #: medalscreen.py:68
 #, python-format
 msgid "<span font_desc='Sans 16'>in <b><u><i>%(lesson)s</i></u></b></span>"
-msgstr ""
+msgstr "<span font_desc='Sans 16'>en <b><u><i>%(lesson)s</i></u></b></span>"
 
 #: medalscreen.py:71
 #, python-format
 msgid "<span font_desc='Sans 16'>on <b><u><i>%(date)s</i></u></b>.</span>"
-msgstr ""
+msgstr "<span font_desc='Sans 16'>en <b><u><i>%(date)s</i></u></b>.</span>"
 
 #: medalscreen.py:88
 #, python-format
 msgid "<b>Words Per Minute:</b> %(wpm)d"
-msgstr ""
+msgstr "<b>Riñjá k'ua lutsjau nda chi ngul'uei kusap:</b> %(wpm)d"
 
 #: medalscreen.py:97
 #, python-format
 msgid "<b>SCORE:</b> %(score)d"
-msgstr ""
+msgstr "<b>Ndukuejé Ndutsjau:</b> %(score)d"
