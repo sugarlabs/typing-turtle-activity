@@ -2,25 +2,25 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-09-27 14:55-0400\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2014-05-20 19:10+0200\n"
+"Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: nah\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 1.7.0\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 2.0.5\n"
 
 #. TRANS: "name" option from activity.info file
 #: titlescene.py:54 typingturtle.py:82
 msgid "Typing Turtle"
-msgstr ""
+msgstr "Koxwaltlajkuilojketl"
 
 #. TRANS: "summary" option from activity.info file
 #. TRANS: "description" option from activity.info file
@@ -28,552 +28,600 @@ msgid ""
 "Need some help typing? Here you will learn the best way to hold your hands "
 "in order for you to become a faster typist!"
 msgstr ""
+"¿titlajkuilojtok tijneki palewilli ¡nikan welis tijyeekosTlen kenijki "
+"titlalijtos momax kiampa nelia timajmamijmatis"
 
 #: balloongame.py:59 editlessonlistscreen.py:50 editlessonscreen.py:50
 #: editlessonscreen.py:584 lessonscreen.py:65
 msgid "Go Back"
-msgstr ""
+msgstr "Xitlakuepa"
 
 #: balloongame.py:217
 msgid "You finished!"
-msgstr ""
+msgstr "¡titlantok"
 
 #: balloongame.py:234
 #, python-format
+#, python-format, fuzzy
 msgid "Your score was %(score)d."
-msgstr ""
+msgstr "Motsipin"
 
 #: balloongame.py:236
 #, python-format
+#, python-format, fuzzy
 msgid "You earned a %(type)s medal!"
-msgstr ""
+msgstr "¡tijtlantok se koskamachiotl ipan…"
 
 #: balloongame.py:238 medalscreen.py:101
 msgid "Press the ENTER key to continue."
-msgstr ""
+msgstr "Pacho makmachiotl TLATLAPOS mosentokilis"
 
 #: balloongame.py:350 balloongame.py:363
 #, python-format
+#, python-format, fuzzy
 msgid "SCORE: %d"
-msgstr ""
+msgstr "TLANILISYOJ"
 
 #: balloongame.py:378
 msgid "Type the words to pop the balloons!"
-msgstr ""
+msgstr "Makmachiotis tlajtolli ijkinon motoponis olijiyotl."
 
 #: editlessonlistscreen.py:47 typingturtle.py:111
 msgid "Edit Lessons"
-msgstr ""
+msgstr "Tlapowalli momiakchiwas"
 
 #: editlessonlistscreen.py:71 editlessonscreen.py:275
 msgid "Name"
-msgstr ""
+msgstr "Tokaitl"
 
 #: editlessonlistscreen.py:76 editlessonscreen.py:307
 msgid "Description"
-msgstr ""
+msgstr "Tejtempowalli"
 
 #: editlessonlistscreen.py:82 editlessonscreen.py:287
 msgid "Type"
-msgstr ""
+msgstr "Sentlaman"
 
 #: editlessonlistscreen.py:91
 msgid "Import Lessons from Journal"
-msgstr ""
+msgstr "Tlen nochipa tlaixpowalli teaxkaselis"
 
 #: editlessonlistscreen.py:96
 msgid "Export Lessons to Journal"
-msgstr ""
+msgstr "Tlen nochipa tlaixpowalli teaxkamakas"
 
 #: editlessonlistscreen.py:101
 msgid "Save Lessons to Activity"
-msgstr ""
+msgstr "Tlachiwalixpowalli moajokuis"
 
 #: editlessonlistscreen.py:165 editlessonscreen.py:191
 msgid "Text"
-msgstr ""
+msgstr "Nejtolli"
 
 #: editlessonlistscreen.py:167 editlessonscreen.py:295
+#, fuzzy
 msgid "Balloon Game"
-msgstr ""
+msgstr "Ajawilolijiyotl"
 
 #: editlessonlistscreen.py:204
 msgid "Delete Lesson?"
-msgstr ""
+msgstr "¿Tlaixpowalpolos?"
 
 #: editlessonlistscreen.py:205
 msgid "Deleting the lesson will erase the lesson content."
-msgstr ""
+msgstr "Keman tikixpolos tlaixpolwallli titlamitlixpolos"
 
 #: editlessonlistscreen.py:311
 msgid " (Exported Lessons)"
-msgstr ""
+msgstr " (tlaixpowalli teaxkayotl)"
 
 #: editlessonscreen.py:47
 msgid "Edit a Lesson"
-msgstr ""
+msgstr "Tlaixpowalmiakilli"
 
 #: editlessonscreen.py:77
 msgid "New keys"
-msgstr ""
+msgstr "Yankuik mamachiotl"
 
 #: editlessonscreen.py:78
 msgid "Known keys"
-msgstr ""
+msgstr "Tlen moyeekoj mamachiotl"
 
 #: editlessonscreen.py:79
 msgid "Length"
-msgstr ""
+msgstr "Iweweyaka"
 
 #: editlessonscreen.py:90
 msgid "Generate!"
-msgstr ""
+msgstr "¡momiakilis!"
 
 #: editlessonscreen.py:108 editlessonscreen.py:581
 msgid "Edit Word List"
-msgstr ""
+msgstr "Momiakilis tekpanpobras"
 
 #: editlessonscreen.py:124
 #, python-format
+#, python-format, fuzzy
 msgid "Step #%d"
-msgstr ""
+msgstr "Nejnen"
 
 #: editlessonscreen.py:130
 msgid "Keys"
-msgstr ""
+msgstr "Mamachiotl"
 
 #: editlessonscreen.py:131 editlessonscreen.py:388
 msgid "Words"
-msgstr ""
+msgstr "Tlajtlajtolli"
 
 #: editlessonscreen.py:169
 msgid "Instructions"
-msgstr ""
+msgstr "Tekpanmatilli"
 
 #: editlessonscreen.py:234
 msgid "Accuracy"
-msgstr ""
+msgstr "Melaktli"
 
 #: editlessonscreen.py:235
 msgid "WPM"
-msgstr ""
+msgstr "PPM"
 
 #: editlessonscreen.py:249
 msgid "Score"
-msgstr ""
+msgstr "Tijtsipinilli"
 
 #: editlessonscreen.py:270
 msgid "Lesson Details"
-msgstr ""
+msgstr "Iyojyoka tlaixpowalli"
 
 #: editlessonscreen.py:291
 msgid "Normal Lesson"
-msgstr ""
+msgstr "Melawak tlaixpowalli"
 
 #: editlessonscreen.py:326
 msgid "Options"
-msgstr ""
+msgstr "Tlajtlamatilli"
 
 #: editlessonscreen.py:330
 msgid "Allow Mistakes"
-msgstr ""
+msgstr "Moselis nekuapololli"
 
 #: editlessonscreen.py:332
 msgid "Allow Backspace"
-msgstr ""
+msgstr "Ma tlakuepilli"
 
 #: editlessonscreen.py:353
 msgid "Automatic Lesson Generator"
-msgstr ""
+msgstr "Tlapijpitsa ixpowalli iselli"
 
 #: editlessonscreen.py:412
 msgid "Medal Requirements"
-msgstr ""
+msgstr "Tlen monejneki ipan koskamachiotl"
 
 #: editlessonscreen.py:420
 msgid "Bronze"
-msgstr ""
+msgstr "Bronce"
 
 #: editlessonscreen.py:421
 msgid "Silver"
-msgstr ""
+msgstr "Istakkuitlatl"
 
 #: editlessonscreen.py:422
 msgid "Gold"
-msgstr ""
+msgstr "Teokuitlatl"
 
 #: editlessonscreen.py:594
 msgid ""
 "Type or paste words here, for the Automatic Lesson Generator.  If empty, the "
 "dictionary will be used."
 msgstr ""
+"Xikijkuilo o xitlatskilti tlajtolli nikan moaxkatis tlapijpitsa ixpowallli "
+"iselli. Tlan ni tijkawas, motekiwis tlajtoltémolistli."
 
 #: lessonbuilder.py:261 lessonscreen.py:617
 msgid "Well done!"
-msgstr ""
+msgstr "kualtlachiwalli!"
 
 #: lessonbuilder.py:262
 msgid "Good job."
-msgstr ""
+msgstr "Kualli tekitl"
 
 #: lessonbuilder.py:263
 msgid "Awesome!"
-msgstr ""
+msgstr "¡tlawel inon!"
 
 #: lessonbuilder.py:264 lessonscreen.py:619
 msgid "Way to go!"
-msgstr ""
+msgstr "¡Ijkinin mochiwa!"
 
 #: lessonbuilder.py:265
 msgid "Wonderful!"
-msgstr ""
+msgstr "¡melawak!"
 
 #: lessonbuilder.py:266
 msgid "Nice work."
-msgstr ""
+msgstr "Kualli tekitl"
 
 #: lessonbuilder.py:267
 msgid "You did it!"
-msgstr ""
+msgstr "¡Tijchij!"
 
 #: lessonbuilder.py:274
 msgid ""
 "Be careful to use the correct finger to press each key.  Look at the "
 "keyboard below if you need help remembering."
 msgstr ""
+"Xijtlachilli keman tijtekiwiya makpilli, xijpacho tlan titlakualtilisSesenka "
+"machiopil. Xijtlachia itlan machiopil tlan tijneki palewilli ijkinon "
+"moelnamikis."
 
 #: lessonbuilder.py:275
 msgid ""
 "Try to type at the same speed, all the time.  As you get more comfortable "
 "you can increase the speed a little."
 msgstr ""
+"Xitlayejyeko titlajkuilos sanse ijiksan, nochipa. Tlan kualli tijmati "
+"titlapowa welis achi chikawak ijiksan titlapowas."
 
 #: lessonbuilder.py:282
 msgid "left little"
-msgstr ""
+msgstr "Ota pilmakpil"
 
 #: lessonbuilder.py:283
 msgid "left ring"
-msgstr ""
+msgstr "Ota kopilmakpil"
 
 #: lessonbuilder.py:284
 msgid "left middle"
-msgstr ""
+msgstr "Ota tlajkotipan"
 
 #: lessonbuilder.py:285
 msgid "left index"
-msgstr ""
+msgstr "Ota Manextilmakpil"
 
 #: lessonbuilder.py:286 lessonscreen.py:44
 msgid "left thumb"
-msgstr ""
+msgstr "Ota Wexmakpil"
 
 #: lessonbuilder.py:287
 msgid "right little"
-msgstr ""
+msgstr "Nejmak pilmakpil"
 
 #: lessonbuilder.py:288
 msgid "right ring"
-msgstr ""
+msgstr "Nejmak kopilmskpil"
 
 #: lessonbuilder.py:289
 msgid "right middle"
-msgstr ""
+msgstr "Nemajtlajkotipan"
 
 #: lessonbuilder.py:290
 msgid "right index"
-msgstr ""
+msgstr "Nejmak manextilmakpil"
 
 #: lessonbuilder.py:291 lessonscreen.py:49
 msgid "right thumb"
-msgstr ""
+msgstr "Nejmak wexmakpil"
 
 #: lessonbuilder.py:320
 #, python-format
+#, python-format, fuzzy
 msgid " and %s keys"
-msgstr ""
+msgstr " Wan […] majmachiopil"
 
 #: lessonbuilder.py:322
 msgid " key"
-msgstr ""
+msgstr " machiopil"
 
 #: lessonbuilder.py:325
 #, python-format
+#, python-format, fuzzy
 msgid ""
 "In this lesson, you will learn the %(keynames)s.\n"
 "\n"
 "Press the ENTER key when you are ready to begin!"
 msgstr ""
+"Ipan ni ixpowalli, ta tijyékos a […] Xijpacho machiopil  PANO keman "
+"timotlalijtos tijpewaltis!"
 
 #: lessonbuilder.py:364
 msgid "Let's learn the new keys."
-msgstr ""
+msgstr "Tijmatisen tijtekiwisen yankuik machiopil"
 
 #: lessonbuilder.py:367
 msgid "Practice typing the keys you just learned."
-msgstr ""
+msgstr "Xitlayejyeko titlajkuilos ika machiopil tlen tikonyékoj."
 
 #: lessonbuilder.py:371
 msgid "Now put the keys together into pairs."
-msgstr ""
+msgstr "Aman xijnajnamik tlalli machiopil."
 
 #: lessonbuilder.py:376
 msgid "Time to type jumbles."
-msgstr ""
+msgstr "Asik tonalli moijkuilos jumbles"
 
 #: lessonbuilder.py:381
 msgid "Time to type real words."
-msgstr ""
+msgstr "Asik tonalli moijkuilos nelnelia tlajtolli."
 
 #: lessonbuilder.py:390
 msgid "Hihowahyah!  Ready to learn the secret of fast typing?\n"
-msgstr ""
+msgstr "Hihowahyah!  ¡Aman kena timotlalijtok tijyekos kenijkatsan titlajkuilos "
+"chikawak?\n"
 
 #: lessonbuilder.py:391
 msgid ""
 "Always use the correct finger to press each key!\n"
 "\n"
 msgstr ""
+"Moneki tijtekiwis makpilli tlen kinamiki machiopil\n"
+"\n"
 
 #: lessonbuilder.py:392
 msgid "Now, place your hands on the keyboard just like the picture below.\n"
-msgstr ""
+msgstr "Aman, xijtlalli momax ipan iixko majmachiopil ken ixnesi ipan teipan "
+"ixkopintli.\n"
 
 #: lessonbuilder.py:393
 msgid "When you're ready, press the SPACE bar with your thumb!"
-msgstr ""
+msgstr "Keman timotlalijtos, xijpacho ketsalli tlen wejkanowa wexmakpilli!"
 
 #: lessonbuilder.py:397
 msgid ""
 "Good job!  The SPACE bar is used to insert spaces between words.\n"
 "\n"
 msgstr ""
+"Kualli tekitl! Ketsalli wejkanowa motekiiwia  keman mosentlapalos kakiwilli "
+"itsalan tlajtlajtolli.\n"
+"\n"
 
 #: lessonbuilder.py:398
 msgid "Press the SPACE bar again with your thumb."
-msgstr ""
+msgstr "Sempa xijpacho ketsalli wejkanowa ika wexmakpil"
 
 #: lessonbuilder.py:402
 msgid "Now I'll teach you the second key, ENTER.  "
-msgstr ""
+msgstr "Aman niamechnextilis tlen ompa machiopil, PANO  "
 
 #: lessonbuilder.py:403
 msgid ""
 "That's the big square key near your right little finger.\n"
 "\n"
 msgstr ""
+"Inon weyi machiopil nechka kampa nejmak pilmakpil.\n"
+"\n"
 
 #: lessonbuilder.py:404
 msgid "Now, reach your little finger over and press ENTER."
-msgstr ""
+msgstr "Aman, xijtlalli pilmakpil ipan PANO wan xijpacho"
 
 #: lessonbuilder.py:408
 msgid ""
 "Great!  When typing, the ENTER key is used to begin a new line.\n"
 "\n"
 msgstr ""
+"¡Welkualli!  Tijpachoj, machiotl PANO motekiwia keman mopewaltis se yankuik "
+"wasanilli.\n"
+"\n"
 
 #: lessonbuilder.py:409
 msgid "Press the ENTER key again with your right little finger."
-msgstr ""
+msgstr "Xijpacho machiopil PANO sempa ika nejmak pilmakpil."
 
 #: lessonbuilder.py:417
 msgid "Copy out the following text."
-msgstr ""
+msgstr "Moixkopinas teipan nejtolli"
 
 #: lessonscreen.py:40
 msgid "left little finger"
-msgstr ""
+msgstr "Ota pilmakpil"
 
 #: lessonscreen.py:41
 msgid "left ring finger"
-msgstr ""
+msgstr "Ota wexmakpil"
 
 #: lessonscreen.py:42
 msgid "left middle finger"
-msgstr ""
+msgstr "Ota tlajkomakpil"
 
 #: lessonscreen.py:43
 msgid "left index finger"
-msgstr ""
+msgstr "Ota manextilmakpil"
 
 #: lessonscreen.py:45
 msgid "right little finger"
-msgstr ""
+msgstr "Nejmak pilmakpil"
 
 #: lessonscreen.py:46
 msgid "right ring finger"
-msgstr ""
+msgstr "Nejmak wexmakpil"
 
 #: lessonscreen.py:47
 msgid "right middle finger"
-msgstr ""
+msgstr "Nejmak tlajkomakpil"
 
 #: lessonscreen.py:48
 msgid "right index finger"
-msgstr ""
+msgstr "Nejmak manextilmakpil"
 
 #: lessonscreen.py:190
 #, python-format
 msgid "<b>WPM:</b> %(wpm)d"
-msgstr ""
+msgstr "<b>ppm:</b> %(wpm)d"
 
 #: lessonscreen.py:198 medalscreen.py:92
 #, python-format
 msgid "<b>Accuracy:</b> %(accuracy)d%%"
-msgstr ""
+msgstr "<b>Precisión:</b> %(accuracy)d%%"
 
 #: lessonscreen.py:511
 #, python-format
+#, python-format, fuzzy
 msgid "Press and hold the shift key with your %(finger)s, "
-msgstr ""
+msgstr "Pacho wan xitlakuájto machiopil SHIFT ika momakpil "
 
 #: lessonscreen.py:512 lessonscreen.py:516 lessonscreen.py:520
 #, python-format
+#, python-format, fuzzy
 msgid "then press the %(letter)s key with your %(finger)s."
-msgstr ""
+msgstr "Teipan, pacho machiopil %(letter)s ika mopakpil"
 
 #: lessonscreen.py:515
 msgid "Press and hold the altgr key, "
-msgstr ""
+msgstr "Pacho xitlakuájto machiopli ALTGR "
 
 #: lessonscreen.py:519
 msgid "Press and hold the altgr and shift keys, "
-msgstr ""
+msgstr "Xijpacho wan xijpachojto majmachiotl ALTGR WAN SHFT, "
 
 #: lessonscreen.py:523
 #, python-format
+#, python-format, fuzzy
 msgid "Press the %(letter)s key with your %(finger)s."
-msgstr ""
+msgstr "Xipacho machiotl […] ika momakpil"
 
 #: lessonscreen.py:543
 #, python-format
+#, python-format, fuzzy
 msgid "Uh oh!  Your keyboard cannot type the letter '%s'.\n"
-msgstr ""
+msgstr "¡UY!  Momachiopil amo welli kimachiotia machiotl\n"
 
 #: lessonscreen.py:544
 msgid "Please change your keyboard settings and try this lesson again."
 msgstr ""
+"Techtlapojpolwi xijpatla tlamantli tlen momamachiopil wan sempa xitlayejyeko "
+"ni powalli"
 
 #: lessonscreen.py:616
 msgid "Good job!"
-msgstr ""
+msgstr "¡Kualli tekitl!"
 
 #: lessonscreen.py:618
 msgid "Nice work!"
-msgstr ""
+msgstr "¡Kualli tekitl!"
 
 #: lessonscreen.py:624
 #, python-format
+#, python-format, fuzzy
 msgid "You finished the lesson in %(time)d seconds, with %(errors)d errors.\n"
-msgstr ""
+msgstr "Titlantok ixpowalli, ipan […] kakwitsitsin, ika\n"
 
 #: lessonscreen.py:626
 #, python-format
+#, python-format, fuzzy
 msgid ""
 "Your words per minute (WPM) was %(wpm)d, and your accuracy was %(accuracy)d%"
 "%.\n"
 "\n"
 msgstr ""
+"Motlajtlajtol tlen se kawitsin, ipan […], wan mo mamachil eltoya\n"
+"\n"
 
 #: lessonscreen.py:629
 #, python-format
+#, python-format, fuzzy
 msgid "You finished the lesson with %(errors)d errors.\n"
-msgstr ""
+msgstr "Tlaixpowalltlamilli ikan% (kuajkuapololli)  pojpololli\n"
 
 #: lessonscreen.py:631
 #, python-format
+#, python-format, fuzzy
 msgid ""
 "Your accuracy was %(accuracy)d%%.\n"
 "\n"
 msgstr ""
+"Momamachil kiaxilij\n"
+"\n"
 
 #: lessonscreen.py:637
 #, python-format
+#, python-format, fuzzy
 msgid "Congratulations!  You earned a %(type)s medal!"
-msgstr ""
+msgstr "¡Yekmatilli!  Tijtlanki se koskamachiotl tlen"
 
 #: lessonscreen.py:645
 msgid "You need to practice this lesson more before moving on."
-msgstr ""
+msgstr "Moneki nelia titlayejyekos, ijkinon tipanos ni amatlapowalli."
 
 #: lessonscreen.py:648
 msgid "You almost got a medal!  Next time, try not to make as many errors."
 msgstr ""
+"¡Kejwak!  Kitlani se koskamachiotl! Teipan, xikita amo tlawel timokuapolos"
 
 #: lessonscreen.py:651
 msgid "You almost got a medal!  Next time, try to type a little faster."
-msgstr ""
+msgstr "¡Kejwak kitlani se koskamachiotl!  Teipan, ximoisiwilli titlajkuilos."
 
 #: mainscreen.py:59
 msgid "Next"
-msgstr ""
+msgstr "itokil"
 
 #: mainscreen.py:68
 msgid "Previous"
-msgstr ""
+msgstr "achtowi"
 
 #: mainscreen.py:75
 msgid "Start Lesson"
-msgstr ""
+msgstr "tokayolpewalistli"
 
 #: mainscreen.py:185
 msgid ""
 "You earned a medal in this lesson!  Advance to the next one\n"
 "by clicking the Next button."
 msgstr ""
+"¡Tijtlanki se koskatl ipan ni tlaixpowalli!  Xisentokilli teipan[...] "
+"tijpachos ipan botón teipan."
 
 #: mainscreen.py:216
 msgid "No Medal Yet"
-msgstr ""
+msgstr "No conseguiste una medalla"
 
 #: mainscreen.py:217
 msgid "Bronze Medal"
-msgstr ""
+msgstr "Medalla de Bronce"
 
 #: mainscreen.py:218
 msgid "Silver Medal"
-msgstr ""
+msgstr "Medalla de Plata"
 
 #: mainscreen.py:219
 msgid "Gold Medal"
-msgstr ""
+msgstr "Medalla de Oro"
 
 #: medalscreen.py:56
 msgid ""
 "<span font_desc='Serif Bold Italic 28'>Certificate of Achievement</span>"
-msgstr ""
+msgstr "<span font_desc='Serif Bold Italic 28'>Certificado de Logro</span>"
 
 #: medalscreen.py:59
 msgid "<span font_desc='Sans 16'>This certifies that</span>"
-msgstr ""
+msgstr "<span font_desc='Sans 16'>Esto certifica que</span>"
 
 #: medalscreen.py:62
 #, python-format
 msgid "<span font_desc='Sans 16'><b><u><i>%(nick)s</i></u></b></span>"
-msgstr ""
+msgstr "<span font_desc='Sans 16'><b><u><i>%(nick)s</i></u></b></span>"
 
 #: medalscreen.py:65
 #, python-format
 msgid "<span font_desc='Sans 16'>earned a %(type)s medal in </span>"
-msgstr ""
+msgstr "<span font_desc='Sans 16'>obtuvo una medalla de %(type)s </span>"
 
 #: medalscreen.py:68
 #, python-format
 msgid "<span font_desc='Sans 16'>in <b><u><i>%(lesson)s</i></u></b></span>"
-msgstr ""
+msgstr "<span font_desc='Sans 16'>en <b><u><i>%(lesson)s</i></u></b></span>"
 
 #: medalscreen.py:71
 #, python-format
 msgid "<span font_desc='Sans 16'>on <b><u><i>%(date)s</i></u></b>.</span>"
-msgstr ""
+msgstr "<span font_desc='Sans 16'>en <b><u><i>%(date)s</i></u></b>.</span>"
 
 #: medalscreen.py:88
 #, python-format
 msgid "<b>Words Per Minute:</b> %(wpm)d"
-msgstr ""
+msgstr "<b>Palabras por minuto:</b> %(wpm)d"
 
 #: medalscreen.py:97
 #, python-format
 msgid "<b>SCORE:</b> %(score)d"
-msgstr ""
+msgstr "<b>PUNTUACIÓN:</b> %(score)d"
