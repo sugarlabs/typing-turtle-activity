@@ -108,7 +108,6 @@ class MainScreen(Gtk.VBox):
         height = int(Gdk.Screen.height()*0.3)
 
         self.keyboard_images = keyboard.KeyboardImages(width, height)
-        self.keyboard_images.load_images()
         
         navbox = Gtk.HBox()
         navbox.set_spacing(10)

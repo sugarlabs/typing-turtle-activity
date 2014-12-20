@@ -127,19 +127,26 @@ class KeyboardImages:
 
         self.images = {}
 
-    def load_images(self):
+    def get_image(self, name):
+        if not self.images.has_key(name):
+            self.load_image(name)
 
+        return self.images[name]
+
+    def load_image(self, name):
         # This is for not changing all the numbers of olpcm layout,
         # that was made based on the original olpc layout.
         scale_width = self.width
         if _is_olpcm_model():
             scale_width = int(scale_width * 1.1625)
 
-        for filename in glob.iglob('images/OLPC*.svg'):
-            image = GdkPixbuf.Pixbuf.new_from_file_at_scale(
-                filename, scale_width, self.height, False)
-            name = os.path.basename(filename)
-            self.images[name] = image
+        filename = 'images/' + name
+
+        image = GdkPixbuf.Pixbuf.new_from_file_at_scale(
+            filename, scale_width, self.height, False)
+        name = os.path.basename(filename)
+        self.images[name] = image
+
 
 class KeyboardData:
     def __init__(self): 
@@ -449,13 +456,13 @@ class KeyboardWidget(KeyboardData, Gtk.DrawingArea):
         PangoCairo.show_layout(cr, pango_layout)
 
     def _expose_hands(self, cr):
-        lhand_image = self.image.images['OLPC_Lhand_HOMEROW.svg']
-        rhand_image = self.image.images['OLPC_Rhand_HOMEROW.svg']
+        lhand_image = self.image.get_image('OLPC_Lhand_HOMEROW.svg')
+        rhand_image = self.image.get_image('OLPC_Rhand_HOMEROW.svg')
 
         if self.hilite_letter:
             key, state, group = self.get_key_state_group_for_letter(self.hilite_letter) 
             if key:
-                handle = self.image.images[key['key-hand-image']]
+                handle = self.image.get_image(key['key-hand-image'])
                 finger = key['key-finger']
 
                 # Assign the key image to the correct side.
@@ -468,9 +475,9 @@ class KeyboardWidget(KeyboardData, Gtk.DrawingArea):
                 # Put the other hand on the SHIFT key if needed.
                 if state & Gdk.ModifierType.SHIFT_MASK:
                     if finger[0] == 'L':
-                        rhand_image = self.image.images['OLPC_Rhand_SHIFT.svg']
+                        rhand_image = self.image.get_image('OLPC_Rhand_SHIFT.svg')
                     else:
-                        lhand_image = self.image.images['OLPC_Lhand_SHIFT.svg']
+                        lhand_image = self.image.get_image('OLPC_Lhand_SHIFT.svg')
 
                 # TODO: Do something about ALTGR.
 

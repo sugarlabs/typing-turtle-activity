@@ -28,7 +28,6 @@ window.show_all()
 window.realize()
 
 image = keyboard.KeyboardImages(800,400)
-image.load_images()
 
 k = keyboard.KeyboardWidget(image, window, poll_keys=True)
 try:
