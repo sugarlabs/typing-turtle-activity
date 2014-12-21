@@ -1,8 +1,9 @@
 [Activity]
 name = Typing Turtle
-activity_version = 30
+activity_version = 31
 host_version = 1
 bundle_id = org.laptop.community.TypingTurtle
 icon = Activity-typingturtle
 exec = sugar-activity typingturtle.TypingTurtle
 summary = Need some help typing? Here you will learn the best way to hold your hands in order for you to become a faster typist!
+repository = git@github.com:godiard/typing-turtle-activity.git
