@@ -2,25 +2,26 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-09-27 14:55-0400\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2016-09-24 09:50+0000\n"
+"Last-Translator: Samson <samsongoddy@sugarlabs.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: yo\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 1.3.0\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 2.5.1.1\n"
+"X-POOTLE-MTIME: 1474710625.000000\n"
 
 #. TRANS: "name" option from activity.info file
 #: titlescene.py:54 typingturtle.py:82
 msgid "Typing Turtle"
-msgstr ""
+msgstr "Adaba"
 
 #. TRANS: "summary" option from activity.info file
 #. TRANS: "description" option from activity.info file
@@ -28,274 +29,282 @@ msgid ""
 "Need some help typing? Here you will learn the best way to hold your hands "
 "in order for you to become a faster typist!"
 msgstr ""
+"Nilo diẹ ninu awọn iranlọwọ titẹ? Nibiyi iwọ yoo kọ awọn ti o dara ju ona "
+"lati mu ọwọ rẹ ni ibere fun o lati di a yiyara typist!"
 
 #: balloongame.py:59 editlessonlistscreen.py:50 editlessonscreen.py:50
 #: editlessonscreen.py:584 lessonscreen.py:65
 msgid "Go Back"
-msgstr ""
+msgstr "Pada"
 
 #: balloongame.py:217
 msgid "You finished!"
-msgstr ""
+msgstr "O ti pari!"
 
 #: balloongame.py:234
 #, python-format
 msgid "Your score was %(score)d."
-msgstr ""
+msgstr "Rẹ dimegilio wà %(score)d."
 
 #: balloongame.py:236
 #, python-format
 msgid "You earned a %(type)s medal!"
-msgstr ""
+msgstr "Ti o mina a %(type)s medal!"
 
 #: balloongame.py:238 medalscreen.py:101
 msgid "Press the ENTER key to continue."
-msgstr ""
+msgstr "Tẹ awọn bọtini tẹ lati tesiwaju."
 
 #: balloongame.py:350 balloongame.py:363
 #, python-format
 msgid "SCORE: %d"
-msgstr ""
+msgstr "Dimegilio: %d"
 
 #: balloongame.py:378
 msgid "Type the words to pop the balloons!"
-msgstr ""
+msgstr "Tẹ awọn ọrọ lati agbejade awọn fọndugbẹ!"
 
 #: editlessonlistscreen.py:47 typingturtle.py:111
 msgid "Edit Lessons"
-msgstr ""
+msgstr "Ṣatunkọ Eko"
 
 #: editlessonlistscreen.py:71 editlessonscreen.py:275
 msgid "Name"
-msgstr ""
+msgstr "Orúkọ"
 
 #: editlessonlistscreen.py:76 editlessonscreen.py:307
 msgid "Description"
-msgstr ""
+msgstr "Apejuwe"
 
 #: editlessonlistscreen.py:82 editlessonscreen.py:287
 msgid "Type"
-msgstr ""
+msgstr "Iru"
 
 #: editlessonlistscreen.py:91
 msgid "Import Lessons from Journal"
-msgstr ""
+msgstr "Gbe wọle Eko lati Journal"
 
 #: editlessonlistscreen.py:96
 msgid "Export Lessons to Journal"
-msgstr ""
+msgstr "Okeere eko to Journal"
 
 #: editlessonlistscreen.py:101
 msgid "Save Lessons to Activity"
-msgstr ""
+msgstr "Fi Eko to aṣayan iṣẹ-ṣiṣe"
 
 #: editlessonlistscreen.py:165 editlessonscreen.py:191
 msgid "Text"
-msgstr ""
+msgstr "ọrọ"
 
 #: editlessonlistscreen.py:167 editlessonscreen.py:295
 msgid "Balloon Game"
-msgstr ""
+msgstr "alafẹfẹ ere idaraya"
 
 #: editlessonlistscreen.py:204
 msgid "Delete Lesson?"
-msgstr ""
+msgstr "Pa Ẹkọ?"
 
 #: editlessonlistscreen.py:205
 msgid "Deleting the lesson will erase the lesson content."
-msgstr ""
+msgstr "Npa awọn ẹkọ yoo nu awọn ẹkọ akoonu."
 
 #: editlessonlistscreen.py:311
 msgid " (Exported Lessons)"
-msgstr ""
+msgstr " (Okeere Eko)"
 
 #: editlessonscreen.py:47
 msgid "Edit a Lesson"
-msgstr ""
+msgstr "Satunkọ a Ẹkọ"
 
 #: editlessonscreen.py:77
 msgid "New keys"
-msgstr ""
+msgstr "New awọn bọtini"
 
 #: editlessonscreen.py:78
 msgid "Known keys"
-msgstr ""
+msgstr "Mọ awọn bọtini"
 
 #: editlessonscreen.py:79
 msgid "Length"
-msgstr ""
+msgstr "Ipari"
 
 #: editlessonscreen.py:90
 msgid "Generate!"
-msgstr ""
+msgstr "Ina!"
 
 #: editlessonscreen.py:108 editlessonscreen.py:581
 msgid "Edit Word List"
-msgstr ""
+msgstr "Ṣatunkọ Ọrọ List"
 
 #: editlessonscreen.py:124
 #, python-format
 msgid "Step #%d"
-msgstr ""
+msgstr "Igbese # %d"
 
 #: editlessonscreen.py:130
 msgid "Keys"
-msgstr ""
+msgstr "Awọn bọtini"
 
 #: editlessonscreen.py:131 editlessonscreen.py:388
 msgid "Words"
-msgstr ""
+msgstr "ọrọ"
 
 #: editlessonscreen.py:169
 msgid "Instructions"
-msgstr ""
+msgstr "Plana"
 
 #: editlessonscreen.py:234
 msgid "Accuracy"
-msgstr ""
+msgstr "Išedede"
 
 #: editlessonscreen.py:235
 msgid "WPM"
-msgstr ""
+msgstr "WPM"
 
 #: editlessonscreen.py:249
 msgid "Score"
-msgstr ""
+msgstr "O wole"
 
 #: editlessonscreen.py:270
 msgid "Lesson Details"
-msgstr ""
+msgstr "Ẹkọ Alaye"
 
 #: editlessonscreen.py:291
 msgid "Normal Lesson"
-msgstr ""
+msgstr "Deede Ẹkọ"
 
 #: editlessonscreen.py:326
 msgid "Options"
-msgstr ""
+msgstr "Awọn aṣayan"
 
 #: editlessonscreen.py:330
 msgid "Allow Mistakes"
-msgstr ""
+msgstr "Gba Asise"
 
 #: editlessonscreen.py:332
 msgid "Allow Backspace"
-msgstr ""
+msgstr "Gba Backspace"
 
 #: editlessonscreen.py:353
 msgid "Automatic Lesson Generator"
-msgstr ""
+msgstr "Laifọwọyi Ẹkọ monomono"
 
 #: editlessonscreen.py:412
 msgid "Medal Requirements"
-msgstr ""
+msgstr "Loôdun ibeere"
 
 #: editlessonscreen.py:420
 msgid "Bronze"
-msgstr ""
+msgstr "Idẹ"
 
 #: editlessonscreen.py:421
 msgid "Silver"
-msgstr ""
+msgstr "Fàdákà"
 
 #: editlessonscreen.py:422
 msgid "Gold"
-msgstr ""
+msgstr "goolu"
 
 #: editlessonscreen.py:594
 msgid ""
 "Type or paste words here, for the Automatic Lesson Generator.  If empty, the "
 "dictionary will be used."
 msgstr ""
+"Tẹ tabi lẹẹ ọrọ nibi, fun awọn Aifọwọyi Ẹkọ monomono.  Ti o ba ti sofo, awọn "
+"itumọ yoo ṣee lo."
 
 #: lessonbuilder.py:261 lessonscreen.py:617
 msgid "Well done!"
-msgstr ""
+msgstr "Daradara ṣe!"
 
 #: lessonbuilder.py:262
 msgid "Good job."
-msgstr ""
+msgstr "Iṣẹ to dara."
 
 #: lessonbuilder.py:263
 msgid "Awesome!"
-msgstr ""
+msgstr "Oniyi!"
 
 #: lessonbuilder.py:264 lessonscreen.py:619
 msgid "Way to go!"
-msgstr ""
+msgstr "Ọna lati lọ si!"
 
 #: lessonbuilder.py:265
 msgid "Wonderful!"
-msgstr ""
+msgstr "Iyanu!"
 
 #: lessonbuilder.py:266
 msgid "Nice work."
-msgstr ""
+msgstr "Nice iṣẹ."
 
 #: lessonbuilder.py:267
 msgid "You did it!"
-msgstr ""
+msgstr "Ti o ṣe o!"
 
 #: lessonbuilder.py:274
 msgid ""
 "Be careful to use the correct finger to press each key.  Look at the "
 "keyboard below if you need help remembering."
 msgstr ""
+"Jẹ ṣọra lati lo awọn ti o tọ ika lati tẹ bọtini kọọkan.  Wo ni keyboard ni "
+"isalẹ ti o ba nilo iranlọwọ iranti."
 
 #: lessonbuilder.py:275
 msgid ""
 "Try to type at the same speed, all the time.  As you get more comfortable "
 "you can increase the speed a little."
 msgstr ""
+"Gbiyanju lati tẹ ni kanna iyara, gbogbo awọn akoko.  Bi o ba gba diẹ itura "
+"ti o le mu iyara kekere kan."
 
 #: lessonbuilder.py:282
 msgid "left little"
-msgstr ""
+msgstr "osi kekere"
 
 #: lessonbuilder.py:283
 msgid "left ring"
-msgstr ""
+msgstr "osi iwọn"
 
 #: lessonbuilder.py:284
 msgid "left middle"
-msgstr ""
+msgstr "osi arin"
 
 #: lessonbuilder.py:285
 msgid "left index"
-msgstr ""
+msgstr "osi Ìwé"
 
 #: lessonbuilder.py:286 lessonscreen.py:44
 msgid "left thumb"
-msgstr ""
+msgstr "osi atanpako"
 
 #: lessonbuilder.py:287
 msgid "right little"
-msgstr ""
+msgstr "ọtun kekere"
 
 #: lessonbuilder.py:288
 msgid "right ring"
-msgstr ""
+msgstr "ọtun iwọn"
 
 #: lessonbuilder.py:289
 msgid "right middle"
-msgstr ""
+msgstr "ọtun arin"
 
 #: lessonbuilder.py:290
 msgid "right index"
-msgstr ""
+msgstr "ọtun Ìwé"
 
 #: lessonbuilder.py:291 lessonscreen.py:49
 msgid "right thumb"
-msgstr ""
+msgstr "ọtun atanpako"
 
 #: lessonbuilder.py:320
 #, python-format
 msgid " and %s keys"
-msgstr ""
+msgstr " ati %s awọn bọtini"
 
 #: lessonbuilder.py:322
 msgid " key"
-msgstr ""
+msgstr " bọtini"
 
 #: lessonbuilder.py:325
 #, python-format
@@ -304,169 +313,180 @@ msgid ""
 "\n"
 "Press the ENTER key when you are ready to begin!"
 msgstr ""
+"Ni yi ẹkọ, o yoo kọ awọn %(keynames)s.\n"
+"\n"
+" tẹ awọn tẹ bọtini nigba ti o ba wa setan lati bẹrẹ!"
 
 #: lessonbuilder.py:364
 msgid "Let's learn the new keys."
-msgstr ""
+msgstr "Jẹ ki ká kọ awọn titun bọtini."
 
 #: lessonbuilder.py:367
 msgid "Practice typing the keys you just learned."
-msgstr ""
+msgstr "Niwa titẹ awọn bọtini ti o kan kẹkọọ."
 
 #: lessonbuilder.py:371
 msgid "Now put the keys together into pairs."
-msgstr ""
+msgstr "Bayi fi awọn bọtini jọ sinu orisii."
 
 #: lessonbuilder.py:376
 msgid "Time to type jumbles."
-msgstr ""
+msgstr "Akoko lati tẹ jumbles."
 
 #: lessonbuilder.py:381
 msgid "Time to type real words."
-msgstr ""
+msgstr "Akoko lati tẹ gidi ọrọ."
 
 #: lessonbuilder.py:390
 msgid "Hihowahyah!  Ready to learn the secret of fast typing?\n"
-msgstr ""
+msgstr "Hihowahyah!  Setan lati ko awọn ikoko ti yara titẹ?\n"
 
 #: lessonbuilder.py:391
 msgid ""
 "Always use the correct finger to press each key!\n"
 "\n"
 msgstr ""
+"Nigbagbogbo lo awọn ti o tọ ika lati tẹ bọtini kọọkan!\n"
+"\n"
 
 #: lessonbuilder.py:392
 msgid "Now, place your hands on the keyboard just like the picture below.\n"
-msgstr ""
+msgstr "Bayi, gbe ọwọ rẹ lori keyboard kan bi awọn aworan ni isalẹ.\n"
 
 #: lessonbuilder.py:393
 msgid "When you're ready, press the SPACE bar with your thumb!"
-msgstr ""
+msgstr "Nigba ti o ba setan, tẹ awọn aaye bar pẹlu rẹ atanpako!"
 
 #: lessonbuilder.py:397
 msgid ""
 "Good job!  The SPACE bar is used to insert spaces between words.\n"
 "\n"
 msgstr ""
+"Iṣẹ to dara!  Awọn aaye bar ti lo lati fi alafo laarin awọn ọrọ.\n"
+"\n"
 
 #: lessonbuilder.py:398
 msgid "Press the SPACE bar again with your thumb."
-msgstr ""
+msgstr "O si tẹ awọn aaye bar lẹẹkansi pẹlu rẹ atanpako."
 
 #: lessonbuilder.py:402
 msgid "Now I'll teach you the second key, ENTER.  "
-msgstr ""
+msgstr "Bayi Emi yoo kọ nyin keji bọtini, tẹ.  "
 
 #: lessonbuilder.py:403
 msgid ""
 "That's the big square key near your right little finger.\n"
 "\n"
 msgstr ""
+"Ti o ni awọn ńlá square bọtini nitosi ọtun rẹ kekere ika.\n"
+"\n"
 
 #: lessonbuilder.py:404
 msgid "Now, reach your little finger over and press ENTER."
-msgstr ""
+msgstr "Bayi, de ọdọ rẹ kekere ika lori ki o si tẹ Tẹ."
 
 #: lessonbuilder.py:408
 msgid ""
 "Great!  When typing, the ENTER key is used to begin a new line.\n"
 "\n"
 msgstr ""
+"Nla!  Nigba ti titẹ, awọn tẹ bọtini ti lo lati bẹrẹ titun kan ila.\n"
+"\n"
 
 #: lessonbuilder.py:409
 msgid "Press the ENTER key again with your right little finger."
-msgstr ""
+msgstr "Tẹ awọn bọtini tẹ lẹẹkansi pẹlu rẹ ọtun kekere ika."
 
 #: lessonbuilder.py:417
 msgid "Copy out the following text."
-msgstr ""
+msgstr "Da awọn wọnyi jade ọrọ."
 
 #: lessonscreen.py:40
 msgid "left little finger"
-msgstr ""
+msgstr "osi kekere ika"
 
 #: lessonscreen.py:41
 msgid "left ring finger"
-msgstr ""
+msgstr "osi iwọn ika"
 
 #: lessonscreen.py:42
 msgid "left middle finger"
-msgstr ""
+msgstr "osi arin ika"
 
 #: lessonscreen.py:43
 msgid "left index finger"
-msgstr ""
+msgstr "osi ika itọka"
 
 #: lessonscreen.py:45
 msgid "right little finger"
-msgstr ""
+msgstr "ọtun kekere ika"
 
 #: lessonscreen.py:46
 msgid "right ring finger"
-msgstr ""
+msgstr "ọtun iwọn ika"
 
 #: lessonscreen.py:47
 msgid "right middle finger"
-msgstr ""
+msgstr "ọtun arin ika"
 
 #: lessonscreen.py:48
 msgid "right index finger"
-msgstr ""
+msgstr "ọtun ika itọka"
 
 #: lessonscreen.py:190
 #, python-format
 msgid "<b>WPM:</b> %(wpm)d"
-msgstr ""
+msgstr "<b>WPM:</b> %(wpm)d"
 
 #: lessonscreen.py:198 medalscreen.py:92
 #, python-format
 msgid "<b>Accuracy:</b> %(accuracy)d%%"
-msgstr ""
+msgstr "<b>Yiye:</b> %(accuracy)d%%"
 
 #: lessonscreen.py:511
 #, python-format
 msgid "Press and hold the shift key with your %(finger)s, "
-msgstr ""
+msgstr "Tẹ ki o si mu awọn naficula bọtini pẹlu rẹ %(finger)s, "
 
 #: lessonscreen.py:512 lessonscreen.py:516 lessonscreen.py:520
 #, python-format
 msgid "then press the %(letter)s key with your %(finger)s."
-msgstr ""
+msgstr "ki o si tẹ awọn %(letter)s bọtini pẹlu rẹ %(finger)s."
 
 #: lessonscreen.py:515
 msgid "Press and hold the altgr key, "
-msgstr ""
+msgstr "Tẹ ki o si mu awọn altgr bọtini, "
 
 #: lessonscreen.py:519
 msgid "Press and hold the altgr and shift keys, "
-msgstr ""
+msgstr "Tẹ ki o si mu awọn altgr ati naficula bọtini, "
 
 #: lessonscreen.py:523
 #, python-format
 msgid "Press the %(letter)s key with your %(finger)s."
-msgstr ""
+msgstr "Tẹ awọn %(letter)s bọtini pẹlu rẹ %(finger)s."
 
 #: lessonscreen.py:543
 #, python-format
 msgid "Uh oh!  Your keyboard cannot type the letter '%s'.\n"
-msgstr ""
+msgstr "Hun oh!  Rẹ keyboard ko le tẹ awọn lẹta ' %s '.\n"
 
 #: lessonscreen.py:544
 msgid "Please change your keyboard settings and try this lesson again."
-msgstr ""
+msgstr "Jọwọ yi keyboard eto ki o si gbiyanju yi ẹkọ lẹẹkansi."
 
 #: lessonscreen.py:616
 msgid "Good job!"
-msgstr ""
+msgstr "Iṣẹ to dara!"
 
 #: lessonscreen.py:618
 msgid "Nice work!"
-msgstr ""
+msgstr "Nice iṣẹ!"
 
 #: lessonscreen.py:624
 #, python-format
 msgid "You finished the lesson in %(time)d seconds, with %(errors)d errors.\n"
-msgstr ""
+msgstr "Ti o pari awọn ẹkọ ni %(time)d aaya, pẹlu %(errors)d awọn aṣiṣe.\n"
 
 #: lessonscreen.py:626
 #, python-format
@@ -475,11 +495,13 @@ msgid ""
 "%.\n"
 "\n"
 msgstr ""
+"Ọrọ rẹ fun iseju (WPM) je %(wpm)d, ati awọn rẹ yiye wà %(accuracy)d%%.\n"
+"\n"
 
 #: lessonscreen.py:629
 #, python-format
 msgid "You finished the lesson with %(errors)d errors.\n"
-msgstr ""
+msgstr "Ti o pari awọn ẹkọ pẹlu %(errors)d awọn aṣiṣe.\n"
 
 #: lessonscreen.py:631
 #, python-format
@@ -487,93 +509,98 @@ msgid ""
 "Your accuracy was %(accuracy)d%%.\n"
 "\n"
 msgstr ""
+"Rẹ yiye wà %(accuracy)d%%.\n"
+"\n"
 
 #: lessonscreen.py:637
 #, python-format
 msgid "Congratulations!  You earned a %(type)s medal!"
-msgstr ""
+msgstr "Oriire!  Ti o mina a %(type)s medal!"
 
 #: lessonscreen.py:645
 msgid "You need to practice this lesson more before moving on."
-msgstr ""
+msgstr "O nilo lati niwa yi ẹkọ diẹ ṣaaju ki o to gbigbe lori."
 
 #: lessonscreen.py:648
 msgid "You almost got a medal!  Next time, try not to make as many errors."
 msgstr ""
+"O fere ni a medal!  Next akoko, gbiyanju ko lati ṣe bi ọpọlọpọ awọn aṣiṣe."
 
 #: lessonscreen.py:651
 msgid "You almost got a medal!  Next time, try to type a little faster."
-msgstr ""
+msgstr "O fere ni a medal!  Next akoko, gbiyanju lati tẹ kekere kan yiyara."
 
 #: mainscreen.py:59
 msgid "Next"
-msgstr ""
+msgstr "Itele"
 
 #: mainscreen.py:68
 msgid "Previous"
-msgstr ""
+msgstr "Ti tẹlẹ"
 
 #: mainscreen.py:75
 msgid "Start Lesson"
-msgstr ""
+msgstr "Bẹrẹ Ẹkọ"
 
 #: mainscreen.py:185
 msgid ""
 "You earned a medal in this lesson!  Advance to the next one\n"
 "by clicking the Next button."
 msgstr ""
+"O mina a loôdun yii!  Advance si awọn nigbamii ti ọkan\n"
+"nipa tite Itele bọtini."
 
 #: mainscreen.py:216
 msgid "No Medal Yet"
-msgstr ""
+msgstr "Ko si Fadaka Ṣugbọn"
 
 #: mainscreen.py:217
 msgid "Bronze Medal"
-msgstr ""
+msgstr "Idẹ Fadaka"
 
 #: mainscreen.py:218
 msgid "Silver Medal"
-msgstr ""
+msgstr "Silver fadaka"
 
 #: mainscreen.py:219
 msgid "Gold Medal"
-msgstr ""
+msgstr "Gold Fadaka"
 
 #: medalscreen.py:56
 msgid ""
 "<span font_desc='Serif Bold Italic 28'>Certificate of Achievement</span>"
-msgstr ""
+msgstr "<span font_desc='Serif Bold italic 28'>aṣeyọri ti iwe-ẹri</span>"
 
 #: medalscreen.py:59
 msgid "<span font_desc='Sans 16'>This certifies that</span>"
-msgstr ""
+msgstr "<span font_desc='Sans 16'>Yi ridaju pe</span>"
 
 #: medalscreen.py:62
 #, python-format
 msgid "<span font_desc='Sans 16'><b><u><i>%(nick)s</i></u></b></span>"
-msgstr ""
+msgstr "<span font_desc='Sans 16'><b><u><i>%(nick)s</i></u></b></span>"
 
 #: medalscreen.py:65
 #, python-format
 msgid "<span font_desc='Sans 16'>earned a %(type)s medal in </span>"
-msgstr ""
+msgstr "<span font_desc='Sans 16'>jo'gun a %(type)s ẹbun ni</span>"
 
 #: medalscreen.py:68
 #, python-format
 msgid "<span font_desc='Sans 16'>in <b><u><i>%(lesson)s</i></u></b></span>"
-msgstr ""
+msgstr "<span font_desc='Sans 16'>ni<b><u><i>%(lesson)s</i></u></b></span>"
 
 #: medalscreen.py:71
 #, python-format
 msgid "<span font_desc='Sans 16'>on <b><u><i>%(date)s</i></u></b>.</span>"
-msgstr ""
+msgstr "<span font_desc='Sans 16'>on <b><u><i>%(date)s</i></u></b>.</span>"
 
 #: medalscreen.py:88
 #, python-format
 msgid "<b>Words Per Minute:</b> %(wpm)d"
-msgstr ""
+msgstr "<b>ọrọ fun iseju:</b> %(wpm)d"
 
 #: medalscreen.py:97
 #, python-format
 msgid "<b>SCORE:</b> %(score)d"
-msgstr ""
+msgstr "<b>Dimegilio:</b>%(score)d"
