@@ -80,7 +80,7 @@ class TypingTurtle(sugar3.activity.activity.Activity):
     def __init__ (self, handle):
         sugar3.activity.activity.Activity.__init__(self, handle)
         self.set_title(_("Typing Turtle"))
-	self.max_participants = 1
+        self.max_participants = 1
         
         self.build_toolbox()
         
@@ -186,7 +186,7 @@ class TypingTurtle(sugar3.activity.activity.Activity):
         try:
             text = fd.read()
             self.data = json.loads(text)
-            if self.data.has_key('lessons'):
+            if 'lessons' in self.data:
                 self.mainscreen.lessons = self.data['lessons']
         finally:
             fd.close()

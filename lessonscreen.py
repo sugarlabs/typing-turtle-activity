@@ -31,7 +31,7 @@ from sugar3.graphics import *
 import keyboard, medalscreen
 
 # Paragraph symbol unicode character.
-PARAGRAPH_CODE = u'\xb6'
+PARAGRAPH_CODE = '\xb6'
 
 # Maximium width of a text line in text lesson mode.
 LINE_WIDTH = 70
@@ -246,9 +246,9 @@ class LessonScreen(Gtk.VBox):
             step = self.lesson['steps'][self.next_step_idx]
             self.next_step_idx = self.next_step_idx + 1
             
-            self.text = unicode(step['text'])
-            self.instructions = unicode(step['instructions'])
-            if step.has_key('mode'):
+            self.text = str(step['text'])
+            self.instructions = str(step['instructions'])
+            if 'mode' in step:
                 self.mode = step['mode']
             else:
                 if len(self.text) == 1:
@@ -586,7 +586,7 @@ class LessonScreen(Gtk.VBox):
             # Compare this medal with any existing medals for this lesson.
             # Only record the best one.
             add_medal = True
-            if self.activity.data['medals'].has_key(lesson_name):
+            if lesson_name in self.activity.data['medals']:
                 old_medal = self.activity.data['medals'][lesson_name]
 
                 order = ' '.join([m['name'] for m in medals])

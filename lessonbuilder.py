@@ -31,8 +31,8 @@ from gi.repository import Gtk
 import keyboard
 
 def error(s):
-    print "lessonbuilder: ERROR: ", s 
-    print "The lesson could not be generated, exiting.\n\n"
+    print(("lessonbuilder: ERROR: ", s)) 
+    print("The lesson could not be generated, exiting.\n\n")
     sys.exit(1)
 
 def make_all_triples(keys):
@@ -49,14 +49,14 @@ def make_all_doubles(keys):
 
 def make_random_triples(keys, count):
     text = ''
-    for y in xrange(0, count):
+    for y in range(0, count):
         k = random.choice(keys)
         text += k + k + ' ' + k + ' '
     return text.strip()
 
 def make_random_doubles(keys, count):
     text = ''
-    for y in xrange(0, count):
+    for y in range(0, count):
         k = random.choice(keys)
         text += k + k + ' '
     return text.strip()
@@ -82,7 +82,7 @@ def make_all_pairs(keys):
 
 def make_random_pairs(required_keys, keys, count):
     text = ''
-    for y in xrange(0, count):
+    for y in range(0, count):
         k1 = random.choice(required_keys)
         k2 = random.choice(keys)
         text += random.choice([k1 + k2, k2 + k1]) + ' '
@@ -101,7 +101,7 @@ RE_WHITESPACE = re.compile('\s+', re.UNICODE)
 
 def load_wordlist(path):
     try:
-        text = unicode(open(path, 'r').read())
+        text = str(open(path, 'r').read())
         
         # Split words by whitespace characters.
         # This preserves partial punctuation in some words, which is
@@ -117,13 +117,13 @@ def load_wordlist(path):
         return []
 
 def get_pairs_from_wordlist(words):
-    print 'Calculating common pairs...'
+    print('Calculating common pairs...')
 
     # Construct char_map, a map for each character c0 in words, giving the frequency of each other
     # character c1 in words following c0.
     char_map = {}
     for word in words:
-        for i in xrange(0, len(word)-1):
+        for i in range(0, len(word)-1):
             c0 = word[i]
             c1 = word[i+1]
             
@@ -133,8 +133,8 @@ def get_pairs_from_wordlist(words):
 
     # Convert to list of pairs with probability.    
     pairs = []
-    for c0, c0_map in char_map.items():
-        for c1, c1_value in c0_map.items():
+    for c0, c0_map in list(char_map.items()):
+        for c1, c1_value in list(c0_map.items()):
             pairs.append((c0+c1, c1_value))
 
     # Sort by frequency.
@@ -187,13 +187,13 @@ def make_weighted_wordlist_pairs(pairs, required_keys, keys, count):
         return make_random_pairs(required_keys, keys, count)
         
     text = ''
-    for y in xrange(0, count):
+    for y in range(0, count):
         p = get_weighted_random_pair(good_pairs)
         text += p[0] + ' '
     return text.strip()
     
 def filter_wordlist(words, all_keys, req_keys, minlen, maxlen, bad_words):
-    print 'Filtering word list...'
+    print('Filtering word list...')
 
     # Uniquify words.
     # TODO: Build a frequency table as with the pairs.
@@ -417,7 +417,7 @@ def build_text_step(path):
     instructions = _('Copy out the following text.')
 
     try:
-        text = unicode(open(path, 'r').read())
+        text = str(open(path, 'r').read())
     except:
         text = ''
 
@@ -512,14 +512,14 @@ def main():
         bad_words = load_wordlist(options.badwordlist)
 
     # Convert string arguments to Unicode.
-    options.name = unicode(options.name)
-    options.keys = unicode(options.keys)
-    options.base_keys = unicode(options.base_keys)
-    options.desc = unicode(options.desc.replace('\\n', '\n'))
+    options.name = str(options.name)
+    options.keys = str(options.keys)
+    options.base_keys = str(options.base_keys)
+    options.desc = str(options.desc.replace('\\n', '\n'))
     
     random.seed(options.seed)
 
-    print "Building lesson '%s'..." % options.name
+    print(("Building lesson '%s'..." % options.name))
 
     lesson = {}
     lesson['name'] = options.name
@@ -567,6 +567,6 @@ if __name__ == "__main__":
     try:
         main()
     except KeyboardInterrupt:
-        print "Ctrl-C detected, aborting."
+        print("Ctrl-C detected, aborting.")
         sys.exit(1)
 
