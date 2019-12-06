@@ -102,7 +102,7 @@ class MainScreen(Gtk.VBox):
             sys.exit(1)
 
         # Sort by the 'order' field.
-        self.lessons.sort(lambda x, y: x.get('order', 0) - y.get('order', 0))
+        self.lessons.sort(key=lambda x, y: x.get('order', 0) - y.get('order', 0))
 
         # Load all the keyboard images.
         width = int(Gdk.Screen.width())
