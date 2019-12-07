@@ -19,7 +19,7 @@ import logging, os, math, time, copy, locale, datetime, random, re, glob
 from gettext import gettext as _
 import sys
 import json
-
+import pdb
 from gi.repository import Gtk
 from gi.repository import Gdk
 from gi.repository import GdkPixbuf
@@ -102,7 +102,9 @@ class MainScreen(Gtk.VBox):
             sys.exit(1)
 
         # Sort by the 'order' field.
-        self.lessons.sort(key=lambda x, y: x.get('order', 0) - y.get('order', 0))
+        
+        # lesson_order_list = [self.lessons[x]['order'] for x in range(len(self.lessons))] # take order of list 'self.lessons' in a variable
+        self.lessons = sorted(self.lessons, key=lambda x: x['order']) # replace sort with sorted for faster exec
 
         # Load all the keyboard images.
         width = int(Gdk.Screen.width())

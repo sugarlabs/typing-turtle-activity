@@ -453,7 +453,7 @@ class KeyboardWidget(KeyboardData, Gtk.DrawingArea):
         fd = Pango.FontDescription('Monospace')
         fd.set_size(10 * Pango.SCALE)
         pango_layout.set_font_description(fd)
-        pango_layout.set_text(text, len(text))
+        pango_layout.set_text(text.decode('utf-8'), len(text.decode('utf-8')))
 
         cr.move_to(x1 + 8, y2 - 23)
         PangoCairo.update_layout(cr, pango_layout)

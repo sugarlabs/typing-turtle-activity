@@ -28,7 +28,8 @@ import json
 # since sugar3.activity.main already seted up gettext envronment
 #locale.setlocale(locale.LC_ALL, '')
 
-
+import gi
+gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
 
 # Import Sugar UI modules.
@@ -51,6 +52,7 @@ bundle_path = sugar3.activity.activity.get_bundle_path()
 os.chdir(bundle_path)
 
 # Set correct DPI for Rsvg and Screen
+gi.require_version('PangoCairo', '1.0')
 from gi.repository import PangoCairo
 
 def _get_screen_dpi():
