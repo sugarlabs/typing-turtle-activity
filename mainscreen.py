@@ -19,7 +19,7 @@ import logging, os, math, time, copy, locale, datetime, random, re, glob
 from gettext import gettext as _
 import sys
 import json
-import pdb
+
 from gi.repository import Gtk
 from gi.repository import Gdk
 from gi.repository import GdkPixbuf
