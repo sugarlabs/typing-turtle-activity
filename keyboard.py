@@ -453,7 +453,10 @@ class KeyboardWidget(KeyboardData, Gtk.DrawingArea):
         fd = Pango.FontDescription('Monospace')
         fd.set_size(10 * Pango.SCALE)
         pango_layout.set_font_description(fd)
-        pango_layout.set_text(text.decode('utf-8'), len(text.decode('utf-8')))
+        if type(text) is bytes:
+        	pango_layout.set_text(text.decode('utf-8'), len(text.decode('utf-8')))
+        else:
+            pango_layout.set_text(text, len(text))
 
         cr.move_to(x1 + 8, y2 - 23)
         PangoCairo.update_layout(cr, pango_layout)
@@ -556,7 +559,7 @@ class KeyboardWidget(KeyboardData, Gtk.DrawingArea):
     def set_draw_hands(self, enable):
         self.draw_hands = enable
         self.queue_draw()
-
+    
     def get_key_pixbuf(self, key, state=0, group=0, scale=1):
         w = int(key['key-width'] * scale)
         h = int(key['key-height'] * scale)
@@ -578,12 +581,14 @@ class KeyboardWidget(KeyboardData, Gtk.DrawingArea):
         self._draw_key(key, cr)
 
         # Convert cairo.Surface to Pixbuf
-        pixbuf_data = io.StringIO()
+        pixbuf_data = io.BytesIO()
         surface.write_to_png(pixbuf_data)
         pxb_loader = GdkPixbuf.PixbufLoader.new_with_type('png')
         pxb_loader.write(pixbuf_data.getvalue())
         temp_pix = pxb_loader.get_pixbuf()
         pxb_loader.close()
+        
+        	
 
         self.active_state, self.active_group = old_state, old_group
 
