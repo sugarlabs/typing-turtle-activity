@@ -21,7 +21,8 @@ import keyboard
 
 from gi.repository import Gtk
 
-window = Gtk.Window(Gtk.WindowType.TOPLEVEL)
+# window = Gtk.Window(Gtk.WindowType.TOPLEVEL) Removed above line to because of GtkDeprecation of positional arguments
+window = Gtk.Window(type=Gtk.WindowType.TOPLEVEL)
 window.set_title("keyboard widget")
 window.connect("destroy", lambda w: Gtk.main_quit())
 window.show_all()

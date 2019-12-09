@@ -83,7 +83,7 @@ class MedalScreen(Gtk.EventBox):
 
         # Stats section.
         statbox = Gtk.HBox()
-        if medal.has_key('wpm'):
+        if 'wpm' in medal:
             stat1 = Gtk.Label()
             stat1.set_markup("<span size='18000'>" + (_('<b>Words Per Minute:</b> %(wpm)d') % medal) + "</span>" )
             statbox.pack_start(stat1, True, True, 0)
@@ -92,7 +92,7 @@ class MedalScreen(Gtk.EventBox):
             stat2.set_markup("<span size='18000'>" + (_('<b>Accuracy:</b> %(accuracy)d%%') % medal) + "</span>" )
             statbox.pack_start(stat2, True, True, 0)
 
-        elif medal.has_key('score'):
+        elif 'score' in medal:
             stat1 = Gtk.Label()
             stat1.set_markup("<span size='18000'>" + (_('<b>SCORE:</b> %(score)d') % medal) + "</span>" )
             statbox.pack_start(stat1, True, True, 0)

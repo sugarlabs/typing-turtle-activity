@@ -19,7 +19,8 @@
 import cairo
 import copy
 import os, glob, re
-
+import gi
+gi.require_version('PangoCairo', '1.0') # Check PangoCairo Version to prevent warnings
 from gi.repository import Gtk
 from gi.repository import Pango
 from gi.repository import PangoCairo
@@ -27,7 +28,7 @@ from gi.repository import Gdk
 from gi.repository import GObject
 from gi.repository import GdkPixbuf
 
-import StringIO
+import io
 import json
 import subprocess
 from layouts.olpc import OLPC_LAYOUT
@@ -37,7 +38,7 @@ from layouts.olpcm import OLPCM_LAYOUT
 HAND_YOFFSET = -15
 
 # Unicode symbol for the paragraph key.
-PARAGRAPH_CODE = u'\xb6'
+PARAGRAPH_CODE = '\xb6'
 
 # List of all key properties in the keyboard layout description.
 #
@@ -108,7 +109,8 @@ def _is_olpcm_model():
     code = None
     p = subprocess.Popen(["setxkbmap", "-query"], stdout=subprocess.PIPE)
     out, err = p.communicate()
-    for line in out.splitlines():
+    
+    for line in out.decode('utf-8').splitlines():
         if line.startswith('model:'):
             code = line.split()[1]
     return code == 'olpcm'
@@ -128,7 +130,7 @@ class KeyboardImages:
         self.images = {}
 
     def get_image(self, name):
-        if not self.images.has_key(name):
+        if name not in self.images:
             self.load_image(name)
 
         return self.images[name]
@@ -157,7 +159,9 @@ class KeyboardData:
         self.letter_map = {}
         
         # Access the current GTK keymap.
-        self.keymap = Gdk.Keymap.get_default()
+        # self.keymap = Gdk.Keymap.get_default()
+        # Removed above line due to Gtk3 deprecation
+        self.keymap = Gdk.Keymap.get_for_display(Gdk.Display.get_default())
 
     def set_layout(self, layout): 
         self._build_key_list(layout)
@@ -187,10 +191,10 @@ class KeyboardData:
                 # defaults, in that order.
                 for p in KEY_PROPS:
                     pname = p['name']
-                    if not key.has_key(pname):
-                        if g.has_key(pname):
+                    if pname not in key:
+                        if pname in g:
                             key[pname] = g[pname]
-                        elif layout.has_key(pname):
+                        elif pname in layout:
                             key[pname] = layout[pname]
                         else:
                             key[pname] = p['default']
@@ -289,7 +293,7 @@ class KeyboardData:
         best_score = 3
         best_result = None
         
-        for sig, l in self.letter_map.items():
+        for sig, l in list(self.letter_map.items()):
             if l == letter:
                 scan, state, group = self.parse_key_sig(sig)
                 
@@ -326,14 +330,14 @@ class KeyboardData:
 
     def get_letter_for_key_state_group(self, key, state, group):
         sig = self.format_key_sig(key['key-scan'], state, group)
-        if self.letter_map.has_key(sig):
+        if sig in self.letter_map:
             return self.letter_map[sig]
         else:
             success, keyval, effective_group, level, consumed_modifiers = \
                 self.keymap.translate_keyboard_state(
                     key['key-scan'], self.active_state, self.active_group)
             if success:
-                return unichr(Gdk.keyval_to_unicode(keyval)).encode('utf-8')
+                return chr(Gdk.keyval_to_unicode(keyval)).encode('utf-8')
 
         return ''
 
@@ -367,7 +371,7 @@ class KeyboardWidget(KeyboardData, Gtk.DrawingArea):
         self.hilite_letter = None
         
         self.draw_hands = False
-        
+        # TODO FIXME Gdk.Color.Parse() Deprecation
         self.modify_bg(Gtk.StateType.NORMAL, Gdk.Color.parse('#d0d0d0')[1])
 
         # Connect keyboard grabbing and releasing callbacks.        
@@ -449,7 +453,10 @@ class KeyboardWidget(KeyboardData, Gtk.DrawingArea):
         fd = Pango.FontDescription('Monospace')
         fd.set_size(10 * Pango.SCALE)
         pango_layout.set_font_description(fd)
-        pango_layout.set_text(text, len(text))
+        if type(text) is bytes:
+        	pango_layout.set_text(text.decode('utf-8'), len(text.decode('utf-8')))
+        else:
+            pango_layout.set_text(text, len(text))
 
         cr.move_to(x1 + 8, y2 - 23)
         PangoCairo.update_layout(cr, pango_layout)
@@ -535,7 +542,7 @@ class KeyboardWidget(KeyboardData, Gtk.DrawingArea):
 
         if event.string:
             sig = self.format_key_sig(event.hardware_keycode, state, event.group)
-            if not self.letter_map.has_key(sig):
+            if sig not in self.letter_map:
                 self.letter_map[sig] = event.string
                 self.queue_draw()
 
@@ -552,7 +559,7 @@ class KeyboardWidget(KeyboardData, Gtk.DrawingArea):
     def set_draw_hands(self, enable):
         self.draw_hands = enable
         self.queue_draw()
-
+    
     def get_key_pixbuf(self, key, state=0, group=0, scale=1):
         w = int(key['key-width'] * scale)
         h = int(key['key-height'] * scale)
@@ -574,12 +581,14 @@ class KeyboardWidget(KeyboardData, Gtk.DrawingArea):
         self._draw_key(key, cr)
 
         # Convert cairo.Surface to Pixbuf
-        pixbuf_data = StringIO.StringIO()
+        pixbuf_data = io.BytesIO()
         surface.write_to_png(pixbuf_data)
         pxb_loader = GdkPixbuf.PixbufLoader.new_with_type('png')
         pxb_loader.write(pixbuf_data.getvalue())
         temp_pix = pxb_loader.get_pixbuf()
         pxb_loader.close()
+        
+        	
 
         self.active_state, self.active_group = old_state, old_group
 

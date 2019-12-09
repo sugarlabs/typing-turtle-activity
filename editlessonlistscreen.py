@@ -20,7 +20,8 @@
 import logging, os, math, time, copy, locale, datetime, random, re
 from gettext import gettext as _
 import json
-
+import gi
+gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
 from gi.repository import GObject
 

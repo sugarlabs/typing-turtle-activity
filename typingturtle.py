@@ -28,7 +28,8 @@ import json
 # since sugar3.activity.main already seted up gettext envronment
 #locale.setlocale(locale.LC_ALL, '')
 
-
+import gi
+gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
 
 # Import Sugar UI modules.
@@ -51,6 +52,7 @@ bundle_path = sugar3.activity.activity.get_bundle_path()
 os.chdir(bundle_path)
 
 # Set correct DPI for Rsvg and Screen
+gi.require_version('PangoCairo', '1.0')
 from gi.repository import PangoCairo
 
 def _get_screen_dpi():
@@ -80,7 +82,7 @@ class TypingTurtle(sugar3.activity.activity.Activity):
     def __init__ (self, handle):
         sugar3.activity.activity.Activity.__init__(self, handle)
         self.set_title(_("Typing Turtle"))
-	self.max_participants = 1
+        self.max_participants = 1
         
         self.build_toolbox()
         
@@ -186,7 +188,7 @@ class TypingTurtle(sugar3.activity.activity.Activity):
         try:
             text = fd.read()
             self.data = json.loads(text)
-            if self.data.has_key('lessons'):
+            if 'lessons' in self.data:
                 self.mainscreen.lessons = self.data['lessons']
         finally:
             fd.close()

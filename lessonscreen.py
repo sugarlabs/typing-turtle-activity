@@ -31,7 +31,7 @@ from sugar3.graphics import *
 import keyboard, medalscreen
 
 # Paragraph symbol unicode character.
-PARAGRAPH_CODE = u'\xb6'
+PARAGRAPH_CODE = '\xb6'
 
 # Maximium width of a text line in text lesson mode.
 LINE_WIDTH = 70
@@ -213,7 +213,7 @@ class LessonScreen(Gtk.VBox):
         self.advance_step()
 
     def wrap_line(self, line):
-        r = re.compile('(\W+)', re.UNICODE)
+        r = re.compile(r'(\W+)', re.UNICODE)
         words = r.split(line)
         
         new_lines = []
@@ -246,9 +246,9 @@ class LessonScreen(Gtk.VBox):
             step = self.lesson['steps'][self.next_step_idx]
             self.next_step_idx = self.next_step_idx + 1
             
-            self.text = unicode(step['text'])
-            self.instructions = unicode(step['instructions'])
-            if step.has_key('mode'):
+            self.text = str(step['text'])
+            self.instructions = str(step['instructions'])
+            if 'mode' in step:
                 self.mode = step['mode']
             else:
                 if len(self.text) == 1:
@@ -321,7 +321,7 @@ class LessonScreen(Gtk.VBox):
 
                 # Add the text to copy.
                 self.lessonbuffer.insert_with_tags_by_name(
-                    self.lessonbuffer.get_end_iter(), l.encode('utf-8') + '\n', 'text')
+                    self.lessonbuffer.get_end_iter(), l.decode('utf-8') + '\n', 'text')
                 
                 # Leave a marker where we will later insert text.
                 self.line_marks[line_idx] = self.lessonbuffer.create_mark(None, self.lessonbuffer.get_end_iter(), True)
@@ -586,7 +586,7 @@ class LessonScreen(Gtk.VBox):
             # Compare this medal with any existing medals for this lesson.
             # Only record the best one.
             add_medal = True
-            if self.activity.data['medals'].has_key(lesson_name):
+            if lesson_name in self.activity.data['medals']:
                 old_medal = self.activity.data['medals'][lesson_name]
 
                 order = ' '.join([m['name'] for m in medals])

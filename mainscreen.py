@@ -34,6 +34,7 @@ import lessonscreen, medalscreen
 import balloongame
 import titlescene
 import keyboard
+import importlib
 
 # Temporary SVGs of medals from Wikimedia Commons.
 # See the links below for licensing information.
@@ -101,7 +102,9 @@ class MainScreen(Gtk.VBox):
             sys.exit(1)
 
         # Sort by the 'order' field.
-        self.lessons.sort(lambda x, y: x.get('order', 0) - y.get('order', 0))
+        
+        # lesson_order_list = [self.lessons[x]['order'] for x in range(len(self.lessons))] # take order of list 'self.lessons' in a variable
+        self.lessons = sorted(self.lessons, key=lambda x: x['order']) # replace sort with sorted for faster exec
 
         # Load all the keyboard images.
         width = int(Gdk.Screen.width())
@@ -145,9 +148,9 @@ class MainScreen(Gtk.VBox):
         # FIXME: lesson doesn't have the 'order' key if the user
         # didn't press Go Back in the Edit Lessons Screen after
         # creating one
-        for i in xrange(0, len(self.lessons)):
+        for i in range(0, len(self.lessons)):
             if self.lessons[i]['order'] >= 0 and \
-               not self.activity.data['medals'].has_key(self.lessons[i]['name']):
+               self.lessons[i]['name'] not in self.activity.data['medals']:
                 index = min(index, i)
         return index
     
@@ -169,7 +172,7 @@ class MainScreen(Gtk.VBox):
         self.visible_lesson = lesson
 
         medal_type = 'none'
-        if self.activity.data['medals'].has_key(lesson['name']):
+        if lesson['name'] in self.activity.data['medals']:
             medal_type = self.activity.data['medals'][lesson['name']]['type']
         
         # Create the lesson button.
@@ -252,13 +255,13 @@ class MainScreen(Gtk.VBox):
     
     def lesson_clicked_cb(self, widget):
         if self.visible_lesson['type'] == 'balloon':
-            reload(balloongame)
+            importlib.reload(balloongame)
             self.activity.push_screen(balloongame.BalloonGame(self.visible_lesson, self.activity))
         else:
-            reload(lessonscreen)
+            importlib.reload(lessonscreen)
             self.activity.push_screen(lessonscreen.LessonScreen(self.visible_lesson, self.keyboard_images, self.activity))
     
     def medal_clicked_cb(self, widget):
-        if self.activity.data['medals'].has_key(self.visible_lesson['name']):
+        if self.visible_lesson['name'] in self.activity.data['medals']:
             medal = self.activity.data['medals'][self.visible_lesson['name']]
             self.activity.push_screen(medalscreen.MedalScreen(medal, self.activity))

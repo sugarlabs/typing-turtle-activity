@@ -366,7 +366,7 @@ class EditLessonScreen(Gtk.VBox):
         if self.lesson['type'] == 'normal':
             self.has_normal_widgets = True
             
-            if not self.lesson.has_key('steps') or len(self.lesson['steps']) == 0:
+            if 'steps' not in self.lesson or len(self.lesson['steps']) == 0:
                 step = { 'instructions': '', 'text': '' }
                 self.lesson['steps'] = [ step ]              
                   
@@ -381,7 +381,7 @@ class EditLessonScreen(Gtk.VBox):
         if self.lesson['type'] == 'balloon':
             self.has_balloon_widgets = True
 
-            if not self.lesson.has_key('words') or len(self.lesson['words']) == 0:
+            if 'words' not in self.lesson or len(self.lesson['words']) == 0:
                 self.lesson['words'] = []
             
             textlabel = Gtk.Label()
@@ -447,7 +447,7 @@ class EditLessonScreen(Gtk.VBox):
         self.lesson['description'] = buf.get_text(buf.get_start_iter(),
                                                   buf.get_end_iter(), False)
         
-        if not self.lesson.has_key('options'):
+        if 'options' not in self.lesson:
             self.lesson['options'] = {}
         self.lesson['options']['mistakes'] = self.mistakescheck.get_active()
         self.lesson['options']['backspace'] = self.backspacecheck.get_active()
@@ -561,7 +561,7 @@ class EditLessonScreen(Gtk.VBox):
             if self.lesson['type'] == 'balloon':
                 self.lesson['words'] = lessonbuilder.build_game_words(length, new_keys, known_keys, words, [])                
                 
-        except Exception, e:
+        except Exception as e:
             logging.error('Unable to generate lesson: ' + str(e))
 
         self.build()

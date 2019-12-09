@@ -70,7 +70,7 @@ class TitleScene(Gtk.DrawingArea):
         self.pango_layout = PangoCairo.create_layout(cr)
         self.pango_layout.set_font_description(
             Pango.FontDescription(TitleScene.TITLE_FONT))
-        self.pango_layout.set_text(unicode(self.title_original),
+        self.pango_layout.set_text(str(self.title_original),
                                    len(self.title_original))
 
         original_size = self.pango_layout.get_size()
@@ -88,7 +88,7 @@ class TitleScene(Gtk.DrawingArea):
         cr = window.cairo_create()
 
         cr.move_to(self.x_text, self.y_text)
-        self.pango_layout.set_text(unicode(self.title_text),
+        self.pango_layout.set_text(str(self.title_text),
                                    len(self.title_text))
         PangoCairo.update_layout(cr, self.pango_layout)
         PangoCairo.show_layout(cr, self.pango_layout)
