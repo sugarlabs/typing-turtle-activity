@@ -213,7 +213,7 @@ class LessonScreen(Gtk.VBox):
         self.advance_step()
 
     def wrap_line(self, line):
-        r = re.compile('(\W+)', re.UNICODE)
+        r = re.compile('(\w+)', re.UNICODE)
         words = r.split(line)
         
         new_lines = []
@@ -321,7 +321,7 @@ class LessonScreen(Gtk.VBox):
 
                 # Add the text to copy.
                 self.lessonbuffer.insert_with_tags_by_name(
-                    self.lessonbuffer.get_end_iter(), l.encode('utf-8') + '\n', 'text')
+                    self.lessonbuffer.get_end_iter(), l.decode('utf-8') + '\n', 'text')
                 
                 # Leave a marker where we will later insert text.
                 self.line_marks[line_idx] = self.lessonbuffer.create_mark(None, self.lessonbuffer.get_end_iter(), True)
