@@ -112,7 +112,10 @@ class BalloonGame(Gtk.VBox):
     def stop_cb(self, widget):
         # Stop the animation loop.
         if self.update_timer:
-            GObject.source_remove(self.update_timer)
+            try:
+                GObject.source_remove(self.update_timer)
+            except:
+                pass # Try remove instance, if not found, just pass
         
         self.activity.pop_screen()
 
@@ -224,8 +227,8 @@ class BalloonGame(Gtk.VBox):
         fd = Pango.FontDescription('Serif Bold')
         fd.set_size(16 * Pango.SCALE)
         pango_layout.set_font_description(fd)
-        pango_layout.set_text(title.encode('utf-8'),
-                              len(title.encode('utf-8')))
+        pango_layout.set_text(title,
+                              len(title))
         size = pango_layout.get_size()
         tx = x + (w / 2) - (size[0] / Pango.SCALE) / 2
         ty = y + 100
