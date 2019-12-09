@@ -97,7 +97,7 @@ def make_all_joined_pairs(keys1, keys2):
             text += k2 + k1 + ' '
     return text.strip()
 
-RE_WHITESPACE = re.compile('\s+', re.UNICODE)
+RE_WHITESPACE = re.compile(r'\s+', re.UNICODE)
 
 def load_wordlist(path):
     try:
@@ -561,7 +561,8 @@ def main():
     
     text = json.dumps(lesson, ensure_ascii=False, sort_keys=True, indent=4)
 
-    open(options.output, 'w').write(text)
+    with open(options.output, 'w') as x:
+        x.write(text)
 
 if __name__ == "__main__":
     try:
