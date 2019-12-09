@@ -65,7 +65,7 @@ def make_jumbles(required_keys, keys, count, width):
     text = ''
     for y in range(0, count):
         # Alternating between required and non-required.  Is this too challenging to type?
-        for x in range(0, width/2):
+        for x in range(0, int(width/2)):
             text += random.choice(required_keys)
             text += random.choice(keys)
         text += ' '
@@ -164,7 +164,7 @@ def filter_pairs(pairs, required_keys, keys):
     total = 0.0
     for p in good_pairs:
         total += p[1]
-    good_pairs = [(p[0], p[1]/total) for p in good_pairs]
+    good_pairs = [(p[0], int(p[1]/total)) for p in good_pairs]
 
     return good_pairs
     
@@ -558,7 +558,7 @@ def main():
         lesson['words'] = build_game_words(
             count=options.length, new_keys=options.keys, base_keys=options.base_keys, 
             words=words, bad_words=bad_words)
-
+    
     text = json.dumps(lesson, ensure_ascii=False, sort_keys=True, indent=4)
 
     open(options.output, 'w').write(text)
