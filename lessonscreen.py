@@ -213,7 +213,7 @@ class LessonScreen(Gtk.VBox):
         self.advance_step()
 
     def wrap_line(self, line):
-        r = re.compile('(\w+)', re.UNICODE)
+        r = re.compile(r'(\W+)', re.UNICODE)
         words = r.split(line)
         
         new_lines = []
