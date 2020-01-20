@@ -427,7 +427,11 @@ class LessonScreen(Gtk.VBox):
                     tag_name = 'correct-copy'
                     self.correct_keys += 1
                     self.total_keys += 1
-                    
+                elif key != self.line[self.char_idx] and key_name == 'space':
+                    tag_name = 'incorrect-copy'
+                    self.incorrect_keys += 1
+                    self.total_keys += 1
+                    key = '_'
                 else:
                     # TODO - Play 'incorrect key' sound here.
                     
@@ -440,6 +444,7 @@ class LessonScreen(Gtk.VBox):
                     iter = self.lessonbuffer.get_iter_at_mark(self.line_mark)
                     iter.forward_chars(self.char_idx)
                     
+
                     self.lessonbuffer.insert_with_tags_by_name(iter, key, tag_name)
                     
                     # Advance to the next character (or else).
