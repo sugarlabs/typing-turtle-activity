@@ -6,7 +6,7 @@ Typing Turtle is an interactive touch typing program. It gradually introduces th
 How to use?
 ===========
 
-Typing Turtle is part of the Sugar desktop.  Please refer to;
+Typing Turtle is not part of the Sugar desktop, but can be added.  Please refer to;
 
 * [How to Get Sugar on sugarlabs.org](https://sugarlabs.org/),
 * [How to use Sugar](https://help.sugarlabs.org/),
