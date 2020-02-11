@@ -1,6 +1,6 @@
 [Activity]
 name = Typing Turtle
-activity_version = 31
+activity_version = 32
 license = GPLv3+
 bundle_id = org.laptop.community.TypingTurtle
 icon = Activity-typingturtle
