@@ -35,15 +35,16 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-09-27 14:55-0400\n"
-"PO-Revision-Date: 2012-01-27 12:14+0200\n"
-"Last-Translator: Eduardo H. <hoboprimate@gmail.com>\n"
+"PO-Revision-Date: 2015-04-17 18:21+0000\n"
+"Last-Translator: DuneSoft <dj_dune@web.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.0.5\n"
+"X-Generator: Pootle 2.5.1.1\n"
+"X-POOTLE-MTIME: 1429294869.000000\n"
 
 #. TRANS: "name" option from activity.info file
 #: titlescene.py:54 typingturtle.py:82
@@ -127,7 +128,7 @@ msgstr "Jogo dos Balões"
 
 #: editlessonlistscreen.py:204
 msgid "Delete Lesson?"
-msgstr ""
+msgstr "Apagar a Lição?"
 
 #: editlessonlistscreen.py:205
 msgid "Deleting the lesson will erase the lesson content."

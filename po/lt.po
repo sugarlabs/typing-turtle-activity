@@ -7,21 +7,22 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-09-27 14:55-0400\n"
-"PO-Revision-Date: 2011-04-08 06:08+0200\n"
-"Last-Translator: Chris <cjl@laptop.org>\n"
+"PO-Revision-Date: 2019-02-14 10:37+0000\n"
+"Last-Translator: Moo <hazap@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: lt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%"
-"100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Pootle 2.0.1\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"(n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Pootle 2.5.1.1\n"
+"X-POOTLE-MTIME: 1550140677.000000\n"
 
 #. TRANS: "name" option from activity.info file
 #: titlescene.py:54 typingturtle.py:82
 msgid "Typing Turtle"
-msgstr ""
+msgstr "Rašantis vėžlys"
 
 #. TRANS: "summary" option from activity.info file
 #. TRANS: "description" option from activity.info file
@@ -29,15 +30,17 @@ msgid ""
 "Need some help typing? Here you will learn the best way to hold your hands "
 "in order for you to become a faster typist!"
 msgstr ""
+"Reikia pagalbos rašant? Čia jūs išmoksite kaip geriausiai laikyti savo "
+"rankas, kad išmoktumėte dar greičiau rinkti tekstą!"
 
 #: balloongame.py:59 editlessonlistscreen.py:50 editlessonscreen.py:50
 #: editlessonscreen.py:584 lessonscreen.py:65
 msgid "Go Back"
-msgstr ""
+msgstr "Grįžti"
 
 #: balloongame.py:217
 msgid "You finished!"
-msgstr ""
+msgstr "Jūs užbaigėte!"
 
 #: balloongame.py:234
 #, python-format
@@ -51,7 +54,7 @@ msgstr ""
 
 #: balloongame.py:238 medalscreen.py:101
 msgid "Press the ENTER key to continue."
-msgstr ""
+msgstr "Norėdami tęsti, paspauskite ENTER klavišą."
 
 #: balloongame.py:350 balloongame.py:363
 #, python-format
@@ -60,15 +63,15 @@ msgstr ""
 
 #: balloongame.py:378
 msgid "Type the words to pop the balloons!"
-msgstr ""
+msgstr "Rašykite žodžius, norėdami susprogdinti balionus!"
 
 #: editlessonlistscreen.py:47 typingturtle.py:111
 msgid "Edit Lessons"
-msgstr ""
+msgstr "Taisyti pamokas"
 
 #: editlessonlistscreen.py:71 editlessonscreen.py:275
 msgid "Name"
-msgstr ""
+msgstr "Pavadinimas"
 
 #: editlessonlistscreen.py:76 editlessonscreen.py:307
 msgid "Description"
@@ -76,51 +79,51 @@ msgstr "Aprašas"
 
 #: editlessonlistscreen.py:82 editlessonscreen.py:287
 msgid "Type"
-msgstr ""
+msgstr "Tipas"
 
 #: editlessonlistscreen.py:91
 msgid "Import Lessons from Journal"
-msgstr ""
+msgstr "Importuoti pamokas iš žurnalo"
 
 #: editlessonlistscreen.py:96
 msgid "Export Lessons to Journal"
-msgstr ""
+msgstr "Eksportuoti pamokas į žurnalą"
 
 #: editlessonlistscreen.py:101
 msgid "Save Lessons to Activity"
-msgstr ""
+msgstr "Įrašyti pamokas į veiklą"
 
 #: editlessonlistscreen.py:165 editlessonscreen.py:191
 msgid "Text"
-msgstr ""
+msgstr "Tekstas"
 
 #: editlessonlistscreen.py:167 editlessonscreen.py:295
 msgid "Balloon Game"
-msgstr ""
+msgstr "Balionų žaidimas"
 
 #: editlessonlistscreen.py:204
 msgid "Delete Lesson?"
-msgstr ""
+msgstr "Ištrinti pamoką?"
 
 #: editlessonlistscreen.py:205
 msgid "Deleting the lesson will erase the lesson content."
-msgstr ""
+msgstr "Ištrinus pamoką, bus ištrintas jos turinys."
 
 #: editlessonlistscreen.py:311
 msgid " (Exported Lessons)"
-msgstr ""
+msgstr " (Ekportuotos pamokos)"
 
 #: editlessonscreen.py:47
 msgid "Edit a Lesson"
-msgstr ""
+msgstr "Taisyti pamoką"
 
 #: editlessonscreen.py:77
 msgid "New keys"
-msgstr ""
+msgstr "Nauji klavišai"
 
 #: editlessonscreen.py:78
 msgid "Known keys"
-msgstr ""
+msgstr "Žinomi klavišai"
 
 #: editlessonscreen.py:79
 msgid "Length"
@@ -132,32 +135,32 @@ msgstr ""
 
 #: editlessonscreen.py:108 editlessonscreen.py:581
 msgid "Edit Word List"
-msgstr ""
+msgstr "Taisyti žodžių sąrašą"
 
 #: editlessonscreen.py:124
 #, python-format
 msgid "Step #%d"
-msgstr ""
+msgstr "Žingsnis Nr.%d"
 
 #: editlessonscreen.py:130
 msgid "Keys"
-msgstr ""
+msgstr "Klavišai"
 
 #: editlessonscreen.py:131 editlessonscreen.py:388
 msgid "Words"
-msgstr ""
+msgstr "Žodžiai"
 
 #: editlessonscreen.py:169
 msgid "Instructions"
-msgstr ""
+msgstr "Instrukcija"
 
 #: editlessonscreen.py:234
 msgid "Accuracy"
-msgstr ""
+msgstr "Tikslumas"
 
 #: editlessonscreen.py:235
 msgid "WPM"
-msgstr ""
+msgstr "ŽPM"
 
 #: editlessonscreen.py:249
 msgid "Score"
@@ -165,43 +168,43 @@ msgstr ""
 
 #: editlessonscreen.py:270
 msgid "Lesson Details"
-msgstr ""
+msgstr "Išsamesnė pamokos informacija"
 
 #: editlessonscreen.py:291
 msgid "Normal Lesson"
-msgstr ""
+msgstr "Normali pamoka"
 
 #: editlessonscreen.py:326
 msgid "Options"
-msgstr ""
+msgstr "Parinktys"
 
 #: editlessonscreen.py:330
 msgid "Allow Mistakes"
-msgstr ""
+msgstr "Leisti klaidas"
 
 #: editlessonscreen.py:332
 msgid "Allow Backspace"
-msgstr ""
+msgstr "Leisti naikinimą"
 
 #: editlessonscreen.py:353
 msgid "Automatic Lesson Generator"
-msgstr ""
+msgstr "Automatinis pamokos generatorius"
 
 #: editlessonscreen.py:412
 msgid "Medal Requirements"
-msgstr ""
+msgstr "Reikalavimai medaliui"
 
 #: editlessonscreen.py:420
 msgid "Bronze"
-msgstr ""
+msgstr "Bronza"
 
 #: editlessonscreen.py:421
 msgid "Silver"
-msgstr ""
+msgstr "Sidabras"
 
 #: editlessonscreen.py:422
 msgid "Gold"
-msgstr ""
+msgstr "Auksas"
 
 #: editlessonscreen.py:594
 msgid ""
@@ -211,7 +214,7 @@ msgstr ""
 
 #: lessonbuilder.py:261 lessonscreen.py:617
 msgid "Well done!"
-msgstr ""
+msgstr "Puikiai padirbėta!"
 
 #: lessonbuilder.py:262
 msgid "Good job."
@@ -219,7 +222,7 @@ msgstr ""
 
 #: lessonbuilder.py:263
 msgid "Awesome!"
-msgstr ""
+msgstr "Nuostabu!"
 
 #: lessonbuilder.py:264 lessonscreen.py:619
 msgid "Way to go!"
@@ -227,27 +230,32 @@ msgstr ""
 
 #: lessonbuilder.py:265
 msgid "Wonderful!"
-msgstr ""
+msgstr "Puiku!"
 
 #: lessonbuilder.py:266
 msgid "Nice work."
-msgstr ""
+msgstr "Gerai padirbėta."
 
 #: lessonbuilder.py:267
 msgid "You did it!"
-msgstr ""
+msgstr "Jums pavyko!"
 
 #: lessonbuilder.py:274
 msgid ""
 "Be careful to use the correct finger to press each key.  Look at the "
 "keyboard below if you need help remembering."
 msgstr ""
+"Atkreipkite dėmėsį, kad kiekvieną klavišą reikia paspausti teisingu pirštu.  "
+"Jeigu negalite prisiminti kurį pirštą naudoti, žvilgtelėkite į klaviatūrą "
+"žemiau."
 
 #: lessonbuilder.py:275
 msgid ""
 "Try to type at the same speed, all the time.  As you get more comfortable "
 "you can increase the speed a little."
 msgstr ""
+"Stenkitės visą laiką rašyti tuo pačiu greičiu.  Kai įprasite, galite truputį "
+"padidinti greitį."
 
 #: lessonbuilder.py:282
 msgid "left little"
@@ -267,27 +275,27 @@ msgstr ""
 
 #: lessonbuilder.py:286 lessonscreen.py:44
 msgid "left thumb"
-msgstr ""
+msgstr "kairysis nykštys"
 
 #: lessonbuilder.py:287
 msgid "right little"
-msgstr ""
+msgstr "dešinysis mažylis"
 
 #: lessonbuilder.py:288
 msgid "right ring"
-msgstr ""
+msgstr "dešinysis bevardis"
 
 #: lessonbuilder.py:289
 msgid "right middle"
-msgstr ""
+msgstr "dešinysis didysis"
 
 #: lessonbuilder.py:290
 msgid "right index"
-msgstr ""
+msgstr "dešinysis smilius"
 
 #: lessonbuilder.py:291 lessonscreen.py:49
 msgid "right thumb"
-msgstr ""
+msgstr "dešinysis nykštys"
 
 #: lessonbuilder.py:320
 #, python-format
@@ -305,10 +313,13 @@ msgid ""
 "\n"
 "Press the ENTER key when you are ready to begin!"
 msgstr ""
+"Šioje pamokoje išmoksite %(keynames)s.\n"
+"\n"
+"Kai būsite pasiruošę ir norėsite pradėti, paspauskite ENTER klavišą!"
 
 #: lessonbuilder.py:364
 msgid "Let's learn the new keys."
-msgstr ""
+msgstr "Išmokime naujus klavišus."
 
 #: lessonbuilder.py:367
 msgid "Practice typing the keys you just learned."
@@ -324,35 +335,41 @@ msgstr ""
 
 #: lessonbuilder.py:381
 msgid "Time to type real words."
-msgstr ""
+msgstr "Laikas rašyti tikrus žodžius."
 
 #: lessonbuilder.py:390
 msgid "Hihowahyah!  Ready to learn the secret of fast typing?\n"
-msgstr ""
+msgstr "Hihovahija!  Norite išmokti greito rašymo paslaptį?\n"
 
 #: lessonbuilder.py:391
 msgid ""
 "Always use the correct finger to press each key!\n"
 "\n"
 msgstr ""
+"Visuomet, spausdami klavišą, naudokite teisingą pirštą!\n"
+"\n"
 
 #: lessonbuilder.py:392
 msgid "Now, place your hands on the keyboard just like the picture below.\n"
 msgstr ""
+"Dabar uždėkite savo rankas ant klaviatūros taip, kaip tai parodyta žemiau "
+"esančiame paveikslėlyje.\n"
 
 #: lessonbuilder.py:393
 msgid "When you're ready, press the SPACE bar with your thumb!"
-msgstr ""
+msgstr "Kai būsite pasiruošę, paspauskite nykščiu TARPO klavišą!"
 
 #: lessonbuilder.py:397
 msgid ""
 "Good job!  The SPACE bar is used to insert spaces between words.\n"
 "\n"
 msgstr ""
+"Gerai!  TARPO klavišas yra naudojamas įterpti tarpus tarp žodžių.\n"
+"\n"
 
 #: lessonbuilder.py:398
 msgid "Press the SPACE bar again with your thumb."
-msgstr ""
+msgstr "Dar kartą nykščiu paspauskite TARPĄ."
 
 #: lessonbuilder.py:402
 msgid "Now I'll teach you the second key, ENTER.  "
@@ -384,31 +401,31 @@ msgstr ""
 
 #: lessonscreen.py:40
 msgid "left little finger"
-msgstr ""
+msgstr "kairysis mažylis"
 
 #: lessonscreen.py:41
 msgid "left ring finger"
-msgstr ""
+msgstr "kairysis bevardis"
 
 #: lessonscreen.py:42
 msgid "left middle finger"
-msgstr ""
+msgstr "kairysis didysis"
 
 #: lessonscreen.py:43
 msgid "left index finger"
-msgstr ""
+msgstr "kairysis smilius"
 
 #: lessonscreen.py:45
 msgid "right little finger"
-msgstr ""
+msgstr "dešinysis mažylis"
 
 #: lessonscreen.py:46
 msgid "right ring finger"
-msgstr ""
+msgstr "dešinysis bevardis"
 
 #: lessonscreen.py:47
 msgid "right middle finger"
-msgstr ""
+msgstr "dešinysis didysis"
 
 #: lessonscreen.py:48
 msgid "right index finger"
@@ -417,12 +434,12 @@ msgstr ""
 #: lessonscreen.py:190
 #, python-format
 msgid "<b>WPM:</b> %(wpm)d"
-msgstr ""
+msgstr "<b>ŽPM:</b> %(wpm)d"
 
 #: lessonscreen.py:198 medalscreen.py:92
 #, python-format
 msgid "<b>Accuracy:</b> %(accuracy)d%%"
-msgstr ""
+msgstr "<b>Tikslumas:</b> %(accuracy)d%%"
 
 #: lessonscreen.py:511
 #, python-format
@@ -450,11 +467,11 @@ msgstr ""
 #: lessonscreen.py:543
 #, python-format
 msgid "Uh oh!  Your keyboard cannot type the letter '%s'.\n"
-msgstr ""
+msgstr "O, ne!  Jūsų klaviatūra negali parašyti raidės \"%s\".\n"
 
 #: lessonscreen.py:544
 msgid "Please change your keyboard settings and try this lesson again."
-msgstr ""
+msgstr "Pakeiskite savo klaviatūros nustatymus ir vėl pabandykite šią pamoką."
 
 #: lessonscreen.py:616
 msgid "Good job!"
@@ -508,15 +525,15 @@ msgstr ""
 
 #: mainscreen.py:59
 msgid "Next"
-msgstr ""
+msgstr "Kita"
 
 #: mainscreen.py:68
 msgid "Previous"
-msgstr ""
+msgstr "Ankstesnė"
 
 #: mainscreen.py:75
 msgid "Start Lesson"
-msgstr ""
+msgstr "Pradėti pamoką"
 
 #: mainscreen.py:185
 msgid ""
@@ -530,29 +547,29 @@ msgstr ""
 
 #: mainscreen.py:217
 msgid "Bronze Medal"
-msgstr ""
+msgstr "Bronzos medalis"
 
 #: mainscreen.py:218
 msgid "Silver Medal"
-msgstr ""
+msgstr "Sidabro medalis"
 
 #: mainscreen.py:219
 msgid "Gold Medal"
-msgstr ""
+msgstr "Aukso medalis"
 
 #: medalscreen.py:56
 msgid ""
 "<span font_desc='Serif Bold Italic 28'>Certificate of Achievement</span>"
-msgstr ""
+msgstr "<span font_desc='Serif Bold Italic 28'>Pasiekimo pažymėjimas</span>"
 
 #: medalscreen.py:59
 msgid "<span font_desc='Sans 16'>This certifies that</span>"
-msgstr ""
+msgstr "<span font_desc='Sans 16'>Tai patvirtina, kad</span>"
 
 #: medalscreen.py:62
 #, python-format
 msgid "<span font_desc='Sans 16'><b><u><i>%(nick)s</i></u></b></span>"
-msgstr ""
+msgstr "<span font_desc='Sans 16'><b><u><i>%(nick)s</i></u></b></span>"
 
 #: medalscreen.py:65
 #, python-format
@@ -572,7 +589,7 @@ msgstr ""
 #: medalscreen.py:88
 #, python-format
 msgid "<b>Words Per Minute:</b> %(wpm)d"
-msgstr ""
+msgstr "<b>Žodžiai per minutę:</b> %(wpm)d"
 
 #: medalscreen.py:97
 #, python-format

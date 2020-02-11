@@ -39,15 +39,16 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-09-27 14:55-0400\n"
-"PO-Revision-Date: 2011-08-10 06:14+0200\n"
-"Last-Translator: Chris <cjl@laptop.org>\n"
+"PO-Revision-Date: 2016-05-25 03:44+0000\n"
+"Last-Translator: Chris <cjl@sugarlabs.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: ht\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n !=1);\n"
-"X-Generator: Pootle 2.0.1\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 2.5.1.1\n"
+"X-POOTLE-MTIME: 1464147853.000000\n"
 
 #. TRANS: "name" option from activity.info file
 #: titlescene.py:54 typingturtle.py:82
@@ -60,6 +61,8 @@ msgid ""
 "Need some help typing? Here you will learn the best way to hold your hands "
 "in order for you to become a faster typist!"
 msgstr ""
+"Ou vle èd pou w aprann tape? W aprann bonjan teknik pou w poze men wyon "
+"fason pou w ka tape pi vit!"
 
 #: balloongame.py:59 editlessonlistscreen.py:50 editlessonscreen.py:50
 #: editlessonscreen.py:584 lessonscreen.py:65
@@ -99,27 +102,27 @@ msgstr "Chanje leson yo"
 
 #: editlessonlistscreen.py:71 editlessonscreen.py:275
 msgid "Name"
-msgstr ""
+msgstr "Non"
 
 #: editlessonlistscreen.py:76 editlessonscreen.py:307
 msgid "Description"
-msgstr ""
+msgstr "Deskripsyon"
 
 #: editlessonlistscreen.py:82 editlessonscreen.py:287
 msgid "Type"
-msgstr ""
+msgstr "Tip"
 
 #: editlessonlistscreen.py:91
 msgid "Import Lessons from Journal"
-msgstr ""
+msgstr "Enpòte Leson yo apati Jounal"
 
 #: editlessonlistscreen.py:96
 msgid "Export Lessons to Journal"
-msgstr ""
+msgstr "Ekspòte Leson yo nan Jounal"
 
 #: editlessonlistscreen.py:101
 msgid "Save Lessons to Activity"
-msgstr ""
+msgstr "Anrejistre Leson yo nan Aktivite"
 
 #: editlessonlistscreen.py:165 editlessonscreen.py:191
 #, fuzzy
@@ -128,19 +131,19 @@ msgstr "Pwochen"
 
 #: editlessonlistscreen.py:167 editlessonscreen.py:295
 msgid "Balloon Game"
-msgstr ""
+msgstr "Jwèt Balon"
 
 #: editlessonlistscreen.py:204
 msgid "Delete Lesson?"
-msgstr ""
+msgstr "Siprime Leson"
 
 #: editlessonlistscreen.py:205
 msgid "Deleting the lesson will erase the lesson content."
-msgstr ""
+msgstr "Lèw siprime leson an, tout sa ki nan leson an ap efase."
 
 #: editlessonlistscreen.py:311
 msgid " (Exported Lessons)"
-msgstr ""
+msgstr " (Leson ki ekspòte)"
 
 #: editlessonscreen.py:47
 #, fuzzy
@@ -149,98 +152,100 @@ msgstr "Chanje leson yo"
 
 #: editlessonscreen.py:77
 msgid "New keys"
-msgstr ""
+msgstr "Nouvo Touch"
 
 #: editlessonscreen.py:78
 msgid "Known keys"
-msgstr ""
+msgstr "Touch ki rekonèt"
 
 #: editlessonscreen.py:79
 msgid "Length"
-msgstr ""
+msgstr "Longè"
 
 #: editlessonscreen.py:90
 msgid "Generate!"
-msgstr ""
+msgstr "Jenere"
 
 #: editlessonscreen.py:108 editlessonscreen.py:581
 msgid "Edit Word List"
-msgstr ""
+msgstr "Chanje lis mo"
 
 #: editlessonscreen.py:124
 #, python-format
 msgid "Step #%d"
-msgstr ""
+msgstr "Etap #%d"
 
 #: editlessonscreen.py:130
 msgid "Keys"
-msgstr ""
+msgstr "Touch"
 
 #: editlessonscreen.py:131 editlessonscreen.py:388
 msgid "Words"
-msgstr ""
+msgstr "Mo"
 
 #: editlessonscreen.py:169
 msgid "Instructions"
-msgstr ""
+msgstr "Enstriksyon"
 
 #: editlessonscreen.py:234
 msgid "Accuracy"
-msgstr ""
+msgstr "Presizyon"
 
 #: editlessonscreen.py:235
 msgid "WPM"
-msgstr ""
+msgstr "MPM"
 
 #: editlessonscreen.py:249
 msgid "Score"
-msgstr ""
+msgstr "Rezilta"
 
 #: editlessonscreen.py:270
 msgid "Lesson Details"
-msgstr ""
+msgstr "Detay Leson"
 
 #: editlessonscreen.py:291
 msgid "Normal Lesson"
-msgstr ""
+msgstr "Leson Nòmal"
 
 #: editlessonscreen.py:326
 msgid "Options"
-msgstr ""
+msgstr "Opsyon"
 
 #: editlessonscreen.py:330
 msgid "Allow Mistakes"
-msgstr ""
+msgstr "Pèmèt erè"
 
 #: editlessonscreen.py:332
 msgid "Allow Backspace"
-msgstr ""
+msgstr "Pèmèt Backspace"
 
 #: editlessonscreen.py:353
 msgid "Automatic Lesson Generator"
-msgstr ""
+msgstr "Jeneratè Leson Otomatik"
 
 #: editlessonscreen.py:412
 msgid "Medal Requirements"
-msgstr ""
+msgstr "Obligasyon pou Meday"
 
 #: editlessonscreen.py:420
 msgid "Bronze"
-msgstr ""
+msgstr "Bwonz"
 
 #: editlessonscreen.py:421
 msgid "Silver"
-msgstr ""
+msgstr "Ajan"
 
 #: editlessonscreen.py:422
 msgid "Gold"
-msgstr ""
+msgstr "Lò"
 
 #: editlessonscreen.py:594
 msgid ""
 "Type or paste words here, for the Automatic Lesson Generator.  If empty, the "
 "dictionary will be used."
 msgstr ""
+"Tape osinon kole mo nan espas sa pou Jeneratè Leson Otomatik. Si li vid, "
+"diksyonè a k ap itilize."
 
 #: lessonbuilder.py:261 lessonscreen.py:617
 #, fuzzy
@@ -263,7 +268,7 @@ msgstr "Ou te fè li!"
 
 #: lessonbuilder.py:265
 msgid "Wonderful!"
-msgstr ""
+msgstr "Mèvèye!"
 
 #: lessonbuilder.py:266
 #, fuzzy
@@ -272,7 +277,7 @@ msgstr "Bon travay!"
 
 #: lessonbuilder.py:267
 msgid "You did it!"
-msgstr ""
+msgstr "Ou fè l!"
 
 #: lessonbuilder.py:274
 msgid ""
@@ -332,11 +337,11 @@ msgstr "Endèks dwat"
 
 #: lessonbuilder.py:290
 msgid "right index"
-msgstr ""
+msgstr "endèks dwat"
 
 #: lessonbuilder.py:291 lessonscreen.py:49
 msgid "right thumb"
-msgstr ""
+msgstr "dwèt pous dwat"
 
 #: lessonbuilder.py:320
 #, python-format
@@ -345,19 +350,21 @@ msgstr " e %s kle yo"
 
 #: lessonbuilder.py:322
 msgid " key"
-msgstr ""
+msgstr " touch"
 
 #: lessonbuilder.py:325
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "In this lesson, you will learn the %(keynames)s.\n"
 "\n"
 "Press the ENTER key when you are ready to begin!"
 msgstr ""
+"Nan leson sa a, ou pral aprann touch %(keynames)s.\n"
+"\n"
 
 #: lessonbuilder.py:364
 msgid "Let's learn the new keys."
-msgstr ""
+msgstr "Annou aprann nouvo touch yo."
 
 #: lessonbuilder.py:367
 msgid "Practice typing the keys you just learned."
@@ -375,7 +382,7 @@ msgstr "Tan pou tape mo reyèl yo."
 
 #: lessonbuilder.py:381
 msgid "Time to type real words."
-msgstr ""
+msgstr "Moman pou tape mo reyèl"
 
 #: lessonbuilder.py:390
 #, fuzzy
@@ -552,7 +559,7 @@ msgid ""
 "Your accuracy was %(accuracy)d%%.\n"
 "\n"
 msgstr ""
-"Jistès ou te  %(accuracy)d%%.\n"
+"Jistès ou te %(accuracy)d%%.\n"
 "\n"
 
 #: lessonscreen.py:637

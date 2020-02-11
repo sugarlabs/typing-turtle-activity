@@ -530,8 +530,8 @@ msgid ""
 "%.\n"
 "\n"
 msgstr ""
-"Your words per minute (WPM) was %(wpm)d, and your accuracy was %(accuracy)d%"
-"%.\n"
+"Your words per minute (WPM) was %(wpm)d, and your accuracy was "
+"%(accuracy)d%%.\n"
 "\n"
 
 #: lessonscreen.py:629

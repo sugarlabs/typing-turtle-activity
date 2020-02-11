@@ -30,25 +30,26 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-09-27 14:55-0400\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2017-04-16 16:28+0000\n"
+"Last-Translator: jana <jpastyrova@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 1.3.0\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Generator: Pootle 2.5.1.1\n"
+"X-POOTLE-MTIME: 1492360127.000000\n"
 
 #. TRANS: "name" option from activity.info file
 #: titlescene.py:54 typingturtle.py:82
 msgid "Typing Turtle"
-msgstr ""
+msgstr "Typing Turtle - Strojopisová korytnačka"
 
 #. TRANS: "summary" option from activity.info file
 #. TRANS: "description" option from activity.info file
@@ -56,274 +57,284 @@ msgid ""
 "Need some help typing? Here you will learn the best way to hold your hands "
 "in order for you to become a faster typist!"
 msgstr ""
+"Potrebujete pomoc so strojopisom? S nami a naučíte ako správne držať ruky "
+"aby ste sa stali najrýchlejším pisárom. "
 
 #: balloongame.py:59 editlessonlistscreen.py:50 editlessonscreen.py:50
 #: editlessonscreen.py:584 lessonscreen.py:65
 msgid "Go Back"
-msgstr ""
+msgstr "Späť"
 
 #: balloongame.py:217
 msgid "You finished!"
-msgstr ""
+msgstr "Skončili ste!"
 
 #: balloongame.py:234
 #, python-format
 msgid "Your score was %(score)d."
-msgstr ""
+msgstr "Vaše skóre je   d%."
 
 #: balloongame.py:236
 #, python-format
 msgid "You earned a %(type)s medal!"
-msgstr ""
+msgstr "Získali ste  % (typ) medaily!"
 
 #: balloongame.py:238 medalscreen.py:101
 msgid "Press the ENTER key to continue."
-msgstr ""
+msgstr "Stlačte ENTER a pokračujte. "
 
 #: balloongame.py:350 balloongame.py:363
 #, python-format
 msgid "SCORE: %d"
-msgstr ""
+msgstr "Skóre: %d"
 
 #: balloongame.py:378
 msgid "Type the words to pop the balloons!"
-msgstr ""
+msgstr "Píšte slová aby ste zostrelili balóny!"
 
 #: editlessonlistscreen.py:47 typingturtle.py:111
 msgid "Edit Lessons"
-msgstr ""
+msgstr "Upraviť lekciu. "
 
 #: editlessonlistscreen.py:71 editlessonscreen.py:275
 msgid "Name"
-msgstr ""
+msgstr "Názov"
 
 #: editlessonlistscreen.py:76 editlessonscreen.py:307
 msgid "Description"
-msgstr ""
+msgstr "Opis"
 
 #: editlessonlistscreen.py:82 editlessonscreen.py:287
 msgid "Type"
-msgstr ""
+msgstr "písať"
 
 #: editlessonlistscreen.py:91
 msgid "Import Lessons from Journal"
-msgstr ""
+msgstr "Načítajte lekcie zo súboru Journal"
 
 #: editlessonlistscreen.py:96
 msgid "Export Lessons to Journal"
-msgstr ""
+msgstr "Exportujte lekcie do súboru Journal"
 
 #: editlessonlistscreen.py:101
 msgid "Save Lessons to Activity"
-msgstr ""
+msgstr "Uložiť lekcie do súboru Activity"
 
 #: editlessonlistscreen.py:165 editlessonscreen.py:191
 msgid "Text"
-msgstr ""
+msgstr "Text"
 
 #: editlessonlistscreen.py:167 editlessonscreen.py:295
 msgid "Balloon Game"
-msgstr ""
+msgstr "Hra s balónmi "
 
 #: editlessonlistscreen.py:204
 msgid "Delete Lesson?"
-msgstr ""
+msgstr "Vymazať lekciu?"
 
 #: editlessonlistscreen.py:205
 msgid "Deleting the lesson will erase the lesson content."
-msgstr ""
+msgstr "Vymazaním tejto lekcie vymažete aj obsah lekcie. "
 
 #: editlessonlistscreen.py:311
 msgid " (Exported Lessons)"
-msgstr ""
+msgstr "(Exportované lekcie)"
 
 #: editlessonscreen.py:47
 msgid "Edit a Lesson"
-msgstr ""
+msgstr "Upravte lekciu"
 
+# Nová klávesa
 #: editlessonscreen.py:77
 msgid "New keys"
-msgstr ""
+msgstr "Nové písmeno"
 
+# Už naučené klávesy
 #: editlessonscreen.py:78
 msgid "Known keys"
-msgstr ""
+msgstr "Už naučené písmená"
 
 #: editlessonscreen.py:79
 msgid "Length"
-msgstr ""
+msgstr "Dĺžka"
 
 #: editlessonscreen.py:90
 msgid "Generate!"
-msgstr ""
+msgstr "Generovať!"
 
 #: editlessonscreen.py:108 editlessonscreen.py:581
 msgid "Edit Word List"
-msgstr ""
+msgstr "Upraviť zoznam slov"
 
 #: editlessonscreen.py:124
 #, python-format
 msgid "Step #%d"
-msgstr ""
+msgstr "Krok #%d"
 
 #: editlessonscreen.py:130
 msgid "Keys"
-msgstr ""
+msgstr "Kľúč"
 
 #: editlessonscreen.py:131 editlessonscreen.py:388
 msgid "Words"
-msgstr ""
+msgstr "Slová"
 
 #: editlessonscreen.py:169
 msgid "Instructions"
-msgstr ""
+msgstr "Inštrukcie"
 
 #: editlessonscreen.py:234
 msgid "Accuracy"
-msgstr ""
+msgstr "Správnosť"
 
 #: editlessonscreen.py:235
 msgid "WPM"
-msgstr ""
+msgstr "Počet slov za minútu"
 
 #: editlessonscreen.py:249
 msgid "Score"
-msgstr ""
+msgstr "skóre"
 
 #: editlessonscreen.py:270
 msgid "Lesson Details"
-msgstr ""
+msgstr "Detaily lekcie"
 
 #: editlessonscreen.py:291
 msgid "Normal Lesson"
-msgstr ""
+msgstr "Obyčajná lekcia"
 
 #: editlessonscreen.py:326
 msgid "Options"
-msgstr ""
+msgstr "možnosti"
 
 #: editlessonscreen.py:330
 msgid "Allow Mistakes"
-msgstr ""
+msgstr "Povoliť chyby"
 
 #: editlessonscreen.py:332
 msgid "Allow Backspace"
-msgstr ""
+msgstr "Povoliť krok späť"
 
 #: editlessonscreen.py:353
 msgid "Automatic Lesson Generator"
-msgstr ""
+msgstr "Generátor automatickej lekcie"
 
 #: editlessonscreen.py:412
 msgid "Medal Requirements"
-msgstr ""
+msgstr "Požiadavky na medailu"
 
 #: editlessonscreen.py:420
 msgid "Bronze"
-msgstr ""
+msgstr "Bronzová"
 
 #: editlessonscreen.py:421
 msgid "Silver"
-msgstr ""
+msgstr "Strieborná"
 
 #: editlessonscreen.py:422
 msgid "Gold"
-msgstr ""
+msgstr "Zlatá"
 
 #: editlessonscreen.py:594
 msgid ""
 "Type or paste words here, for the Automatic Lesson Generator.  If empty, the "
 "dictionary will be used."
 msgstr ""
+"Sem napíšte alebo vložte slová pre Automatic Lesson Generator - Generátor "
+"automatických lekcií.  Ak je to prázdne bude použitý slovník. "
 
 #: lessonbuilder.py:261 lessonscreen.py:617
 msgid "Well done!"
-msgstr ""
+msgstr "Výborne!"
 
 #: lessonbuilder.py:262
 msgid "Good job."
-msgstr ""
+msgstr "Dobrá práca."
 
 #: lessonbuilder.py:263
 msgid "Awesome!"
-msgstr ""
+msgstr "Úžastné!"
 
 #: lessonbuilder.py:264 lessonscreen.py:619
 msgid "Way to go!"
-msgstr ""
+msgstr "Ešte ťa čaká práca!"
 
 #: lessonbuilder.py:265
 msgid "Wonderful!"
-msgstr ""
+msgstr "Úžastné!"
 
 #: lessonbuilder.py:266
 msgid "Nice work."
-msgstr ""
+msgstr "Dobrá práca."
 
 #: lessonbuilder.py:267
 msgid "You did it!"
-msgstr ""
+msgstr "Dokázal si to!"
 
 #: lessonbuilder.py:274
 msgid ""
 "Be careful to use the correct finger to press each key.  Look at the "
 "keyboard below if you need help remembering."
 msgstr ""
+"Buď opatrný a používaj správny prst na stlačenie klávesnice. Pozri si "
+"klávesnicu zobrazenú dolu ak potrebuješ pomoc. "
 
 #: lessonbuilder.py:275
 msgid ""
 "Try to type at the same speed, all the time.  As you get more comfortable "
 "you can increase the speed a little."
 msgstr ""
+"Pokúste sa písať po celý čas rovnakou rýchlosťou.  Ako sa budete zlepšovať "
+"môžte zvýšiť rýchlosť písania. "
 
 #: lessonbuilder.py:282
 msgid "left little"
-msgstr ""
+msgstr "lavý malíček"
 
 #: lessonbuilder.py:283
 msgid "left ring"
-msgstr ""
+msgstr "ľavý prstenník"
 
 #: lessonbuilder.py:284
 msgid "left middle"
-msgstr ""
+msgstr "ľavý prostredník"
 
 #: lessonbuilder.py:285
 msgid "left index"
-msgstr ""
+msgstr "ľavý ukazovák"
 
 #: lessonbuilder.py:286 lessonscreen.py:44
 msgid "left thumb"
-msgstr ""
+msgstr "ľavý palec"
 
 #: lessonbuilder.py:287
 msgid "right little"
-msgstr ""
+msgstr "pravý malíček"
 
 #: lessonbuilder.py:288
 msgid "right ring"
-msgstr ""
+msgstr "pravý prstenník"
 
 #: lessonbuilder.py:289
 msgid "right middle"
-msgstr ""
+msgstr "pravý prostredník"
 
 #: lessonbuilder.py:290
 msgid "right index"
-msgstr ""
+msgstr "pravý ukazovák"
 
 #: lessonbuilder.py:291 lessonscreen.py:49
 msgid "right thumb"
-msgstr ""
+msgstr "pravý palec"
 
 #: lessonbuilder.py:320
 #, python-format
 msgid " and %s keys"
-msgstr ""
+msgstr "a %s kláves"
 
 #: lessonbuilder.py:322
 msgid " key"
-msgstr ""
+msgstr "klávesa"
 
 #: lessonbuilder.py:325
 #, python-format
@@ -332,169 +343,172 @@ msgid ""
 "\n"
 "Press the ENTER key when you are ready to begin!"
 msgstr ""
+"V tejto lekcii sa naučíte  % (písmen na klávesnici). Stlačte ENTER ak ste "
+"pripravení začať. "
 
 #: lessonbuilder.py:364
 msgid "Let's learn the new keys."
-msgstr ""
+msgstr "Poďme sa naučiť nová písmená. "
 
 #: lessonbuilder.py:367
 msgid "Practice typing the keys you just learned."
-msgstr ""
+msgstr "Precvičujte písanie písmen, ktoré ste sa už naučili."
 
 #: lessonbuilder.py:371
 msgid "Now put the keys together into pairs."
-msgstr ""
+msgstr "Teraz spájajte písmená do párov. "
 
 #: lessonbuilder.py:376
 msgid "Time to type jumbles."
-msgstr ""
+msgstr "Čas na písanie zmiešaných písmen. "
 
 #: lessonbuilder.py:381
 msgid "Time to type real words."
-msgstr ""
+msgstr "Čas na písanie slov. "
 
 #: lessonbuilder.py:390
 msgid "Hihowahyah!  Ready to learn the secret of fast typing?\n"
-msgstr ""
+msgstr "Huráááá! Pripravení naučiť sa tajomstvá rýchleho strojopisu? "
 
 #: lessonbuilder.py:391
 msgid ""
 "Always use the correct finger to press each key!\n"
 "\n"
-msgstr ""
+msgstr "Vždy používajte správny prst na stlačenie klávesy!"
 
 #: lessonbuilder.py:392
 msgid "Now, place your hands on the keyboard just like the picture below.\n"
-msgstr ""
+msgstr "Teraz položte ruky na klávesnicu, tak ako vidíte na obrázku."
 
 #: lessonbuilder.py:393
 msgid "When you're ready, press the SPACE bar with your thumb!"
-msgstr ""
+msgstr "Ak ste pripravení, stlačte palcom kláves SPACE!"
 
 #: lessonbuilder.py:397
 msgid ""
 "Good job!  The SPACE bar is used to insert spaces between words.\n"
 "\n"
-msgstr ""
+msgstr "Dobrá práca! Kláves SPACE sa používa na tvorbu medzier medzi slovami. "
 
 #: lessonbuilder.py:398
 msgid "Press the SPACE bar again with your thumb."
-msgstr ""
+msgstr "Stlačte palcom znova kláves SPACE."
 
 #: lessonbuilder.py:402
 msgid "Now I'll teach you the second key, ENTER.  "
-msgstr ""
+msgstr "Teraz sa naučíme druhý kláves, ENTER. "
 
 #: lessonbuilder.py:403
 msgid ""
 "That's the big square key near your right little finger.\n"
 "\n"
-msgstr ""
+msgstr "Je to veľký štvorcový kláves pri vašom pravom malíčku. "
 
 #: lessonbuilder.py:404
 msgid "Now, reach your little finger over and press ENTER."
-msgstr ""
+msgstr "Teraz natiahnite pravý malíček a stlačte kláves ENTER.  "
 
 #: lessonbuilder.py:408
 msgid ""
 "Great!  When typing, the ENTER key is used to begin a new line.\n"
 "\n"
 msgstr ""
+"Super! Keď píšete, kláves ENTER sa používa, keď potrebuje začať nový riadok. "
 
 #: lessonbuilder.py:409
 msgid "Press the ENTER key again with your right little finger."
-msgstr ""
+msgstr "Stačte ENTER znova s malíčkom na Vašej pravej ruke. "
 
 #: lessonbuilder.py:417
 msgid "Copy out the following text."
-msgstr ""
+msgstr "Odpíšte nasledovný text. "
 
 #: lessonscreen.py:40
 msgid "left little finger"
-msgstr ""
+msgstr "malíček ľavej ruky"
 
 #: lessonscreen.py:41
 msgid "left ring finger"
-msgstr ""
+msgstr "ľavý prstenník"
 
 #: lessonscreen.py:42
 msgid "left middle finger"
-msgstr ""
+msgstr "ľavý prostredník"
 
 #: lessonscreen.py:43
 msgid "left index finger"
-msgstr ""
+msgstr "ľavý ukazovák"
 
 #: lessonscreen.py:45
 msgid "right little finger"
-msgstr ""
+msgstr "malíček pravej ruky"
 
 #: lessonscreen.py:46
 msgid "right ring finger"
-msgstr ""
+msgstr "pravý prstenník"
 
 #: lessonscreen.py:47
 msgid "right middle finger"
-msgstr ""
+msgstr "pravý prostredník"
 
 #: lessonscreen.py:48
 msgid "right index finger"
-msgstr ""
+msgstr "pravý ukazovák"
 
 #: lessonscreen.py:190
 #, python-format
 msgid "<b>WPM:</b> %(wpm)d"
-msgstr ""
+msgstr "<b>Počet slov za minútu:</b> %(počet slov za minútu)d"
 
 #: lessonscreen.py:198 medalscreen.py:92
 #, python-format
 msgid "<b>Accuracy:</b> %(accuracy)d%%"
-msgstr ""
+msgstr "<b>Správnosť:</b> %(správnosť)d%%"
 
 #: lessonscreen.py:511
 #, python-format
 msgid "Press and hold the shift key with your %(finger)s, "
-msgstr ""
+msgstr "Stlačte a podržte kláves shift s vaším %(prstom)prstami"
 
 #: lessonscreen.py:512 lessonscreen.py:516 lessonscreen.py:520
 #, python-format
 msgid "then press the %(letter)s key with your %(finger)s."
-msgstr ""
+msgstr "potom stlačte % (písmeno/á) a vaším % (prstom)prstami"
 
 #: lessonscreen.py:515
 msgid "Press and hold the altgr key, "
-msgstr ""
+msgstr "Stlačte a podržte kláves altgr"
 
 #: lessonscreen.py:519
 msgid "Press and hold the altgr and shift keys, "
-msgstr ""
+msgstr "Stlačte a podržte kláves altgr a kláves shift "
 
 #: lessonscreen.py:523
 #, python-format
 msgid "Press the %(letter)s key with your %(finger)s."
-msgstr ""
+msgstr "Stlačte % (písmeno) písmená s vaším % (prstom) prstami"
 
 #: lessonscreen.py:543
 #, python-format
 msgid "Uh oh!  Your keyboard cannot type the letter '%s'.\n"
-msgstr ""
+msgstr "Uh,oh!    Vaša klávesnica nemôže napísať písmeno/ná %."
 
 #: lessonscreen.py:544
 msgid "Please change your keyboard settings and try this lesson again."
-msgstr ""
+msgstr "Prosím, zmeňte nastavenie Vašej klávesnice a skúste lekciu znova.  "
 
 #: lessonscreen.py:616
 msgid "Good job!"
-msgstr ""
+msgstr "Dobrá práca!"
 
 #: lessonscreen.py:618
 msgid "Nice work!"
-msgstr ""
+msgstr "Dobrá práca!"
 
 #: lessonscreen.py:624
 #, python-format
 msgid "You finished the lesson in %(time)d seconds, with %(errors)d errors.\n"
-msgstr ""
+msgstr "Skončili ste lekciu v % (čas)d sekúnd, s % (chyby)d chyby. "
 
 #: lessonscreen.py:626
 #, python-format
@@ -503,105 +517,109 @@ msgid ""
 "%.\n"
 "\n"
 msgstr ""
+"Počet Vašich slov za minútu bol % (počet slov za minútu), a vaša správnosť "
+"bola % (správnosť)s%%"
 
 #: lessonscreen.py:629
 #, python-format
 msgid "You finished the lesson with %(errors)d errors.\n"
-msgstr ""
+msgstr "Skončili ste lekciu s % (chýb)d chyby. "
 
 #: lessonscreen.py:631
 #, python-format
 msgid ""
 "Your accuracy was %(accuracy)d%%.\n"
 "\n"
-msgstr ""
+msgstr "Vaša presnosť bolo % (presnosť)d %%"
 
 #: lessonscreen.py:637
 #, python-format
 msgid "Congratulations!  You earned a %(type)s medal!"
-msgstr ""
+msgstr "Gratulujeme!   Získali ste % (typ) medaily!"
 
 #: lessonscreen.py:645
 msgid "You need to practice this lesson more before moving on."
-msgstr ""
+msgstr "Ešte potrebujete precvičiť túto lekciu kým postúpite ďalej. "
 
 #: lessonscreen.py:648
 msgid "You almost got a medal!  Next time, try not to make as many errors."
-msgstr ""
+msgstr "Takmer ste vyhrali medailu!  Nabudúce sa pokúste urobiť menej chýb. "
 
 #: lessonscreen.py:651
 msgid "You almost got a medal!  Next time, try to type a little faster."
-msgstr ""
+msgstr "Takmer ste vyhrali medailu! Nabudúce sa pokúste písať rýchlejšie. "
 
 #: mainscreen.py:59
 msgid "Next"
-msgstr ""
+msgstr "Ďalej"
 
 #: mainscreen.py:68
 msgid "Previous"
-msgstr ""
+msgstr "Predchádzajúce"
 
 #: mainscreen.py:75
 msgid "Start Lesson"
-msgstr ""
+msgstr "Začať lekciu"
 
 #: mainscreen.py:185
 msgid ""
 "You earned a medal in this lesson!  Advance to the next one\n"
 "by clicking the Next button."
 msgstr ""
+"Za túto lekciu si zaslúžite medailu! Postúpte ďalej tým, že kliknete na "
+"kláves Next.  "
 
 #: mainscreen.py:216
 msgid "No Medal Yet"
-msgstr ""
+msgstr "Zatiaľ žiadna medaila.  "
 
 #: mainscreen.py:217
 msgid "Bronze Medal"
-msgstr ""
+msgstr "Bronzová medaila"
 
 #: mainscreen.py:218
 msgid "Silver Medal"
-msgstr ""
+msgstr "Strieborná medaila"
 
 #: mainscreen.py:219
 msgid "Gold Medal"
-msgstr ""
+msgstr "Zlatá medaila"
 
 #: medalscreen.py:56
 msgid ""
 "<span font_desc='Serif Bold Italic 28'>Certificate of Achievement</span>"
-msgstr ""
+msgstr "<span font_desc='Serif Bold Italic 28'>Certifikát úspechu</span>"
 
 #: medalscreen.py:59
 msgid "<span font_desc='Sans 16'>This certifies that</span>"
-msgstr ""
+msgstr "<span font_desc='Sans 16'>Toto potvrdzuje, že</span>"
 
 #: medalscreen.py:62
 #, python-format
 msgid "<span font_desc='Sans 16'><b><u><i>%(nick)s</i></u></b></span>"
-msgstr ""
+msgstr "<span font_desc='Sans 16'><b><u><i>%(meno)á</i></u></b></span>"
 
 #: medalscreen.py:65
 #, python-format
 msgid "<span font_desc='Sans 16'>earned a %(type)s medal in </span>"
-msgstr ""
+msgstr "<span font_desc='Sans 16'>získal/získala %(typ) medailu v</span>"
 
 #: medalscreen.py:68
 #, python-format
 msgid "<span font_desc='Sans 16'>in <b><u><i>%(lesson)s</i></u></b></span>"
-msgstr ""
+msgstr "<span font_desc='Sans 16'>v <b><u><i>%(lekcia)ie</i></u></b></span>"
 
 #: medalscreen.py:71
 #, python-format
 msgid "<span font_desc='Sans 16'>on <b><u><i>%(date)s</i></u></b>.</span>"
-msgstr ""
+msgstr "<span font_desc='Sans 16'>v <b><u><i>%(dátum)</i></u></b>.</span>"
 
 #: medalscreen.py:88
 #, python-format
 msgid "<b>Words Per Minute:</b> %(wpm)d"
-msgstr ""
+msgstr "<b>Slová za minútu:</b> %(slová za minútu)d"
 
 #: medalscreen.py:97
 #, python-format
 msgid "<b>SCORE:</b> %(score)d"
-msgstr ""
+msgstr "<b>SKÓRE:</b> %(skóre)d"
