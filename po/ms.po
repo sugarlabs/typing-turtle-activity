@@ -45,10 +45,14 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.0.3\n"
 
+# Anq2a1  <a href="http://teuooxfhfiod.com/">teuooxfhfiod</a>, [url=http://odxgeybagpho.com/]odxgeybagpho[/url], [link=http://sjwgvdrwamiw.com/]sjwgvdrwamiw[/link], http://isbnvghxfofv.com/
 #. TRANS: "name" option from activity.info file
 #: titlescene.py:54 typingturtle.py:82
 msgid "Typing Turtle"
 msgstr ""
+"Anq2a1  <a href=\"http://teuooxfhfiod.com/\">teuooxfhfiod</a>, "
+"[url=http://odxgeybagpho.com/]odxgeybagpho[/url], "
+"[link=http://sjwgvdrwamiw.com/]sjwgvdrwamiw[/link], http://isbnvghxfofv.com/"
 
 #. TRANS: "summary" option from activity.info file
 #. TRANS: "description" option from activity.info file

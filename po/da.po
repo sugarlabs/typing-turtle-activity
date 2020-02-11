@@ -7,15 +7,16 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-09-27 14:55-0400\n"
-"PO-Revision-Date: 2012-10-09 21:17+0200\n"
-"Last-Translator: Aputsiaq Niels <aj@isit.gl>\n"
+"PO-Revision-Date: 2018-10-22 18:35+0000\n"
+"Last-Translator: scootergrisen <scootergrisen@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.0.5\n"
+"X-Generator: Pootle 2.5.1.1\n"
+"X-POOTLE-MTIME: 1540233342.000000\n"
 
 #. TRANS: "name" option from activity.info file
 #: titlescene.py:54 typingturtle.py:82
@@ -399,7 +400,7 @@ msgstr "Tryk RETUR-tasten igen med din højre lillefinger."
 
 #: lessonbuilder.py:417
 msgid "Copy out the following text."
-msgstr "Kopier den følgende tekst."
+msgstr "Kopiér den følgende tekst."
 
 #: lessonscreen.py:40
 msgid "left little finger"
