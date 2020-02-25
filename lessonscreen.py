@@ -31,7 +31,7 @@ from sugar3.graphics import *
 import keyboard, medalscreen
 
 # Paragraph symbol unicode character.
-PARAGRAPH_CODE = u'\xb6'
+PARAGRAPH_CODE = '\xb6'
 
 # Maximium width of a text line in text lesson mode.
 LINE_WIDTH = 70

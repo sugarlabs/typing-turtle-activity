@@ -38,7 +38,7 @@ from layouts.olpcm import OLPCM_LAYOUT
 HAND_YOFFSET = -15
 
 # Unicode symbol for the paragraph key.
-PARAGRAPH_CODE = u'\xb6'
+PARAGRAPH_CODE = '\xb6'
 
 # List of all key properties in the keyboard layout description.
 #
