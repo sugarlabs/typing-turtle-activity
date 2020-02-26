@@ -19,8 +19,6 @@
 import cairo
 import copy
 import os, glob, re
-import gi
-gi.require_version('PangoCairo', '1.0') # Check PangoCairo Version to prevent warnings
 from gi.repository import Gtk
 from gi.repository import Pango
 from gi.repository import PangoCairo

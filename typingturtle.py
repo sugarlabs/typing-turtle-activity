@@ -30,7 +30,9 @@ import json
 
 import gi
 gi.require_version('Gtk', '3.0')
+gi.require_version('PangoCairo', '1.0')
 from gi.repository import Gtk
+from gi.repository import PangoCairo
 
 # Import Sugar UI modules.
 import sugar3.activity.activity
@@ -52,8 +54,6 @@ bundle_path = sugar3.activity.activity.get_bundle_path()
 os.chdir(bundle_path)
 
 # Set correct DPI for Rsvg and Screen
-gi.require_version('PangoCairo', '1.0')
-from gi.repository import PangoCairo
 
 def _get_screen_dpi():
     xft_dpi = Gtk.Settings.get_default().get_property('gtk-xft-dpi')
