@@ -321,7 +321,7 @@ class LessonScreen(Gtk.VBox):
 
                 # Add the text to copy.
                 self.lessonbuffer.insert_with_tags_by_name(
-                    self.lessonbuffer.get_end_iter(), l.decode('utf-8') + '\n', 'text')
+                    self.lessonbuffer.get_end_iter(), l + '\n', 'text')
                 
                 # Leave a marker where we will later insert text.
                 self.line_marks[line_idx] = self.lessonbuffer.create_mark(None, self.lessonbuffer.get_end_iter(), True)
