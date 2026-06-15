@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-02-11 04:18+0100\n"
-"PO-Revision-Date: 2026-05-19 11:33+0000\n"
+"PO-Revision-Date: 2026-06-15 07:48+0000\n"
 "Last-Translator: NF <rkavt@smartprojects.ge>\n"
 "Language-Team: Georgian <http://weblate.sugarlabs.org/projects/"
 "sugar-activities/typing-turtle/ka/>\n"
@@ -67,7 +67,7 @@ msgstr ""
 
 #: editlessonlistscreen.py:72 editlessonscreen.py:275
 msgid "Name"
-msgstr ""
+msgstr "სახელი"
 
 #: editlessonlistscreen.py:77 editlessonscreen.py:307
 msgid "Description"
@@ -75,7 +75,7 @@ msgstr "აღწერა"
 
 #: editlessonlistscreen.py:83 editlessonscreen.py:287
 msgid "Type"
-msgstr ""
+msgstr "ტიპი"
 
 #: editlessonlistscreen.py:92
 msgid "Import Lessons from Journal"
@@ -172,7 +172,7 @@ msgstr ""
 
 #: editlessonscreen.py:326
 msgid "Options"
-msgstr ""
+msgstr "მორგება"
 
 #: editlessonscreen.py:330
 msgid "Allow Mistakes"
