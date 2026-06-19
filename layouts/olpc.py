@@ -59,7 +59,7 @@ OLPC_LAYOUT = {
                 {'key-scan':0x13,'key-finger':'RP','key-hand-image':'OLPC_Rhand_0.svg'},
                 {'key-scan':0x14,'key-finger':'RP','key-hand-image':'OLPC_Rhand_minus.svg'},
                 {'key-scan':0x15,'key-finger':'RP','key-hand-image':'OLPC_Rhand_plus.svg','key-width':65},
-                {'key-scan':0x16,'key-finger':'RP','key-label':"erase",'key-width':95}
+                {'key-scan':0x16,'key-finger':'RP','key-label':"backspace",'key-width':95}
             ]
         },
         {
@@ -90,7 +90,7 @@ OLPC_LAYOUT = {
             'group-y': 110,
 
             'keys': [
-                {'key-scan':0x25,'key-finger':'LP','key-label':"ctrl",'key-width':55},
+                {'key-scan':0x25,'key-finger':'LP','key-label':"caps lock",'key-width':55},
                 {'key-scan':0x26,'key-finger':'LP','key-hand-image':'OLPC_Lhand_A.svg'},
                 {'key-scan':0x27,'key-finger':'LR','key-hand-image':'OLPC_Lhand_S.svg'},
                 {'key-scan':0x28,'key-finger':'LM','key-hand-image':'OLPC_Lhand_D.svg'},
@@ -123,8 +123,7 @@ OLPC_LAYOUT = {
                 {'key-scan':0x3c,'key-finger':'RR','key-hand-image':'OLPC_Rhand_PERIOD.svg'},
                 {'key-scan':0x3d,'key-finger':'RP','key-hand-image':'OLPC_Rhand_QUESTIONMARK.svg'},
                 {'key-scan':0x3e,'key-finger':'RP','key-hand-image':'OLPC_Rhand_SHIFT.svg','key-label':"shift",'key-width':75},
-                {'key-scan':0x6f,'key-finger':'RP','key-label':""}, # Up
-                {'key-label':""}, # Language key
+                {'key-scan':0x6f,'key-finger':'RP','key-label':"up"}, # Up
             ]
         },
         {
@@ -133,15 +132,16 @@ OLPC_LAYOUT = {
             'group-y': 210,
 
             'keys': [
+                {'key-label':"ctrl",'key-width':35},
                 {'key-label':"fn",'key-width':35},
-                {'key-label':"",'key-width':55}, # LHand
+                {'key-label':"win",'key-width':55}, # LHand
                 {'key-scan':0x40,'key-label':"alt",'key-width':55}, # LAlt
-                {'key-scan':0x41,'key-finger':'RT','key-hand-image':'OLPC_Rhand_SPACE.svg','key-width':325}, # Spacebar
+                {'key-scan':0x41,'key-finger':'RT','key-hand-image':'OLPC_Rhand_SPACE.svg','key-width':285}, # Spacebar
                 {'key-scan':0x6c,'key-label':"altgr",'key-width':55}, # AltGr
-                {'key-label':"",'key-width':55}, # RHand
-                {'key-scan':0x71,'key-label':""}, # Left
-                {'key-scan':0x74,'key-label':""}, # Down
-                {'key-scan':0x72,'key-label':""}, # Right
+                {'key-label':"ctrl",'key-width':55}, # RHand
+                {'key-scan':0x71,'key-label':"left"}, # Left
+                {'key-scan':0x74,'key-label':"down"}, # Down
+                {'key-scan':0x72,'key-label':"right"}, # Right
             ]
         }
     ]
