@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-02-11 04:18+0100\n"
-"PO-Revision-Date: 2026-06-15 08:49+0000\n"
+"PO-Revision-Date: 2026-06-30 00:37+0000\n"
 "Last-Translator: NF <rkavt@smartprojects.ge>\n"
 "Language-Team: Georgian <http://weblate.sugarlabs.org/projects/"
 "sugar-activities/typing-turtle/ka/>\n"
@@ -127,7 +127,7 @@ msgstr "სიგრძე"
 
 #: editlessonscreen.py:90
 msgid "Generate!"
-msgstr ""
+msgstr "გენერაცია!"
 
 #: editlessonscreen.py:108 editlessonscreen.py:581
 msgid "Edit Word List"
@@ -140,27 +140,27 @@ msgstr ""
 
 #: editlessonscreen.py:130
 msgid "Keys"
-msgstr ""
+msgstr "გასაღებები"
 
 #: editlessonscreen.py:131 editlessonscreen.py:388
 msgid "Words"
-msgstr ""
+msgstr "სიტყვები"
 
 #: editlessonscreen.py:169
 msgid "Instructions"
-msgstr ""
+msgstr "ინსტრუქციები"
 
 #: editlessonscreen.py:234
 msgid "Accuracy"
-msgstr ""
+msgstr "სიზუსტე"
 
 #: editlessonscreen.py:235
 msgid "WPM"
-msgstr ""
+msgstr "სიტყვა/წთ"
 
 #: editlessonscreen.py:249
 msgid "Score"
-msgstr ""
+msgstr "ქულები"
 
 #: editlessonscreen.py:270
 msgid "Lesson Details"
@@ -192,15 +192,15 @@ msgstr ""
 
 #: editlessonscreen.py:420
 msgid "Bronze"
-msgstr ""
+msgstr "ბრინჯაო"
 
 #: editlessonscreen.py:421
 msgid "Silver"
-msgstr ""
+msgstr "ვერცხლი"
 
 #: editlessonscreen.py:422
 msgid "Gold"
-msgstr ""
+msgstr "ოქრო"
 
 #: editlessonscreen.py:594
 msgid ""
@@ -218,7 +218,7 @@ msgstr ""
 
 #: lessonbuilder.py:263
 msgid "Awesome!"
-msgstr ""
+msgstr "შთამბეჭდავია!"
 
 #: lessonbuilder.py:264 lessonscreen.py:624
 msgid "Way to go!"
@@ -226,7 +226,7 @@ msgstr ""
 
 #: lessonbuilder.py:265
 msgid "Wonderful!"
-msgstr ""
+msgstr "საუცხოოა!"
 
 #: lessonbuilder.py:266
 msgid "Nice work."
@@ -295,7 +295,7 @@ msgstr ""
 
 #: lessonbuilder.py:322
 msgid " key"
-msgstr ""
+msgstr " ღილაკი"
 
 #: lessonbuilder.py:325
 #, python-format
